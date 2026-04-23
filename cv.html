@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Joshua Woodyard · Curriculum Vitae</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Joshua Woodyard — Curriculum Vitae. Analytics strategist and behavioural researcher. London.">
+<link rel="stylesheet" href="foundations.css">
+<style>
+  body { background: var(--paper-warm); padding: var(--s-7) 0; }
+
+  .page {
+    width: 8.5in; min-height: 11in;
+    margin: 0 auto var(--s-6);
+    background: var(--paper);
+    padding: 0.5in 0.55in;
+    box-shadow: 0 8px 40px -16px #14141433;
+    display: flex; flex-direction: column;
+  }
+
+  /* Header */
+  .cv-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: var(--s-4);
+    padding-bottom: var(--s-3);
+    border-bottom: 2px solid var(--ink);
+  }
+  .cv-name {
+    font-family: var(--font-wordmark);
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 1;
+    letter-spacing: normal;
+    color: var(--ink);
+    text-transform: lowercase;
+    margin: 0;
+  }
+  .cv-folio {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 9px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-muted);
+    text-align: right;
+  }
+  .cv-folio .pg { color: var(--ink); }
+
+  /* Tagline pipe row */
+  .cv-tagline {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--klein);
+    padding: 8px 0 6px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .cv-tagline .sep { color: var(--ink-muted); margin: 0 8px; font-weight: 400; }
+
+  /* Contact pipe row */
+  .cv-contact {
+    font-family: var(--font-sans); font-weight: 400;
+    font-size: 10.5px; letter-spacing: 0.04em;
+    color: var(--ink);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--ink);
+    display: flex; flex-wrap: wrap; align-items: center;
+  }
+  .cv-contact .item { display: inline-flex; align-items: center; }
+  .cv-contact .sep { color: var(--ink-muted); margin: 0 10px; }
+  .cv-contact a { color: var(--ink); border: none; }
+  .cv-contact a:hover { color: var(--klein); }
+
+  /* Lede */
+  .cv-lede {
+    margin: 8px 0 0;
+    font-family: var(--font-body); font-weight: 300;
+    font-size: 13px; line-height: 1.45;
+    color: var(--ink);
+    max-width: none;
+    text-wrap: pretty;
+  }
+
+  /* Section headings */
+  .cv-section { margin-top: 14px; }
+  .cv-section > h2 {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 11px; letter-spacing: 0.32em;
+    text-transform: uppercase; color: var(--ink);
+    padding-bottom: 4px;
+    border-bottom: 2px solid var(--ink);
+    margin: 0 0 6px;
+  }
+  .cv-section > h2 .cont {
+    font-family: var(--font-body); font-style: italic; font-weight: 300;
+    font-size: 11px; letter-spacing: 0; color: var(--ink-muted); text-transform: none;
+    float: right; padding-top: 2px;
+  }
+
+  /* Role row */
+  .role-bar {
+    display: grid;
+    grid-template-columns: 150px 130px 1fr;
+    gap: var(--s-4);
+    align-items: baseline;
+    padding: 6px 0 2px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .role-bar .when {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .role-bar .where {
+    font-family: var(--font-sans); font-weight: 400;
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-muted);
+  }
+  .role-bar .role {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 13px; letter-spacing: -0.005em;
+    color: var(--ink);
+    text-align: right;
+  }
+  .role-bar .role em {
+    font-family: var(--font-body); font-style: italic; font-weight: 300;
+    color: var(--klein); font-size: 14px; letter-spacing: 0;
+  }
+
+  /* Bullets */
+  .cv-bullets {
+    list-style: none; padding: 0; margin: 4px 0 8px;
+  }
+  .cv-bullets li {
+    font-family: var(--font-body); font-weight: 300;
+    font-size: 12px; line-height: 1.35;
+    color: var(--ink);
+    padding-left: 1.1em;
+    position: relative;
+    margin: 0 0 2px;
+    max-width: none;
+    text-wrap: unset;
+  }
+  .cv-bullets li::before {
+    content: "•";
+    position: absolute; left: 2px; top: 0;
+    color: var(--klein);
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 14px; line-height: 1.3;
+  }
+  .cv-bullets li strong {
+    font-family: var(--font-body); font-weight: 300;
+    font-style: italic; color: var(--klein);
+  }
+
+  /* Education row */
+  .edu-row {
+    display: grid; grid-template-columns: 150px 1fr auto;
+    gap: var(--s-4); align-items: baseline;
+    padding: 4px 0 2px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .edu-row .when {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .edu-row .school {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 13px; letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .edu-row .degree {
+    font-family: var(--font-body); font-style: italic; font-weight: 300;
+    font-size: 13px; color: var(--klein); text-align: right;
+  }
+  .edu-meta {
+    list-style: none; padding: 0; margin: 2px 0 6px;
+  }
+  .edu-meta li {
+    font-family: var(--font-body); font-weight: 300; font-size: 11.5px;
+    line-height: 1.35; color: var(--ink);
+    padding-left: 1.1em; position: relative; margin-bottom: 1px;
+    max-width: none; text-wrap: unset;
+  }
+  .edu-meta li::before {
+    content: "•"; position: absolute; left: 2px; top: 0;
+    color: var(--klein); font-weight: 700;
+  }
+  .edu-meta .topics {
+    padding-left: 0; color: var(--ink-soft); font-style: italic;
+    font-size: 11.5px; margin-top: 4px;
+  }
+  .edu-meta .topics::before { content: ""; }
+  .edu-meta .topics b { font-family: var(--font-sans); font-weight: 700; font-style: normal;
+    text-transform: uppercase; letter-spacing: 0.18em; font-size: 9.5px;
+    color: var(--ink-muted); margin-right: 6px; }
+
+  /* Languages / Skills two-column */
+  .twocol {
+    display: grid; grid-template-columns: 180px 1fr; gap: var(--s-5);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .twocol:last-child { border-bottom: none; }
+  .twocol .k {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-muted); padding-top: 2px;
+  }
+  .twocol .v {
+    font-family: var(--font-body); font-weight: 300; font-size: 12.5px; line-height: 1.45;
+    color: var(--ink); max-width: none; text-wrap: unset;
+  }
+  .twocol .v .lang { display: inline-block; margin-right: 16px; }
+  .twocol .v .lang .level {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 9.5px; letter-spacing: 0.14em;
+    color: var(--klein); margin-left: 4px;
+  }
+
+  /* Foot */
+  .cv-foot {
+    margin-top: auto;
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--ink);
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .cv-foot .c { text-align: center; }
+  .cv-foot .r { text-align: right; }
+
+  /* Tweaks panel */
+  .tweaks {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--paper); border: 1px solid var(--ink);
+    padding: 18px; width: 280px;
+    font-family: var(--font-sans); font-size: 12px;
+    box-shadow: 0 12px 40px -16px #14141466;
+    display: none; z-index: 50;
+  }
+  .tweaks.open { display: block; }
+  .tweaks h4 {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+    border-bottom: 1px solid var(--ink); padding-bottom: 8px; margin: 0 0 12px;
+  }
+  .tweaks .row {
+    display: grid; grid-template-columns: 1fr auto; gap: 8px;
+    align-items: center; margin-bottom: 10px;
+  }
+  .tweaks label {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted);
+  }
+  .tweaks select, .tweaks input {
+    font-family: var(--font-sans); font-size: 11px;
+    border: 1px solid var(--rule-strong); background: var(--paper-bright);
+    padding: 4px 6px;
+  }
+  .tweak-toggle {
+    position: fixed; bottom: 24px; right: 24px; z-index: 49;
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 10px 14px; border: 1px solid var(--ink);
+    background: var(--paper); color: var(--ink); cursor: pointer;
+    border-radius: 0;
+  }
+
+  /* Density variants */
+  body[data-density="airy"] .cv-bullets li { font-size: 13px; margin-bottom: 7px; line-height: 1.5; }
+  body[data-density="airy"] .role-bar { padding: var(--s-4) 0 6px; }
+  body[data-density="compact"] .cv-bullets li { font-size: 11.5px; margin-bottom: 3px; line-height: 1.4; }
+  body[data-density="compact"] .role-bar { padding: 6px 0 4px; }
+
+  body[data-accent="ink"] .cv-tagline,
+  body[data-accent="ink"] .cv-bullets li::before,
+  body[data-accent="ink"] .cv-bullets li strong,
+  body[data-accent="ink"] .role-bar .role em,
+  body[data-accent="ink"] .edu-row .degree,
+  body[data-accent="ink"] .edu-meta li::before,
+  body[data-accent="ink"] .twocol .v .lang .level { color: var(--ink); }
+
+  /* Back link */
+  .back-link {
+    display: block; max-width: 8.5in; margin: 0 auto var(--s-4);
+    font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-muted); border: none; padding: 0;
+  }
+  .back-link:hover { color: var(--klein); }
+
+  @media print {
+    .back-link { display: none; }
+    body { background: var(--paper); padding: 0; }
+    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 0.5in 0.55in; }
+    .tweaks, .tweak-toggle { display: none !important; }
+    @page { size: letter; margin: 0; }
+  }
+
+  @media (max-width: 8.5in) {
+    .page { width: 100%; padding: var(--s-6) var(--s-5); min-height: auto; }
+    .role-bar { grid-template-columns: 1fr 1fr; }
+    .role-bar .where { display: none; }
+    .edu-row { grid-template-columns: 1fr; gap: var(--s-2); }
+    .edu-row .degree { text-align: left; }
+    .twocol { grid-template-columns: 1fr; gap: var(--s-2); }
+    .cv-foot { grid-template-columns: 1fr; }
+    .cv-foot .c, .cv-foot .r { text-align: left; }
+  }
+</style>
+</head>
+<body data-accent="klein" data-density="default">
+
+<a class="back-link" href="index.html">← Back to portfolio</a>
+
+<!-- PAGE 1 -->
+<article class="page">
+
+  <header class="cv-head">
+    <h1 class="cv-name">joshua woodyard</h1>
+    <div class="cv-folio">
+      <div>Curriculum Vitae · MMXXVI</div>
+      <div style="margin-top:3px;"><span class="pg">1 / 2</span></div>
+    </div>
+  </header>
+
+  <div class="cv-tagline">
+    Analytics<span class="sep">|</span>Market Research<span class="sep">|</span>Human Behaviour
+  </div>
+
+  <div class="cv-contact">
+    <span class="item">N7, London, England</span>
+    <span class="sep">|</span>
+    <span class="item"><a href="mailto:woodyardjoshuae@gmail.com">woodyardjoshuae@gmail.com</a></span>
+    <span class="sep">|</span>
+    <span class="item">+44 7714 350869</span>
+    <span class="sep">|</span>
+    <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
+  </div>
+
+  <p class="cv-lede">
+    Analytics strategist and behavioural researcher with 6+ years experience combining advanced technical depth (e.g. R, Dashboards, advanced statistics) with human-centred inquiry. Academically specialised in behavioural economics and marketing science; proven ability to parachute into ambiguous challenges and translate complex information into strategic insights for C-Suite or entry-level employees. Targeting research, behavioural insight, or analytics roles where human-centred analytics shape product or policy decisions.
+  </p>
+
+  <!-- EXPERIENCE -->
+  <section class="cv-section">
+    <h2>Experience</h2>
+
+    <div class="role-bar">
+      <span class="when">Jul 2025 – Current</span>
+      <span class="where">London, UK</span>
+      <span class="role">Sr. Executive — Data &amp; Insights, <em>Publicis Groupe</em></span>
+    </div>
+    <ul class="cv-bullets">
+      <li>Established <strong>analytics infrastructure, standardised workflows, and reporting frameworks</strong> for a newly created staffing role, enabling non-technical staff to benefit from technical efficiencies.</li>
+      <li>Developed new end-to-end data wrangling, processing, and aggregation practices; creating new integrity checks, reducing human intervention, and complete accountability of roles.</li>
+      <li>Built real-time staffing dashboards for business leads, providing live visibility into resource allocation during <strong>90-day global transitions</strong> and enabling data-driven staffing decisions.</li>
+      <li>Delivered custom reports for senior leadership and clients, translating data into simple insights.</li>
+      <li>Led and supported resolution of critical staffing issues across <strong>40+ markets</strong> during transitions.</li>
+    </ul>
+
+    <div class="role-bar">
+      <span class="when">May 2021 – May 2023</span>
+      <span class="where">New York City, US</span>
+      <span class="role">Freelance Researcher (Part-time), <em>UNIQLO</em></span>
+    </div>
+    <ul class="cv-bullets">
+      <li>Designed and executed quantitative and qualitative research projects for UNIQLO leadership, using predictive statistics on sales data and behavioural insights to inform merchandising and marketing strategies.</li>
+      <li>Strategically advised on ambiguous problems without predefined scope on tight deadlines.</li>
+    </ul>
+
+    <div class="role-bar">
+      <span class="when">Jan 2022 – Sept 2023</span>
+      <span class="where">New York City, US</span>
+      <span class="role">Sr. Analyst — Analytics BI, <em>Horizon Media</em></span>
+    </div>
+    <ul class="cv-bullets">
+      <li>Co-designed standardised departmental practices for a <strong>129-employee division</strong> and delivered training programmes for analysts and managers, establishing consistent and repeatable results.</li>
+      <li>Worked on an interview panel dedicated to identifying new analysts for the department and navigated conflicts arising due to candidate preference.</li>
+      <li>Built automated and standardised data processes <strong>reducing runtime by 13%</strong>, while also improving data quality, and enabling analysts to focus on strategic analysis.</li>
+      <li>Built, updated, and maintained Tableau dashboards and visualisation products for clients.</li>
+      <li>Consulted on both new and pre-existing clients with spend in the hundreds of millions.</li>
+    </ul>
+  </section>
+
+  <footer class="cv-foot">
+    <span class="l">Joshua Woodyard</span>
+    <span class="c"><em style="font-family: var(--font-body); font-style: italic; font-weight: 300; letter-spacing: 0; text-transform: none; color: var(--ink-muted);">Continued on page 2 →</em></span>
+    <span class="r"><strong style="color:var(--ink);">1 / 2</strong></span>
+  </footer>
+</article>
+
+<!-- PAGE 2 -->
+<article class="page">
+
+  <header class="cv-head">
+    <h1 class="cv-name">joshua woodyard</h1>
+    <div class="cv-folio">
+      <div>Curriculum Vitae · MMXXVI</div>
+      <div style="margin-top:3px;"><span class="pg">2 / 2</span></div>
+    </div>
+  </header>
+
+  <div class="cv-tagline">
+    Analytics<span class="sep">|</span>Market Research<span class="sep">|</span>Human Behaviour
+  </div>
+
+  <div class="cv-contact">
+    <span class="item">N7, London, England</span>
+    <span class="sep">|</span>
+    <span class="item"><a href="mailto:woodyardjoshuae@gmail.com">woodyardjoshuae@gmail.com</a></span>
+    <span class="sep">|</span>
+    <span class="item">+44 7714 350869</span>
+    <span class="sep">|</span>
+    <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
+  </div>
+
+  <!-- EXPERIENCE CONTINUED -->
+  <section class="cv-section">
+    <h2>Experience <span class="cont">continued</span></h2>
+
+    <div class="role-bar">
+      <span class="when">Jul 2020 – Jan 2022</span>
+      <span class="where">New York City, US</span>
+      <span class="role">Sr. Analyst — Petco, <em>Horizon Media</em></span>
+    </div>
+    <ul class="cv-bullets">
+      <li>Maintained ETL pipelines processing <strong>10,000+ weekly data rows</strong> via Knime Analytics and Snowflake, enabling accurate multi-channel media reporting for a $XXXm retail client.</li>
+      <li>Led vendor relationships and communicated requirements for accurate reporting. Revised processes, reports, and dashboards to accommodate internal team and client needs.</li>
+    </ul>
+
+    <div class="role-bar">
+      <span class="when">Dec 2019 – Jul 2020</span>
+      <span class="where">New York City, US</span>
+      <span class="role">Analyst — Sprint &amp; Boost Mobile, <em>Horizon Media</em></span>
+    </div>
+    <ul class="cv-bullets">
+      <li>Synthesised complex campaign data into clear performance insights that drove decision-making and budget allocation in the competitive telecommunications sector.</li>
+      <li>Collaborated with non-analytics teams to create PCA reports easily digestible for all.</li>
+      <li>Executed brand-lift studies and A/B creative tests in partnership with Kantar, analysing results and providing future campaign strategy recommendations for senior marketing clients.</li>
+    </ul>
+
+    <div class="role-bar">
+      <span class="when">Apr 2019 – Dec 2019</span>
+      <span class="where">New York City, US</span>
+      <span class="role">Strategy Associate — Dunkin', <em>Publicis Media</em></span>
+    </div>
+    <ul class="cv-bullets">
+      <li>Strategised, prepared, and shared media recommendations for Dunkin's top markets nationwide, implementing new tactics to win sales while reducing costs by tens of thousands.</li>
+      <li>Worked on in-depth competitive analyses using syndicated research tools to provide foresight and efficient market approach in over <strong>40 markets</strong>.</li>
+      <li>Managed day-to-day media operations including creative trafficking, vendor coordination, plan restructuring, and budget tracking across the busiest Dunkin' markets.</li>
+    </ul>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="cv-section">
+    <h2>Education</h2>
+
+    <div class="edu-row">
+      <span class="when">Sept 2023 – Sept 2024</span>
+      <span class="school">City St. George's, University of London</span>
+      <span class="degree">MSc Behavioural Economics</span>
+    </div>
+    <ul class="edu-meta">
+      <li>Graduated with Merit; 67%</li>
+      <li class="topics"><b>Topics</b>Experimental Economics, Game Theory, Cognitive Psychology, Decision Making, Econometrics, Research Methods</li>
+    </ul>
+
+    <div class="edu-row">
+      <span class="when">Sept 2015 – Dec 2018</span>
+      <span class="school">DePaul University</span>
+      <span class="degree">BSc Marketing</span>
+    </div>
+    <ul class="edu-meta">
+      <li>Graduated early with Merit; 3.6 / 4.0</li>
+      <li>Minors in German and International Business</li>
+      <li class="topics"><b>Topics</b>Market Research, Predictive Modelling, Psychology, Statistics, Economics, German</li>
+    </ul>
+
+    <div class="edu-row">
+      <span class="when">Mar 2017 – Aug 2017</span>
+      <span class="school">Universität Bonn</span>
+      <span class="degree">Exchange Programme</span>
+    </div>
+    <ul class="edu-meta">
+      <li class="topics"><b>Topics</b>German Language; Economy and Trade</li>
+    </ul>
+
+    <div class="edu-row">
+      <span class="when">Jun 2026 – Jul 2026</span>
+      <span class="school">London School of Economics and Political Science <em style="font-family: var(--font-body); font-style: italic; font-weight: 300; color: var(--ink-muted);">(Scheduled)</em></span>
+      <span class="degree">Summer Courses</span>
+    </div>
+    <ul class="edu-meta">
+      <li class="topics"><b>Topics</b>Developmental Economics; Machine Learning</li>
+    </ul>
+  </section>
+
+  <!-- LANGUAGES & SKILLS -->
+  <section class="cv-section">
+    <h2>Languages &amp; Competencies</h2>
+
+    <div class="twocol">
+      <span class="k">Languages</span>
+      <div class="v">
+        <span class="lang">English<span class="level">C2</span></span>
+        <span class="lang">German<span class="level">B2</span></span>
+        <span class="lang">French<span class="level">B2</span></span>
+        <span class="lang">Cantonese<span class="level">spoken only</span></span>
+      </div>
+    </div>
+
+    <div class="twocol">
+      <span class="k">Languages &amp; Tools</span>
+      <div class="v">SQL, R, Python, Power Query, Power BI (DAX), Tableau, Command Line, Knime, Alteryx, SPSS</div>
+    </div>
+
+    <div class="twocol">
+      <span class="k">Methods &amp; Expertise</span>
+      <div class="v">Experimental design, A/B testing, predictive modelling and econometrics, user research, behavioural analysis, research synthesis, strategic recommendations, data infrastructure design, stakeholder discovery, strategic advisory, ETL / data pipelines, dashboard design, cross-functional training and development.</div>
+    </div>
+  </section>
+
+  <footer class="cv-foot">
+    <span class="l">Joshua Woodyard</span>
+    <span class="c">Curriculum Vitae · MMXXVI</span>
+    <span class="r"><strong style="color:var(--ink);">2 / 2</strong></span>
+  </footer>
+</article>
+
+<button class="tweak-toggle" onclick="document.querySelector('.tweaks').classList.toggle('open'); this.style.display='none';">Tweaks</button>
+<div class="tweaks">
+  <h4>Tweaks</h4>
+  <div class="row">
+    <label for="density">Density</label>
+    <select id="density" onchange="document.body.dataset.density=this.value">
+      <option value="default">Default</option>
+      <option value="airy">Airy</option>
+      <option value="compact">Compact</option>
+    </select>
+  </div>
+  <div class="row">
+    <label for="accent">Accent</label>
+    <select id="accent" onchange="document.body.dataset.accent=this.value">
+      <option value="klein">Klein blue</option>
+      <option value="ink">Ink only</option>
+    </select>
+  </div>
+  <div class="row" style="grid-template-columns: 1fr; margin-top: 12px; padding-top: 8px; border-top: 1px solid var(--rule);">
+    <button onclick="window.print()" style="font-family: var(--font-sans); font-weight: 700; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; padding: 8px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer;">Print → PDF</button>
+  </div>
+</div>
+
+</body>
+</html>

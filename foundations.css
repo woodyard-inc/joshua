@@ -107,6 +107,7 @@
 
   /* Letterspacing */
   --ls-tight:  -0.02em;
+  --ls-masthead: -0.02em;
   --ls-normal: 0;
   --ls-wide:   0.08em;   /* caps labels */
   --ls-xwide:  0.22em;   /* masthead nav */
@@ -175,7 +176,7 @@ h1.masthead, h2.masthead, .masthead,
 h1.cv-name, h2.cv-name, .cv-name {
   font-family: var(--font-wordmark) !important;
   font-weight: 700;
-  letter-spacing: normal !important;
+  letter-spacing: ls-masthead !important;
   text-transform: lowercase;
 }
 
@@ -191,7 +192,7 @@ h1.cv-name, h2.cv-name, .cv-name {
   font-family: var(--font-wordmark);
   font-weight: 700;
   font-size: var(--t-masthead);
-  letter-spacing: normal;
+  letter-spacing: ls-masthead;
   line-height: 1;
   color: var(--ink);
   margin: 0;

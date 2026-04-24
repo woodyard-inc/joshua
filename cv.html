@@ -244,18 +244,23 @@
     background: var(--ink); color: var(--paper);
     padding: 14px 18px;
     font-family: var(--font-display); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
-    display: flex; flex-direction: column; gap: 8px; align-items: flex-start;
+    display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
     box-shadow: 0 8px 32px -8px #14141466;
   }
   .save-panel .sp-label { color: rgba(250,247,240,0.5); }
+  .save-panel .sp-row { display: flex; gap: 6px; width: 100%; }
   .save-panel button {
     font-family: var(--font-display); font-weight: 700; font-size: 10px;
     letter-spacing: 0.22em; text-transform: uppercase;
     padding: 8px 12px; border: 1px solid rgba(250,247,240,0.4);
     background: transparent; color: var(--paper); cursor: pointer;
-    width: 100%;
+    flex: 1;
   }
   .save-panel button:hover { background: rgba(250,247,240,0.1); }
+  .save-panel button.active { background: rgba(250,247,240,0.15); border-color: var(--paper); }
+
+  /* Greyscale mode */
+  body[data-colour="grey"] .page { filter: grayscale(1); }
 
   @media print {
     .back-link, .save-panel { display: none; }
@@ -495,8 +500,19 @@
 
 <div class="save-panel">
   <span class="sp-label">Joshua Woodyard · CV</span>
+  <div class="sp-row">
+    <button class="active" id="btn-colour" onclick="setColour('colour')">Colour</button>
+    <button id="btn-grey" onclick="setColour('grey')">Greyscale</button>
+  </div>
   <button onclick="window.print()">Save as PDF →</button>
 </div>
+<script>
+  function setColour(mode) {
+    document.body.dataset.colour = mode;
+    document.getElementById('btn-colour').classList.toggle('active', mode === 'colour');
+    document.getElementById('btn-grey').classList.toggle('active', mode === 'grey');
+  }
+</script>
 
 </body>
 </html>

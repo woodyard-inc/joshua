@@ -107,7 +107,7 @@
 
   /* Letterspacing */
   --ls-tight:  -0.02em;
-  --ls-masthead: -0.02em;
+  --ls-masthead: -0.05em;
   --ls-normal: 0;
   --ls-wide:   0.08em;   /* caps labels */
   --ls-xwide:  0.22em;   /* masthead nav */

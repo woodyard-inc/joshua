@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Forty markets, one afternoon · Joshua Woodyard</title>
+<title>Four hundred sales, one afternoon · Joshua Woodyard</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="A six-week mixed-methods field study pairing POS data with in-store observation across forty UNIQLO locations. Joshua Woodyard, behavioural researcher.">
+<meta name="description" content="A sales-data investigation across eight NY metro UNIQLO stores that uncovered a tightly-correlated summer basket and turned it into a floor-planning recommendation. Joshua Woodyard, behavioural researcher.">
 <link rel="stylesheet" href="foundations.css">
 <style>
   body { padding: 0; }
@@ -16,10 +16,10 @@
     border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
     font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted);
   }
-  .nameplate .c { text-align: center; font-size: 14px; letter-spacing: 0.34em; color: var(--ink); }
+  .nameplate .c { text-align: center; font-family: var(--font-wordmark); font-size: 56px; letter-spacing: normal; color: var(--ink); text-transform: lowercase; font-weight: 700; line-height: 1; }
   .nameplate .r { text-align: right; }
   .nameplate a { color: inherit; border: none; }
-  .nameplate a:hover { color: var(--klein); }
+  .nameplate a:hover { color: var(--cobalt); }
 
   /* Breadcrumb */
   .crumb {
@@ -27,7 +27,7 @@
     font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted);
   }
   .crumb a { color: var(--ink); border: none; }
-  .crumb .now { color: var(--klein); }
+  .crumb .now { color: var(--cobalt); }
 
   /* Title block */
   .title-block {
@@ -36,13 +36,13 @@
     display: grid; grid-template-columns: 2fr 1fr; gap: var(--s-7); align-items: end;
   }
   .title-block .eyebrow {
-    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--klein); display: block; margin-bottom: var(--s-4);
+    font-family: var(--font-display); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cobalt); display: block; margin-bottom: var(--s-4);
   }
   .title-block h1 {
     font-family: var(--font-display); font-size: clamp(56px, 8vw, 120px); font-weight: 700;
     letter-spacing: -0.04em; line-height: 0.9; text-wrap: balance;
   }
-  .title-block h1 em { font-family: var(--font-body); font-weight: 300; font-style: italic; color: var(--ink-muted); font-size: 0.65em; letter-spacing: -0.02em; display: block; margin-top: var(--s-3); }
+  .title-block h1 em { font-family: var(--font-body); font-weight: 300; font-style: italic; color: var(--ink-muted); font-size: 0.5em; letter-spacing: -0.02em; display: block; margin-top: var(--s-4); line-height: 1.1; }
   .title-block .meta { padding-bottom: var(--s-3); font-family: var(--font-display); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
   .title-block .meta .k { color: var(--ink-muted); display: block; margin-top: var(--s-3); }
   .title-block .meta .v { color: var(--ink); display: block; margin-top: 3px; letter-spacing: 0.12em; }
@@ -56,6 +56,7 @@
   .deck-block .side .label--micro { color: var(--ink-muted); display: block; margin-bottom: 6px; }
   .deck-block .side .sumline { font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--ink-soft); line-height: 1.45; }
   .deck-block .standfirst { font-family: var(--font-body); font-weight: 300; font-size: 28px; line-height: 1.3; color: var(--ink); max-width: 28ch; text-wrap: balance; }
+  .deck-block .standfirst em { color: var(--ink-muted); }
 
   /* Stat row */
   .stat-row {
@@ -63,14 +64,16 @@
     border-bottom: 1px solid var(--ink);
   }
   .stat-row .s {
-    padding: var(--s-6) var(--s-5) var(--s-6) 0;
+    padding: var(--s-6) var(--s-5);
     border-right: 1px solid var(--rule-strong);
   }
-  .stat-row .s:last-child { border-right: none; }
+  .stat-row .s:first-child { padding-left: 0; }
+  .stat-row .s:last-child  { padding-right: 0; border-right: none; }
   .stat-row .s .k { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); }
   .stat-row .s .v { font-family: var(--font-display); font-size: 56px; line-height: 0.95; font-weight: 700; letter-spacing: -0.04em; color: var(--ink); margin-top: var(--s-3); font-variant-numeric: tabular-nums; }
-  .stat-row .s .v--klein { color: var(--klein); }
-  .stat-row .s .n { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); margin-top: 8px; }
+  .stat-row .s .v--cobalt { color: var(--cobalt); }
+  .stat-row .s .v .suf { font-size: 28px; letter-spacing: 0.04em; color: var(--ink-muted); margin-left: 4px; font-weight: 700; }
+  .stat-row .s .n { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); margin-top: 8px; line-height: 1.45; }
 
   /* Article body */
   .article {
@@ -82,20 +85,27 @@
     letter-spacing: 0.3em; text-transform: uppercase;
     padding-bottom: 8px; border-bottom: 1px solid var(--ink);
     margin: var(--s-7) 0 var(--s-4);
+    display: flex; justify-content: space-between; align-items: baseline;
   }
   .article h2:first-child { margin-top: 0; }
-  .article .section-num { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); letter-spacing: 0.12em; display: block; text-align: right; padding-top: var(--s-2); }
+  .article h2 .section-num { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); letter-spacing: 0.12em; font-weight: 400; }
   .article p { font-family: var(--font-body); font-size: 18px; line-height: 1.65; color: var(--ink); margin-bottom: 1em; }
   .article p.lead {
     font-family: var(--font-body); font-size: 22px; line-height: 1.5; color: var(--ink); font-weight: 300;
   }
+  .article ul { font-family: var(--font-body); font-size: 17px; line-height: 1.55; color: var(--ink); padding-left: 0; list-style: none; margin: 0 0 1em 0; }
+  .article ul li { padding: var(--s-3) 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 130px 1fr; gap: var(--s-4); }
+  .article ul li:first-child { border-top: 1px solid var(--ink); }
+  .article ul li:last-child { border-bottom: 1px solid var(--rule); }
+  .article ul li .tag { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cobalt); padding-top: 4px; }
+
   .article blockquote {
     border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
-    padding: var(--s-5) 0; margin: var(--s-6) 0;
+    padding: var(--s-6) 0; margin: var(--s-7) 0;
   }
   .article blockquote p {
     font-family: var(--font-body); font-style: italic; font-weight: 300;
-    font-size: 28px; line-height: 1.25; color: var(--ink); margin: 0; max-width: 22ch;
+    font-size: 28px; line-height: 1.28; color: var(--ink); margin: 0; max-width: 28ch;
   }
   .article blockquote .attrib {
     font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); margin-top: var(--s-4); display: block;
@@ -104,9 +114,9 @@
   /* Marginalia */
   .article aside {
     font-family: var(--font-body); font-size: 13px; font-style: italic; line-height: 1.5; color: var(--ink-soft);
-    padding-top: var(--s-2); border-top: 1px solid var(--klein);
+    padding-top: var(--s-2); border-top: 1px solid var(--cobalt);
   }
-  .article aside .label--micro { color: var(--klein); font-style: normal; display: block; margin-bottom: 6px; }
+  .article aside .label--micro { color: var(--cobalt); font-style: normal; display: block; margin-bottom: 6px; }
   .article .marg-col { position: relative; }
   .article .marg-col > * { margin-bottom: var(--s-6); }
 
@@ -115,41 +125,54 @@
   .article .leftnotes .toc {
     font-family: var(--font-body); font-style: italic; font-size: 14px; line-height: 1.6; color: var(--ink);
   }
-  .article .leftnotes .toc a { border: none; color: var(--ink); display: block; padding: 4px 0; border-bottom: 1px solid var(--rule); }
-  .article .leftnotes .toc a:hover { color: var(--klein); }
+  .article .leftnotes .toc a { border: none; color: var(--ink); display: block; padding: 6px 0; border-bottom: 1px solid var(--rule); }
+  .article .leftnotes .toc a:hover { color: var(--cobalt); }
   .article .leftnotes .toc .n { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); letter-spacing: 0.12em; margin-right: 8px; font-style: normal; }
 
-  /* Figure */
+  /* Figure (correlation) */
   .figure {
     grid-column: 2 / 4;
     border: 1px solid var(--rule-strong); background: var(--paper-bright);
-    padding: var(--s-5); margin: var(--s-5) 0;
+    padding: var(--s-5); margin: var(--s-5) 0 var(--s-6);
   }
-  .figure .fh { display: flex; justify-content: space-between; border-bottom: 1px solid var(--ink); padding-bottom: var(--s-3); margin-bottom: var(--s-4); }
+  .figure .fh { display: flex; justify-content: space-between; border-bottom: 1px solid var(--ink); padding-bottom: var(--s-3); margin-bottom: var(--s-5); }
   .figure .fh h4 { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
   .figure .fh .n { font-family: var(--font-mono); font-size: 11px; color: var(--ink-muted); }
-  .figure .fc { font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--ink-soft); line-height: 1.45; margin-top: var(--s-3); }
+  .figure .fc { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-top: var(--s-4); padding-top: var(--s-3); border-top: 1px solid var(--rule); }
 
-  .chart-row { display: grid; grid-template-columns: 140px 1fr 60px; gap: var(--s-4); align-items: center; margin-bottom: 8px; }
-  .chart-row .lbl { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.05em; }
+  .chart-row { display: grid; grid-template-columns: 180px 1fr 72px; gap: var(--s-4); align-items: center; margin-bottom: 10px; }
+  .chart-row .lbl { font-family: var(--font-display); font-size: 12px; letter-spacing: 0.04em; }
+  .chart-row .lbl em { font-family: var(--font-body); font-style: italic; font-weight: 300; color: var(--ink-muted); letter-spacing: 0; font-size: 11px; display: block; margin-top: 2px; }
   .chart-row .tr { height: 22px; background: var(--paper-warm); position: relative; }
   .chart-row .tr .f { position: absolute; inset: 0 auto 0 0; background: var(--ink); }
-  .chart-row .tr .f--klein { background: var(--klein); }
-  .chart-row .val { font-family: var(--font-display); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+  .chart-row .tr .f--cobalt { background: var(--cobalt); }
+  .chart-row .val { font-family: var(--font-display); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+
+  /* Floor-plan figure (before/after) */
+  .floorplan { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+  .floorplan .plan { border: 1px solid var(--rule-strong); background: var(--paper-bone); aspect-ratio: 4 / 3; position: relative; padding: var(--s-3); }
+  .floorplan .plan .cap { position: absolute; top: 8px; left: 10px; font-family: var(--font-display); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); }
+  .floorplan .plan .cap b { color: var(--ink); font-weight: 700; }
+  .floorplan .plan svg { width: 100%; height: 100%; display: block; }
+
+  /* Weather overlay */
+  .weather { padding: var(--s-2) 0; }
+  .weather svg { width: 100%; height: 180px; display: block; }
 
   /* Methods grid */
   .methods {
     grid-column: 1 / -1;
     display: grid; grid-template-columns: repeat(3, 1fr);
     border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
-    margin: var(--s-7) 0;
+    margin: var(--s-7) 0 0;
   }
   .methods .m {
-    padding: var(--s-5) var(--s-5) var(--s-5) 0;
+    padding: var(--s-5);
     border-right: 1px solid var(--rule-strong);
   }
-  .methods .m:last-child { border-right: none; }
-  .methods .m .k { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--klein); }
+  .methods .m:first-child { padding-left: 0; }
+  .methods .m:last-child  { padding-right: 0; border-right: none; }
+  .methods .m .k { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cobalt); }
   .methods .m h4 { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-top: var(--s-3); text-transform: none; }
   .methods .m p { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin-top: var(--s-3); }
 
@@ -161,12 +184,13 @@
     cursor: pointer;
     text-decoration: none;
     border: none;
+    color: var(--paper);
   }
   .next-project .eyebrow { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(250,247,240,0.6); }
   .next-project h3 { font-family: var(--font-display); font-size: 64px; font-weight: 700; letter-spacing: -0.035em; line-height: 0.95; color: var(--paper); margin-top: var(--s-3); max-width: 16ch; }
   .next-project h3 em { font-family: var(--font-body); font-style: italic; font-weight: 300; color: rgba(250,247,240,0.7); font-size: 0.6em; display: block; margin-top: var(--s-3); }
-  .next-project .arrow { font-family: var(--font-body); font-style: italic; font-size: 48px; transition: transform 220ms ease; }
-  .next-project:hover .arrow { transform: translateX(8px); }
+  .next-project .arrow { font-family: var(--font-body); font-style: italic; font-size: 48px; }
+  .next-project:hover .arrow { transform: translateX(8px); transition: transform 220ms ease; }
 
   /* Colophon */
   .colophon {
@@ -181,57 +205,44 @@
   .colophon strong { color: var(--ink); font-weight: 400; }
 
   /* Responsive */
-  @media (max-width: 1000px) {
+  @media (max-width: 960px) {
+    .title-block, .deck-block { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .stat-row .s { border-right: none; border-bottom: 1px solid var(--rule-strong); }
     .article { grid-template-columns: 1fr; }
-    .article .leftnotes { display: none; }
-    .article .marg-col { display: none; }
-    .figure { grid-column: 1 / -1; }
     .methods { grid-template-columns: 1fr; }
     .methods .m { border-right: none; border-bottom: 1px solid var(--rule-strong); }
-    .methods .m:last-child { border-bottom: none; }
-  }
-
-  @media (max-width: 700px) {
-    .nameplate { grid-template-columns: 1fr auto; }
-    .nameplate .r { display: none; }
-    .title-block { grid-template-columns: 1fr; }
-    .deck-block { grid-template-columns: 1fr; }
-    .stat-row { grid-template-columns: repeat(2, 1fr); }
-    .stat-row .s:nth-child(2) { border-right: none; }
-    .stat-row .s:nth-child(3) { border-top: 1px solid var(--rule-strong); }
-    .next-project { grid-template-columns: 1fr; }
-    .next-project h3 { font-size: 40px; }
-    .colophon { grid-template-columns: 1fr; gap: var(--s-3); }
-    .colophon .c, .colophon .r { text-align: left; }
-    .chart-row { grid-template-columns: 100px 1fr 50px; }
+    .figure { grid-column: auto; }
+    .floorplan { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+
 <div class="shell">
 
   <header class="nameplate">
-    <span>London · 2026 · No. III</span>
-    <span class="c">Joshua Woodyard</span>
+    <span>London · 23 April MMXXVI · No. II</span>
+    <span class="c">joshua woodyard</span>
     <span class="r"><a href="index.html">Work</a> · <a href="index.html#about">About</a> · <a href="index.html#contact">Contact</a> · <a href="cv.html">CV</a></span>
   </header>
 
-  <nav class="crumb" aria-label="Breadcrumb">
-    <a href="index.html">Work</a><span>/</span><span>Case Study 002</span><span>/</span><span class="now">UNIQLO · Field study</span>
+  <nav class="crumb">
+    <a href="index.html">Work</a><span>/</span><span>Case Study 001</span><span>/</span><span class="now">UNIQLO · SS 2021</span>
   </nav>
 
   <!-- TITLE -->
   <section class="title-block">
     <div>
-      <span class="eyebrow">Case Study · 002 · 2022</span>
-      <h1>Forty markets, <br>one afternoon<em>Field notes from a six-week study at UNIQLO.</em></h1>
+      <span class="eyebrow">Case Study · 001 · 2021</span>
+      <h1>Four hundred sales, <br>one afternoon<em>What the SOHO floor told me the data couldn't.</em></h1>
     </div>
     <div class="meta">
       <span class="k">Client</span><span class="v">UNIQLO · NYC</span>
       <span class="k">Role</span><span class="v">Freelance researcher</span>
-      <span class="k">Duration</span><span class="v">6 weeks · Mar — Apr 2022</span>
-      <span class="k">Partners</span><span class="v">Merch &amp; Marketing</span>
+      <span class="k">Duration</span><span class="v">8 weeks · SS 2021</span>
+      <span class="k">Partners</span><span class="v">Merch director · Store ops</span>
     </div>
   </section>
 
@@ -239,32 +250,32 @@
   <section class="deck-block">
     <div class="side">
       <span class="label--micro">In short</span>
-      <p class="sumline">A mixed-methods field study that paired store-level POS with in-person observation across forty locations, producing a merchandising calendar that leadership could defend.</p>
+      <p class="sumline">A sales-data investigation across eight NY metro stores that uncovered a tightly-correlated summer basket — tees and biker shorts — and turned it into a floor-planning recommendation that drove an estimated 40,000–60,000 t-shirt units through the late-summer tail.</p>
     </div>
-    <p class="standfirst">The hypothesis was that weekday-afternoon shoppers were fundamentally different from weekend shoppers. The hypothesis was <em>wrong</em> — and the real answer was more useful.</p>
+    <p class="standfirst">The sales data couldn't tell me <em>who</em> was buying. But it could tell me <em>what</em> was being bought together — and on a hot Saturday in SOHO, the floor told me the rest.</p>
   </section>
 
   <!-- STATS -->
-  <section class="stat-row" aria-label="Study highlights">
+  <section class="stat-row">
     <div class="s">
-      <span class="k">Stores observed</span>
-      <div class="v">40</div>
-      <p class="n">US markets, paired by pre-trend cluster.</p>
+      <span class="k">Stores in scope</span>
+      <div class="v">8</div>
+      <p class="n">NY metro — flagship, SOHO, Herald Square, Union Square, and regional.</p>
     </div>
     <div class="s">
-      <span class="k">Customers shadowed</span>
-      <div class="v">47</div>
-      <p class="n">Consented observation with field notes.</p>
+      <span class="k">Basket correlation</span>
+      <div class="v v--cobalt">0.90<span class="suf">+</span></div>
+      <p class="n">Tees, biker shorts, boxers — moving as one.</p>
     </div>
     <div class="s">
-      <span class="k">Weeks to result</span>
-      <div class="v v--klein">6</div>
-      <p class="n">Fieldwork, synthesis, recommendation.</p>
+      <span class="k">Sales observed</span>
+      <div class="v">~ 400</div>
+      <p class="n">One August Saturday afternoon, SOHO.</p>
     </div>
     <div class="s">
-      <span class="k">Merch shift</span>
-      <div class="v">+9%</div>
-      <p class="n">Weekday afternoon sell-through, quarter following.</p>
+      <span class="k">Tees sold, Aug–Sept</span>
+      <div class="v">40<span class="suf">K+</span></div>
+      <p class="n">NY metro units after the floor change.</p>
     </div>
   </section>
 
@@ -274,112 +285,139 @@
     <!-- LEFT: TOC -->
     <div class="leftnotes">
       <span class="label--micro">Contents</span>
-      <nav class="toc" aria-label="Table of contents">
+      <nav class="toc">
         <a href="#brief"><span class="n">01</span>The brief</a>
         <a href="#method"><span class="n">02</span>Method</a>
-        <a href="#finding"><span class="n">03</span>The finding</a>
-        <a href="#reco"><span class="n">04</span>Recommendation</a>
-        <a href="#reflect"><span class="n">05</span>What I'd change</a>
+        <a href="#visit"><span class="n">03</span>The store visit</a>
+        <a href="#why"><span class="n">04</span>The why</a>
+        <a href="#reco"><span class="n">05</span>Recommendation</a>
+        <a href="#outcome"><span class="n">06</span>Outcome</a>
+        <a href="#reflect"><span class="n">07</span>What I'd change</a>
       </nav>
     </div>
 
     <!-- CENTER: body -->
     <div>
       <h2 id="brief">The brief <span class="section-num">§ 01</span></h2>
-      <p class="lead">UNIQLO's New York merch team had a suspicion. Weekday-afternoon foot traffic was behaving <em>oddly</em> — the baskets looked smaller, the dwell-times longer, and the sell-through by category didn't match the weekend pattern they'd planned around.</p>
-      <p>They wanted a quick answer. I offered a slower one. Six weeks, forty stores, and a method that would survive scrutiny from both a buyer and a statistician. No deck at the end — a memo, a calendar, and a defensible decision.</p>
+      <p class="lead">My manager mentioned that UNIQLO houses all of its sales in one database — segmented only by day and by product, never by customer — and had a suspicion that it contained truths nobody had bothered to look for.</p>
+      <p style="font-size: 22px;">He wasn't technical, but he trusted the instinct: <em style="font-size: 22px;">something is in there</em>. He gave me room to experiment and shape a project around whatever I found. Eight weeks, Excel and R, and a brief I was allowed to write myself.</p>
 
       <blockquote>
-        <p>We don't want research. We want a merch decision we can defend next quarter.</p>
-        <span class="attrib">— Regional merchandising lead · week 1</span>
+        <p>A critical tool he brought to his role here is a set of strong analytical skills. He has proved himself to be trustworthy and dependable, consistently delivering at high levels.</p>
+        <span class="attrib">— Director of Brand Strategy, UNIQLO</span>
       </blockquote>
 
       <h2 id="method">Method <span class="section-num">§ 02</span></h2>
-      <p>I ran two streams in parallel. Quantitative: POS data cleaned and clustered by k-means on a 12-week pre-trend, giving me four behavioural clusters of store. Qualitative: consented observational fieldwork in a representative store from each cluster — shadowing forty-seven customers through their full visit, timing dwell, coding conversational snippets, and comparing basket against the weekend median.</p>
-      <p>The two streams checked each other. Where the clusters disagreed with the field notes, I went back to the store.</p>
+      <p>First, a lot of cleaning. The sales system was manual and messy; before any analysis I had to wrestle it into something a correlation matrix could read. Excel for the wrangling, R for the statistics.</p>
+      <p>Then I drilled into SS 2021 — the season UNIQLO was promoting LifeWear: jackets and coats, jeans, sweaters, Airism, shirts and blouses, and t-shirts. Looking at the eight NY-metro stores, a pattern emerged: Saturdays and Sundays were peak sales days, with different products taking the top slot each day.</p>
+      <p>The high-volume items were consistent: Uniqlo U heavyweight tees, Supima tees, and Hoodies. When I ran correlations across products, one cluster lit up — the U tees, Supima tees, women's biker shorts, and men's boxers moved with 0.90+ correlation, even though boxers were a low-volume item.</p>
 
-      <div class="figure" style="margin-left: 0;">
-        <div class="fh"><h4>Sell-through by store cluster</h4><span class="n">Fig. 03</span></div>
-        <div class="chart-row"><span class="lbl">Cluster A · urban</span><div class="tr"><div class="f f--klein" style="width: 82%;"></div></div><span class="val">82%</span></div>
-        <div class="chart-row"><span class="lbl">Cluster B · suburban</span><div class="tr"><div class="f" style="width: 61%;"></div></div><span class="val">61%</span></div>
-        <div class="chart-row"><span class="lbl">Cluster C · mall</span><div class="tr"><div class="f" style="width: 48%;"></div></div><span class="val">48%</span></div>
-        <div class="chart-row"><span class="lbl">Cluster D · tourist</span><div class="tr"><div class="f" style="width: 34%;"></div></div><span class="val">34%</span></div>
-        <p class="fc">Weekly sell-through by k-means cluster on 12-week pre-trend. n = 40 stores, Mar–Apr 2022. Cluster A outperformed on weekday afternoons; cluster D on weekends only.</p>
+      <div class="figure" style="grid-column: 1 / -1; margin-left: 0;">
+        <div class="fh"><h4>Product-to-product correlation · SS 2021</h4><span class="n">Fig. 01</span></div>
+        <div class="chart-row"><span class="lbl">U heavyweight tee <em>Avg. ~1000 daily volume</em></span><div class="tr"><div class="f f--cobalt" style="width: 96%;"></div></div><span class="val">0.96</span></div>
+        <div class="chart-row"><span class="lbl">Supima tee <em>Avg. ~600 daily volume<br></em></span><div class="tr"><div class="f f--cobalt" style="width: 94%;"></div></div><span class="val">0.94</span></div>
+        <div class="chart-row"><span class="lbl">Women's biker shorts <em>Avg. ~300 daily volume<br></em></span><div class="tr"><div class="f f--cobalt" style="width: 91%;"></div></div><span class="val">0.91</span></div>
+        <div class="chart-row"><span class="lbl">Men's boxers <em>Avg. ~100 daily volume<br></em></span><div class="tr"><div class="f f--cobalt" style="width: 90%;"></div></div><span class="val">0.90</span></div>
+        <div class="chart-row"><span class="lbl">Hoodies <em>Avg. ~600 daily volume<br></em></span><div class="tr"><div class="f" style="width: 58%;"></div></div><span class="val">0.58</span></div>
+        <div class="chart-row"><span class="lbl">Easy Wide Fit Shorts<em>Avg. ~600 daily volume<br></em></span><div class="tr"><div class="f" style="width: 44%;"></div></div><span class="val">0.44</span></div>
+        <div class="chart-row"><span class="lbl">Trench Coat<em>Avg. ~100 daily volume</em></span><div class="tr"><div class="f" style="width: 12%;"></div></div><span class="val">0.12</span></div>
+        <p class="fc">Pairwise Pearson correlation to the U-tee time series across eight NY-metro stores, weekly sales, SS 2021. Four products form a single cluster at 0.90+ despite differing volumes. n = 26 weeks.</p>
       </div>
 
-      <h2 id="finding">The finding <span class="section-num">§ 03</span></h2>
-      <p>What I found was less interesting than what I <em>didn't</em> find. The two cohorts — weekday afternoon vs. weekend — behaved almost identically in the first three minutes: same walls, same hesitations, same self-conscious glances at the mirror. The divergence came later, and it was emotional, not economic.</p>
-      <p>Weekday-afternoon shoppers were finishing a task — a meeting, an errand, a commute — and the store functioned as a decompression room. They dwelled longer but bought fewer items. Weekend shoppers were starting a social outing and bought companions' worth of things.</p>
-      <p>The merchandising implication was the opposite of what the team had assumed.</p>
+      <h2 id="visit">The store visit <span class="section-num">§ 03</span></h2>
+      <figure style="margin: var(--s-5) 0 var(--s-6); grid-column: 1 / -1;">
+        <img src="images/soho-street.jpeg" alt="Broome Street, SOHO, looking west on a quiet weekday morning before the Saturday rush." style="width: 100%; display: block; border: 1px solid var(--rule-strong);">
+        <figcaption style="font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-top: var(--s-3); padding-left: var(--s-3); border-left: 2px solid var(--cobalt);">Broome Street, SOHO&nbsp;</figcaption>
+      </figure>
 
-      <h2 id="reco">Recommendation <span class="section-num">§ 04</span></h2>
-      <p>Rather than merchandise the afternoon differently by <em>category</em>, merchandise it differently by <em>pace</em>. Fewer trend pieces on the front wall; more quiet essentials at adult eye level; one clearly-marked <em>"something for the commute home"</em> edit near checkout. The weekend plan stayed.</p>
-      <p>The team ran the new plan in three pilot stores the following quarter. Weekday-afternoon sell-through moved up nine percent against a matched-control set.</p>
+      <p>Data gets you a hypothesis; a floor gets you an explanation. On a 90°F August Saturday afternoon, I went to the SOHO store to see the correlation in the wild.</p>
+      <p>In one afternoon I watched roughly four hundred transactions — the same volume pattern the dataset had been showing me at the weekly level — unfold in real time. Biker shorts and tees were everywhere in the baskets, though rarely bought together in the same transaction. The correlation wasn't that customers were buying them <em>as a set</em>; it was that they were being bought by the same kind of person on the same kind of day.</p>
+      <p>I also noticed what was getting in the way: rain jackets and full-outfit mannequins occupying prime floor space, promoting LifeWear staples that had nothing to do with what was actually selling that afternoon.</p>
 
-      <h2 id="reflect">What I'd change <span class="section-num">§ 05</span></h2>
-      <p>Two things. First, I'd involve the store associates earlier — they saw the pattern before my clusters did, and I should have listened in week one instead of week four. Second, I'd ship a shorter memo; the long version was read by two people, and both of them had already agreed with me.</p>
+      <figure style="margin: var(--s-5) 0 var(--s-6); grid-column: 1 / -1;">
+        <img src="images/uniqlo-lifewear-floor.jpeg" alt="UNIQLO SOHO ground floor — the LifeWear wall with rain-jacket mannequin and heavyweight tee table." style="width: 100%; display: block; border: 1px solid var(--rule-strong);">
+      </figure>
+
+      <h2 id="why">The why <span class="section-num">§ 04</span></h2>
+      <p>Back at my desk, I chased the correlation across four directions.</p>
+      <ul>
+        <li><span class="tag">Social &amp; ads</span><span>UNIQLO's own channels weren't pushing these specific items. The demand was coming from somewhere else.</span></li>
+        <li><span class="tag">Weather</span><span>The biggest sales days followed weeks of 90°F+ highs. Heat was a reliable leading indicator.</span></li>
+        <li><span class="tag">Culture</span><span>The tees had cultural salience I hadn't priced in — Tyler, the Creator tweeted about the Uniqlo tee; GQ wrote it up. On the women's side, Hailey Bieber and Lyn Slater were driving "off-duty biker short" looks, and #uniqlo and #bikershorts tags were thick with the product.</span></li>
+        <li><span class="tag">Pricing</span><span>A competitive sweep showed our best-selling tees at roughly half the price of competitors — with review scores as good or better. That combination was winning on hot weekend days almost violently. The biker shorts didn't have the same price advantage, but quality plus cultural salience carried them.</span></li>
+      </ul>
+
+
+
+      <h2 id="reco">Recommendation <span class="section-num">§ 05</span></h2>
+      <p>On peak summer weekends, merchandise the basket that is actually moving, not the one the seasonal campaign says <em>should</em> be moving. Put the U tee, the Supima tee, and the biker shorts in prime floor positions, in coordinated looks that reflected what customers were already building for themselves. Pull the rain-jacket mannequins out of the hottest real estate; they were paying rent and earning nothing.</p>
+
+      <h2 id="outcome">Outcome <span class="section-num">§ 06</span></h2>
+      <p>The floor strategy shifted. Across August and September, the tee basket moved an estimated <strong>40,000+ units</strong> across the eight NY-metro stores, with peak-weekend sell-through up on a matched pre-change baseline — and the correlated basket held its grouping well past the original study window.</p>
+
+      <h2 id="reflect">What I'd change <span class="section-num">§ 07</span></h2>
+      <p>I'd vie harder, earlier, for customer-level data. The correlation was the ceiling of what product-only data could tell me — it could show me what moved together and hint at when, but it couldn't tell me who was walking in. A single customer identifier would have turned a strong hypothesis into a testable segment, and the floor-planning recommendation into a repeatable system.</p>
     </div>
 
     <!-- RIGHT: marginalia -->
     <div class="marg-col">
       <aside>
-        <span class="label--micro">Method note</span>
-        K-means on 12-week pre-trend was the clustering that survived a leave-one-store-out robustness check. Two other specifications did not.
-      </aside>
-
-      <aside>
         <span class="label--micro">Tool stack</span>
-        R for clustering and visualisation. Tableau for the memo's live dashboard. Pen and notebook for the fieldwork.
+        Excel for cleaning and wrangling the manual POS data. R for the correlation matrix and the weekday/weekend decomposition. Notebook and phone camera for the SOHO visit.
       </aside>
 
       <aside>
         <span class="label--micro">What surprised me</span>
-        That the most useful finding was <em>behavioural</em>, not categorical — and that the buying team could act on "pace" as easily as they could act on "SKU."
+        The correlated items weren't being bought together in one transaction — the correlation was a signal about <em>who</em> was in the store, not <em>what</em> was in the basket.
       </aside>
 
       <aside>
         <span class="label--micro">Quietly proud of</span>
-        Shipping a recommendation the buyer could defend in front of her director without needing me in the room.
+        Turning a non-technical manager's hunch into a floor-planning change the director could act on.
       </aside>
+
     </div>
 
     <!-- METHODS -->
     <div class="methods">
       <div class="m">
         <span class="k">Quantitative</span>
-        <h4>Clustering &amp; POS</h4>
-        <p>R · k-means on pre-trend · leave-one-store-out robustness check · sell-through and basket analysis.</p>
+        <h4>Sales correlation</h4>
+        <p>Manual POS cleaning in Excel · product-level correlation matrix in R on SS 2021 NY-metro sales · weekday / weekend decomposition · peak-day detection.</p>
       </div>
       <div class="m">
         <span class="k">Qualitative</span>
-        <h4>Observational fieldwork</h4>
-        <p>47 consented shadow-sessions · dwell timing · coded conversational notes · comparison against weekend baseline.</p>
+        <h4>Store observation</h4>
+        <p>One-afternoon SOHO field visit · ~400 transactions observed · photographs of displays and floor layout · notes on what was — and wasn't — being picked up.</p>
       </div>
       <div class="m">
-        <span class="k">Synthesis</span>
-        <h4>Memo &amp; calendar</h4>
-        <p>Short memo · merchandising calendar · live Tableau for the buying team · three-store pilot for validation.</p>
+        <span class="k">External context</span>
+        <h4>Culture &amp; pricing</h4>
+        <p>Social-media scan (Tyler, the Creator; GQ; Hailey Bieber; Lyn Slater; #uniqlo #bikershorts) · competitive pricing and review-score sweep on comparable tees.</p>
       </div>
     </div>
 
   </article>
 
   <!-- NEXT -->
-  <a class="next-project" href="index.html#work">
+  <a class="next-project" href="#">
     <div>
-      <span class="eyebrow">Back to work index</span>
-      <h3>View all case studies<em>Analytics · Research · Strategy · 2019–2025</em></h3>
+      <span class="eyebrow">Next case study · 003</span>
+      <h3>A pipeline that stopped breaking at 2 a.m.<em>Petco × Horizon Media · 2021</em></h3>
     </div>
     <span class="arrow">→</span>
   </a>
 
   <footer class="colophon">
     <span><strong>Joshua Woodyard</strong> · London</span>
-    <span class="c">Case study 002 · MMXXVI</span>
+    <span class="c">Case study 001 · MMXXVI</span>
     <span class="r">© 2026</span>
   </footer>
 
 </div>
+
+
+
 
 </body>
 </html>

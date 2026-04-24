@@ -273,7 +273,7 @@
     <div class="letter">
       <div class="mark">
         From the desk of<br>Joshua Woodyard
-        <span class="now">Now · in London</span>
+        <span class="now" id="london-time">Now · in London</span>
       </div>
       <div class="main">
         <p class="dropcap">The best research I've done didn't begin with a brief. It began with someone — a VP, a buyer, a client — saying something like <em>"we don't know why this is happening, and we need to by Tuesday."</em> My job is to sit in that gap between ambiguity and deadline, run the right experiment, and come back with an answer the room can actually use.</p>
@@ -383,6 +383,18 @@
   </footer>
 
 </div>
+
+<script>
+  function updateLondonTime() {
+    const t = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/London',
+      hour: '2-digit', minute: '2-digit', hour12: false
+    }).format(new Date());
+    document.getElementById('london-time').textContent = t + ' · London';
+  }
+  updateLondonTime();
+  setInterval(updateLondonTime, 60000);
+</script>
 
 </body>
 </html>

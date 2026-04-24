@@ -238,11 +238,29 @@
   }
   .back-link:hover { color: var(--cobalt); }
 
+  /* Save panel */
+  .save-panel {
+    position: fixed; bottom: 24px; right: 24px; z-index: 50;
+    background: var(--ink); color: var(--paper);
+    padding: 14px 18px;
+    font-family: var(--font-display); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    display: flex; flex-direction: column; gap: 8px; align-items: flex-start;
+    box-shadow: 0 8px 32px -8px #14141466;
+  }
+  .save-panel .sp-label { color: rgba(250,247,240,0.5); }
+  .save-panel button {
+    font-family: var(--font-display); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 8px 12px; border: 1px solid rgba(250,247,240,0.4);
+    background: transparent; color: var(--paper); cursor: pointer;
+    width: 100%;
+  }
+  .save-panel button:hover { background: rgba(250,247,240,0.1); }
+
   @media print {
-    .back-link { display: none; }
+    .back-link, .save-panel { display: none; }
     body { background: var(--paper); padding: 0; }
     .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 0.5in 0.55in; }
-    .tweaks, .tweak-toggle { display: none !important; }
     @page { size: letter; margin: 0; }
   }
 
@@ -473,6 +491,12 @@
   </footer>
 </article>
 
+
+
+<div class="save-panel">
+  <span class="sp-label">Joshua Woodyard · CV</span>
+  <button onclick="window.print()">Save as PDF →</button>
+</div>
 
 </body>
 </html>

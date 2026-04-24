@@ -5,6 +5,9 @@
 <title>Joshua Woodyard · Curriculum Vitae</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Joshua Woodyard — Curriculum Vitae. Analytics strategist and behavioural researcher. London.">
+<meta name="theme-color" content="#F0EBDD">
+<link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
 <link rel="stylesheet" href="foundations.css">
 <style>
   body { background: var(--paper-warm); padding: var(--s-7) 0; }
@@ -25,7 +28,7 @@
     border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
     font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted);
   }
-  .nameplate .c { text-align: center; font-family: var(--font-wordmark); font-size: 48px; letter-spacing: normal; color: var(--ink); text-transform: lowercase; font-weight: 700; line-height: 1; }
+  .nameplate .c { text-align: center; font-family: var(--font-wordmark); font-size: clamp(28px, 5.5vw, 48px); letter-spacing: normal; color: var(--ink); text-transform: lowercase; font-weight: 700; line-height: 1; }
   .nameplate .r { text-align: right; }
   .nameplate a { color: inherit; border: none; }
   .nameplate a:hover { color: var(--cobalt); }
@@ -270,7 +273,8 @@
   }
 
   @media (max-width: 8.5in) {
-    .page { width: 100%; padding: var(--s-6) var(--s-5); min-height: auto; }
+    body { padding: var(--s-5) 0; }
+    .page { width: 100%; padding: var(--s-6) var(--s-5); min-height: auto; box-shadow: none; }
     .role-bar { grid-template-columns: 1fr 1fr; }
     .role-bar .where { display: none; }
     .edu-row { grid-template-columns: 1fr; gap: var(--s-2); }
@@ -278,6 +282,30 @@
     .twocol { grid-template-columns: 1fr; gap: var(--s-2); }
     .cv-foot { grid-template-columns: 1fr; }
     .cv-foot .c, .cv-foot .r { text-align: left; }
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 0; }
+    .back-link { padding: var(--s-4) var(--s-5); margin: 0; }
+    .page { padding: var(--s-5) var(--s-4); margin-bottom: var(--s-5); }
+    .cv-tagline { font-size: 10px; letter-spacing: 0.18em; }
+    .cv-contact { font-size: 10.5px; gap: 2px 0; }
+    .cv-contact .sep { margin: 0 6px; }
+    .role-bar { grid-template-columns: 1fr; gap: 2px; }
+    .role-bar .role { text-align: left; }
+    .cv-lede { font-size: 13.5px; }
+    .cv-bullets li { font-size: 13px; }
+    .save-panel {
+      bottom: 0; right: 0; left: 0;
+      flex-direction: row; align-items: center; justify-content: space-between;
+      padding: 10px 14px; gap: 8px;
+    }
+    .save-panel .sp-label { display: none; }
+    .save-panel .sp-row { width: auto; }
+  }
+
+  @media (hover: none) {
+    .nameplate a, .back-link { padding: 6px 4px; }
   }
 </style>
 </head>
@@ -301,9 +329,9 @@
   <div class="cv-contact">
     <span class="item">N7, London, England</span>
     <span class="sep">|</span>
-    <span class="item"><a href=On request</a></span>
+    <span class="item">Email on request</span>
     <span class="sep">|</span>
-    <span class="item">+On request</span>
+    <span class="item">Phone on request</span>
     <span class="sep">|</span>
     <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
   </div>
@@ -386,9 +414,9 @@
   <div class="cv-contact">
     <span class="item">N7, London, England</span>
     <span class="sep">|</span>
-    <span class="item"><a href=On Request</a></span>
+    <span class="item">Email on request</span>
     <span class="sep">|</span>
-    <span class="item">On Request</span>
+    <span class="item">Phone on request</span>
     <span class="sep">|</span>
     <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
   </div>

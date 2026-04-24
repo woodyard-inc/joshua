@@ -5,6 +5,9 @@
 <title>Joshua Woodyard — Analytics &amp; Behavioural Research</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="Joshua Woodyard — Analytics strategist and behavioural researcher. Six years turning ambiguous questions into evidence. Based in London.">
+<meta name="theme-color" content="#FFFDF8">
+<link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramond-Light.woff2" crossorigin>
 <link rel="stylesheet" href="foundations.css">
 <style>
   body { padding: 0; }
@@ -21,7 +24,7 @@
     font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase;
     color: var(--ink-muted);
   }
-  .nameplate .c { text-align: center; font-family: var(--font-wordmark); font-size: 70px; letter-spacing: normal; color: var(--ink); text-transform: lowercase; font-weight: 700; line-height: 1; }
+  .nameplate .c { text-align: center; font-family: var(--font-wordmark); font-size: clamp(34px, 7vw, 70px); letter-spacing: normal; color: var(--ink); text-transform: lowercase; font-weight: 700; line-height: 1; }
   .nameplate .r { text-align: right; }
   .nameplate a { color: inherit; border: none; }
   .nameplate a:hover { color: var(--cobalt); }
@@ -35,9 +38,10 @@
   }
   .hero h1 {
     font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(56px, 8vw, 120px);
+    font-size: clamp(44px, 8vw, 120px);
     letter-spacing: -0.04em; line-height: 0.9;
     text-wrap: balance;
+    overflow-wrap: break-word;
   }
   .hero .hero-meta { padding-bottom: var(--s-3); }
   .hero .hero-meta .lede {
@@ -230,6 +234,24 @@
     .work-row { grid-template-columns: 1fr auto; }
     .work-row .n { display: none; }
     .sect-head .counter { display: none; }
+    .hero .hero-meta .lede { font-size: 19px; }
+    .work-row .t { font-size: 24px; }
+    .work-row .t em { font-size: 18px; display: block; margin-top: 6px; }
+    .stats .s-cell .v { font-size: 48px; }
+    .contact-block { padding: var(--s-7) var(--s-5); }
+    .contact-block h3 { font-size: 32px; }
+    .contact-block .right { text-align: left; }
+    .contact-block .right .big { font-size: 18px; word-break: break-word; }
+  }
+
+  /* Larger tap targets for in-page links on touch devices */
+  @media (hover: none) {
+    .nameplate a, .colophon a { padding: 6px 4px; }
+  }
+
+  /* Respect reduced-motion preference: freeze the ticker */
+  @media (prefers-reduced-motion: reduce) {
+    .ticker .track { animation: none; }
   }
 </style>
 </head>
@@ -393,7 +415,9 @@
     document.getElementById('london-time').textContent = t + ' · London';
   }
   updateLondonTime();
-  setInterval(updateLondonTime, 1000);
+  // Align ticks to the wall clock, then tick every second.
+  setTimeout(() => { updateLondonTime(); setInterval(updateLondonTime, 1000); },
+    1000 - (Date.now() % 1000));
 </script>
 
 </body>

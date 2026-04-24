@@ -1,8 +1,13 @@
-</style><style type="text/css"></style>
-
+<!doctype html>
+<html lang="en">
+<head>
 <meta charset="utf-8">
 <title>Money can't buy happiness — but community can · Joshua Woodyard</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A cross-cultural analysis of 11,249 respondents across five countries — MSc dissertation, City, University of London. Joshua Woodyard.">
+<meta name="theme-color" content="#FFFDF8">
+<link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramond-Light.woff2" crossorigin>
 <link rel="stylesheet" href="foundations.css">
 <style>
   body { padding: 0; }
@@ -14,7 +19,7 @@
     border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
     font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted);
   }
-  .nameplate .c { text-align: center; font-family: var(--font-wordmark); font-size: 56px; letter-spacing: normal; color: var(--ink); text-transform: lowercase; font-weight: 700; line-height: 1; }
+  .nameplate .c { text-align: center; font-family: var(--font-wordmark); font-size: clamp(30px, 6vw, 56px); letter-spacing: normal; color: var(--ink); text-transform: lowercase; font-weight: 700; line-height: 1; }
   .nameplate .r { text-align: right; }
   .nameplate a { color: inherit; border: none; }
   .nameplate a:hover { color: var(--cobalt); }
@@ -36,8 +41,9 @@
     font-family: var(--font-display); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cobalt); display: block; margin-bottom: var(--s-4);
   }
   .title-block h1 {
-    font-family: var(--font-display); font-size: clamp(52px, 7.2vw, 108px); font-weight: 700;
+    font-family: var(--font-display); font-size: clamp(38px, 7vw, 108px); font-weight: 700;
     letter-spacing: -0.04em; line-height: 0.92; text-wrap: balance;
+    overflow-wrap: break-word;
   }
   .title-block h1 em { font-family: var(--font-body); font-weight: 300; font-style: italic; color: var(--ink-muted); font-size: 0.52em; letter-spacing: -0.015em; display: block; margin-top: var(--s-4); line-height: 1.2; }
   .title-block .meta { padding-bottom: var(--s-3); font-family: var(--font-display); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted); }
@@ -207,6 +213,54 @@
   .colophon .c { text-align: center; }
   .colophon .r { text-align: right; }
   .colophon strong { color: var(--ink); font-weight: 400; }
+
+  /* Responsive */
+  @media (max-width: 960px) {
+    .title-block, .deck-block { grid-template-columns: 1fr; gap: var(--s-5); padding: var(--s-6) 0 var(--s-7); }
+    .title-block .meta { padding-bottom: 0; }
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .stat-row .s { padding: var(--s-5) var(--s-4); border-right: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); }
+    .stat-row .s:first-child { padding-left: var(--s-4); }
+    .stat-row .s:last-child  { padding-right: var(--s-4); border-right: 1px solid var(--rule-strong); }
+    .stat-row .s:nth-child(2n) { border-right: none; }
+    .stat-row .s:nth-last-child(-n+2) { border-bottom: none; }
+    .article { grid-template-columns: 1fr; padding: var(--s-7) 0 var(--s-8); }
+    .article .article-body-resume,
+    .article .marg-col,
+    .article .leftnotes { grid-column: auto; }
+    .article .marg-col { margin-top: var(--s-5); }
+    .hyp { grid-template-columns: 1fr; }
+    .hyp .h { border-right: none; border-bottom: 1px solid var(--rule-strong); }
+    .hyp .h:nth-child(2n) { border-right: none; }
+    .hyp .h:last-child { border-bottom: none; }
+    .methods { grid-template-columns: 1fr; }
+    .methods .m { border-right: none; border-bottom: 1px solid var(--rule-strong); padding: var(--s-5) 0; }
+    .methods .m:first-child { padding-left: 0; }
+    .methods .m:last-child { border-bottom: none; padding-right: 0; }
+    .next-project { grid-template-columns: 1fr; padding: var(--s-7) var(--s-5); }
+    .next-project h3 { font-size: 36px; }
+  }
+
+  @media (max-width: 600px) {
+    .crumb { flex-wrap: wrap; }
+    .stat-row .s .v { font-size: 36px; }
+    .stat-row .s .v--small { font-size: 28px; }
+    .article p, .article p.lead { font-size: 17px; line-height: 1.55; }
+    .article blockquote p { font-size: 20px; }
+    .chart-row { grid-template-columns: 1fr 60px; gap: 6px; }
+    .chart-row .tr { grid-column: 1 / -1; order: 3; }
+    .chart-row .lbl { font-size: 11px; }
+    .colophon { grid-template-columns: 1fr; gap: 4px; }
+    .colophon .c, .colophon .r { text-align: left; }
+  }
+
+  @media (hover: none) {
+    .nameplate a, .colophon a { padding: 6px 4px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .next-project:hover .arrow { transform: none; }
+  }
 </style>
 </head>
 <body>

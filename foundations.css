@@ -12,35 +12,35 @@
    pull quotes. */
 @font-face {
   font-family: "Helvetica";
-  src: url("./fonts/Helvetica.ttf") format("truetype");
+  src: url("./fonts/Helvetica.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Helvetica";
-  src: url("./fonts/Helvetica-Bold.ttf") format("truetype");
+  src: url("./fonts/Helvetica-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("./fonts/CormorantGaramond-Light.ttf") format("truetype");
+  src: url("./fonts/CormorantGaramond-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("./fonts/CormorantGaramond-LightItalic.ttf") format("truetype");
+  src: url("./fonts/CormorantGaramond-LightItalic.woff2") format("woff2");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: "National";
-  src: url("./fonts/NationalCodesUniversal.otf") format("opentype");
+  src: url("./fonts/NationalCodesUniversal.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;

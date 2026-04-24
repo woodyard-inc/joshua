@@ -63,15 +63,15 @@
   --rule-strong:  #14141426; /* stronger divider — 15% ink */
 
   /* The accent. One blue. */
-  --klein:        #002FA7;   /* International Klein Blue */
-  --klein-ink:    #001E6B;   /* pressed/hover state */
+  --cobalt:        #002FA7;   /* Cobalt */
+  --cobalt-ink:    #001E6B;   /* pressed/hover state */
 
   /* Data-viz palette — all in-key. Use IN THIS ORDER. */
-  --viz-1: #002FA7;  /* klein */
+  --viz-1: #002FA7;  /* cobalt */
   --viz-2: #141414;  /* ink */
   --viz-3: #8A857B;  /* stone */
-  --viz-4: #B8563C;  /* terracotta — complementary warmth */
-  --viz-5: #2E5E3E;  /* forest — cool earth */
+  --viz-4: #01482A;  /* forest — deep, grounding */
+  --viz-5: #D35220;  /* terracotta — complementary warmth */
 
   /* ---- TYPE ----
      Three voices, used in this order of priority:
@@ -275,8 +275,8 @@ a {
   padding-bottom: 1px;
   transition: color 120ms ease;
 }
-a:hover { color: var(--klein); }
-a.link--klein { color: var(--klein); border-bottom-color: var(--klein); }
+a:hover { color: var(--cobalt); }
+a.link--cobalt { color: var(--cobalt); border-bottom-color: var(--cobalt); }
 a.link--bare  { border-bottom: none; }
 
 /* Rules */
@@ -325,7 +325,7 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .ink        { color: var(--ink); }
 .ink-soft   { color: var(--ink-soft); }
 .ink-muted  { color: var(--ink-muted); }
-.klein      { color: var(--klein); }
+.cobalt      { color: var(--cobalt); }
 .bg-paper   { background: var(--paper); }
-.bg-klein   { background: var(--klein); color: var(--paper); }
+.bg-cobalt   { background: var(--cobalt); color: var(--paper); }
 .bg-ink     { background: var(--ink);   color: var(--paper); }

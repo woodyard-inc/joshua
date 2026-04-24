@@ -231,43 +231,6 @@
   .cv-foot .c { text-align: center; }
   .cv-foot .r { text-align: right; }
 
-  /* Tweaks panel */
-  .tweaks {
-    position: fixed; bottom: 24px; right: 24px;
-    background: var(--paper); border: 1px solid var(--ink);
-    padding: 18px; width: 280px;
-    font-family: var(--font-sans); font-size: 12px;
-    box-shadow: 0 12px 40px -16px #14141466;
-    display: none; z-index: 50;
-  }
-  .tweaks.open { display: block; }
-  .tweaks h4 {
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-    border-bottom: 1px solid var(--ink); padding-bottom: 8px; margin: 0 0 12px;
-  }
-  .tweaks .row {
-    display: grid; grid-template-columns: 1fr auto; gap: 8px;
-    align-items: center; margin-bottom: 10px;
-  }
-  .tweaks label {
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ink-muted);
-  }
-  .tweaks select, .tweaks input {
-    font-family: var(--font-sans); font-size: 11px;
-    border: 1px solid var(--rule-strong); background: var(--paper-bright);
-    padding: 4px 6px;
-  }
-  .tweak-toggle {
-    position: fixed; bottom: 24px; right: 24px; z-index: 49;
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
-    padding: 10px 14px; border: 1px solid var(--ink);
-    background: var(--paper); color: var(--ink); cursor: pointer;
-    border-radius: 0;
-  }
-
   /* Density variants */
   body[data-density="airy"] .cv-bullets li { font-size: 13px; margin-bottom: 7px; line-height: 1.5; }
   body[data-density="airy"] .role-bar { padding: var(--s-4) 0 6px; }
@@ -529,28 +492,6 @@
   </footer>
 </article>
 
-<button class="tweak-toggle" onclick="document.querySelector('.tweaks').classList.toggle('open'); this.style.display='none';">Tweaks</button>
-<div class="tweaks">
-  <h4>Tweaks</h4>
-  <div class="row">
-    <label for="density">Density</label>
-    <select id="density" onchange="document.body.dataset.density=this.value">
-      <option value="default">Default</option>
-      <option value="airy">Airy</option>
-      <option value="compact">Compact</option>
-    </select>
-  </div>
-  <div class="row">
-    <label for="accent">Accent</label>
-    <select id="accent" onchange="document.body.dataset.accent=this.value">
-      <option value="klein">Klein blue</option>
-      <option value="ink">Ink only</option>
-    </select>
-  </div>
-  <div class="row" style="grid-template-columns: 1fr; margin-top: 12px; padding-top: 8px; border-top: 1px solid var(--rule);">
-    <button onclick="window.print()" style="font-family: var(--font-sans); font-weight: 700; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; padding: 8px; border: 1px solid var(--ink); background: var(--ink); color: var(--paper); cursor: pointer;">Print → PDF</button>
-  </div>
-</div>
 
 </body>
 </html>

@@ -388,12 +388,12 @@
   function updateLondonTime() {
     const t = new Intl.DateTimeFormat('en-GB', {
       timeZone: 'Europe/London',
-      hour: '2-digit', minute: '2-digit', hour12: false
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false
     }).format(new Date());
     document.getElementById('london-time').textContent = t + ' · London';
   }
   updateLondonTime();
-  setInterval(updateLondonTime, 60000);
+  setInterval(updateLondonTime, 1000);
 </script>
 
 </body>

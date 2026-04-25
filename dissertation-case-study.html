@@ -23,6 +23,7 @@
   .nameplate .r { text-align: right; }
   .nameplate a { color: inherit; border: none; }
   .nameplate a:hover { color: var(--cobalt); }
+  .nameplate .menu { display: none; }
 
   .crumb {
     padding: var(--s-5) 0 0; display: flex; gap: 12px;
@@ -216,6 +217,8 @@
 
   /* Responsive */
   @media (max-width: 960px) {
+    .nameplate .nav-desktop { display: none; }
+    .nameplate .menu { display: inline-block; }
     .title-block, .deck-block { grid-template-columns: 1fr; gap: var(--s-5); padding: var(--s-6) 0 var(--s-7); }
     .title-block .meta { padding-bottom: 0; }
     .stat-row { grid-template-columns: repeat(2, 1fr); }
@@ -270,7 +273,15 @@
   <header class="nameplate">
     <span>London · MMXXVI · No. III</span>
     <span class="c">Joshua Woodyard</span>
-    <span class="r"><a href="index.html#work">Work</a> · <a href="index.html#about">About</a> · <a href="index.html#contact">Contact</a></span>
+    <span class="r"><span class="nav-desktop"><a href="index.html#work">Work</a> · <a href="index.html#about">About</a> · <a href="index.html#contact">Contact</a></span><details class="menu">
+      <summary aria-label="Open menu">Menu<span class="chev" aria-hidden="true"></span></summary>
+      <nav class="menu-panel" aria-label="Primary">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="cv.html">CV</a>
+      </nav>
+    </details></span>
   </header>
 
   <nav class="crumb">

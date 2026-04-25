@@ -32,6 +32,7 @@
   .nameplate .r { text-align: right; }
   .nameplate a { color: inherit; border: none; }
   .nameplate a:hover { color: var(--cobalt); }
+  .nameplate .menu { display: none; }
 
   /* Tagline pipe row */
   .cv-tagline {
@@ -286,6 +287,8 @@
 
   @media (max-width: 600px) {
     body { padding: 0; }
+    .nameplate .nav-desktop { display: none; }
+    .nameplate .menu { display: inline-block; }
     .back-link { padding: var(--s-4) var(--s-5); margin: 0; }
     .page { padding: var(--s-5) var(--s-4); margin-bottom: var(--s-5); }
     .cv-tagline { font-size: 10px; letter-spacing: 0.18em; }
@@ -319,7 +322,15 @@
   <header class="nameplate">
     <span>Curriculum Vitae · MMXXVI</span>
     <span class="c">joshua woodyard</span>
-    <span class="r">1 / 2</span>
+    <span class="r"><span class="nav-desktop">1 / 2</span><details class="menu">
+      <summary aria-label="Open menu">Menu<span class="chev" aria-hidden="true"></span></summary>
+      <nav class="menu-panel" aria-label="Primary">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="cv.html">CV</a>
+      </nav>
+    </details></span>
   </header>
 
   <div class="cv-tagline">
@@ -404,7 +415,15 @@
   <header class="nameplate">
     <span>Curriculum Vitae · MMXXVI</span>
     <span class="c">joshua woodyard</span>
-    <span class="r">2 / 2</span>
+    <span class="r"><span class="nav-desktop">2 / 2</span><details class="menu">
+      <summary aria-label="Open menu">Menu<span class="chev" aria-hidden="true"></span></summary>
+      <nav class="menu-panel" aria-label="Primary">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="cv.html">CV</a>
+      </nav>
+    </details></span>
   </header>
 
   <div class="cv-tagline">

@@ -25,6 +25,7 @@
     color: var(--ink-muted);
   }
   .nameplate .c { text-align: center; font-family: var(--font-wordmark); font-size: clamp(34px, 7vw, 70px); letter-spacing: normal; color: var(--ink); text-transform: lowercase; font-weight: 700; line-height: 1; }
+  .nameplate .menu { display: none; }
   .nameplate .r { text-align: right; }
   .nameplate a { color: inherit; border: none; }
   .nameplate a:hover { color: var(--cobalt); }
@@ -42,6 +43,7 @@
     letter-spacing: -0.04em; line-height: 0.9;
     text-wrap: balance;
     overflow-wrap: break-word;
+    hyphens: auto;
   }
   .hero .hero-meta { padding-bottom: var(--s-3); }
   .hero .hero-meta .lede {
@@ -210,9 +212,13 @@
 
   /* Responsive */
   @media (max-width: 900px) {
-    .nameplate { grid-template-columns: 1fr auto; }
-    .nameplate .r { display: none; }
+    .nameplate { grid-template-columns: auto 1fr auto; }
+    .nameplate > span:first-child { display: none; }
+    .nameplate .nav-desktop { display: none; }
+    .nameplate .menu { display: inline-block; }
     .hero { grid-template-columns: 1fr; gap: var(--s-6); padding: var(--s-9) 0 var(--s-8); }
+    .hero h1 { padding-right: var(--s-6); overflow-wrap: anywhere; }
+    .hero .hero-meta { padding-right: var(--s-5); }
     .letter { grid-template-columns: 1fr; }
     .letter .mark { display: none; }
     .letter .aside { border-left: none; border-top: 1px solid var(--ink); padding-left: 0; padding-top: var(--s-4); }
@@ -263,7 +269,15 @@
   <header class="nameplate">
     <span>London · 2026 · No. III</span>
     <span class="c">Joshua Woodyard</span>
-    <span class="r"><a href="#work">Work</a> · <a href="#about">About</a> · <a href="#contact">Contact</a> · <a href="cv.html">CV</a></span>
+    <span class="r"><span class="nav-desktop"><a href="#work">Work</a> · <a href="#about">About</a> · <a href="#contact">Contact</a> · <a href="cv.html">CV</a></span><details class="menu">
+      <summary aria-label="Open menu">Menu<span class="chev" aria-hidden="true"></span></summary>
+      <nav class="menu-panel" aria-label="Primary">
+        <a href="index.html#work">Work</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="cv.html">CV</a>
+      </nav>
+    </details></span>
   </header>
 
   <!-- HERO -->

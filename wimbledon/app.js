@@ -42,11 +42,14 @@ async function boot() {
     btn.classList.add("active");
     state.year = yr;
     loadYear(yr).then(() => {
-      // Try to keep same player if they appear in the new year; else reset
+      // Try to keep same player; if they didn't compete this year say so
       const prev = state.playerName;
       if (prev && state.profiles[prev]) {
         document.getElementById("player-select").value = prev;
         renderProfile(prev);
+      } else if (prev) {
+        // Player known but not in this year's draw
+        showNotCompeting(prev, yr);
       } else {
         showEmpty();
       }
@@ -90,6 +93,34 @@ function showEmpty() {
   state.playerName = null;
 }
 
+function showNotCompeting(name, year) {
+  document.getElementById("empty-state").classList.add("hidden");
+  document.getElementById("profile").classList.remove("hidden");
+  // Keep the player selected in the dropdown so switching back restores them
+  state.playerName = name;
+
+  // Clear hero and hide metrics grid
+  document.getElementById("hero-visual").innerHTML = "";
+  document.getElementById("player-name").textContent = name;
+  document.getElementById("player-meta").textContent = "";
+  document.getElementById("headline-stats").innerHTML = "";
+  document.querySelector(".metrics-grid").classList.add("hidden");
+
+  // Show (or create) not-competing message block
+  let nc = document.getElementById("not-competing");
+  if (!nc) {
+    nc = document.createElement("div");
+    nc.id = "not-competing";
+    document.getElementById("profile").appendChild(nc);
+  }
+  nc.className = "not-competing";
+  nc.innerHTML = `
+    <p class="not-competing-year">Wimbledon ${year}</p>
+    <p class="not-competing-msg">${name} did not compete</p>
+    <p class="not-competing-sub">This player does not appear in the ${year} men's draw. Select a different year or choose another player.</p>`;
+  nc.classList.remove("hidden");
+}
+
 // ── Main render ───────────────────────────────────────────────────
 function renderProfile(name) {
   const p = state.profiles[name];
@@ -97,6 +128,11 @@ function renderProfile(name) {
 
   document.getElementById("empty-state").classList.add("hidden");
   document.getElementById("profile").classList.remove("hidden");
+
+  // Clear any not-competing state
+  document.querySelector(".metrics-grid").classList.remove("hidden");
+  const nc = document.getElementById("not-competing");
+  if (nc) nc.classList.add("hidden");
 
   renderHero(p, t);
   renderServeWaterfall(p, t);

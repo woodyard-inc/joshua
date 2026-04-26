@@ -322,10 +322,10 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   margin: 0 auto;
   padding: var(--s-6) var(--page-pad);
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1px;
-  background: var(--ink);
-  border: 1px solid var(--ink);
+  background: var(--paper-warm);
+  border: 1px solid var(--paper-warm);
 }
 
 /* ── CARDS ───────────────────────────────────────────────────── */
@@ -335,7 +335,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .card-wide {
   grid-column: 1 / -1;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--paper-warm);
 }
 .card-header {
   display: flex;
@@ -1009,6 +1009,39 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 /* ── UTILITIES ───────────────────────────────────────────────── */
 .hidden { display: none !important; }
 .profile { }
+
+/* ── NOT COMPETING ───────────────────────────────────────────── */
+.not-competing {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: var(--s-7) var(--page-pad);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-4);
+  text-align: center;
+}
+.not-competing-year {
+  font-family: var(--font-sans);
+  font-size: var(--t-label);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+}
+.not-competing-msg {
+  font-family: var(--font-sans);
+  font-size: var(--t-h2);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.not-competing-sub {
+  font-family: var(--font-body);
+  font-size: var(--t-body);
+  color: var(--ink-muted);
+  max-width: 420px;
+}
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
 @media (max-width: 900px) {

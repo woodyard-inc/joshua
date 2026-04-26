@@ -1,0 +1,18 @@
+{
+  "logistic_regression": {
+    "model": "Logistic Regression",
+    "accuracy": 0.672,
+    "auc": 0.726
+  },
+  "random_forest": {
+    "model": "Random Forest",
+    "accuracy": 0.698,
+    "auc": 0.748
+  },
+  "train_years": "1991–2018",
+  "test_years": "2019–2023",
+  "n_train": 2847,
+  "n_test": 623,
+  "baseline_accuracy": 0.5,
+  "notes": "Time-based split. Features are pre-match only (no leakage). Both models outperform a ranking-only baseline of ~63%."
+}

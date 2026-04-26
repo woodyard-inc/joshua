@@ -1,0 +1,57 @@
+[
+  {
+    "feature": "Ranking Advantage",
+    "lr_coef": 0.682,
+    "rf_importance": 0.191
+  },
+  {
+    "feature": "Grass Win % (52w)",
+    "lr_coef": 0.614,
+    "rf_importance": 0.163
+  },
+  {
+    "feature": "1st Serve Won %",
+    "lr_coef": 0.481,
+    "rf_importance": 0.142
+  },
+  {
+    "feature": "Service Games Won %",
+    "lr_coef": 0.543,
+    "rf_importance": 0.121
+  },
+  {
+    "feature": "Return Points Won %",
+    "lr_coef": 0.452,
+    "rf_importance": 0.108
+  },
+  {
+    "feature": "Grass Form (last 10)",
+    "lr_coef": 0.418,
+    "rf_importance": 0.092
+  },
+  {
+    "feature": "Break Points Saved %",
+    "lr_coef": 0.387,
+    "rf_importance": 0.074
+  },
+  {
+    "feature": "Aces per Service Game",
+    "lr_coef": 0.341,
+    "rf_importance": 0.061
+  },
+  {
+    "feature": "Break Points Converted %",
+    "lr_coef": 0.261,
+    "rf_importance": 0.052
+  },
+  {
+    "feature": "1st Serve %",
+    "lr_coef": 0.284,
+    "rf_importance": 0.039
+  },
+  {
+    "feature": "Double Fault Rate",
+    "lr_coef": -0.176,
+    "rf_importance": 0.011
+  }
+]

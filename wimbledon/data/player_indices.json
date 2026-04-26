@@ -1,0 +1,222 @@
+[
+  {
+    "id": "fed",
+    "name": "Roger Federer",
+    "era": "legend",
+    "n_matches": 105,
+    "grass_win_pct": 85.7,
+    "attack_index": 91.2,
+    "defense_index": 82.4,
+    "archetype": "All-Court Attacker"
+  },
+  {
+    "id": "sam",
+    "name": "Pete Sampras",
+    "era": "legend",
+    "n_matches": 98,
+    "grass_win_pct": 88.3,
+    "attack_index": 94.5,
+    "defense_index": 61.8,
+    "archetype": "Big Server"
+  },
+  {
+    "id": "iva",
+    "name": "Goran Ivanisevic",
+    "era": "legend",
+    "n_matches": 72,
+    "grass_win_pct": 78.2,
+    "attack_index": 97.1,
+    "defense_index": 44.3,
+    "archetype": "Big Server"
+  },
+  {
+    "id": "bec",
+    "name": "Boris Becker",
+    "era": "legend",
+    "n_matches": 81,
+    "grass_win_pct": 82.4,
+    "attack_index": 87.9,
+    "defense_index": 66.1,
+    "archetype": "Serve-and-Volleyer"
+  },
+  {
+    "id": "edg",
+    "name": "Stefan Edberg",
+    "era": "legend",
+    "n_matches": 79,
+    "grass_win_pct": 80.5,
+    "attack_index": 83.2,
+    "defense_index": 74.6,
+    "archetype": "Serve-and-Volleyer"
+  },
+  {
+    "id": "rod",
+    "name": "Andy Roddick",
+    "era": "legend",
+    "n_matches": 68,
+    "grass_win_pct": 73.8,
+    "attack_index": 88.3,
+    "defense_index": 58.9,
+    "archetype": "Big Server"
+  },
+  {
+    "id": "aga",
+    "name": "Andre Agassi",
+    "era": "legend",
+    "n_matches": 57,
+    "grass_win_pct": 72.3,
+    "attack_index": 71.4,
+    "defense_index": 84.2,
+    "archetype": "Counter-Puncher"
+  },
+  {
+    "id": "hew",
+    "name": "Lleyton Hewitt",
+    "era": "legend",
+    "n_matches": 62,
+    "grass_win_pct": 74.1,
+    "attack_index": 61.3,
+    "defense_index": 88.7,
+    "archetype": "Counter-Puncher"
+  },
+  {
+    "id": "djok",
+    "name": "Novak Djokovic",
+    "era": "active",
+    "n_matches": 102,
+    "grass_win_pct": 83.8,
+    "attack_index": 79.4,
+    "defense_index": 95.1,
+    "archetype": "All-Court Defender"
+  },
+  {
+    "id": "mur",
+    "name": "Andy Murray",
+    "era": "active",
+    "n_matches": 87,
+    "grass_win_pct": 77.3,
+    "attack_index": 67.2,
+    "defense_index": 91.8,
+    "archetype": "Counter-Puncher"
+  },
+  {
+    "id": "rao",
+    "name": "Milos Raonic",
+    "era": "active",
+    "n_matches": 54,
+    "grass_win_pct": 72.4,
+    "attack_index": 90.8,
+    "defense_index": 56.2,
+    "archetype": "Big Server"
+  },
+  {
+    "id": "kyr",
+    "name": "Nick Kyrgios",
+    "era": "active",
+    "n_matches": 38,
+    "grass_win_pct": 71.8,
+    "attack_index": 89.1,
+    "defense_index": 50.4,
+    "archetype": "Big Server"
+  },
+  {
+    "id": "ber",
+    "name": "Matteo Berrettini",
+    "era": "active",
+    "n_matches": 41,
+    "grass_win_pct": 73.9,
+    "attack_index": 86.7,
+    "defense_index": 61.3,
+    "archetype": "Attacking Baseliner"
+  },
+  {
+    "id": "alc",
+    "name": "Carlos Alcaraz",
+    "era": "active",
+    "n_matches": 22,
+    "grass_win_pct": 80.4,
+    "attack_index": 82.3,
+    "defense_index": 75.1,
+    "archetype": "All-Court Attacker"
+  },
+  {
+    "id": "sin",
+    "name": "Jannik Sinner",
+    "era": "active",
+    "n_matches": 28,
+    "grass_win_pct": 73.2,
+    "attack_index": 74.8,
+    "defense_index": 80.3,
+    "archetype": "All-Court Defender"
+  },
+  {
+    "id": "med",
+    "name": "Daniil Medvedev",
+    "era": "active",
+    "n_matches": 35,
+    "grass_win_pct": 64.8,
+    "attack_index": 63.7,
+    "defense_index": 81.9,
+    "archetype": "Counter-Puncher"
+  },
+  {
+    "id": "zve",
+    "name": "Alexander Zverev",
+    "era": "active",
+    "n_matches": 39,
+    "grass_win_pct": 66.1,
+    "attack_index": 72.6,
+    "defense_index": 70.8,
+    "archetype": "Attacking Baseliner"
+  },
+  {
+    "id": "tsi",
+    "name": "Stefanos Tsitsipas",
+    "era": "active",
+    "n_matches": 34,
+    "grass_win_pct": 64.2,
+    "attack_index": 74.3,
+    "defense_index": 66.7,
+    "archetype": "Attacking Baseliner"
+  },
+  {
+    "id": "fri",
+    "name": "Taylor Fritz",
+    "era": "active",
+    "n_matches": 28,
+    "grass_win_pct": 67.4,
+    "attack_index": 80.1,
+    "defense_index": 64.9,
+    "archetype": "Attacking Baseliner"
+  },
+  {
+    "id": "she",
+    "name": "Ben Shelton",
+    "era": "active",
+    "n_matches": 14,
+    "grass_win_pct": 66.7,
+    "attack_index": 86.2,
+    "defense_index": 57.1,
+    "archetype": "Big Server"
+  },
+  {
+    "id": "hur",
+    "name": "Hubert Hurkacz",
+    "era": "active",
+    "n_matches": 32,
+    "grass_win_pct": 70.1,
+    "attack_index": 82.4,
+    "defense_index": 67.8,
+    "archetype": "Attacking Baseliner"
+  },
+  {
+    "id": "nad",
+    "name": "Rafael Nadal",
+    "era": "legend",
+    "n_matches": 74,
+    "grass_win_pct": 76.1,
+    "attack_index": 70.2,
+    "defense_index": 87.9,
+    "archetype": "Counter-Puncher"
+  }
+]

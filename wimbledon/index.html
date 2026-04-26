@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Wins on Grass — Wimbledon Player Intelligence · Joshua Woodyard</title>
+  <meta name="description" content="Point-by-point player intelligence from the 2012 Wimbledon men's draw. Built on IBM SlamTracker data.">
+  <link rel="stylesheet" href="../foundations.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ── PORTFOLIO NAMEPLATE ──────────────────────────────────────── -->
+  <div class="pf-shell">
+    <header class="pf-nameplate">
+      <span class="pf-left">Case Study · 2026</span>
+      <a class="pf-wordmark" href="../">Joshua Woodyard</a>
+      <span class="pf-right">
+        <span class="pf-nav-desktop">
+          <a href="../#work">Work</a> ·
+          <a href="../#about">About</a> ·
+          <a href="../#contact">Contact</a> ·
+          <a href="../cv.html">CV</a>
+        </span>
+        <details class="menu">
+          <summary aria-label="Open menu">Menu<span class="chev" aria-hidden="true"></span></summary>
+          <nav class="menu-panel" aria-label="Primary">
+            <a href="../#work">Work</a>
+            <a href="../#about">About</a>
+            <a href="../#contact">Contact</a>
+            <a href="../cv.html">CV</a>
+          </nav>
+        </details>
+      </span>
+    </header>
+  </div>
+
+  <!-- ── APP HEADER ───────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="header-inner">
+      <span class="brand-left">Wimbledon · Point-by-point</span>
+      <div class="brand-centre">
+        <h1>What Wins on Grass</h1>
+        <p class="brand-sub">Player Intelligence</p>
+      </div>
+      <div class="brand-right header-controls">
+        <div class="control-group">
+          <label>Year</label>
+          <div id="year-pills" class="pill-group">
+            <button class="pill active" data-year="2012">2012</button>
+          </div>
+        </div>
+        <div class="control-group">
+          <label for="player-select">Player</label>
+          <select id="player-select">
+            <option value="">Select a player…</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ── EMPTY STATE ────────────────────────────────────────────── -->
+  <div id="empty-state" class="empty-state">
+    <div class="empty-trophy">
+      <img src="trophy.webp" alt="Wimbledon Trophy" class="trophy-img">
+    </div>
+    <div class="empty-inner">
+      <p class="empty-eyebrow">2012 Wimbledon · Men's Draw</p>
+      <h2>What Wins on Grass</h2>
+      <p class="empty-sub">Point-by-point player intelligence</p>
+      <div class="empty-select-wrap">
+        <select id="player-select-empty">
+          <option value="">Select a player…</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROFILE ────────────────────────────────────────────────── -->
+  <main id="profile" class="profile hidden">
+
+    <!-- Hero -->
+    <section class="hero-section" id="hero-section">
+      <div class="hero-visual" id="hero-visual"></div>
+      <div class="hero-nameplate">
+        <div class="hero-name-block">
+          <h2 id="player-name"></h2>
+          <p id="player-meta" class="player-meta"></p>
+        </div>
+        <div class="headline-stats" id="headline-stats"></div>
+      </div>
+    </section>
+
+    <!-- Metrics Grid -->
+    <div class="metrics-grid">
+
+      <!-- 1. Serve Waterfall -->
+      <div class="card card-wide">
+        <div class="card-header">
+          <h3>Serve Strength</h3>
+          <span class="card-badge" id="srv-pts-badge"></span>
+        </div>
+        <p class="card-note">Waterfall: what fraction of serve points reach each stage · grey bar = tournament average</p>
+        <div class="waterfall" id="serve-waterfall"></div>
+      </div>
+
+      <!-- 2. Serve Speed -->
+      <div class="card">
+        <div class="card-header"><h3>Serve Speed</h3></div>
+        <p class="card-note">Average ± 1 SD · speed-classified serves only · for reference only</p>
+        <div class="speed-viz" id="speed-viz"></div>
+      </div>
+
+      <!-- 3. Serve Direction -->
+      <div class="card">
+        <div class="card-header"><h3>Serve Direction</h3></div>
+        <p class="card-note">Decoded from IBM History field · deuce &amp; ad court split estimated from game score parity</p>
+        <div class="direction-wrap">
+          <svg id="court-svg" class="court-svg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div class="direction-legend" id="direction-legend"></div>
+        </div>
+      </div>
+
+      <!-- 4. Rally Length -->
+      <div class="card">
+        <div class="card-header"><h3>Rally Length</h3></div>
+        <p class="card-note">Average shots per point from IBM SlamTracker Rally column · marker = tournament avg</p>
+        <div class="rally-viz" id="rally-viz"></div>
+      </div>
+
+      <!-- 5. Points Won -->
+      <div class="card">
+        <div class="card-header"><h3>Points Won</h3></div>
+        <p class="card-note">Total points across all matches · ⚡ = bad break match (winner had fewer points)</p>
+        <div id="points-viz" class="points-viz"></div>
+      </div>
+
+      <!-- 6. Resilience -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Resilience Index</h3>
+          <span class="card-tag">Serve</span>
+        </div>
+        <p class="card-note">Break points faced vs saved while serving</p>
+        <div id="resilience-viz" class="resilience-viz"></div>
+      </div>
+
+      <!-- 7. Enforcer -->
+      <div class="card">
+        <div class="card-header">
+          <h3>Enforcer Index</h3>
+          <span class="card-tag">Return</span>
+        </div>
+        <p class="card-note">BP chances <em>created</em> per opp. service game — the stable skill. Conversion is noise.</p>
+        <div id="enforcer-viz" class="enforcer-viz"></div>
+      </div>
+
+      <!-- 8. Attack Precision -->
+      <div class="card">
+        <div class="card-header"><h3>Attack Precision</h3></div>
+        <p class="card-note">Of all attacking shot outcomes, what fraction are clean winners? Errors cost points — higher is better.</p>
+        <div id="aggression-viz" class="aggression-viz"></div>
+      </div>
+
+      <!-- 9. Clean Player -->
+      <div class="card">
+        <div class="card-header"><h3>Clean Player Index</h3></div>
+        <p class="card-note">Service games and break games won without reaching deuce</p>
+        <div id="clean-viz" class="clean-viz"></div>
+      </div>
+
+      <!-- 10. Streaks -->
+      <div class="card">
+        <div class="card-header"><h3>Streak Index</h3></div>
+        <p class="card-note">Consecutive-point runs of 2+ counted once each — momentum bursts</p>
+        <div id="streaks-viz" class="streaks-viz"></div>
+      </div>
+
+      <!-- 11. Match Log -->
+      <div class="card card-wide">
+        <div class="card-header"><h3>Match Log</h3></div>
+        <div id="match-log" class="match-log"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ── PORTFOLIO COLOPHON ────────────────────────────────────── -->
+  <footer class="pf-colophon">
+    <span><a href="../">Joshua Woodyard</a> · London</span>
+    <span class="pf-col-c">What Wins on Grass · 2026</span>
+    <span class="pf-col-r">IBM SlamTracker · Men's Draw · Wimbledon 2012</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -151,8 +151,8 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   z-index: 1;
   background: var(--paper);
   border: var(--hairline-ink);
-  padding: var(--s-7) var(--s-8);
-  width: clamp(260px, 88vw, 400px);
+  padding: var(--s-5) var(--s-7);
+  width: clamp(320px, 90vw, 500px);
   text-align: center;
   box-shadow: 0 24px 60px -16px rgba(20,20,20,0.45);
 }
@@ -182,31 +182,9 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   font-size: 16px;
   color: var(--ink-muted);
   line-height: 1.4;
-  margin: 0 0 var(--s-6);
+  margin: 0;
   max-width: none;
 }
-.empty-select-wrap {
-  border-top: var(--hairline-ink);
-  padding-top: var(--s-5);
-}
-.empty-select-wrap select {
-  width: 100%;
-  font-family: var(--font-sans);
-  font-size: var(--t-small);
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--ink);
-  background: var(--paper);
-  border: var(--hairline-ink);
-  padding: var(--s-3) var(--s-4);
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23141414'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  cursor: pointer;
-}
-
 /* ── HERO SECTION ────────────────────────────────────────────── */
 .hero-section {
   border-bottom: var(--hairline-ink);

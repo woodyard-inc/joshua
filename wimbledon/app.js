@@ -23,14 +23,11 @@ async function boot() {
   function onPlayerChange(name) {
     if (!name) { showEmpty(); return; }
     state.playerName = name;
-    document.getElementById("player-select").value       = name;
-    document.getElementById("player-select-empty").value = name;
+    document.getElementById("player-select").value = name;
     renderProfile(name);
   }
 
   document.getElementById("player-select")
-    .addEventListener("change", e => onPlayerChange(e.target.value));
-  document.getElementById("player-select-empty")
     .addEventListener("change", e => onPlayerChange(e.target.value));
 
   document.getElementById("year-pills").addEventListener("click", e => {
@@ -70,26 +67,21 @@ async function loadYear(year) {
 }
 
 function populateDropdown() {
-  const ids = ["player-select", "player-select-empty"];
-  ids.forEach(id => {
-    const sel = document.getElementById(id);
-    if (!sel) return;
-    const cur = sel.value;
-    sel.innerHTML = '<option value="">Select a player…</option>';
-    for (const name of Object.keys(state.profiles).sort()) {
-      const opt = document.createElement("option");
-      opt.value = opt.textContent = name;
-      sel.appendChild(opt);
-    }
-    if (cur && state.profiles[cur]) sel.value = cur;
-  });
+  const sel = document.getElementById("player-select");
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">Select a player…</option>';
+  for (const name of Object.keys(state.profiles).sort()) {
+    const opt = document.createElement("option");
+    opt.value = opt.textContent = name;
+    sel.appendChild(opt);
+  }
+  if (cur && state.profiles[cur]) sel.value = cur;
 }
 
 function showEmpty() {
   document.getElementById("empty-state").classList.remove("hidden");
   document.getElementById("profile").classList.add("hidden");
-  document.getElementById("player-select").value       = "";
-  document.getElementById("player-select-empty").value = "";
+  document.getElementById("player-select").value = "";
   state.playerName = null;
 }
 

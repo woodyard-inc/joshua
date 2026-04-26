@@ -92,6 +92,19 @@
       "total_streaks": 89,
       "streaks_per_match": 17.8
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 125,
+      "total_mins": 624,
+      "matches_tracked": 5
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.05,
+      "total_km": 10.26,
+      "matches_tracked": 5,
+      "matches_total": 5
+    },
     "player": "Roger Federer",
     "year": 2018,
     "match_summaries": [
@@ -100,6 +113,8 @@
         "opponent": "Dusan Lajovic",
         "points_won": 91,
         "points_played": 147,
+        "duration_mins": 79.4,
+        "distance_km": 1.54,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -108,6 +123,8 @@
         "opponent": "Lukas Lacko",
         "points_won": 91,
         "points_played": 151,
+        "duration_mins": 90.1,
+        "distance_km": 1.5,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -116,6 +133,8 @@
         "opponent": "Jan Lennard Struff",
         "points_won": 102,
         "points_played": 174,
+        "duration_mins": 94.8,
+        "distance_km": 1.46,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -124,6 +143,8 @@
         "opponent": "Adrian Mannarino",
         "points_won": 106,
         "points_played": 176,
+        "duration_mins": 105.6,
+        "distance_km": 2.29,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -132,6 +153,8 @@
         "opponent": "Kevin Anderson",
         "points_won": 195,
         "points_played": 385,
+        "duration_mins": 254.2,
+        "distance_km": 3.47,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Kevin Anderson",
@@ -237,6 +260,19 @@
       "total_streaks": 5,
       "streaks_per_match": 5.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 79,
+      "total_mins": 79,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.44,
+      "total_km": 1.44,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Dusan Lajovic",
     "year": 2018,
     "match_summaries": [
@@ -245,6 +281,8 @@
         "opponent": "Roger Federer",
         "points_won": 56,
         "points_played": 147,
+        "duration_mins": 79.4,
+        "distance_km": 1.44,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -343,6 +381,19 @@
       "total_streaks": 24,
       "streaks_per_match": 12.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 117,
+      "total_mins": 233,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.42,
+      "total_km": 1.42,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Lukas Lacko",
     "year": 2018,
     "match_summaries": [
@@ -351,6 +402,8 @@
         "opponent": "Benjamin Bonzi",
         "points_won": 128,
         "points_played": 245,
+        "duration_mins": 143.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -359,6 +412,8 @@
         "opponent": "Roger Federer",
         "points_won": 60,
         "points_played": 151,
+        "duration_mins": 90.1,
+        "distance_km": 1.42,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -445,6 +500,19 @@
       "total_streaks": 14,
       "streaks_per_match": 14.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 143,
+      "total_mins": 143,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Benjamin Bonzi",
     "year": 2018,
     "match_summaries": [
@@ -453,6 +521,8 @@
         "opponent": "Lukas Lacko",
         "points_won": 117,
         "points_played": 245,
+        "duration_mins": 143.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -539,6 +609,19 @@
       "total_streaks": 44,
       "streaks_per_match": 22.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 198,
+      "total_mins": 395,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 2
+    },
     "player": "Ivo Karlovic",
     "year": 2018,
     "match_summaries": [
@@ -547,6 +630,8 @@
         "opponent": "Mikhail Youzhny",
         "points_won": 135,
         "points_played": 264,
+        "duration_mins": 159.9,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -555,6 +640,8 @@
         "opponent": "Jan Lennard Struff",
         "points_won": 205,
         "points_played": 411,
+        "duration_mins": 235.1,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -641,6 +728,19 @@
       "total_streaks": 16,
       "streaks_per_match": 16.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 160,
+      "total_mins": 159,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Mikhail Youzhny",
     "year": 2018,
     "match_summaries": [
@@ -649,6 +749,8 @@
         "opponent": "Ivo Karlovic",
         "points_won": 129,
         "points_played": 264,
+        "duration_mins": 159.9,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -747,6 +849,19 @@
       "total_streaks": 53,
       "streaks_per_match": 17.7
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 180,
+      "total_mins": 539,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.39,
+      "total_km": 1.39,
+      "matches_tracked": 1,
+      "matches_total": 3
+    },
     "player": "Jan Lennard Struff",
     "year": 2018,
     "match_summaries": [
@@ -755,6 +870,8 @@
         "opponent": "Leonardo Mayer",
         "points_won": 164,
         "points_played": 319,
+        "duration_mins": 209.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -763,6 +880,8 @@
         "opponent": "Ivo Karlovic",
         "points_won": 206,
         "points_played": 411,
+        "duration_mins": 235.1,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -771,6 +890,8 @@
         "opponent": "Roger Federer",
         "points_won": 72,
         "points_played": 174,
+        "duration_mins": 94.8,
+        "distance_km": 1.39,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -857,6 +978,19 @@
       "total_streaks": 21,
       "streaks_per_match": 21.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 209,
+      "total_mins": 209,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Leonardo Mayer",
     "year": 2018,
     "match_summaries": [
@@ -865,6 +999,8 @@
         "opponent": "Jan Lennard Struff",
         "points_won": 155,
         "points_played": 319,
+        "duration_mins": 209.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -963,6 +1099,19 @@
       "total_streaks": 57,
       "streaks_per_match": 14.2
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 145,
+      "total_mins": 579,
+      "matches_tracked": 4
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 3.31,
+      "total_km": 6.61,
+      "matches_tracked": 2,
+      "matches_total": 4
+    },
     "player": "Adrian Mannarino",
     "year": 2018,
     "match_summaries": [
@@ -971,6 +1120,8 @@
         "opponent": "Christian Garin",
         "points_won": 111,
         "points_played": 212,
+        "duration_mins": 126.1,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -979,6 +1130,8 @@
         "opponent": "Ryan Harrison",
         "points_won": 122,
         "points_played": 230,
+        "duration_mins": 155.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -987,6 +1140,8 @@
         "opponent": "Daniil Medvedev",
         "points_won": 150,
         "points_played": 283,
+        "duration_mins": 192.6,
+        "distance_km": 4.37,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -995,6 +1150,8 @@
         "opponent": "Roger Federer",
         "points_won": 70,
         "points_played": 176,
+        "duration_mins": 105.6,
+        "distance_km": 2.24,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -1081,6 +1238,19 @@
       "total_streaks": 10,
       "streaks_per_match": 10.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 126,
+      "total_mins": 126,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Christian Garin",
     "year": 2018,
     "match_summaries": [
@@ -1089,6 +1259,8 @@
         "opponent": "Adrian Mannarino",
         "points_won": 101,
         "points_played": 212,
+        "duration_mins": 126.1,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -1175,6 +1347,19 @@
       "total_streaks": 26,
       "streaks_per_match": 13.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 126,
+      "total_mins": 252,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 2
+    },
     "player": "Ryan Harrison",
     "year": 2018,
     "match_summaries": [
@@ -1183,6 +1368,8 @@
         "opponent": "Roberto Carballes Baena",
         "points_won": 94,
         "points_played": 157,
+        "duration_mins": 97.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -1191,6 +1378,8 @@
         "opponent": "Adrian Mannarino",
         "points_won": 108,
         "points_played": 230,
+        "duration_mins": 155.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -1277,6 +1466,19 @@
       "total_streaks": 6,
       "streaks_per_match": 6.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 98,
+      "total_mins": 97,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Roberto Carballes Baena",
     "year": 2018,
     "match_summaries": [
@@ -1285,6 +1487,8 @@
         "opponent": "Ryan Harrison",
         "points_won": 63,
         "points_played": 157,
+        "duration_mins": 97.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -1371,6 +1575,19 @@
       "total_streaks": 21,
       "streaks_per_match": 10.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 107,
+      "total_mins": 214,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 2
+    },
     "player": "Guillermo Garcia Lopez",
     "year": 2018,
     "match_summaries": [
@@ -1379,6 +1596,8 @@
         "opponent": "Gastao Elias",
         "points_won": 101,
         "points_played": 178,
+        "duration_mins": 121.3,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -1387,6 +1606,8 @@
         "opponent": "Daniil Medvedev",
         "points_won": 67,
         "points_played": 159,
+        "duration_mins": 93.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -1473,6 +1694,19 @@
       "total_streaks": 7,
       "streaks_per_match": 7.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 121,
+      "total_mins": 121,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Gastao Elias",
     "year": 2018,
     "match_summaries": [
@@ -1481,6 +1715,8 @@
         "opponent": "Guillermo Garcia Lopez",
         "points_won": 77,
         "points_played": 178,
+        "duration_mins": 121.3,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -1579,6 +1815,19 @@
       "total_streaks": 43,
       "streaks_per_match": 14.3
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 135,
+      "total_mins": 405,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 3.01,
+      "total_km": 6.02,
+      "matches_tracked": 2,
+      "matches_total": 3
+    },
     "player": "Daniil Medvedev",
     "year": 2018,
     "match_summaries": [
@@ -1587,6 +1836,8 @@
         "opponent": "Borna Coric",
         "points_won": 97,
         "points_played": 171,
+        "duration_mins": 119.1,
+        "distance_km": 1.74,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -1595,6 +1846,8 @@
         "opponent": "Guillermo Garcia Lopez",
         "points_won": 92,
         "points_played": 159,
+        "duration_mins": 93.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -1603,6 +1856,8 @@
         "opponent": "Adrian Mannarino",
         "points_won": 133,
         "points_played": 283,
+        "duration_mins": 192.6,
+        "distance_km": 4.28,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -1701,6 +1956,19 @@
       "total_streaks": 11,
       "streaks_per_match": 11.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 119,
+      "total_mins": 119,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.72,
+      "total_km": 1.72,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Borna Coric",
     "year": 2018,
     "match_summaries": [
@@ -1709,6 +1977,8 @@
         "opponent": "Daniil Medvedev",
         "points_won": 74,
         "points_played": 171,
+        "duration_mins": 119.1,
+        "distance_km": 1.72,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -1807,6 +2077,19 @@
       "total_streaks": 38,
       "streaks_per_match": 12.7
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 109,
+      "total_mins": 327,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.8,
+      "total_km": 5.39,
+      "matches_tracked": 3,
+      "matches_total": 3
+    },
     "player": "Sam Querrey",
     "year": 2018,
     "match_summaries": [
@@ -1815,6 +2098,8 @@
         "opponent": "Jordan Thompson",
         "points_won": 89,
         "points_played": 153,
+        "duration_mins": 90.1,
+        "distance_km": 1.4,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -1823,6 +2108,8 @@
         "opponent": "Sergiy Stakhovsky",
         "points_won": 109,
         "points_played": 198,
+        "duration_mins": 109.3,
+        "distance_km": 1.84,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -1831,6 +2118,8 @@
         "opponent": "Gael Monfils",
         "points_won": 104,
         "points_played": 221,
+        "duration_mins": 128.3,
+        "distance_km": 2.15,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -1929,6 +2218,19 @@
       "total_streaks": 8,
       "streaks_per_match": 8.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 90,
+      "total_mins": 90,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.53,
+      "total_km": 1.53,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Jordan Thompson",
     "year": 2018,
     "match_summaries": [
@@ -1937,6 +2239,8 @@
         "opponent": "Sam Querrey",
         "points_won": 64,
         "points_played": 153,
+        "duration_mins": 90.1,
+        "distance_km": 1.53,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -2035,6 +2339,19 @@
       "total_streaks": 28,
       "streaks_per_match": 14.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 160,
+      "total_mins": 319,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.89,
+      "total_km": 1.89,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Sergiy Stakhovsky",
     "year": 2018,
     "match_summaries": [
@@ -2043,6 +2360,8 @@
         "opponent": "Joao Sousa",
         "points_won": 163,
         "points_played": 324,
+        "duration_mins": 210.1,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -2051,6 +2370,8 @@
         "opponent": "Sam Querrey",
         "points_won": 89,
         "points_played": 198,
+        "duration_mins": 109.3,
+        "distance_km": 1.89,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -2137,6 +2458,19 @@
       "total_streaks": 18,
       "streaks_per_match": 18.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 210,
+      "total_mins": 210,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Joao Sousa",
     "year": 2018,
     "match_summaries": [
@@ -2145,6 +2479,8 @@
         "opponent": "Sergiy Stakhovsky",
         "points_won": 161,
         "points_played": 324,
+        "duration_mins": 210.1,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -2231,6 +2567,19 @@
       "total_streaks": 17,
       "streaks_per_match": 17.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 181,
+      "total_mins": 180,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Laslo Djere",
     "year": 2018,
     "match_summaries": [
@@ -2239,6 +2588,8 @@
         "opponent": "Paolo Lorenzi",
         "points_won": 129,
         "points_played": 278,
+        "duration_mins": 180.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -2337,6 +2688,19 @@
       "total_streaks": 45,
       "streaks_per_match": 22.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 177,
+      "total_mins": 353,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.92,
+      "total_km": 2.92,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Paolo Lorenzi",
     "year": 2018,
     "match_summaries": [
@@ -2345,6 +2709,8 @@
         "opponent": "Laslo Djere",
         "points_won": 149,
         "points_played": 278,
+        "duration_mins": 180.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -2353,6 +2719,8 @@
         "opponent": "Gael Monfils",
         "points_won": 132,
         "points_played": 270,
+        "duration_mins": 172.8,
+        "distance_km": 2.92,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -2451,6 +2819,19 @@
       "total_streaks": 69,
       "streaks_per_match": 17.2
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 163,
+      "total_mins": 651,
+      "matches_tracked": 4
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.78,
+      "total_km": 11.11,
+      "matches_tracked": 4,
+      "matches_total": 4
+    },
     "player": "Gael Monfils",
     "year": 2018,
     "match_summaries": [
@@ -2459,6 +2840,8 @@
         "opponent": "Richard Gasquet",
         "points_won": 120,
         "points_played": 226,
+        "duration_mins": 141.5,
+        "distance_km": 2.73,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -2467,6 +2850,8 @@
         "opponent": "Paolo Lorenzi",
         "points_won": 138,
         "points_played": 270,
+        "duration_mins": 172.8,
+        "distance_km": 2.81,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -2475,6 +2860,8 @@
         "opponent": "Sam Querrey",
         "points_won": 117,
         "points_played": 221,
+        "duration_mins": 128.3,
+        "distance_km": 2.29,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -2483,6 +2870,8 @@
         "opponent": "Kevin Anderson",
         "points_won": 155,
         "points_played": 323,
+        "duration_mins": 209.2,
+        "distance_km": 3.28,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -2581,6 +2970,19 @@
       "total_streaks": 13,
       "streaks_per_match": 13.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 142,
+      "total_mins": 141,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.63,
+      "total_km": 2.63,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Richard Gasquet",
     "year": 2018,
     "match_summaries": [
@@ -2589,6 +2991,8 @@
         "opponent": "Gael Monfils",
         "points_won": 106,
         "points_played": 226,
+        "duration_mins": 141.5,
+        "distance_km": 2.63,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -2687,6 +3091,19 @@
       "total_streaks": 51,
       "streaks_per_match": 17.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 132,
+      "total_mins": 395,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.31,
+      "total_km": 1.31,
+      "matches_tracked": 1,
+      "matches_total": 3
+    },
     "player": "Philipp Kohlschreiber",
     "year": 2018,
     "match_summaries": [
@@ -2695,6 +3112,8 @@
         "opponent": "Evgeny Donskoy",
         "points_won": 109,
         "points_played": 190,
+        "duration_mins": 120.0,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -2703,6 +3122,8 @@
         "opponent": "Gilles Muller",
         "points_won": 129,
         "points_played": 244,
+        "duration_mins": 147.7,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -2711,6 +3132,8 @@
         "opponent": "Kevin Anderson",
         "points_won": 80,
         "points_played": 185,
+        "duration_mins": 127.6,
+        "distance_km": 1.31,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -2797,6 +3220,19 @@
       "total_streaks": 9,
       "streaks_per_match": 9.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 120,
+      "total_mins": 120,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Evgeny Donskoy",
     "year": 2018,
     "match_summaries": [
@@ -2805,6 +3241,8 @@
         "opponent": "Philipp Kohlschreiber",
         "points_won": 81,
         "points_played": 190,
+        "duration_mins": 120.0,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -2891,6 +3329,19 @@
       "total_streaks": 36,
       "streaks_per_match": 18.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 176,
+      "total_mins": 352,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 2
+    },
     "player": "Gilles Muller",
     "year": 2018,
     "match_summaries": [
@@ -2899,6 +3350,8 @@
         "opponent": "Michael Mmoh",
         "points_won": 154,
         "points_played": 300,
+        "duration_mins": 204.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -2907,6 +3360,8 @@
         "opponent": "Philipp Kohlschreiber",
         "points_won": 115,
         "points_played": 244,
+        "duration_mins": 147.7,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -2993,6 +3448,19 @@
       "total_streaks": 18,
       "streaks_per_match": 18.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 204,
+      "total_mins": 204,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Michael Mmoh",
     "year": 2018,
     "match_summaries": [
@@ -3001,6 +3469,8 @@
         "opponent": "Gilles Muller",
         "points_won": 146,
         "points_played": 300,
+        "duration_mins": 204.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -3087,6 +3557,19 @@
       "total_streaks": 6,
       "streaks_per_match": 6.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 83,
+      "total_mins": 83,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "John Patrick Smith",
     "year": 2018,
     "match_summaries": [
@@ -3095,6 +3578,8 @@
         "opponent": "Andreas Seppi",
         "points_won": 57,
         "points_played": 146,
+        "duration_mins": 83.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -3193,6 +3678,19 @@
       "total_streaks": 24,
       "streaks_per_match": 12.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 121,
+      "total_mins": 241,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.89,
+      "total_km": 1.89,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Andreas Seppi",
     "year": 2018,
     "match_summaries": [
@@ -3201,6 +3699,8 @@
         "opponent": "John Patrick Smith",
         "points_won": 89,
         "points_played": 146,
+        "duration_mins": 83.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -3209,6 +3709,8 @@
         "opponent": "Kevin Anderson",
         "points_won": 118,
         "points_played": 261,
+        "duration_mins": 158.1,
+        "distance_km": 1.89,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -3307,6 +3809,19 @@
       "total_streaks": 7,
       "streaks_per_match": 7.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 116,
+      "total_mins": 116,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.42,
+      "total_km": 1.42,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Norbert Gombos",
     "year": 2018,
     "match_summaries": [
@@ -3315,6 +3830,8 @@
         "opponent": "Kevin Anderson",
         "points_won": 80,
         "points_played": 186,
+        "duration_mins": 116.2,
+        "distance_km": 1.42,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -3413,6 +3930,19 @@
       "total_streaks": 158,
       "streaks_per_match": 22.6
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 200,
+      "total_mins": 1400,
+      "matches_tracked": 7
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.51,
+      "total_km": 17.55,
+      "matches_tracked": 7,
+      "matches_total": 7
+    },
     "player": "Kevin Anderson",
     "year": 2018,
     "match_summaries": [
@@ -3421,6 +3951,8 @@
         "opponent": "Norbert Gombos",
         "points_won": 106,
         "points_played": 186,
+        "duration_mins": 116.2,
+        "distance_km": 1.39,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -3429,6 +3961,8 @@
         "opponent": "Andreas Seppi",
         "points_won": 143,
         "points_played": 261,
+        "duration_mins": 158.1,
+        "distance_km": 1.87,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -3437,6 +3971,8 @@
         "opponent": "Philipp Kohlschreiber",
         "points_won": 105,
         "points_played": 185,
+        "duration_mins": 127.6,
+        "distance_km": 1.39,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -3445,6 +3981,8 @@
         "opponent": "Gael Monfils",
         "points_won": 168,
         "points_played": 323,
+        "duration_mins": 209.2,
+        "distance_km": 3.26,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -3453,6 +3991,8 @@
         "opponent": "Roger Federer",
         "points_won": 190,
         "points_played": 385,
+        "duration_mins": 254.2,
+        "distance_km": 3.19,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Kevin Anderson",
@@ -3468,6 +4008,8 @@
         "opponent": "John Isner",
         "points_won": 298,
         "points_played": 569,
+        "duration_mins": 395.9,
+        "distance_km": 4.44,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -3476,6 +4018,8 @@
         "opponent": "Novak Djokovic",
         "points_won": 74,
         "points_played": 174,
+        "duration_mins": 138.8,
+        "distance_km": 2.01,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -3574,6 +4118,19 @@
       "total_streaks": 41,
       "streaks_per_match": 20.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 664,
+      "total_mins": 1328,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.09,
+      "total_km": 4.19,
+      "matches_tracked": 2,
+      "matches_total": 2
+    },
     "player": "Marin Cilic",
     "year": 2018,
     "match_summaries": [
@@ -3582,6 +4139,8 @@
         "opponent": "Yoshihito Nishioka",
         "points_won": 99,
         "points_played": 164,
+        "duration_mins": 106.2,
+        "distance_km": 1.56,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -3590,6 +4149,8 @@
         "opponent": "Guido Pella",
         "points_won": 150,
         "points_played": 290,
+        "duration_mins": 1222.3,
+        "distance_km": 2.63,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Guido Pella",
@@ -3695,6 +4256,19 @@
       "total_streaks": 8,
       "streaks_per_match": 8.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 106,
+      "total_mins": 106,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.63,
+      "total_km": 1.63,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Yoshihito Nishioka",
     "year": 2018,
     "match_summaries": [
@@ -3703,6 +4277,8 @@
         "opponent": "Marin Cilic",
         "points_won": 65,
         "points_played": 164,
+        "duration_mins": 106.2,
+        "distance_km": 1.63,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -3789,6 +4365,19 @@
       "total_streaks": 17,
       "streaks_per_match": 17.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 189,
+      "total_mins": 188,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Jason Kubler",
     "year": 2018,
     "match_summaries": [
@@ -3797,6 +4386,8 @@
         "opponent": "Guido Pella",
         "points_won": 136,
         "points_played": 286,
+        "duration_mins": 188.8,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -3895,6 +4486,19 @@
       "total_streaks": 54,
       "streaks_per_match": 18.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 511,
+      "total_mins": 1532,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.66,
+      "total_km": 5.32,
+      "matches_tracked": 2,
+      "matches_total": 3
+    },
     "player": "Guido Pella",
     "year": 2018,
     "match_summaries": [
@@ -3903,6 +4507,8 @@
         "opponent": "Jason Kubler",
         "points_won": 150,
         "points_played": 286,
+        "duration_mins": 188.8,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -3911,6 +4517,8 @@
         "opponent": "Marin Cilic",
         "points_won": 140,
         "points_played": 290,
+        "duration_mins": 1222.3,
+        "distance_km": 2.99,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Guido Pella",
@@ -3926,6 +4534,8 @@
         "opponent": "Mackenzie McDonald",
         "points_won": 95,
         "points_played": 199,
+        "duration_mins": 121.3,
+        "distance_km": 2.33,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -4012,6 +4622,19 @@
       "total_streaks": 19,
       "streaks_per_match": 19.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 172,
+      "total_mins": 171,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Ricardas Berankis",
     "year": 2018,
     "match_summaries": [
@@ -4020,6 +4643,8 @@
         "opponent": "Mackenzie McDonald",
         "points_won": 142,
         "points_played": 292,
+        "duration_mins": 171.8,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -4118,6 +4743,19 @@
       "total_streaks": 62,
       "streaks_per_match": 15.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 164,
+      "total_mins": 654,
+      "matches_tracked": 4
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.89,
+      "total_km": 3.78,
+      "matches_tracked": 2,
+      "matches_total": 4
+    },
     "player": "Mackenzie McDonald",
     "year": 2018,
     "match_summaries": [
@@ -4126,6 +4764,8 @@
         "opponent": "Ricardas Berankis",
         "points_won": 150,
         "points_played": 292,
+        "duration_mins": 171.8,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -4134,6 +4774,8 @@
         "opponent": "Nicolas Jarry",
         "points_won": 182,
         "points_played": 373,
+        "duration_mins": 210.9,
+        "distance_km": null,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Mackenzie McDonald",
@@ -4149,6 +4791,8 @@
         "opponent": "Guido Pella",
         "points_won": 104,
         "points_played": 199,
+        "duration_mins": 121.3,
+        "distance_km": 2.25,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -4157,6 +4801,8 @@
         "opponent": "Milos Raonic",
         "points_won": 102,
         "points_played": 231,
+        "duration_mins": 150.8,
+        "distance_km": 1.53,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -4243,6 +4889,19 @@
       "total_streaks": 46,
       "streaks_per_match": 23.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 183,
+      "total_mins": 365,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 2
+    },
     "player": "Nicolas Jarry",
     "year": 2018,
     "match_summaries": [
@@ -4251,6 +4910,8 @@
         "opponent": "Filip Krajinovic",
         "points_won": 131,
         "points_played": 252,
+        "duration_mins": 154.3,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -4259,6 +4920,8 @@
         "opponent": "Mackenzie McDonald",
         "points_won": 191,
         "points_played": 373,
+        "duration_mins": 210.9,
+        "distance_km": null,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Mackenzie McDonald",
@@ -4352,6 +5015,19 @@
       "total_streaks": 18,
       "streaks_per_match": 18.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 154,
+      "total_mins": 154,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Filip Krajinovic",
     "year": 2018,
     "match_summaries": [
@@ -4360,6 +5036,8 @@
         "opponent": "Nicolas Jarry",
         "points_won": 121,
         "points_played": 252,
+        "duration_mins": 154.3,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -4458,6 +5136,19 @@
       "total_streaks": 34,
       "streaks_per_match": 17.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 152,
+      "total_mins": 303,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.15,
+      "total_km": 4.31,
+      "matches_tracked": 2,
+      "matches_total": 2
+    },
     "player": "Lucas Pouille",
     "year": 2018,
     "match_summaries": [
@@ -4466,6 +5157,8 @@
         "opponent": "Denis Kudla",
         "points_won": 121,
         "points_played": 235,
+        "duration_mins": 127.1,
+        "distance_km": 1.55,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -4474,6 +5167,8 @@
         "opponent": "Dennis Novak",
         "points_won": 144,
         "points_played": 311,
+        "duration_mins": 175.9,
+        "distance_km": 2.76,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -4572,6 +5267,19 @@
       "total_streaks": 16,
       "streaks_per_match": 16.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 127,
+      "total_mins": 127,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.65,
+      "total_km": 1.65,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Denis Kudla",
     "year": 2018,
     "match_summaries": [
@@ -4580,6 +5288,8 @@
         "opponent": "Lucas Pouille",
         "points_won": 114,
         "points_played": 235,
+        "duration_mins": 127.1,
+        "distance_km": 1.65,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -4666,6 +5376,19 @@
       "total_streaks": 6,
       "streaks_per_match": 6.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 109,
+      "total_mins": 109,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Peter Polansky",
     "year": 2018,
     "match_summaries": [
@@ -4674,6 +5397,8 @@
         "opponent": "Dennis Novak",
         "points_won": 86,
         "points_played": 196,
+        "duration_mins": 109.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -4772,6 +5497,19 @@
       "total_streaks": 53,
       "streaks_per_match": 17.7
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 625,
+      "total_mins": 1876,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.21,
+      "total_km": 4.43,
+      "matches_tracked": 2,
+      "matches_total": 3
+    },
     "player": "Dennis Novak",
     "year": 2018,
     "match_summaries": [
@@ -4780,6 +5518,8 @@
         "opponent": "Peter Polansky",
         "points_won": 110,
         "points_played": 196,
+        "duration_mins": 109.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -4788,6 +5528,8 @@
         "opponent": "Lucas Pouille",
         "points_won": 167,
         "points_played": 311,
+        "duration_mins": 175.9,
+        "distance_km": 2.8,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -4796,6 +5538,8 @@
         "opponent": "Milos Raonic",
         "points_won": 112,
         "points_played": 255,
+        "duration_mins": 1590.9,
+        "distance_km": 1.63,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -4894,6 +5638,19 @@
       "total_streaks": 39,
       "streaks_per_match": 19.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 162,
+      "total_mins": 324,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.2,
+      "total_km": 2.2,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "John Millman",
     "year": 2018,
     "match_summaries": [
@@ -4902,6 +5659,8 @@
         "opponent": "Stefano Travaglia",
         "points_won": 147,
         "points_played": 263,
+        "duration_mins": 165.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -4910,6 +5669,8 @@
         "opponent": "Milos Raonic",
         "points_won": 112,
         "points_played": 236,
+        "duration_mins": 158.6,
+        "distance_km": 2.2,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -4996,6 +5757,19 @@
       "total_streaks": 14,
       "streaks_per_match": 14.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 166,
+      "total_mins": 165,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Stefano Travaglia",
     "year": 2018,
     "match_summaries": [
@@ -5004,6 +5778,8 @@
         "opponent": "John Millman",
         "points_won": 116,
         "points_played": 263,
+        "duration_mins": 165.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -5102,6 +5878,19 @@
       "total_streaks": 5,
       "streaks_per_match": 5.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 91,
+      "total_mins": 91,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.18,
+      "total_km": 1.18,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Liam Broady",
     "year": 2018,
     "match_summaries": [
@@ -5110,6 +5899,8 @@
         "opponent": "Milos Raonic",
         "points_won": 50,
         "points_played": 140,
+        "duration_mins": 91.2,
+        "distance_km": 1.18,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -5208,6 +5999,19 @@
       "total_streaks": 95,
       "streaks_per_match": 19.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 431,
+      "total_mins": 2153,
+      "matches_tracked": 5
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.64,
+      "total_km": 8.19,
+      "matches_tracked": 5,
+      "matches_total": 5
+    },
     "player": "Milos Raonic",
     "year": 2018,
     "match_summaries": [
@@ -5216,6 +6020,8 @@
         "opponent": "Liam Broady",
         "points_won": 90,
         "points_played": 140,
+        "duration_mins": 91.2,
+        "distance_km": 1.13,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5224,6 +6030,8 @@
         "opponent": "John Millman",
         "points_won": 124,
         "points_played": 236,
+        "duration_mins": 158.6,
+        "distance_km": 2.11,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5232,6 +6040,8 @@
         "opponent": "Dennis Novak",
         "points_won": 143,
         "points_played": 255,
+        "duration_mins": 1590.9,
+        "distance_km": 1.72,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5240,6 +6050,8 @@
         "opponent": "Mackenzie McDonald",
         "points_won": 129,
         "points_played": 231,
+        "duration_mins": 150.8,
+        "distance_km": 1.62,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5248,6 +6060,8 @@
         "opponent": "John Isner",
         "points_won": 119,
         "points_played": 253,
+        "duration_mins": 161.5,
+        "distance_km": 1.61,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -5346,6 +6160,19 @@
       "total_streaks": 117,
       "streaks_per_match": 19.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 188,
+      "total_mins": 1127,
+      "matches_tracked": 6
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.19,
+      "total_km": 13.13,
+      "matches_tracked": 6,
+      "matches_total": 6
+    },
     "player": "John Isner",
     "year": 2018,
     "match_summaries": [
@@ -5354,6 +6181,8 @@
         "opponent": "Yannick Maden",
         "points_won": 112,
         "points_played": 201,
+        "duration_mins": 125.8,
+        "distance_km": 1.61,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5362,6 +6191,8 @@
         "opponent": "Ruben Bemelmans",
         "points_won": 176,
         "points_played": 332,
+        "duration_mins": 221.7,
+        "distance_km": 2.47,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5370,6 +6201,8 @@
         "opponent": "Radu Albot",
         "points_won": 87,
         "points_played": 150,
+        "duration_mins": 96.2,
+        "distance_km": 1.31,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5378,6 +6211,8 @@
         "opponent": "Stefanos Tsitsipas",
         "points_won": 112,
         "points_played": 209,
+        "duration_mins": 126.1,
+        "distance_km": 1.39,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5386,6 +6221,8 @@
         "opponent": "Milos Raonic",
         "points_won": 134,
         "points_played": 253,
+        "duration_mins": 161.5,
+        "distance_km": 1.56,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5394,6 +6231,8 @@
         "opponent": "Kevin Anderson",
         "points_won": 271,
         "points_played": 569,
+        "duration_mins": 395.9,
+        "distance_km": 4.79,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -5492,6 +6331,19 @@
       "total_streaks": 13,
       "streaks_per_match": 13.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 126,
+      "total_mins": 125,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.49,
+      "total_km": 1.49,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Yannick Maden",
     "year": 2018,
     "match_summaries": [
@@ -5500,6 +6352,8 @@
         "opponent": "John Isner",
         "points_won": 89,
         "points_played": 201,
+        "duration_mins": 125.8,
+        "distance_km": 1.49,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -5586,6 +6440,19 @@
       "total_streaks": 24,
       "streaks_per_match": 24.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 227,
+      "total_mins": 226,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Steve Johnson",
     "year": 2018,
     "match_summaries": [
@@ -5594,6 +6461,8 @@
         "opponent": "Ruben Bemelmans",
         "points_won": 174,
         "points_played": 351,
+        "duration_mins": 226.9,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -5692,6 +6561,19 @@
       "total_streaks": 47,
       "streaks_per_match": 23.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 224,
+      "total_mins": 448,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.25,
+      "total_km": 2.25,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Ruben Bemelmans",
     "year": 2018,
     "match_summaries": [
@@ -5700,6 +6582,8 @@
         "opponent": "Steve Johnson",
         "points_won": 177,
         "points_played": 351,
+        "duration_mins": 226.9,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5708,6 +6592,8 @@
         "opponent": "John Isner",
         "points_won": 156,
         "points_played": 332,
+        "duration_mins": 221.7,
+        "distance_km": 2.25,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -5794,6 +6680,19 @@
       "total_streaks": 39,
       "streaks_per_match": 19.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 215,
+      "total_mins": 430,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 2
+    },
     "player": "Aljaz Bedene",
     "year": 2018,
     "match_summaries": [
@@ -5802,6 +6701,8 @@
         "opponent": "Cameron Norrie",
         "points_won": 140,
         "points_played": 269,
+        "duration_mins": 169.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -5810,6 +6711,8 @@
         "opponent": "Radu Albot",
         "points_won": 170,
         "points_played": 358,
+        "duration_mins": 261.0,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -5896,6 +6799,19 @@
       "total_streaks": 22,
       "streaks_per_match": 22.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 169,
+      "total_mins": 169,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Cameron Norrie",
     "year": 2018,
     "match_summaries": [
@@ -5904,6 +6820,8 @@
         "opponent": "Aljaz Bedene",
         "points_won": 129,
         "points_played": 269,
+        "duration_mins": 169.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -6002,6 +6920,19 @@
       "total_streaks": 62,
       "streaks_per_match": 20.7
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 179,
+      "total_mins": 536,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.22,
+      "total_km": 1.22,
+      "matches_tracked": 1,
+      "matches_total": 3
+    },
     "player": "Radu Albot",
     "year": 2018,
     "match_summaries": [
@@ -6010,6 +6941,8 @@
         "opponent": "Pablo Carreno Busta",
         "points_won": 167,
         "points_played": 291,
+        "duration_mins": 179.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -6018,6 +6951,8 @@
         "opponent": "Aljaz Bedene",
         "points_won": 188,
         "points_played": 358,
+        "duration_mins": 261.0,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -6026,6 +6961,8 @@
         "opponent": "John Isner",
         "points_won": 63,
         "points_played": 150,
+        "duration_mins": 96.2,
+        "distance_km": 1.22,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -6112,6 +7049,19 @@
       "total_streaks": 11,
       "streaks_per_match": 11.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 180,
+      "total_mins": 179,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Pablo Carreno Busta",
     "year": 2018,
     "match_summaries": [
@@ -6120,6 +7070,8 @@
         "opponent": "Radu Albot",
         "points_won": 124,
         "points_played": 291,
+        "duration_mins": 179.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -6218,6 +7170,19 @@
       "total_streaks": 63,
       "streaks_per_match": 15.8
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 142,
+      "total_mins": 569,
+      "matches_tracked": 4
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.23,
+      "total_km": 8.91,
+      "matches_tracked": 4,
+      "matches_total": 4
+    },
     "player": "Stefanos Tsitsipas",
     "year": 2018,
     "match_summaries": [
@@ -6226,6 +7191,8 @@
         "opponent": "Gregoire Barrere",
         "points_won": 141,
         "points_played": 259,
+        "duration_mins": 149.3,
+        "distance_km": 2.71,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -6234,6 +7201,8 @@
         "opponent": "Jared Donaldson",
         "points_won": 156,
         "points_played": 291,
+        "duration_mins": 202.1,
+        "distance_km": 3.32,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -6242,6 +7211,8 @@
         "opponent": "Thomas Fabbiano",
         "points_won": 86,
         "points_played": 143,
+        "duration_mins": 91.6,
+        "distance_km": 1.51,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -6250,6 +7221,8 @@
         "opponent": "John Isner",
         "points_won": 97,
         "points_played": 209,
+        "duration_mins": 126.1,
+        "distance_km": 1.37,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -6348,6 +7321,19 @@
       "total_streaks": 16,
       "streaks_per_match": 16.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 149,
+      "total_mins": 149,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.53,
+      "total_km": 2.53,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Gregoire Barrere",
     "year": 2018,
     "match_summaries": [
@@ -6356,6 +7342,8 @@
         "opponent": "Stefanos Tsitsipas",
         "points_won": 118,
         "points_played": 259,
+        "duration_mins": 149.3,
+        "distance_km": 2.53,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -6442,6 +7430,19 @@
       "total_streaks": 9,
       "streaks_per_match": 9.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 116,
+      "total_mins": 116,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Malek Jaziri",
     "year": 2018,
     "match_summaries": [
@@ -6450,6 +7451,8 @@
         "opponent": "Jared Donaldson",
         "points_won": 83,
         "points_played": 182,
+        "duration_mins": 116.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -6548,6 +7551,19 @@
       "total_streaks": 27,
       "streaks_per_match": 13.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 159,
+      "total_mins": 318,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.87,
+      "total_km": 2.87,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Jared Donaldson",
     "year": 2018,
     "match_summaries": [
@@ -6556,6 +7572,8 @@
         "opponent": "Malek Jaziri",
         "points_won": 99,
         "points_played": 182,
+        "duration_mins": 116.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -6564,6 +7582,8 @@
         "opponent": "Stefanos Tsitsipas",
         "points_won": 135,
         "points_played": 291,
+        "duration_mins": 202.1,
+        "distance_km": 2.87,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -6650,6 +7670,19 @@
       "total_streaks": 12,
       "streaks_per_match": 12.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 159,
+      "total_mins": 159,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Yuki Bhambri",
     "year": 2018,
     "match_summaries": [
@@ -6658,6 +7691,8 @@
         "opponent": "Thomas Fabbiano",
         "points_won": 115,
         "points_played": 245,
+        "duration_mins": 159.0,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -6756,6 +7791,19 @@
       "total_streaks": 33,
       "streaks_per_match": 11.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 137,
+      "total_mins": 409,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.05,
+      "total_km": 4.1,
+      "matches_tracked": 2,
+      "matches_total": 3
+    },
     "player": "Thomas Fabbiano",
     "year": 2018,
     "match_summaries": [
@@ -6764,6 +7812,8 @@
         "opponent": "Yuki Bhambri",
         "points_won": 130,
         "points_played": 245,
+        "duration_mins": 159.0,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -6772,6 +7822,8 @@
         "opponent": "Stan Wawrinka",
         "points_won": 126,
         "points_played": 244,
+        "duration_mins": 159.0,
+        "distance_km": 2.67,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -6780,6 +7832,8 @@
         "opponent": "Stefanos Tsitsipas",
         "points_won": 57,
         "points_played": 143,
+        "duration_mins": 91.6,
+        "distance_km": 1.43,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -6878,6 +7932,19 @@
       "total_streaks": 34,
       "streaks_per_match": 17.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 164,
+      "total_mins": 328,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 3.0,
+      "total_km": 5.99,
+      "matches_tracked": 2,
+      "matches_total": 2
+    },
     "player": "Stan Wawrinka",
     "year": 2018,
     "match_summaries": [
@@ -6886,6 +7953,8 @@
         "opponent": "Grigor Dimitrov",
         "points_won": 133,
         "points_played": 263,
+        "duration_mins": 169.8,
+        "distance_km": 3.17,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -6894,6 +7963,8 @@
         "opponent": "Thomas Fabbiano",
         "points_won": 118,
         "points_played": 244,
+        "duration_mins": 159.0,
+        "distance_km": 2.82,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -6992,6 +8063,19 @@
       "total_streaks": 17,
       "streaks_per_match": 17.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 170,
+      "total_mins": 169,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 3.19,
+      "total_km": 3.19,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Grigor Dimitrov",
     "year": 2018,
     "match_summaries": [
@@ -7000,6 +8084,8 @@
         "opponent": "Stan Wawrinka",
         "points_won": 130,
         "points_played": 263,
+        "duration_mins": 169.8,
+        "distance_km": 3.19,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -7098,6 +8184,19 @@
       "total_streaks": 5,
       "streaks_per_match": 5.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 96,
+      "total_mins": 95,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.08,
+      "total_km": 1.08,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Dominic Thiem",
     "year": 2018,
     "match_summaries": [
@@ -7106,6 +8205,8 @@
         "opponent": "Marcos Baghdatis",
         "points_won": 58,
         "points_played": 139,
+        "duration_mins": 95.7,
+        "distance_km": 1.08,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -7204,6 +8305,19 @@
       "total_streaks": 37,
       "streaks_per_match": 18.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 146,
+      "total_mins": 291,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.02,
+      "total_km": 4.05,
+      "matches_tracked": 2,
+      "matches_total": 2
+    },
     "player": "Marcos Baghdatis",
     "year": 2018,
     "match_summaries": [
@@ -7212,6 +8326,8 @@
         "opponent": "Dominic Thiem",
         "points_won": 81,
         "points_played": 139,
+        "duration_mins": 95.7,
+        "distance_km": 1.05,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -7220,6 +8336,8 @@
         "opponent": "Karen Khachanov",
         "points_won": 157,
         "points_played": 318,
+        "duration_mins": 195.8,
+        "distance_km": 3.0,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -7306,6 +8424,19 @@
       "total_streaks": 14,
       "streaks_per_match": 14.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 148,
+      "total_mins": 147,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "David Ferrer",
     "year": 2018,
     "match_summaries": [
@@ -7314,6 +8445,8 @@
         "opponent": "Karen Khachanov",
         "points_won": 111,
         "points_played": 242,
+        "duration_mins": 147.8,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -7412,6 +8545,19 @@
       "total_streaks": 64,
       "streaks_per_match": 16.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 157,
+      "total_mins": 626,
+      "matches_tracked": 4
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.5,
+      "total_km": 7.49,
+      "matches_tracked": 3,
+      "matches_total": 4
+    },
     "player": "Karen Khachanov",
     "year": 2018,
     "match_summaries": [
@@ -7420,6 +8566,8 @@
         "opponent": "David Ferrer",
         "points_won": 131,
         "points_played": 242,
+        "duration_mins": 147.8,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -7428,6 +8576,8 @@
         "opponent": "Marcos Baghdatis",
         "points_won": 161,
         "points_played": 318,
+        "duration_mins": 195.8,
+        "distance_km": 2.84,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -7436,6 +8586,8 @@
         "opponent": "Frances Tiafoe",
         "points_won": 160,
         "points_played": 298,
+        "duration_mins": 177.0,
+        "distance_km": 2.37,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -7444,6 +8596,8 @@
         "opponent": "Novak Djokovic",
         "points_won": 59,
         "points_played": 149,
+        "duration_mins": 105.6,
+        "distance_km": 2.28,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -7530,6 +8684,19 @@
       "total_streaks": 27,
       "streaks_per_match": 13.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 142,
+      "total_mins": 283,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 2
+    },
     "player": "Julien Benneteau",
     "year": 2018,
     "match_summaries": [
@@ -7538,6 +8705,8 @@
         "opponent": "Marton Fucsovics",
         "points_won": 124,
         "points_played": 230,
+        "duration_mins": 146.3,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -7546,6 +8715,8 @@
         "opponent": "Frances Tiafoe",
         "points_won": 86,
         "points_played": 203,
+        "duration_mins": 137.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -7632,6 +8803,19 @@
       "total_streaks": 12,
       "streaks_per_match": 12.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 146,
+      "total_mins": 146,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Marton Fucsovics",
     "year": 2018,
     "match_summaries": [
@@ -7640,6 +8824,8 @@
         "opponent": "Julien Benneteau",
         "points_won": 106,
         "points_played": 230,
+        "duration_mins": 146.3,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -7738,6 +8924,19 @@
       "total_streaks": 50,
       "streaks_per_match": 16.7
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 158,
+      "total_mins": 475,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.37,
+      "total_km": 2.37,
+      "matches_tracked": 1,
+      "matches_total": 3
+    },
     "player": "Frances Tiafoe",
     "year": 2018,
     "match_summaries": [
@@ -7746,6 +8945,8 @@
         "opponent": "Fernando Verdasco",
         "points_won": 140,
         "points_played": 284,
+        "duration_mins": 160.8,
+        "distance_km": null,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Frances Tiafoe",
@@ -7761,6 +8962,8 @@
         "opponent": "Julien Benneteau",
         "points_won": 117,
         "points_played": 203,
+        "duration_mins": 137.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -7769,6 +8972,8 @@
         "opponent": "Karen Khachanov",
         "points_won": 138,
         "points_played": 298,
+        "duration_mins": 177.0,
+        "distance_km": 2.37,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -7855,6 +9060,19 @@
       "total_streaks": 17,
       "streaks_per_match": 17.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 161,
+      "total_mins": 160,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Fernando Verdasco",
     "year": 2018,
     "match_summaries": [
@@ -7863,6 +9081,8 @@
         "opponent": "Frances Tiafoe",
         "points_won": 144,
         "points_played": 284,
+        "duration_mins": 160.8,
+        "distance_km": null,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Frances Tiafoe",
@@ -7968,6 +9188,19 @@
       "total_streaks": 43,
       "streaks_per_match": 14.3
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 131,
+      "total_mins": 392,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.19,
+      "total_km": 6.56,
+      "matches_tracked": 3,
+      "matches_total": 3
+    },
     "player": "Kyle Edmund",
     "year": 2018,
     "match_summaries": [
@@ -7976,6 +9209,8 @@
         "opponent": "Alex Bolt",
         "points_won": 102,
         "points_played": 172,
+        "duration_mins": 103.0,
+        "distance_km": 1.81,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -7984,6 +9219,8 @@
         "opponent": "Bradley Klahn",
         "points_won": 110,
         "points_played": 188,
+        "duration_mins": 115.5,
+        "distance_km": 1.69,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -7992,6 +9229,8 @@
         "opponent": "Novak Djokovic",
         "points_won": 106,
         "points_played": 239,
+        "duration_mins": 174.0,
+        "distance_km": 3.06,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -8090,6 +9329,19 @@
       "total_streaks": 6,
       "streaks_per_match": 6.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 103,
+      "total_mins": 103,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.75,
+      "total_km": 1.75,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Alex Bolt",
     "year": 2018,
     "match_summaries": [
@@ -8098,6 +9350,8 @@
         "opponent": "Kyle Edmund",
         "points_won": 70,
         "points_played": 172,
+        "duration_mins": 103.0,
+        "distance_km": 1.75,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -8184,6 +9438,19 @@
       "total_streaks": 10,
       "streaks_per_match": 10.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 123,
+      "total_mins": 122,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Yuichi Sugita",
     "year": 2018,
     "match_summaries": [
@@ -8192,6 +9459,8 @@
         "opponent": "Bradley Klahn",
         "points_won": 94,
         "points_played": 207,
+        "duration_mins": 122.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -8290,6 +9559,19 @@
       "total_streaks": 26,
       "streaks_per_match": 13.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 119,
+      "total_mins": 238,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.7,
+      "total_km": 1.7,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Bradley Klahn",
     "year": 2018,
     "match_summaries": [
@@ -8298,6 +9580,8 @@
         "opponent": "Yuichi Sugita",
         "points_won": 113,
         "points_played": 207,
+        "duration_mins": 122.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -8306,6 +9590,8 @@
         "opponent": "Kyle Edmund",
         "points_won": 78,
         "points_played": 188,
+        "duration_mins": 115.5,
+        "distance_km": 1.7,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -8392,6 +9678,19 @@
       "total_streaks": 17,
       "streaks_per_match": 17.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 194,
+      "total_mins": 194,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Guido Andreozzi",
     "year": 2018,
     "match_summaries": [
@@ -8400,6 +9699,8 @@
         "opponent": "Horacio Zeballos",
         "points_won": 130,
         "points_played": 276,
+        "duration_mins": 194.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -8498,6 +9799,19 @@
       "total_streaks": 29,
       "streaks_per_match": 14.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 143,
+      "total_mins": 285,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.13,
+      "total_km": 1.13,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Horacio Zeballos",
     "year": 2018,
     "match_summaries": [
@@ -8506,6 +9820,8 @@
         "opponent": "Guido Andreozzi",
         "points_won": 146,
         "points_played": 276,
+        "duration_mins": 194.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -8514,6 +9830,8 @@
         "opponent": "Novak Djokovic",
         "points_won": 53,
         "points_played": 142,
+        "duration_mins": 90.8,
+        "distance_km": 1.13,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -8612,6 +9930,19 @@
       "total_streaks": 9,
       "streaks_per_match": 9.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 94,
+      "total_mins": 93,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.87,
+      "total_km": 1.87,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Tennys Sandgren",
     "year": 2018,
     "match_summaries": [
@@ -8620,6 +9951,8 @@
         "opponent": "Novak Djokovic",
         "points_won": 57,
         "points_played": 151,
+        "duration_mins": 93.5,
+        "distance_km": 1.87,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -8718,6 +10051,19 @@
       "total_streaks": 124,
       "streaks_per_match": 17.7
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 153,
+      "total_mins": 1072,
+      "matches_tracked": 7
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.8,
+      "total_km": 19.6,
+      "matches_tracked": 7,
+      "matches_total": 7
+    },
     "player": "Novak Djokovic",
     "year": 2018,
     "match_summaries": [
@@ -8726,6 +10072,8 @@
         "opponent": "Tennys Sandgren",
         "points_won": 94,
         "points_played": 151,
+        "duration_mins": 93.5,
+        "distance_km": 1.88,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -8734,6 +10082,8 @@
         "opponent": "Horacio Zeballos",
         "points_won": 89,
         "points_played": 142,
+        "duration_mins": 90.8,
+        "distance_km": 1.16,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -8742,6 +10092,8 @@
         "opponent": "Kyle Edmund",
         "points_won": 133,
         "points_played": 239,
+        "duration_mins": 174.0,
+        "distance_km": 2.98,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -8750,6 +10102,8 @@
         "opponent": "Karen Khachanov",
         "points_won": 90,
         "points_played": 149,
+        "duration_mins": 105.6,
+        "distance_km": 2.53,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -8758,6 +10112,8 @@
         "opponent": "Kei Nishikori",
         "points_won": 118,
         "points_played": 208,
+        "duration_mins": 154.7,
+        "distance_km": 3.01,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -8766,6 +10122,8 @@
         "opponent": "Rafael Nadal",
         "points_won": 195,
         "points_played": 386,
+        "duration_mins": 314.7,
+        "distance_km": 6.05,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -8774,6 +10132,8 @@
         "opponent": "Kevin Anderson",
         "points_won": 100,
         "points_played": 174,
+        "duration_mins": 138.8,
+        "distance_km": 1.99,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -8872,6 +10232,19 @@
       "total_streaks": 44,
       "streaks_per_match": 14.7
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 116,
+      "total_mins": 348,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.6,
+      "total_km": 4.8,
+      "matches_tracked": 3,
+      "matches_total": 3
+    },
     "player": "Nick Kyrgios",
     "year": 2018,
     "match_summaries": [
@@ -8880,6 +10253,8 @@
         "opponent": "Denis Istomin",
         "points_won": 137,
         "points_played": 270,
+        "duration_mins": 154.4,
+        "distance_km": 2.14,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -8888,6 +10263,8 @@
         "opponent": "Robin Haase",
         "points_won": 99,
         "points_played": 171,
+        "duration_mins": 96.5,
+        "distance_km": 1.27,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -8896,6 +10273,8 @@
         "opponent": "Kei Nishikori",
         "points_won": 72,
         "points_played": 167,
+        "duration_mins": 97.3,
+        "distance_km": 1.39,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -8994,6 +10373,19 @@
       "total_streaks": 18,
       "streaks_per_match": 18.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 154,
+      "total_mins": 154,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.23,
+      "total_km": 2.23,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Denis Istomin",
     "year": 2018,
     "match_summaries": [
@@ -9002,6 +10394,8 @@
         "opponent": "Nick Kyrgios",
         "points_won": 133,
         "points_played": 270,
+        "duration_mins": 154.4,
+        "distance_km": 2.23,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -9088,6 +10482,19 @@
       "total_streaks": 18,
       "streaks_per_match": 18.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 180,
+      "total_mins": 179,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Marius Copil",
     "year": 2018,
     "match_summaries": [
@@ -9096,6 +10503,8 @@
         "opponent": "Robin Haase",
         "points_won": 147,
         "points_played": 304,
+        "duration_mins": 179.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -9194,6 +10603,19 @@
       "total_streaks": 32,
       "streaks_per_match": 16.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 138,
+      "total_mins": 276,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.33,
+      "total_km": 1.33,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Robin Haase",
     "year": 2018,
     "match_summaries": [
@@ -9202,6 +10624,8 @@
         "opponent": "Marius Copil",
         "points_won": 157,
         "points_played": 304,
+        "duration_mins": 179.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -9210,6 +10634,8 @@
         "opponent": "Nick Kyrgios",
         "points_won": 72,
         "points_played": 171,
+        "duration_mins": 96.5,
+        "distance_km": 1.33,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -9308,6 +10734,19 @@
       "total_streaks": 25,
       "streaks_per_match": 12.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 136,
+      "total_mins": 272,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.7,
+      "total_km": 2.7,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Bernard Tomic",
     "year": 2018,
     "match_summaries": [
@@ -9316,6 +10755,8 @@
         "opponent": "Hubert Hurkacz",
         "points_won": 117,
         "points_played": 207,
+        "duration_mins": 109.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -9324,6 +10765,8 @@
         "opponent": "Kei Nishikori",
         "points_won": 133,
         "points_played": 278,
+        "duration_mins": 162.8,
+        "distance_km": 2.7,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -9410,6 +10853,19 @@
       "total_streaks": 8,
       "streaks_per_match": 8.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 109,
+      "total_mins": 109,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Hubert Hurkacz",
     "year": 2018,
     "match_summaries": [
@@ -9418,6 +10874,8 @@
         "opponent": "Bernard Tomic",
         "points_won": 90,
         "points_played": 207,
+        "duration_mins": 109.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -9504,6 +10962,19 @@
       "total_streaks": 13,
       "streaks_per_match": 13.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 157,
+      "total_mins": 157,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Christian Harrison",
     "year": 2018,
     "match_summaries": [
@@ -9512,6 +10983,8 @@
         "opponent": "Kei Nishikori",
         "points_won": 119,
         "points_played": 258,
+        "duration_mins": 157.3,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -9610,6 +11083,19 @@
       "total_streaks": 82,
       "streaks_per_match": 16.4
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 156,
+      "total_mins": 780,
+      "matches_tracked": 5
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.44,
+      "total_km": 9.76,
+      "matches_tracked": 4,
+      "matches_total": 5
+    },
     "player": "Kei Nishikori",
     "year": 2018,
     "match_summaries": [
@@ -9618,6 +11104,8 @@
         "opponent": "Christian Harrison",
         "points_won": 139,
         "points_played": 258,
+        "duration_mins": 157.3,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -9626,6 +11114,8 @@
         "opponent": "Bernard Tomic",
         "points_won": 145,
         "points_played": 278,
+        "duration_mins": 162.8,
+        "distance_km": 2.66,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -9634,6 +11124,8 @@
         "opponent": "Nick Kyrgios",
         "points_won": 95,
         "points_played": 167,
+        "duration_mins": 97.3,
+        "distance_km": 1.47,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -9642,6 +11134,8 @@
         "opponent": "Ernests Gulbis",
         "points_won": 144,
         "points_played": 279,
+        "duration_mins": 208.7,
+        "distance_km": 2.84,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -9650,6 +11144,8 @@
         "opponent": "Novak Djokovic",
         "points_won": 90,
         "points_played": 208,
+        "duration_mins": 154.7,
+        "distance_km": 2.79,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -9748,6 +11244,19 @@
       "total_streaks": 30,
       "streaks_per_match": 15.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 138,
+      "total_mins": 275,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 3.28,
+      "total_km": 3.28,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Damir Dzumhur",
     "year": 2018,
     "match_summaries": [
@@ -9756,6 +11265,8 @@
         "opponent": "Maximilian Marterer",
         "points_won": 94,
         "points_played": 163,
+        "duration_mins": 93.9,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -9764,6 +11275,8 @@
         "opponent": "Ernests Gulbis",
         "points_won": 128,
         "points_played": 257,
+        "duration_mins": 181.1,
+        "distance_km": 3.28,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -9850,6 +11363,19 @@
       "total_streaks": 6,
       "streaks_per_match": 6.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 94,
+      "total_mins": 93,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Maximilian Marterer",
     "year": 2018,
     "match_summaries": [
@@ -9858,6 +11384,8 @@
         "opponent": "Damir Dzumhur",
         "points_won": 69,
         "points_played": 163,
+        "duration_mins": 93.9,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -9956,6 +11484,19 @@
       "total_streaks": 77,
       "streaks_per_match": 19.2
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 197,
+      "total_mins": 786,
+      "matches_tracked": 4
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.78,
+      "total_km": 11.13,
+      "matches_tracked": 4,
+      "matches_total": 4
+    },
     "player": "Ernests Gulbis",
     "year": 2018,
     "match_summaries": [
@@ -9964,6 +11505,8 @@
         "opponent": "Jay Clarke",
         "points_won": 139,
         "points_played": 282,
+        "duration_mins": 195.9,
+        "distance_km": 2.36,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Ernests Gulbis",
@@ -9979,6 +11522,8 @@
         "opponent": "Damir Dzumhur",
         "points_won": 129,
         "points_played": 257,
+        "duration_mins": 181.1,
+        "distance_km": 2.75,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -9987,6 +11532,8 @@
         "opponent": "Alexander Zverev",
         "points_won": 149,
         "points_played": 284,
+        "duration_mins": 200.4,
+        "distance_km": 3.18,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -9995,6 +11542,8 @@
         "opponent": "Kei Nishikori",
         "points_won": 135,
         "points_played": 279,
+        "duration_mins": 208.7,
+        "distance_km": 2.84,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -10093,6 +11642,19 @@
       "total_streaks": 19,
       "streaks_per_match": 19.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 196,
+      "total_mins": 195,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.51,
+      "total_km": 2.51,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Jay Clarke",
     "year": 2018,
     "match_summaries": [
@@ -10101,6 +11663,8 @@
         "opponent": "Ernests Gulbis",
         "points_won": 143,
         "points_played": 282,
+        "duration_mins": 195.9,
+        "distance_km": 2.51,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Ernests Gulbis",
@@ -10194,6 +11758,19 @@
       "total_streaks": 9,
       "streaks_per_match": 9.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 128,
+      "total_mins": 127,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Lorenzo Sonego",
     "year": 2018,
     "match_summaries": [
@@ -10202,6 +11779,8 @@
         "opponent": "Taylor Fritz",
         "points_won": 82,
         "points_played": 192,
+        "duration_mins": 127.8,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -10300,6 +11879,19 @@
       "total_streaks": 38,
       "streaks_per_match": 19.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 160,
+      "total_mins": 319,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 3.32,
+      "total_km": 3.32,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Taylor Fritz",
     "year": 2018,
     "match_summaries": [
@@ -10308,6 +11900,8 @@
         "opponent": "Lorenzo Sonego",
         "points_won": 110,
         "points_played": 192,
+        "duration_mins": 127.8,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -10316,6 +11910,8 @@
         "opponent": "Alexander Zverev",
         "points_won": 139,
         "points_played": 299,
+        "duration_mins": 191.3,
+        "distance_km": 3.32,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -10414,6 +12010,19 @@
       "total_streaks": 5,
       "streaks_per_match": 5.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 90,
+      "total_mins": 90,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.22,
+      "total_km": 1.22,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "James Duckworth",
     "year": 2018,
     "match_summaries": [
@@ -10422,6 +12031,8 @@
         "opponent": "Alexander Zverev",
         "points_won": 54,
         "points_played": 150,
+        "duration_mins": 90.5,
+        "distance_km": 1.22,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -10520,6 +12131,19 @@
       "total_streaks": 60,
       "streaks_per_match": 20.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 161,
+      "total_mins": 482,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.78,
+      "total_km": 8.33,
+      "matches_tracked": 3,
+      "matches_total": 3
+    },
     "player": "Alexander Zverev",
     "year": 2018,
     "match_summaries": [
@@ -10528,6 +12152,8 @@
         "opponent": "James Duckworth",
         "points_won": 96,
         "points_played": 150,
+        "duration_mins": 90.5,
+        "distance_km": 1.34,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -10536,6 +12162,8 @@
         "opponent": "Taylor Fritz",
         "points_won": 160,
         "points_played": 299,
+        "duration_mins": 191.3,
+        "distance_km": 3.49,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -10544,6 +12172,8 @@
         "opponent": "Ernests Gulbis",
         "points_won": 135,
         "points_played": 284,
+        "duration_mins": 200.4,
+        "distance_km": 3.5,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -10642,6 +12272,19 @@
       "total_streaks": 84,
       "streaks_per_match": 16.8
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 180,
+      "total_mins": 899,
+      "matches_tracked": 5
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 3.05,
+      "total_km": 15.23,
+      "matches_tracked": 5,
+      "matches_total": 5
+    },
     "player": "Juan Martin Del Potro",
     "year": 2018,
     "match_summaries": [
@@ -10650,6 +12293,8 @@
         "opponent": "Peter Gojowczyk",
         "points_won": 99,
         "points_played": 174,
+        "duration_mins": 110.2,
+        "distance_km": 1.56,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -10658,6 +12303,8 @@
         "opponent": "Feliciano Lopez",
         "points_won": 89,
         "points_played": 139,
+        "duration_mins": 94.9,
+        "distance_km": 1.62,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -10666,6 +12313,8 @@
         "opponent": "Benoit Paire",
         "points_won": 102,
         "points_played": 189,
+        "duration_mins": 144.5,
+        "distance_km": 1.98,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -10674,6 +12323,8 @@
         "opponent": "Gilles Simon",
         "points_won": 190,
         "points_played": 370,
+        "duration_mins": 261.8,
+        "distance_km": 5.21,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -10682,6 +12333,8 @@
         "opponent": "Rafael Nadal",
         "points_won": 164,
         "points_played": 341,
+        "duration_mins": 288.2,
+        "distance_km": 4.86,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -10780,6 +12433,19 @@
       "total_streaks": 4,
       "streaks_per_match": 4.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 110,
+      "total_mins": 110,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.47,
+      "total_km": 1.47,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Peter Gojowczyk",
     "year": 2018,
     "match_summaries": [
@@ -10788,6 +12454,8 @@
         "opponent": "Juan Martin Del Potro",
         "points_won": 75,
         "points_played": 174,
+        "duration_mins": 110.2,
+        "distance_km": 1.47,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -10886,6 +12554,19 @@
       "total_streaks": 16,
       "streaks_per_match": 8.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 92,
+      "total_mins": 183,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.47,
+      "total_km": 1.47,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Feliciano Lopez",
     "year": 2018,
     "match_summaries": [
@@ -10894,6 +12575,8 @@
         "opponent": "Federico Delbonis",
         "points_won": 83,
         "points_played": 138,
+        "duration_mins": 88.9,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -10902,6 +12585,8 @@
         "opponent": "Juan Martin Del Potro",
         "points_won": 50,
         "points_played": 139,
+        "duration_mins": 94.9,
+        "distance_km": 1.47,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -10988,6 +12673,19 @@
       "total_streaks": 8,
       "streaks_per_match": 8.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 89,
+      "total_mins": 88,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Federico Delbonis",
     "year": 2018,
     "match_summaries": [
@@ -10996,6 +12694,8 @@
         "opponent": "Feliciano Lopez",
         "points_won": 55,
         "points_played": 138,
+        "duration_mins": 88.9,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -11094,6 +12794,19 @@
       "total_streaks": 41,
       "streaks_per_match": 13.7
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 135,
+      "total_mins": 405,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.12,
+      "total_km": 4.24,
+      "matches_tracked": 2,
+      "matches_total": 3
+    },
     "player": "Benoit Paire",
     "year": 2018,
     "match_summaries": [
@@ -11102,6 +12815,8 @@
         "opponent": "Jason Jung",
         "points_won": 124,
         "points_played": 237,
+        "duration_mins": 128.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -11110,6 +12825,8 @@
         "opponent": "Denis Shapovalov",
         "points_won": 115,
         "points_played": 231,
+        "duration_mins": 132.2,
+        "distance_km": 2.1,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Benoit Paire",
@@ -11125,6 +12842,8 @@
         "opponent": "Juan Martin Del Potro",
         "points_won": 87,
         "points_played": 189,
+        "duration_mins": 144.5,
+        "distance_km": 2.14,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -11211,6 +12930,19 @@
       "total_streaks": 9,
       "streaks_per_match": 9.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 128,
+      "total_mins": 128,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Jason Jung",
     "year": 2018,
     "match_summaries": [
@@ -11219,6 +12951,8 @@
         "opponent": "Benoit Paire",
         "points_won": 113,
         "points_played": 237,
+        "duration_mins": 128.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -11305,6 +13039,19 @@
       "total_streaks": 17,
       "streaks_per_match": 17.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 150,
+      "total_mins": 150,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Jeremy Chardy",
     "year": 2018,
     "match_summaries": [
@@ -11313,6 +13060,8 @@
         "opponent": "Denis Shapovalov",
         "points_won": 115,
         "points_played": 245,
+        "duration_mins": 150.0,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -11411,6 +13160,19 @@
       "total_streaks": 34,
       "streaks_per_match": 17.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 141,
+      "total_mins": 282,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.79,
+      "total_km": 1.79,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Denis Shapovalov",
     "year": 2018,
     "match_summaries": [
@@ -11419,6 +13181,8 @@
         "opponent": "Jeremy Chardy",
         "points_won": 130,
         "points_played": 245,
+        "duration_mins": 150.0,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -11427,6 +13191,8 @@
         "opponent": "Benoit Paire",
         "points_won": 116,
         "points_played": 231,
+        "duration_mins": 132.2,
+        "distance_km": 1.79,
         "bad_break_match": true,
         "bad_break_detail": {
           "winner": "Benoit Paire",
@@ -11532,6 +13298,19 @@
       "total_streaks": 16,
       "streaks_per_match": 16.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 226,
+      "total_mins": 226,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 3.38,
+      "total_km": 3.38,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Jack Sock",
     "year": 2018,
     "match_summaries": [
@@ -11540,6 +13319,8 @@
         "opponent": "Matteo Berrettini",
         "points_won": 158,
         "points_played": 334,
+        "duration_mins": 226.1,
+        "distance_km": 3.38,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -11638,6 +13419,19 @@
       "total_streaks": 35,
       "streaks_per_match": 17.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 172,
+      "total_mins": 343,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 3.28,
+      "total_km": 3.28,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Matteo Berrettini",
     "year": 2018,
     "match_summaries": [
@@ -11646,6 +13440,8 @@
         "opponent": "Jack Sock",
         "points_won": 176,
         "points_played": 334,
+        "duration_mins": 226.1,
+        "distance_km": 3.28,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -11654,6 +13450,8 @@
         "opponent": "Gilles Simon",
         "points_won": 70,
         "points_played": 171,
+        "duration_mins": 117.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -11752,6 +13550,19 @@
       "total_streaks": 74,
       "streaks_per_match": 18.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 163,
+      "total_mins": 651,
+      "matches_tracked": 4
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 4.24,
+      "total_km": 8.48,
+      "matches_tracked": 2,
+      "matches_total": 4
+    },
     "player": "Gilles Simon",
     "year": 2018,
     "match_summaries": [
@@ -11760,6 +13571,8 @@
         "opponent": "Nikoloz Basilashvili",
         "points_won": 95,
         "points_played": 156,
+        "duration_mins": 101.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -11768,6 +13581,8 @@
         "opponent": "Matteo Berrettini",
         "points_won": 101,
         "points_played": 171,
+        "duration_mins": 117.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -11776,6 +13591,8 @@
         "opponent": "Matthew Ebden",
         "points_won": 143,
         "points_played": 272,
+        "duration_mins": 170.9,
+        "distance_km": 2.94,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -11784,6 +13601,8 @@
         "opponent": "Juan Martin Del Potro",
         "points_won": 180,
         "points_played": 370,
+        "duration_mins": 261.8,
+        "distance_km": 5.54,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -11870,6 +13689,19 @@
       "total_streaks": 5,
       "streaks_per_match": 5.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 101,
+      "total_mins": 101,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Nikoloz Basilashvili",
     "year": 2018,
     "match_summaries": [
@@ -11878,6 +13710,8 @@
         "opponent": "Gilles Simon",
         "points_won": 61,
         "points_played": 156,
+        "duration_mins": 101.4,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -11964,6 +13798,19 @@
       "total_streaks": 6,
       "streaks_per_match": 6.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 111,
+      "total_mins": 111,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Albert Ramos Vinolas",
     "year": 2018,
     "match_summaries": [
@@ -11972,6 +13819,8 @@
         "opponent": "Stephane Robert",
         "points_won": 75,
         "points_played": 177,
+        "duration_mins": 111.0,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -12058,6 +13907,19 @@
       "total_streaks": 26,
       "streaks_per_match": 13.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 118,
+      "total_mins": 235,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 2
+    },
     "player": "Stephane Robert",
     "year": 2018,
     "match_summaries": [
@@ -12066,6 +13928,8 @@
         "opponent": "Albert Ramos Vinolas",
         "points_won": 102,
         "points_played": 177,
+        "duration_mins": 111.0,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -12074,6 +13938,8 @@
         "opponent": "Matthew Ebden",
         "points_won": 110,
         "points_played": 240,
+        "duration_mins": 124.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -12172,6 +14038,19 @@
       "total_streaks": 42,
       "streaks_per_match": 14.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 130,
+      "total_mins": 389,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.43,
+      "total_km": 4.86,
+      "matches_tracked": 2,
+      "matches_total": 3
+    },
     "player": "Matthew Ebden",
     "year": 2018,
     "match_summaries": [
@@ -12180,6 +14059,8 @@
         "opponent": "David Goffin",
         "points_won": 97,
         "points_played": 165,
+        "duration_mins": 93.6,
+        "distance_km": 1.69,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -12188,6 +14069,8 @@
         "opponent": "Stephane Robert",
         "points_won": 130,
         "points_played": 240,
+        "duration_mins": 124.5,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -12196,6 +14079,8 @@
         "opponent": "Gilles Simon",
         "points_won": 129,
         "points_played": 272,
+        "duration_mins": 170.9,
+        "distance_km": 3.17,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -12294,6 +14179,19 @@
       "total_streaks": 7,
       "streaks_per_match": 7.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 94,
+      "total_mins": 93,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.46,
+      "total_km": 1.46,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "David Goffin",
     "year": 2018,
     "match_summaries": [
@@ -12302,6 +14200,8 @@
         "opponent": "Matthew Ebden",
         "points_won": 68,
         "points_played": 165,
+        "duration_mins": 93.6,
+        "distance_km": 1.46,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -12388,6 +14288,19 @@
       "total_streaks": 21,
       "streaks_per_match": 10.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 112,
+      "total_mins": 223,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 2
+    },
     "player": "Diego Schwartzman",
     "year": 2018,
     "match_summaries": [
@@ -12396,6 +14309,8 @@
         "opponent": "Mirza Basic",
         "points_won": 91,
         "points_played": 149,
+        "duration_mins": 90.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -12404,6 +14319,8 @@
         "opponent": "Jiri Vesely",
         "points_won": 94,
         "points_played": 198,
+        "duration_mins": 132.9,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -12490,6 +14407,19 @@
       "total_streaks": 4,
       "streaks_per_match": 4.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 90,
+      "total_mins": 90,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Mirza Basic",
     "year": 2018,
     "match_summaries": [
@@ -12498,6 +14428,8 @@
         "opponent": "Diego Schwartzman",
         "points_won": 58,
         "points_played": 149,
+        "duration_mins": 90.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -12596,6 +14528,19 @@
       "total_streaks": 59,
       "streaks_per_match": 14.8
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 146,
+      "total_mins": 583,
+      "matches_tracked": 4
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.31,
+      "total_km": 4.62,
+      "matches_tracked": 2,
+      "matches_total": 4
+    },
     "player": "Jiri Vesely",
     "year": 2018,
     "match_summaries": [
@@ -12604,6 +14549,8 @@
         "opponent": "Florian Mayer",
         "points_won": 146,
         "points_played": 278,
+        "duration_mins": 163.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -12612,6 +14559,8 @@
         "opponent": "Diego Schwartzman",
         "points_won": 104,
         "points_played": 198,
+        "duration_mins": 132.9,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -12620,6 +14569,8 @@
         "opponent": "Fabio Fognini",
         "points_won": 142,
         "points_played": 262,
+        "duration_mins": 174.0,
+        "distance_km": 2.75,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -12628,6 +14579,8 @@
         "opponent": "Rafael Nadal",
         "points_won": 65,
         "points_played": 157,
+        "duration_mins": 113.5,
+        "distance_km": 1.87,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -12714,6 +14667,19 @@
       "total_streaks": 20,
       "streaks_per_match": 20.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 163,
+      "total_mins": 163,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Florian Mayer",
     "year": 2018,
     "match_summaries": [
@@ -12722,6 +14688,8 @@
         "opponent": "Jiri Vesely",
         "points_won": 132,
         "points_played": 278,
+        "duration_mins": 163.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -12808,6 +14776,19 @@
       "total_streaks": 14,
       "streaks_per_match": 14.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 127,
+      "total_mins": 127,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Pablo Cuevas",
     "year": 2018,
     "match_summaries": [
@@ -12816,6 +14797,8 @@
         "opponent": "Simone Bolelli",
         "points_won": 93,
         "points_played": 206,
+        "duration_mins": 127.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -12914,6 +14897,19 @@
       "total_streaks": 23,
       "streaks_per_match": 11.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 123,
+      "total_mins": 245,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 1.9,
+      "total_km": 1.9,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Simone Bolelli",
     "year": 2018,
     "match_summaries": [
@@ -12922,6 +14918,8 @@
         "opponent": "Pablo Cuevas",
         "points_won": 113,
         "points_played": 206,
+        "duration_mins": 127.2,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -12930,6 +14928,8 @@
         "opponent": "Fabio Fognini",
         "points_won": 83,
         "points_played": 188,
+        "duration_mins": 118.5,
+        "distance_km": 1.9,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -13028,6 +15028,19 @@
       "total_streaks": 4,
       "streaks_per_match": 4.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 124,
+      "total_mins": 124,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.21,
+      "total_km": 2.21,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Taro Daniel",
     "year": 2018,
     "match_summaries": [
@@ -13036,6 +15049,8 @@
         "opponent": "Fabio Fognini",
         "points_won": 89,
         "points_played": 197,
+        "duration_mins": 124.2,
+        "distance_km": 2.21,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -13134,6 +15149,19 @@
       "total_streaks": 49,
       "streaks_per_match": 16.3
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 139,
+      "total_mins": 416,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.28,
+      "total_km": 6.85,
+      "matches_tracked": 3,
+      "matches_total": 3
+    },
     "player": "Fabio Fognini",
     "year": 2018,
     "match_summaries": [
@@ -13142,6 +15170,8 @@
         "opponent": "Taro Daniel",
         "points_won": 108,
         "points_played": 197,
+        "duration_mins": 124.2,
+        "distance_km": 2.14,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -13150,6 +15180,8 @@
         "opponent": "Simone Bolelli",
         "points_won": 105,
         "points_played": 188,
+        "duration_mins": 118.5,
+        "distance_km": 1.97,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -13158,6 +15190,8 @@
         "opponent": "Jiri Vesely",
         "points_won": 120,
         "points_played": 262,
+        "duration_mins": 174.0,
+        "distance_km": 2.74,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -13244,6 +15278,19 @@
       "total_streaks": 19,
       "streaks_per_match": 19.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 179,
+      "total_mins": 178,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Marco Cecchinato",
     "year": 2018,
     "match_summaries": [
@@ -13252,6 +15299,8 @@
         "opponent": "Alex De Minaur",
         "points_won": 134,
         "points_played": 287,
+        "duration_mins": 178.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -13350,6 +15399,19 @@
       "total_streaks": 44,
       "streaks_per_match": 14.7
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 162,
+      "total_mins": 486,
+      "matches_tracked": 3
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.39,
+      "total_km": 2.39,
+      "matches_tracked": 1,
+      "matches_total": 3
+    },
     "player": "Alex De Minaur",
     "year": 2018,
     "match_summaries": [
@@ -13358,6 +15420,8 @@
         "opponent": "Marco Cecchinato",
         "points_won": 153,
         "points_played": 287,
+        "duration_mins": 178.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -13366,6 +15430,8 @@
         "opponent": "Pierre Hugues Herbert",
         "points_won": 157,
         "points_played": 289,
+        "duration_mins": 185.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -13374,6 +15440,8 @@
         "opponent": "Rafael Nadal",
         "points_won": 62,
         "points_played": 153,
+        "duration_mins": 122.5,
+        "distance_km": 2.39,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -13460,6 +15528,19 @@
       "total_streaks": 35,
       "streaks_per_match": 17.5
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 144,
+      "total_mins": 287,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 2
+    },
     "player": "Pierre Hugues Herbert",
     "year": 2018,
     "match_summaries": [
@@ -13468,6 +15549,8 @@
         "opponent": "Mischa Zverev",
         "points_won": 99,
         "points_played": 180,
+        "duration_mins": 101.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -13476,6 +15559,8 @@
         "opponent": "Alex De Minaur",
         "points_won": 132,
         "points_played": 289,
+        "duration_mins": 185.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -13562,6 +15647,19 @@
       "total_streaks": 8,
       "streaks_per_match": 8.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 102,
+      "total_mins": 101,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Mischa Zverev",
     "year": 2018,
     "match_summaries": [
@@ -13570,6 +15668,8 @@
         "opponent": "Pierre Hugues Herbert",
         "points_won": 81,
         "points_played": 180,
+        "duration_mins": 101.6,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -13656,6 +15756,19 @@
       "total_streaks": 11,
       "streaks_per_match": 11.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 129,
+      "total_mins": 129,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": false,
+      "avg_km_per_match": null,
+      "total_km": null,
+      "matches_tracked": 0,
+      "matches_total": 1
+    },
     "player": "Vasek Pospisil",
     "year": 2018,
     "match_summaries": [
@@ -13664,6 +15777,8 @@
         "opponent": "Mikhail Kukushkin",
         "points_won": 90,
         "points_played": 210,
+        "duration_mins": 129.1,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -13762,6 +15877,19 @@
       "total_streaks": 24,
       "streaks_per_match": 12.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 136,
+      "total_mins": 272,
+      "matches_tracked": 2
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.68,
+      "total_km": 2.68,
+      "matches_tracked": 1,
+      "matches_total": 2
+    },
     "player": "Mikhail Kukushkin",
     "year": 2018,
     "match_summaries": [
@@ -13770,6 +15898,8 @@
         "opponent": "Vasek Pospisil",
         "points_won": 120,
         "points_played": 210,
+        "duration_mins": 129.1,
+        "distance_km": null,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -13778,6 +15908,8 @@
         "opponent": "Rafael Nadal",
         "points_won": 85,
         "points_played": 191,
+        "duration_mins": 143.6,
+        "distance_km": 2.68,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -13876,6 +16008,19 @@
       "total_streaks": 6,
       "streaks_per_match": 6.0
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 110,
+      "total_mins": 110,
+      "matches_tracked": 1
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 2.06,
+      "total_km": 2.06,
+      "matches_tracked": 1,
+      "matches_total": 1
+    },
     "player": "Dudi Sela",
     "year": 2018,
     "match_summaries": [
@@ -13884,6 +16029,8 @@
         "opponent": "Rafael Nadal",
         "points_won": 65,
         "points_played": 160,
+        "duration_mins": 110.5,
+        "distance_km": 2.06,
         "bad_break_match": false,
         "bad_break_detail": null
       }
@@ -13982,6 +16129,19 @@
       "total_streaks": 97,
       "streaks_per_match": 16.2
     },
+    "match_duration": {
+      "available": true,
+      "avg_mins": 182,
+      "total_mins": 1093,
+      "matches_tracked": 6
+    },
+    "distance": {
+      "available": true,
+      "avg_km_per_match": 3.4,
+      "total_km": 20.43,
+      "matches_tracked": 6,
+      "matches_total": 6
+    },
     "player": "Rafael Nadal",
     "year": 2018,
     "match_summaries": [
@@ -13990,6 +16150,8 @@
         "opponent": "Dudi Sela",
         "points_won": 95,
         "points_played": 160,
+        "duration_mins": 110.5,
+        "distance_km": 2.03,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -13998,6 +16160,8 @@
         "opponent": "Mikhail Kukushkin",
         "points_won": 106,
         "points_played": 191,
+        "duration_mins": 143.6,
+        "distance_km": 2.72,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -14006,6 +16170,8 @@
         "opponent": "Alex De Minaur",
         "points_won": 91,
         "points_played": 153,
+        "duration_mins": 122.5,
+        "distance_km": 2.23,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -14014,6 +16180,8 @@
         "opponent": "Jiri Vesely",
         "points_won": 92,
         "points_played": 157,
+        "duration_mins": 113.5,
+        "distance_km": 2.0,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -14022,6 +16190,8 @@
         "opponent": "Juan Martin Del Potro",
         "points_won": 177,
         "points_played": 341,
+        "duration_mins": 288.2,
+        "distance_km": 5.06,
         "bad_break_match": false,
         "bad_break_detail": null
       },
@@ -14030,6 +16200,8 @@
         "opponent": "Novak Djokovic",
         "points_won": 191,
         "points_played": 386,
+        "duration_mins": 314.7,
+        "distance_km": 6.39,
         "bad_break_match": false,
         "bad_break_detail": null
       }

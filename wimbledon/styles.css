@@ -1043,8 +1043,99 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   font-size: 14px;
   color: var(--ink-soft);
 }
-.match-log-table .td-pts { font-weight: 700; }
-.match-log-table .td-pct { color: var(--ink-muted); }
+.match-log-table .td-pts  { font-weight: 700; }
+.match-log-table .td-pct  { color: var(--ink-muted); }
+.match-log-table .td-dur  { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.match-log-table .td-dist { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+
+/* ── DURATION / DISTANCE CARDS ───────────────────────────────── */
+.dur-big-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  margin-bottom: var(--s-3);
+}
+.dur-num {
+  font-family: var(--font-sans);
+  font-size: var(--t-h1);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.dur-unit {
+  font-family: var(--font-sans);
+  font-size: var(--t-small);
+  color: var(--ink-muted);
+  letter-spacing: 0.04em;
+}
+.dur-bar-section { margin-bottom: var(--s-4); }
+.dur-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-sans);
+  font-size: var(--t-micro);
+  color: var(--ink-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: var(--s-1);
+}
+.dur-track {
+  position: relative;
+  height: 8px;
+  background: var(--paper-warm);
+  border-radius: 4px;
+  overflow: visible;
+}
+.dur-fill {
+  height: 100%;
+  background: var(--forest);
+  border-radius: 4px;
+  opacity: 0.7;
+}
+.dist-fill { background: var(--cobalt); }
+.dur-avg-tick {
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 16px;
+  background: var(--terracotta);
+  border-radius: 1px;
+  transform: translateX(-50%);
+}
+.dur-matches { display: flex; flex-direction: column; gap: var(--s-2); }
+.dur-match-row {
+  display: grid;
+  grid-template-columns: 1fr 72px 1fr;
+  align-items: center;
+  gap: var(--s-2);
+}
+.dur-opp {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.dur-val {
+  font-family: var(--font-sans);
+  font-size: var(--t-small);
+  font-weight: 700;
+  color: var(--ink);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.dur-row-track {
+  height: 5px;
+  background: var(--paper-warm);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.dur-row-fill {
+  height: 100%;
+  background: var(--forest);
+  opacity: 0.5;
+  border-radius: 3px;
+}
+.dur-row-fill.dist-fill { background: var(--cobalt); }
 
 /* ── UTILITIES ───────────────────────────────────────────────── */
 .hidden { display: none !important; }

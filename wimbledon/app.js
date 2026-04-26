@@ -137,6 +137,8 @@ function renderProfile(name) {
   renderAggression(p, t);
   renderCleanGames(p, t);
   renderStreaks(p, t);
+  renderDuration(p, t);
+  renderDistance(p, t);
   renderMatchLog(p);
 }
 
@@ -703,25 +705,136 @@ function renderStreaks(p, t) {
     </div>`;
 }
 
+// ── Match Duration ────────────────────────────────────────────────
+function renderDuration(p, t) {
+  const md  = p.match_duration;
+  const container = document.getElementById("duration-viz");
+
+  if (!md?.available) {
+    container.innerHTML = naCard("Match Duration", p.year);
+    return;
+  }
+
+  const avg    = t.match_duration?.avg_mins ?? 0;
+  const val    = md.avg_mins ?? 0;
+  const MAX    = Math.max(val, avg, 60) * 1.35;
+
+  function fmtMins(m) {
+    const h = Math.floor(m / 60);
+    const min = Math.round(m % 60);
+    return h > 0 ? `${h}h ${min}m` : `${min}m`;
+  }
+
+  let matchRows = "";
+  for (const m of p.match_summaries) {
+    const dur = m.duration_mins != null ? fmtMins(m.duration_mins) : "—";
+    matchRows += `
+      <div class="dur-match-row">
+        <span class="dur-opp">vs ${m.opponent}</span>
+        <span class="dur-val">${dur}</span>
+        ${m.duration_mins != null ? `<div class="dur-row-track"><div class="dur-row-fill" style="width:${Math.min(m.duration_mins/MAX*100,100).toFixed(1)}%"></div></div>` : `<div class="dur-row-track"></div>`}
+      </div>`;
+  }
+
+  container.innerHTML = `
+    <div class="dur-big-row">
+      <div class="dur-num">${fmtMins(val)}</div>
+      <div class="dur-unit">avg per match</div>
+    </div>
+    <div class="dur-bar-section">
+      <div class="dur-bar-label">
+        <span>0</span>
+        <span>Tourn. avg ${fmtMins(avg)}</span>
+        <span>${fmtMins(Math.round(MAX))}</span>
+      </div>
+      <div class="dur-track">
+        <div class="dur-fill" style="width:${(val/MAX*100).toFixed(1)}%"></div>
+        <div class="dur-avg-tick" style="left:${(avg/MAX*100).toFixed(1)}%"></div>
+      </div>
+    </div>
+    <div class="dur-matches">${matchRows}</div>`;
+}
+
+// ── Distance Run ──────────────────────────────────────────────────
+function renderDistance(p, t) {
+  const dist = p.distance;
+  const container = document.getElementById("distance-viz");
+
+  if (!dist?.available) {
+    container.innerHTML = naCard("Distance Run", p.year);
+    return;
+  }
+
+  const avg  = t.distance?.avg_km_per_match ?? 0;
+  const val  = dist.avg_km_per_match ?? 0;
+  const MAX  = Math.max(val, avg, 1) * 1.4;
+
+  let matchRows = "";
+  for (const m of p.match_summaries) {
+    const km = m.distance_km != null ? `${m.distance_km.toFixed(2)} km` : "—";
+    matchRows += `
+      <div class="dur-match-row">
+        <span class="dur-opp">vs ${m.opponent}</span>
+        <span class="dur-val">${km}</span>
+        ${m.distance_km != null ? `<div class="dur-row-track"><div class="dur-row-fill dist-fill" style="width:${Math.min(m.distance_km/MAX*100,100).toFixed(1)}%"></div></div>` : `<div class="dur-row-track"></div>`}
+      </div>`;
+  }
+
+  const untracked = dist.matches_total - dist.matches_tracked;
+  const note = untracked > 0
+    ? `<p class="card-note" style="margin-top:10px">${untracked} match${untracked > 1 ? "es" : ""} without tracking data excluded from average</p>`
+    : "";
+
+  container.innerHTML = `
+    <div class="dur-big-row">
+      <div class="dur-num">${val.toFixed(2)} km</div>
+      <div class="dur-unit">avg per match</div>
+    </div>
+    <div class="dur-bar-section">
+      <div class="dur-bar-label">
+        <span>0 km</span>
+        <span>Tourn. avg ${avg.toFixed(2)} km</span>
+        <span>${MAX.toFixed(1)} km</span>
+      </div>
+      <div class="dur-track">
+        <div class="dur-fill dist-fill" style="width:${(val/MAX*100).toFixed(1)}%"></div>
+        <div class="dur-avg-tick" style="left:${(avg/MAX*100).toFixed(1)}%"></div>
+      </div>
+    </div>
+    <div class="dur-matches">${matchRows}</div>
+    ${note}`;
+}
+
 // ── Match Log ─────────────────────────────────────────────────────
 function renderMatchLog(p) {
+  function fmtMins(m) {
+    if (m == null) return "—";
+    const h = Math.floor(m / 60);
+    const min = Math.round(m % 60);
+    return h > 0 ? `${h}h ${min}m` : `${min}m`;
+  }
+
   let rows = "";
   for (const m of p.match_summaries) {
     const pct = m.points_played > 0
       ? (m.points_won / m.points_played * 100).toFixed(0) + "%"
       : "—";
-    const bb = m.bad_break_match ? `<span class="bb-flag">⚡ Bad Break</span>` : "";
+    const bb  = m.bad_break_match ? `<span class="bb-flag">⚡ Bad Break</span>` : "";
+    const dur = fmtMins(m.duration_mins);
+    const km  = m.distance_km != null ? `${m.distance_km.toFixed(2)} km` : "—";
     rows += `<tr>
       <td class="td-opp">vs ${m.opponent}</td>
       <td class="td-pts">${m.points_won} / ${m.points_played}</td>
       <td class="td-pct">${pct}</td>
+      <td class="td-dur">${dur}</td>
+      <td class="td-dist">${km}</td>
       <td>${bb}</td>
     </tr>`;
   }
   document.getElementById("match-log").innerHTML = `
     <table class="match-log-table">
       <thead><tr>
-        <th>Opponent</th><th>Points Won</th><th>Win %</th><th>Flag</th>
+        <th>Opponent</th><th>Points Won</th><th>Win %</th><th>Duration</th><th>Distance</th><th>Flag</th>
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>`;

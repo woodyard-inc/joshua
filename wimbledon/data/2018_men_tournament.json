@@ -89,5 +89,11 @@
       "bad_break": true,
       "margin": -5
     }
-  ]
+  ],
+  "match_duration": {
+    "avg_mins": 157.1
+  },
+  "distance": {
+    "avg_km_per_match": 2.2
+  }
 }

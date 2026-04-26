@@ -699,7 +699,7 @@ function renderStreaks(p, t) {
       </div>
     </div>
     <div style="font-size:11px;color:var(--ink-muted);margin-top:10px">
-      Total streaks across tournament: ${st.total_streaks} · ${p.matches_played} matches played
+      Total streaks across tournament: ${st.total_streaks} · ${p.matches_played} matches played · 3+ pts in a row, resets per game
     </div>`;
 }
 

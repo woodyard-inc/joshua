@@ -193,7 +193,7 @@ function renderHero(p, t) {
 
   function showInitials() {
     visualEl.className = "hero-visual has-initials";
-    visualEl.innerHTML = `<span class="hero-initials-text">${initials}</span>`;
+    visualEl.innerHTML = `<div class="initials-inner"><div class="initials-square"><span class="hero-initials-text">${initials}</span></div></div>`;
   }
 
   if (photoFile) {

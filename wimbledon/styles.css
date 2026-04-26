@@ -234,15 +234,24 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   display: block;
 }
 
-/* No-photo mode — compact initials block */
+/* No-photo mode — square initials block, flush with nameplate left edge */
 .hero-visual.has-initials {
+  display: block;
+  background: none;
+  padding: var(--s-6) 0 0;
+}
+.initials-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--page-pad);
+}
+.initials-square {
+  width: 120px;
+  height: 120px;
+  background: var(--ink);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
-  height: 160px;
-  background: var(--ink);
-  margin: var(--s-6) var(--page-pad) 0;
 }
 .hero-initials-text {
   font-family: var(--font-sans);

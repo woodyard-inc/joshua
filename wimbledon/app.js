@@ -1,47 +1,53 @@
-/* ── What Wins on Grass? — Player Intelligence · app.js ─────────── */
-
+/* ── What Wins on Grass — Player Intelligence · app.js ─────────── */
 "use strict";
 
 // ── State ─────────────────────────────────────────────────────────
 const state = {
-  year: 2012,
+  year:       2017,
   playerName: null,
-  profiles: null,   // { playerName: {...} }
-  tournament: null, // { serve:{}, pressure:{}, ... }
+  profiles:   null,
+  tournament: null,
 };
+
+const AVAILABLE_YEARS = [2017, 2018, 2019];
 
 // ── Boot ──────────────────────────────────────────────────────────
 async function boot() {
-  await loadYear(2012);
+  // Set active year pill
+  document.querySelectorAll(".pill").forEach(p => {
+    p.classList.toggle("active", +p.dataset.year === state.year);
+  });
+
+  await loadYear(state.year);
 
   function onPlayerChange(name) {
     if (!name) { showEmpty(); return; }
     state.playerName = name;
-    // Sync both selects
-    document.getElementById("player-select").value = name;
+    document.getElementById("player-select").value       = name;
     document.getElementById("player-select-empty").value = name;
     renderProfile(name);
   }
 
-  document.getElementById("player-select").addEventListener("change", e => onPlayerChange(e.target.value));
-  document.getElementById("player-select-empty").addEventListener("change", e => onPlayerChange(e.target.value));
+  document.getElementById("player-select")
+    .addEventListener("change", e => onPlayerChange(e.target.value));
+  document.getElementById("player-select-empty")
+    .addEventListener("change", e => onPlayerChange(e.target.value));
 
   document.getElementById("year-pills").addEventListener("click", e => {
     const btn = e.target.closest(".pill");
     if (!btn) return;
     const yr = +btn.dataset.year;
+    if (yr === state.year) return;
     document.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
     btn.classList.add("active");
     state.year = yr;
     loadYear(yr).then(() => {
-      const sel = document.getElementById("player-select");
-      const cur = sel.value;
-      populateDropdown();
-      if (state.profiles[cur]) {
-        sel.value = cur;
-        renderProfile(cur);
+      // Try to keep same player if they appear in the new year; else reset
+      const prev = state.playerName;
+      if (prev && state.profiles[prev]) {
+        document.getElementById("player-select").value = prev;
+        renderProfile(prev);
       } else {
-        sel.value = "";
         showEmpty();
       }
     });
@@ -56,21 +62,20 @@ async function loadYear(year) {
   ]);
   state.profiles  = profiles;
   state.tournament = tourn;
+  state.year      = year;
   populateDropdown();
 }
 
 function populateDropdown() {
-  const selectors = ["player-select", "player-select-empty"];
-  selectors.forEach(id => {
+  const ids = ["player-select", "player-select-empty"];
+  ids.forEach(id => {
     const sel = document.getElementById(id);
     if (!sel) return;
     const cur = sel.value;
     sel.innerHTML = '<option value="">Select a player…</option>';
-    const names = Object.keys(state.profiles).sort();
-    for (const name of names) {
+    for (const name of Object.keys(state.profiles).sort()) {
       const opt = document.createElement("option");
-      opt.value = name;
-      opt.textContent = name;
+      opt.value = opt.textContent = name;
       sel.appendChild(opt);
     }
     if (cur && state.profiles[cur]) sel.value = cur;
@@ -80,14 +85,15 @@ function populateDropdown() {
 function showEmpty() {
   document.getElementById("empty-state").classList.remove("hidden");
   document.getElementById("profile").classList.add("hidden");
-  document.getElementById("player-select").value = "";
+  document.getElementById("player-select").value       = "";
   document.getElementById("player-select-empty").value = "";
+  state.playerName = null;
 }
 
 // ── Main render ───────────────────────────────────────────────────
 function renderProfile(name) {
-  const p  = state.profiles[name];
-  const t  = state.tournament;
+  const p = state.profiles[name];
+  const t = state.tournament;
 
   document.getElementById("empty-state").classList.add("hidden");
   document.getElementById("profile").classList.remove("hidden");
@@ -95,7 +101,7 @@ function renderProfile(name) {
   renderHero(p, t);
   renderServeWaterfall(p, t);
   renderServeSpeed(p, t);
-  renderServeDirection(p);
+  renderServeDirection(p, t);
   renderRally(p, t);
   renderPoints(p);
   renderResilience(p, t);
@@ -106,17 +112,20 @@ function renderProfile(name) {
   renderMatchLog(p);
 }
 
-// ── Player photo lookup ───────────────────────────────────────────
-// Maps profile player name → WebP filename (underscore-separated)
+// ── Player photos ─────────────────────────────────────────────────
+// Players whose WebP exists in /players/.  Falls back to initials for anyone else.
 const PLAYER_PHOTOS = {
+  // 2012 era — many also appear in 2017-2019 draws
   "Andy Murray":           "Andy_Murray",
   "Benoit Paire":          "Benoit_Paire",
   "David Ferrer":          "David_Ferrer",
   "Fernando Verdasco":     "Fernando_Verdasco",
   "Florian Mayer":         "Florian_Mayer",
   "Jerzy Janowicz":        "Jerzy_Janowicz",
+  "Jo Wilfried Tsonga":    "Jo-Wilfried_Tsonga",
   "Jo-Wilfried Tsonga":    "Jo-Wilfried_Tsonga",
   "Juan Martin Del Potro": "Juan_Martin_Del_Potro",
+  "Juan Martin del Potro": "Juan_Martin_Del_Potro",
   "Juan Monaco":           "Juan_Monaco",
   "Julien Benneteau":      "Julien_Benneteau",
   "Mikhail Youzhny":       "Mikhail_Youzhny",
@@ -128,6 +137,7 @@ const PLAYER_PHOTOS = {
   "Roger Federer":         "Roger_Federer",
   "Ryan Harrison":         "Ryan_Harrison",
   "Sergiy Stakhovsky":     "Sergiy_Stakhovsky",
+  "Stan Wawrinka":         "Stanislas_Wawrinka",
   "Stanislas Wawrinka":    "Stanislas_Wawrinka",
   "Viktor Troicki":        "Viktor_Troicki",
 };
@@ -136,8 +146,8 @@ const PLAYER_PHOTOS = {
 function renderHero(p, t) {
   const parts    = p.player.split(" ");
   const initials = parts.length >= 2
-    ? parts[0][0] + parts[parts.length - 1][0]
-    : p.player.slice(0, 2);
+    ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+    : p.player.slice(0, 2).toUpperCase();
 
   const visualEl  = document.getElementById("hero-visual");
   const photoFile = PLAYER_PHOTOS[p.player];
@@ -145,44 +155,42 @@ function renderHero(p, t) {
 
   function showInitials() {
     visualEl.className = "hero-visual has-initials";
-    visualEl.innerHTML = `<span class="hero-initials-text">${initials.toUpperCase()}</span>`;
+    visualEl.innerHTML = `<span class="hero-initials-text">${initials}</span>`;
   }
 
   if (photoFile) {
-    const img = document.createElement("img");
-    img.alt   = p.player;
-    img.src   = `${base}/players/${photoFile}.webp`;
+    const img   = document.createElement("img");
+    img.alt     = p.player;
+    img.src     = `${base}/players/${photoFile}.webp`;
     img.onerror = showInitials;
     img.onload  = () => {
-      // Portrait images (height > width) get pillarbox; landscape get cover-crop
       const isPortrait = img.naturalHeight > img.naturalWidth;
       visualEl.className = "hero-visual has-photo" + (isPortrait ? " portrait" : "");
       visualEl.innerHTML = "";
       visualEl.appendChild(img);
     };
-    // Set class optimistically before load completes
     visualEl.className = "hero-visual has-photo";
     visualEl.innerHTML = "";
     visualEl.appendChild(img);
   } else {
     showInitials();
   }
-  document.getElementById("player-name").textContent   = p.player;
-  document.getElementById("player-meta").textContent   =
-    `${p.year} Wimbledon · ${p.matches_played} match${p.matches_played !== 1 ? "es" : ""}`;
 
+  document.getElementById("player-name").textContent =
+    p.player;
+  document.getElementById("player-meta").textContent =
+    `${p.year} Wimbledon · ${p.matches_played} match${p.matches_played !== 1 ? "es" : ""}`;
   document.getElementById("srv-pts-badge").textContent =
     `${p.serve.total_pts} serve pts`;
 
   const hl = document.getElementById("headline-stats");
   hl.innerHTML = "";
-
   const hlStats = [
-    { val: `${p.serve.first_in_pct}%`,        label: "1st Srv In" },
-    { val: `${p.serve.first_won_pct}%`,        label: "1st Srv Won" },
-    { val: `${p.aggression.aggression_index}`, label: "Atk Precision" },
-    { val: `${p.pressure.bp_saved_pct ?? "—"}%`, label: "BP Saved" },
-    { val: `${p.pressure.bp_created_per_opp_sg ?? "—"}`,  label: "BPs/Opp Sg" },
+    { val: `${p.serve.first_in_pct ?? "—"}%`,            label: "1st Srv In" },
+    { val: `${p.serve.first_won_pct ?? "—"}%`,           label: "1st Srv Won" },
+    { val: `${p.aggression.aggression_index ?? "—"}`,    label: "Atk Precision" },
+    { val: `${p.pressure.bp_saved_pct ?? "—"}%`,         label: "BP Saved" },
+    { val: `${p.pressure.bp_created_per_opp_sg ?? "—"}`, label: "BPs/Opp Sg" },
   ];
   for (const s of hlStats) {
     const div = document.createElement("div");
@@ -196,36 +204,11 @@ function renderHero(p, t) {
 function renderServeWaterfall(p, t) {
   const srv = p.serve;
   const ta  = t.serve;
-
   const rows = [
-    {
-      stage: 1,
-      label: "1st Serve In",
-      desc:  "of all serve points",
-      val:   srv.first_in_pct,
-      avg:   ta.first_in_pct,
-    },
-    {
-      stage: 2,
-      label: "1st Serve Won",
-      desc:  "of 1st serves that went in",
-      val:   srv.first_won_pct,
-      avg:   ta.first_won_pct,
-    },
-    {
-      stage: 3,
-      label: "2nd Serve In",
-      desc:  "of 2nd serve attempts",
-      val:   srv.second_in_pct,
-      avg:   null,
-    },
-    {
-      stage: 4,
-      label: "2nd Serve Won",
-      desc:  "of 2nd serves that went in",
-      val:   srv.second_won_pct,
-      avg:   ta.second_won_pct,
-    },
+    { stage:1, label:"1st Serve In",   desc:"of all serve points",       val:srv.first_in_pct,   avg:ta.first_in_pct   },
+    { stage:2, label:"1st Serve Won",  desc:"of 1st serves that went in", val:srv.first_won_pct,  avg:ta.first_won_pct  },
+    { stage:3, label:"2nd Serve In",   desc:"of 2nd-serve attempts",      val:srv.second_in_pct,  avg:null              },
+    { stage:4, label:"2nd Serve Won",  desc:"of 2nd serves that went in", val:srv.second_won_pct, avg:ta.second_won_pct },
   ];
 
   const container = document.getElementById("serve-waterfall");
@@ -234,9 +217,6 @@ function renderServeWaterfall(p, t) {
     if (r.val == null) continue;
     const div = document.createElement("div");
     div.className = `wf-row stage-${r.stage}`;
-    const avgTick = r.avg != null
-      ? `<div class="wf-avg-tick" style="left:${r.avg}%"></div>`
-      : "";
     div.innerHTML = `
       <div class="wf-labels">
         <span class="wf-label">${r.label}</span>
@@ -248,12 +228,11 @@ function renderServeWaterfall(p, t) {
       </div>
       <div class="wf-track">
         <div class="wf-bar" style="width:${r.val}%"></div>
-        ${avgTick}
+        ${r.avg != null ? `<div class="wf-avg-tick" style="left:${r.avg}%"></div>` : ""}
       </div>`;
     container.appendChild(div);
   }
 
-  // Ace & DF footnote
   const note = document.createElement("div");
   note.style.cssText = "margin-top:10px;font-size:11px;color:var(--ink-muted);display:flex;gap:16px";
   note.innerHTML = `
@@ -266,23 +245,25 @@ function renderServeWaterfall(p, t) {
 function renderServeSpeed(p, t) {
   const sp  = p.serve_speed;
   const ta  = t.serve_speed;
-  const MAX = 230; // km/h display max
-
+  const MAX = 230;
   const container = document.getElementById("speed-viz");
   container.innerHTML = "";
 
+  if (!sp?.available) {
+    container.innerHTML = naCard("Serve Speed", p.year);
+    return;
+  }
+
   const rows = [
-    { cls: "first",  label: "1st Serve", mean: sp.first_avg_kmh,  sd: sp.first_sd_kmh,  mph: sp.first_avg_mph,  avg: ta.first_avg_kmh  },
-    { cls: "second", label: "2nd Serve", mean: sp.second_avg_kmh, sd: sp.second_sd_kmh, mph: sp.second_avg_mph, avg: ta.second_avg_kmh },
+    { cls:"first",  label:"1st Serve", mean:sp.first_avg_kmh,  sd:sp.first_sd_kmh,  mph:sp.first_avg_mph,  avg:ta.first_avg_kmh  },
+    { cls:"second", label:"2nd Serve", mean:sp.second_avg_kmh, sd:sp.second_sd_kmh, mph:sp.second_avg_mph, avg:ta.second_avg_kmh },
   ];
 
   for (const r of rows) {
     if (!r.mean) continue;
     const fillPct  = (r.mean / MAX * 100).toFixed(1);
     const sdLoPct  = ((r.mean - (r.sd || 0)) / MAX * 100).toFixed(1);
-    const sdHiPct  = ((r.mean + (r.sd || 0)) / MAX * 100).toFixed(1);
-    const sdWidPct = (((r.sd || 0) * 2) / MAX * 100).toFixed(1);
-
+    const sdWidPct = (((r.sd || 0) * 2)      / MAX * 100).toFixed(1);
     const div = document.createElement("div");
     div.className = `speed-row ${r.cls}`;
     div.innerHTML = `
@@ -300,133 +281,137 @@ function renderServeSpeed(p, t) {
 }
 
 // ── Serve Direction ───────────────────────────────────────────────
-function renderServeDirection(p) {
-  const sd   = p.serve_direction;
-  const deuce = sd.deuce ?? { wide_pct: sd.wide_pct, body_pct: sd.body_pct, t_pct: sd.t_pct };
-  const ad    = sd.ad    ?? { wide_pct: sd.wide_pct, body_pct: sd.body_pct, t_pct: sd.t_pct };
+// Uses ServeWidth field (W/BW=Wide, B/BC=Body, C=Centre).
+// ServingTo not available → no deuce/ad split.
+function renderServeDirection(p, t) {
+  const sd = p.serve_direction;
+  const ta = t.serve_direction;
+  const C  = { cobalt:"#002FA7", terracotta:"#D35220", forest:"#01482A",
+               paper:"#FFFDF8", ink:"#141414", muted:"#8A857B" };
 
-  const C = { cobalt:"#002FA7", terracotta:"#D35220", forest:"#01482A", paper:"#FFFDF8", ink:"#141414", muted:"#8A857B" };
-  const fmt = v => v != null ? Math.round(v) + "%" : "—";
-  const op  = pct => Math.max(0.06, (pct ?? 0) / 100 * 0.55).toFixed(2);
+  const svg     = document.getElementById("court-svg");
+  const legend  = document.getElementById("direction-legend");
 
-  // Layout constants (viewBox 0 0 200 300)
-  const netY = 30, netH = 12;
-  const bx = 12;                        // left margin
-  const boxW = 176;                     // total court width
-  const boxH = 140;                     // service box height
-  const boxY = netY + netH;             // top of service boxes
-  const halfW = (boxW - 4) / 2;        // width of each service box (gap=4)
-  const lx = bx;                        // left (Ad) box x
-  const rx = bx + halfW + 4;            // right (Deuce) box x
-
-  // Helper: draw one service box with 3 zones (left→right colour order varies)
-  // zones: [{w:pct, fill, label}, ...]  left to right
-  function drawBox(x, y, w, h, zones) {
-    let html = `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${C.paper}" stroke="${C.ink}" stroke-width="1.2"/>`;
-    // zone fills — widths proportional to pct, scaled to box width
-    const total = zones.reduce((s, z) => s + (z.w ?? 0), 0) || 100;
-    let cx = x;
-    for (const z of zones) {
-      const zw = (z.w / total) * w;
-      html += `<rect x="${cx.toFixed(1)}" y="${y}" width="${zw.toFixed(1)}" height="${h}" fill="${z.fill}" opacity="${op(z.w)}"/>`;
-      cx += zw;
-    }
-    // Dashed zone dividers (inner only)
-    cx = x;
-    for (let i = 0; i < zones.length - 1; i++) {
-      cx += (zones[i].w / total) * w;
-      html += `<line x1="${cx.toFixed(1)}" y1="${y}" x2="${cx.toFixed(1)}" y2="${y+h}" stroke="${C.ink}" stroke-width="0.4" stroke-dasharray="3,2"/>`;
-    }
-    return html;
+  if (!sd?.available) {
+    svg.innerHTML = "";
+    legend.innerHTML = naCard("Serve Direction", p.year);
+    return;
   }
 
-  // Ad court box zones (left→right): Wide | Body | T
-  const adZones = [
-    { w: ad.wide_pct ?? 0, fill: C.cobalt,     label: "W", sub: fmt(ad.wide_pct) },
-    { w: ad.body_pct ?? 0, fill: C.terracotta, label: "B", sub: fmt(ad.body_pct) },
-    { w: ad.t_pct    ?? 0, fill: C.forest,     label: "T", sub: fmt(ad.t_pct)    },
-  ];
-  // Deuce court box zones (left→right): T | Body | Wide
-  const deuceZones = [
-    { w: deuce.t_pct    ?? 0, fill: C.forest,     label: "T", sub: fmt(deuce.t_pct)    },
-    { w: deuce.body_pct ?? 0, fill: C.terracotta, label: "B", sub: fmt(deuce.body_pct) },
-    { w: deuce.wide_pct ?? 0, fill: C.cobalt,     label: "W", sub: fmt(deuce.wide_pct) },
-  ];
+  const fmt = v => v != null ? Math.round(v) + "%" : "—";
 
-  const svg = document.getElementById("court-svg");
+  // ── Single service-box court (top = net, bottom = baseline)
+  // viewBox 0 0 200 300
+  const netY = 28; const netH = 10;
+  const bx = 20; const boxW = 160; const boxH = 120; const boxY = netY + netH;
+
+  // Zones left→right inside the box: Wide | Body | Centre
+  // (mirroring how W/B/C look across the full-court width)
+  const zones = [
+    { pct: sd.wide_pct   ?? 0, fill: C.cobalt,     label: "Wide",   sub: fmt(sd.wide_pct)   },
+    { pct: sd.body_pct   ?? 0, fill: C.terracotta, label: "Body",   sub: fmt(sd.body_pct)   },
+    { pct: sd.centre_pct ?? 0, fill: C.forest,     label: "Centre", sub: fmt(sd.centre_pct) },
+  ];
+  const total = zones.reduce((s, z) => s + z.pct, 0) || 100;
+
   let html = "";
 
-  // NET bar
+  // Net
   html += `<rect x="${bx}" y="${netY}" width="${boxW}" height="${netH}" fill="${C.ink}"/>`;
-  html += `<text x="${bx + boxW/2}" y="${netY + netH - 3}" text-anchor="middle" fill="${C.paper}" font-size="6.5" font-family="Helvetica,sans-serif" letter-spacing="0.22em">NET</text>`;
+  html += `<text x="${bx + boxW/2}" y="${netY + netH - 2}" text-anchor="middle" fill="${C.paper}" font-size="6" font-family="Helvetica,sans-serif" letter-spacing="0.22em">NET</text>`;
 
-  // Service boxes
-  html += drawBox(lx, boxY, halfW, boxH, adZones);
-  html += drawBox(rx, boxY, halfW, boxH, deuceZones);
+  // Box background
+  html += `<rect x="${bx}" y="${boxY}" width="${boxW}" height="${boxH}" fill="${C.paper}" stroke="${C.ink}" stroke-width="1.2"/>`;
 
-  // Court labels (box titles)
-  const titleY = boxY + boxH + 14;
-  html += `<text x="${lx + halfW/2}" y="${titleY}" text-anchor="middle" fill="${C.muted}" font-size="6" font-family="Helvetica,sans-serif" letter-spacing="0.18em">AD COURT</text>`;
-  html += `<text x="${rx + halfW/2}" y="${titleY}" text-anchor="middle" fill="${C.muted}" font-size="6" font-family="Helvetica,sans-serif" letter-spacing="0.18em">DEUCE COURT</text>`;
-
-  // Zone labels + percentages
-  const labelY = titleY + 14;
-  function zoneLabels(x, w, zones) {
-    const total = zones.reduce((s, z) => s + (z.w ?? 0), 0) || 100;
-    let lx2 = x, out = "";
-    for (const z of zones) {
-      const zw = (z.w / total) * w;
-      const cx = lx2 + zw / 2;
-      const col = z.fill;
-      out += `<text x="${cx.toFixed(1)}" y="${labelY}" text-anchor="middle" fill="${col}" font-size="7.5" font-family="Helvetica,sans-serif" font-weight="700">${z.label}</text>`;
-      out += `<text x="${cx.toFixed(1)}" y="${labelY+11}" text-anchor="middle" fill="${C.muted}" font-size="6.5" font-family="Helvetica,sans-serif">${z.sub}</text>`;
-      lx2 += zw;
+  // Zone fills + dividers
+  let cx = bx;
+  for (let i = 0; i < zones.length; i++) {
+    const z  = zones[i];
+    const zw = (z.pct / total) * boxW;
+    const op = Math.max(0.07, (z.pct ?? 0) / 100 * 0.6).toFixed(2);
+    html += `<rect x="${cx.toFixed(1)}" y="${boxY}" width="${zw.toFixed(1)}" height="${boxH}" fill="${z.fill}" opacity="${op}"/>`;
+    if (i < zones.length - 1) {
+      const lx = cx + zw;
+      html += `<line x1="${lx.toFixed(1)}" y1="${boxY}" x2="${lx.toFixed(1)}" y2="${boxY+boxH}" stroke="${C.ink}" stroke-width="0.5" stroke-dasharray="3,2"/>`;
     }
-    return out;
+    cx += zw;
   }
-  html += zoneLabels(lx, halfW, adZones);
-  html += zoneLabels(rx, halfW, deuceZones);
+
+  // Zone labels
+  const labelY = boxY + boxH / 2 - 6;
+  cx = bx;
+  for (const z of zones) {
+    const zw   = (z.pct / total) * boxW;
+    const midx = (cx + cx + zw) / 2;
+    html += `<text x="${midx.toFixed(1)}" y="${labelY}" text-anchor="middle" fill="${z.fill}" font-size="8.5" font-family="Helvetica,sans-serif" font-weight="700">${z.label}</text>`;
+    html += `<text x="${midx.toFixed(1)}" y="${labelY+13}" text-anchor="middle" fill="${C.muted}" font-size="7.5" font-family="Helvetica,sans-serif">${z.sub}</text>`;
+    cx += zw;
+  }
 
   // Baseline
-  const baseY = boxY + boxH + 3;
+  const baseY = boxY + boxH + 2;
   html += `<line x1="${bx}" y1="${baseY}" x2="${bx+boxW}" y2="${baseY}" stroke="${C.ink}" stroke-width="1.2"/>`;
+
+  // Court note
+  html += `<text x="${bx + boxW/2}" y="${baseY + 16}" text-anchor="middle" fill="${C.muted}" font-size="5.5" font-family="Helvetica,sans-serif" letter-spacing="0.12em">OVERALL · AD+DEUCE COMBINED</text>`;
 
   svg.innerHTML = html;
 
-  // Compact legend below — overall W/B/T
-  const legend = document.getElementById("direction-legend");
+  // ── Legend: 1st vs 2nd serve breakdown bars
   legend.innerHTML = "";
-  const zones = [
-    { name: "Wide",  pct: sd.wide_pct, color: C.cobalt      },
-    { name: "Body",  pct: sd.body_pct, color: C.terracotta  },
-    { name: "T / Centre", pct: sd.t_pct, color: C.forest    },
+
+  const sections = [
+    { heading: "1st Serve", data: sd.first_serve  },
+    { heading: "2nd Serve", data: sd.second_serve },
   ];
-  for (const z of zones) {
-    const div = document.createElement("div");
-    div.className = "dir-row";
-    div.innerHTML = `
-      <div class="dir-label-row">
-        <span class="dir-name" style="color:${z.color}">${z.name}</span>
-        <span class="dir-pct">${z.pct ?? "—"}%</span>
-      </div>
-      <div class="dir-track">
-        <div class="dir-bar" style="width:${z.pct ?? 0}%;background:${z.color}"></div>
-      </div>`;
-    legend.appendChild(div);
+
+  const dirZones = [
+    { key: "wide_pct",   name: "Wide",   color: C.cobalt     },
+    { key: "body_pct",   name: "Body",   color: C.terracotta },
+    { key: "centre_pct", name: "Centre", color: C.forest     },
+  ];
+
+  for (const sec of sections) {
+    if (!sec.data) continue;
+    const secDiv = document.createElement("div");
+    secDiv.style.cssText = "margin-bottom:14px";
+    secDiv.innerHTML = `<div style="font-family:var(--font-sans);font-size:var(--t-micro);letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);font-weight:700;margin-bottom:6px">${sec.heading}</div>`;
+
+    for (const z of dirZones) {
+      const val = sec.data[z.key] ?? 0;
+      const avg = ta?.[z.key.replace("centre", "centre")] ?? null;
+      const rowDiv = document.createElement("div");
+      rowDiv.className = "dir-row";
+      rowDiv.innerHTML = `
+        <div class="dir-label-row">
+          <span class="dir-name" style="color:${z.color}">${z.name}</span>
+          <span class="dir-pct">${val ?? "—"}%</span>
+        </div>
+        <div class="dir-track">
+          <div class="dir-bar" style="width:${val ?? 0}%;background:${z.color}"></div>
+        </div>`;
+      secDiv.appendChild(rowDiv);
+    }
+    legend.appendChild(secDiv);
   }
+
+  // Deuce/Ad not available note
+  const note = document.createElement("div");
+  note.style.cssText = "font-family:var(--font-serif);font-style:italic;font-size:12px;color:var(--ink-muted);margin-top:6px";
+  note.textContent = "Deuce/Ad split: Not Available — ServingTo not populated in this dataset.";
+  legend.appendChild(note);
 }
 
-// ── Rally Length (shot count) ─────────────────────────────────────
+// ── Rally Length ─────────────────────────────────────────────────
 function renderRally(p, t) {
   const rs = p.rally_shots;
   const container = document.getElementById("rally-viz");
 
-  // Rally column not populated for this year — show clear N/A
   if (!rs?.available) {
     container.innerHTML = `
       <div class="rally-na">
         <span class="rally-na-label">Not Available (${p.year})</span>
-        <p class="rally-na-note">The Rally (shot count) column is not populated in the ${p.year} IBM SlamTracker dataset.</p>
+        <p class="rally-na-note">The RallyCount column is not populated for ${p.year}.</p>
       </div>`;
     return;
   }
@@ -455,9 +440,9 @@ function renderRally(p, t) {
 
   function ballSVG(filled) {
     return `<svg viewBox="0 0 14 14" class="rally-ball ${filled ? "rally-ball--on" : "rally-ball--off"}">
-      <circle cx="7" cy="7" r="6" />
-      <path d="M2.5 4.5 Q7 6 11.5 4.5" fill="none" stroke-width="1" />
-      <path d="M2.5 9.5 Q7 8 11.5 9.5" fill="none" stroke-width="1" />
+      <circle cx="7" cy="7" r="6"/>
+      <path d="M2.5 4.5 Q7 6 11.5 4.5" fill="none" stroke-width="1"/>
+      <path d="M2.5 9.5 Q7 8 11.5 9.5" fill="none" stroke-width="1"/>
     </svg>`;
   }
 
@@ -468,12 +453,9 @@ function renderRally(p, t) {
     const shown    = Math.min(Math.max(count, avgCount ?? 0, MAX_BALLS), MAX_BALLS);
     let balls = "";
     for (let i = 1; i <= shown; i++) balls += ballSVG(i <= count);
-
     const avgLine = avgCount != null
-      ? `<div class="rally-avg-line" style="left:${Math.min(avgCount, shown) / shown * 100}%"
-           title="Tournament avg: ${avg} shots"></div>`
+      ? `<div class="rally-avg-line" style="left:${Math.min(avgCount, shown) / shown * 100}%" title="Tournament avg: ${avg} shots"></div>`
       : "";
-
     return `
       <div class="rally-row">
         <span class="rally-label">${label}</span>
@@ -494,9 +476,7 @@ function renderRally(p, t) {
 // ── Points Won ────────────────────────────────────────────────────
 function renderPoints(p) {
   const pts = p.points;
-  const container = document.getElementById("points-viz");
   const winPct = pts.win_pct ?? 0;
-
   let html = `
     <div class="pts-total-row">
       <span class="pts-big">${pts.total_won}</span>
@@ -510,19 +490,16 @@ function renderPoints(p) {
     const mPct = m.points_played > 0
       ? (m.points_won / m.points_played * 100).toFixed(0)
       : "—";
-    const bbHtml = m.bad_break_match
-      ? `<span class="bb-flag">⚡ Bad Break</span>`
-      : "";
+    const bb = m.bad_break_match ? `<span class="bb-flag">⚡ Bad Break</span>` : "";
     html += `
       <div class="pts-match-row">
         <span class="pts-opp">vs ${m.opponent}</span>
         <span class="pts-score">${m.points_won}</span>
         <span class="pts-won-frac">/ ${m.points_played} (${mPct}%)</span>
-        <span class="td-bb">${bbHtml}</span>
+        <span>${bb}</span>
       </div>`;
   }
-
-  container.innerHTML = html;
+  document.getElementById("points-viz").innerHTML = html;
 }
 
 // ── Resilience ────────────────────────────────────────────────────
@@ -530,9 +507,7 @@ function renderResilience(p, t) {
   const pr  = p.pressure;
   const avg = t.pressure.bp_saved_pct ?? 0;
   const val = pr.bp_saved_pct ?? 0;
-
-  const container = document.getElementById("resilience-viz");
-  container.innerHTML = `
+  document.getElementById("resilience-viz").innerHTML = `
     <div class="res-big-row">
       <div class="res-stat">
         <div class="res-val main">${val}%</div>
@@ -558,21 +533,14 @@ function renderResilience(p, t) {
 
 // ── Enforcer ──────────────────────────────────────────────────────
 function renderEnforcer(p, t) {
-  const pr  = p.pressure;
-  const avg = t.pressure.bp_created_per_opp_sg ?? 0;
-  const val = pr.bp_created_per_opp_sg ?? 0;
-  const convAvg = t.pressure.bp_conv_pct ?? 0;
-  const convVal = pr.bp_conv_pct ?? 0;
+  const pr       = p.pressure;
+  const avg      = t.pressure.bp_created_per_opp_sg ?? 0;
+  const val      = pr.bp_created_per_opp_sg ?? 0;
+  const convAvg  = t.pressure.bp_conv_pct ?? 0;
+  const convVal  = pr.bp_conv_pct ?? 0;
+  const MAX      = Math.max(val, avg, 0.5) * 1.4;
 
-  // Scale bar to max of (val, avg) * 1.3 for headroom
-  const MAX = Math.max(val, avg, 0.5) * 1.4;
-  const playerBarPct = (val / MAX * 100).toFixed(1);
-  const avgBarPct    = (avg / MAX * 100).toFixed(1);
-  const convPlayerPct = convVal;
-  const convAvgPct    = convAvg;
-
-  const container = document.getElementById("enforcer-viz");
-  container.innerHTML = `
+  document.getElementById("enforcer-viz").innerHTML = `
     <div class="enf-big">${val}</div>
     <div class="enf-sub">BP created per opp. service game</div>
     <div class="enf-bar-section">
@@ -582,10 +550,10 @@ function renderEnforcer(p, t) {
           <span>${val} vs avg ${avg}</span>
         </div>
         <div class="enf-track">
-          <div class="enf-fill enf-player-fill" style="width:${playerBarPct}%"></div>
+          <div class="enf-fill enf-player-fill" style="width:${(val/MAX*100).toFixed(1)}%"></div>
         </div>
         <div class="enf-track" style="margin-top:3px">
-          <div class="enf-fill enf-avg-fill" style="width:${avgBarPct}%"></div>
+          <div class="enf-fill enf-avg-fill" style="width:${(avg/MAX*100).toFixed(1)}%"></div>
         </div>
       </div>
       <div class="enf-bar-row" style="margin-top:12px">
@@ -611,15 +579,10 @@ function renderAggression(p, t) {
   const ag   = p.aggression;
   const avg  = t.aggression.aggression_index ?? 0;
   const val  = ag.aggression_index ?? 0;
+  const net  = ag.winners - ag.unf_err;
+  const ratio = ag.unf_err > 0 ? (ag.winners / ag.unf_err).toFixed(2) : "∞";
 
-  // Net: winners MINUS errors — positive means more winners than mistakes
-  const net     = ag.winners - ag.unf_err;
-  const netSign = net >= 0 ? "+" : "";
-  // W:UE ratio — how many winners per error
-  const ratio   = ag.unf_err > 0 ? (ag.winners / ag.unf_err).toFixed(2) : "∞";
-
-  const container = document.getElementById("aggression-viz");
-  container.innerHTML = `
+  document.getElementById("aggression-viz").innerHTML = `
     <div class="agg-meter-wrap">
       <div class="agg-score">${val}</div>
       <div class="agg-label">Winners ÷ (W + UE) × 100 · tournament avg: ${avg}</div>
@@ -639,7 +602,7 @@ function renderAggression(p, t) {
         <span class="agg-sub">Unf. Errors</span>
       </div>
       <div class="agg-item">
-        <span class="agg-num" style="color:${net >= 0 ? 'var(--cobalt)' : 'var(--terracotta)'}">${netSign}${net}</span>
+        <span class="agg-num" style="color:${net >= 0 ? "var(--cobalt)" : "var(--terracotta)"}">${net >= 0 ? "+" : ""}${net}</span>
         <span class="agg-sub">Net (W − UE)</span>
       </div>
       <div class="agg-item">
@@ -653,23 +616,12 @@ function renderAggression(p, t) {
 function renderCleanGames(p, t) {
   const cg  = p.clean_games;
   const avg = t.clean_games;
-
   const container = document.getElementById("clean-viz");
   container.innerHTML = "";
 
   const rows = [
-    {
-      label: "Service games won cleanly",
-      val: cg.srv_clean_pct,
-      avg: avg.srv_clean_pct,
-      note: `${cg.srv_clean} clean / ${cg.srv_games} service games won`,
-    },
-    {
-      label: "Break games won cleanly",
-      val: cg.ret_clean_pct,
-      avg: avg.ret_clean_pct,
-      note: `${cg.ret_clean} clean / ${cg.ret_games_won} break games won`,
-    },
+    { label:"Service games won cleanly", val:cg.srv_clean_pct, avg:avg.srv_clean_pct, note:`${cg.srv_clean} clean / ${cg.srv_games} service games won` },
+    { label:"Break games won cleanly",   val:cg.ret_clean_pct, avg:avg.ret_clean_pct, note:`${cg.ret_clean} clean / ${cg.ret_games_won} break games won`  },
   ];
 
   for (const r of rows) {
@@ -685,7 +637,7 @@ function renderCleanGames(p, t) {
         <div class="clean-fill" style="width:${r.val}%"></div>
         ${r.avg != null ? `<div class="clean-avg-tick" style="left:${r.avg}%"></div>` : ""}
       </div>
-      <div class="clean-games-note">${r.note}${r.avg ? ` · avg ${r.avg}%` : ""}</div>`;
+      <div class="clean-games-note">${r.note}${r.avg != null ? ` · avg ${r.avg}%` : ""}</div>`;
     container.appendChild(div);
   }
 }
@@ -697,8 +649,7 @@ function renderStreaks(p, t) {
   const val = st.streaks_per_match ?? 0;
   const MAX = Math.max(val, avg, 10) * 1.3;
 
-  const container = document.getElementById("streaks-viz");
-  container.innerHTML = `
+  document.getElementById("streaks-viz").innerHTML = `
     <div class="streak-big-row">
       <div class="streak-num">${val}</div>
       <div class="streak-unit">streaks/match</div>
@@ -714,39 +665,40 @@ function renderStreaks(p, t) {
       </div>
     </div>
     <div style="font-size:11px;color:var(--ink-muted);margin-top:10px">
-      Total streaks across tournament: ${st.total_streaks}
-      · ${p.matches_played} matches played
+      Total streaks across tournament: ${st.total_streaks} · ${p.matches_played} matches played
     </div>`;
 }
 
 // ── Match Log ─────────────────────────────────────────────────────
 function renderMatchLog(p) {
-  const container = document.getElementById("match-log");
   let rows = "";
   for (const m of p.match_summaries) {
     const pct = m.points_played > 0
       ? (m.points_won / m.points_played * 100).toFixed(0) + "%"
       : "—";
-    const bb  = m.bad_break_match ? `<span class="bb-flag">⚡ Bad Break</span>` : "";
+    const bb = m.bad_break_match ? `<span class="bb-flag">⚡ Bad Break</span>` : "";
     rows += `<tr>
       <td class="td-opp">vs ${m.opponent}</td>
       <td class="td-pts">${m.points_won} / ${m.points_played}</td>
       <td class="td-pct">${pct}</td>
-      <td class="td-bb">${bb}</td>
+      <td>${bb}</td>
     </tr>`;
   }
-  container.innerHTML = `
+  document.getElementById("match-log").innerHTML = `
     <table class="match-log-table">
-      <thead>
-        <tr>
-          <th>Opponent</th>
-          <th>Points Won</th>
-          <th>Win %</th>
-          <th>Flag</th>
-        </tr>
-      </thead>
+      <thead><tr>
+        <th>Opponent</th><th>Points Won</th><th>Win %</th><th>Flag</th>
+      </tr></thead>
       <tbody>${rows}</tbody>
     </table>`;
+}
+
+// ── Helpers ───────────────────────────────────────────────────────
+function naCard(metric, year) {
+  return `<div class="rally-na">
+    <span class="rally-na-label">Not Available (${year})</span>
+    <p class="rally-na-note">${metric} data is not populated in the ${year} dataset.</p>
+  </div>`;
 }
 
 // ── Start ─────────────────────────────────────────────────────────

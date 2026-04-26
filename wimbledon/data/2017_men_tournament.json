@@ -1,0 +1,69 @@
+{
+  "year": 2017,
+  "n_players": 128,
+  "serve": {
+    "first_in_pct": 62.0,
+    "first_won_pct": 70.7,
+    "second_won_pct": 56.6,
+    "ace_pct": 7.8,
+    "df_pct": 4.0
+  },
+  "serve_speed": {
+    "first_avg_kmh": 87.9,
+    "second_avg_kmh": 74.1
+  },
+  "serve_direction": {
+    "wide_pct": 44.8,
+    "body_pct": 25.5,
+    "centre_pct": 29.7
+  },
+  "rally_shots": {
+    "srv_all_avg": 2.6,
+    "srv_1st_avg": 2.5,
+    "srv_2nd_avg": 3.1,
+    "ret_all_avg": 2.5,
+    "ret_1st_avg": 2.4,
+    "ret_2nd_avg": 3.0
+  },
+  "pressure": {
+    "bp_created_per_opp_sg": 0.4,
+    "bp_saved_pct": 56.6,
+    "bp_conv_pct": 35.2
+  },
+  "aggression": {
+    "aggression_index": 54.9
+  },
+  "clean_games": {
+    "srv_clean_pct": 60.2,
+    "ret_clean_pct": 73.8
+  },
+  "streaks": {
+    "streaks_per_match": 25.9
+  },
+  "bad_breaks": [
+    {
+      "winner": "Sebastian Ofner",
+      "loser": "Jack Sock",
+      "winner_pts": 134,
+      "loser_pts": 137,
+      "bad_break": true,
+      "margin": -3
+    },
+    {
+      "winner": "Sam Querrey",
+      "loser": "Jo Wilfried Tsonga",
+      "winner_pts": 146,
+      "loser_pts": 152,
+      "bad_break": true,
+      "margin": -6
+    },
+    {
+      "winner": "Gilles Muller",
+      "loser": "Rafael Nadal",
+      "winner_pts": 191,
+      "loser_pts": 198,
+      "bad_break": true,
+      "margin": -7
+    }
+  ]
+}

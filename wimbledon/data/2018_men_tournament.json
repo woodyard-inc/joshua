@@ -1,0 +1,93 @@
+{
+  "year": 2018,
+  "n_players": 128,
+  "serve": {
+    "first_in_pct": 61.4,
+    "first_won_pct": 71.6,
+    "second_won_pct": 57.0,
+    "ace_pct": 8.4,
+    "df_pct": 4.3
+  },
+  "serve_speed": {
+    "first_avg_kmh": 86.0,
+    "second_avg_kmh": 71.6
+  },
+  "serve_direction": {
+    "wide_pct": 42.5,
+    "body_pct": 29.0,
+    "centre_pct": 28.5
+  },
+  "rally_shots": {
+    "srv_all_avg": 2.6,
+    "srv_1st_avg": 2.5,
+    "srv_2nd_avg": 3.0,
+    "ret_all_avg": 2.4,
+    "ret_1st_avg": 2.3,
+    "ret_2nd_avg": 2.9
+  },
+  "pressure": {
+    "bp_created_per_opp_sg": 0.4,
+    "bp_saved_pct": 61.2,
+    "bp_conv_pct": 34.8
+  },
+  "aggression": {
+    "aggression_index": 53.6
+  },
+  "clean_games": {
+    "srv_clean_pct": 59.9,
+    "ret_clean_pct": 76.2
+  },
+  "streaks": {
+    "streaks_per_match": 27.7
+  },
+  "bad_breaks": [
+    {
+      "winner": "Frances Tiafoe",
+      "loser": "Fernando Verdasco",
+      "winner_pts": 140,
+      "loser_pts": 144,
+      "bad_break": true,
+      "margin": -4
+    },
+    {
+      "winner": "Ernests Gulbis",
+      "loser": "Jay Clarke",
+      "winner_pts": 139,
+      "loser_pts": 143,
+      "bad_break": true,
+      "margin": -4
+    },
+    {
+      "winner": "Guido Pella",
+      "loser": "Marin Cilic",
+      "winner_pts": 140,
+      "loser_pts": 150,
+      "bad_break": true,
+      "margin": -10
+    },
+    {
+      "winner": "Mackenzie McDonald",
+      "loser": "Nicolas Jarry",
+      "winner_pts": 182,
+      "loser_pts": 191,
+      "bad_break": true,
+      "margin": -9
+    },
+    {
+      "winner": "Benoit Paire",
+      "loser": "Denis Shapovalov",
+      "winner_pts": 115,
+      "loser_pts": 116,
+      "bad_break": true,
+      "margin": -1
+    },
+    {
+      "winner": "Kevin Anderson",
+      "loser": "Roger Federer",
+      "winner_pts": 190,
+      "loser_pts": 195,
+      "bad_break": true,
+      "margin": -5
+    }
+  ]
+}

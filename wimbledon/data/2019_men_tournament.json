@@ -1,0 +1,109 @@
+{
+  "year": 2019,
+  "n_players": 128,
+  "serve": {
+    "first_in_pct": 62.7,
+    "first_won_pct": 70.9,
+    "second_won_pct": 55.4,
+    "ace_pct": 7.8,
+    "df_pct": 3.7
+  },
+  "serve_speed": {
+    "first_avg_kmh": 86.4,
+    "second_avg_kmh": 72.0
+  },
+  "serve_direction": {
+    "wide_pct": 43.7,
+    "body_pct": 27.9,
+    "centre_pct": 28.4
+  },
+  "rally_shots": {
+    "srv_all_avg": 2.8,
+    "srv_1st_avg": 2.7,
+    "srv_2nd_avg": 3.4,
+    "ret_all_avg": 2.7,
+    "ret_1st_avg": 2.6,
+    "ret_2nd_avg": 3.3
+  },
+  "pressure": {
+    "bp_created_per_opp_sg": 0.4,
+    "bp_saved_pct": 60.4,
+    "bp_conv_pct": 34.9
+  },
+  "aggression": {
+    "aggression_index": 52.6
+  },
+  "clean_games": {
+    "srv_clean_pct": 59.7,
+    "ret_clean_pct": 71.7
+  },
+  "streaks": {
+    "streaks_per_match": 27.0
+  },
+  "bad_breaks": [
+    {
+      "winner": "Corentin Moutet",
+      "loser": "Grigor Dimitrov",
+      "winner_pts": 146,
+      "loser_pts": 148,
+      "bad_break": true,
+      "margin": -2
+    },
+    {
+      "winner": "Nick Kyrgios",
+      "loser": "Jordan Thompson",
+      "winner_pts": 151,
+      "loser_pts": 160,
+      "bad_break": true,
+      "margin": -9
+    },
+    {
+      "winner": "Reilly Opelka",
+      "loser": "Stan Wawrinka",
+      "winner_pts": 151,
+      "loser_pts": 156,
+      "bad_break": true,
+      "margin": -5
+    },
+    {
+      "winner": "Steve Johnson",
+      "loser": "Alex De Minaur",
+      "winner_pts": 149,
+      "loser_pts": 150,
+      "bad_break": true,
+      "margin": -1
+    },
+    {
+      "winner": "Joao Sousa",
+      "loser": "Daniel Evans",
+      "winner_pts": 166,
+      "loser_pts": 167,
+      "bad_break": true,
+      "margin": -1
+    },
+    {
+      "winner": "Matteo Berrettini",
+      "loser": "Diego Schwartzman",
+      "winner_pts": 186,
+      "loser_pts": 188,
+      "bad_break": true,
+      "margin": -2
+    },
+    {
+      "winner": "Guido Pella",
+      "loser": "Milos Raonic",
+      "winner_pts": 156,
+      "loser_pts": 165,
+      "bad_break": true,
+      "margin": -9
+    },
+    {
+      "winner": "Novak Djokovic",
+      "loser": "Roger Federer",
+      "winner_pts": 204,
+      "loser_pts": 218,
+      "bad_break": true,
+      "margin": -14
+    }
+  ]
+}

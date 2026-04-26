@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Wins on Grass — Wimbledon Player Intelligence · Joshua Woodyard</title>
-  <meta name="description" content="Point-by-point player intelligence from the 2012 Wimbledon men's draw. Built on IBM SlamTracker data.">
+  <meta name="description" content="Point-by-point player intelligence from the Wimbledon men's draw. Built on Jeff Sackmann's tennis_slam_pointbypoint dataset.">
   <link rel="stylesheet" href="../foundations.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -38,16 +38,14 @@
   <!-- ── APP HEADER ───────────────────────────────────────────────── -->
   <header class="site-header">
     <div class="header-inner">
-      <span class="brand-left">Wimbledon · Point-by-point</span>
-      <div class="brand-centre">
-        <h1>What Wins on Grass</h1>
-        <p class="brand-sub">Player Intelligence</p>
-      </div>
+      <span class="brand-left">What Wins on Grass</span>
       <div class="brand-right header-controls">
         <div class="control-group">
           <label>Year</label>
           <div id="year-pills" class="pill-group">
-            <button class="pill active" data-year="2012">2012</button>
+            <button class="pill active" data-year="2017">2017</button>
+            <button class="pill" data-year="2018">2018</button>
+            <button class="pill" data-year="2019">2019</button>
           </div>
         </div>
         <div class="control-group">
@@ -66,7 +64,7 @@
       <img src="trophy.webp" alt="Wimbledon Trophy" class="trophy-img">
     </div>
     <div class="empty-inner">
-      <p class="empty-eyebrow">2012 Wimbledon · Men's Draw</p>
+      <p class="empty-eyebrow">Wimbledon · Men's Draw</p>
       <h2>What Wins on Grass</h2>
       <p class="empty-sub">Point-by-point player intelligence</p>
       <div class="empty-select-wrap">
@@ -115,7 +113,7 @@
       <!-- 3. Serve Direction -->
       <div class="card">
         <div class="card-header"><h3>Serve Direction</h3></div>
-        <p class="card-note">Decoded from IBM History field · deuce &amp; ad court split estimated from game score parity</p>
+        <p class="card-note">Decoded from ServeWidth column (Wide / Body / Centre) · deuce &amp; ad split not available in this dataset</p>
         <div class="direction-wrap">
           <svg id="court-svg" class="court-svg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg"></svg>
           <div class="direction-legend" id="direction-legend"></div>
@@ -125,7 +123,7 @@
       <!-- 4. Rally Length -->
       <div class="card">
         <div class="card-header"><h3>Rally Length</h3></div>
-        <p class="card-note">Average shots per point from IBM SlamTracker Rally column · marker = tournament avg</p>
+        <p class="card-note">Average shots per point from RallyCount column · marker = tournament avg</p>
         <div class="rally-viz" id="rally-viz"></div>
       </div>
 
@@ -190,7 +188,7 @@
   <footer class="pf-colophon">
     <span><a href="../">Joshua Woodyard</a> · London</span>
     <span class="pf-col-c">What Wins on Grass · 2026</span>
-    <span class="pf-col-r">IBM SlamTracker · Men's Draw · Wimbledon 2012</span>
+    <span class="pf-col-r">Wimbledon · Point-by-point · Jeff Sackmann</span>
   </footer>
 
   <script src="app.js"></script>

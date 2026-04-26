@@ -9,8 +9,8 @@
     "df_pct": 4.0
   },
   "serve_speed": {
-    "first_avg_kmh": 87.9,
-    "second_avg_kmh": 74.1
+    "first_avg_kmh": 185.0,
+    "second_avg_kmh": 155.1
   },
   "serve_direction": {
     "wide_pct": 44.8,

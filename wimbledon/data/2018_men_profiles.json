@@ -19,7 +19,9 @@
       "second_avg_kmh": 159.3,
       "second_sd_kmh": 12.8,
       "first_avg_mph": 115.1,
-      "second_avg_mph": 99.0
+      "second_avg_mph": 99.0,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 5
     },
     "serve_direction": {
       "available": true,
@@ -162,7 +164,9 @@
       "second_avg_kmh": 149.9,
       "second_sd_kmh": 7.2,
       "first_avg_mph": 113.5,
-      "second_avg_mph": 93.1
+      "second_avg_mph": 93.1,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -261,12 +265,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 70.4,
-      "first_sd_kmh": 90.0,
-      "second_avg_kmh": 71.4,
-      "second_sd_kmh": 76.8,
-      "first_avg_mph": 43.7,
-      "second_avg_mph": 44.4
+      "first_avg_kmh": 184.8,
+      "first_sd_kmh": 10.5,
+      "second_avg_kmh": 153.5,
+      "second_sd_kmh": 8.2,
+      "first_avg_mph": 114.8,
+      "second_avg_mph": 95.4,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -372,13 +378,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -464,13 +472,15 @@
       "dfs_total": 15
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -564,13 +574,15 @@
       "dfs_total": 8
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -657,12 +669,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 43.7,
-      "first_sd_kmh": 83.9,
-      "second_avg_kmh": 36.7,
-      "second_sd_kmh": 68.8,
-      "first_avg_mph": 27.2,
-      "second_avg_mph": 22.8
+      "first_avg_kmh": 204.3,
+      "first_sd_kmh": 10.6,
+      "second_avg_kmh": 164.3,
+      "second_sd_kmh": 14.1,
+      "first_avg_mph": 126.9,
+      "second_avg_mph": 102.1,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -776,13 +790,15 @@
       "dfs_total": 9
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -869,12 +885,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 101.3,
-      "first_sd_kmh": 88.2,
-      "second_avg_kmh": 60.7,
-      "second_sd_kmh": 71.2,
-      "first_avg_mph": 62.9,
-      "second_avg_mph": 37.7
+      "first_avg_kmh": 176.9,
+      "first_sd_kmh": 14.3,
+      "second_avg_kmh": 143.5,
+      "second_sd_kmh": 9.7,
+      "first_avg_mph": 109.9,
+      "second_avg_mph": 89.2,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -996,13 +1014,15 @@
       "dfs_total": 4
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -1088,13 +1108,15 @@
       "dfs_total": 6
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -1188,13 +1210,15 @@
       "dfs_total": 3
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -1280,13 +1304,15 @@
       "dfs_total": 10
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -1380,13 +1406,15 @@
       "dfs_total": 4
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -1473,12 +1501,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 124.1,
-      "first_sd_kmh": 86.4,
-      "second_avg_kmh": 107.4,
-      "second_sd_kmh": 62.0,
-      "first_avg_mph": 77.1,
-      "second_avg_mph": 66.7
+      "first_avg_kmh": 182.4,
+      "first_sd_kmh": 18.0,
+      "second_avg_kmh": 142.2,
+      "second_sd_kmh": 12.1,
+      "first_avg_mph": 113.3,
+      "second_avg_mph": 88.4,
+      "omitted_zero_count": 7,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -1595,10 +1625,12 @@
       "available": true,
       "first_avg_kmh": 185.3,
       "first_sd_kmh": 12.6,
-      "second_avg_kmh": 148.8,
-      "second_sd_kmh": 31.3,
+      "second_avg_kmh": 154.8,
+      "second_sd_kmh": 10.0,
       "first_avg_mph": 115.1,
-      "second_avg_mph": 92.5
+      "second_avg_mph": 96.2,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -1697,12 +1729,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 196.8,
-      "first_sd_kmh": 22.0,
+      "first_avg_kmh": 198.0,
+      "first_sd_kmh": 16.0,
       "second_avg_kmh": 155.9,
       "second_sd_kmh": 10.9,
-      "first_avg_mph": 122.3,
-      "second_avg_mph": 96.9
+      "first_avg_mph": 123.0,
+      "second_avg_mph": 96.9,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 3
     },
     "serve_direction": {
       "available": true,
@@ -1822,7 +1856,9 @@
       "second_avg_kmh": 127.4,
       "second_sd_kmh": 7.6,
       "first_avg_mph": 108.0,
-      "second_avg_mph": 79.2
+      "second_avg_mph": 79.2,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -1921,12 +1957,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 73.3,
-      "first_sd_kmh": 91.9,
-      "second_avg_kmh": 55.5,
-      "second_sd_kmh": 75.1,
-      "first_avg_mph": 45.5,
-      "second_avg_mph": 34.5
+      "first_avg_kmh": 188.1,
+      "first_sd_kmh": 8.3,
+      "second_avg_kmh": 156.1,
+      "second_sd_kmh": 12.9,
+      "first_avg_mph": 116.9,
+      "second_avg_mph": 97.0,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -2032,13 +2070,15 @@
       "dfs_total": 7
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -2124,13 +2164,15 @@
       "dfs_total": 10
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -2217,12 +2259,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 84.4,
-      "first_sd_kmh": 90.4,
-      "second_avg_kmh": 80.7,
-      "second_sd_kmh": 72.9,
-      "first_avg_mph": 52.4,
-      "second_avg_mph": 50.1
+      "first_avg_kmh": 180.8,
+      "first_sd_kmh": 9.5,
+      "second_avg_kmh": 145.9,
+      "second_sd_kmh": 10.0,
+      "first_avg_mph": 112.3,
+      "second_avg_mph": 90.7,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -2329,12 +2373,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 182.9,
-      "first_sd_kmh": 21.3,
-      "second_avg_kmh": 157.5,
-      "second_sd_kmh": 20.3,
-      "first_avg_mph": 113.6,
-      "second_avg_mph": 97.9
+      "first_avg_kmh": 184.5,
+      "first_sd_kmh": 12.8,
+      "second_avg_kmh": 159.6,
+      "second_sd_kmh": 9.5,
+      "first_avg_mph": 114.6,
+      "second_avg_mph": 99.2,
+      "omitted_zero_count": 5,
+      "matches_with_speed": 4
     },
     "serve_direction": {
       "available": true,
@@ -2462,7 +2508,9 @@
       "second_avg_kmh": 150.7,
       "second_sd_kmh": 8.4,
       "first_avg_mph": 113.2,
-      "second_avg_mph": 93.6
+      "second_avg_mph": 93.6,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -2561,12 +2609,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 59.8,
-      "first_sd_kmh": 86.7,
-      "second_avg_kmh": 53.5,
-      "second_sd_kmh": 75.8,
-      "first_avg_mph": 37.2,
-      "second_avg_mph": 33.2
+      "first_avg_kmh": 184.5,
+      "first_sd_kmh": 12.7,
+      "second_avg_kmh": 160.6,
+      "second_sd_kmh": 7.2,
+      "first_avg_mph": 114.6,
+      "second_avg_mph": 99.8,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -2680,13 +2730,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -2772,13 +2824,15 @@
       "dfs_total": 17
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -2872,13 +2926,15 @@
       "dfs_total": 10
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -2964,13 +3020,15 @@
       "dfs_total": 1
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -3057,12 +3115,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 133.7,
-      "first_sd_kmh": 81.0,
-      "second_avg_kmh": 98.5,
-      "second_sd_kmh": 71.5,
-      "first_avg_mph": 83.1,
-      "second_avg_mph": 61.2
+      "first_avg_kmh": 182.4,
+      "first_sd_kmh": 8.8,
+      "second_avg_kmh": 150.1,
+      "second_sd_kmh": 7.2,
+      "first_avg_mph": 113.3,
+      "second_avg_mph": 93.3,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -3174,7 +3234,9 @@
       "second_avg_kmh": 162.7,
       "second_sd_kmh": 8.5,
       "first_avg_mph": 114.5,
-      "second_avg_mph": 101.1
+      "second_avg_mph": 101.1,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -3273,12 +3335,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 202.4,
-      "first_sd_kmh": 15.5,
-      "second_avg_kmh": 176.8,
-      "second_sd_kmh": 13.7,
-      "first_avg_mph": 125.8,
-      "second_avg_mph": 109.9
+      "first_avg_kmh": 203.0,
+      "first_sd_kmh": 11.0,
+      "second_avg_kmh": 177.4,
+      "second_sd_kmh": 9.2,
+      "first_avg_mph": 126.1,
+      "second_avg_mph": 110.2,
+      "omitted_zero_count": 3,
+      "matches_with_speed": 7
     },
     "serve_direction": {
       "available": true,
@@ -3437,7 +3501,9 @@
       "second_avg_kmh": 160.7,
       "second_sd_kmh": 9.1,
       "first_avg_mph": 117.5,
-      "second_avg_mph": 99.9
+      "second_avg_mph": 99.9,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -3556,7 +3622,9 @@
       "second_avg_kmh": 132.7,
       "second_sd_kmh": 5.1,
       "first_avg_mph": 100.9,
-      "second_avg_mph": 82.5
+      "second_avg_mph": 82.5,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -3654,13 +3722,15 @@
       "dfs_total": 6
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -3747,12 +3817,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 110.1,
-      "first_sd_kmh": 87.8,
-      "second_avg_kmh": 98.6,
-      "second_sd_kmh": 70.8,
-      "first_avg_mph": 68.4,
-      "second_avg_mph": 61.3
+      "first_avg_kmh": 178.7,
+      "first_sd_kmh": 16.3,
+      "second_avg_kmh": 149.1,
+      "second_sd_kmh": 7.3,
+      "first_avg_mph": 111.0,
+      "second_avg_mph": 92.6,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -3873,13 +3945,15 @@
       "dfs_total": 7
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -3966,12 +4040,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 71.7,
-      "first_sd_kmh": 87.3,
-      "second_avg_kmh": 55.9,
-      "second_sd_kmh": 73.5,
-      "first_avg_mph": 44.6,
-      "second_avg_mph": 34.7
+      "first_avg_kmh": 177.0,
+      "first_sd_kmh": 12.3,
+      "second_avg_kmh": 152.0,
+      "second_sd_kmh": 9.1,
+      "first_avg_mph": 110.0,
+      "second_avg_mph": 94.4,
+      "omitted_zero_count": 3,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -4100,13 +4176,15 @@
       "dfs_total": 10
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -4207,13 +4285,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -4302,10 +4382,12 @@
       "available": true,
       "first_avg_kmh": 190.2,
       "first_sd_kmh": 15.5,
-      "second_avg_kmh": 154.4,
-      "second_sd_kmh": 32.1,
+      "second_avg_kmh": 160.2,
+      "second_sd_kmh": 11.5,
       "first_avg_mph": 118.2,
-      "second_avg_mph": 95.9
+      "second_avg_mph": 99.5,
+      "omitted_zero_count": 3,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -4414,10 +4496,12 @@
       "available": true,
       "first_avg_kmh": 186.6,
       "first_sd_kmh": 9.0,
-      "second_avg_kmh": 151.5,
-      "second_sd_kmh": 24.1,
+      "second_avg_kmh": 155.0,
+      "second_sd_kmh": 7.8,
       "first_avg_mph": 115.9,
-      "second_avg_mph": 94.1
+      "second_avg_mph": 96.3,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -4515,13 +4599,15 @@
       "dfs_total": 1
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -4608,12 +4694,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 140.1,
-      "first_sd_kmh": 77.9,
-      "second_avg_kmh": 117.8,
-      "second_sd_kmh": 73.5,
-      "first_avg_mph": 87.1,
-      "second_avg_mph": 73.2
+      "first_avg_kmh": 183.2,
+      "first_sd_kmh": 6.1,
+      "second_avg_kmh": 163.2,
+      "second_sd_kmh": 8.6,
+      "first_avg_mph": 113.8,
+      "second_avg_mph": 101.4,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -4728,12 +4816,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 105.0,
-      "first_sd_kmh": 91.5,
-      "second_avg_kmh": 70.2,
-      "second_sd_kmh": 75.7,
-      "first_avg_mph": 65.2,
-      "second_avg_mph": 43.6
+      "first_avg_kmh": 184.4,
+      "first_sd_kmh": 7.8,
+      "second_avg_kmh": 151.5,
+      "second_sd_kmh": 7.5,
+      "first_avg_mph": 114.6,
+      "second_avg_mph": 94.1,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -4839,13 +4929,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -4937,7 +5029,9 @@
       "second_avg_kmh": 143.8,
       "second_sd_kmh": 7.6,
       "first_avg_mph": 106.9,
-      "second_avg_mph": 89.4
+      "second_avg_mph": 89.4,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -5038,10 +5132,12 @@
       "available": true,
       "first_avg_kmh": 205.6,
       "first_sd_kmh": 12.8,
-      "second_avg_kmh": 177.1,
-      "second_sd_kmh": 22.5,
+      "second_avg_kmh": 178.3,
+      "second_sd_kmh": 17.2,
       "first_avg_mph": 127.8,
-      "second_avg_mph": 110.0
+      "second_avg_mph": 110.8,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 5
     },
     "serve_direction": {
       "available": true,
@@ -5172,12 +5268,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 200.9,
-      "first_sd_kmh": 17.9,
-      "second_avg_kmh": 180.4,
-      "second_sd_kmh": 28.9,
-      "first_avg_mph": 124.8,
-      "second_avg_mph": 112.1
+      "first_avg_kmh": 201.9,
+      "first_sd_kmh": 11.3,
+      "second_avg_kmh": 184.4,
+      "second_sd_kmh": 10.2,
+      "first_avg_mph": 125.5,
+      "second_avg_mph": 114.6,
+      "omitted_zero_count": 7,
+      "matches_with_speed": 6
     },
     "serve_direction": {
       "available": true,
@@ -5321,7 +5419,9 @@
       "second_avg_kmh": 138.3,
       "second_sd_kmh": 8.4,
       "first_avg_mph": 102.6,
-      "second_avg_mph": 85.9
+      "second_avg_mph": 85.9,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -5419,13 +5519,15 @@
       "dfs_total": 7
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -5512,12 +5614,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 85.1,
-      "first_sd_kmh": 88.7,
-      "second_avg_kmh": 85.4,
-      "second_sd_kmh": 80.3,
-      "first_avg_mph": 52.9,
-      "second_avg_mph": 53.1
+      "first_avg_kmh": 177.0,
+      "first_sd_kmh": 10.6,
+      "second_avg_kmh": 160.8,
+      "second_sd_kmh": 4.9,
+      "first_avg_mph": 110.0,
+      "second_avg_mph": 99.9,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -5623,13 +5727,15 @@
       "dfs_total": 13
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -5723,13 +5829,15 @@
       "dfs_total": 3
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -5816,12 +5924,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 38.4,
-      "first_sd_kmh": 72.2,
-      "second_avg_kmh": 25.5,
-      "second_sd_kmh": 56.2,
-      "first_avg_mph": 23.9,
-      "second_avg_mph": 15.8
+      "first_avg_kmh": 173.8,
+      "first_sd_kmh": 9.7,
+      "second_avg_kmh": 148.5,
+      "second_sd_kmh": 10.4,
+      "first_avg_mph": 108.0,
+      "second_avg_mph": 92.3,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -5935,13 +6045,15 @@
       "dfs_total": 10
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -6028,12 +6140,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 193.8,
-      "first_sd_kmh": 15.3,
+      "first_avg_kmh": 194.5,
+      "first_sd_kmh": 10.1,
       "second_avg_kmh": 155.2,
       "second_sd_kmh": 14.4,
-      "first_avg_mph": 120.4,
-      "second_avg_mph": 96.4
+      "first_avg_mph": 120.9,
+      "second_avg_mph": 96.4,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 4
     },
     "serve_direction": {
       "available": true,
@@ -6156,12 +6270,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 183.0,
-      "first_sd_kmh": 21.4,
+      "first_avg_kmh": 185.3,
+      "first_sd_kmh": 6.2,
       "second_avg_kmh": 149.9,
       "second_sd_kmh": 10.5,
-      "first_avg_mph": 113.7,
-      "second_avg_mph": 93.1
+      "first_avg_mph": 115.1,
+      "second_avg_mph": 93.1,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -6259,13 +6375,15 @@
       "dfs_total": 9
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -6352,12 +6470,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 132.3,
-      "first_sd_kmh": 90.0,
-      "second_avg_kmh": 95.5,
-      "second_sd_kmh": 72.5,
-      "first_avg_mph": 82.2,
-      "second_avg_mph": 59.3
+      "first_avg_kmh": 193.1,
+      "first_sd_kmh": 9.2,
+      "second_avg_kmh": 150.1,
+      "second_sd_kmh": 8.0,
+      "first_avg_mph": 120.0,
+      "second_avg_mph": 93.3,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -6463,13 +6583,15 @@
       "dfs_total": 11
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -6556,12 +6678,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 113.2,
-      "first_sd_kmh": 86.3,
-      "second_avg_kmh": 95.7,
-      "second_sd_kmh": 73.2,
-      "first_avg_mph": 70.3,
-      "second_avg_mph": 59.5
+      "first_avg_kmh": 178.4,
+      "first_sd_kmh": 10.3,
+      "second_avg_kmh": 151.4,
+      "second_sd_kmh": 7.1,
+      "first_avg_mph": 110.9,
+      "second_avg_mph": 94.1,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -6676,12 +6800,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 188.7,
-      "first_sd_kmh": 24.2,
+      "first_avg_kmh": 191.1,
+      "first_sd_kmh": 12.1,
       "second_avg_kmh": 155.4,
       "second_sd_kmh": 8.2,
-      "first_avg_mph": 117.3,
-      "second_avg_mph": 96.6
+      "first_avg_mph": 118.7,
+      "second_avg_mph": 96.6,
+      "omitted_zero_count": 2,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -6788,12 +6914,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 191.0,
-      "first_sd_kmh": 31.7,
-      "second_avg_kmh": 145.4,
-      "second_sd_kmh": 40.4,
-      "first_avg_mph": 118.7,
-      "second_avg_mph": 90.3
+      "first_avg_kmh": 195.9,
+      "first_sd_kmh": 8.6,
+      "second_avg_kmh": 156.3,
+      "second_sd_kmh": 7.0,
+      "first_avg_mph": 121.7,
+      "second_avg_mph": 97.1,
+      "omitted_zero_count": 5,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -6897,7 +7025,9 @@
       "second_avg_kmh": 155.3,
       "second_sd_kmh": 12.1,
       "first_avg_mph": 116.1,
-      "second_avg_mph": 96.5
+      "second_avg_mph": 96.5,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -6996,12 +7126,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 189.6,
-      "first_sd_kmh": 20.0,
-      "second_avg_kmh": 153.0,
-      "second_sd_kmh": 20.6,
-      "first_avg_mph": 117.8,
-      "second_avg_mph": 95.1
+      "first_avg_kmh": 191.2,
+      "first_sd_kmh": 10.0,
+      "second_avg_kmh": 155.0,
+      "second_sd_kmh": 10.7,
+      "first_avg_mph": 118.8,
+      "second_avg_mph": 96.3,
+      "omitted_zero_count": 2,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -7107,13 +7239,15 @@
       "dfs_total": 7
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -7200,12 +7334,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 141.8,
-      "first_sd_kmh": 86.1,
-      "second_avg_kmh": 134.5,
-      "second_sd_kmh": 68.0,
-      "first_avg_mph": 88.1,
-      "second_avg_mph": 83.6
+      "first_avg_kmh": 193.6,
+      "first_sd_kmh": 9.7,
+      "second_avg_kmh": 168.4,
+      "second_sd_kmh": 9.3,
+      "first_avg_mph": 120.3,
+      "second_avg_mph": 104.6,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 3
     },
     "serve_direction": {
       "available": true,
@@ -7327,13 +7463,15 @@
       "dfs_total": 12
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -7427,13 +7565,15 @@
       "dfs_total": 10
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -7520,12 +7660,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 72.2,
-      "first_sd_kmh": 93.2,
-      "second_avg_kmh": 63.5,
-      "second_sd_kmh": 81.4,
-      "first_avg_mph": 44.9,
-      "second_avg_mph": 39.5
+      "first_avg_kmh": 191.4,
+      "first_sd_kmh": 15.1,
+      "second_avg_kmh": 165.9,
+      "second_sd_kmh": 18.3,
+      "first_avg_mph": 118.9,
+      "second_avg_mph": 103.1,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -7646,13 +7788,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -7746,12 +7890,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 187.2,
-      "first_sd_kmh": 23.0,
-      "second_avg_kmh": 157.0,
-      "second_sd_kmh": 23.9,
-      "first_avg_mph": 116.3,
-      "second_avg_mph": 97.6
+      "first_avg_kmh": 189.4,
+      "first_sd_kmh": 11.4,
+      "second_avg_kmh": 160.2,
+      "second_sd_kmh": 9.0,
+      "first_avg_mph": 117.7,
+      "second_avg_mph": 99.5,
+      "omitted_zero_count": 4,
+      "matches_with_speed": 3
     },
     "serve_direction": {
       "available": true,
@@ -7871,7 +8017,9 @@
       "second_avg_kmh": 153.2,
       "second_sd_kmh": 8.8,
       "first_avg_mph": 110.6,
-      "second_avg_mph": 95.2
+      "second_avg_mph": 95.2,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -7969,13 +8117,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -8062,12 +8212,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 105.0,
-      "first_sd_kmh": 98.2,
-      "second_avg_kmh": 90.9,
-      "second_sd_kmh": 84.5,
-      "first_avg_mph": 65.2,
-      "second_avg_mph": 56.5
+      "first_avg_kmh": 196.4,
+      "first_sd_kmh": 9.3,
+      "second_avg_kmh": 169.1,
+      "second_sd_kmh": 8.0,
+      "first_avg_mph": 122.0,
+      "second_avg_mph": 105.1,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -8173,13 +8325,15 @@
       "dfs_total": 8
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -8266,12 +8420,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 71.6,
-      "first_sd_kmh": 87.3,
-      "second_avg_kmh": 51.1,
-      "second_sd_kmh": 75.4,
-      "first_avg_mph": 44.5,
-      "second_avg_mph": 31.8
+      "first_avg_kmh": 177.7,
+      "first_sd_kmh": 8.5,
+      "second_avg_kmh": 161.7,
+      "second_sd_kmh": 10.0,
+      "first_avg_mph": 110.4,
+      "second_avg_mph": 100.5,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -8378,12 +8534,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 186.4,
-      "first_sd_kmh": 27.6,
+      "first_avg_kmh": 189.7,
+      "first_sd_kmh": 12.1,
       "second_avg_kmh": 164.6,
       "second_sd_kmh": 16.8,
-      "first_avg_mph": 115.8,
-      "second_avg_mph": 102.3
+      "first_avg_mph": 117.9,
+      "second_avg_mph": 102.3,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -8482,12 +8640,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 182.6,
-      "first_sd_kmh": 11.6,
+      "first_avg_kmh": 183.0,
+      "first_sd_kmh": 8.0,
       "second_avg_kmh": 155.1,
       "second_sd_kmh": 11.2,
-      "first_avg_mph": 113.5,
-      "second_avg_mph": 96.4
+      "first_avg_mph": 113.7,
+      "second_avg_mph": 96.4,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 7
     },
     "serve_direction": {
       "available": true,
@@ -8634,12 +8794,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 198.1,
-      "first_sd_kmh": 27.8,
-      "second_avg_kmh": 172.8,
-      "second_sd_kmh": 25.1,
-      "first_avg_mph": 123.1,
-      "second_avg_mph": 107.4
+      "first_avg_kmh": 201.1,
+      "first_sd_kmh": 13.8,
+      "second_avg_kmh": 174.9,
+      "second_sd_kmh": 16.3,
+      "first_avg_mph": 125.0,
+      "second_avg_mph": 108.7,
+      "omitted_zero_count": 4,
+      "matches_with_speed": 3
     },
     "serve_direction": {
       "available": true,
@@ -8759,7 +8921,9 @@
       "second_avg_kmh": 150.6,
       "second_sd_kmh": 9.4,
       "first_avg_mph": 110.0,
-      "second_avg_mph": 93.6
+      "second_avg_mph": 93.6,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -8857,13 +9021,15 @@
       "dfs_total": 6
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -8950,12 +9116,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 71.0,
-      "first_sd_kmh": 91.4,
-      "second_avg_kmh": 52.7,
-      "second_sd_kmh": 75.9,
-      "first_avg_mph": 44.1,
-      "second_avg_mph": 32.7
+      "first_avg_kmh": 188.4,
+      "first_sd_kmh": 8.6,
+      "second_avg_kmh": 161.9,
+      "second_sd_kmh": 6.2,
+      "first_avg_mph": 117.1,
+      "second_avg_mph": 100.6,
+      "omitted_zero_count": 4,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -9062,12 +9230,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 111.1,
-      "first_sd_kmh": 92.4,
-      "second_avg_kmh": 96.3,
-      "second_sd_kmh": 74.1,
-      "first_avg_mph": 69.0,
-      "second_avg_mph": 59.8
+      "first_avg_kmh": 186.8,
+      "first_sd_kmh": 15.0,
+      "second_avg_kmh": 152.5,
+      "second_sd_kmh": 11.2,
+      "first_avg_mph": 116.1,
+      "second_avg_mph": 94.8,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -9173,13 +9343,15 @@
       "dfs_total": 4
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -9265,13 +9437,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -9358,12 +9532,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 137.5,
-      "first_sd_kmh": 73.1,
-      "second_avg_kmh": 121.0,
-      "second_sd_kmh": 56.0,
-      "first_avg_mph": 85.4,
-      "second_avg_mph": 75.2
+      "first_avg_kmh": 175.5,
+      "first_sd_kmh": 11.8,
+      "second_avg_kmh": 146.5,
+      "second_sd_kmh": 7.8,
+      "first_avg_mph": 109.1,
+      "second_avg_mph": 91.0,
+      "omitted_zero_count": 3,
+      "matches_with_speed": 4
     },
     "serve_direction": {
       "available": true,
@@ -9494,12 +9670,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 105.4,
-      "first_sd_kmh": 82.0,
-      "second_avg_kmh": 84.6,
-      "second_sd_kmh": 68.8,
-      "first_avg_mph": 65.5,
-      "second_avg_mph": 52.6
+      "first_avg_kmh": 168.5,
+      "first_sd_kmh": 10.7,
+      "second_avg_kmh": 140.2,
+      "second_sd_kmh": 7.6,
+      "first_avg_mph": 104.7,
+      "second_avg_mph": 87.1,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -9605,13 +9783,15 @@
       "dfs_total": 8
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -9698,12 +9878,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 197.4,
-      "first_sd_kmh": 17.4,
+      "first_avg_kmh": 198.0,
+      "first_sd_kmh": 13.8,
       "second_avg_kmh": 171.2,
       "second_sd_kmh": 12.0,
-      "first_avg_mph": 122.7,
-      "second_avg_mph": 106.4
+      "first_avg_mph": 123.0,
+      "second_avg_mph": 106.4,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 4
     },
     "serve_direction": {
       "available": true,
@@ -9838,7 +10020,9 @@
       "second_avg_kmh": 143.7,
       "second_sd_kmh": 11.7,
       "first_avg_mph": 112.0,
-      "second_avg_mph": 89.3
+      "second_avg_mph": 89.3,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -9943,13 +10127,15 @@
       "dfs_total": 4
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -10036,12 +10222,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 124.7,
-      "first_sd_kmh": 98.2,
-      "second_avg_kmh": 101.5,
-      "second_sd_kmh": 79.7,
-      "first_avg_mph": 77.5,
-      "second_avg_mph": 63.1
+      "first_avg_kmh": 201.4,
+      "first_sd_kmh": 12.3,
+      "second_avg_kmh": 163.5,
+      "second_sd_kmh": 10.4,
+      "first_avg_mph": 125.1,
+      "second_avg_mph": 101.6,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -10153,7 +10341,9 @@
       "second_avg_kmh": 155.4,
       "second_sd_kmh": 12.8,
       "first_avg_mph": 118.6,
-      "second_avg_mph": 96.6
+      "second_avg_mph": 96.6,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -10257,7 +10447,9 @@
       "second_avg_kmh": 166.9,
       "second_sd_kmh": 11.6,
       "first_avg_mph": 124.5,
-      "second_avg_mph": 103.7
+      "second_avg_mph": 103.7,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 3
     },
     "serve_direction": {
       "available": true,
@@ -10372,12 +10564,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 192.4,
-      "first_sd_kmh": 18.9,
+      "first_avg_kmh": 193.5,
+      "first_sd_kmh": 12.4,
       "second_avg_kmh": 160.7,
       "second_sd_kmh": 10.0,
-      "first_avg_mph": 119.6,
-      "second_avg_mph": 99.9
+      "first_avg_mph": 120.2,
+      "second_avg_mph": 99.9,
+      "omitted_zero_count": 2,
+      "matches_with_speed": 5
     },
     "serve_direction": {
       "available": true,
@@ -10513,7 +10707,9 @@
       "second_avg_kmh": 144.5,
       "second_sd_kmh": 7.3,
       "first_avg_mph": 113.4,
-      "second_avg_mph": 89.8
+      "second_avg_mph": 89.8,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -10612,12 +10808,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 100.8,
-      "first_sd_kmh": 100.1,
-      "second_avg_kmh": 108.7,
-      "second_sd_kmh": 84.8,
-      "first_avg_mph": 62.6,
-      "second_avg_mph": 67.5
+      "first_avg_kmh": 199.2,
+      "first_sd_kmh": 13.6,
+      "second_avg_kmh": 174.5,
+      "second_sd_kmh": 8.2,
+      "first_avg_mph": 123.8,
+      "second_avg_mph": 108.4,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -10723,13 +10921,15 @@
       "dfs_total": 4
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -10816,12 +11016,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 115.4,
-      "first_sd_kmh": 91.5,
-      "second_avg_kmh": 93.7,
-      "second_sd_kmh": 71.5,
-      "first_avg_mph": 71.7,
-      "second_avg_mph": 58.2
+      "first_avg_kmh": 187.1,
+      "first_sd_kmh": 12.8,
+      "second_avg_kmh": 147.6,
+      "second_sd_kmh": 10.1,
+      "first_avg_mph": 116.3,
+      "second_avg_mph": 91.7,
+      "omitted_zero_count": 2,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -10942,13 +11144,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -11034,13 +11238,15 @@
       "dfs_total": 6
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -11127,12 +11333,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 92.3,
-      "first_sd_kmh": 95.5,
-      "second_avg_kmh": 77.0,
-      "second_sd_kmh": 79.9,
-      "first_avg_mph": 57.4,
-      "second_avg_mph": 47.8
+      "first_avg_kmh": 190.6,
+      "first_sd_kmh": 10.3,
+      "second_avg_kmh": 159.2,
+      "second_sd_kmh": 10.0,
+      "first_avg_mph": 118.4,
+      "second_avg_mph": 98.9,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -11251,7 +11459,9 @@
       "second_avg_kmh": 158.7,
       "second_sd_kmh": 8.5,
       "first_avg_mph": 112.5,
-      "second_avg_mph": 98.6
+      "second_avg_mph": 98.6,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -11350,12 +11560,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 141.6,
-      "first_sd_kmh": 90.1,
-      "second_avg_kmh": 91.8,
-      "second_sd_kmh": 78.8,
-      "first_avg_mph": 88.0,
-      "second_avg_mph": 57.0
+      "first_avg_kmh": 198.2,
+      "first_sd_kmh": 11.9,
+      "second_avg_kmh": 158.9,
+      "second_sd_kmh": 8.6,
+      "first_avg_mph": 123.2,
+      "second_avg_mph": 98.7,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -11462,12 +11674,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 123.1,
-      "first_sd_kmh": 79.1,
-      "second_avg_kmh": 83.3,
-      "second_sd_kmh": 65.9,
-      "first_avg_mph": 76.5,
-      "second_avg_mph": 51.8
+      "first_avg_kmh": 172.9,
+      "first_sd_kmh": 13.4,
+      "second_avg_kmh": 135.1,
+      "second_sd_kmh": 7.5,
+      "first_avg_mph": 107.4,
+      "second_avg_mph": 83.9,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -11589,13 +11803,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -11681,13 +11897,15 @@
       "dfs_total": 8
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -11773,13 +11991,15 @@
       "dfs_total": 14
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -11874,12 +12094,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 120.0,
-      "first_sd_kmh": 87.8,
-      "second_avg_kmh": 94.0,
-      "second_sd_kmh": 79.4,
-      "first_avg_mph": 74.6,
-      "second_avg_mph": 58.4
+      "first_avg_kmh": 183.5,
+      "first_sd_kmh": 11.5,
+      "second_avg_kmh": 159.8,
+      "second_sd_kmh": 13.8,
+      "first_avg_mph": 114.0,
+      "second_avg_mph": 99.3,
+      "omitted_zero_count": 1,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -11999,7 +12221,9 @@
       "second_avg_kmh": 143.4,
       "second_sd_kmh": 8.1,
       "first_avg_mph": 107.2,
-      "second_avg_mph": 89.1
+      "second_avg_mph": 89.1,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -12097,13 +12321,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -12197,13 +12423,15 @@
       "dfs_total": 4
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -12290,12 +12518,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 89.0,
-      "first_sd_kmh": 95.6,
-      "second_avg_kmh": 80.5,
-      "second_sd_kmh": 83.4,
-      "first_avg_mph": 55.3,
-      "second_avg_mph": 50.0
+      "first_avg_kmh": 191.0,
+      "first_sd_kmh": 11.3,
+      "second_avg_kmh": 166.3,
+      "second_sd_kmh": 9.7,
+      "first_avg_mph": 118.7,
+      "second_avg_mph": 103.3,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 2
     },
     "serve_direction": {
       "available": true,
@@ -12417,13 +12647,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -12509,13 +12741,15 @@
       "dfs_total": 10
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -12602,12 +12836,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 87.4,
-      "first_sd_kmh": 94.5,
-      "second_avg_kmh": 87.4,
-      "second_sd_kmh": 78.9,
-      "first_avg_mph": 54.3,
-      "second_avg_mph": 54.3
+      "first_avg_kmh": 189.0,
+      "first_sd_kmh": 9.1,
+      "second_avg_kmh": 158.0,
+      "second_sd_kmh": 10.6,
+      "first_avg_mph": 117.4,
+      "second_avg_mph": 98.2,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -12719,7 +12955,9 @@
       "second_avg_kmh": 150.5,
       "second_sd_kmh": 7.1,
       "first_avg_mph": 113.1,
-      "second_avg_mph": 93.5
+      "second_avg_mph": 93.5,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -12818,12 +13056,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 170.3,
-      "first_sd_kmh": 20.3,
-      "second_avg_kmh": 143.9,
-      "second_sd_kmh": 16.2,
-      "first_avg_mph": 105.8,
-      "second_avg_mph": 89.4
+      "first_avg_kmh": 172.2,
+      "first_sd_kmh": 9.9,
+      "second_avg_kmh": 145.2,
+      "second_sd_kmh": 9.1,
+      "first_avg_mph": 107.0,
+      "second_avg_mph": 90.2,
+      "omitted_zero_count": 3,
+      "matches_with_speed": 3
     },
     "serve_direction": {
       "available": true,
@@ -12937,13 +13177,15 @@
       "dfs_total": 4
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -13030,12 +13272,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 42.0,
-      "first_sd_kmh": 77.8,
-      "second_avg_kmh": 32.1,
-      "second_sd_kmh": 61.7,
-      "first_avg_mph": 26.1,
-      "second_avg_mph": 19.9
+      "first_avg_kmh": 185.4,
+      "first_sd_kmh": 12.1,
+      "second_avg_kmh": 150.3,
+      "second_sd_kmh": 7.5,
+      "first_avg_mph": 115.2,
+      "second_avg_mph": 93.4,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -13149,13 +13393,15 @@
       "dfs_total": 16
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -13249,13 +13495,15 @@
       "dfs_total": 5
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -13341,13 +13589,15 @@
       "dfs_total": 7
     },
     "serve_speed": {
-      "available": true,
-      "first_avg_kmh": 0.0,
-      "first_sd_kmh": 0.0,
-      "second_avg_kmh": 0.0,
-      "second_sd_kmh": 0.0,
+      "available": false,
+      "first_avg_kmh": null,
+      "first_sd_kmh": null,
+      "second_avg_kmh": null,
+      "second_sd_kmh": null,
       "first_avg_mph": null,
-      "second_avg_mph": null
+      "second_avg_mph": null,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 0
     },
     "serve_direction": {
       "available": false,
@@ -13434,12 +13684,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 84.2,
-      "first_sd_kmh": 89.6,
-      "second_avg_kmh": 74.8,
-      "second_sd_kmh": 76.5,
-      "first_avg_mph": 52.3,
-      "second_avg_mph": 46.5
+      "first_avg_kmh": 178.8,
+      "first_sd_kmh": 11.5,
+      "second_avg_kmh": 152.7,
+      "second_sd_kmh": 7.1,
+      "first_avg_mph": 111.1,
+      "second_avg_mph": 94.9,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -13551,7 +13803,9 @@
       "second_avg_kmh": 144.7,
       "second_sd_kmh": 7.4,
       "first_avg_mph": 102.0,
-      "second_avg_mph": 89.9
+      "second_avg_mph": 89.9,
+      "omitted_zero_count": 0,
+      "matches_with_speed": 1
     },
     "serve_direction": {
       "available": true,
@@ -13650,12 +13904,14 @@
     },
     "serve_speed": {
       "available": true,
-      "first_avg_kmh": 182.5,
-      "first_sd_kmh": 15.8,
-      "second_avg_kmh": 152.0,
-      "second_sd_kmh": 13.1,
-      "first_avg_mph": 113.4,
-      "second_avg_mph": 94.4
+      "first_avg_kmh": 183.2,
+      "first_sd_kmh": 10.5,
+      "second_avg_kmh": 152.8,
+      "second_sd_kmh": 7.6,
+      "first_avg_mph": 113.8,
+      "second_avg_mph": 94.9,
+      "omitted_zero_count": 3,
+      "matches_with_speed": 6
     },
     "serve_direction": {
       "available": true,

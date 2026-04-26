@@ -278,6 +278,16 @@ function renderServeSpeed(p, t) {
       ${r.avg ? `<div style="font-size:11px;color:var(--ink-muted);margin-top:3px">Tournament avg: ${r.avg} km/h</div>` : ""}`;
     container.appendChild(div);
   }
+
+  // Omit note: show when radar misses were stripped from speed calculations.
+  // Double faults carry ServeNumber==0 so are never included in these counts.
+  const omitted = sp.omitted_zero_count ?? 0;
+  if (omitted > 0) {
+    const note = document.createElement("p");
+    note.className = "card-note speed-omit-note";
+    note.textContent = `${omitted} serve${omitted === 1 ? "" : "s"} omitted (0 km/h — radar not captured · double faults excluded)`;
+    container.appendChild(note);
+  }
 }
 
 // ── Serve Direction ───────────────────────────────────────────────

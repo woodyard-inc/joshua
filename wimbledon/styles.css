@@ -162,7 +162,6 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   position: relative;
   z-index: 1;
   padding: var(--s-8);
-  max-width: 480px;
   text-align: right;
 }
 .empty-eyebrow {
@@ -191,7 +190,8 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   font-size: 15px;
   color: rgba(255,255,255,0.72);
   line-height: 1.6;
-  margin: 0;
+  margin: 0 0 0 auto;
+  max-width: 400px;
 }
 /* ── HERO SECTION ────────────────────────────────────────────── */
 .hero-section {

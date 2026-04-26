@@ -129,9 +129,6 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   min-height: calc(100vh - 70px);
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
 }
 /* Trophy — full bleed */
 .empty-trophy {
@@ -157,9 +154,12 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   );
   pointer-events: none;
 }
-/* Text overlay — bottom-right, above the vignette */
+/* Text overlay — spans full width, text right-aligned to bottom */
 .empty-overlay {
-  position: relative;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   z-index: 1;
   padding: var(--s-8);
   text-align: right;
@@ -191,7 +191,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   color: rgba(255,255,255,0.72);
   line-height: 1.6;
   margin: 0 0 0 auto;
-  max-width: 400px;
+  max-width: 520px;
 }
 /* ── HERO SECTION ────────────────────────────────────────────── */
 .hero-section {

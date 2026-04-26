@@ -216,12 +216,12 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   aspect-ratio: 16 / 9;
   max-height: 560px;
 }
-/* Fill the 16:9 box, anchored to top so faces stay in frame */
+/* Fill the 16:9 box, centred — correct for landscape action shots */
 .hero-visual.has-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
+  object-position: center center;
   display: block;
 }
 

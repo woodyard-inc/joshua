@@ -220,23 +220,18 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   position: relative;
 }
 
-/* Photo mode — tall cover image */
+/* Photo mode — 16:9 aspect ratio to match widescreen player photos */
 .hero-visual.has-photo {
-  height: clamp(340px, 55vw, 580px);
+  aspect-ratio: 16 / 9;
+  max-height: 560px;
 }
-/* Landscape photos: fill width, crop top/bottom */
+/* Fill the 16:9 box, anchored to top so faces stay in frame */
 .hero-visual.has-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
-  display: block;
-}
-/* Portrait photos: show the whole player — pillarbox blank sides */
-.hero-visual.has-photo.portrait img {
-  object-fit: contain;
   object-position: center top;
-  background: var(--paper-warm);
+  display: block;
 }
 
 /* No-photo mode — compact initials block */

@@ -166,9 +166,11 @@ const PLAYER_PHOTOS = {
   "Julien Benneteau":      "Julien_Benneteau",
   "Mikhail Youzhny":       "Mikhail_Youzhny",
   "Nicolas Almagro":       "Nicolas_Almagro",
+  "Dominic Thiem":         "Dominic_Thiem",
   "Novak Djokovic":        "Novak_Djokovic",
   "Philipp Kohlschreiber": "Philipp_Kohlschreiber",
   "Radek Stepanek":        "Radek_Stepanek",
+  "Rafael Nadal":          "Rafael_Nadal",
   "Richard Gasquet":       "Richard_Gasquet",
   "Roger Federer":         "Roger_Federer",
   "Ryan Harrison":         "Ryan_Harrison",
@@ -199,12 +201,6 @@ function renderHero(p, t) {
     img.alt     = p.player;
     img.src     = `${base}/players/${photoFile}.webp`;
     img.onerror = showInitials;
-    img.onload  = () => {
-      const isPortrait = img.naturalHeight > img.naturalWidth;
-      visualEl.className = "hero-visual has-photo" + (isPortrait ? " portrait" : "");
-      visualEl.innerHTML = "";
-      visualEl.appendChild(img);
-    };
     visualEl.className = "hero-visual has-photo";
     visualEl.innerHTML = "";
     visualEl.appendChild(img);

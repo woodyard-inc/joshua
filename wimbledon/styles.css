@@ -126,14 +126,14 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 
 /* ── EMPTY STATE ─────────────────────────────────────────────── */
 .empty-state {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: calc(100vh - 70px);
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
-/* Trophy — full bleed, no overlay */
+/* Trophy — full bleed */
 .empty-trophy {
   position: absolute;
   inset: 0;
@@ -145,45 +145,53 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   object-position: center top;
   display: block;
 }
-/* Floating paper box — centred over the painting */
-.empty-inner {
+/* Diagonal vignette — darkens bottom-right for text legibility */
+.empty-state::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    transparent 20%,
+    rgba(10,10,10,0.72) 100%
+  );
+  pointer-events: none;
+}
+/* Text overlay — bottom-right, above the vignette */
+.empty-overlay {
   position: relative;
   z-index: 1;
-  background: var(--paper);
-  border: var(--hairline-ink);
-  padding: var(--s-5) var(--s-7);
-  width: clamp(320px, 90vw, 500px);
-  text-align: center;
-  box-shadow: 0 24px 60px -16px rgba(20,20,20,0.45);
+  padding: var(--s-8);
+  max-width: 480px;
+  text-align: right;
 }
 .empty-eyebrow {
   font-family: var(--font-sans);
   font-size: var(--t-micro);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ink-muted);
-  margin: 0 0 var(--s-4);
-  max-width: none;
+  color: rgba(255,255,255,0.55);
+  margin: 0 0 var(--s-3);
   line-height: 1;
 }
-.empty-inner h2 {
+.empty-title {
   font-family: var(--font-sans);
-  font-size: clamp(22px, 4vw, 34px);
+  font-size: clamp(36px, 5.5vw, 64px);
   font-weight: 700;
   letter-spacing: -0.03em;
-  line-height: 1.05;
-  color: var(--ink);
-  margin: 0 0 var(--s-2);
+  line-height: 1;
+  color: #fff;
+  margin: 0 0 var(--s-4);
+  white-space: nowrap;
 }
-.empty-sub {
+.empty-desc {
   font-family: var(--font-serif);
   font-style: italic;
   font-weight: 300;
-  font-size: 16px;
-  color: var(--ink-muted);
-  line-height: 1.4;
+  font-size: 15px;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.6;
   margin: 0;
-  max-width: none;
 }
 /* ── HERO SECTION ────────────────────────────────────────────── */
 .hero-section {

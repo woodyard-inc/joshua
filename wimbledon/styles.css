@@ -1048,6 +1048,46 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 .match-log-table .td-dur  { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
 .match-log-table .td-dist { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
 
+/* ── SCOREBOARD PANEL (Match Duration card) ──────────────────── */
+.scoreboard-panel {
+  background: #081910;
+  border-radius: 5px;
+  padding: 20px 24px 14px;
+  text-align: center;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.3);
+  border: 1px solid #1b3d24;
+  margin-bottom: var(--s-2);
+}
+.scoreboard-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: #3d7a50;
+  margin-bottom: 10px;
+}
+.scoreboard-digits {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: clamp(52px, 12vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: #E8A800;
+  text-shadow:
+    0 0 8px  #E8A800,
+    0 0 20px #C07800,
+    0 0 40px rgba(180, 90, 0, 0.5);
+  font-variant-numeric: tabular-nums;
+}
+.scoreboard-foot {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #3d7a50;
+  margin-top: 8px;
+}
+
 /* ── DURATION / DISTANCE CARDS ───────────────────────────────── */
 .dur-big-row {
   display: flex;

@@ -715,14 +715,21 @@ function renderDuration(p, t) {
     return;
   }
 
-  const avg    = t.match_duration?.avg_mins ?? 0;
-  const val    = md.avg_mins ?? 0;
-  const MAX    = Math.max(val, avg, 60) * 1.35;
+  const avg = t.match_duration?.avg_mins ?? 0;
+  const val = md.avg_mins ?? 0;
+  const MAX = Math.max(val, avg, 60) * 1.35;
 
   function fmtMins(m) {
-    const h = Math.floor(m / 60);
+    const h   = Math.floor(m / 60);
     const min = Math.round(m % 60);
     return h > 0 ? `${h}h ${min}m` : `${min}m`;
+  }
+
+  // Scoreboard format H:MM (matches the Wimbledon Rolex display)
+  function fmtBoard(m) {
+    const h   = Math.floor(m / 60);
+    const min = Math.round(m % 60);
+    return `${h}:${String(min).padStart(2, "0")}`;
   }
 
   let matchRows = "";
@@ -732,16 +739,19 @@ function renderDuration(p, t) {
       <div class="dur-match-row">
         <span class="dur-opp">vs ${m.opponent}</span>
         <span class="dur-val">${dur}</span>
-        ${m.duration_mins != null ? `<div class="dur-row-track"><div class="dur-row-fill" style="width:${Math.min(m.duration_mins/MAX*100,100).toFixed(1)}%"></div></div>` : `<div class="dur-row-track"></div>`}
+        ${m.duration_mins != null
+          ? `<div class="dur-row-track"><div class="dur-row-fill" style="width:${Math.min(m.duration_mins/MAX*100,100).toFixed(1)}%"></div></div>`
+          : `<div class="dur-row-track"></div>`}
       </div>`;
   }
 
   container.innerHTML = `
-    <div class="dur-big-row">
-      <div class="dur-num">${fmtMins(val)}</div>
-      <div class="dur-unit">avg per match</div>
+    <div class="scoreboard-panel">
+      <div class="scoreboard-eyebrow">Avg Match Time</div>
+      <div class="scoreboard-digits" aria-label="${fmtMins(val)}">${fmtBoard(val)}</div>
+      <div class="scoreboard-foot">H : MM &nbsp;·&nbsp; Tourn. avg ${fmtBoard(avg)}</div>
     </div>
-    <div class="dur-bar-section">
+    <div class="dur-bar-section" style="margin-top:var(--s-4)">
       <div class="dur-bar-label">
         <span>0</span>
         <span>Tourn. avg ${fmtMins(avg)}</span>

@@ -200,6 +200,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 /* ── HERO SECTION ────────────────────────────────────────────── */
 .hero-section {
+  position: relative;            /* anchor for the absolute nameplate overlay */
   border-bottom: var(--hairline-ink);
 }
 
@@ -211,10 +212,9 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   position: relative;
 }
 
-/* Photo mode — 16:9 aspect ratio to match widescreen player photos */
+/* Photo mode — true 16:9, no cropping when photos match the ratio */
 .hero-visual.has-photo {
   aspect-ratio: 16 / 9;
-  max-height: 560px;
 }
 /* Fill the 16:9 box, centred — correct for landscape action shots */
 .hero-visual.has-photo img {
@@ -223,6 +223,51 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   object-fit: cover;
   object-position: center center;
   display: block;
+}
+/* Left-side gradient for nameplate legibility */
+.hero-visual.has-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.55) 28%,
+    rgba(0,0,0,0.18) 52%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+/* ── Photo overlay: nameplate sits over the image, bottom-left ── */
+.hero-section:has(.has-photo) .hero-nameplate {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  max-width: none;
+  margin: 0;
+  padding: var(--s-5) var(--s-7) var(--s-6);
+}
+.hero-section:has(.has-photo) .hero-name-block h2 {
+  color: #fff;
+}
+.hero-section:has(.has-photo) .player-meta {
+  color: rgba(255,255,255,0.6);
+}
+.hero-section:has(.has-photo) .headline-stats {
+  border-top-color:    rgba(255,255,255,0.25);
+  border-bottom-color: rgba(255,255,255,0.25);
+}
+.hero-section:has(.has-photo) .hl-stat {
+  border-right-color: rgba(255,255,255,0.15);
+}
+.hero-section:has(.has-photo) .hl-stat .hl-val {
+  color: #fff;
+}
+.hero-section:has(.has-photo) .hl-stat .hl-label {
+  color: rgba(255,255,255,0.55);
 }
 
 /* No-photo mode — square initials block, flush with nameplate left edge */

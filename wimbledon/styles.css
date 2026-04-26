@@ -172,6 +172,9 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   color: rgba(255,255,255,0.55);
   margin: 0 0 var(--s-3);
   line-height: 1;
+  max-width: none;
+  width: 100%;
+  text-align: right;
 }
 .empty-title {
   font-family: var(--font-sans);
@@ -182,6 +185,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   color: #fff;
   margin: 0 0 var(--s-4);
   white-space: nowrap;
+  text-align: right;
 }
 .empty-desc {
   font-family: var(--font-serif);
@@ -192,6 +196,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   line-height: 1.6;
   margin: 0 0 0 auto;
   max-width: 520px;
+  text-align: right;
 }
 /* ── HERO SECTION ────────────────────────────────────────────── */
 .hero-section {

@@ -239,16 +239,16 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   pointer-events: none;
 }
 
-/* ── Photo overlay: nameplate sits over the image, bottom-left ── */
+/* ── Photo overlay: nameplate bottom-left, lifted clear of the edge ── */
 .hero-section:has(.has-photo) .hero-nameplate {
   position: absolute;
-  bottom: 0;
+  bottom: 12%;
   left: 0;
   right: 0;
   z-index: 2;
   max-width: none;
   margin: 0;
-  padding: var(--s-5) var(--s-7) var(--s-6);
+  padding: var(--s-5) var(--s-7);
 }
 .hero-section:has(.has-photo) .hero-name-block h2 {
   color: #fff;

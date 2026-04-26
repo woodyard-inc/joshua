@@ -65,6 +65,12 @@
   /* The accent. One blue. */
   --cobalt:        #002FA7;   /* Cobalt */
   --cobalt-ink:    #001E6B;   /* pressed/hover state */
+  --cobalt-dark:   #001E6B;   /* alias for --cobalt-ink */
+
+  /* Extended palette — Wimbledon / case studies */
+  --forest:        #01482A;   /* Wimbledon grass green */
+  --forest-mid:    #025E36;   /* lighter grass */
+  --terracotta:    #D35220;   /* warm complementary accent */
 
   /* Data-viz palette — all in-key. Use IN THIS ORDER. */
   --viz-1: #002FA7;  /* cobalt */

@@ -1,106 +1,15 @@
 /* ============================================================
-   WHAT WINS ON GRASS — Design inherits from Joshua Woodyard
-   design system: foundations.css.
-   Swiss-editorial · ivory paper · ink · cobalt · forest
+   WHAT WINS ON GRASS — App-specific styles only.
+   Fonts, design tokens, reset and nameplate live in
+   ../foundations.css — loaded first in index.html.
    ============================================================ */
 
-/* ---- Fonts ------------------------------------------------- */
-@font-face {
-  font-family: "Helvetica";
-  src: url("./fonts/Helvetica.woff2") format("woff2");
-  font-weight: 400; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Helvetica";
-  src: url("./fonts/Helvetica-Bold.woff2") format("woff2");
-  font-weight: 700; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("./fonts/CormorantGaramond-Light.woff2") format("woff2");
-  font-weight: 300; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: "Cormorant Garamond";
-  src: url("./fonts/CormorantGaramond-LightItalic.woff2") format("woff2");
-  font-weight: 300; font-style: italic; font-display: swap;
-}
-@font-face {
-  font-family: "National";
-  src: url("./fonts/NationalCodesUniversal.woff2") format("woff2");
-  font-weight: 700; font-style: normal; font-display: swap;
-  unicode-range: U+0020, U+0031, U+0041-005A, U+0061-007A, U+00A0;
-}
-
-/* ---- Design tokens ---------------------------------------- */
-:root {
-  /* Paper palette */
-  --paper:       #FFFDF8;
-  --paper-warm:  #F0EBDD;
-  --paper-bone:  #FAF7F0;
-
-  /* Ink */
-  --ink:         #141414;
-  --ink-soft:    #3C3A36;
-  --ink-muted:   #8A857B;
-
-  /* Rules */
-  --rule:        #1410140D;
-  --rule-strong: #14141426;
-
-  /* Accents */
-  --cobalt:      #002FA7;
-  --cobalt-dark: #001E6B;
-  --forest:      #01482A;   /* Grass / Wimbledon green */
-  --forest-mid:  #025E36;
-  --terracotta:  #D35220;
-
-  /* Typography */
-  --font-wordmark: "National",  "Helvetica", "Helvetica Neue", Arial, sans-serif;
-  --font-sans:     "Helvetica", "Helvetica Neue", Arial, sans-serif;
-  --font-serif:    "Cormorant Garamond", Georgia, serif;
-
-  /* Type scale */
-  --t-masthead: clamp(32px, 5vw, 64px);
-  --t-display:  clamp(22px, 3vw, 36px);
-  --t-h3:       11px;
-  --t-body:     15px;
-  --t-small:    13px;
-  --t-micro:    10px;
-
-  /* Spacing — 8pt grid */
-  --s-1: 4px;  --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
-  --s-5: 24px; --s-6: 32px;  --s-7: 48px;  --s-8: 64px;
-  --s-9: 96px;
-
-  --page-pad: clamp(20px, 4vw, 64px);
-  --hairline:      1px solid var(--rule-strong);
-  --hairline-ink:  1px solid var(--ink);
-}
-
-/* ---- Reset ------------------------------------------------- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-
-body {
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-sans);
-  font-size: var(--t-body);
-  line-height: 1.45;
-  min-height: 100vh;
-}
-
-a { color: var(--cobalt); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
-a:hover { color: var(--cobalt-dark); }
-
-/* ── HEADER ─────────────────────────────────────────────────── */
+/* ── APP HEADER ──────────────────────────────────────────────── */
 .site-header {
   background: var(--paper);
-  border-top: 2px solid var(--ink);
   border-bottom: var(--hairline-ink);
   position: sticky;
-  top: 0;
+  top: 56px; /* clear the portfolio nameplate */
   z-index: 100;
 }
 .header-inner {
@@ -115,7 +24,7 @@ a:hover { color: var(--cobalt-dark); }
 
 /* Brand — wordmark centred, Swiss nameplate style */
 .header-brand {
-  display: contents; /* left / centre / right slots */
+  display: contents;
 }
 .brand-left {
   font-family: var(--font-sans);
@@ -303,7 +212,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   border-bottom: var(--hairline-ink);
 }
 
-/* ── Full-bleed visual: photo OR initials block ──────────────── */
+/* Full-bleed visual: photo OR initials block */
 .hero-visual {
   width: 100%;
   background: var(--paper-warm);
@@ -332,7 +241,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 
 /* No-photo mode — compact initials block */
 .hero-visual.has-initials {
-  display: inline-flex;   /* shrink to content */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 120px;
@@ -349,7 +258,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   line-height: 1;
 }
 
-/* ── Nameplate: name + stats below the visual ───────────────── */
+/* Nameplate: name + stats below the visual */
 .hero-nameplate {
   max-width: 1280px;
   margin: 0 auto;
@@ -376,7 +285,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   color: var(--ink-muted);
 }
 
-/* Headline stats — portfolio .stats panel style */
+/* Headline stats */
 .headline-stats {
   display: flex;
   gap: 0;
@@ -415,7 +324,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1px;
-  background: var(--ink);       /* gap "colour" via background on container */
+  background: var(--ink);
   border: 1px solid var(--ink);
 }
 
@@ -428,7 +337,6 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   grid-column: 1 / -1;
   border-top: 1px solid var(--ink);
 }
-/* Remove inner gaps — the 1px grid gap creates the grid lines */
 .card-header {
   display: flex;
   align-items: baseline;
@@ -645,7 +553,6 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   width: 80px;
   flex-shrink: 0;
 }
-/* Tennis ball row */
 .rally-balls-wrap {
   display: flex;
   align-items: center;
@@ -659,7 +566,6 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   position: relative;
   flex: 1;
 }
-/* Tournament average marker */
 .rally-avg-line {
   position: absolute;
   top: -4px;
@@ -701,7 +607,6 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   margin: 0;
   max-width: 38ch;
 }
-
 /* Tennis ball SVG icons */
 .rally-ball {
   width: 22px;
@@ -710,7 +615,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .rally-ball circle { stroke: none; }
 .rally-ball path   { stroke-linecap: round; }
-.rally-ball--on circle { fill: #7DBF45; }       /* grass green */
+.rally-ball--on circle { fill: #7DBF45; }
 .rally-ball--on path   { stroke: #5A9A2E; }
 .rally-ball--off circle { fill: var(--paper-warm); }
 .rally-ball--off path   { stroke: var(--rule-strong); }
@@ -881,7 +786,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .enf-fill { height: 100%; transition: width .4s; }
 .enf-player-fill { background: var(--cobalt); }
-.enf-avg-fill { background: var(--rule-strong); background: #14141440; }
+.enf-avg-fill { background: #14141440; }
 
 /* ── AGGRESSION ──────────────────────────────────────────────── */
 .aggression-viz { }
@@ -1101,26 +1006,9 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 .match-log-table .td-pts { font-weight: 700; }
 .match-log-table .td-pct { color: var(--ink-muted); }
 
-/* ── FOOTER ──────────────────────────────────────────────────── */
-.site-footer {
-  border-top: var(--hairline-ink);
-  padding: var(--s-4) var(--page-pad);
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  font-family: var(--font-sans);
-  font-size: var(--t-micro);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  max-width: 1280px;
-  margin: var(--s-6) auto 0;
-}
-.site-footer a { color: var(--ink-muted); border-bottom-color: var(--ink-muted); font-size: var(--t-micro); letter-spacing: 0.22em; }
-.site-footer .fc { text-align: center; }
-.site-footer .fr { text-align: right; }
-
 /* ── UTILITIES ───────────────────────────────────────────────── */
 .hidden { display: none !important; }
+.profile { }
 
 /* ── RESPONSIVE ──────────────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -1128,12 +1016,9 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   .brand-left { display: none; }
   .brand-centre { text-align: left; }
   .header-controls { flex-wrap: wrap; gap: 10px; }
-  .hero-inner { grid-template-columns: 1fr; gap: var(--s-4); }
   .headline-stats { flex-wrap: wrap; }
   .hl-stat { min-width: 80px; }
   .metrics-grid { grid-template-columns: 1fr; }
-  .site-footer { grid-template-columns: 1fr; gap: var(--s-2); }
-  .site-footer .fc, .site-footer .fr { text-align: left; }
 }
 
 @media (max-width: 600px) {
@@ -1141,5 +1026,3 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   .brand-centre h1 { font-size: 22px; }
   select#player-select { min-width: 140px; }
 }
-
-/* Nameplate & colophon styles live in foundations.css — loaded via ../foundations.css */

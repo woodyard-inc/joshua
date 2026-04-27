@@ -1045,8 +1045,24 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .match-log-table .td-pts  { font-weight: 700; }
 .match-log-table .td-pct  { color: var(--ink-muted); }
-.match-log-table .td-dur  { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
-.match-log-table .td-dist { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.match-log-table .td-dur   { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.match-log-table .td-dist  { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
+.match-log-table .td-round { white-space: nowrap; }
+
+.round-chip {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--forest);
+  background: rgba(1, 72, 42, 0.10);
+  border: 1px solid rgba(1, 72, 42, 0.25);
+  border-radius: 3px;
+  padding: 1px 5px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
 
 /* ── SCOREBOARD PANEL (Match Duration card) ──────────────────── */
 .scoreboard-panel {

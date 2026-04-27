@@ -737,7 +737,7 @@ function renderDuration(p, t) {
     const dur = m.duration_mins != null ? fmtMins(m.duration_mins) : "—";
     matchRows += `
       <div class="dur-match-row">
-        <span class="dur-opp">vs ${m.opponent}</span>
+        <span class="dur-opp"><span class="round-chip">${m.round}</span> vs ${m.opponent}</span>
         <span class="dur-val">${dur}</span>
         ${m.duration_mins != null
           ? `<div class="dur-row-track"><div class="dur-row-fill" style="width:${Math.min(m.duration_mins/MAX*100,100).toFixed(1)}%"></div></div>`
@@ -789,7 +789,7 @@ function renderDistance(p, t) {
     const km = m.distance_km != null ? `${m.distance_km.toFixed(2)} km` : "—";
     matchRows += `
       <div class="dur-match-row">
-        <span class="dur-opp">vs ${m.opponent}</span>
+        <span class="dur-opp"><span class="round-chip">${m.round}</span> vs ${m.opponent}</span>
         <span class="dur-val">${km}</span>
         ${m.distance_km != null ? `<div class="dur-row-track"><div class="dur-row-fill dist-fill" style="width:${Math.min(m.distance_km/MAX*100,100).toFixed(1)}%"></div></div>` : `<div class="dur-row-track"></div>`}
       </div>`;
@@ -838,6 +838,7 @@ function renderMatchLog(p) {
     const dur = fmtMins(m.duration_mins);
     const km  = m.distance_km != null ? `${m.distance_km.toFixed(2)} km` : "—";
     rows += `<tr>
+      <td class="td-round"><span class="round-chip">${m.round}</span></td>
       <td class="td-opp">vs ${m.opponent}</td>
       <td class="td-pts">${m.points_won} / ${m.points_played}</td>
       <td class="td-pct">${pct}</td>
@@ -849,7 +850,7 @@ function renderMatchLog(p) {
   document.getElementById("match-log").innerHTML = `
     <table class="match-log-table">
       <thead><tr>
-        <th>Opponent</th><th>Points Won</th><th>Win %</th><th>Duration</th><th>Distance</th><th>Flag</th>
+        <th>Rnd</th><th>Opponent</th><th>Points Won</th><th>Win %</th><th>Duration</th><th>Distance</th><th>Flag</th>
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>`;

@@ -110,6 +110,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1101",
+        "round": "R128",
         "opponent": "Philipp Kohlschreiber",
         "points_won": 102,
         "points_played": 176,
@@ -120,6 +121,7 @@
       },
       {
         "match_id": "2019-wimbledon-1201",
+        "round": "R64",
         "opponent": "Denis Kudla",
         "points_won": 93,
         "points_played": 149,
@@ -130,6 +132,7 @@
       },
       {
         "match_id": "2019-wimbledon-1301",
+        "round": "R32",
         "opponent": "Hubert Hurkacz",
         "points_won": 145,
         "points_played": 267,
@@ -140,6 +143,7 @@
       },
       {
         "match_id": "2019-wimbledon-1401",
+        "round": "R16",
         "opponent": "Ugo Humbert",
         "points_won": 91,
         "points_played": 151,
@@ -150,6 +154,7 @@
       },
       {
         "match_id": "2019-wimbledon-1501",
+        "round": "QF",
         "opponent": "David Goffin",
         "points_won": 93,
         "points_played": 159,
@@ -160,6 +165,7 @@
       },
       {
         "match_id": "2019-wimbledon-1601",
+        "round": "SF",
         "opponent": "Roberto Bautista Agut",
         "points_won": 119,
         "points_played": 221,
@@ -170,6 +176,7 @@
       },
       {
         "match_id": "2019-wimbledon-1701",
+        "round": "F",
         "opponent": "Roger Federer",
         "points_won": 204,
         "points_played": 422,
@@ -298,6 +305,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1101",
+        "round": "R128",
         "opponent": "Novak Djokovic",
         "points_won": 74,
         "points_played": 176,
@@ -419,6 +427,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1102",
+        "round": "R128",
         "opponent": "Malek Jaziri",
         "points_won": 96,
         "points_played": 166,
@@ -429,6 +438,7 @@
       },
       {
         "match_id": "2019-wimbledon-1201",
+        "round": "R64",
         "opponent": "Novak Djokovic",
         "points_won": 56,
         "points_played": 149,
@@ -538,6 +548,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1102",
+        "round": "R128",
         "opponent": "Denis Kudla",
         "points_won": 70,
         "points_played": 166,
@@ -647,6 +658,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1103",
+        "round": "R128",
         "opponent": "Leonardo Mayer",
         "points_won": 83,
         "points_played": 198,
@@ -768,6 +780,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1103",
+        "round": "R128",
         "opponent": "Ernests Gulbis",
         "points_won": 115,
         "points_played": 198,
@@ -778,6 +791,7 @@
       },
       {
         "match_id": "2019-wimbledon-1202",
+        "round": "R64",
         "opponent": "Hubert Hurkacz",
         "points_won": 122,
         "points_played": 269,
@@ -899,6 +913,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1104",
+        "round": "R128",
         "opponent": "Dusan Lajovic",
         "points_won": 144,
         "points_played": 267,
@@ -909,6 +924,7 @@
       },
       {
         "match_id": "2019-wimbledon-1202",
+        "round": "R64",
         "opponent": "Leonardo Mayer",
         "points_won": 147,
         "points_played": 269,
@@ -919,6 +935,7 @@
       },
       {
         "match_id": "2019-wimbledon-1301",
+        "round": "R32",
         "opponent": "Novak Djokovic",
         "points_won": 122,
         "points_played": 267,
@@ -1028,6 +1045,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1104",
+        "round": "R128",
         "opponent": "Hubert Hurkacz",
         "points_won": 123,
         "points_played": 267,
@@ -1149,6 +1167,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1105",
+        "round": "R128",
         "opponent": "Vasek Pospisil",
         "points_won": 128,
         "points_played": 236,
@@ -1159,6 +1178,7 @@
       },
       {
         "match_id": "2019-wimbledon-1203",
+        "round": "R64",
         "opponent": "Corentin Moutet",
         "points_won": 140,
         "points_played": 262,
@@ -1169,6 +1189,7 @@
       },
       {
         "match_id": "2019-wimbledon-1302",
+        "round": "R32",
         "opponent": "Ugo Humbert",
         "points_won": 84,
         "points_played": 184,
@@ -1290,6 +1311,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1105",
+        "round": "R128",
         "opponent": "Felix Auger Aliassime",
         "points_won": 108,
         "points_played": 236,
@@ -1411,6 +1433,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1106",
+        "round": "R128",
         "opponent": "Corentin Moutet",
         "points_won": 148,
         "points_played": 294,
@@ -1539,6 +1562,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1106",
+        "round": "R128",
         "opponent": "Grigor Dimitrov",
         "points_won": 146,
         "points_played": 294,
@@ -1556,6 +1580,7 @@
       },
       {
         "match_id": "2019-wimbledon-1203",
+        "round": "R64",
         "opponent": "Felix Auger Aliassime",
         "points_won": 122,
         "points_played": 262,
@@ -1665,6 +1690,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1107",
+        "round": "R128",
         "opponent": "Marcel Granollers",
         "points_won": 99,
         "points_played": 217,
@@ -1786,6 +1812,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1107",
+        "round": "R128",
         "opponent": "Lorenzo Sonego",
         "points_won": 118,
         "points_played": 217,
@@ -1796,6 +1823,7 @@
       },
       {
         "match_id": "2019-wimbledon-1204",
+        "round": "R64",
         "opponent": "Ugo Humbert",
         "points_won": 107,
         "points_played": 231,
@@ -1917,6 +1945,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1108",
+        "round": "R128",
         "opponent": "Gael Monfils",
         "points_won": 163,
         "points_played": 317,
@@ -1927,6 +1956,7 @@
       },
       {
         "match_id": "2019-wimbledon-1204",
+        "round": "R64",
         "opponent": "Marcel Granollers",
         "points_won": 124,
         "points_played": 231,
@@ -1937,6 +1967,7 @@
       },
       {
         "match_id": "2019-wimbledon-1302",
+        "round": "R32",
         "opponent": "Felix Auger Aliassime",
         "points_won": 100,
         "points_played": 184,
@@ -1947,6 +1978,7 @@
       },
       {
         "match_id": "2019-wimbledon-1401",
+        "round": "R16",
         "opponent": "Novak Djokovic",
         "points_won": 60,
         "points_played": 151,
@@ -2068,6 +2100,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1108",
+        "round": "R128",
         "opponent": "Ugo Humbert",
         "points_won": 154,
         "points_played": 317,
@@ -2189,6 +2222,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1109",
+        "round": "R128",
         "opponent": "Paolo Lorenzi",
         "points_won": 114,
         "points_played": 204,
@@ -2199,6 +2233,7 @@
       },
       {
         "match_id": "2019-wimbledon-1205",
+        "round": "R64",
         "opponent": "Alexei Popyrin",
         "points_won": 138,
         "points_played": 242,
@@ -2209,6 +2244,7 @@
       },
       {
         "match_id": "2019-wimbledon-1303",
+        "round": "R32",
         "opponent": "David Goffin",
         "points_won": 144,
         "points_played": 309,
@@ -2330,6 +2366,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1109",
+        "round": "R128",
         "opponent": "Daniil Medvedev",
         "points_won": 90,
         "points_played": 204,
@@ -2439,6 +2476,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1110",
+        "round": "R128",
         "opponent": "Alexei Popyrin",
         "points_won": 83,
         "points_played": 196,
@@ -2560,6 +2598,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1110",
+        "round": "R128",
         "opponent": "Pablo Carreno Busta",
         "points_won": 113,
         "points_played": 196,
@@ -2570,6 +2609,7 @@
       },
       {
         "match_id": "2019-wimbledon-1205",
+        "round": "R64",
         "opponent": "Daniil Medvedev",
         "points_won": 104,
         "points_played": 242,
@@ -2691,6 +2731,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1111",
+        "round": "R128",
         "opponent": "Martin Klizan",
         "points_won": 125,
         "points_played": 219,
@@ -2701,6 +2742,7 @@
       },
       {
         "match_id": "2019-wimbledon-1206",
+        "round": "R64",
         "opponent": "David Goffin",
         "points_won": 74,
         "points_played": 168,
@@ -2810,6 +2852,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1111",
+        "round": "R128",
         "opponent": "Jeremy Chardy",
         "points_won": 94,
         "points_played": 219,
@@ -2931,6 +2974,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1112",
+        "round": "R128",
         "opponent": "David Goffin",
         "points_won": 78,
         "points_played": 170,
@@ -3052,6 +3096,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1112",
+        "round": "R128",
         "opponent": "Bradley Klahn",
         "points_won": 92,
         "points_played": 170,
@@ -3062,6 +3107,7 @@
       },
       {
         "match_id": "2019-wimbledon-1206",
+        "round": "R64",
         "opponent": "Jeremy Chardy",
         "points_won": 94,
         "points_played": 168,
@@ -3072,6 +3118,7 @@
       },
       {
         "match_id": "2019-wimbledon-1303",
+        "round": "R32",
         "opponent": "Daniil Medvedev",
         "points_won": 165,
         "points_played": 309,
@@ -3082,6 +3129,7 @@
       },
       {
         "match_id": "2019-wimbledon-1402",
+        "round": "R16",
         "opponent": "Fernando Verdasco",
         "points_won": 131,
         "points_played": 255,
@@ -3092,6 +3140,7 @@
       },
       {
         "match_id": "2019-wimbledon-1501",
+        "round": "QF",
         "opponent": "Novak Djokovic",
         "points_won": 66,
         "points_played": 159,
@@ -3213,6 +3262,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1113",
+        "round": "R128",
         "opponent": "Jaume Munar",
         "points_won": 110,
         "points_played": 198,
@@ -3223,6 +3273,7 @@
       },
       {
         "match_id": "2019-wimbledon-1207",
+        "round": "R64",
         "opponent": "Fernando Verdasco",
         "points_won": 142,
         "points_played": 301,
@@ -3344,6 +3395,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1113",
+        "round": "R128",
         "opponent": "Kyle Edmund",
         "points_won": 88,
         "points_played": 198,
@@ -3465,6 +3517,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1114",
+        "round": "R128",
         "opponent": "Fernando Verdasco",
         "points_won": 77,
         "points_played": 170,
@@ -3586,6 +3639,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1114",
+        "round": "R128",
         "opponent": "Kamil Majchrzak",
         "points_won": 93,
         "points_played": 170,
@@ -3596,6 +3650,7 @@
       },
       {
         "match_id": "2019-wimbledon-1207",
+        "round": "R64",
         "opponent": "Kyle Edmund",
         "points_won": 159,
         "points_played": 301,
@@ -3606,6 +3661,7 @@
       },
       {
         "match_id": "2019-wimbledon-1304",
+        "round": "R32",
         "opponent": "Thomas Fabbiano",
         "points_won": 113,
         "points_played": 208,
@@ -3616,6 +3672,7 @@
       },
       {
         "match_id": "2019-wimbledon-1402",
+        "round": "R16",
         "opponent": "David Goffin",
         "points_won": 124,
         "points_played": 255,
@@ -3725,6 +3782,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1115",
+        "round": "R128",
         "opponent": "Ivo Karlovic",
         "points_won": 77,
         "points_played": 172,
@@ -3846,6 +3904,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1115",
+        "round": "R128",
         "opponent": "Andrea Arnaboldi",
         "points_won": 95,
         "points_played": 172,
@@ -3856,6 +3915,7 @@
       },
       {
         "match_id": "2019-wimbledon-1208",
+        "round": "R64",
         "opponent": "Thomas Fabbiano",
         "points_won": 145,
         "points_played": 306,
@@ -3977,6 +4037,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1116",
+        "round": "R128",
         "opponent": "Stefanos Tsitsipas",
         "points_won": 162,
         "points_played": 316,
@@ -3987,6 +4048,7 @@
       },
       {
         "match_id": "2019-wimbledon-1208",
+        "round": "R64",
         "opponent": "Ivo Karlovic",
         "points_won": 161,
         "points_played": 306,
@@ -3997,6 +4059,7 @@
       },
       {
         "match_id": "2019-wimbledon-1304",
+        "round": "R32",
         "opponent": "Fernando Verdasco",
         "points_won": 95,
         "points_played": 208,
@@ -4118,6 +4181,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1116",
+        "round": "R128",
         "opponent": "Thomas Fabbiano",
         "points_won": 154,
         "points_played": 316,
@@ -4239,6 +4303,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1117",
+        "round": "R128",
         "opponent": "Pierre Hugues Herbert",
         "points_won": 96,
         "points_played": 161,
@@ -4249,6 +4314,7 @@
       },
       {
         "match_id": "2019-wimbledon-1209",
+        "round": "R64",
         "opponent": "Janko Tipsarevic",
         "points_won": 140,
         "points_played": 249,
@@ -4259,6 +4325,7 @@
       },
       {
         "match_id": "2019-wimbledon-1305",
+        "round": "R32",
         "opponent": "Guido Pella",
         "points_won": 103,
         "points_played": 215,
@@ -4380,6 +4447,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1117",
+        "round": "R128",
         "opponent": "Kevin Anderson",
         "points_won": 65,
         "points_played": 161,
@@ -4501,6 +4569,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1118",
+        "round": "R128",
         "opponent": "Yoshihito Nishioka",
         "points_won": 172,
         "points_played": 330,
@@ -4511,6 +4580,7 @@
       },
       {
         "match_id": "2019-wimbledon-1209",
+        "round": "R64",
         "opponent": "Kevin Anderson",
         "points_won": 109,
         "points_played": 249,
@@ -4632,6 +4702,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1118",
+        "round": "R128",
         "opponent": "Janko Tipsarevic",
         "points_won": 158,
         "points_played": 330,
@@ -4753,6 +4824,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1119",
+        "round": "R128",
         "opponent": "Nicolas Jarry",
         "points_won": 133,
         "points_played": 232,
@@ -4763,6 +4835,7 @@
       },
       {
         "match_id": "2019-wimbledon-1210",
+        "round": "R64",
         "opponent": "Guido Pella",
         "points_won": 154,
         "points_played": 324,
@@ -4884,6 +4957,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1119",
+        "round": "R128",
         "opponent": "Andreas Seppi",
         "points_won": 99,
         "points_played": 232,
@@ -5005,6 +5079,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1120",
+        "round": "R128",
         "opponent": "Guido Pella",
         "points_won": 124,
         "points_played": 260,
@@ -5126,6 +5201,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1120",
+        "round": "R128",
         "opponent": "Marius Copil",
         "points_won": 136,
         "points_played": 260,
@@ -5136,6 +5212,7 @@
       },
       {
         "match_id": "2019-wimbledon-1210",
+        "round": "R64",
         "opponent": "Andreas Seppi",
         "points_won": 170,
         "points_played": 324,
@@ -5146,6 +5223,7 @@
       },
       {
         "match_id": "2019-wimbledon-1305",
+        "round": "R32",
         "opponent": "Kevin Anderson",
         "points_won": 112,
         "points_played": 215,
@@ -5156,6 +5234,7 @@
       },
       {
         "match_id": "2019-wimbledon-1403",
+        "round": "R16",
         "opponent": "Milos Raonic",
         "points_won": 156,
         "points_played": 321,
@@ -5173,6 +5252,7 @@
       },
       {
         "match_id": "2019-wimbledon-1502",
+        "round": "QF",
         "opponent": "Roberto Bautista Agut",
         "points_won": 129,
         "points_played": 273,
@@ -5294,6 +5374,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1121",
+        "round": "R128",
         "opponent": "Ruben Bemelmans",
         "points_won": 94,
         "points_played": 156,
@@ -5304,6 +5385,7 @@
       },
       {
         "match_id": "2019-wimbledon-1211",
+        "round": "R64",
         "opponent": "Reilly Opelka",
         "points_won": 156,
         "points_played": 307,
@@ -5432,6 +5514,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1121",
+        "round": "R128",
         "opponent": "Stan Wawrinka",
         "points_won": 62,
         "points_played": 156,
@@ -5541,6 +5624,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1122",
+        "round": "R128",
         "opponent": "Reilly Opelka",
         "points_won": 79,
         "points_played": 180,
@@ -5662,6 +5746,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1122",
+        "round": "R128",
         "opponent": "Cedrik Marcel Stebe",
         "points_won": 101,
         "points_played": 180,
@@ -5672,6 +5757,7 @@
       },
       {
         "match_id": "2019-wimbledon-1211",
+        "round": "R64",
         "opponent": "Stan Wawrinka",
         "points_won": 151,
         "points_played": 307,
@@ -5689,6 +5775,7 @@
       },
       {
         "match_id": "2019-wimbledon-1306",
+        "round": "R32",
         "opponent": "Milos Raonic",
         "points_won": 60,
         "points_played": 161,
@@ -5810,6 +5897,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1123",
+        "round": "R128",
         "opponent": "Robin Haase",
         "points_won": 50,
         "points_played": 135,
@@ -5931,6 +6019,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1123",
+        "round": "R128",
         "opponent": "Jozef Kovalik",
         "points_won": 85,
         "points_played": 135,
@@ -5941,6 +6030,7 @@
       },
       {
         "match_id": "2019-wimbledon-1212",
+        "round": "R64",
         "opponent": "Milos Raonic",
         "points_won": 104,
         "points_played": 230,
@@ -6062,6 +6152,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1124",
+        "round": "R128",
         "opponent": "Milos Raonic",
         "points_won": 76,
         "points_played": 178,
@@ -6183,6 +6274,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1124",
+        "round": "R128",
         "opponent": "Prajnesh Gunneswaran",
         "points_won": 102,
         "points_played": 178,
@@ -6193,6 +6285,7 @@
       },
       {
         "match_id": "2019-wimbledon-1212",
+        "round": "R64",
         "opponent": "Robin Haase",
         "points_won": 126,
         "points_played": 230,
@@ -6203,6 +6296,7 @@
       },
       {
         "match_id": "2019-wimbledon-1306",
+        "round": "R32",
         "opponent": "Reilly Opelka",
         "points_won": 101,
         "points_played": 161,
@@ -6213,6 +6307,7 @@
       },
       {
         "match_id": "2019-wimbledon-1403",
+        "round": "R16",
         "opponent": "Guido Pella",
         "points_won": 165,
         "points_played": 321,
@@ -6341,6 +6436,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1125",
+        "round": "R128",
         "opponent": "Soonwoo Kwon",
         "points_won": 150,
         "points_played": 291,
@@ -6351,6 +6447,7 @@
       },
       {
         "match_id": "2019-wimbledon-1213",
+        "round": "R64",
         "opponent": "Feliciano Lopez",
         "points_won": 133,
         "points_played": 255,
@@ -6361,6 +6458,7 @@
       },
       {
         "match_id": "2019-wimbledon-1307",
+        "round": "R32",
         "opponent": "Roberto Bautista Agut",
         "points_won": 69,
         "points_played": 165,
@@ -6482,6 +6580,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1125",
+        "round": "R128",
         "opponent": "Karen Khachanov",
         "points_won": 141,
         "points_played": 291,
@@ -6591,6 +6690,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1126",
+        "round": "R128",
         "opponent": "Feliciano Lopez",
         "points_won": 64,
         "points_played": 151,
@@ -6712,6 +6812,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1126",
+        "round": "R128",
         "opponent": "Marcos Giron",
         "points_won": 87,
         "points_played": 151,
@@ -6722,6 +6823,7 @@
       },
       {
         "match_id": "2019-wimbledon-1213",
+        "round": "R64",
         "opponent": "Karen Khachanov",
         "points_won": 122,
         "points_played": 255,
@@ -6843,6 +6945,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1127",
+        "round": "R128",
         "opponent": "Mischa Zverev",
         "points_won": 107,
         "points_played": 193,
@@ -6853,6 +6956,7 @@
       },
       {
         "match_id": "2019-wimbledon-1214",
+        "round": "R64",
         "opponent": "Roberto Bautista Agut",
         "points_won": 62,
         "points_played": 152,
@@ -6962,6 +7066,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1127",
+        "round": "R128",
         "opponent": "Steve Darcis",
         "points_won": 86,
         "points_played": 193,
@@ -7071,6 +7176,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1128",
+        "round": "R128",
         "opponent": "Roberto Bautista Agut",
         "points_won": 64,
         "points_played": 159,
@@ -7192,6 +7298,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1128",
+        "round": "R128",
         "opponent": "Peter Gojowczyk",
         "points_won": 95,
         "points_played": 159,
@@ -7202,6 +7309,7 @@
       },
       {
         "match_id": "2019-wimbledon-1214",
+        "round": "R64",
         "opponent": "Steve Darcis",
         "points_won": 90,
         "points_played": 152,
@@ -7212,6 +7320,7 @@
       },
       {
         "match_id": "2019-wimbledon-1307",
+        "round": "R32",
         "opponent": "Karen Khachanov",
         "points_won": 96,
         "points_played": 165,
@@ -7222,6 +7331,7 @@
       },
       {
         "match_id": "2019-wimbledon-1404",
+        "round": "R16",
         "opponent": "Benoit Paire",
         "points_won": 108,
         "points_played": 192,
@@ -7232,6 +7342,7 @@
       },
       {
         "match_id": "2019-wimbledon-1502",
+        "round": "QF",
         "opponent": "Guido Pella",
         "points_won": 144,
         "points_played": 273,
@@ -7242,6 +7353,7 @@
       },
       {
         "match_id": "2019-wimbledon-1601",
+        "round": "SF",
         "opponent": "Novak Djokovic",
         "points_won": 102,
         "points_played": 221,
@@ -7363,6 +7475,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1129",
+        "round": "R128",
         "opponent": "Juan Ignacio Londero",
         "points_won": 145,
         "points_played": 278,
@@ -7373,6 +7486,7 @@
       },
       {
         "match_id": "2019-wimbledon-1215",
+        "round": "R64",
         "opponent": "Miomir Kecmanovic",
         "points_won": 79,
         "points_played": 154,
@@ -7383,6 +7497,7 @@
       },
       {
         "match_id": "2019-wimbledon-1308",
+        "round": "R32",
         "opponent": "Jiri Vesely",
         "points_won": 143,
         "points_played": 277,
@@ -7393,6 +7508,7 @@
       },
       {
         "match_id": "2019-wimbledon-1404",
+        "round": "R16",
         "opponent": "Roberto Bautista Agut",
         "points_won": 84,
         "points_played": 192,
@@ -7514,6 +7630,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1129",
+        "round": "R128",
         "opponent": "Benoit Paire",
         "points_won": 133,
         "points_played": 278,
@@ -7623,6 +7740,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1130",
+        "round": "R128",
         "opponent": "Miomir Kecmanovic",
         "points_won": 92,
         "points_played": 203,
@@ -7744,6 +7862,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1130",
+        "round": "R128",
         "opponent": "Roberto Carballes Baena",
         "points_won": 111,
         "points_played": 203,
@@ -7754,6 +7873,7 @@
       },
       {
         "match_id": "2019-wimbledon-1215",
+        "round": "R64",
         "opponent": "Benoit Paire",
         "points_won": 75,
         "points_played": 154,
@@ -7875,6 +7995,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1131",
+        "round": "R128",
         "opponent": "Damir Dzumhur",
         "points_won": 158,
         "points_played": 313,
@@ -7885,6 +8006,7 @@
       },
       {
         "match_id": "2019-wimbledon-1216",
+        "round": "R64",
         "opponent": "Jiri Vesely",
         "points_won": 123,
         "points_played": 260,
@@ -7994,6 +8116,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1131",
+        "round": "R128",
         "opponent": "Pablo Cuevas",
         "points_won": 155,
         "points_played": 313,
@@ -8115,6 +8238,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1132",
+        "round": "R128",
         "opponent": "Alexander Zverev",
         "points_won": 125,
         "points_played": 231,
@@ -8125,6 +8249,7 @@
       },
       {
         "match_id": "2019-wimbledon-1216",
+        "round": "R64",
         "opponent": "Pablo Cuevas",
         "points_won": 137,
         "points_played": 260,
@@ -8135,6 +8260,7 @@
       },
       {
         "match_id": "2019-wimbledon-1308",
+        "round": "R32",
         "opponent": "Benoit Paire",
         "points_won": 134,
         "points_played": 277,
@@ -8256,6 +8382,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1132",
+        "round": "R128",
         "opponent": "Jiri Vesely",
         "points_won": 106,
         "points_played": 231,
@@ -8377,6 +8504,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1133",
+        "round": "R128",
         "opponent": "Sam Querrey",
         "points_won": 109,
         "points_played": 246,
@@ -8498,6 +8626,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1133",
+        "round": "R128",
         "opponent": "Dominic Thiem",
         "points_won": 137,
         "points_played": 246,
@@ -8508,6 +8637,7 @@
       },
       {
         "match_id": "2019-wimbledon-1217",
+        "round": "R64",
         "opponent": "Andrey Rublev",
         "points_won": 104,
         "points_played": 182,
@@ -8518,6 +8648,7 @@
       },
       {
         "match_id": "2019-wimbledon-1309",
+        "round": "R32",
         "opponent": "John Millman",
         "points_won": 107,
         "points_played": 203,
@@ -8528,6 +8659,7 @@
       },
       {
         "match_id": "2019-wimbledon-1405",
+        "round": "R16",
         "opponent": "Tennys Sandgren",
         "points_won": 151,
         "points_played": 295,
@@ -8538,6 +8670,7 @@
       },
       {
         "match_id": "2019-wimbledon-1503",
+        "round": "QF",
         "opponent": "Rafael Nadal",
         "points_won": 78,
         "points_played": 184,
@@ -8647,6 +8780,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1134",
+        "round": "R128",
         "opponent": "Andrey Rublev",
         "points_won": 132,
         "points_played": 289,
@@ -8768,6 +8902,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1134",
+        "round": "R128",
         "opponent": "Cristian Garin",
         "points_won": 157,
         "points_played": 289,
@@ -8778,6 +8913,7 @@
       },
       {
         "match_id": "2019-wimbledon-1217",
+        "round": "R64",
         "opponent": "Sam Querrey",
         "points_won": 78,
         "points_played": 182,
@@ -8887,6 +9023,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1135",
+        "round": "R128",
         "opponent": "John Millman",
         "points_won": 70,
         "points_played": 164,
@@ -9008,6 +9145,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1135",
+        "round": "R128",
         "opponent": "Hugo Dellien",
         "points_won": 94,
         "points_played": 164,
@@ -9018,6 +9156,7 @@
       },
       {
         "match_id": "2019-wimbledon-1218",
+        "round": "R64",
         "opponent": "Laslo Djere",
         "points_won": 111,
         "points_played": 191,
@@ -9028,6 +9167,7 @@
       },
       {
         "match_id": "2019-wimbledon-1309",
+        "round": "R32",
         "opponent": "Sam Querrey",
         "points_won": 96,
         "points_played": 203,
@@ -9137,6 +9277,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1136",
+        "round": "R128",
         "opponent": "Laslo Djere",
         "points_won": 129,
         "points_played": 271,
@@ -9258,6 +9399,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1136",
+        "round": "R128",
         "opponent": "Guido Andreozzi",
         "points_won": 142,
         "points_played": 271,
@@ -9268,6 +9410,7 @@
       },
       {
         "match_id": "2019-wimbledon-1218",
+        "round": "R64",
         "opponent": "John Millman",
         "points_won": 80,
         "points_played": 191,
@@ -9389,6 +9532,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1137",
+        "round": "R128",
         "opponent": "Salvatore Caruso",
         "points_won": 120,
         "points_played": 217,
@@ -9399,6 +9543,7 @@
       },
       {
         "match_id": "2019-wimbledon-1219",
+        "round": "R64",
         "opponent": "Tennys Sandgren",
         "points_won": 155,
         "points_played": 312,
@@ -9508,6 +9653,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1137",
+        "round": "R128",
         "opponent": "Gilles Simon",
         "points_won": 97,
         "points_played": 217,
@@ -9617,6 +9763,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1138",
+        "round": "R128",
         "opponent": "Tennys Sandgren",
         "points_won": 90,
         "points_played": 199,
@@ -9738,6 +9885,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1138",
+        "round": "R128",
         "opponent": "Yasutaka Uchiyama",
         "points_won": 109,
         "points_played": 199,
@@ -9748,6 +9896,7 @@
       },
       {
         "match_id": "2019-wimbledon-1219",
+        "round": "R64",
         "opponent": "Gilles Simon",
         "points_won": 157,
         "points_played": 312,
@@ -9758,6 +9907,7 @@
       },
       {
         "match_id": "2019-wimbledon-1310",
+        "round": "R32",
         "opponent": "Fabio Fognini",
         "points_won": 123,
         "points_played": 226,
@@ -9768,6 +9918,7 @@
       },
       {
         "match_id": "2019-wimbledon-1405",
+        "round": "R16",
         "opponent": "Sam Querrey",
         "points_won": 144,
         "points_played": 295,
@@ -9889,6 +10040,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1139",
+        "round": "R128",
         "opponent": "Dennis Novak",
         "points_won": 129,
         "points_played": 238,
@@ -9899,6 +10051,7 @@
       },
       {
         "match_id": "2019-wimbledon-1220",
+        "round": "R64",
         "opponent": "Fabio Fognini",
         "points_won": 170,
         "points_played": 341,
@@ -10008,6 +10161,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1139",
+        "round": "R128",
         "opponent": "Marton Fucsovics",
         "points_won": 109,
         "points_played": 238,
@@ -10129,6 +10283,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1140",
+        "round": "R128",
         "opponent": "Fabio Fognini",
         "points_won": 153,
         "points_played": 314,
@@ -10250,6 +10405,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1140",
+        "round": "R128",
         "opponent": "Frances Tiafoe",
         "points_won": 161,
         "points_played": 314,
@@ -10260,6 +10416,7 @@
       },
       {
         "match_id": "2019-wimbledon-1220",
+        "round": "R64",
         "opponent": "Marton Fucsovics",
         "points_won": 171,
         "points_played": 341,
@@ -10270,6 +10427,7 @@
       },
       {
         "match_id": "2019-wimbledon-1310",
+        "round": "R32",
         "opponent": "Tennys Sandgren",
         "points_won": 103,
         "points_played": 226,
@@ -10391,6 +10549,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1141",
+        "round": "R128",
         "opponent": "Adrian Mannarino",
         "points_won": 123,
         "points_played": 232,
@@ -10401,6 +10560,7 @@
       },
       {
         "match_id": "2019-wimbledon-1221",
+        "round": "R64",
         "opponent": "Joao Sousa",
         "points_won": 90,
         "points_played": 195,
@@ -10522,6 +10682,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1141",
+        "round": "R128",
         "opponent": "Marin Cilic",
         "points_won": 109,
         "points_played": 232,
@@ -10643,6 +10804,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1142",
+        "round": "R128",
         "opponent": "Paul Jubb",
         "points_won": 132,
         "points_played": 229,
@@ -10653,6 +10815,7 @@
       },
       {
         "match_id": "2019-wimbledon-1221",
+        "round": "R64",
         "opponent": "Marin Cilic",
         "points_won": 105,
         "points_played": 195,
@@ -10663,6 +10826,7 @@
       },
       {
         "match_id": "2019-wimbledon-1311",
+        "round": "R32",
         "opponent": "Daniel Evans",
         "points_won": 166,
         "points_played": 333,
@@ -10680,6 +10844,7 @@
       },
       {
         "match_id": "2019-wimbledon-1406",
+        "round": "R16",
         "opponent": "Rafael Nadal",
         "points_won": 53,
         "points_played": 137,
@@ -10801,6 +10966,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1142",
+        "round": "R128",
         "opponent": "Joao Sousa",
         "points_won": 97,
         "points_played": 229,
@@ -10922,6 +11088,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1143",
+        "round": "R128",
         "opponent": "Daniel Evans",
         "points_won": 93,
         "points_played": 204,
@@ -11043,6 +11210,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1143",
+        "round": "R128",
         "opponent": "Federico Delbonis",
         "points_won": 111,
         "points_played": 204,
@@ -11053,6 +11221,7 @@
       },
       {
         "match_id": "2019-wimbledon-1222",
+        "round": "R64",
         "opponent": "Nikoloz Basilashvili",
         "points_won": 118,
         "points_played": 211,
@@ -11063,6 +11232,7 @@
       },
       {
         "match_id": "2019-wimbledon-1311",
+        "round": "R32",
         "opponent": "Joao Sousa",
         "points_won": 167,
         "points_played": 333,
@@ -11191,6 +11361,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1144",
+        "round": "R128",
         "opponent": "Nikoloz Basilashvili",
         "points_won": 164,
         "points_played": 335,
@@ -11312,6 +11483,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1144",
+        "round": "R128",
         "opponent": "James Ward",
         "points_won": 171,
         "points_played": 335,
@@ -11322,6 +11494,7 @@
       },
       {
         "match_id": "2019-wimbledon-1222",
+        "round": "R64",
         "opponent": "Daniel Evans",
         "points_won": 93,
         "points_played": 211,
@@ -11443,6 +11616,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1145",
+        "round": "R128",
         "opponent": "Ricardas Berankis",
         "points_won": 94,
         "points_played": 203,
@@ -11564,6 +11738,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1145",
+        "round": "R128",
         "opponent": "Denis Shapovalov",
         "points_won": 109,
         "points_played": 203,
@@ -11574,6 +11749,7 @@
       },
       {
         "match_id": "2019-wimbledon-1223",
+        "round": "R64",
         "opponent": "Jo Wilfried Tsonga",
         "points_won": 76,
         "points_played": 171,
@@ -11695,6 +11871,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1146",
+        "round": "R128",
         "opponent": "Jo Wilfried Tsonga",
         "points_won": 47,
         "points_played": 125,
@@ -11816,6 +11993,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1146",
+        "round": "R128",
         "opponent": "Bernard Tomic",
         "points_won": 78,
         "points_played": 125,
@@ -11826,6 +12004,7 @@
       },
       {
         "match_id": "2019-wimbledon-1223",
+        "round": "R64",
         "opponent": "Ricardas Berankis",
         "points_won": 95,
         "points_played": 171,
@@ -11836,6 +12015,7 @@
       },
       {
         "match_id": "2019-wimbledon-1312",
+        "round": "R32",
         "opponent": "Rafael Nadal",
         "points_won": 54,
         "points_played": 144,
@@ -11957,6 +12137,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1147",
+        "round": "R128",
         "opponent": "Jordan Thompson",
         "points_won": 151,
         "points_played": 311,
@@ -11974,6 +12155,7 @@
       },
       {
         "match_id": "2019-wimbledon-1224",
+        "round": "R64",
         "opponent": "Rafael Nadal",
         "points_won": 111,
         "points_played": 237,
@@ -12095,6 +12277,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1147",
+        "round": "R128",
         "opponent": "Nick Kyrgios",
         "points_won": 160,
         "points_played": 311,
@@ -12223,6 +12406,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1148",
+        "round": "R128",
         "opponent": "Rafael Nadal",
         "points_won": 67,
         "points_played": 162,
@@ -12344,6 +12528,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1148",
+        "round": "R128",
         "opponent": "Yuichi Sugita",
         "points_won": 95,
         "points_played": 162,
@@ -12354,6 +12539,7 @@
       },
       {
         "match_id": "2019-wimbledon-1224",
+        "round": "R64",
         "opponent": "Nick Kyrgios",
         "points_won": 126,
         "points_played": 237,
@@ -12364,6 +12550,7 @@
       },
       {
         "match_id": "2019-wimbledon-1312",
+        "round": "R32",
         "opponent": "Jo Wilfried Tsonga",
         "points_won": 90,
         "points_played": 144,
@@ -12374,6 +12561,7 @@
       },
       {
         "match_id": "2019-wimbledon-1406",
+        "round": "R16",
         "opponent": "Joao Sousa",
         "points_won": 84,
         "points_played": 137,
@@ -12384,6 +12572,7 @@
       },
       {
         "match_id": "2019-wimbledon-1503",
+        "round": "QF",
         "opponent": "Sam Querrey",
         "points_won": 106,
         "points_played": 184,
@@ -12394,6 +12583,7 @@
       },
       {
         "match_id": "2019-wimbledon-1602",
+        "round": "SF",
         "opponent": "Roger Federer",
         "points_won": 117,
         "points_played": 243,
@@ -12515,6 +12705,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1149",
+        "round": "R128",
         "opponent": "Thiago Monteiro",
         "points_won": 103,
         "points_played": 193,
@@ -12525,6 +12716,7 @@
       },
       {
         "match_id": "2019-wimbledon-1225",
+        "round": "R64",
         "opponent": "Cameron Norrie",
         "points_won": 90,
         "points_played": 144,
@@ -12535,6 +12727,7 @@
       },
       {
         "match_id": "2019-wimbledon-1313",
+        "round": "R32",
         "opponent": "Steve Johnson",
         "points_won": 103,
         "points_played": 176,
@@ -12545,6 +12738,7 @@
       },
       {
         "match_id": "2019-wimbledon-1407",
+        "round": "R16",
         "opponent": "Mikhail Kukushkin",
         "points_won": 128,
         "points_played": 242,
@@ -12555,6 +12749,7 @@
       },
       {
         "match_id": "2019-wimbledon-1504",
+        "round": "QF",
         "opponent": "Roger Federer",
         "points_won": 106,
         "points_played": 244,
@@ -12676,6 +12871,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1149",
+        "round": "R128",
         "opponent": "Kei Nishikori",
         "points_won": 90,
         "points_played": 193,
@@ -12797,6 +12993,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1150",
+        "round": "R128",
         "opponent": "Cameron Norrie",
         "points_won": 97,
         "points_played": 214,
@@ -12918,6 +13115,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1150",
+        "round": "R128",
         "opponent": "Denis Istomin",
         "points_won": 117,
         "points_played": 214,
@@ -12928,6 +13126,7 @@
       },
       {
         "match_id": "2019-wimbledon-1225",
+        "round": "R64",
         "opponent": "Kei Nishikori",
         "points_won": 54,
         "points_played": 144,
@@ -13049,6 +13248,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1151",
+        "round": "R128",
         "opponent": "Albert Ramos Vinolas",
         "points_won": 100,
         "points_played": 172,
@@ -13059,6 +13259,7 @@
       },
       {
         "match_id": "2019-wimbledon-1226",
+        "round": "R64",
         "opponent": "Alex De Minaur",
         "points_won": 149,
         "points_played": 299,
@@ -13076,6 +13277,7 @@
       },
       {
         "match_id": "2019-wimbledon-1313",
+        "round": "R32",
         "opponent": "Kei Nishikori",
         "points_won": 73,
         "points_played": 176,
@@ -13185,6 +13387,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1151",
+        "round": "R128",
         "opponent": "Steve Johnson",
         "points_won": 72,
         "points_played": 172,
@@ -13306,6 +13509,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1152",
+        "round": "R128",
         "opponent": "Alex De Minaur",
         "points_won": 88,
         "points_played": 200,
@@ -13427,6 +13631,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1152",
+        "round": "R128",
         "opponent": "Marco Cecchinato",
         "points_won": 112,
         "points_played": 200,
@@ -13437,6 +13642,7 @@
       },
       {
         "match_id": "2019-wimbledon-1226",
+        "round": "R64",
         "opponent": "Steve Johnson",
         "points_won": 150,
         "points_played": 299,
@@ -13565,6 +13771,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1153",
+        "round": "R128",
         "opponent": "Radu Albot",
         "points_won": 89,
         "points_played": 158,
@@ -13575,6 +13782,7 @@
       },
       {
         "match_id": "2019-wimbledon-1227",
+        "round": "R64",
         "opponent": "Taylor Fritz",
         "points_won": 136,
         "points_played": 258,
@@ -13585,6 +13793,7 @@
       },
       {
         "match_id": "2019-wimbledon-1314",
+        "round": "R32",
         "opponent": "Mikhail Kukushkin",
         "points_won": 154,
         "points_played": 309,
@@ -13694,6 +13903,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1153",
+        "round": "R128",
         "opponent": "Jan Lennard Struff",
         "points_won": 69,
         "points_played": 158,
@@ -13815,6 +14025,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1154",
+        "round": "R128",
         "opponent": "Tomas Berdych",
         "points_won": 93,
         "points_played": 171,
@@ -13825,6 +14036,7 @@
       },
       {
         "match_id": "2019-wimbledon-1227",
+        "round": "R64",
         "opponent": "Jan Lennard Struff",
         "points_won": 122,
         "points_played": 258,
@@ -13946,6 +14158,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1154",
+        "round": "R128",
         "opponent": "Taylor Fritz",
         "points_won": 78,
         "points_played": 171,
@@ -14055,6 +14268,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1155",
+        "round": "R128",
         "opponent": "Mikhail Kukushkin",
         "points_won": 76,
         "points_played": 179,
@@ -14176,6 +14390,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1155",
+        "round": "R128",
         "opponent": "Pablo Andujar",
         "points_won": 103,
         "points_played": 179,
@@ -14186,6 +14401,7 @@
       },
       {
         "match_id": "2019-wimbledon-1228",
+        "round": "R64",
         "opponent": "John Isner",
         "points_won": 159,
         "points_played": 300,
@@ -14196,6 +14412,7 @@
       },
       {
         "match_id": "2019-wimbledon-1314",
+        "round": "R32",
         "opponent": "Jan Lennard Struff",
         "points_won": 155,
         "points_played": 309,
@@ -14206,6 +14423,7 @@
       },
       {
         "match_id": "2019-wimbledon-1407",
+        "round": "R16",
         "opponent": "Kei Nishikori",
         "points_won": 114,
         "points_played": 242,
@@ -14327,6 +14545,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1156",
+        "round": "R128",
         "opponent": "John Isner",
         "points_won": 85,
         "points_played": 183,
@@ -14448,6 +14667,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1156",
+        "round": "R128",
         "opponent": "Casper Ruud",
         "points_won": 98,
         "points_played": 183,
@@ -14458,6 +14678,7 @@
       },
       {
         "match_id": "2019-wimbledon-1228",
+        "round": "R64",
         "opponent": "Mikhail Kukushkin",
         "points_won": 141,
         "points_played": 300,
@@ -14579,6 +14800,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1157",
+        "round": "R128",
         "opponent": "Aljaz Bedene",
         "points_won": 143,
         "points_played": 263,
@@ -14589,6 +14811,7 @@
       },
       {
         "match_id": "2019-wimbledon-1229",
+        "round": "R64",
         "opponent": "Marcos Baghdatis",
         "points_won": 96,
         "points_played": 163,
@@ -14599,6 +14822,7 @@
       },
       {
         "match_id": "2019-wimbledon-1315",
+        "round": "R32",
         "opponent": "Diego Schwartzman",
         "points_won": 186,
         "points_played": 374,
@@ -14616,6 +14840,7 @@
       },
       {
         "match_id": "2019-wimbledon-1408",
+        "round": "R16",
         "opponent": "Roger Federer",
         "points_won": 40,
         "points_played": 119,
@@ -14725,6 +14950,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1157",
+        "round": "R128",
         "opponent": "Matteo Berrettini",
         "points_won": 120,
         "points_played": 263,
@@ -14834,6 +15060,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1158",
+        "round": "R128",
         "opponent": "Marcos Baghdatis",
         "points_won": 81,
         "points_played": 180,
@@ -14955,6 +15182,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1158",
+        "round": "R128",
         "opponent": "Brayden Schnur",
         "points_won": 99,
         "points_played": 180,
@@ -14965,6 +15193,7 @@
       },
       {
         "match_id": "2019-wimbledon-1229",
+        "round": "R64",
         "opponent": "Matteo Berrettini",
         "points_won": 67,
         "points_played": 163,
@@ -15086,6 +15315,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1159",
+        "round": "R128",
         "opponent": "Filip Krajinovic",
         "points_won": 137,
         "points_played": 257,
@@ -15096,6 +15326,7 @@
       },
       {
         "match_id": "2019-wimbledon-1230",
+        "round": "R64",
         "opponent": "Diego Schwartzman",
         "points_won": 81,
         "points_played": 188,
@@ -15205,6 +15436,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1159",
+        "round": "R128",
         "opponent": "Dominik Koepfer",
         "points_won": 120,
         "points_played": 257,
@@ -15326,6 +15558,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1160",
+        "round": "R128",
         "opponent": "Diego Schwartzman",
         "points_won": 104,
         "points_played": 221,
@@ -15447,6 +15680,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1160",
+        "round": "R128",
         "opponent": "Matthew Ebden",
         "points_won": 117,
         "points_played": 221,
@@ -15457,6 +15691,7 @@
       },
       {
         "match_id": "2019-wimbledon-1230",
+        "round": "R64",
         "opponent": "Dominik Koepfer",
         "points_won": 107,
         "points_played": 188,
@@ -15467,6 +15702,7 @@
       },
       {
         "match_id": "2019-wimbledon-1315",
+        "round": "R32",
         "opponent": "Matteo Berrettini",
         "points_won": 188,
         "points_played": 374,
@@ -15595,6 +15831,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1161",
+        "round": "R128",
         "opponent": "Richard Gasquet",
         "points_won": 109,
         "points_played": 194,
@@ -15605,6 +15842,7 @@
       },
       {
         "match_id": "2019-wimbledon-1231",
+        "round": "R64",
         "opponent": "Gregoire Barrere",
         "points_won": 107,
         "points_played": 179,
@@ -15615,6 +15853,7 @@
       },
       {
         "match_id": "2019-wimbledon-1316",
+        "round": "R32",
         "opponent": "Roger Federer",
         "points_won": 94,
         "points_played": 208,
@@ -15736,6 +15975,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1161",
+        "round": "R128",
         "opponent": "Lucas Pouille",
         "points_won": 85,
         "points_played": 194,
@@ -15845,6 +16085,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1162",
+        "round": "R128",
         "opponent": "Gregoire Barrere",
         "points_won": 107,
         "points_played": 228,
@@ -15966,6 +16207,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1162",
+        "round": "R128",
         "opponent": "Alexander Bublik",
         "points_won": 121,
         "points_played": 228,
@@ -15976,6 +16218,7 @@
       },
       {
         "match_id": "2019-wimbledon-1231",
+        "round": "R64",
         "opponent": "Lucas Pouille",
         "points_won": 72,
         "points_played": 179,
@@ -16097,6 +16340,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1163",
+        "round": "R128",
         "opponent": "Noah Rubin",
         "points_won": 136,
         "points_played": 259,
@@ -16107,6 +16351,7 @@
       },
       {
         "match_id": "2019-wimbledon-1232",
+        "round": "R64",
         "opponent": "Roger Federer",
         "points_won": 61,
         "points_played": 159,
@@ -16216,6 +16461,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1163",
+        "round": "R128",
         "opponent": "Jay Clarke",
         "points_won": 123,
         "points_played": 259,
@@ -16337,6 +16583,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1164",
+        "round": "R128",
         "opponent": "Roger Federer",
         "points_won": 71,
         "points_played": 177,
@@ -16458,6 +16705,7 @@
     "match_summaries": [
       {
         "match_id": "2019-wimbledon-1164",
+        "round": "R128",
         "opponent": "Lloyd Harris",
         "points_won": 106,
         "points_played": 177,
@@ -16468,6 +16716,7 @@
       },
       {
         "match_id": "2019-wimbledon-1232",
+        "round": "R64",
         "opponent": "Jay Clarke",
         "points_won": 98,
         "points_played": 159,
@@ -16478,6 +16727,7 @@
       },
       {
         "match_id": "2019-wimbledon-1316",
+        "round": "R32",
         "opponent": "Lucas Pouille",
         "points_won": 114,
         "points_played": 208,
@@ -16488,6 +16738,7 @@
       },
       {
         "match_id": "2019-wimbledon-1408",
+        "round": "R16",
         "opponent": "Matteo Berrettini",
         "points_won": 79,
         "points_played": 119,
@@ -16498,6 +16749,7 @@
       },
       {
         "match_id": "2019-wimbledon-1504",
+        "round": "QF",
         "opponent": "Kei Nishikori",
         "points_won": 138,
         "points_played": 244,
@@ -16508,6 +16760,7 @@
       },
       {
         "match_id": "2019-wimbledon-1602",
+        "round": "SF",
         "opponent": "Rafael Nadal",
         "points_won": 126,
         "points_played": 243,
@@ -16518,6 +16771,7 @@
       },
       {
         "match_id": "2019-wimbledon-1701",
+        "round": "F",
         "opponent": "Novak Djokovic",
         "points_won": 218,
         "points_played": 422,

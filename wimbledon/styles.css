@@ -1067,17 +1067,16 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   margin-bottom: 10px;
 }
 .scoreboard-digits {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: clamp(52px, 12vw, 80px);
-  font-weight: 900;
+  font-family: 'DSEG7 Classic', 'Courier New', monospace;
+  font-size: clamp(44px, 10vw, 68px);
+  font-weight: 700;
   line-height: 1;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   color: #E8A800;
   text-shadow:
     0 0 8px  #E8A800,
     0 0 20px #C07800,
     0 0 40px rgba(180, 90, 0, 0.5);
-  font-variant-numeric: tabular-nums;
 }
 .scoreboard-foot {
   font-family: var(--font-sans);

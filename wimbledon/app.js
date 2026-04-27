@@ -748,7 +748,12 @@ function renderDuration(p, t) {
   container.innerHTML = `
     <div class="scoreboard-panel">
       <div class="scoreboard-eyebrow">Avg Match Time</div>
-      <div class="scoreboard-digits" aria-label="${fmtMins(val)}">${fmtBoard(val)}</div>
+      <div class="scoreboard-digits" aria-label="${fmtMins(val)}">
+        ${fmtBoard(val).split("").map(ch =>
+          ch === ":" ? `<span class="seg-sep">:</span>`
+                     : `<span class="seg-cell">${ch}</span>`
+        ).join("")}
+      </div>
       <div class="scoreboard-foot">H : MM &nbsp;·&nbsp; Tourn. avg ${fmtBoard(avg)}</div>
     </div>
     <div class="dur-bar-section" style="margin-top:var(--s-4)">

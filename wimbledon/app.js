@@ -56,9 +56,10 @@ async function boot() {
 
 async function loadYear(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
+  const nc   = { cache: "no-store" };
   const [profiles, tourn] = await Promise.all([
-    fetch(`${base}/data/${year}_men_profiles.json`).then(r => r.json()),
-    fetch(`${base}/data/${year}_men_tournament.json`).then(r => r.json()),
+    fetch(`${base}/data/${year}_men_profiles.json`, nc).then(r => r.json()),
+    fetch(`${base}/data/${year}_men_tournament.json`, nc).then(r => r.json()),
   ]);
   state.profiles  = profiles;
   state.tournament = tourn;
@@ -317,125 +318,110 @@ function renderServeSpeed(p, t) {
 }
 
 // ── Serve Direction ───────────────────────────────────────────────
-// Uses ServeWidth field (W/BW=Wide, B/BC=Body, C=Centre).
-// ServingTo not available → no deuce/ad split.
+// ServeWidth (W/B/C) split by deduced court (even/odd point index within game).
 function renderServeDirection(p, t) {
-  const sd = p.serve_direction;
-  const ta = t.serve_direction;
-  const C  = { cobalt:"#002FA7", terracotta:"#D35220", forest:"#01482A",
-               paper:"#FFFDF8", ink:"#141414", muted:"#8A857B" };
-
-  const svg     = document.getElementById("court-svg");
-  const legend  = document.getElementById("direction-legend");
+  const sd  = p.serve_direction;
+  const svg = document.getElementById("court-svg");
+  document.getElementById("direction-legend").innerHTML = "";
 
   if (!sd?.available) {
-    svg.innerHTML = "";
-    legend.innerHTML = naCard("Serve Direction", p.year);
+    svg.setAttribute("viewBox", "0 0 200 80");
+    svg.innerHTML = `<foreignObject x="0" y="0" width="200" height="80">${naCard("Serve Direction", p.year)}</foreignObject>`;
     return;
   }
 
-  const fmt = v => v != null ? Math.round(v) + "%" : "—";
+  const C = { wide:"#002FA7", body:"#D35220", centre:"#01482A",
+              ink:"#141414", paper:"#FFFDF8", muted:"#8A857B" };
 
-  // ── Single service-box court (top = net, bottom = baseline)
-  // viewBox 0 0 200 300
-  const netY = 28; const netH = 10;
-  const bx = 20; const boxW = 160; const boxH = 120; const boxY = netY + netH;
-
-  // Zones left→right inside the box: Wide | Body | Centre
-  // (mirroring how W/B/C look across the full-court width)
-  const zones = [
-    { pct: sd.wide_pct   ?? 0, fill: C.cobalt,     label: "Wide",   sub: fmt(sd.wide_pct)   },
-    { pct: sd.body_pct   ?? 0, fill: C.terracotta, label: "Body",   sub: fmt(sd.body_pct)   },
-    { pct: sd.centre_pct ?? 0, fill: C.forest,     label: "Centre", sub: fmt(sd.centre_pct) },
+  // Two boxes: Deuce (left) and Ad (right)
+  // Deuce zones L→R: T | Body | Wide  (T points toward centre T-line)
+  // Ad zones L→R:    Wide | Body | T   (mirrored)
+  const DEUCE_ZONES = [
+    { key:"centre", label:"T",    color:C.centre },
+    { key:"body",   label:"Body", color:C.body   },
+    { key:"wide",   label:"Wide", color:C.wide   },
   ];
-  const total = zones.reduce((s, z) => s + z.pct, 0) || 100;
+  const AD_ZONES = [
+    { key:"wide",   label:"Wide", color:C.wide   },
+    { key:"body",   label:"Body", color:C.body   },
+    { key:"centre", label:"T",    color:C.centre },
+  ];
+
+  const W = 440, H = 232;
+  const BOX_W = 200, ZONE_W = BOX_W / 3;
+  const GAP = W - 2 * BOX_W;                // 40px between boxes
+  const LX = 0, RX = BOX_W + GAP;           // box x origins
+
+  // Y layout
+  const TITLE_Y  = 13;
+  const NET_Y    = 18,  NET_H  = 10;
+  const LBL1_Y   = NET_Y + NET_H;           // 28
+  const LBL_H    = 15;
+  const Z1_Y     = LBL1_Y + LBL_H;          // 43
+  const ZONE_H   = 74;
+  const DIV_Y    = Z1_Y + ZONE_H;           // 117
+  const LBL2_Y   = DIV_Y + 2;              // 119
+  const Z2_Y     = LBL2_Y + LBL_H;         // 134
+  const BASE_Y   = Z2_Y + ZONE_H;          // 208
+  const NOTE_Y   = BASE_Y + 16;            // 224
+
+  const fmt = v => v != null ? Math.round(v) + "%" : "—";
+  const F = "Helvetica,Arial,sans-serif";
+
+  function box(bx, zones, title, d1, d2) {
+    let h = "";
+    // Court title
+    h += `<text x="${bx + BOX_W/2}" y="${TITLE_Y}" text-anchor="middle" fill="${C.muted}" font-size="7" font-family="${F}" letter-spacing="0.30em">${title}</text>`;
+    // Net bar
+    h += `<rect x="${bx}" y="${NET_Y}" width="${BOX_W}" height="${NET_H}" fill="${C.ink}"/>`;
+    h += `<text x="${bx + BOX_W/2}" y="${NET_Y + NET_H - 2}" text-anchor="middle" fill="${C.paper}" font-size="5.5" font-family="${F}" letter-spacing="0.22em">NET</text>`;
+    // Box background
+    const BOX_TOTAL_H = BASE_Y - (NET_Y + NET_H);
+    h += `<rect x="${bx}" y="${LBL1_Y}" width="${BOX_W}" height="${BOX_TOTAL_H}" fill="${C.paper}" stroke="${C.ink}" stroke-width="0.8"/>`;
+    // Serve sections
+    h += serveSection(bx, LBL1_Y, Z1_Y, zones, d1, "1ST SERVE");
+    // Divider between 1st and 2nd
+    h += `<line x1="${bx}" y1="${DIV_Y}" x2="${bx+BOX_W}" y2="${DIV_Y}" stroke="${C.ink}" stroke-width="0.8" opacity="0.4"/>`;
+    h += serveSection(bx, LBL2_Y, Z2_Y, zones, d2, "2ND SERVE");
+    // Baseline
+    h += `<line x1="${bx}" y1="${BASE_Y}" x2="${bx+BOX_W}" y2="${BASE_Y}" stroke="${C.ink}" stroke-width="1"/>`;
+    return h;
+  }
+
+  function serveSection(bx, lblY, zoneY, zones, data, label) {
+    let h = "";
+    // Section header
+    h += `<rect x="${bx}" y="${lblY}" width="${BOX_W}" height="${LBL_H}" fill="${C.ink}" opacity="0.05"/>`;
+    h += `<text x="${bx + BOX_W/2}" y="${lblY + LBL_H - 4}" text-anchor="middle" fill="${C.muted}" font-size="6" font-family="${F}" letter-spacing="0.22em">${label}</text>`;
+    // Three equal zones
+    for (let i = 0; i < 3; i++) {
+      const z   = zones[i];
+      const zx  = bx + i * ZONE_W;
+      const val = data ? data[`${z.key}_pct`] : null;
+      const mid = zoneY + ZONE_H / 2;
+      // Zone fill (fixed equal area, low opacity tint)
+      h += `<rect x="${zx.toFixed(1)}" y="${zoneY}" width="${ZONE_W.toFixed(1)}" height="${ZONE_H}" fill="${z.color}" opacity="0.07"/>`;
+      // Zone divider
+      if (i < 2) {
+        const lx = zx + ZONE_W;
+        h += `<line x1="${lx.toFixed(1)}" y1="${zoneY}" x2="${lx.toFixed(1)}" y2="${zoneY+ZONE_H}" stroke="${C.ink}" stroke-width="0.4" stroke-dasharray="2,2" opacity="0.5"/>`;
+      }
+      // Percentage (large)
+      h += `<text x="${(zx + ZONE_W/2).toFixed(1)}" y="${(mid - 2).toFixed(1)}" text-anchor="middle" fill="${z.color}" font-size="16" font-family="${F}" font-weight="700">${fmt(val)}</text>`;
+      // Zone name (small, below)
+      h += `<text x="${(zx + ZONE_W/2).toFixed(1)}" y="${(mid + 14).toFixed(1)}" text-anchor="middle" fill="${C.muted}" font-size="6.5" font-family="${F}" letter-spacing="0.10em">${z.label}</text>`;
+    }
+    return h;
+  }
 
   let html = "";
+  html += box(LX, DEUCE_ZONES, "DEUCE COURT", sd.deuce?.first_serve,  sd.deuce?.second_serve);
+  html += box(RX, AD_ZONES,    "AD COURT",    sd.ad?.first_serve,     sd.ad?.second_serve);
+  // Overall note at bottom centre
+  html += `<text x="${W/2}" y="${NOTE_Y}" text-anchor="middle" fill="${C.muted}" font-size="5.5" font-family="${F}" letter-spacing="0.12em">COURT DEDUCED FROM GAME POINT SEQUENCE · W=WIDE · B=BODY · C=T</text>`;
 
-  // Net
-  html += `<rect x="${bx}" y="${netY}" width="${boxW}" height="${netH}" fill="${C.ink}"/>`;
-  html += `<text x="${bx + boxW/2}" y="${netY + netH - 2}" text-anchor="middle" fill="${C.paper}" font-size="6" font-family="Helvetica,sans-serif" letter-spacing="0.22em">NET</text>`;
-
-  // Box background
-  html += `<rect x="${bx}" y="${boxY}" width="${boxW}" height="${boxH}" fill="${C.paper}" stroke="${C.ink}" stroke-width="1.2"/>`;
-
-  // Zone fills + dividers
-  let cx = bx;
-  for (let i = 0; i < zones.length; i++) {
-    const z  = zones[i];
-    const zw = (z.pct / total) * boxW;
-    const op = Math.max(0.07, (z.pct ?? 0) / 100 * 0.6).toFixed(2);
-    html += `<rect x="${cx.toFixed(1)}" y="${boxY}" width="${zw.toFixed(1)}" height="${boxH}" fill="${z.fill}" opacity="${op}"/>`;
-    if (i < zones.length - 1) {
-      const lx = cx + zw;
-      html += `<line x1="${lx.toFixed(1)}" y1="${boxY}" x2="${lx.toFixed(1)}" y2="${boxY+boxH}" stroke="${C.ink}" stroke-width="0.5" stroke-dasharray="3,2"/>`;
-    }
-    cx += zw;
-  }
-
-  // Zone labels
-  const labelY = boxY + boxH / 2 - 6;
-  cx = bx;
-  for (const z of zones) {
-    const zw   = (z.pct / total) * boxW;
-    const midx = (cx + cx + zw) / 2;
-    html += `<text x="${midx.toFixed(1)}" y="${labelY}" text-anchor="middle" fill="${z.fill}" font-size="8.5" font-family="Helvetica,sans-serif" font-weight="700">${z.label}</text>`;
-    html += `<text x="${midx.toFixed(1)}" y="${labelY+13}" text-anchor="middle" fill="${C.muted}" font-size="7.5" font-family="Helvetica,sans-serif">${z.sub}</text>`;
-    cx += zw;
-  }
-
-  // Baseline
-  const baseY = boxY + boxH + 2;
-  html += `<line x1="${bx}" y1="${baseY}" x2="${bx+boxW}" y2="${baseY}" stroke="${C.ink}" stroke-width="1.2"/>`;
-
-  // Court note
-  html += `<text x="${bx + boxW/2}" y="${baseY + 16}" text-anchor="middle" fill="${C.muted}" font-size="5.5" font-family="Helvetica,sans-serif" letter-spacing="0.12em">OVERALL · AD+DEUCE COMBINED</text>`;
-
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
   svg.innerHTML = html;
-
-  // ── Legend: 1st vs 2nd serve breakdown bars
-  legend.innerHTML = "";
-
-  const sections = [
-    { heading: "1st Serve", data: sd.first_serve  },
-    { heading: "2nd Serve", data: sd.second_serve },
-  ];
-
-  const dirZones = [
-    { key: "wide_pct",   name: "Wide",   color: C.cobalt     },
-    { key: "body_pct",   name: "Body",   color: C.terracotta },
-    { key: "centre_pct", name: "Centre", color: C.forest     },
-  ];
-
-  for (const sec of sections) {
-    if (!sec.data) continue;
-    const secDiv = document.createElement("div");
-    secDiv.style.cssText = "margin-bottom:14px";
-    secDiv.innerHTML = `<div style="font-family:var(--font-sans);font-size:var(--t-micro);letter-spacing:0.18em;text-transform:uppercase;color:var(--ink);font-weight:700;margin-bottom:6px">${sec.heading}</div>`;
-
-    for (const z of dirZones) {
-      const val = sec.data[z.key] ?? 0;
-      const avg = ta?.[z.key.replace("centre", "centre")] ?? null;
-      const rowDiv = document.createElement("div");
-      rowDiv.className = "dir-row";
-      rowDiv.innerHTML = `
-        <div class="dir-label-row">
-          <span class="dir-name" style="color:${z.color}">${z.name}</span>
-          <span class="dir-pct">${val ?? "—"}%</span>
-        </div>
-        <div class="dir-track">
-          <div class="dir-bar" style="width:${val ?? 0}%;background:${z.color}"></div>
-        </div>`;
-      secDiv.appendChild(rowDiv);
-    }
-    legend.appendChild(secDiv);
-  }
-
-  // Deuce/Ad not available note
-  const note = document.createElement("div");
-  note.style.cssText = "font-family:var(--font-serif);font-style:italic;font-size:12px;color:var(--ink-muted);margin-top:6px";
-  note.textContent = "Deuce/Ad split: Not Available — ServingTo not populated in this dataset.";
-  legend.appendChild(note);
 }
 
 // ── Rally Length ─────────────────────────────────────────────────

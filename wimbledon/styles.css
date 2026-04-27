@@ -536,35 +536,9 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 
 /* ── DIRECTION COURT ─────────────────────────────────────────── */
-.direction-wrap {
-  display: flex;
-  gap: var(--s-5);
-  align-items: flex-start;
-}
-.court-svg { width: 130px; flex-shrink: 0; }
-.direction-legend {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--s-3);
-  padding-top: 4px;
-}
-.dir-row { display: flex; flex-direction: column; gap: 4px; }
-.dir-label-row {
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-sans);
-  font-size: var(--t-micro);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.dir-name { color: var(--ink-muted); }
-.dir-pct  { font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; }
-.dir-track {
-  height: 4px;
-  background: var(--paper-warm);
-}
-.dir-bar { height: 100%; transition: width .4s; }
+.direction-wrap { width: 100%; max-width: 720px; margin: 0 auto; }
+.court-svg { width: 100%; height: auto; display: block; }
+.direction-legend { display: none; }
 
 /* ── RALLY VIZ ───────────────────────────────────────────────── */
 .rally-viz { display: flex; flex-direction: column; gap: var(--s-6); }

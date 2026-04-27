@@ -44,8 +44,32 @@
         "body_pct": 50.0,
         "centre_pct": 25.9
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 39.5,
+          "body_pct": 13.0,
+          "centre_pct": 47.5
+        },
+        "second_serve": {
+          "wide_pct": 5.6,
+          "body_pct": 53.3,
+          "centre_pct": 41.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 45.7,
+          "body_pct": 10.0,
+          "centre_pct": 44.3
+        },
+        "second_serve": {
+          "wide_pct": 44.0,
+          "body_pct": 46.4,
+          "centre_pct": 9.5
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -210,8 +234,32 @@
         "body_pct": 59.1,
         "centre_pct": 13.6
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 41.4,
+          "body_pct": 17.2,
+          "centre_pct": 41.4
+        },
+        "second_serve": {
+          "wide_pct": 7.7,
+          "body_pct": 69.2,
+          "centre_pct": 23.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 56.2,
+          "body_pct": 6.2,
+          "centre_pct": 37.5
+        },
+        "second_serve": {
+          "wide_pct": 55.6,
+          "body_pct": 44.4,
+          "centre_pct": 0.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -320,8 +368,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -442,8 +498,32 @@
         "body_pct": 52.8,
         "centre_pct": 19.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 34.8,
+          "body_pct": 30.4,
+          "centre_pct": 34.8
+        },
+        "second_serve": {
+          "wide_pct": 45.0,
+          "body_pct": 50.0,
+          "centre_pct": 5.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 45.8,
+          "body_pct": 4.2,
+          "centre_pct": 50.0
+        },
+        "second_serve": {
+          "wide_pct": 6.2,
+          "body_pct": 56.2,
+          "centre_pct": 37.5
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -575,8 +655,32 @@
         "body_pct": 43.5,
         "centre_pct": 26.1
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 40.0,
+          "body_pct": 27.5,
+          "centre_pct": 32.5
+        },
+        "second_serve": {
+          "wide_pct": 23.1,
+          "body_pct": 53.8,
+          "centre_pct": 23.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 64.1,
+          "body_pct": 20.5,
+          "centre_pct": 15.4
+        },
+        "second_serve": {
+          "wide_pct": 40.0,
+          "body_pct": 30.0,
+          "centre_pct": 30.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -696,8 +800,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -806,8 +918,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -928,8 +1048,32 @@
         "body_pct": 59.6,
         "centre_pct": 17.5
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 45.3,
+          "body_pct": 18.8,
+          "centre_pct": 35.9
+        },
+        "second_serve": {
+          "wide_pct": 23.3,
+          "body_pct": 60.0,
+          "centre_pct": 16.7
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 36.2,
+          "body_pct": 29.3,
+          "centre_pct": 34.5
+        },
+        "second_serve": {
+          "wide_pct": 22.2,
+          "body_pct": 59.3,
+          "centre_pct": 18.5
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -1072,8 +1216,32 @@
         "body_pct": 16.7,
         "centre_pct": 50.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 61.9,
+          "body_pct": 0.0,
+          "centre_pct": 38.1
+        },
+        "second_serve": {
+          "wide_pct": 22.2,
+          "body_pct": 22.2,
+          "centre_pct": 55.6
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 58.8,
+          "body_pct": 11.8,
+          "centre_pct": 29.4
+        },
+        "second_serve": {
+          "wide_pct": 44.4,
+          "body_pct": 11.1,
+          "centre_pct": 44.4
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -1194,8 +1362,32 @@
         "body_pct": 23.5,
         "centre_pct": 41.2
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 52.6,
+          "body_pct": 5.3,
+          "centre_pct": 42.1
+        },
+        "second_serve": {
+          "wide_pct": 57.1,
+          "body_pct": 0.0,
+          "centre_pct": 42.9
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 50.0,
+          "body_pct": 14.3,
+          "centre_pct": 35.7
+        },
+        "second_serve": {
+          "wide_pct": 20.0,
+          "body_pct": 40.0,
+          "centre_pct": 40.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -1315,8 +1507,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -1437,8 +1637,32 @@
         "body_pct": 48.1,
         "centre_pct": 10.1
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 37.9,
+          "body_pct": 16.7,
+          "centre_pct": 45.5
+        },
+        "second_serve": {
+          "wide_pct": 24.4,
+          "body_pct": 63.4,
+          "centre_pct": 12.2
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 71.4,
+          "body_pct": 4.8,
+          "centre_pct": 23.8
+        },
+        "second_serve": {
+          "wide_pct": 60.5,
+          "body_pct": 31.6,
+          "centre_pct": 7.9
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -1580,8 +1804,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -1702,8 +1934,32 @@
         "body_pct": 53.7,
         "centre_pct": 11.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 51.6,
+          "body_pct": 22.6,
+          "centre_pct": 25.8
+        },
+        "second_serve": {
+          "wide_pct": 26.1,
+          "body_pct": 63.0,
+          "centre_pct": 10.9
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 31.1,
+          "body_pct": 37.7,
+          "centre_pct": 31.1
+        },
+        "second_serve": {
+          "wide_pct": 47.2,
+          "body_pct": 41.7,
+          "centre_pct": 11.1
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -1834,8 +2090,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -1956,8 +2220,32 @@
         "body_pct": 32.7,
         "centre_pct": 18.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 40.5,
+          "body_pct": 26.2,
+          "centre_pct": 33.3
+        },
+        "second_serve": {
+          "wide_pct": 22.7,
+          "body_pct": 54.5,
+          "centre_pct": 22.7
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 55.9,
+          "body_pct": 8.8,
+          "centre_pct": 35.3
+        },
+        "second_serve": {
+          "wide_pct": 70.4,
+          "body_pct": 14.8,
+          "centre_pct": 14.8
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -2089,8 +2377,32 @@
         "body_pct": 63.7,
         "centre_pct": 6.9
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 45.6,
+          "body_pct": 12.6,
+          "centre_pct": 41.7
+        },
+        "second_serve": {
+          "wide_pct": 10.2,
+          "body_pct": 87.8,
+          "centre_pct": 2.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 48.2,
+          "body_pct": 5.9,
+          "centre_pct": 45.9
+        },
+        "second_serve": {
+          "wide_pct": 47.2,
+          "body_pct": 41.5,
+          "centre_pct": 11.3
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -2240,8 +2552,32 @@
         "body_pct": 44.8,
         "centre_pct": 6.9
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 33.3,
+          "body_pct": 10.0,
+          "centre_pct": 56.7
+        },
+        "second_serve": {
+          "wide_pct": 30.8,
+          "body_pct": 53.8,
+          "centre_pct": 15.4
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 65.4,
+          "body_pct": 15.4,
+          "centre_pct": 19.2
+        },
+        "second_serve": {
+          "wide_pct": 62.5,
+          "body_pct": 37.5,
+          "centre_pct": 0.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -2362,8 +2698,32 @@
         "body_pct": 40.0,
         "centre_pct": 23.3
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 33.3,
+          "body_pct": 30.3,
+          "centre_pct": 36.4
+        },
+        "second_serve": {
+          "wide_pct": 12.5,
+          "body_pct": 50.0,
+          "centre_pct": 37.5
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 42.4,
+          "body_pct": 21.2,
+          "centre_pct": 36.4
+        },
+        "second_serve": {
+          "wide_pct": 64.3,
+          "body_pct": 28.6,
+          "centre_pct": 7.1
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -2483,8 +2843,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -2593,8 +2961,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -2715,8 +3091,32 @@
         "body_pct": 42.5,
         "centre_pct": 7.5
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 40.0,
+          "body_pct": 45.7,
+          "centre_pct": 14.3
+        },
+        "second_serve": {
+          "wide_pct": 26.1,
+          "body_pct": 60.9,
+          "centre_pct": 13.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 73.7,
+          "body_pct": 7.9,
+          "centre_pct": 18.4
+        },
+        "second_serve": {
+          "wide_pct": 82.4,
+          "body_pct": 17.6,
+          "centre_pct": 0.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -2836,8 +3236,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -2958,8 +3366,32 @@
         "body_pct": 38.8,
         "centre_pct": 12.7
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 45.6,
+          "body_pct": 6.7,
+          "centre_pct": 47.7
+        },
+        "second_serve": {
+          "wide_pct": 38.0,
+          "body_pct": 51.9,
+          "centre_pct": 10.2
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 47.1,
+          "body_pct": 7.5,
+          "centre_pct": 45.5
+        },
+        "second_serve": {
+          "wide_pct": 57.4,
+          "body_pct": 27.9,
+          "centre_pct": 14.7
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -3142,8 +3574,32 @@
         "body_pct": 38.3,
         "centre_pct": 6.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 37.2,
+          "body_pct": 9.3,
+          "centre_pct": 53.5
+        },
+        "second_serve": {
+          "wide_pct": 48.1,
+          "body_pct": 44.4,
+          "centre_pct": 7.4
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 61.9,
+          "body_pct": 9.5,
+          "centre_pct": 28.6
+        },
+        "second_serve": {
+          "wide_pct": 65.0,
+          "body_pct": 30.0,
+          "centre_pct": 5.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -3264,8 +3720,32 @@
         "body_pct": 40.2,
         "centre_pct": 31.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 30.8,
+          "body_pct": 12.8,
+          "centre_pct": 56.4
+        },
+        "second_serve": {
+          "wide_pct": 22.9,
+          "body_pct": 52.1,
+          "centre_pct": 25.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 35.9,
+          "body_pct": 7.0,
+          "centre_pct": 57.0
+        },
+        "second_serve": {
+          "wide_pct": 35.9,
+          "body_pct": 25.6,
+          "centre_pct": 38.5
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -3407,8 +3887,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -3517,8 +4005,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -3638,8 +4134,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -3760,8 +4264,32 @@
         "body_pct": 70.4,
         "centre_pct": 0.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 27.3,
+          "body_pct": 45.5,
+          "centre_pct": 27.3
+        },
+        "second_serve": {
+          "wide_pct": 27.3,
+          "body_pct": 72.7,
+          "centre_pct": 0.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 32.4,
+          "body_pct": 41.2,
+          "centre_pct": 26.5
+        },
+        "second_serve": {
+          "wide_pct": 31.2,
+          "body_pct": 68.8,
+          "centre_pct": 0.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -3904,8 +4432,32 @@
         "body_pct": 54.5,
         "centre_pct": 9.1
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 51.2,
+          "body_pct": 14.0,
+          "centre_pct": 34.9
+        },
+        "second_serve": {
+          "wide_pct": 25.0,
+          "body_pct": 75.0,
+          "centre_pct": 0.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 53.6,
+          "body_pct": 0.0,
+          "centre_pct": 46.4
+        },
+        "second_serve": {
+          "wide_pct": 42.9,
+          "body_pct": 42.9,
+          "centre_pct": 14.3
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -4037,8 +4589,32 @@
         "body_pct": 48.7,
         "centre_pct": 12.8
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 42.4,
+          "body_pct": 21.2,
+          "centre_pct": 36.4
+        },
+        "second_serve": {
+          "wide_pct": 18.2,
+          "body_pct": 63.6,
+          "centre_pct": 18.2
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 51.5,
+          "body_pct": 12.1,
+          "centre_pct": 36.4
+        },
+        "second_serve": {
+          "wide_pct": 64.7,
+          "body_pct": 29.4,
+          "centre_pct": 5.9
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -4159,8 +4735,32 @@
         "body_pct": 61.9,
         "centre_pct": 16.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 41.1,
+          "body_pct": 23.2,
+          "centre_pct": 35.8
+        },
+        "second_serve": {
+          "wide_pct": 26.5,
+          "body_pct": 61.8,
+          "centre_pct": 11.8
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 45.0,
+          "body_pct": 26.0,
+          "centre_pct": 29.0
+        },
+        "second_serve": {
+          "wide_pct": 16.7,
+          "body_pct": 62.1,
+          "centre_pct": 21.2
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -4321,8 +4921,32 @@
         "body_pct": 38.7,
         "centre_pct": 6.5
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 45.5,
+          "body_pct": 22.7,
+          "centre_pct": 31.8
+        },
+        "second_serve": {
+          "wide_pct": 83.3,
+          "body_pct": 16.7,
+          "centre_pct": 0.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 60.9,
+          "body_pct": 8.7,
+          "centre_pct": 30.4
+        },
+        "second_serve": {
+          "wide_pct": 15.4,
+          "body_pct": 69.2,
+          "centre_pct": 15.4
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -4443,8 +5067,32 @@
         "body_pct": 54.5,
         "centre_pct": 15.2
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 56.4,
+          "body_pct": 35.9,
+          "centre_pct": 7.7
+        },
+        "second_serve": {
+          "wide_pct": 28.6,
+          "body_pct": 64.3,
+          "centre_pct": 7.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 55.2,
+          "body_pct": 24.1,
+          "centre_pct": 20.7
+        },
+        "second_serve": {
+          "wide_pct": 31.6,
+          "body_pct": 47.4,
+          "centre_pct": 21.1
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -4564,8 +5212,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -4674,8 +5330,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -4795,8 +5459,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -4905,8 +5577,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -5027,8 +5707,32 @@
         "body_pct": 73.1,
         "centre_pct": 7.7
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 43.6,
+          "body_pct": 15.4,
+          "centre_pct": 41.0
+        },
+        "second_serve": {
+          "wide_pct": 18.8,
+          "body_pct": 81.2,
+          "centre_pct": 0.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 37.5,
+          "body_pct": 6.2,
+          "centre_pct": 56.2
+        },
+        "second_serve": {
+          "wide_pct": 20.0,
+          "body_pct": 60.0,
+          "centre_pct": 20.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -5171,8 +5875,32 @@
         "body_pct": 20.7,
         "centre_pct": 20.7
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 44.8,
+          "body_pct": 14.9,
+          "centre_pct": 40.3
+        },
+        "second_serve": {
+          "wide_pct": 46.9,
+          "body_pct": 28.1,
+          "centre_pct": 25.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 57.6,
+          "body_pct": 8.5,
+          "centre_pct": 33.9
+        },
+        "second_serve": {
+          "wide_pct": 73.1,
+          "body_pct": 11.5,
+          "centre_pct": 15.4
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -5293,8 +6021,32 @@
         "body_pct": 51.0,
         "centre_pct": 19.9
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 30.5,
+          "body_pct": 16.3,
+          "centre_pct": 53.2
+        },
+        "second_serve": {
+          "wide_pct": 22.2,
+          "body_pct": 59.3,
+          "centre_pct": 18.5
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 49.6,
+          "body_pct": 7.2,
+          "centre_pct": 43.2
+        },
+        "second_serve": {
+          "wide_pct": 37.1,
+          "body_pct": 41.4,
+          "centre_pct": 21.4
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -5437,8 +6189,32 @@
         "body_pct": 28.0,
         "centre_pct": 28.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 55.2,
+          "body_pct": 10.3,
+          "centre_pct": 34.5
+        },
+        "second_serve": {
+          "wide_pct": 25.0,
+          "body_pct": 37.5,
+          "centre_pct": 37.5
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 73.5,
+          "body_pct": 0.0,
+          "centre_pct": 26.5
+        },
+        "second_serve": {
+          "wide_pct": 77.8,
+          "body_pct": 11.1,
+          "centre_pct": 11.1
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -5558,8 +6334,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -5680,8 +6464,32 @@
         "body_pct": 69.1,
         "centre_pct": 1.8
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 66.1,
+          "body_pct": 11.3,
+          "centre_pct": 22.6
+        },
+        "second_serve": {
+          "wide_pct": 37.9,
+          "body_pct": 62.1,
+          "centre_pct": 0.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 64.9,
+          "body_pct": 3.5,
+          "centre_pct": 31.6
+        },
+        "second_serve": {
+          "wide_pct": 19.2,
+          "body_pct": 76.9,
+          "centre_pct": 3.8
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -5801,8 +6609,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -5923,8 +6739,32 @@
         "body_pct": 23.3,
         "centre_pct": 16.3
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 46.2,
+          "body_pct": 23.1,
+          "centre_pct": 30.8
+        },
+        "second_serve": {
+          "wide_pct": 72.7,
+          "body_pct": 13.6,
+          "centre_pct": 13.6
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 50.0,
+          "body_pct": 16.7,
+          "centre_pct": 33.3
+        },
+        "second_serve": {
+          "wide_pct": 47.6,
+          "body_pct": 33.3,
+          "centre_pct": 19.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -6045,8 +6885,32 @@
         "body_pct": 37.8,
         "centre_pct": 24.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 55.3,
+          "body_pct": 3.8,
+          "centre_pct": 40.9
+        },
+        "second_serve": {
+          "wide_pct": 30.1,
+          "body_pct": 31.7,
+          "centre_pct": 38.2
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 49.5,
+          "body_pct": 10.6,
+          "centre_pct": 39.9
+        },
+        "second_serve": {
+          "wide_pct": 48.0,
+          "body_pct": 45.1,
+          "centre_pct": 6.9
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -6218,8 +7082,32 @@
         "body_pct": 44.5,
         "centre_pct": 13.6
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 47.6,
+          "body_pct": 29.8,
+          "centre_pct": 22.6
+        },
+        "second_serve": {
+          "wide_pct": 12.2,
+          "body_pct": 65.3,
+          "centre_pct": 22.4
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 49.5,
+          "body_pct": 14.7,
+          "centre_pct": 35.8
+        },
+        "second_serve": {
+          "wide_pct": 65.6,
+          "body_pct": 27.9,
+          "centre_pct": 6.6
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -6362,8 +7250,32 @@
         "body_pct": 8.3,
         "centre_pct": 33.3
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 47.8,
+          "body_pct": 21.7,
+          "centre_pct": 30.4
+        },
+        "second_serve": {
+          "wide_pct": 42.9,
+          "body_pct": 14.3,
+          "centre_pct": 42.9
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 56.5,
+          "body_pct": 17.4,
+          "centre_pct": 26.1
+        },
+        "second_serve": {
+          "wide_pct": 80.0,
+          "body_pct": 0.0,
+          "centre_pct": 20.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -6472,8 +7384,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -6594,8 +7514,32 @@
         "body_pct": 42.1,
         "centre_pct": 22.8
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 34.2,
+          "body_pct": 34.2,
+          "centre_pct": 31.6
+        },
+        "second_serve": {
+          "wide_pct": 10.0,
+          "body_pct": 56.7,
+          "centre_pct": 33.3
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 37.8,
+          "body_pct": 21.6,
+          "centre_pct": 40.5
+        },
+        "second_serve": {
+          "wide_pct": 63.0,
+          "body_pct": 25.9,
+          "centre_pct": 11.1
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -6715,8 +7659,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -6836,8 +7788,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -6946,8 +7906,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -7068,8 +8036,32 @@
         "body_pct": 26.3,
         "centre_pct": 24.6
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 43.9,
+          "body_pct": 24.4,
+          "centre_pct": 31.7
+        },
+        "second_serve": {
+          "wide_pct": 26.9,
+          "body_pct": 42.3,
+          "centre_pct": 30.8
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 50.0,
+          "body_pct": 13.2,
+          "centre_pct": 36.8
+        },
+        "second_serve": {
+          "wide_pct": 67.7,
+          "body_pct": 12.9,
+          "centre_pct": 19.4
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -7223,8 +8215,32 @@
         "body_pct": 24.5,
         "centre_pct": 23.5
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 55.9,
+          "body_pct": 13.5,
+          "centre_pct": 30.6
+        },
+        "second_serve": {
+          "wide_pct": 18.0,
+          "body_pct": 42.0,
+          "centre_pct": 40.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 46.2,
+          "body_pct": 14.2,
+          "centre_pct": 39.6
+        },
+        "second_serve": {
+          "wide_pct": 87.5,
+          "body_pct": 6.2,
+          "centre_pct": 6.2
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -7367,8 +8383,32 @@
         "body_pct": 40.0,
         "centre_pct": 20.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 32.1,
+          "body_pct": 39.3,
+          "centre_pct": 28.6
+        },
+        "second_serve": {
+          "wide_pct": 0.0,
+          "body_pct": 61.5,
+          "centre_pct": 38.5
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 64.3,
+          "body_pct": 14.3,
+          "centre_pct": 21.4
+        },
+        "second_serve": {
+          "wide_pct": 83.3,
+          "body_pct": 16.7,
+          "centre_pct": 0.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -7477,8 +8517,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -7599,8 +8647,32 @@
         "body_pct": 27.8,
         "centre_pct": 19.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 41.5,
+          "body_pct": 36.6,
+          "centre_pct": 22.0
+        },
+        "second_serve": {
+          "wide_pct": 16.7,
+          "body_pct": 44.4,
+          "centre_pct": 38.9
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 63.9,
+          "body_pct": 19.4,
+          "centre_pct": 16.7
+        },
+        "second_serve": {
+          "wide_pct": 88.9,
+          "body_pct": 11.1,
+          "centre_pct": 0.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -7720,8 +8792,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -7842,8 +8922,32 @@
         "body_pct": 36.6,
         "centre_pct": 14.6
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 40.0,
+          "body_pct": 42.5,
+          "centre_pct": 17.5
+        },
+        "second_serve": {
+          "wide_pct": 20.0,
+          "body_pct": 60.0,
+          "centre_pct": 20.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 43.2,
+          "body_pct": 21.6,
+          "centre_pct": 35.1
+        },
+        "second_serve": {
+          "wide_pct": 76.2,
+          "body_pct": 14.3,
+          "centre_pct": 9.5
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -7975,8 +9079,32 @@
         "body_pct": 55.2,
         "centre_pct": 3.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 53.3,
+          "body_pct": 20.0,
+          "centre_pct": 26.7
+        },
+        "second_serve": {
+          "wide_pct": 20.0,
+          "body_pct": 73.3,
+          "centre_pct": 6.7
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 37.9,
+          "body_pct": 17.2,
+          "centre_pct": 44.8
+        },
+        "second_serve": {
+          "wide_pct": 64.3,
+          "body_pct": 35.7,
+          "centre_pct": 0.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -8097,8 +9225,32 @@
         "body_pct": 41.1,
         "centre_pct": 21.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 50.2,
+          "body_pct": 8.6,
+          "centre_pct": 41.2
+        },
+        "second_serve": {
+          "wide_pct": 19.2,
+          "body_pct": 54.2,
+          "centre_pct": 26.7
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 47.4,
+          "body_pct": 9.2,
+          "centre_pct": 43.4
+        },
+        "second_serve": {
+          "wide_pct": 55.5,
+          "body_pct": 28.9,
+          "centre_pct": 15.6
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -8285,8 +9437,32 @@
         "body_pct": 24.4,
         "centre_pct": 21.2
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 60.3,
+          "body_pct": 9.1,
+          "centre_pct": 30.6
+        },
+        "second_serve": {
+          "wide_pct": 33.7,
+          "body_pct": 38.6,
+          "centre_pct": 27.7
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 54.2,
+          "body_pct": 6.8,
+          "centre_pct": 39.1
+        },
+        "second_serve": {
+          "wide_pct": 76.6,
+          "body_pct": 9.1,
+          "centre_pct": 14.3
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -8451,8 +9627,32 @@
         "body_pct": 61.7,
         "centre_pct": 6.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 54.8,
+          "body_pct": 22.6,
+          "centre_pct": 22.6
+        },
+        "second_serve": {
+          "wide_pct": 18.2,
+          "body_pct": 72.7,
+          "centre_pct": 9.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 32.0,
+          "body_pct": 24.0,
+          "centre_pct": 44.0
+        },
+        "second_serve": {
+          "wide_pct": 44.0,
+          "body_pct": 52.0,
+          "centre_pct": 4.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -8573,8 +9773,32 @@
         "body_pct": 41.3,
         "centre_pct": 23.9
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 51.1,
+          "body_pct": 13.3,
+          "centre_pct": 35.6
+        },
+        "second_serve": {
+          "wide_pct": 25.0,
+          "body_pct": 62.5,
+          "centre_pct": 12.5
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 50.0,
+          "body_pct": 10.0,
+          "centre_pct": 40.0
+        },
+        "second_serve": {
+          "wide_pct": 45.5,
+          "body_pct": 18.2,
+          "centre_pct": 36.4
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -8694,8 +9918,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -8816,8 +10048,32 @@
         "body_pct": 35.4,
         "centre_pct": 27.1
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 63.2,
+          "body_pct": 14.0,
+          "centre_pct": 22.8
+        },
+        "second_serve": {
+          "wide_pct": 76.2,
+          "body_pct": 23.8,
+          "centre_pct": 0.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 36.2,
+          "body_pct": 19.1,
+          "centre_pct": 44.7
+        },
+        "second_serve": {
+          "wide_pct": 7.4,
+          "body_pct": 44.4,
+          "centre_pct": 48.1
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -8937,8 +10193,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -9047,8 +10311,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -9169,8 +10441,32 @@
         "body_pct": 41.8,
         "centre_pct": 31.6
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 26.6,
+          "body_pct": 14.9,
+          "centre_pct": 58.5
+        },
+        "second_serve": {
+          "wide_pct": 11.3,
+          "body_pct": 35.8,
+          "centre_pct": 52.8
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 53.9,
+          "body_pct": 13.5,
+          "centre_pct": 32.6
+        },
+        "second_serve": {
+          "wide_pct": 44.4,
+          "body_pct": 48.9,
+          "centre_pct": 6.7
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -9301,8 +10597,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -9429,8 +10733,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -9539,8 +10851,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -9661,8 +10981,32 @@
         "body_pct": 55.9,
         "centre_pct": 23.5
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 67.9,
+          "body_pct": 14.3,
+          "centre_pct": 17.9
+        },
+        "second_serve": {
+          "wide_pct": 23.5,
+          "body_pct": 35.3,
+          "centre_pct": 41.2
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 56.0,
+          "body_pct": 8.0,
+          "centre_pct": 36.0
+        },
+        "second_serve": {
+          "wide_pct": 17.6,
+          "body_pct": 76.5,
+          "centre_pct": 5.9
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -9800,8 +11144,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -9922,8 +11274,32 @@
         "body_pct": 16.7,
         "centre_pct": 41.7
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 56.5,
+          "body_pct": 8.7,
+          "centre_pct": 34.8
+        },
+        "second_serve": {
+          "wide_pct": 14.3,
+          "body_pct": 14.3,
+          "centre_pct": 71.4
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 39.1,
+          "body_pct": 17.4,
+          "centre_pct": 43.5
+        },
+        "second_serve": {
+          "wide_pct": 80.0,
+          "body_pct": 20.0,
+          "centre_pct": 0.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -10055,8 +11431,32 @@
         "body_pct": 43.8,
         "centre_pct": 18.8
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 66.7,
+          "body_pct": 7.4,
+          "centre_pct": 25.9
+        },
+        "second_serve": {
+          "wide_pct": 25.0,
+          "body_pct": 56.2,
+          "centre_pct": 18.8
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 39.1,
+          "body_pct": 17.4,
+          "centre_pct": 43.5
+        },
+        "second_serve": {
+          "wide_pct": 50.0,
+          "body_pct": 31.2,
+          "centre_pct": 18.8
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -10177,8 +11577,32 @@
         "body_pct": 40.5,
         "centre_pct": 23.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 48.9,
+          "body_pct": 16.5,
+          "centre_pct": 34.5
+        },
+        "second_serve": {
+          "wide_pct": 10.7,
+          "body_pct": 62.5,
+          "centre_pct": 26.8
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 41.8,
+          "body_pct": 13.1,
+          "centre_pct": 45.1
+        },
+        "second_serve": {
+          "wide_pct": 61.8,
+          "body_pct": 18.2,
+          "centre_pct": 20.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -10332,8 +11756,32 @@
         "body_pct": 48.3,
         "centre_pct": 18.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 50.0,
+          "body_pct": 12.0,
+          "centre_pct": 38.0
+        },
+        "second_serve": {
+          "wide_pct": 20.4,
+          "body_pct": 57.1,
+          "centre_pct": 22.4
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 57.0,
+          "body_pct": 7.5,
+          "centre_pct": 35.5
+        },
+        "second_serve": {
+          "wide_pct": 50.0,
+          "body_pct": 36.8,
+          "centre_pct": 13.2
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -10487,8 +11935,32 @@
         "body_pct": 22.2,
         "centre_pct": 25.9
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 46.7,
+          "body_pct": 16.7,
+          "centre_pct": 36.7
+        },
+        "second_serve": {
+          "wide_pct": 22.2,
+          "body_pct": 55.6,
+          "centre_pct": 22.2
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 44.4,
+          "body_pct": 5.6,
+          "centre_pct": 50.0
+        },
+        "second_serve": {
+          "wide_pct": 66.7,
+          "body_pct": 5.6,
+          "centre_pct": 27.8
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -10609,8 +12081,32 @@
         "body_pct": 29.2,
         "centre_pct": 25.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 34.4,
+          "body_pct": 18.8,
+          "centre_pct": 46.9
+        },
+        "second_serve": {
+          "wide_pct": 60.0,
+          "body_pct": 40.0,
+          "centre_pct": 0.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 65.4,
+          "body_pct": 15.4,
+          "centre_pct": 19.2
+        },
+        "second_serve": {
+          "wide_pct": 35.7,
+          "body_pct": 21.4,
+          "centre_pct": 42.9
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -10731,8 +12227,32 @@
         "body_pct": 29.0,
         "centre_pct": 11.3
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 34.7,
+          "body_pct": 16.3,
+          "centre_pct": 49.0
+        },
+        "second_serve": {
+          "wide_pct": 25.0,
+          "body_pct": 58.3,
+          "centre_pct": 16.7
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 36.7,
+          "body_pct": 13.3,
+          "centre_pct": 50.0
+        },
+        "second_serve": {
+          "wide_pct": 81.6,
+          "body_pct": 10.5,
+          "centre_pct": 7.9
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -10864,8 +12384,32 @@
         "body_pct": 35.8,
         "centre_pct": 11.1
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 48.0,
+          "body_pct": 6.7,
+          "centre_pct": 45.3
+        },
+        "second_serve": {
+          "wide_pct": 31.7,
+          "body_pct": 58.5,
+          "centre_pct": 9.8
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 76.8,
+          "body_pct": 5.8,
+          "centre_pct": 17.4
+        },
+        "second_serve": {
+          "wide_pct": 75.0,
+          "body_pct": 12.5,
+          "centre_pct": 12.5
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -10996,8 +12540,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -11106,8 +12658,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -11228,8 +12788,32 @@
         "body_pct": 31.9,
         "centre_pct": 25.5
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 54.2,
+          "body_pct": 11.9,
+          "centre_pct": 33.9
+        },
+        "second_serve": {
+          "wide_pct": 15.4,
+          "body_pct": 42.3,
+          "centre_pct": 42.3
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 39.1,
+          "body_pct": 4.7,
+          "centre_pct": 56.2
+        },
+        "second_serve": {
+          "wide_pct": 76.2,
+          "body_pct": 19.0,
+          "centre_pct": 4.8
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -11361,8 +12945,32 @@
         "body_pct": 40.0,
         "centre_pct": 40.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 41.9,
+          "body_pct": 29.0,
+          "centre_pct": 29.0
+        },
+        "second_serve": {
+          "wide_pct": 31.8,
+          "body_pct": 27.3,
+          "centre_pct": 40.9
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 46.9,
+          "body_pct": 21.9,
+          "centre_pct": 31.2
+        },
+        "second_serve": {
+          "wide_pct": 0.0,
+          "body_pct": 61.5,
+          "centre_pct": 38.5
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -11493,8 +13101,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -11603,8 +13219,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -11724,8 +13348,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -11834,8 +13466,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -11956,8 +13596,32 @@
         "body_pct": 28.6,
         "centre_pct": 25.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 38.5,
+          "body_pct": 26.9,
+          "centre_pct": 34.6
+        },
+        "second_serve": {
+          "wide_pct": 25.0,
+          "body_pct": 37.5,
+          "centre_pct": 37.5
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 43.3,
+          "body_pct": 23.3,
+          "centre_pct": 33.3
+        },
+        "second_serve": {
+          "wide_pct": 75.0,
+          "body_pct": 16.7,
+          "centre_pct": 8.3
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -12089,8 +13753,32 @@
         "body_pct": 39.1,
         "centre_pct": 17.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 64.7,
+          "body_pct": 5.9,
+          "centre_pct": 29.4
+        },
+        "second_serve": {
+          "wide_pct": 85.7,
+          "body_pct": 14.3,
+          "centre_pct": 0.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 16.7,
+          "body_pct": 50.0,
+          "centre_pct": 33.3
+        },
+        "second_serve": {
+          "wide_pct": 25.0,
+          "body_pct": 50.0,
+          "centre_pct": 25.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -12211,8 +13899,32 @@
         "body_pct": 32.1,
         "centre_pct": 27.9
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 49.7,
+          "body_pct": 11.2,
+          "centre_pct": 39.0
+        },
+        "second_serve": {
+          "wide_pct": 37.5,
+          "body_pct": 32.3,
+          "centre_pct": 30.2
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 57.7,
+          "body_pct": 5.1,
+          "centre_pct": 37.1
+        },
+        "second_serve": {
+          "wide_pct": 43.5,
+          "body_pct": 31.9,
+          "centre_pct": 24.6
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -12399,8 +14111,32 @@
         "body_pct": 54.4,
         "centre_pct": 12.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 52.2,
+          "body_pct": 8.7,
+          "centre_pct": 39.1
+        },
+        "second_serve": {
+          "wide_pct": 22.9,
+          "body_pct": 61.5,
+          "centre_pct": 15.6
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 37.8,
+          "body_pct": 19.8,
+          "centre_pct": 42.3
+        },
+        "second_serve": {
+          "wide_pct": 46.6,
+          "body_pct": 45.2,
+          "centre_pct": 8.2
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -12554,8 +14290,32 @@
         "body_pct": 24.4,
         "centre_pct": 29.3
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 44.4,
+          "body_pct": 19.4,
+          "centre_pct": 36.1
+        },
+        "second_serve": {
+          "wide_pct": 5.9,
+          "body_pct": 47.1,
+          "centre_pct": 47.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 57.7,
+          "body_pct": 3.8,
+          "centre_pct": 38.5
+        },
+        "second_serve": {
+          "wide_pct": 75.0,
+          "body_pct": 8.3,
+          "centre_pct": 16.7
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -12676,8 +14436,32 @@
         "body_pct": 46.2,
         "centre_pct": 15.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 47.9,
+          "body_pct": 20.8,
+          "centre_pct": 31.2
+        },
+        "second_serve": {
+          "wide_pct": 8.0,
+          "body_pct": 68.0,
+          "centre_pct": 24.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 22.2,
+          "body_pct": 15.6,
+          "centre_pct": 62.2
+        },
+        "second_serve": {
+          "wide_pct": 66.7,
+          "body_pct": 25.9,
+          "centre_pct": 7.4
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -12797,8 +14581,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -12907,8 +14699,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -13029,8 +14829,32 @@
         "body_pct": 22.7,
         "centre_pct": 36.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 41.2,
+          "body_pct": 5.9,
+          "centre_pct": 52.9
+        },
+        "second_serve": {
+          "wide_pct": 18.5,
+          "body_pct": 37.0,
+          "centre_pct": 44.4
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 45.5,
+          "body_pct": 9.1,
+          "centre_pct": 45.5
+        },
+        "second_serve": {
+          "wide_pct": 76.5,
+          "body_pct": 0.0,
+          "centre_pct": 23.5
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -13161,8 +14985,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -13271,8 +15103,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -13404,8 +15244,32 @@
         "body_pct": 25.0,
         "centre_pct": 20.8
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 66.7,
+          "body_pct": 7.7,
+          "centre_pct": 25.6
+        },
+        "second_serve": {
+          "wide_pct": 26.1,
+          "body_pct": 34.8,
+          "centre_pct": 39.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 51.6,
+          "body_pct": 16.1,
+          "centre_pct": 32.3
+        },
+        "second_serve": {
+          "wide_pct": 80.0,
+          "body_pct": 16.0,
+          "centre_pct": 4.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -13526,8 +15390,32 @@
         "body_pct": 77.0,
         "centre_pct": 4.1
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 37.5,
+          "body_pct": 34.7,
+          "centre_pct": 27.8
+        },
+        "second_serve": {
+          "wide_pct": 2.4,
+          "body_pct": 95.2,
+          "centre_pct": 2.4
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 25.4,
+          "body_pct": 32.8,
+          "centre_pct": 41.8
+        },
+        "second_serve": {
+          "wide_pct": 40.6,
+          "body_pct": 53.1,
+          "centre_pct": 6.2
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -13658,8 +15546,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -13779,8 +15675,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -13889,8 +15793,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -14011,8 +15923,32 @@
         "body_pct": 46.8,
         "centre_pct": 17.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 44.4,
+          "body_pct": 28.9,
+          "centre_pct": 26.7
+        },
+        "second_serve": {
+          "wide_pct": 22.2,
+          "body_pct": 66.7,
+          "centre_pct": 11.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 47.1,
+          "body_pct": 8.8,
+          "centre_pct": 44.1
+        },
+        "second_serve": {
+          "wide_pct": 44.8,
+          "body_pct": 34.5,
+          "centre_pct": 20.7
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -14144,8 +16080,32 @@
         "body_pct": 57.1,
         "centre_pct": 7.1
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 56.1,
+          "body_pct": 19.5,
+          "centre_pct": 24.4
+        },
+        "second_serve": {
+          "wide_pct": 26.7,
+          "body_pct": 60.0,
+          "centre_pct": 13.3
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 58.3,
+          "body_pct": 5.6,
+          "centre_pct": 36.1
+        },
+        "second_serve": {
+          "wide_pct": 46.2,
+          "body_pct": 53.8,
+          "centre_pct": 0.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -14266,8 +16226,32 @@
         "body_pct": 58.9,
         "centre_pct": 12.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 46.5,
+          "body_pct": 13.0,
+          "centre_pct": 40.5
+        },
+        "second_serve": {
+          "wide_pct": 11.1,
+          "body_pct": 67.7,
+          "centre_pct": 21.2
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 39.4,
+          "body_pct": 5.0,
+          "centre_pct": 55.6
+        },
+        "second_serve": {
+          "wide_pct": 45.5,
+          "body_pct": 50.9,
+          "centre_pct": 3.6
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -14443,8 +16427,32 @@
         "body_pct": 33.9,
         "centre_pct": 23.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 51.6,
+          "body_pct": 11.5,
+          "centre_pct": 36.9
+        },
+        "second_serve": {
+          "wide_pct": 44.8,
+          "body_pct": 31.0,
+          "centre_pct": 24.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 52.4,
+          "body_pct": 9.5,
+          "centre_pct": 38.1
+        },
+        "second_serve": {
+          "wide_pct": 40.9,
+          "body_pct": 36.4,
+          "centre_pct": 22.7
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -14587,8 +16595,32 @@
         "body_pct": 41.7,
         "centre_pct": 41.7
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 54.1,
+          "body_pct": 35.1,
+          "centre_pct": 10.8
+        },
+        "second_serve": {
+          "wide_pct": 14.3,
+          "body_pct": 28.6,
+          "centre_pct": 57.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 19.4,
+          "body_pct": 33.3,
+          "centre_pct": 47.2
+        },
+        "second_serve": {
+          "wide_pct": 20.0,
+          "body_pct": 60.0,
+          "centre_pct": 20.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -14709,8 +16741,32 @@
         "body_pct": 44.7,
         "centre_pct": 14.5
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 44.2,
+          "body_pct": 25.0,
+          "centre_pct": 30.8
+        },
+        "second_serve": {
+          "wide_pct": 25.6,
+          "body_pct": 60.5,
+          "centre_pct": 14.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 48.1,
+          "body_pct": 11.5,
+          "centre_pct": 40.4
+        },
+        "second_serve": {
+          "wide_pct": 60.6,
+          "body_pct": 24.2,
+          "centre_pct": 15.2
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -14842,8 +16898,32 @@
         "body_pct": 23.3,
         "centre_pct": 26.7
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 32.4,
+          "body_pct": 35.1,
+          "centre_pct": 32.4
+        },
+        "second_serve": {
+          "wide_pct": 14.3,
+          "body_pct": 28.6,
+          "centre_pct": 57.1
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 61.3,
+          "body_pct": 12.9,
+          "centre_pct": 25.8
+        },
+        "second_serve": {
+          "wide_pct": 81.2,
+          "body_pct": 18.8,
+          "centre_pct": 0.0
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -14952,8 +17032,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -15073,8 +17161,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -15195,8 +17291,32 @@
         "body_pct": 64.4,
         "centre_pct": 14.9
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 43.0,
+          "body_pct": 22.1,
+          "centre_pct": 34.9
+        },
+        "second_serve": {
+          "wide_pct": 3.9,
+          "body_pct": 76.5,
+          "centre_pct": 19.6
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 55.2,
+          "body_pct": 14.9,
+          "centre_pct": 29.9
+        },
+        "second_serve": {
+          "wide_pct": 44.4,
+          "body_pct": 47.2,
+          "centre_pct": 8.3
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -15338,8 +17458,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -15460,8 +17588,32 @@
         "body_pct": 51.4,
         "centre_pct": 22.2
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 28.9,
+          "body_pct": 19.3,
+          "centre_pct": 51.8
+        },
+        "second_serve": {
+          "wide_pct": 17.5,
+          "body_pct": 65.0,
+          "centre_pct": 17.5
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 53.2,
+          "body_pct": 9.1,
+          "centre_pct": 37.7
+        },
+        "second_serve": {
+          "wide_pct": 37.5,
+          "body_pct": 34.4,
+          "centre_pct": 28.1
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -15593,8 +17745,32 @@
         "body_pct": 60.8,
         "centre_pct": 2.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 45.7,
+          "body_pct": 25.7,
+          "centre_pct": 28.6
+        },
+        "second_serve": {
+          "wide_pct": 6.9,
+          "body_pct": 93.1,
+          "centre_pct": 0.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 65.8,
+          "body_pct": 5.3,
+          "centre_pct": 28.9
+        },
+        "second_serve": {
+          "wide_pct": 77.3,
+          "body_pct": 18.2,
+          "centre_pct": 4.5
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -15715,8 +17891,32 @@
         "body_pct": 41.8,
         "centre_pct": 23.9
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 52.1,
+          "body_pct": 22.5,
+          "centre_pct": 25.4
+        },
+        "second_serve": {
+          "wide_pct": 22.6,
+          "body_pct": 51.6,
+          "centre_pct": 25.8
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 39.2,
+          "body_pct": 17.6,
+          "centre_pct": 43.1
+        },
+        "second_serve": {
+          "wide_pct": 44.4,
+          "body_pct": 33.3,
+          "centre_pct": 22.2
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -15847,8 +18047,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -15969,8 +18177,32 @@
         "body_pct": 48.6,
         "centre_pct": 11.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 32.0,
+          "body_pct": 32.0,
+          "centre_pct": 36.0
+        },
+        "second_serve": {
+          "wide_pct": 25.0,
+          "body_pct": 56.2,
+          "centre_pct": 18.8
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 50.0,
+          "body_pct": 10.0,
+          "centre_pct": 40.0
+        },
+        "second_serve": {
+          "wide_pct": 52.6,
+          "body_pct": 42.1,
+          "centre_pct": 5.3
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -16090,8 +18322,16 @@
       "counts": null,
       "first_serve": null,
       "second_serve": null,
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      },
+      "ad": {
+        "available": false,
+        "first_serve": null,
+        "second_serve": null
+      }
     },
     "rally_shots": {
       "available": true,
@@ -16212,8 +18452,32 @@
         "body_pct": 30.0,
         "centre_pct": 30.0
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 46.2,
+          "body_pct": 15.4,
+          "centre_pct": 38.5
+        },
+        "second_serve": {
+          "wide_pct": 25.0,
+          "body_pct": 25.0,
+          "centre_pct": 50.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 62.5,
+          "body_pct": 12.5,
+          "centre_pct": 25.0
+        },
+        "second_serve": {
+          "wide_pct": 50.0,
+          "body_pct": 33.3,
+          "centre_pct": 16.7
+        }
+      }
     },
     "rally_shots": {
       "available": true,
@@ -16334,8 +18598,32 @@
         "body_pct": 41.9,
         "centre_pct": 17.4
       },
-      "deuce": null,
-      "ad": null
+      "deuce": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 57.9,
+          "body_pct": 11.4,
+          "centre_pct": 30.7
+        },
+        "second_serve": {
+          "wide_pct": 56.0,
+          "body_pct": 36.0,
+          "centre_pct": 8.0
+        }
+      },
+      "ad": {
+        "available": true,
+        "first_serve": {
+          "wide_pct": 43.2,
+          "body_pct": 15.3,
+          "centre_pct": 41.4
+        },
+        "second_serve": {
+          "wide_pct": 19.4,
+          "body_pct": 50.0,
+          "centre_pct": 30.6
+        }
+      }
     },
     "rally_shots": {
       "available": true,

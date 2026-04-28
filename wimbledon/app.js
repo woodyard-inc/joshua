@@ -334,17 +334,18 @@ function renderServeDirection(p, t) {
               ink:"#141414", paper:"#FFFDF8", muted:"#8A857B" };
 
   // Two boxes: Deuce (left) and Ad (right)
-  // Deuce zones L→R: T | Body | Wide  (T points toward centre T-line)
-  // Ad zones L→R:    Wide | Body | T   (mirrored)
+  // Deuce zones L→R: Wide | Body | T  (T on inner/centre side)
+  // Ad zones L→R:    T | Body | Wide  (T on inner/centre side, mirrored)
+  // Both T zones meet in the middle of the visualisation
   const DEUCE_ZONES = [
-    { key:"centre", label:"T",    color:C.centre },
-    { key:"body",   label:"Body", color:C.body   },
     { key:"wide",   label:"Wide", color:C.wide   },
+    { key:"body",   label:"Body", color:C.body   },
+    { key:"centre", label:"T",    color:C.centre },
   ];
   const AD_ZONES = [
-    { key:"wide",   label:"Wide", color:C.wide   },
-    { key:"body",   label:"Body", color:C.body   },
     { key:"centre", label:"T",    color:C.centre },
+    { key:"body",   label:"Body", color:C.body   },
+    { key:"wide",   label:"Wide", color:C.wide   },
   ];
 
   const W = 440, H = 232;
@@ -415,8 +416,8 @@ function renderServeDirection(p, t) {
   }
 
   let html = "";
-  html += box(LX, AD_ZONES,    "AD COURT",    sd.ad?.first_serve,     sd.ad?.second_serve);
-  html += box(RX, DEUCE_ZONES, "DEUCE COURT", sd.deuce?.first_serve,  sd.deuce?.second_serve);
+  html += box(LX, DEUCE_ZONES, "DEUCE COURT", sd.deuce?.first_serve,  sd.deuce?.second_serve);
+  html += box(RX, AD_ZONES,    "AD COURT",    sd.ad?.first_serve,     sd.ad?.second_serve);
   // Overall note at bottom centre
   html += `<text x="${W/2}" y="${NOTE_Y}" text-anchor="middle" fill="${C.muted}" font-size="5.5" font-family="${F}" letter-spacing="0.12em">COURT DEDUCED FROM GAME POINT SEQUENCE · W=WIDE · B=BODY · C=T</text>`;
 

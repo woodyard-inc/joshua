@@ -415,8 +415,8 @@ function renderServeDirection(p, t) {
   }
 
   let html = "";
-  html += box(LX, DEUCE_ZONES, "DEUCE COURT", sd.deuce?.first_serve,  sd.deuce?.second_serve);
-  html += box(RX, AD_ZONES,    "AD COURT",    sd.ad?.first_serve,     sd.ad?.second_serve);
+  html += box(LX, AD_ZONES,    "AD COURT",    sd.ad?.first_serve,     sd.ad?.second_serve);
+  html += box(RX, DEUCE_ZONES, "DEUCE COURT", sd.deuce?.first_serve,  sd.deuce?.second_serve);
   // Overall note at bottom centre
   html += `<text x="${W/2}" y="${NOTE_Y}" text-anchor="middle" fill="${C.muted}" font-size="5.5" font-family="${F}" letter-spacing="0.12em">COURT DEDUCED FROM GAME POINT SEQUENCE · W=WIDE · B=BODY · C=T</text>`;
 

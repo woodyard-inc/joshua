@@ -3,10 +3,11 @@
 
 // ── State ─────────────────────────────────────────────────────────
 const state = {
-  year:       2017,
-  playerName: null,
-  profiles:   null,
-  tournament: null,
+  year:         2017,
+  playerName:   null,
+  profiles:     null,
+  tournament:   null,
+  fingerprints: null,
 };
 
 const AVAILABLE_YEARS = [2017, 2018, 2019];
@@ -57,13 +58,15 @@ async function boot() {
 async function loadYear(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
   const nc   = { cache: "no-store" };
-  const [profiles, tourn] = await Promise.all([
+  const [profiles, tourn, fingerprints] = await Promise.all([
     fetch(`${base}/data/${year}_men_profiles.json`, nc).then(r => r.json()),
     fetch(`${base}/data/${year}_men_tournament.json`, nc).then(r => r.json()),
+    fetch(`${base}/data/${year}_fingerprints.json`, nc).then(r => r.json()).catch(() => ({})),
   ]);
-  state.profiles  = profiles;
-  state.tournament = tourn;
-  state.year      = year;
+  state.profiles     = profiles;
+  state.tournament   = tourn;
+  state.fingerprints = fingerprints;
+  state.year         = year;
   populateDropdown();
 }
 
@@ -118,6 +121,7 @@ function showNotCompeting(name, year) {
 function renderProfile(name) {
   const p = state.profiles[name];
   const t = state.tournament;
+  const f = (state.fingerprints || {})[name] || null;
 
   document.getElementById("empty-state").classList.add("hidden");
   document.getElementById("profile").classList.remove("hidden");
@@ -127,6 +131,7 @@ function renderProfile(name) {
   const nc = document.getElementById("not-competing");
   if (nc) nc.classList.add("hidden");
 
+  // ── Existing point-by-point cards ─────────────────────────────
   renderHero(p, t);
   renderServeWaterfall(p, t);
   renderServeSpeed(p, t);
@@ -141,6 +146,18 @@ function renderProfile(name) {
   renderDuration(p, t);
   renderDistance(p, t);
   renderMatchLog(p);
+
+  // ── Fingerprint cards ─────────────────────────────────────────
+  renderTier1(f);
+  renderEloSnapshot(f);
+  renderServeEntropy(f);
+  renderServeSpeedCourage(f);
+  renderDfPressure(f);
+  renderBpCreation(f);
+  renderClutch(f);
+  renderRallyCurve(f);
+  renderCourtSide(f);
+  renderMomentum(f);
 }
 
 // ── Player photos ─────────────────────────────────────────────────
@@ -841,6 +858,387 @@ function renderMatchLog(p) {
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>`;
+}
+
+// ── Fingerprint: Tier 1 Stats ─────────────────────────────────────
+function renderTier1(f) {
+  const container = document.getElementById("tier1-viz");
+  const badge     = document.getElementById("fp-confidence-badge");
+
+  if (!f?.tier1) {
+    container.innerHTML = naCard("Core Stats", "this player");
+    if (badge) badge.textContent = "";
+    return;
+  }
+
+  if (badge) badge.textContent = f.confidence === "high" ? "High confidence" : "Low confidence";
+
+  const t1    = f.tier1;
+  const COLOR = { cobalt:"var(--cobalt)", forest:"var(--forest)", terracotta:"var(--terracotta)" };
+  const stats = [
+    { key:"fsp_pct",  label:"1st Serve %",      col:"cobalt"     },
+    { key:"fspw_pct", label:"1st Srv Won %",     col:"cobalt"     },
+    { key:"sspw_pct", label:"2nd Srv Won %",     col:"forest"     },
+    { key:"rpw_pct",  label:"Return Pts Won %",  col:"terracotta" },
+    { key:"sgw_pct",  label:"Srv Games Won %",   col:"cobalt"     },
+    { key:"rgw_pct",  label:"Ret Games Won %",   col:"terracotta" },
+  ];
+
+  let grid = `<div class="tier1-grid">`;
+  for (const s of stats) {
+    const m   = t1[s.key] || {};
+    const val = m.value;
+    const lo  = m.ci_90_lo;
+    const hi  = m.ci_90_hi;
+    const c   = COLOR[s.col];
+    grid += `
+      <div class="t1-stat">
+        <div class="t1-label">${s.label}</div>
+        <div class="t1-value" style="color:${c}">${val != null ? val + "%" : "—"}</div>
+        ${val != null ? `
+          <div class="t1-bar-track">
+            <div class="t1-bar-ci"  style="left:${lo}%;width:${hi - lo}%;background:${c}"></div>
+            <div class="t1-bar-val" style="left:${val}%;background:${c}"></div>
+          </div>
+          <div class="t1-ci-range">${lo}% – ${hi}%</div>` : `<div class="t1-ci-range">no data</div>`}
+      </div>`;
+  }
+  grid += `</div>`;
+  grid += `<div class="t1-footer">${f.n_matches} match${f.n_matches !== 1 ? "es" : ""} · Elo-quality weighted · Beta(2,2) prior · 90% CI</div>`;
+  container.innerHTML = grid;
+}
+
+// ── Fingerprint: Grass Elo ────────────────────────────────────────
+function renderEloSnapshot(f) {
+  const container = document.getElementById("elo-viz");
+  const snap = f?.elo_snapshot;
+
+  if (!snap) {
+    container.innerHTML = naCard("Grass Elo", "this player");
+    return;
+  }
+
+  const adj  = snap.R_adjusted;
+  const surf = snap.R_surface;
+  const over = snap.R_overall;
+  const n    = snap.n_surface;
+  const MIN  = 1400, MAX = 2300;
+  const pct  = v => Math.max(0, Math.min(100, (v - MIN) / (MAX - MIN) * 100)).toFixed(1);
+
+  container.innerHTML = `
+    <div class="elo-big-row">
+      <div class="elo-big">${adj}</div>
+      <div class="elo-big-label">adjusted<br>grass Elo</div>
+    </div>
+    <div class="elo-track-wrap">
+      <div class="elo-track">
+        <div class="elo-fill" style="width:${pct(adj)}%"></div>
+        <div class="elo-tick" style="left:${pct(1500)}%" title="Default 1500"></div>
+      </div>
+      <div class="elo-track-labels"><span>1400</span><span>↑ 1500 default</span><span>2300+</span></div>
+    </div>
+    <div class="elo-breakdown">
+      <div class="elo-b-item">
+        <span class="elo-b-val">${surf}</span>
+        <span class="elo-b-label">Grass Elo</span>
+      </div>
+      <div class="elo-b-item">
+        <span class="elo-b-val">${over}</span>
+        <span class="elo-b-label">Overall Elo</span>
+      </div>
+      <div class="elo-b-item">
+        <span class="elo-b-val">${n}</span>
+        <span class="elo-b-label">Grass Matches</span>
+      </div>
+    </div>`;
+}
+
+// ── Fingerprint: Serve Entropy ────────────────────────────────────
+function renderServeEntropy(f) {
+  const container = document.getElementById("entropy-viz");
+  const ent = f?.tier2?.serve_entropy;
+
+  if (!ent?.available) {
+    container.innerHTML = naCard("Serve Entropy", f?.year || "this year");
+    return;
+  }
+
+  const pct  = ent.pct_of_max;
+  const bits = ent.value?.toFixed(3) ?? "—";
+
+  container.innerHTML = `
+    <div class="entropy-big-row">
+      <div class="entropy-big">${pct}%</div>
+      <div class="entropy-label">of max<br>entropy</div>
+    </div>
+    <div class="entropy-track">
+      <div class="entropy-fill" style="width:${pct}%"></div>
+    </div>
+    <div class="entropy-axis"><span>← Readable</span><span>Random →</span></div>
+    <div class="entropy-detail">${bits} bits · max ${ent.max_bits?.toFixed(3)} bits (uniform 3-zone)</div>`;
+}
+
+// ── Fingerprint: Serve Courage ────────────────────────────────────
+function renderServeSpeedCourage(f) {
+  const container = document.getElementById("courage-viz");
+  const sc = f?.tier2?.serve_speed_courage;
+
+  if (!sc?.available) {
+    container.innerHTML = naCard("Serve Courage", f?.year || "this year");
+    return;
+  }
+
+  const delta = sc.value;
+  const pos   = delta >= 0;
+  const bpSpd = sc.bp_speed_kmh;
+  const ovSpd = sc.overall_speed_kmh;
+  const MAX   = Math.max(bpSpd, ovSpd, 100) * 1.08;
+
+  container.innerHTML = `
+    <div class="courage-delta ${pos ? "courage-pos" : "courage-neg"}">${pos ? "+" : ""}${delta} km/h</div>
+    <div class="courage-sub">${pos ? "faster" : "slower"} under break-point pressure</div>
+    <div class="courage-bars">
+      <div class="courage-row">
+        <span class="courage-row-label">Overall</span>
+        <div class="courage-track">
+          <div class="courage-fill courage-overall" style="width:${(ovSpd/MAX*100).toFixed(1)}%">
+            <span class="courage-fill-label">${ovSpd} km/h</span>
+          </div>
+        </div>
+      </div>
+      <div class="courage-row">
+        <span class="courage-row-label">On Break Pt</span>
+        <div class="courage-track">
+          <div class="courage-fill courage-bp" style="width:${(bpSpd/MAX*100).toFixed(1)}%">
+            <span class="courage-fill-label">${bpSpd} km/h</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Fingerprint: DF Pressure Delta ────────────────────────────────
+function renderDfPressure(f) {
+  const container = document.getElementById("df-pressure-viz");
+  const dfp = f?.tier2?.df_pressure_delta;
+
+  if (!dfp?.available) {
+    container.innerHTML = naCard("DF Pressure Delta", f?.year || "this year");
+    return;
+  }
+
+  const delta    = dfp.value;
+  const worse    = delta > 0;
+  const bpRate   = dfp.bp_df_rate;
+  const baseRate = dfp.baseline_df_rate;
+  const MAX      = Math.max(bpRate, baseRate, 3) * 1.6;
+
+  container.innerHTML = `
+    <div class="dfp-big ${worse ? "dfp-worse" : "dfp-better"}">${worse ? "+" : ""}${delta}%</div>
+    <div class="dfp-sub">${worse ? "more DFs on break points" : "fewer DFs on break points"}</div>
+    <div class="dfp-bars">
+      <div class="courage-row">
+        <span class="courage-row-label">Overall DF%</span>
+        <div class="courage-track">
+          <div class="courage-fill dfp-base-fill" style="width:${(baseRate/MAX*100).toFixed(1)}%">
+            <span class="courage-fill-label">${baseRate}%</span>
+          </div>
+        </div>
+      </div>
+      <div class="courage-row">
+        <span class="courage-row-label">On Break Pt</span>
+        <div class="courage-track">
+          <div class="courage-fill dfp-bp-fill" style="width:${(bpRate/MAX*100).toFixed(1)}%">
+            <span class="courage-fill-label">${bpRate}%</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Fingerprint: BP Creation ──────────────────────────────────────
+function renderBpCreation(f) {
+  const container = document.getElementById("bp-creation-viz");
+  const bpc = f?.tier2?.bp_creation_profile;
+
+  if (!bpc) {
+    container.innerHTML = naCard("Break Point Creation", f?.year || "this year");
+    return;
+  }
+
+  const bpPerGame = bpc.bp_per_return_game;
+  const conv      = bpc.bp_conversion;
+  const created   = Math.round(bpc.bp_created   ?? 0);
+  const converted = Math.round(bpc.bp_converted  ?? 0);
+  const MAX_BPG   = 1.5;
+
+  container.innerHTML = `
+    <div class="bpc-big-row">
+      <div>
+        <div class="bpc-big">${bpPerGame?.toFixed(2) ?? "—"}</div>
+        <div class="bpc-big-label">BP / return game</div>
+        <div class="bpc-track">
+          <div class="bpc-fill" style="width:${bpPerGame != null ? Math.min(bpPerGame/MAX_BPG*100,100).toFixed(1) : 0}%"></div>
+        </div>
+        <div class="bpc-scale-labels"><span>0</span><span>0.75</span><span>1.5+</span></div>
+      </div>
+      <div class="bpc-divider"></div>
+      <div>
+        <div class="bpc-big bpc-secondary">${conv != null ? (conv * 100).toFixed(0) + "%" : "—"}</div>
+        <div class="bpc-big-label">Conversion rate</div>
+        <div class="bpc-note">Stable skill vs<br>noisy conversion</div>
+      </div>
+    </div>
+    <div class="bpc-footer">${created} BPs created · ${converted} converted</div>`;
+}
+
+// ── Fingerprint: Clutch Differential ─────────────────────────────
+function renderClutch(f) {
+  const container = document.getElementById("clutch-viz");
+  const cl = f?.tier2?.clutch_differential;
+
+  if (!cl?.available) {
+    container.innerHTML = naCard("Clutch Differential", f?.year || "this year");
+    return;
+  }
+
+  const val     = cl.value;
+  const hlPct   = cl.high_lev_win_pct;
+  const basePct = cl.baseline_win_pct;
+  const pos     = val >= 0;
+
+  container.innerHTML = `
+    <div class="clutch-big ${pos ? "clutch-pos" : "clutch-neg"}">${pos ? "+" : ""}${val}%</div>
+    <div class="clutch-sub">on high-leverage points vs baseline</div>
+    <div class="clutch-bars">
+      <div class="clutch-row">
+        <span class="clutch-row-label">Baseline win%</span>
+        <div class="clutch-track">
+          <div class="clutch-fill clutch-base-fill" style="width:${basePct}%">
+            <span class="clutch-fill-label">${basePct}%</span>
+          </div>
+        </div>
+      </div>
+      <div class="clutch-row">
+        <span class="clutch-row-label">Hi-lev win%</span>
+        <div class="clutch-track">
+          <div class="clutch-fill clutch-hl-fill" style="width:${hlPct}%">
+            <span class="clutch-fill-label">${hlPct}%</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Fingerprint: Rally Win Curve ──────────────────────────────────
+function renderRallyCurve(f) {
+  const container = document.getElementById("rally-curve-viz");
+  const rw = f?.tier2?.rally_win_curve;
+
+  if (!rw) {
+    container.innerHTML = naCard("Rally Win Curve", f?.year || "this year");
+    return;
+  }
+
+  const LABELS = { "1_3":"1–3 shots", "4_6":"4–6 shots", "7_9":"7–9 shots", "10+":"10+ shots" };
+  const COLORS = ["var(--cobalt)", "#0044c8", "var(--forest)", "var(--forest-mid)"];
+  const keys   = ["1_3", "4_6", "7_9", "10+"];
+
+  let html = `<div class="rwc-grid">`;
+  keys.forEach((k, i) => {
+    const band = rw[k];
+    const pct  = band?.win_pct;
+    const n    = band?.n ?? 0;
+    html += `
+      <div class="rwc-row">
+        <span class="rwc-label">${LABELS[k]}</span>
+        <div class="rwc-bar-wrap">
+          <div class="rwc-track">
+            <div class="rwc-fill" style="width:${pct ?? 0}%;background:${COLORS[i]}"></div>
+          </div>
+          <span class="rwc-val">${pct != null ? pct + "%" : "—"}</span>
+        </div>
+        <span class="rwc-n">n=${n}</span>
+      </div>`;
+  });
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+// ── Fingerprint: Court Side Asymmetry ────────────────────────────
+function renderCourtSide(f) {
+  const container = document.getElementById("court-side-viz");
+  const ca = f?.tier2?.court_side_asymmetry;
+
+  if (!ca?.available) {
+    container.innerHTML = naCard("Court Side Asymmetry", f?.year || "this year");
+    return;
+  }
+
+  const deuce    = ca.deuce_win_pct;
+  const ad       = ca.ad_win_pct;
+  const stronger = ca.stronger_side;
+  const asym     = ca.asymmetry?.toFixed(1) ?? "0.0";
+
+  container.innerHTML = `
+    <div class="csa-split">
+      <div class="csa-side ${stronger === "deuce" ? "csa-stronger" : ""}">
+        <div class="csa-side-label">Deuce Court</div>
+        <div class="csa-pct">${deuce}%</div>
+        <div class="csa-sub">pts won</div>
+        ${stronger === "deuce" ? `<div class="csa-badge">Stronger</div>` : ""}
+      </div>
+      <div class="csa-vs">vs</div>
+      <div class="csa-side ${stronger === "ad" ? "csa-stronger" : ""}">
+        <div class="csa-side-label">Ad Court</div>
+        <div class="csa-pct">${ad}%</div>
+        <div class="csa-sub">pts won</div>
+        ${stronger === "ad" ? `<div class="csa-badge">Stronger</div>` : ""}
+      </div>
+    </div>
+    <div class="csa-asym-note">${asym}pp asymmetry</div>
+    <div class="csa-bars">
+      <div class="csa-bar-label-row"><span>Deuce</span><span>${deuce}%</span></div>
+      <div class="csa-track"><div class="csa-fill-deuce" style="width:${deuce}%"></div></div>
+      <div class="csa-bar-label-row" style="margin-top:var(--s-2)"><span>Ad</span><span>${ad}%</span></div>
+      <div class="csa-track"><div class="csa-fill-ad" style="width:${ad}%"></div></div>
+    </div>`;
+}
+
+// ── Fingerprint: Momentum Profile ────────────────────────────────
+function renderMomentum(f) {
+  const container = document.getElementById("momentum-viz");
+  const mom = f?.tier2?.momentum_profile;
+
+  if (!mom) {
+    container.innerHTML = naCard("Momentum Profile", f?.year || "this year");
+    return;
+  }
+
+  const init = mom.streak_initiation_rate;
+  const surv = mom.streak_survival_rate;
+  const rec  = mom.streak_recovery_rate;
+  const fmtN   = v => v != null ? v.toFixed(2) : "—";
+  const fmtPct = v => v != null ? (v * 100).toFixed(1) + "%" : "—";
+
+  container.innerHTML = `
+    <div class="mom-stats">
+      <div class="mom-stat">
+        <div class="mom-val">${fmtN(init)}</div>
+        <div class="mom-label">Streak<br>Initiation</div>
+        <div class="mom-note">3+ pt runs per match</div>
+      </div>
+      <div class="mom-stat">
+        <div class="mom-val">${fmtPct(surv)}</div>
+        <div class="mom-label">Streak<br>Survival</div>
+        <div class="mom-note">3+ runs extending to 4+</div>
+      </div>
+      <div class="mom-stat">
+        <div class="mom-val">${fmtPct(rec)}</div>
+        <div class="mom-label">Recovery<br>Rate</div>
+        <div class="mom-note">Pts won after opp streak</div>
+      </div>
+    </div>`;
 }
 
 // ── Helpers ───────────────────────────────────────────────────────

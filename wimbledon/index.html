@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Wins on Grass — Wimbledon Player Intelligence · Joshua Woodyard</title>
   <meta name="description" content="Point-by-point player intelligence from the Wimbledon men's draw. Built on Jeff Sackmann's tennis_slam_pointbypoint dataset.">
-  <link rel="stylesheet" href="../foundations.css?v=8">
-  <link rel="stylesheet" href="styles.css?v=8">
+  <link rel="stylesheet" href="../foundations.css?v=9">
+  <link rel="stylesheet" href="styles.css?v=9">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 </head>
 <body>
@@ -89,7 +89,36 @@
     <!-- Metrics Grid -->
     <div class="metrics-grid">
 
-      <!-- 1. Serve Waterfall -->
+      <!-- ── SECTION: Core Stats ─────────────────────────────────── -->
+      <div class="section-divider">
+        <span class="section-divider-label">Core Stats</span>
+        <span class="section-divider-tag">Fingerprint · Elo-weighted · Tier 1</span>
+      </div>
+
+      <!-- Tier 1 Key Stats -->
+      <div class="card card-wide">
+        <div class="card-header">
+          <h3>Key Stats</h3>
+          <span class="card-badge" id="fp-confidence-badge"></span>
+        </div>
+        <p class="card-note">Elo-quality weighted across all grass matches · 90% credible interval shown as shaded range · Beta(2,2) prior</p>
+        <div id="tier1-viz" class="tier1-viz"></div>
+      </div>
+
+      <!-- Grass Elo -->
+      <div class="card">
+        <div class="card-header"><h3>Grass Elo</h3><span class="card-tag">Surface</span></div>
+        <p class="card-note">Surface-adjusted: 60% grass Elo + 40% overall · Kovalchik adaptive K-factor · pre-match snapshots used for weighting</p>
+        <div id="elo-viz" class="elo-viz"></div>
+      </div>
+
+      <!-- ── SECTION: Serve ──────────────────────────────────────── -->
+      <div class="section-divider">
+        <span class="section-divider-label">Serve</span>
+        <span class="section-divider-tag">Point-by-point · Fingerprint</span>
+      </div>
+
+      <!-- Serve Waterfall -->
       <div class="card card-wide">
         <div class="card-header">
           <h3>Serve Strength</h3>
@@ -99,14 +128,21 @@
         <div class="waterfall" id="serve-waterfall"></div>
       </div>
 
-      <!-- 2. Serve Speed -->
+      <!-- Serve Speed -->
       <div class="card">
         <div class="card-header"><h3>Serve Speed</h3></div>
         <p class="card-note">Average ± 1 SD · speed-classified serves only · for reference only</p>
         <div class="speed-viz" id="speed-viz"></div>
       </div>
 
-      <!-- 3. Serve Direction -->
+      <!-- Serve Entropy -->
+      <div class="card">
+        <div class="card-header"><h3>Serve Entropy</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">How predictable is the serve direction? Shannon entropy across W/B/T zones · 100% = perfectly random · lower = more readable</p>
+        <div id="entropy-viz" class="entropy-viz"></div>
+      </div>
+
+      <!-- Serve Direction -->
       <div class="card card-wide">
         <div class="card-header"><h3>Serve Direction</h3></div>
         <p class="card-note">ServeWidth column (W/B/C) · deuce/ad court derived from game point sequence · equal zone areas · read the %</p>
@@ -116,21 +152,20 @@
         </div>
       </div>
 
-      <!-- 4. Rally Length -->
+      <!-- Serve Speed Courage -->
       <div class="card">
-        <div class="card-header"><h3>Rally Length</h3></div>
-        <p class="card-note">Average shots per point from RallyCount column · marker = tournament avg</p>
-        <div class="rally-viz" id="rally-viz"></div>
+        <div class="card-header"><h3>Serve Courage</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Serve speed on break-point-against serves vs overall · positive = more aggressive under pressure</p>
+        <div id="courage-viz" class="courage-viz"></div>
       </div>
 
-      <!-- 5. Points Won -->
-      <div class="card">
-        <div class="card-header"><h3>Points Won</h3></div>
-        <p class="card-note">Total points across all matches · ⚡ = bad break match (winner had fewer points)</p>
-        <div id="points-viz" class="points-viz"></div>
+      <!-- ── SECTION: Return & Pressure ─────────────────────────── -->
+      <div class="section-divider">
+        <span class="section-divider-label">Return &amp; Pressure</span>
+        <span class="section-divider-tag">Point-by-point · Fingerprint</span>
       </div>
 
-      <!-- 6. Resilience -->
+      <!-- Resilience -->
       <div class="card">
         <div class="card-header">
           <h3>Resilience Index</h3>
@@ -140,7 +175,7 @@
         <div id="resilience-viz" class="resilience-viz"></div>
       </div>
 
-      <!-- 7. Enforcer -->
+      <!-- Enforcer -->
       <div class="card">
         <div class="card-header">
           <h3>Enforcer Index</h3>
@@ -150,42 +185,116 @@
         <div id="enforcer-viz" class="enforcer-viz"></div>
       </div>
 
-      <!-- 8. Attack Precision -->
+      <!-- Break Point Creation -->
+      <div class="card">
+        <div class="card-header"><h3>Break Point Creation</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">BPs created per opponent service game (stable skill) · conversion rate also shown (noisier)</p>
+        <div id="bp-creation-viz" class="bp-creation-viz"></div>
+      </div>
+
+      <!-- Clutch Differential -->
+      <div class="card">
+        <div class="card-header"><h3>Clutch Differential</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Win rate on high-leverage points (BPs &amp; deuce) minus overall win rate · positive = raises game under pressure</p>
+        <div id="clutch-viz" class="clutch-viz"></div>
+      </div>
+
+      <!-- DF Pressure Delta -->
+      <div class="card">
+        <div class="card-header"><h3>DF Pressure Delta</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Double-fault rate when facing a break point vs overall DF rate · positive = more nervy under pressure</p>
+        <div id="df-pressure-viz" class="df-pressure-viz"></div>
+      </div>
+
+      <!-- ── SECTION: Rally & Shape ──────────────────────────────── -->
+      <div class="section-divider">
+        <span class="section-divider-label">Rally &amp; Shape</span>
+        <span class="section-divider-tag">Point-by-point · Fingerprint</span>
+      </div>
+
+      <!-- Points Won -->
+      <div class="card">
+        <div class="card-header"><h3>Points Won</h3></div>
+        <p class="card-note">Total points across all matches · ⚡ = bad break match (winner had fewer points)</p>
+        <div id="points-viz" class="points-viz"></div>
+      </div>
+
+      <!-- Rally Length -->
+      <div class="card">
+        <div class="card-header"><h3>Rally Length</h3></div>
+        <p class="card-note">Average shots per point from RallyCount column · marker = tournament avg</p>
+        <div class="rally-viz" id="rally-viz"></div>
+      </div>
+
+      <!-- Rally Win Curve -->
+      <div class="card">
+        <div class="card-header"><h3>Rally Win Curve</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Win rate by rally length band · short-point specialist vs grinder profile</p>
+        <div id="rally-curve-viz" class="rally-curve-viz"></div>
+      </div>
+
+      <!-- Court Side Asymmetry -->
+      <div class="card">
+        <div class="card-header"><h3>Court Side Asymmetry</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Win rate on all points from the deuce court vs ad court · reveals side-specific patterns</p>
+        <div id="court-side-viz" class="court-side-viz"></div>
+      </div>
+
+      <!-- ── SECTION: Momentum & Game Control ───────────────────── -->
+      <div class="section-divider">
+        <span class="section-divider-label">Momentum &amp; Game Control</span>
+        <span class="section-divider-tag">Point-by-point · Fingerprint</span>
+      </div>
+
+      <!-- Attack Precision -->
       <div class="card">
         <div class="card-header"><h3>Attack Precision</h3></div>
         <p class="card-note">Of all attacking shot outcomes, what fraction are clean winners? Errors cost points — higher is better.</p>
         <div id="aggression-viz" class="aggression-viz"></div>
       </div>
 
-      <!-- 9. Clean Player -->
+      <!-- Clean Player -->
       <div class="card">
         <div class="card-header"><h3>Clean Player Index</h3></div>
         <p class="card-note">Service games and break games won without reaching deuce</p>
         <div id="clean-viz" class="clean-viz"></div>
       </div>
 
-      <!-- 10. Streaks -->
+      <!-- Streak Index -->
       <div class="card">
         <div class="card-header"><h3>Streak Index</h3></div>
         <p class="card-note">Runs of 3+ consecutive points within a single game · resets each game</p>
         <div id="streaks-viz" class="streaks-viz"></div>
       </div>
 
-      <!-- 11. Match Duration -->
+      <!-- Momentum Profile -->
+      <div class="card">
+        <div class="card-header"><h3>Momentum Profile</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Streak initiation (3+ pt runs started), survival (extend to 4+), and recovery rate (point won right after opponent streak)</p>
+        <div id="momentum-viz" class="momentum-viz"></div>
+      </div>
+
+      <!-- ── SECTION: Physical ───────────────────────────────────── -->
+      <div class="section-divider">
+        <span class="section-divider-label">Physical</span>
+        <span class="section-divider-tag">Match tracking</span>
+      </div>
+
+      <!-- Match Duration -->
       <div class="card">
         <div class="card-header"><h3>Match Duration</h3></div>
         <p class="card-note">Average time on court per match · derived from ElapsedTime column · marker = tournament avg</p>
         <div id="duration-viz" class="duration-viz"></div>
       </div>
 
-      <!-- 12. Distance Run -->
+      <!-- Distance Run -->
       <div class="card">
         <div class="card-header"><h3>Distance Run</h3></div>
         <p class="card-note">Average km covered per match · from P1/P2DistanceRun · matches without tracking data excluded</p>
         <div id="distance-viz" class="distance-viz"></div>
       </div>
 
-      <!-- 13. Match Log -->
+      <!-- Match Log -->
       <div class="card card-wide">
         <div class="card-header"><h3>Match Log</h3></div>
         <div id="match-log" class="match-log"></div>
@@ -201,6 +310,6 @@
     <span class="pf-col-r">Wimbledon · Point-by-point · Jeff Sackmann</span>
   </footer>
 
-  <script src="app.js?v=8"></script>
+  <script src="app.js?v=9"></script>
 </body>
 </html>

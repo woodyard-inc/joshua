@@ -61,13 +61,37 @@ PROC_DIR        = Path("data/processed")
 OUT_DIR         = Path("docs/data")
 SUPPORTED_YEARS = [2017, 2018, 2019]
 
-DECAY_LAMBDA     = 0.5    # recency half-life ≈ 1.4 years
-CI_LEVEL         = 0.90   # credible interval coverage
-BETA_PRIOR_A     = 2.0    # Beta(2,2) prior — slightly centred, weak
-BETA_PRIOR_B     = 2.0
-LOW_CONF_THRESH  = 0.80   # mean quality weight below this → low confidence
-RALLY_BANDS      = [(1, 3), (4, 6), (7, 9), (10, 999)]
-RALLY_LABELS     = ["1_3", "4_6", "7_9", "10+"]
+DECAY_LAMBDA      = 0.5    # recency half-life ≈ 1.4 years
+CI_LEVEL          = 0.90   # credible interval coverage
+BETA_PRIOR_A      = 2.0    # Beta(2,2) prior — slightly centred, weak
+BETA_PRIOR_B      = 2.0
+RALLY_BANDS       = [(1, 3), (4, 6), (7, 9), (10, 999)]
+RALLY_LABELS      = ["1_3", "4_6", "7_9", "10+"]
+
+# Session decision 4: point-level n_eff thresholds
+CONF_UNRELIABLE   = 30     # n_eff below this → UNRELIABLE, exclude from matchup
+CONF_LOW          = 60     # n_eff 30–60 → LOW CONFIDENCE, widen interval
+
+# Session decision 3: match-count thresholds
+MIN_MATCHES_TIER2 = 5      # below this, Tier 1 only
+FULL_MATCHES      = 8      # 8–10 = full fingerprint viable
+
+# Session decision 10: verdict thresholds (raw values, not percentages)
+VERDICT_THRESHOLDS = {
+    "clutch_diff":       (-4.0,  "lt"),   # Clutch Diff < -4pp → FAIL
+    "serve_speed_delta": (-8.0,  "lt"),   # Speed delta < -8 km/h → FAIL
+    "df_rate_doubles":   (2.0,   "gt"),   # DF rate ratio > 2× → FAIL
+    "spci":              (-0.06, "lt"),   # SPCI < -0.06 → FAIL
+}
+
+# Session decision 9: SPCI component weights
+SPCI_WEIGHTS = {
+    "serve_speed_delta": 0.30,
+    "df_rate_delta":     0.20,
+    # rally_length_at_pressure: 0.20 — needs per-point tracking (future)
+    # distance_per_shot_pressure: 0.15 — needs GPS data (future)
+    # serve_dir_variety_pressure: 0.15 — needs per-point entropy (future)
+}
 
 
 # ── credible intervals ─────────────────────────────────────────────────────
@@ -102,6 +126,53 @@ def pct_metric(wins_w: float, total_w: float) -> dict:
     val = round(wins_w / total_w * 100, 1)
     lo, hi = beta_ci(wins_w, total_w)
     return metric(val, lo, hi)
+
+
+# ── Session decision 4: n_eff + confidence ─────────────────────────────────
+
+def kish_n_eff(weights: List[float]) -> float:
+    """
+    Kish (1965) effective sample size for weighted estimates.
+    n_eff = (Σwᵢ)² / Σwᵢ²   (applied to raw, unnormalised weights)
+    Represents how many equally-weighted samples the weighted set is worth.
+    """
+    sw  = sum(weights)
+    sw2 = sum(w * w for w in weights)
+    return round((sw ** 2) / sw2, 1) if sw2 > 0 else 0.0
+
+
+def confidence_flag(n_eff: float) -> str:
+    """
+    Three-tier per-metric confidence flag (session decision 4).
+      n_eff < 30  → UNRELIABLE  (exclude from matchup)
+      n_eff 30–60 → LOW         (widen interval, FAIL → MARGINAL)
+      n_eff > 60  → RELIABLE
+    n_eff here is the raw or pseudo-count of points underpinning the metric,
+    not the match-level Kish n_eff.
+    """
+    if n_eff < CONF_UNRELIABLE:
+        return "UNRELIABLE"
+    if n_eff < CONF_LOW:
+        return "LOW"
+    return "RELIABLE"
+
+
+def pressure_verdict(value: Optional[float], key: str, conf: str) -> str:
+    """
+    Threshold-based PASS/FAIL label (session decision 10).
+    Returns MARGINAL instead of FAIL when confidence is LOW.
+    Returns UNRELIABLE when confidence is UNRELIABLE.
+    """
+    if value is None or conf == "UNRELIABLE":
+        return "UNRELIABLE"
+    rule = VERDICT_THRESHOLDS.get(key)
+    if rule is None:
+        return "N/A"
+    thresh, op = rule
+    fails = (value < thresh) if op == "lt" else (value > thresh)
+    if fails:
+        return "MARGINAL" if conf == "LOW" else "FAIL"
+    return "PASS"
 
 
 # ── Tier 2 helpers ─────────────────────────────────────────────────────────
@@ -222,6 +293,26 @@ def compute_match_features(player_name: str, player_num: int,
                     rally_total[label] += 1
                     if win:
                         rally_wins[label] += 1
+                    break
+
+    # ── Tier 2: RLUEP (Rally-Length UFE Profile) ──────────────────────────
+    # Decision 12: UFE rate per rally band; primary value in 7–9 and 10+ bands.
+    # Denominator reuses rally_total (points per band) from rally win curve above.
+
+    ufe_col   = f"P{pn}UnforcedError"
+    ufe_avail = col_available(match_pts, ufe_col) and rc_avail
+    rluep_ufe = {label: 0 for label in RALLY_LABELS}
+
+    if ufe_avail:
+        for _, row in match_pts.iterrows():
+            rc  = row.get(rc_col)
+            ufe = bool(row.get(ufe_col, 0))
+            if pd.isna(rc) or not ufe:
+                continue
+            rc = int(rc)
+            for (lo, hi), label in zip(RALLY_BANDS, RALLY_LABELS):
+                if lo <= rc <= hi:
+                    rluep_ufe[label] += 1
                     break
 
     # ── Tier 2: clutch differential ───────────────────────────────────────
@@ -355,8 +446,11 @@ def compute_match_features(player_name: str, player_num: int,
         "serve_entropy": entropy,
         # Tier 2 rally win curve
         "rc_avail": int(rc_avail),
-        **{f"rw_{lbl}": rally_wins[lbl]  for lbl in RALLY_LABELS},
-        **{f"rt_{lbl}": rally_total[lbl] for lbl in RALLY_LABELS},
+        **{f"rw_{lbl}":   rally_wins[lbl]  for lbl in RALLY_LABELS},
+        **{f"rt_{lbl}":   rally_total[lbl] for lbl in RALLY_LABELS},
+        # Tier 2 RLUEP (UFE per rally band)
+        "ufe_avail": int(ufe_avail),
+        **{f"rufe_{lbl}": rluep_ufe[lbl]  for lbl in RALLY_LABELS},
         # Tier 2 clutch
         "hl_total": hl_total, "hl_won": hl_won,
         # Tier 2 DF pressure delta
@@ -403,11 +497,21 @@ def build_fingerprint(player_name: str, year: int,
     if n == 0:
         return {}
 
+    # ── Session decision 4: Kish n_eff (match-level) ───────────────────────
+    n_eff_matches = kish_n_eff(weights_raw)
+
     # Normalise weights
     total_w = sum(weights_raw)
     weights  = [w / total_w for w in weights_raw] if total_w > 0 else [1/n] * n
 
     def ws(key): return weighted_sum(match_features, weights, key)
+
+    # ── Session decision 3: sample-size tier ───────────────────────────────
+    tier2_enabled = n >= MIN_MATCHES_TIER2
+    tier2_wide    = MIN_MATCHES_TIER2 <= n < FULL_MATCHES   # wide intervals flag
+
+    # Total weighted points (pseudo-count)
+    n_points = round(ws("pts_total"))
 
     # ── Tier 1 ──────────────────────────────────────────────────────────────
 
@@ -428,6 +532,24 @@ def build_fingerprint(player_name: str, year: int,
 
     # First serve %
     fsp = pct_metric(ws("srv_1st_in"), ws("srv_total"))
+
+    # ── Tier 2 gate (session decision 3) ───────────────────────────────────
+    if not tier2_enabled:
+        # Fewer than MIN_MATCHES_TIER2 matches — skip Tier 2 entirely
+        return {
+            "player":   player_name, "surface": "grass", "year": year,
+            "n_matches": n, "n_points": n_points,
+            "n_eff_matches": n_eff_matches,
+            "confidence": "UNRELIABLE",
+            "tier2_available": False,
+            "tier2_note": f"Only {n} matches — Tier 1 only (need ≥{MIN_MATCHES_TIER2})",
+            "training_matches": match_meta,
+            "tier1": {
+                "fsp_pct":  fsp,  "fspw_pct": fspw, "sspw_pct": sspw,
+                "rpw_pct":  rpw,  "sgw_pct":  sgw,  "rgw_pct":  rgw,
+            },
+            "tier2": None,
+        }
 
     # ── Tier 2 ──────────────────────────────────────────────────────────────
 
@@ -551,17 +673,131 @@ def build_fingerprint(player_name: str, year: int,
         "bp_converted":       round(bp_cv_w, 1),
     }
 
-    # ── confidence flag ─────────────────────────────────────────────────────
+    # ── RLUEP (Rally-Length UFE Profile) ───────────────────────────────────
+    # Session decision 12: UFE rate per rally band; 10+ band flagged if thin.
 
-    mean_qw = sum(m.get("w_q", 1.0) for m in match_meta) / len(match_meta)
-    confidence = "high" if mean_qw >= LOW_CONF_THRESH else "low"
+    ufe_data_avail = ws("ufe_avail") > 0 and rc_avail
+    rluep: Optional[dict] = None
+    if ufe_data_avail:
+        rluep = {}
+        for lbl in RALLY_LABELS:
+            ufe_w = ws(f"rufe_{lbl}")
+            tot_w = ws(f"rt_{lbl}")
+            n_eff_band = round(tot_w)
+            conf_band  = confidence_flag(n_eff_band)
+            if tot_w > 0:
+                rluep[lbl] = {
+                    "ufe_rate":   round(ufe_w / tot_w * 100, 1),
+                    "n":          n_eff_band,
+                    "confidence": conf_band,
+                }
+            else:
+                rluep[lbl] = {"ufe_rate": None, "n": 0, "confidence": "UNRELIABLE"}
+
+    # ── Per-metric confidence flags (point n_eff) ───────────────────────────
+    # Use weighted pseudo-counts as proxy for effective point count per metric.
+
+    clutch_n   = round(hl_total_w)
+    clutch_conf = confidence_flag(clutch_n)
+
+    bp_srv_n   = round(bp_srv_total_w)
+    df_conf    = confidence_flag(bp_srv_n)
+
+    spd_bp_n   = round(ws("spd_bp_n"))
+    spd_conf   = confidence_flag(spd_bp_n)
+
+    # ── Enrich clutch with verdict + n_eff ──────────────────────────────────
+    if clutch.get("available"):
+        clutch.update({
+            "n_eff":      clutch_n,
+            "confidence": clutch_conf,
+            "verdict":    pressure_verdict(clutch_diff, "clutch_diff", clutch_conf),
+            "modifier_delta": round(clutch_diff / 100, 4),
+        })
+
+    # ── Enrich DF pressure with verdict + n_eff ─────────────────────────────
+    if df_pressure.get("available"):
+        base_df = df_pressure["baseline_df_rate"]
+        bp_df   = df_pressure["bp_df_rate"]
+        # Ratio for "doubles" verdict check (bp_df / base_df)
+        df_ratio = round(bp_df / base_df, 2) if base_df > 0 else None
+        df_pressure.update({
+            "n_eff":      bp_srv_n,
+            "confidence": df_conf,
+            "verdict":    pressure_verdict(df_ratio, "df_rate_doubles", df_conf),
+            "modifier_delta": round((bp_df - base_df) / 100, 4),
+        })
+
+    # ── Enrich serve speed courage with verdict + n_eff ─────────────────────
+    if spd_courage.get("available"):
+        speed_delta = spd_courage["value"]
+        spd_courage.update({
+            "n_eff":      spd_bp_n,
+            "confidence": spd_conf,
+            "verdict":    pressure_verdict(speed_delta, "serve_speed_delta", spd_conf),
+            "modifier_delta": round(speed_delta / 100, 4),
+            "note": ("Component of SPCI — cross with opponent RDAS before verdict. "
+                     "See session decision 8." if tier2_wide else None),
+        })
+
+    # ── Partial SPCI (session decision 9) ────────────────────────────────────
+    # Two of five components available now; the others need per-point data.
+    spci: Optional[dict] = None
+    spci_components: dict = {}
+
+    if spd_courage.get("available") and spd_courage["value"] is not None:
+        # Serve Speed Delta component: (speed_bp - speed_overall) / speed_overall
+        base_spd = spd_courage["overall_speed_kmh"]
+        if base_spd and base_spd > 0:
+            delta_pct = (spd_courage["bp_speed_kmh"] - base_spd) / base_spd
+            spci_components["serve_speed_delta"] = {
+                "delta_frac": round(delta_pct, 4),
+                "weight":     SPCI_WEIGHTS["serve_speed_delta"],
+                "contribution": round(SPCI_WEIGHTS["serve_speed_delta"] * delta_pct, 4),
+            }
+
+    if df_pressure.get("available") and df_pressure["value"] is not None:
+        # DF Rate Delta component: (bp_df_rate - base_df_rate) / base_df_rate
+        base_df  = df_pressure["baseline_df_rate"]
+        delta_df = df_pressure["value"]  # already bp - base in pp
+        if base_df and base_df > 0:
+            delta_pct_df = delta_df / base_df  # fractional change
+            spci_components["df_rate_delta"] = {
+                "delta_frac": round(delta_pct_df, 4),
+                "weight":     SPCI_WEIGHTS["df_rate_delta"],
+                "contribution": round(SPCI_WEIGHTS["df_rate_delta"] * delta_pct_df, 4),
+            }
+
+    if spci_components:
+        spci_value = round(sum(c["contribution"] for c in spci_components.values()), 4)
+        spci_conf  = clutch_conf if clutch_conf != "UNRELIABLE" else df_conf
+        spci = {
+            "available":      True,
+            "value":          spci_value,
+            "components":     spci_components,
+            "components_used": len(spci_components),
+            "components_total": 5,
+            "confidence":     spci_conf,
+            "verdict":        pressure_verdict(spci_value, "spci", spci_conf),
+            "modifier_delta": spci_value,
+            "note": ("Partial SPCI: 2/5 components. Missing: rally_length@pressure, "
+                     "distance_per_shot@pressure, serve_dir_variety@pressure."),
+        }
+
+    # ── Overall fingerprint confidence (n_eff-based) ────────────────────────
+    # Use total points as proxy for point-level n_eff
+    overall_conf = confidence_flag(n_points)
 
     return {
-        "player":   player_name,
-        "surface":  "grass",
-        "year":     year,
-        "n_matches": n,
-        "confidence": confidence,
+        "player":        player_name,
+        "surface":       "grass",
+        "year":          year,
+        "n_matches":     n,
+        "n_points":      n_points,
+        "n_eff_matches": n_eff_matches,
+        "confidence":    overall_conf,
+        "tier2_available": True,
+        "tier2_wide_intervals": tier2_wide,
         "training_matches": match_meta,
         "tier1": {
             "fsp_pct":  fsp,
@@ -580,6 +816,8 @@ def build_fingerprint(player_name: str, year: int,
             "court_side_asymmetry": court_asymmetry,
             "momentum_profile":    momentum,
             "bp_creation_profile": bp_profile,
+            "rluep":               rluep,
+            "spci":                spci,
         },
     }
 
@@ -645,11 +883,15 @@ def build_year_fingerprints(year: int,
             days_before = (T_ref - match_date).days   # 0 for finals-week
             w_t = math.exp(-DECAY_LAMBDA * max(days_before, 0) / 365.0)
 
-            # ── Quality weight ──────────────────────────────────────────────
+            # ── Quality weight (date-capped — no look-ahead bias) ───────────
+            # Use the opponent's Elo as it stood at match_date, not their
+            # final career rating.  Falls back to neutral (1.0) if no
+            # pre-match snapshot exists yet (e.g. player's debut).
             if elo is not None:
-                w_q = elo.quality_weight_by_name(opp_name, mean_active=mean_r)
-                opp_snap = elo.get_snapshot_by_name(opp_name) or {}
-                opp_elo  = opp_snap.get("R_adjusted")
+                w_q     = elo.quality_weight_at_by_name(
+                              opp_name, match_date, mean_active=mean_r)
+                r_at    = elo.adjusted_rating_at_by_name(opp_name, match_date)
+                opp_elo = round(r_at, 1) if r_at is not None else None
             else:
                 w_q     = 1.0
                 opp_elo = None
@@ -679,7 +921,8 @@ def build_year_fingerprints(year: int,
             weights_raw,
         )
 
-        # Attach Elo snapshot for the player themselves
+        # Attach final Elo snapshot for the player themselves (display only —
+        # quality weights already used date-capped ratings above)
         if elo is not None:
             fingerprint["elo_snapshot"] = elo.get_snapshot_by_name(player_name)
 

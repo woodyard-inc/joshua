@@ -34,16 +34,14 @@
   .hero {
     padding: var(--s-7) 0 var(--s-10);
     border-bottom: 1px solid var(--ink);
-    display: grid; grid-template-columns: 3fr 2fr;
+    display: grid; grid-template-columns: 3fr 1fr;
     gap: var(--s-8); align-items: end;
   }
   .hero h1 {
     font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(44px, 8vw, 120px);
+    font-size: clamp(44px, 7vw, 96px);
     letter-spacing: -0.04em; line-height: 0.9;
     text-wrap: balance;
-    overflow-wrap: break-word;
-    hyphens: auto;
   }
   .hero .hero-meta { padding-bottom: var(--s-3); }
   .hero .hero-meta .lede {
@@ -217,8 +215,7 @@
     .nameplate .nav-desktop { display: none; }
     .nameplate .menu { display: inline-block; }
     .hero { grid-template-columns: 1fr; gap: var(--s-6); padding: var(--s-9) 0 var(--s-8); }
-    .hero h1 { padding-right: var(--s-6); overflow-wrap: anywhere; }
-    .hero .hero-meta { padding-right: var(--s-5); }
+    .hero .hero-meta { padding-right: 0; }
     .letter { grid-template-columns: 1fr; }
     .letter .mark { display: none; }
     .letter .aside { border-left: none; border-top: 1px solid var(--ink); padding-left: 0; padding-top: var(--s-4); }

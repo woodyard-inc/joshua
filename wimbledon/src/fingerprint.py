@@ -533,25 +533,11 @@ def build_fingerprint(player_name: str, year: int,
     # First serve %
     fsp = pct_metric(ws("srv_1st_in"), ws("srv_total"))
 
-    # ── Tier 2 gate (session decision 3) ───────────────────────────────────
-    if not tier2_enabled:
-        # Fewer than MIN_MATCHES_TIER2 matches — skip Tier 2 entirely
-        return {
-            "player":   player_name, "surface": "grass", "year": year,
-            "n_matches": n, "n_points": n_points,
-            "n_eff_matches": n_eff_matches,
-            "confidence": "UNRELIABLE",
-            "tier2_available": False,
-            "tier2_note": f"Only {n} matches — Tier 1 only (need ≥{MIN_MATCHES_TIER2})",
-            "training_matches": match_meta,
-            "tier1": {
-                "fsp_pct":  fsp,  "fspw_pct": fspw, "sspw_pct": sspw,
-                "rpw_pct":  rpw,  "sgw_pct":  sgw,  "rgw_pct":  rgw,
-            },
-            "tier2": None,
-        }
-
     # ── Tier 2 ──────────────────────────────────────────────────────────────
+    # Note: Tier 2 is always computed for the display layer regardless of
+    # match count. The confidence flags (UNRELIABLE/LOW/RELIABLE) and n_eff
+    # values communicate data quality. The matchup engine should gate on
+    # n_eff thresholds itself; the visualisation page shows everything.
 
     # Serve entropy
     dir_avail = ws("dir_avail") > 0
@@ -796,8 +782,8 @@ def build_fingerprint(player_name: str, year: int,
         "n_points":      n_points,
         "n_eff_matches": n_eff_matches,
         "confidence":    overall_conf,
-        "tier2_available": True,
-        "tier2_wide_intervals": tier2_wide,
+        "tier2_available":      True,
+        "tier2_wide_intervals": tier2_wide,   # True when n < FULL_MATCHES (informational only)
         "training_matches": match_meta,
         "tier1": {
             "fsp_pct":  fsp,

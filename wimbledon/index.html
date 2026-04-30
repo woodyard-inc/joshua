@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Wins on Grass — Wimbledon Player Intelligence · Joshua Woodyard</title>
   <meta name="description" content="Point-by-point player intelligence from the Wimbledon men's draw. Built on Jeff Sackmann's tennis_slam_pointbypoint dataset.">
-  <link rel="stylesheet" href="../foundations.css?v=9">
-  <link rel="stylesheet" href="styles.css?v=9">
+  <link rel="stylesheet" href="../foundations.css?v=10">
+  <link rel="stylesheet" href="styles.css?v=10">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 </head>
 <body>
@@ -55,6 +55,10 @@
             <option value="">Select a player…</option>
           </select>
         </div>
+        <div class="control-group control-group--lb">
+          <label>&nbsp;</label>
+          <button id="lb-toggle" class="lb-toggle-btn">Leaderboard</button>
+        </div>
       </div>
     </div>
   </header>
@@ -68,6 +72,15 @@
       <p class="empty-eyebrow">Wimbledon · Men's Draw</p>
       <h2 class="empty-title">What Wins on Grass</h2>
       <p class="empty-desc">A point-by-point breakdown of serve speed, direction, rally length, and pressure play across the 2017–2019 Wimbledon men's draw. Built on Jeff Sackmann's tennis dataset. Select a player above to begin.</p>
+    </div>
+  </div>
+
+  <!-- ── LEADERBOARD ───────────────────────────────────────────── -->
+  <div id="leaderboard" class="leaderboard hidden">
+    <div class="lb-metric-nav" id="lb-metric-nav"></div>
+    <div class="lb-list-wrap">
+      <div class="lb-list-header" id="lb-list-header"></div>
+      <div class="lb-list" id="lb-list"></div>
     </div>
   </div>
 
@@ -310,6 +323,6 @@
     <span class="pf-col-r">Wimbledon · Point-by-point · Jeff Sackmann</span>
   </footer>
 
-  <script src="app.js?v=9"></script>
+  <script src="app.js?v=10"></script>
 </body>
 </html>

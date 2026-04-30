@@ -8,6 +8,8 @@ const state = {
   profiles:     null,
   tournament:   null,
   fingerprints: null,
+  mode:         "profile",   // "profile" | "leaderboard"
+  lbMetric:     "fspw_pct",
 };
 
 const AVAILABLE_YEARS = [2017, 2018, 2019];
@@ -31,6 +33,29 @@ async function boot() {
   document.getElementById("player-select")
     .addEventListener("change", e => onPlayerChange(e.target.value));
 
+  document.getElementById("lb-toggle").addEventListener("click", () => {
+    if (state.mode === "leaderboard") {
+      // Switch back to profile / empty
+      state.mode = "profile";
+      document.getElementById("lb-toggle").classList.remove("active");
+      document.getElementById("leaderboard").classList.add("hidden");
+      if (state.playerName && state.profiles[state.playerName]) {
+        document.getElementById("empty-state").classList.add("hidden");
+        document.getElementById("profile").classList.remove("hidden");
+      } else {
+        showEmpty();
+      }
+    } else {
+      // Switch to leaderboard
+      state.mode = "leaderboard";
+      document.getElementById("lb-toggle").classList.add("active");
+      document.getElementById("empty-state").classList.add("hidden");
+      document.getElementById("profile").classList.add("hidden");
+      document.getElementById("leaderboard").classList.remove("hidden");
+      renderLeaderboard();
+    }
+  });
+
   document.getElementById("year-pills").addEventListener("click", e => {
     const btn = e.target.closest(".pill");
     if (!btn) return;
@@ -40,6 +65,8 @@ async function boot() {
     btn.classList.add("active");
     state.year = yr;
     loadYear(yr).then(() => {
+      // If leaderboard is active, loadYear already re-rendered it — nothing more to do
+      if (state.mode === "leaderboard") return;
       // Try to keep same player; if they didn't compete this year say so
       const prev = state.playerName;
       if (prev && state.profiles[prev]) {
@@ -68,6 +95,7 @@ async function loadYear(year) {
   state.fingerprints = fingerprints;
   state.year         = year;
   populateDropdown();
+  if (state.mode === "leaderboard") renderLeaderboard();
 }
 
 function populateDropdown() {
@@ -83,6 +111,9 @@ function populateDropdown() {
 }
 
 function showEmpty() {
+  state.mode = "profile";
+  document.getElementById("lb-toggle").classList.remove("active");
+  document.getElementById("leaderboard").classList.add("hidden");
   document.getElementById("empty-state").classList.remove("hidden");
   document.getElementById("profile").classList.add("hidden");
   document.getElementById("player-select").value = "";
@@ -123,6 +154,9 @@ function renderProfile(name) {
   const t = state.tournament;
   const f = (state.fingerprints || {})[name] || null;
 
+  state.mode = "profile";
+  document.getElementById("lb-toggle").classList.remove("active");
+  document.getElementById("leaderboard").classList.add("hidden");
   document.getElementById("empty-state").classList.add("hidden");
   document.getElementById("profile").classList.remove("hidden");
 
@@ -1247,6 +1281,139 @@ function naCard(metric, year) {
     <span class="rally-na-label">Not Available (${year})</span>
     <p class="rally-na-note">${metric} data is not populated in the ${year} dataset.</p>
   </div>`;
+}
+
+// ── Leaderboard ───────────────────────────────────────────────────
+
+const LEADERBOARD_METRICS = [
+  // Core Stats
+  { id:"fspw_pct",  label:"1st Srv Won %",    section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.fspw_pct?.value },
+  { id:"fsp_pct",   label:"1st Serve In %",   section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.fsp_pct?.value  },
+  { id:"sspw_pct",  label:"2nd Srv Won %",     section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.sspw_pct?.value },
+  { id:"rpw_pct",   label:"Return Pts Won",    section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.rpw_pct?.value  },
+  { id:"sgw_pct",   label:"Srv Games Won",     section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.sgw_pct?.value  },
+  { id:"rgw_pct",   label:"Ret Games Won",     section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.rgw_pct?.value  },
+  { id:"elo",       label:"Grass Elo",         section:"Core Stats",         fmt:"elo",   dir:"desc", extract:f=>f?.elo_snapshot?.R_adjusted },
+  // Serve
+  { id:"entropy",   label:"Serve Entropy",     section:"Serve",              fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.serve_entropy?.pct_of_max },
+  { id:"courage",   label:"Serve Courage",     section:"Serve",              fmt:"kmh",   dir:"desc", extract:f=>f?.tier2?.serve_speed_courage?.value },
+  // Return & Pressure
+  { id:"clutch",    label:"Clutch Diff",       section:"Return & Pressure",  fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.clutch_differential?.value },
+  { id:"df_delta",  label:"DF Pressure Δ",    section:"Return & Pressure",  fmt:"pp",    dir:"asc",  extract:f=>f?.tier2?.df_pressure_delta?.value },
+  { id:"bp_per_g",  label:"BPs / Ret Game",   section:"Return & Pressure",  fmt:"dec3",  dir:"desc", extract:f=>f?.tier2?.bp_creation_profile?.bp_per_return_game },
+  { id:"bp_conv",   label:"BP Conversion",     section:"Return & Pressure",  fmt:"pct1",  dir:"desc", extract:f=>{ const v=f?.tier2?.bp_creation_profile?.bp_conversion; return v!=null?v*100:null; }},
+  // Rally & Shape
+  { id:"rw_1_3",    label:"Win % 1–3 shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["1_3"]?.win_pct },
+  { id:"rw_4_6",    label:"Win % 4–6 shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["4_6"]?.win_pct },
+  { id:"rw_7_9",    label:"Win % 7–9 shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["7_9"]?.win_pct },
+  { id:"rw_10",     label:"Win % 10+ shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["10+"]?.win_pct },
+  { id:"csa",       label:"Court Asymmetry",   section:"Rally & Shape",      fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.court_side_asymmetry?.asymmetry },
+  // Momentum
+  { id:"str_init",  label:"Streak Initiation", section:"Momentum",           fmt:"dec2",  dir:"desc", extract:f=>f?.tier2?.momentum_profile?.streak_initiation_rate },
+  { id:"str_surv",  label:"Streak Survival",   section:"Momentum",           fmt:"pct1",  dir:"desc", extract:f=>{ const v=f?.tier2?.momentum_profile?.streak_survival_rate; return v!=null?v*100:null; }},
+  { id:"str_rec",   label:"Streak Recovery",   section:"Momentum",           fmt:"pct1",  dir:"desc", extract:f=>{ const v=f?.tier2?.momentum_profile?.streak_recovery_rate; return v!=null?v*100:null; }},
+];
+
+function fmtLbVal(val, fmt) {
+  if (val == null) return "—";
+  switch(fmt) {
+    case "pct":   return val.toFixed(1) + "%";
+    case "pct1":  return val.toFixed(1) + "%";
+    case "elo":   return Math.round(val);
+    case "kmh":   return (val >= 0 ? "+" : "") + val.toFixed(1) + " km/h";
+    case "pp":    return (val >= 0 ? "+" : "") + val.toFixed(1) + "pp";
+    case "dec2":  return val.toFixed(2);
+    case "dec3":  return val.toFixed(3);
+    default:      return val;
+  }
+}
+
+function renderLbMetricNav() {
+  const nav = document.getElementById("lb-metric-nav");
+  const sections = {};
+  LEADERBOARD_METRICS.forEach(m => {
+    if (!sections[m.section]) sections[m.section] = [];
+    sections[m.section].push(m);
+  });
+  nav.innerHTML = Object.entries(sections).map(([sec, mets]) => `
+    <div class="lb-section-row">
+      <span class="lb-section-label">${sec}</span>
+      <div class="lb-metric-pills">
+        ${mets.map(m => `
+          <button class="lb-metric-pill ${m.id === state.lbMetric ? "active" : ""}"
+                  data-metric="${m.id}">${m.label}</button>
+        `).join("")}
+      </div>
+    </div>
+  `).join("");
+  nav.querySelectorAll(".lb-metric-pill").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.lbMetric = btn.dataset.metric;
+      renderLeaderboard();
+    });
+  });
+}
+
+function renderLbList() {
+  const metric = LEADERBOARD_METRICS.find(m => m.id === state.lbMetric);
+  if (!metric) return;
+  const fps = state.fingerprints || {};
+
+  const entries = Object.entries(fps)
+    .map(([name, f]) => ({ name, value: metric.extract(f), n: f.n_matches }))
+    .filter(e => e.value != null && isFinite(e.value));
+
+  entries.sort((a, b) => metric.dir === "desc" ? b.value - a.value : a.value - b.value);
+
+  const vals = entries.map(e => e.value);
+  const lo = Math.min(...vals), hi = Math.max(...vals);
+  const span = hi - lo || 1;
+
+  const header = document.getElementById("lb-list-header");
+  header.innerHTML = `
+    <span class="lb-col-rank">#</span>
+    <span class="lb-col-name">Player</span>
+    <span class="lb-col-bar"></span>
+    <span class="lb-col-val">${metric.label}</span>
+    <span class="lb-col-n">Matches</span>
+  `;
+
+  const list = document.getElementById("lb-list");
+  list.innerHTML = entries.map((e, i) => {
+    const barPct = metric.dir === "desc"
+      ? (e.value - lo) / span * 100
+      : (hi - e.value) / span * 100;
+    const isSelected = e.name === state.playerName;
+    return `
+      <div class="lb-row ${isSelected ? "lb-row--active" : ""}" data-player="${e.name}">
+        <span class="lb-col-rank">${i + 1}</span>
+        <span class="lb-col-name">${e.name}</span>
+        <div class="lb-col-bar">
+          <div class="lb-bar-track"><div class="lb-bar-fill" style="width:${barPct.toFixed(1)}%"></div></div>
+        </div>
+        <span class="lb-col-val">${fmtLbVal(e.value, metric.fmt)}</span>
+        <span class="lb-col-n">${e.n}</span>
+      </div>`;
+  }).join("");
+
+  list.querySelectorAll(".lb-row").forEach(row => {
+    row.addEventListener("click", () => {
+      const name = row.dataset.player;
+      state.playerName = name;
+      state.mode = "profile";
+      document.getElementById("player-select").value = name;
+      document.getElementById("lb-toggle").classList.remove("active");
+      document.getElementById("leaderboard").classList.add("hidden");
+      document.getElementById("empty-state").classList.add("hidden");
+      document.getElementById("profile").classList.remove("hidden");
+      renderProfile(name);
+    });
+  });
+}
+
+function renderLeaderboard() {
+  renderLbMetricNav();
+  renderLbList();
 }
 
 // ── Start ─────────────────────────────────────────────────────────

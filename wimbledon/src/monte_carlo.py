@@ -160,14 +160,15 @@ def _play_game(p_serve: float, a_is_server: bool,
     """
     gs, gr = 0, 0   # server's score, returner's score
 
-    # Which player's SPCI to use at pressure states
-    # Server's SPCI modifies the server's performance at BP/Deuce
-    # If A serves: positive SPCI_A = A holds better under pressure (good for A)
-    # If B serves: positive SPCI_B = B holds better under pressure (bad for A)
+    # Which player's SPCI to use at pressure states.
+    # `p` is always P(server wins point), so SPCI applies with its natural sign
+    # to the serving player regardless of who A is:
+    #   positive SPCI → server holds better under pressure (p increases)
+    #   negative SPCI → server struggles under pressure (p decreases)
     if a_is_server:
-        pressure_delta = spci_a    # A serving: A's SPCI
+        pressure_delta = spci_a    # A serving: A's SPCI modifies A's p_serve
     else:
-        pressure_delta = -spci_b   # B serving: B's SPCI (negated → A's perspective)
+        pressure_delta = spci_b    # B serving: B's SPCI modifies B's p_serve
 
     while True:
         state = _score_state(gs, gr, False, current_set)

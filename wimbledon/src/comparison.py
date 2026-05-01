@@ -239,37 +239,48 @@ def p_serve_from_fp(fp: dict) -> float:
 def _axis_serve_return(fp_a: dict, fp_b: dict,
                        year: int, defl: EraDeflator) -> Tuple[float, dict]:
     """
-    Edge = how much A's serve+return package outperforms B's.
+    Edge = A's serve+return package minus B's (fully differential).
 
-    Components (with weights):
-      0.40 × z(fspw_pct_A)          — 1st serve quality
-      0.25 × z(sspw_pct_A)          — 2nd serve quality
-     -0.20 × z(rpw_pct_B)           — B's return threat (negated: higher B rpw = worse for A)
-      0.15 × (z(entropy_A) - z(entropy_B))  — serve unpredictability advantage
+    All components are (A - B) differences in z-scores, ensuring the
+    axis is symmetric: compare(A,B) == -compare(B,A), and identical
+    fingerprints produce zero edge.
+
+    Components (grass weights sum to 1.0):
+      0.40 × (z(fspw_pct_A) - z(fspw_pct_B))   — 1st serve quality edge
+      0.25 × (z(sspw_pct_A) - z(sspw_pct_B))   — 2nd serve quality edge
+      0.20 × (z(rpw_pct_A)  - z(rpw_pct_B))    — return quality edge
+      0.15 × (z(entropy_A)  - z(entropy_B))     — serve unpredictability edge
 
     Session Decision 7: entropy is directional (W/B/T) only.
     Session Decision 8: SSCI is NOT applied here (it's an SPCI component).
     """
     components: dict = {}
 
-    # --- A's serve quality ---
+    # --- 1st serve quality differential ---
     fspw_a = defl.z(year, "fspw_pct", _t1(fp_a, "fspw_pct"))
+    fspw_b = defl.z(year, "fspw_pct", _t1(fp_b, "fspw_pct"))
+    serve1_score = 0.0
+    if fspw_a is not None and fspw_b is not None:
+        serve1_score = 0.40 * (fspw_a - fspw_b)
+        components["fspw_z_A"] = round(fspw_a, 3)
+        components["fspw_z_B"] = round(fspw_b, 3)
+        components["fspw_edge"] = round(fspw_a - fspw_b, 3)
+
+    # --- 2nd serve quality differential ---
     sspw_a = defl.z(year, "sspw_pct", _t1(fp_a, "sspw_pct"))
+    sspw_b = defl.z(year, "sspw_pct", _t1(fp_b, "sspw_pct"))
+    serve2_score = 0.0
+    if sspw_a is not None and sspw_b is not None:
+        serve2_score = 0.25 * (sspw_a - sspw_b)
+        components["sspw_edge"] = round(sspw_a - sspw_b, 3)
 
-    serve_score = 0.0
-    if fspw_a is not None:
-        serve_score += 0.40 * fspw_a
-        components["fspw_pct_A_z"] = round(fspw_a, 3)
-    if sspw_a is not None:
-        serve_score += 0.25 * sspw_a
-        components["sspw_pct_A_z"] = round(sspw_a, 3)
-
-    # --- B's return threat ---
+    # --- Return quality differential ---
+    rpw_a = defl.z(year, "rpw_pct", _t1(fp_a, "rpw_pct"))
     rpw_b = defl.z(year, "rpw_pct", _t1(fp_b, "rpw_pct"))
     return_score = 0.0
-    if rpw_b is not None:
-        return_score = 0.20 * rpw_b
-        components["rpw_pct_B_z"] = round(rpw_b, 3)
+    if rpw_a is not None and rpw_b is not None:
+        return_score = 0.20 * (rpw_a - rpw_b)
+        components["rpw_edge"] = round(rpw_a - rpw_b, 3)
 
     # --- Entropy (direction unpredictability) ---
     ent_a_raw = _t2(fp_a, "serve_entropy", "pct_of_max")
@@ -282,7 +293,7 @@ def _axis_serve_return(fp_a: dict, fp_b: dict,
             entropy_score = 0.15 * (ent_a - ent_b)
             components["entropy_edge_z"] = round(ent_a - ent_b, 3)
 
-    raw = serve_score - return_score + entropy_score
+    raw = serve1_score + serve2_score + return_score + entropy_score
     edge = float(np.clip(raw, -AXIS_CLAMP, AXIS_CLAMP))
     components["raw"] = round(raw, 4)
     return edge, components

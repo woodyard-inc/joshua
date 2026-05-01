@@ -16,39 +16,39 @@
         "opponent": "Alexander Bublik",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2017-wimbledon-1201",
         "round": "R64",
         "opponent": "Dustin Brown",
-        "opponent_elo": 1629.2,
+        "opponent_elo": 1624.6,
         "w_t": 0.9973,
-        "w_q": 1.0643
+        "w_q": 1.0614
       },
       {
         "match_id": "2017-wimbledon-1301",
         "round": "R32",
         "opponent": "Fabio Fognini",
-        "opponent_elo": 1630.8,
+        "opponent_elo": 1628.7,
         "w_t": 0.9945,
-        "w_q": 1.0653
+        "w_q": 1.0641
       },
       {
         "match_id": "2017-wimbledon-1401",
         "round": "R16",
         "opponent": "Benoit Paire",
-        "opponent_elo": 1572.9,
+        "opponent_elo": 1568.7,
         "w_t": 0.9918,
-        "w_q": 1.0275
+        "w_q": 1.0249
       },
       {
         "match_id": "2017-wimbledon-1501",
         "round": "QF",
         "opponent": "Sam Querrey",
-        "opponent_elo": 1770.3,
+        "opponent_elo": 1768.6,
         "w_t": 0.9891,
-        "w_q": 1.1564
+        "w_q": 1.1555
       }
     ],
     "tier1": {
@@ -86,7 +86,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.5326,
+        "value": 1.5325,
         "max_bits": 1.585,
         "pct_of_max": 96.7
       },
@@ -183,11 +183,11 @@
     },
     "elo_snapshot": {
       "name": "Andy Murray",
-      "n_overall": 148,
-      "n_surface": 148,
-      "R_overall": 1915.5,
-      "R_surface": 1915.5,
-      "R_adjusted": 1915.5
+      "n_overall": 151,
+      "n_surface": 151,
+      "R_overall": 1861.5,
+      "R_surface": 1861.5,
+      "R_adjusted": 1861.5
     }
   },
   "Alexander Bublik": {
@@ -205,9 +205,9 @@
         "match_id": "2017-wimbledon-1101",
         "round": "R128",
         "opponent": "Andy Murray",
-        "opponent_elo": 2153.9,
+        "opponent_elo": 2154.4,
         "w_t": 1.0,
-        "w_q": 1.407
+        "w_q": 1.4076
       }
     ],
     "tier1": {
@@ -342,11 +342,11 @@
     },
     "elo_snapshot": {
       "name": "Alexander Bublik",
-      "n_overall": 44,
-      "n_surface": 44,
-      "R_overall": 1860.1,
-      "R_surface": 1860.1,
-      "R_adjusted": 1860.1
+      "n_overall": 52,
+      "n_surface": 52,
+      "R_overall": 1752.5,
+      "R_surface": 1752.5,
+      "R_adjusted": 1752.5
     }
   },
   "Joao Sousa": {
@@ -364,9 +364,9 @@
         "match_id": "2017-wimbledon-1102",
         "round": "R128",
         "opponent": "Dustin Brown",
-        "opponent_elo": 1629.4,
+        "opponent_elo": 1625.2,
         "w_t": 1.0,
-        "w_q": 1.0644
+        "w_q": 1.0618
       }
     ],
     "tier1": {
@@ -489,9 +489,9 @@
       "name": "Joao Sousa",
       "n_overall": 39,
       "n_surface": 39,
-      "R_overall": 1468.6,
-      "R_surface": 1468.6,
-      "R_adjusted": 1468.6
+      "R_overall": 1466.3,
+      "R_surface": 1466.3,
+      "R_adjusted": 1466.3
     }
   },
   "Dustin Brown": {
@@ -509,17 +509,17 @@
         "match_id": "2017-wimbledon-1102",
         "round": "R128",
         "opponent": "Joao Sousa",
-        "opponent_elo": 1505.0,
+        "opponent_elo": 1505.2,
         "w_t": 1.0,
-        "w_q": 0.9831
+        "w_q": 0.9834
       },
       {
         "match_id": "2017-wimbledon-1201",
         "round": "R64",
         "opponent": "Andy Murray",
-        "opponent_elo": 2183.1,
+        "opponent_elo": 2184.1,
         "w_t": 0.9973,
-        "w_q": 1.4261
+        "w_q": 1.4269
       }
     ],
     "tier1": {
@@ -557,7 +557,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.9368,
+        "value": 0.9369,
         "max_bits": 1.585,
         "pct_of_max": 59.1
       },
@@ -656,9 +656,9 @@
       "name": "Dustin Brown",
       "n_overall": 41,
       "n_surface": 41,
-      "R_overall": 1614.1,
-      "R_surface": 1614.1,
-      "R_adjusted": 1614.1
+      "R_overall": 1620.5,
+      "R_surface": 1620.5,
+      "R_adjusted": 1620.5
     }
   },
   "Jiri Vesely": {
@@ -676,23 +676,23 @@
         "match_id": "2017-wimbledon-1103",
         "round": "R128",
         "opponent": "Illya Marchenko",
-        "opponent_elo": 1411.6,
+        "opponent_elo": 1417.0,
         "w_t": 1.0,
-        "w_q": 0.9222
+        "w_q": 0.9258
       },
       {
         "match_id": "2017-wimbledon-1202",
         "round": "R64",
         "opponent": "Fabio Fognini",
-        "opponent_elo": 1630.8,
+        "opponent_elo": 1628.7,
         "w_t": 0.9973,
-        "w_q": 1.0653
+        "w_q": 1.0641
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 69.9,
-        "ci_90_lo": 62.5,
+        "ci_90_lo": 62.4,
         "ci_90_hi": 75.8
       },
       "fspw_pct": {
@@ -716,17 +716,17 @@
         "ci_90_hi": 89.0
       },
       "rgw_pct": {
-        "value": 19.3,
-        "ci_90_lo": 11.5,
+        "value": 19.4,
+        "ci_90_lo": 11.6,
         "ci_90_hi": 40.2
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8163,
+        "value": 0.8144,
         "max_bits": 1.585,
-        "pct_of_max": 51.5
+        "pct_of_max": 51.4
       },
       "rally_win_curve": {
         "1_3": {
@@ -787,12 +787,12 @@
       "momentum_profile": {
         "streak_initiation_rate": 6.13,
         "streak_survival_rate": 0.397,
-        "streak_recovery_rate": 0.406
+        "streak_recovery_rate": 0.407
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.293,
-        "bp_conversion": 0.658,
-        "bp_created": 5.6,
+        "bp_per_return_game": 0.294,
+        "bp_conversion": 0.659,
+        "bp_created": 5.7,
         "bp_converted": 3.7
       },
       "rluep": null,
@@ -823,9 +823,9 @@
       "name": "Jiri Vesely",
       "n_overall": 41,
       "n_surface": 41,
-      "R_overall": 1658.7,
-      "R_surface": 1658.7,
-      "R_adjusted": 1658.7
+      "R_overall": 1654.3,
+      "R_surface": 1654.3,
+      "R_adjusted": 1654.3
     }
   },
   "Illya Marchenko": {
@@ -843,9 +843,9 @@
         "match_id": "2017-wimbledon-1103",
         "round": "R128",
         "opponent": "Jiri Vesely",
-        "opponent_elo": 1620.3,
+        "opponent_elo": 1620.0,
         "w_t": 1.0,
-        "w_q": 1.0585
+        "w_q": 1.0584
       }
     ],
     "tier1": {
@@ -968,9 +968,9 @@
       "name": "Illya Marchenko",
       "n_overall": 22,
       "n_surface": 22,
-      "R_overall": 1358.3,
-      "R_surface": 1358.3,
-      "R_adjusted": 1358.3
+      "R_overall": 1362.3,
+      "R_surface": 1362.3,
+      "R_adjusted": 1362.3
     }
   },
   "Dmitry Tursunov": {
@@ -988,9 +988,9 @@
         "match_id": "2017-wimbledon-1104",
         "round": "R128",
         "opponent": "Fabio Fognini",
-        "opponent_elo": 1666.1,
+        "opponent_elo": 1632.3,
         "w_t": 1.0,
-        "w_q": 1.0884
+        "w_q": 1.0664
       }
     ],
     "tier1": {
@@ -1113,9 +1113,9 @@
       "name": "Dmitry Tursunov",
       "n_overall": 67,
       "n_surface": 67,
-      "R_overall": 1527.2,
-      "R_surface": 1527.2,
-      "R_adjusted": 1527.2
+      "R_overall": 1529.7,
+      "R_surface": 1529.7,
+      "R_adjusted": 1529.7
     }
   },
   "Fabio Fognini": {
@@ -1133,25 +1133,25 @@
         "match_id": "2017-wimbledon-1104",
         "round": "R128",
         "opponent": "Dmitry Tursunov",
-        "opponent_elo": 1545.6,
+        "opponent_elo": 1548.4,
         "w_t": 1.0,
-        "w_q": 1.0097
+        "w_q": 1.0116
       },
       {
         "match_id": "2017-wimbledon-1202",
         "round": "R64",
         "opponent": "Jiri Vesely",
-        "opponent_elo": 1649.5,
+        "opponent_elo": 1648.9,
         "w_t": 0.9973,
-        "w_q": 1.0775
+        "w_q": 1.0773
       },
       {
         "match_id": "2017-wimbledon-1301",
         "round": "R32",
         "opponent": "Andy Murray",
-        "opponent_elo": 2183.1,
+        "opponent_elo": 2184.1,
         "w_t": 0.9945,
-        "w_q": 1.4261
+        "w_q": 1.4269
       }
     ],
     "tier1": {
@@ -1181,7 +1181,7 @@
         "ci_90_hi": 87.0
       },
       "rgw_pct": {
-        "value": 29.0,
+        "value": 29.1,
         "ci_90_lo": 17.4,
         "ci_90_hi": 50.9
       }
@@ -1189,9 +1189,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.1201,
+        "value": 1.1195,
         "max_bits": 1.585,
-        "pct_of_max": 70.7
+        "pct_of_max": 70.6
       },
       "rally_win_curve": {
         "1_3": {
@@ -1286,11 +1286,11 @@
     },
     "elo_snapshot": {
       "name": "Fabio Fognini",
-      "n_overall": 43,
-      "n_surface": 43,
-      "R_overall": 1652.2,
-      "R_surface": 1652.2,
-      "R_adjusted": 1652.2
+      "n_overall": 48,
+      "n_surface": 48,
+      "R_overall": 1642.6,
+      "R_surface": 1642.6,
+      "R_adjusted": 1642.6
     }
   },
   "Nick Kyrgios": {
@@ -1308,9 +1308,9 @@
         "match_id": "2017-wimbledon-1105",
         "round": "R128",
         "opponent": "Pierre Hugues Herbert",
-        "opponent_elo": 1651.3,
+        "opponent_elo": 1648.6,
         "w_t": 1.0,
-        "w_q": 1.0787
+        "w_q": 1.0771
       }
     ],
     "tier1": {
@@ -1447,9 +1447,9 @@
       "name": "Nick Kyrgios",
       "n_overall": 57,
       "n_surface": 57,
-      "R_overall": 1855.6,
-      "R_surface": 1855.6,
-      "R_adjusted": 1855.6
+      "R_overall": 1853.9,
+      "R_surface": 1853.9,
+      "R_adjusted": 1853.9
     }
   },
   "Pierre Hugues Herbert": {
@@ -1467,24 +1467,24 @@
         "match_id": "2017-wimbledon-1105",
         "round": "R128",
         "opponent": "Nick Kyrgios",
-        "opponent_elo": 1736.7,
+        "opponent_elo": 1735.2,
         "w_t": 1.0,
-        "w_q": 1.1345
+        "w_q": 1.1337
       },
       {
         "match_id": "2017-wimbledon-1203",
         "round": "R64",
         "opponent": "Benoit Paire",
-        "opponent_elo": 1572.9,
+        "opponent_elo": 1568.7,
         "w_t": 0.9973,
-        "w_q": 1.0275
+        "w_q": 1.0249
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 59.1,
         "ci_90_lo": 49.1,
-        "ci_90_hi": 67.8
+        "ci_90_hi": 67.9
       },
       "fspw_pct": {
         "value": 76.1,
@@ -1502,8 +1502,8 @@
         "ci_90_hi": 42.5
       },
       "sgw_pct": {
-        "value": 79.1,
-        "ci_90_lo": 51.6,
+        "value": 79.2,
+        "ci_90_lo": 51.7,
         "ci_90_hi": 88.2
       },
       "rgw_pct": {
@@ -1515,7 +1515,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7572,
+        "value": 0.7579,
         "max_bits": 1.585,
         "pct_of_max": 47.8
       },
@@ -1563,15 +1563,15 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 46.2,
+        "deuce_win_pct": 46.3,
         "ad_win_pct": 51.5,
-        "asymmetry": 5.3,
+        "asymmetry": 5.2,
         "stronger_side": "ad"
       },
       "momentum_profile": {
         "streak_initiation_rate": 4.03,
         "streak_survival_rate": 0.314,
-        "streak_recovery_rate": 0.392
+        "streak_recovery_rate": 0.391
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.27,
@@ -1600,11 +1600,11 @@
     },
     "elo_snapshot": {
       "name": "Pierre Hugues Herbert",
-      "n_overall": 29,
-      "n_surface": 29,
-      "R_overall": 1624.3,
-      "R_surface": 1624.3,
-      "R_adjusted": 1624.3
+      "n_overall": 30,
+      "n_surface": 30,
+      "R_overall": 1585.0,
+      "R_surface": 1585.0,
+      "R_adjusted": 1585.0
     }
   },
   "Rogerio Dutra Silva": {
@@ -1622,9 +1622,9 @@
         "match_id": "2017-wimbledon-1106",
         "round": "R128",
         "opponent": "Benoit Paire",
-        "opponent_elo": 1648.8,
+        "opponent_elo": 1645.7,
         "w_t": 1.0,
-        "w_q": 1.0771
+        "w_q": 1.0752
       }
     ],
     "tier1": {
@@ -1747,9 +1747,9 @@
       "name": "Rogerio Dutra Silva",
       "n_overall": 5,
       "n_surface": 5,
-      "R_overall": 1307.2,
-      "R_surface": 1307.2,
-      "R_adjusted": 1307.2
+      "R_overall": 1306.7,
+      "R_surface": 1306.7,
+      "R_adjusted": 1306.7
     }
   },
   "Benoit Paire": {
@@ -1767,33 +1767,33 @@
         "match_id": "2017-wimbledon-1106",
         "round": "R128",
         "opponent": "Rogerio Dutra Silva",
-        "opponent_elo": 1329.0,
+        "opponent_elo": 1328.9,
         "w_t": 1.0,
-        "w_q": 0.8681
+        "w_q": 0.8682
       },
       {
         "match_id": "2017-wimbledon-1203",
         "round": "R64",
         "opponent": "Pierre Hugues Herbert",
-        "opponent_elo": 1615.4,
+        "opponent_elo": 1612.7,
         "w_t": 0.9973,
-        "w_q": 1.0553
+        "w_q": 1.0536
       },
       {
         "match_id": "2017-wimbledon-1302",
         "round": "R32",
         "opponent": "Jerzy Janowicz",
-        "opponent_elo": 1719.5,
+        "opponent_elo": 1722.4,
         "w_t": 0.9945,
-        "w_q": 1.1232
+        "w_q": 1.1253
       },
       {
         "match_id": "2017-wimbledon-1401",
         "round": "R16",
         "opponent": "Andy Murray",
-        "opponent_elo": 2183.1,
+        "opponent_elo": 2184.1,
         "w_t": 0.9918,
-        "w_q": 1.4261
+        "w_q": 1.4269
       }
     ],
     "tier1": {
@@ -1831,9 +1831,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8502,
+        "value": 0.8509,
         "max_bits": 1.585,
-        "pct_of_max": 53.6
+        "pct_of_max": 53.7
       },
       "rally_win_curve": {
         "1_3": {
@@ -1841,7 +1841,7 @@
           "n": 165
         },
         "4_6": {
-          "win_pct": 47.5,
+          "win_pct": 47.6,
           "n": 27
         },
         "7_9": {
@@ -1894,7 +1894,7 @@
       "momentum_profile": {
         "streak_initiation_rate": 3.43,
         "streak_survival_rate": 0.453,
-        "streak_recovery_rate": 0.207
+        "streak_recovery_rate": 0.208
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.485,
@@ -1928,11 +1928,11 @@
     },
     "elo_snapshot": {
       "name": "Benoit Paire",
-      "n_overall": 50,
-      "n_surface": 50,
-      "R_overall": 1596.5,
-      "R_surface": 1596.5,
-      "R_adjusted": 1596.5
+      "n_overall": 52,
+      "n_surface": 52,
+      "R_overall": 1591.4,
+      "R_surface": 1591.4,
+      "R_adjusted": 1591.4
     }
   },
   "Denis Shapovalov": {
@@ -1950,9 +1950,9 @@
         "match_id": "2017-wimbledon-1107",
         "round": "R128",
         "opponent": "Jerzy Janowicz",
-        "opponent_elo": 1729.6,
+        "opponent_elo": 1733.3,
         "w_t": 1.0,
-        "w_q": 1.1299
+        "w_q": 1.1324
       }
     ],
     "tier1": {
@@ -2073,11 +2073,11 @@
     },
     "elo_snapshot": {
       "name": "Denis Shapovalov",
-      "n_overall": 36,
-      "n_surface": 36,
-      "R_overall": 1646.9,
-      "R_surface": 1646.9,
-      "R_adjusted": 1646.9
+      "n_overall": 41,
+      "n_surface": 41,
+      "R_overall": 1652.0,
+      "R_surface": 1652.0,
+      "R_adjusted": 1652.0
     }
   },
   "Jerzy Janowicz": {
@@ -2095,25 +2095,25 @@
         "match_id": "2017-wimbledon-1107",
         "round": "R128",
         "opponent": "Denis Shapovalov",
-        "opponent_elo": 1540.4,
+        "opponent_elo": 1540.1,
         "w_t": 1.0,
-        "w_q": 1.0063
+        "w_q": 1.0062
       },
       {
         "match_id": "2017-wimbledon-1204",
         "round": "R64",
         "opponent": "Lucas Pouille",
-        "opponent_elo": 1791.4,
+        "opponent_elo": 1795.2,
         "w_t": 0.9973,
-        "w_q": 1.1702
+        "w_q": 1.1729
       },
       {
         "match_id": "2017-wimbledon-1302",
         "round": "R32",
         "opponent": "Benoit Paire",
-        "opponent_elo": 1572.9,
+        "opponent_elo": 1568.7,
         "w_t": 0.9945,
-        "w_q": 1.0275
+        "w_q": 1.0249
       }
     ],
     "tier1": {
@@ -2207,13 +2207,13 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 50.5,
-        "ad_win_pct": 45.9,
-        "asymmetry": 4.6,
+        "ad_win_pct": 46.0,
+        "asymmetry": 4.5,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
         "streak_initiation_rate": 5.47,
-        "streak_survival_rate": 0.435,
+        "streak_survival_rate": 0.436,
         "streak_recovery_rate": 0.42
       },
       "bp_creation_profile": {
@@ -2250,9 +2250,9 @@
       "name": "Jerzy Janowicz",
       "n_overall": 26,
       "n_surface": 26,
-      "R_overall": 1686.9,
-      "R_surface": 1686.9,
-      "R_adjusted": 1686.9
+      "R_overall": 1689.9,
+      "R_surface": 1689.9,
+      "R_adjusted": 1689.9
     }
   },
   "Malek Jaziri": {
@@ -2270,9 +2270,9 @@
         "match_id": "2017-wimbledon-1108",
         "round": "R128",
         "opponent": "Lucas Pouille",
-        "opponent_elo": 1763.7,
+        "opponent_elo": 1767.8,
         "w_t": 1.0,
-        "w_q": 1.1521
+        "w_q": 1.1549
       }
     ],
     "tier1": {
@@ -2395,9 +2395,9 @@
       "name": "Malek Jaziri",
       "n_overall": 27,
       "n_surface": 27,
-      "R_overall": 1375.7,
-      "R_surface": 1375.7,
-      "R_adjusted": 1375.7
+      "R_overall": 1381.9,
+      "R_surface": 1381.9,
+      "R_adjusted": 1381.9
     }
   },
   "Lucas Pouille": {
@@ -2415,17 +2415,17 @@
         "match_id": "2017-wimbledon-1108",
         "round": "R128",
         "opponent": "Malek Jaziri",
-        "opponent_elo": 1435.4,
+        "opponent_elo": 1436.4,
         "w_t": 1.0,
-        "w_q": 0.9377
+        "w_q": 0.9384
       },
       {
         "match_id": "2017-wimbledon-1204",
         "round": "R64",
         "opponent": "Jerzy Janowicz",
-        "opponent_elo": 1719.5,
+        "opponent_elo": 1722.4,
         "w_t": 0.9973,
-        "w_q": 1.1232
+        "w_q": 1.1253
       }
     ],
     "tier1": {
@@ -2463,7 +2463,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8332,
+        "value": 0.8336,
         "max_bits": 1.585,
         "pct_of_max": 52.6
       },
@@ -2560,11 +2560,11 @@
     },
     "elo_snapshot": {
       "name": "Lucas Pouille",
-      "n_overall": 33,
-      "n_surface": 33,
-      "R_overall": 1671.2,
-      "R_surface": 1671.2,
-      "R_adjusted": 1671.2
+      "n_overall": 36,
+      "n_surface": 36,
+      "R_overall": 1691.7,
+      "R_surface": 1691.7,
+      "R_adjusted": 1691.7
     }
   },
   "Jo Wilfried Tsonga": {
@@ -2582,25 +2582,25 @@
         "match_id": "2017-wimbledon-1109",
         "round": "R128",
         "opponent": "Cameron Norrie",
-        "opponent_elo": 1475.3,
+        "opponent_elo": 1474.7,
         "w_t": 1.0,
-        "w_q": 0.9637
+        "w_q": 0.9635
       },
       {
         "match_id": "2017-wimbledon-1205",
         "round": "R64",
         "opponent": "Simone Bolelli",
-        "opponent_elo": 1651.7,
+        "opponent_elo": 1650.3,
         "w_t": 0.9973,
-        "w_q": 1.079
+        "w_q": 1.0782
       },
       {
         "match_id": "2017-wimbledon-1303",
         "round": "R32",
         "opponent": "Sam Querrey",
-        "opponent_elo": 1777.2,
+        "opponent_elo": 1775.6,
         "w_t": 0.9945,
-        "w_q": 1.161
+        "w_q": 1.1601
       }
     ],
     "tier1": {
@@ -2887,11 +2887,11 @@
     },
     "elo_snapshot": {
       "name": "Cameron Norrie",
-      "n_overall": 36,
-      "n_surface": 36,
-      "R_overall": 1746.0,
-      "R_surface": 1746.0,
-      "R_adjusted": 1746.0
+      "n_overall": 41,
+      "n_surface": 41,
+      "R_overall": 1706.6,
+      "R_surface": 1706.6,
+      "R_adjusted": 1706.6
     }
   },
   "Simone Bolelli": {
@@ -2909,9 +2909,9 @@
         "match_id": "2017-wimbledon-1110",
         "round": "R128",
         "opponent": "Yen Hsun Lu",
-        "opponent_elo": 1643.0,
+        "opponent_elo": 1643.5,
         "w_t": 1.0,
-        "w_q": 1.0733
+        "w_q": 1.0738
       },
       {
         "match_id": "2017-wimbledon-1205",
@@ -2949,7 +2949,7 @@
         "ci_90_hi": 82.4
       },
       "rgw_pct": {
-        "value": 19.3,
+        "value": 19.4,
         "ci_90_lo": 11.3,
         "ci_90_hi": 42.4
       }
@@ -2957,7 +2957,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7607,
+        "value": 0.7605,
         "max_bits": 1.585,
         "pct_of_max": 48.0
       },
@@ -3056,9 +3056,9 @@
       "name": "Simone Bolelli",
       "n_overall": 32,
       "n_surface": 32,
-      "R_overall": 1643.7,
-      "R_surface": 1643.7,
-      "R_adjusted": 1643.7
+      "R_overall": 1642.6,
+      "R_surface": 1642.6,
+      "R_adjusted": 1642.6
     }
   },
   "Yen Hsun Lu": {
@@ -3076,9 +3076,9 @@
         "match_id": "2017-wimbledon-1110",
         "round": "R128",
         "opponent": "Simone Bolelli",
-        "opponent_elo": 1662.4,
+        "opponent_elo": 1660.9,
         "w_t": 1.0,
-        "w_q": 1.0859
+        "w_q": 1.0851
       }
     ],
     "tier1": {
@@ -3201,9 +3201,9 @@
       "name": "Yen Hsun Lu",
       "n_overall": 66,
       "n_surface": 66,
-      "R_overall": 1569.8,
-      "R_surface": 1569.8,
-      "R_adjusted": 1569.8
+      "R_overall": 1570.0,
+      "R_surface": 1570.0,
+      "R_adjusted": 1570.0
     }
   },
   "Carlos Berlocq": {
@@ -3221,9 +3221,9 @@
         "match_id": "2017-wimbledon-1111",
         "round": "R128",
         "opponent": "Nikoloz Basilashvili",
-        "opponent_elo": 1531.2,
+        "opponent_elo": 1530.5,
         "w_t": 1.0,
-        "w_q": 1.0003
+        "w_q": 0.9999
       }
     ],
     "tier1": {
@@ -3346,9 +3346,9 @@
       "name": "Carlos Berlocq",
       "n_overall": 24,
       "n_surface": 24,
-      "R_overall": 1383.9,
-      "R_surface": 1383.9,
-      "R_adjusted": 1383.9
+      "R_overall": 1382.7,
+      "R_surface": 1382.7,
+      "R_adjusted": 1382.7
     }
   },
   "Nikoloz Basilashvili": {
@@ -3366,17 +3366,17 @@
         "match_id": "2017-wimbledon-1111",
         "round": "R128",
         "opponent": "Carlos Berlocq",
-        "opponent_elo": 1408.9,
+        "opponent_elo": 1407.6,
         "w_t": 1.0,
-        "w_q": 0.9203
+        "w_q": 0.9196
       },
       {
         "match_id": "2017-wimbledon-1206",
         "round": "R64",
         "opponent": "Sam Querrey",
-        "opponent_elo": 1777.2,
+        "opponent_elo": 1775.6,
         "w_t": 0.9973,
-        "w_q": 1.161
+        "w_q": 1.1601
       }
     ],
     "tier1": {
@@ -3513,9 +3513,9 @@
       "name": "Nikoloz Basilashvili",
       "n_overall": 33,
       "n_surface": 33,
-      "R_overall": 1635.1,
-      "R_surface": 1635.1,
-      "R_adjusted": 1635.1
+      "R_overall": 1640.4,
+      "R_surface": 1640.4,
+      "R_adjusted": 1640.4
     }
   },
   "Thomas Fabbiano": {
@@ -3533,9 +3533,9 @@
         "match_id": "2017-wimbledon-1112",
         "round": "R128",
         "opponent": "Sam Querrey",
-        "opponent_elo": 1804.4,
+        "opponent_elo": 1802.3,
         "w_t": 1.0,
-        "w_q": 1.1787
+        "w_q": 1.1775
       }
     ],
     "tier1": {
@@ -3658,9 +3658,9 @@
       "name": "Thomas Fabbiano",
       "n_overall": 14,
       "n_surface": 14,
-      "R_overall": 1666.1,
-      "R_surface": 1666.1,
-      "R_adjusted": 1666.1
+      "R_overall": 1670.3,
+      "R_surface": 1670.3,
+      "R_adjusted": 1670.3
     }
   },
   "Sam Querrey": {
@@ -3678,17 +3678,17 @@
         "match_id": "2017-wimbledon-1112",
         "round": "R128",
         "opponent": "Thomas Fabbiano",
-        "opponent_elo": 1517.7,
+        "opponent_elo": 1516.2,
         "w_t": 1.0,
-        "w_q": 0.9914
+        "w_q": 0.9906
       },
       {
         "match_id": "2017-wimbledon-1206",
         "round": "R64",
         "opponent": "Nikoloz Basilashvili",
-        "opponent_elo": 1525.1,
+        "opponent_elo": 1524.7,
         "w_t": 0.9973,
-        "w_q": 0.9963
+        "w_q": 0.9961
       },
       {
         "match_id": "2017-wimbledon-1303",
@@ -3702,25 +3702,25 @@
         "match_id": "2017-wimbledon-1402",
         "round": "R16",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1770.0,
+        "opponent_elo": 1778.4,
         "w_t": 0.9918,
-        "w_q": 1.1563
+        "w_q": 1.1619
       },
       {
         "match_id": "2017-wimbledon-1501",
         "round": "QF",
         "opponent": "Andy Murray",
-        "opponent_elo": 2183.1,
+        "opponent_elo": 2184.1,
         "w_t": 0.9891,
-        "w_q": 1.4261
+        "w_q": 1.4269
       },
       {
         "match_id": "2017-wimbledon-1601",
         "round": "SF",
         "opponent": "Marin Cilic",
-        "opponent_elo": 1896.9,
+        "opponent_elo": 1892.9,
         "w_t": 0.9864,
-        "w_q": 1.2391
+        "w_q": 1.2367
       }
     ],
     "tier1": {
@@ -3758,7 +3758,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.2779,
+        "value": 1.2782,
         "max_bits": 1.585,
         "pct_of_max": 80.6
       },
@@ -3802,13 +3802,13 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -3.7,
-        "bp_speed_kmh": 179.1,
+        "value": -3.6,
+        "bp_speed_kmh": 179.2,
         "overall_speed_kmh": 182.8,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.037,
+        "modifier_delta": -0.036,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
@@ -3819,7 +3819,7 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.52,
+        "streak_initiation_rate": 3.53,
         "streak_survival_rate": 0.561,
         "streak_recovery_rate": 0.527
       },
@@ -3832,12 +3832,12 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2061,
+        "value": -0.2059,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0202,
+            "delta_frac": -0.0197,
             "weight": 0.3,
-            "contribution": -0.0061
+            "contribution": -0.0059
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -3849,7 +3849,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.2061,
+        "modifier_delta": -0.2059,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -3857,9 +3857,9 @@
       "name": "Sam Querrey",
       "n_overall": 125,
       "n_surface": 125,
-      "R_overall": 1716.5,
-      "R_surface": 1716.5,
-      "R_adjusted": 1716.5
+      "R_overall": 1706.9,
+      "R_surface": 1706.9,
+      "R_adjusted": 1706.9
     }
   },
   "Fernando Verdasco": {
@@ -3877,9 +3877,9 @@
         "match_id": "2017-wimbledon-1113",
         "round": "R128",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1804.2,
+        "opponent_elo": 1810.8,
         "w_t": 1.0,
-        "w_q": 1.1786
+        "w_q": 1.183
       }
     ],
     "tier1": {
@@ -4016,9 +4016,9 @@
       "name": "Fernando Verdasco",
       "n_overall": 95,
       "n_surface": 95,
-      "R_overall": 1621.7,
-      "R_surface": 1621.7,
-      "R_adjusted": 1621.7
+      "R_overall": 1616.8,
+      "R_surface": 1616.8,
+      "R_adjusted": 1616.8
     }
   },
   "Kevin Anderson": {
@@ -4036,33 +4036,33 @@
         "match_id": "2017-wimbledon-1113",
         "round": "R128",
         "opponent": "Fernando Verdasco",
-        "opponent_elo": 1686.9,
+        "opponent_elo": 1679.6,
         "w_t": 1.0,
-        "w_q": 1.102
+        "w_q": 1.0974
       },
       {
         "match_id": "2017-wimbledon-1207",
         "round": "R64",
         "opponent": "Andreas Seppi",
-        "opponent_elo": 1744.1,
+        "opponent_elo": 1744.5,
         "w_t": 0.9973,
-        "w_q": 1.1393
+        "w_q": 1.1397
       },
       {
         "match_id": "2017-wimbledon-1304",
         "round": "R32",
         "opponent": "Ruben Bemelmans",
-        "opponent_elo": 1440.5,
+        "opponent_elo": 1440.0,
         "w_t": 0.9945,
-        "w_q": 0.941
+        "w_q": 0.9408
       },
       {
         "match_id": "2017-wimbledon-1402",
         "round": "R16",
         "opponent": "Sam Querrey",
-        "opponent_elo": 1777.2,
+        "opponent_elo": 1775.6,
         "w_t": 0.9918,
-        "w_q": 1.161
+        "w_q": 1.1601
       }
     ],
     "tier1": {
@@ -4092,7 +4092,7 @@
         "ci_90_hi": 95.6
       },
       "rgw_pct": {
-        "value": 13.8,
+        "value": 13.9,
         "ci_90_lo": 8.3,
         "ci_90_hi": 33.4
       }
@@ -4100,7 +4100,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.0842,
+        "value": 1.0836,
         "max_bits": 1.585,
         "pct_of_max": 68.4
       },
@@ -4111,7 +4111,7 @@
         },
         "4_6": {
           "win_pct": 53.6,
-          "n": 37
+          "n": 36
         },
         "7_9": {
           "win_pct": 44.7,
@@ -4199,9 +4199,9 @@
       "name": "Kevin Anderson",
       "n_overall": 76,
       "n_surface": 76,
-      "R_overall": 1844.0,
-      "R_surface": 1844.0,
-      "R_adjusted": 1844.0
+      "R_overall": 1841.0,
+      "R_surface": 1841.0,
+      "R_adjusted": 1841.0
     }
   },
   "Norbert Gombos": {
@@ -4219,9 +4219,9 @@
         "match_id": "2017-wimbledon-1114",
         "round": "R128",
         "opponent": "Andreas Seppi",
-        "opponent_elo": 1766.4,
+        "opponent_elo": 1761.4,
         "w_t": 1.0,
-        "w_q": 1.1539
+        "w_q": 1.1508
       }
     ],
     "tier1": {
@@ -4344,9 +4344,9 @@
       "name": "Norbert Gombos",
       "n_overall": 5,
       "n_surface": 5,
-      "R_overall": 1366.1,
-      "R_surface": 1366.1,
-      "R_adjusted": 1366.1
+      "R_overall": 1366.5,
+      "R_surface": 1366.5,
+      "R_adjusted": 1366.5
     }
   },
   "Andreas Seppi": {
@@ -4364,17 +4364,17 @@
         "match_id": "2017-wimbledon-1114",
         "round": "R128",
         "opponent": "Norbert Gombos",
-        "opponent_elo": 1478.8,
+        "opponent_elo": 1478.4,
         "w_t": 1.0,
-        "w_q": 0.966
+        "w_q": 0.9659
       },
       {
         "match_id": "2017-wimbledon-1207",
         "round": "R64",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1770.0,
+        "opponent_elo": 1778.4,
         "w_t": 0.9973,
-        "w_q": 1.1563
+        "w_q": 1.1619
       }
     ],
     "tier1": {
@@ -4394,9 +4394,9 @@
         "ci_90_hi": 69.6
       },
       "rpw_pct": {
-        "value": 29.9,
+        "value": 29.8,
         "ci_90_lo": 23.1,
-        "ci_90_hi": 38.9
+        "ci_90_hi": 38.8
       },
       "sgw_pct": {
         "value": 83.0,
@@ -4404,9 +4404,9 @@
         "ci_90_hi": 90.1
       },
       "rgw_pct": {
-        "value": 22.2,
-        "ci_90_lo": 13.1,
-        "ci_90_hi": 44.7
+        "value": 22.1,
+        "ci_90_lo": 13.0,
+        "ci_90_hi": 44.6
       }
     },
     "tier2": {
@@ -4464,12 +4464,12 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 6.37,
-        "streak_survival_rate": 0.428,
+        "streak_initiation_rate": 6.36,
+        "streak_survival_rate": 0.429,
         "streak_recovery_rate": 0.5
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.471,
+        "bp_per_return_game": 0.47,
         "bp_conversion": 0.412,
         "bp_created": 7.7,
         "bp_converted": 3.2
@@ -4497,9 +4497,9 @@
       "name": "Andreas Seppi",
       "n_overall": 112,
       "n_surface": 112,
-      "R_overall": 1628.0,
-      "R_surface": 1628.0,
-      "R_adjusted": 1628.0
+      "R_overall": 1626.9,
+      "R_surface": 1626.9,
+      "R_adjusted": 1626.9
     }
   },
   "Tommy Haas": {
@@ -4517,9 +4517,9 @@
         "match_id": "2017-wimbledon-1115",
         "round": "R128",
         "opponent": "Ruben Bemelmans",
-        "opponent_elo": 1541.2,
+        "opponent_elo": 1541.5,
         "w_t": 1.0,
-        "w_q": 1.0068
+        "w_q": 1.0071
       }
     ],
     "tier1": {
@@ -4642,9 +4642,9 @@
       "name": "Tommy Haas",
       "n_overall": 91,
       "n_surface": 91,
-      "R_overall": 1746.2,
-      "R_surface": 1746.2,
-      "R_adjusted": 1746.2
+      "R_overall": 1743.8,
+      "R_surface": 1743.8,
+      "R_adjusted": 1743.8
     }
   },
   "Ruben Bemelmans": {
@@ -4662,25 +4662,25 @@
         "match_id": "2017-wimbledon-1115",
         "round": "R128",
         "opponent": "Tommy Haas",
-        "opponent_elo": 1782.6,
+        "opponent_elo": 1780.1,
         "w_t": 1.0,
-        "w_q": 1.1645
+        "w_q": 1.163
       },
       {
         "match_id": "2017-wimbledon-1208",
         "round": "R64",
         "opponent": "Daniil Medvedev",
-        "opponent_elo": 1745.8,
+        "opponent_elo": 1748.7,
         "w_t": 0.9973,
-        "w_q": 1.1405
+        "w_q": 1.1425
       },
       {
         "match_id": "2017-wimbledon-1304",
         "round": "R32",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1770.0,
+        "opponent_elo": 1778.4,
         "w_t": 0.9945,
-        "w_q": 1.1563
+        "w_q": 1.1619
       }
     ],
     "tier1": {
@@ -4710,7 +4710,7 @@
         "ci_90_hi": 91.9
       },
       "rgw_pct": {
-        "value": 17.0,
+        "value": 16.9,
         "ci_90_lo": 10.1,
         "ci_90_hi": 37.6
       }
@@ -4718,13 +4718,13 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.4945,
+        "value": 0.496,
         "max_bits": 1.585,
-        "pct_of_max": 31.2
+        "pct_of_max": 31.3
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 51.1,
+          "win_pct": 51.0,
           "n": 222
         },
         "4_6": {
@@ -4773,18 +4773,18 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 49.8,
+        "deuce_win_pct": 49.7,
         "ad_win_pct": 52.2,
-        "asymmetry": 2.4,
+        "asymmetry": 2.5,
         "stronger_side": "ad"
       },
       "momentum_profile": {
         "streak_initiation_rate": 5.33,
-        "streak_survival_rate": 0.499,
+        "streak_survival_rate": 0.5,
         "streak_recovery_rate": 0.4
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.662,
+        "bp_per_return_game": 0.661,
         "bp_conversion": 0.256,
         "bp_created": 13.0,
         "bp_converted": 3.3
@@ -4817,9 +4817,9 @@
       "name": "Ruben Bemelmans",
       "n_overall": 20,
       "n_surface": 20,
-      "R_overall": 1507.8,
-      "R_surface": 1507.8,
-      "R_adjusted": 1507.8
+      "R_overall": 1509.4,
+      "R_surface": 1509.4,
+      "R_adjusted": 1509.4
     }
   },
   "Daniil Medvedev": {
@@ -4837,17 +4837,17 @@
         "match_id": "2017-wimbledon-1116",
         "round": "R128",
         "opponent": "Stan Wawrinka",
-        "opponent_elo": 1753.8,
+        "opponent_elo": 1751.1,
         "w_t": 1.0,
-        "w_q": 1.1457
+        "w_q": 1.1441
       },
       {
         "match_id": "2017-wimbledon-1208",
         "round": "R64",
         "opponent": "Ruben Bemelmans",
-        "opponent_elo": 1440.5,
+        "opponent_elo": 1440.0,
         "w_t": 0.9973,
-        "w_q": 0.941
+        "w_q": 0.9408
       }
     ],
     "tier1": {
@@ -4885,9 +4885,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8347,
+        "value": 0.8343,
         "max_bits": 1.585,
-        "pct_of_max": 52.7
+        "pct_of_max": 52.6
       },
       "rally_win_curve": {
         "1_3": {
@@ -4982,11 +4982,11 @@
     },
     "elo_snapshot": {
       "name": "Daniil Medvedev",
-      "n_overall": 60,
-      "n_surface": 60,
-      "R_overall": 1853.3,
-      "R_surface": 1853.3,
-      "R_adjusted": 1853.3
+      "n_overall": 68,
+      "n_surface": 68,
+      "R_overall": 1886.6,
+      "R_surface": 1886.6,
+      "R_adjusted": 1886.6
     }
   },
   "Stan Wawrinka": {
@@ -5004,9 +5004,9 @@
         "match_id": "2017-wimbledon-1116",
         "round": "R128",
         "opponent": "Daniil Medvedev",
-        "opponent_elo": 1822.2,
+        "opponent_elo": 1823.1,
         "w_t": 1.0,
-        "w_q": 1.1903
+        "w_q": 1.1911
       }
     ],
     "tier1": {
@@ -5141,11 +5141,11 @@
     },
     "elo_snapshot": {
       "name": "Stan Wawrinka",
-      "n_overall": 68,
-      "n_surface": 68,
-      "R_overall": 1646.3,
-      "R_surface": 1646.3,
-      "R_adjusted": 1646.3
+      "n_overall": 70,
+      "n_surface": 70,
+      "R_overall": 1633.2,
+      "R_surface": 1633.2,
+      "R_adjusted": 1633.2
     }
   },
   "Rafael Nadal": {
@@ -5153,7 +5153,7 @@
     "surface": "grass",
     "year": 2017,
     "n_matches": 4,
-    "n_points": 236,
+    "n_points": 235,
     "n_eff_matches": 4.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -5163,33 +5163,33 @@
         "match_id": "2017-wimbledon-1117",
         "round": "R128",
         "opponent": "John Millman",
-        "opponent_elo": 1626.7,
+        "opponent_elo": 1627.5,
         "w_t": 1.0,
-        "w_q": 1.0626
+        "w_q": 1.0633
       },
       {
         "match_id": "2017-wimbledon-1209",
         "round": "R64",
         "opponent": "Donald Young",
-        "opponent_elo": 1596.9,
+        "opponent_elo": 1617.0,
         "w_t": 0.9973,
-        "w_q": 1.0432
+        "w_q": 1.0564
       },
       {
         "match_id": "2017-wimbledon-1305",
         "round": "R32",
         "opponent": "Karen Khachanov",
-        "opponent_elo": 1650.7,
+        "opponent_elo": 1735.5,
         "w_t": 0.9945,
-        "w_q": 1.0783
+        "w_q": 1.1339
       },
       {
         "match_id": "2017-wimbledon-1403",
         "round": "R16",
         "opponent": "Gilles Muller",
-        "opponent_elo": 1837.5,
+        "opponent_elo": 1844.9,
         "w_t": 0.9918,
-        "w_q": 1.2003
+        "w_q": 1.2053
       }
     ],
     "tier1": {
@@ -5220,16 +5220,16 @@
       },
       "rgw_pct": {
         "value": 26.6,
-        "ci_90_lo": 16.2,
-        "ci_90_hi": 46.8
+        "ci_90_lo": 16.3,
+        "ci_90_hi": 46.9
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.5554,
+        "value": 1.5557,
         "max_bits": 1.585,
-        "pct_of_max": 98.1
+        "pct_of_max": 98.2
       },
       "rally_win_curve": {
         "1_3": {
@@ -5241,11 +5241,11 @@
           "n": 54
         },
         "7_9": {
-          "win_pct": 58.5,
+          "win_pct": 58.4,
           "n": 24
         },
         "10+": {
-          "win_pct": 62.5,
+          "win_pct": 62.7,
           "n": 11
         }
       },
@@ -5288,13 +5288,13 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 4.64,
+        "streak_initiation_rate": 4.63,
         "streak_survival_rate": 0.524,
-        "streak_recovery_rate": 0.395
+        "streak_recovery_rate": 0.392
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.688,
-        "bp_conversion": 0.349,
+        "bp_per_return_game": 0.69,
+        "bp_conversion": 0.348,
         "bp_created": 13.4,
         "bp_converted": 4.7
       },
@@ -5326,9 +5326,9 @@
       "name": "Rafael Nadal",
       "n_overall": 97,
       "n_surface": 97,
-      "R_overall": 1969.1,
-      "R_surface": 1969.1,
-      "R_adjusted": 1969.1
+      "R_overall": 1965.8,
+      "R_surface": 1965.8,
+      "R_adjusted": 1965.8
     }
   },
   "John Millman": {
@@ -5346,9 +5346,9 @@
         "match_id": "2017-wimbledon-1117",
         "round": "R128",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1902.7,
+        "opponent_elo": 1900.6,
         "w_t": 1.0,
-        "w_q": 1.2429
+        "w_q": 1.2417
       }
     ],
     "tier1": {
@@ -5485,9 +5485,9 @@
       "name": "John Millman",
       "n_overall": 31,
       "n_surface": 31,
-      "R_overall": 1551.5,
-      "R_surface": 1551.5,
-      "R_adjusted": 1551.5
+      "R_overall": 1543.3,
+      "R_surface": 1543.3,
+      "R_adjusted": 1543.3
     }
   },
   "Donald Young": {
@@ -5505,17 +5505,17 @@
         "match_id": "2017-wimbledon-1118",
         "round": "R128",
         "opponent": "Denis Istomin",
-        "opponent_elo": 1625.7,
+        "opponent_elo": 1622.7,
         "w_t": 1.0,
-        "w_q": 1.062
+        "w_q": 1.0601
       },
       {
         "match_id": "2017-wimbledon-1209",
         "round": "R64",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1908.0,
+        "opponent_elo": 1905.6,
         "w_t": 0.9973,
-        "w_q": 1.2464
+        "w_q": 1.245
       }
     ],
     "tier1": {
@@ -5525,7 +5525,7 @@
         "ci_90_hi": 71.1
       },
       "fspw_pct": {
-        "value": 73.0,
+        "value": 72.9,
         "ci_90_lo": 62.7,
         "ci_90_hi": 80.0
       },
@@ -5553,7 +5553,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7699,
+        "value": 0.7701,
         "max_bits": 1.585,
         "pct_of_max": 48.6
       },
@@ -5652,9 +5652,9 @@
       "name": "Donald Young",
       "n_overall": 39,
       "n_surface": 39,
-      "R_overall": 1594.7,
-      "R_surface": 1594.7,
-      "R_adjusted": 1594.7
+      "R_overall": 1594.3,
+      "R_surface": 1594.3,
+      "R_adjusted": 1594.3
     }
   },
   "Denis Istomin": {
@@ -5672,7 +5672,7 @@
         "match_id": "2017-wimbledon-1118",
         "round": "R128",
         "opponent": "Donald Young",
-        "opponent_elo": 1643.7,
+        "opponent_elo": 1643.6,
         "w_t": 1.0,
         "w_q": 1.0738
       }
@@ -5797,9 +5797,9 @@
       "name": "Denis Istomin",
       "n_overall": 76,
       "n_surface": 76,
-      "R_overall": 1607.5,
-      "R_surface": 1607.5,
-      "R_adjusted": 1607.5
+      "R_overall": 1603.1,
+      "R_surface": 1603.1,
+      "R_adjusted": 1603.1
     }
   },
   "Thiago Monteiro": {
@@ -5807,7 +5807,7 @@
     "surface": "grass",
     "year": 2017,
     "n_matches": 2,
-    "n_points": 298,
+    "n_points": 299,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -5819,26 +5819,26 @@
         "opponent": "Andrew Whittington",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2017-wimbledon-1210",
         "round": "R64",
         "opponent": "Karen Khachanov",
-        "opponent_elo": 1650.7,
+        "opponent_elo": 1735.5,
         "w_t": 0.9973,
-        "w_q": 1.0783
+        "w_q": 1.1339
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 62.6,
-        "ci_90_lo": 55.7,
-        "ci_90_hi": 68.6
+        "value": 62.5,
+        "ci_90_lo": 55.6,
+        "ci_90_hi": 68.5
       },
       "fspw_pct": {
         "value": 78.4,
-        "ci_90_lo": 70.0,
+        "ci_90_lo": 69.9,
         "ci_90_hi": 83.9
       },
       "sspw_pct": {
@@ -5852,8 +5852,8 @@
         "ci_90_hi": 38.2
       },
       "sgw_pct": {
-        "value": 86.5,
-        "ci_90_lo": 67.4,
+        "value": 86.4,
+        "ci_90_lo": 67.3,
         "ci_90_hi": 91.8
       },
       "rgw_pct": {
@@ -5870,7 +5870,7 @@
       "rally_win_curve": {
         "1_3": {
           "win_pct": 48.9,
-          "n": 289
+          "n": 290
         },
         "4_6": {
           "win_pct": null,
@@ -5887,23 +5887,23 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": -2.0,
-        "high_lev_win_pct": 47.6,
+        "value": -2.1,
+        "high_lev_win_pct": 47.5,
         "baseline_win_pct": 49.6,
         "n_eff": 55,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": -0.02
+        "modifier_delta": -0.021
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 5.3,
-        "bp_df_rate": 7.0,
-        "baseline_df_rate": 1.7,
+        "value": 5.4,
+        "bp_df_rate": 7.2,
+        "baseline_df_rate": 1.8,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.053
+        "modifier_delta": 0.054
       },
       "serve_speed_courage": {
         "available": false,
@@ -5912,47 +5912,47 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 49.7,
-        "ad_win_pct": 49.2,
-        "asymmetry": 0.5,
+        "ad_win_pct": 49.1,
+        "asymmetry": 0.6,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
         "streak_initiation_rate": 8.5,
-        "streak_survival_rate": 0.468,
-        "streak_recovery_rate": 0.514
+        "streak_survival_rate": 0.466,
+        "streak_recovery_rate": 0.521
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.583,
-        "bp_conversion": 0.184,
-        "bp_created": 13.7,
+        "bp_per_return_game": 0.587,
+        "bp_conversion": 0.183,
+        "bp_created": 13.8,
         "bp_converted": 2.5
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.6235,
+        "value": 0.6,
         "components": {
           "df_rate_delta": {
-            "delta_frac": 3.1176,
+            "delta_frac": 3.0,
             "weight": 0.2,
-            "contribution": 0.6235
+            "contribution": 0.6
           }
         },
         "components_used": 1,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.6235,
+        "modifier_delta": 0.6,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
     "elo_snapshot": {
       "name": "Thiago Monteiro",
-      "n_overall": 8,
-      "n_surface": 8,
-      "R_overall": 1452.4,
-      "R_surface": 1452.4,
-      "R_adjusted": 1452.4
+      "n_overall": 9,
+      "n_surface": 9,
+      "R_overall": 1403.3,
+      "R_surface": 1403.3,
+      "R_adjusted": 1403.3
     }
   },
   "Andrew Whittington": {
@@ -5972,7 +5972,7 @@
         "opponent": "Thiago Monteiro",
         "opponent_elo": 1565.7,
         "w_t": 1.0,
-        "w_q": 1.0228
+        "w_q": 1.0229
       }
     ],
     "tier1": {
@@ -6115,9 +6115,9 @@
         "match_id": "2017-wimbledon-1120",
         "round": "R128",
         "opponent": "Karen Khachanov",
-        "opponent_elo": 1776.0,
+        "opponent_elo": 1775.4,
         "w_t": 1.0,
-        "w_q": 1.1601
+        "w_q": 1.1599
       }
     ],
     "tier1": {
@@ -6240,9 +6240,9 @@
       "name": "Andrey Kuznetsov",
       "n_overall": 20,
       "n_surface": 20,
-      "R_overall": 1516.8,
-      "R_surface": 1516.8,
-      "R_adjusted": 1516.8
+      "R_overall": 1517.1,
+      "R_surface": 1517.1,
+      "R_adjusted": 1517.1
     }
   },
   "Karen Khachanov": {
@@ -6260,9 +6260,9 @@
         "match_id": "2017-wimbledon-1120",
         "round": "R128",
         "opponent": "Andrey Kuznetsov",
-        "opponent_elo": 1534.3,
+        "opponent_elo": 1534.8,
         "w_t": 1.0,
-        "w_q": 1.0023
+        "w_q": 1.0027
       },
       {
         "match_id": "2017-wimbledon-1210",
@@ -6276,9 +6276,9 @@
         "match_id": "2017-wimbledon-1305",
         "round": "R32",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1908.0,
+        "opponent_elo": 1905.6,
         "w_t": 0.9945,
-        "w_q": 1.2464
+        "w_q": 1.245
       }
     ],
     "tier1": {
@@ -6316,7 +6316,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.6052,
+        "value": 0.6047,
         "max_bits": 1.585,
         "pct_of_max": 38.2
       },
@@ -6413,11 +6413,11 @@
     },
     "elo_snapshot": {
       "name": "Karen Khachanov",
-      "n_overall": 35,
-      "n_surface": 35,
-      "R_overall": 1778.6,
-      "R_surface": 1778.6,
-      "R_adjusted": 1778.6
+      "n_overall": 39,
+      "n_surface": 39,
+      "R_overall": 1689.9,
+      "R_surface": 1689.9,
+      "R_adjusted": 1689.9
     }
   },
   "Ivo Karlovic": {
@@ -6435,9 +6435,9 @@
         "match_id": "2017-wimbledon-1121",
         "round": "R128",
         "opponent": "Aljaz Bedene",
-        "opponent_elo": 1684.0,
+        "opponent_elo": 1683.7,
         "w_t": 1.0,
-        "w_q": 1.1001
+        "w_q": 1.1
       }
     ],
     "tier1": {
@@ -6574,9 +6574,9 @@
       "name": "Ivo Karlovic",
       "n_overall": 118,
       "n_surface": 118,
-      "R_overall": 1640.7,
-      "R_surface": 1640.7,
-      "R_adjusted": 1640.7
+      "R_overall": 1641.4,
+      "R_surface": 1641.4,
+      "R_adjusted": 1641.4
     }
   },
   "Aljaz Bedene": {
@@ -6594,25 +6594,25 @@
         "match_id": "2017-wimbledon-1121",
         "round": "R128",
         "opponent": "Ivo Karlovic",
-        "opponent_elo": 1799.2,
+        "opponent_elo": 1797.5,
         "w_t": 1.0,
-        "w_q": 1.1753
+        "w_q": 1.1744
       },
       {
         "match_id": "2017-wimbledon-1211",
         "round": "R64",
         "opponent": "Damir Dzumhur",
-        "opponent_elo": 1585.8,
+        "opponent_elo": 1585.2,
         "w_t": 0.9973,
-        "w_q": 1.0359
+        "w_q": 1.0357
       },
       {
         "match_id": "2017-wimbledon-1306",
         "round": "R32",
         "opponent": "Gilles Muller",
-        "opponent_elo": 1837.5,
+        "opponent_elo": 1844.9,
         "w_t": 0.9945,
-        "w_q": 1.2003
+        "w_q": 1.2053
       }
     ],
     "tier1": {
@@ -6627,7 +6627,7 @@
         "ci_90_hi": 84.3
       },
       "sspw_pct": {
-        "value": 58.9,
+        "value": 58.8,
         "ci_90_lo": 47.2,
         "ci_90_hi": 68.9
       },
@@ -6677,9 +6677,9 @@
         "value": 3.0,
         "high_lev_win_pct": 53.8,
         "baseline_win_pct": 50.8,
-        "n_eff": 29,
-        "confidence": "UNRELIABLE",
-        "verdict": "UNRELIABLE",
+        "n_eff": 30,
+        "confidence": "LOW",
+        "verdict": "PASS",
         "modifier_delta": 0.03
       },
       "df_pressure_delta": {
@@ -6711,8 +6711,8 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 6.19,
-        "streak_survival_rate": 0.469,
+        "streak_initiation_rate": 6.18,
+        "streak_survival_rate": 0.468,
         "streak_recovery_rate": 0.62
       },
       "bp_creation_profile": {
@@ -6739,8 +6739,8 @@
         },
         "components_used": 2,
         "components_total": 5,
-        "confidence": "UNRELIABLE",
-        "verdict": "UNRELIABLE",
+        "confidence": "LOW",
+        "verdict": "MARGINAL",
         "modifier_delta": -0.2027,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
@@ -6749,9 +6749,9 @@
       "name": "Aljaz Bedene",
       "n_overall": 35,
       "n_surface": 35,
-      "R_overall": 1493.8,
-      "R_surface": 1493.8,
-      "R_adjusted": 1493.8
+      "R_overall": 1492.5,
+      "R_surface": 1492.5,
+      "R_adjusted": 1492.5
     }
   },
   "Damir Dzumhur": {
@@ -6759,7 +6759,7 @@
     "surface": "grass",
     "year": 2017,
     "n_matches": 2,
-    "n_points": 163,
+    "n_points": 164,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -6771,27 +6771,27 @@
         "opponent": "Renzo Olivo",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2017-wimbledon-1211",
         "round": "R64",
         "opponent": "Aljaz Bedene",
-        "opponent_elo": 1575.2,
+        "opponent_elo": 1625.1,
         "w_t": 0.9973,
-        "w_q": 1.029
+        "w_q": 1.0617
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 66.5,
-        "ci_90_lo": 57.1,
+        "value": 66.6,
+        "ci_90_lo": 57.2,
         "ci_90_hi": 74.0
       },
       "fspw_pct": {
-        "value": 63.4,
-        "ci_90_lo": 51.8,
-        "ci_90_hi": 72.6
+        "value": 63.2,
+        "ci_90_lo": 51.7,
+        "ci_90_hi": 72.5
       },
       "sspw_pct": {
         "value": 63.1,
@@ -6799,31 +6799,31 @@
         "ci_90_hi": 75.8
       },
       "rpw_pct": {
-        "value": 46.0,
-        "ci_90_lo": 37.5,
-        "ci_90_hi": 55.0
+        "value": 45.8,
+        "ci_90_lo": 37.3,
+        "ci_90_hi": 54.8
       },
       "sgw_pct": {
-        "value": 71.1,
-        "ci_90_lo": 47.6,
-        "ci_90_hi": 83.2
+        "value": 70.9,
+        "ci_90_lo": 47.5,
+        "ci_90_hi": 83.0
       },
       "rgw_pct": {
-        "value": 44.2,
-        "ci_90_lo": 27.2,
-        "ci_90_hi": 64.3
+        "value": 43.8,
+        "ci_90_lo": 26.9,
+        "ci_90_hi": 63.9
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.6812,
+        "value": 0.6916,
         "max_bits": 1.585,
-        "pct_of_max": 43.0
+        "pct_of_max": 43.6
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 53.8,
+          "win_pct": 53.6,
           "n": 115
         },
         "4_6": {
@@ -6841,23 +6841,23 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 4.0,
-        "high_lev_win_pct": 57.0,
-        "baseline_win_pct": 53.0,
+        "value": 3.9,
+        "high_lev_win_pct": 56.8,
+        "baseline_win_pct": 52.9,
         "n_eff": 21,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.04
+        "modifier_delta": 0.039
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 2.2,
-        "bp_df_rate": 7.2,
-        "baseline_df_rate": 5.0,
+        "value": 2.4,
+        "bp_df_rate": 7.3,
+        "baseline_df_rate": 4.9,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.022
+        "modifier_delta": 0.024
       },
       "serve_speed_courage": {
         "available": true,
@@ -6872,26 +6872,26 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 50.7,
-        "ad_win_pct": 55.0,
+        "deuce_win_pct": 50.5,
+        "ad_win_pct": 54.8,
         "asymmetry": 4.3,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.52,
+        "streak_initiation_rate": 5.54,
         "streak_survival_rate": 0.408,
-        "streak_recovery_rate": 0.506
+        "streak_recovery_rate": 0.509
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.719,
-        "bp_conversion": 0.614,
+        "bp_per_return_game": 0.716,
+        "bp_conversion": 0.611,
         "bp_created": 10.5,
         "bp_converted": 6.4
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0993,
+        "value": 0.1093,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0377,
@@ -6899,16 +6899,16 @@
             "contribution": 0.0113
           },
           "df_rate_delta": {
-            "delta_frac": 0.44,
+            "delta_frac": 0.4898,
             "weight": 0.2,
-            "contribution": 0.088
+            "contribution": 0.098
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.0993,
+        "modifier_delta": 0.1093,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -6916,9 +6916,9 @@
       "name": "Damir Dzumhur",
       "n_overall": 18,
       "n_surface": 18,
-      "R_overall": 1619.7,
-      "R_surface": 1619.7,
-      "R_adjusted": 1619.7
+      "R_overall": 1632.0,
+      "R_surface": 1632.0,
+      "R_adjusted": 1632.0
     }
   },
   "Renzo Olivo": {
@@ -6936,9 +6936,9 @@
         "match_id": "2017-wimbledon-1122",
         "round": "R128",
         "opponent": "Damir Dzumhur",
-        "opponent_elo": 1579.5,
+        "opponent_elo": 1578.9,
         "w_t": 1.0,
-        "w_q": 1.0318
+        "w_q": 1.0316
       }
     ],
     "tier1": {
@@ -7061,9 +7061,9 @@
       "name": "Renzo Olivo",
       "n_overall": 1,
       "n_surface": 1,
-      "R_overall": 1440.9,
-      "R_surface": 1440.9,
-      "R_adjusted": 1440.9
+      "R_overall": 1440.7,
+      "R_surface": 1440.7,
+      "R_adjusted": 1440.7
     }
   },
   "Lukas Rosol": {
@@ -7083,22 +7083,22 @@
         "opponent": "Henri Laaksonen",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2017-wimbledon-1212",
         "round": "R64",
         "opponent": "Gilles Muller",
-        "opponent_elo": 1837.5,
+        "opponent_elo": 1844.9,
         "w_t": 0.9973,
-        "w_q": 1.2003
+        "w_q": 1.2053
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 62.4,
         "ci_90_lo": 55.7,
-        "ci_90_hi": 68.2
+        "ci_90_hi": 68.3
       },
       "fspw_pct": {
         "value": 78.5,
@@ -7122,16 +7122,16 @@
       },
       "rgw_pct": {
         "value": 13.0,
-        "ci_90_lo": 8.0,
+        "ci_90_lo": 7.9,
         "ci_90_hi": 30.2
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7872,
+        "value": 0.7886,
         "max_bits": 1.585,
-        "pct_of_max": 49.7
+        "pct_of_max": 49.8
       },
       "rally_win_curve": {
         "1_3": {
@@ -7153,13 +7153,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": -4.2,
-        "high_lev_win_pct": 45.7,
+        "value": -4.3,
+        "high_lev_win_pct": 45.6,
         "baseline_win_pct": 49.9,
         "n_eff": 35,
         "confidence": "LOW",
         "verdict": "MARGINAL",
-        "modifier_delta": -0.042
+        "modifier_delta": -0.043
       },
       "df_pressure_delta": {
         "available": true,
@@ -7196,9 +7196,9 @@
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.372,
-        "bp_conversion": 0.249,
-        "bp_created": 9.8,
-        "bp_converted": 2.5
+        "bp_conversion": 0.248,
+        "bp_created": 9.9,
+        "bp_converted": 2.4
       },
       "rluep": null,
       "spci": {
@@ -7228,9 +7228,9 @@
       "name": "Lukas Rosol",
       "n_overall": 21,
       "n_surface": 21,
-      "R_overall": 1460.9,
-      "R_surface": 1460.9,
-      "R_adjusted": 1460.9
+      "R_overall": 1461.8,
+      "R_surface": 1461.8,
+      "R_adjusted": 1461.8
     }
   },
   "Henri Laaksonen": {
@@ -7248,9 +7248,9 @@
         "match_id": "2017-wimbledon-1123",
         "round": "R128",
         "opponent": "Lukas Rosol",
-        "opponent_elo": 1488.4,
+        "opponent_elo": 1488.5,
         "w_t": 1.0,
-        "w_q": 0.9723
+        "w_q": 0.9725
       }
     ],
     "tier1": {
@@ -7373,9 +7373,9 @@
       "name": "Henri Laaksonen",
       "n_overall": 2,
       "n_surface": 2,
-      "R_overall": 1389.3,
-      "R_surface": 1389.3,
-      "R_adjusted": 1389.3
+      "R_overall": 1390.2,
+      "R_surface": 1390.2,
+      "R_adjusted": 1390.2
     }
   },
   "Marton Fucsovics": {
@@ -7393,9 +7393,9 @@
         "match_id": "2017-wimbledon-1124",
         "round": "R128",
         "opponent": "Gilles Muller",
-        "opponent_elo": 1907.0,
+        "opponent_elo": 1872.0,
         "w_t": 1.0,
-        "w_q": 1.2458
+        "w_q": 1.223
       }
     ],
     "tier1": {
@@ -7530,11 +7530,11 @@
     },
     "elo_snapshot": {
       "name": "Marton Fucsovics",
-      "n_overall": 33,
-      "n_surface": 33,
-      "R_overall": 1729.0,
-      "R_surface": 1729.0,
-      "R_adjusted": 1729.0
+      "n_overall": 34,
+      "n_surface": 34,
+      "R_overall": 1712.3,
+      "R_surface": 1712.3,
+      "R_adjusted": 1712.3
     }
   },
   "Gilles Muller": {
@@ -7552,7 +7552,7 @@
         "match_id": "2017-wimbledon-1124",
         "round": "R128",
         "opponent": "Marton Fucsovics",
-        "opponent_elo": 1375.6,
+        "opponent_elo": 1375.4,
         "w_t": 1.0,
         "w_q": 0.8986
       },
@@ -7560,38 +7560,38 @@
         "match_id": "2017-wimbledon-1212",
         "round": "R64",
         "opponent": "Lukas Rosol",
-        "opponent_elo": 1461.3,
+        "opponent_elo": 1461.5,
         "w_t": 0.9973,
-        "w_q": 0.9546
+        "w_q": 0.9548
       },
       {
         "match_id": "2017-wimbledon-1306",
         "round": "R32",
         "opponent": "Aljaz Bedene",
-        "opponent_elo": 1575.2,
+        "opponent_elo": 1625.1,
         "w_t": 0.9945,
-        "w_q": 1.029
+        "w_q": 1.0617
       },
       {
         "match_id": "2017-wimbledon-1403",
         "round": "R16",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1908.0,
+        "opponent_elo": 1905.6,
         "w_t": 0.9918,
-        "w_q": 1.2464
+        "w_q": 1.245
       },
       {
         "match_id": "2017-wimbledon-1502",
         "round": "QF",
         "opponent": "Marin Cilic",
-        "opponent_elo": 1896.9,
+        "opponent_elo": 1892.9,
         "w_t": 0.9891,
-        "w_q": 1.2391
+        "w_q": 1.2367
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 63.7,
+        "value": 63.6,
         "ci_90_lo": 56.8,
         "ci_90_hi": 69.6
       },
@@ -7603,12 +7603,12 @@
       "sspw_pct": {
         "value": 58.5,
         "ci_90_lo": 46.3,
-        "ci_90_hi": 69.0
+        "ci_90_hi": 69.1
       },
       "rpw_pct": {
-        "value": 32.0,
-        "ci_90_lo": 26.4,
-        "ci_90_hi": 38.8
+        "value": 32.1,
+        "ci_90_lo": 26.5,
+        "ci_90_hi": 38.9
       },
       "sgw_pct": {
         "value": 91.3,
@@ -7617,14 +7617,14 @@
       },
       "rgw_pct": {
         "value": 15.6,
-        "ci_90_lo": 9.5,
-        "ci_90_hi": 33.3
+        "ci_90_lo": 9.6,
+        "ci_90_hi": 33.4
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.4833,
+        "value": 1.4834,
         "max_bits": 1.585,
         "pct_of_max": 93.6
       },
@@ -7638,33 +7638,33 @@
           "n": 52
         },
         "7_9": {
-          "win_pct": 45.3,
+          "win_pct": 45.4,
           "n": 18
         },
         "10+": {
-          "win_pct": 52.0,
+          "win_pct": 51.9,
           "n": 7
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 8.2,
+        "value": 8.1,
         "high_lev_win_pct": 59.2,
-        "baseline_win_pct": 51.0,
+        "baseline_win_pct": 51.1,
         "n_eff": 36,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.082
+        "modifier_delta": 0.081
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -1.1,
-        "bp_df_rate": 3.9,
+        "value": -1.0,
+        "bp_df_rate": 4.0,
         "baseline_df_rate": 5.0,
         "n_eff": 9,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.011
+        "modifier_delta": -0.01
       },
       "serve_speed_courage": {
         "available": true,
@@ -7679,18 +7679,18 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 49.3,
+        "deuce_win_pct": 49.4,
         "ad_win_pct": 52.6,
-        "asymmetry": 3.3,
+        "asymmetry": 3.2,
         "stronger_side": "ad"
       },
       "momentum_profile": {
         "streak_initiation_rate": 3.94,
-        "streak_survival_rate": 0.429,
+        "streak_survival_rate": 0.428,
         "streak_recovery_rate": 0.467
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.357,
+        "bp_per_return_game": 0.359,
         "bp_conversion": 0.39,
         "bp_created": 9.1,
         "bp_converted": 3.5
@@ -7698,7 +7698,7 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.0359,
+        "value": -0.0319,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0271,
@@ -7706,16 +7706,16 @@
             "contribution": 0.0081
           },
           "df_rate_delta": {
-            "delta_frac": -0.22,
+            "delta_frac": -0.2,
             "weight": 0.2,
-            "contribution": -0.044
+            "contribution": -0.04
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": -0.0359,
+        "modifier_delta": -0.0319,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -7723,9 +7723,9 @@
       "name": "Gilles Muller",
       "n_overall": 81,
       "n_surface": 81,
-      "R_overall": 1765.2,
-      "R_surface": 1765.2,
-      "R_adjusted": 1765.2
+      "R_overall": 1768.8,
+      "R_surface": 1768.8,
+      "R_adjusted": 1768.8
     }
   },
   "Kei Nishikori": {
@@ -7733,7 +7733,7 @@
     "surface": "grass",
     "year": 2017,
     "n_matches": 3,
-    "n_points": 235,
+    "n_points": 236,
     "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -7745,23 +7745,23 @@
         "opponent": "Marco Cecchinato",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2017-wimbledon-1213",
         "round": "R64",
         "opponent": "Sergiy Stakhovsky",
-        "opponent_elo": 1596.9,
+        "opponent_elo": 1599.0,
         "w_t": 0.9973,
-        "w_q": 1.0431
+        "w_q": 1.0447
       },
       {
         "match_id": "2017-wimbledon-1307",
         "round": "R32",
         "opponent": "Roberto Bautista Agut",
-        "opponent_elo": 1739.6,
+        "opponent_elo": 1756.1,
         "w_t": 0.9945,
-        "w_q": 1.1364
+        "w_q": 1.1473
       }
     ],
     "tier1": {
@@ -7773,27 +7773,27 @@
       "fspw_pct": {
         "value": 73.9,
         "ci_90_lo": 64.1,
-        "ci_90_hi": 80.6
+        "ci_90_hi": 80.5
       },
       "sspw_pct": {
         "value": 64.2,
-        "ci_90_lo": 50.3,
+        "ci_90_lo": 50.2,
         "ci_90_hi": 74.7
       },
       "rpw_pct": {
         "value": 39.3,
-        "ci_90_lo": 32.5,
+        "ci_90_lo": 32.4,
         "ci_90_hi": 47.0
       },
       "sgw_pct": {
         "value": 90.1,
-        "ci_90_lo": 68.0,
+        "ci_90_lo": 67.9,
         "ci_90_hi": 93.8
       },
       "rgw_pct": {
-        "value": 26.8,
-        "ci_90_lo": 16.2,
-        "ci_90_hi": 47.7
+        "value": 26.7,
+        "ci_90_lo": 16.1,
+        "ci_90_hi": 47.6
       }
     },
     "tier2": {
@@ -7813,23 +7813,23 @@
           "n": 58
         },
         "7_9": {
-          "win_pct": 57.4,
+          "win_pct": 57.5,
           "n": 23
         },
         "10+": {
-          "win_pct": 55.2,
+          "win_pct": 55.1,
           "n": 12
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 2.4,
-        "high_lev_win_pct": 55.6,
+        "value": 2.3,
+        "high_lev_win_pct": 55.5,
         "baseline_win_pct": 53.2,
-        "n_eff": 40,
+        "n_eff": 41,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.024
+        "modifier_delta": 0.023
       },
       "df_pressure_delta": {
         "available": true,
@@ -7861,12 +7861,12 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 5.47,
-        "streak_survival_rate": 0.321,
+        "streak_survival_rate": 0.32,
         "streak_recovery_rate": 0.468
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.533,
-        "bp_conversion": 0.468,
+        "bp_conversion": 0.467,
         "bp_created": 9.7,
         "bp_converted": 4.5
       },
@@ -7896,11 +7896,11 @@
     },
     "elo_snapshot": {
       "name": "Kei Nishikori",
-      "n_overall": 70,
-      "n_surface": 70,
-      "R_overall": 1778.1,
-      "R_surface": 1778.1,
-      "R_adjusted": 1778.1
+      "n_overall": 71,
+      "n_surface": 71,
+      "R_overall": 1740.6,
+      "R_surface": 1740.6,
+      "R_adjusted": 1740.6
     }
   },
   "Marco Cecchinato": {
@@ -7918,9 +7918,9 @@
         "match_id": "2017-wimbledon-1125",
         "round": "R128",
         "opponent": "Kei Nishikori",
-        "opponent_elo": 1770.4,
+        "opponent_elo": 1729.9,
         "w_t": 1.0,
-        "w_q": 1.1565
+        "w_q": 1.1302
       }
     ],
     "tier1": {
@@ -8057,9 +8057,9 @@
       "name": "Marco Cecchinato",
       "n_overall": 11,
       "n_surface": 11,
-      "R_overall": 1321.2,
-      "R_surface": 1321.2,
-      "R_adjusted": 1321.2
+      "R_overall": 1330.2,
+      "R_surface": 1330.2,
+      "R_adjusted": 1330.2
     }
   },
   "Julien Benneteau": {
@@ -8077,9 +8077,9 @@
         "match_id": "2017-wimbledon-1126",
         "round": "R128",
         "opponent": "Sergiy Stakhovsky",
-        "opponent_elo": 1617.6,
+        "opponent_elo": 1619.8,
         "w_t": 1.0,
-        "w_q": 1.0567
+        "w_q": 1.0582
       }
     ],
     "tier1": {
@@ -8202,9 +8202,9 @@
       "name": "Julien Benneteau",
       "n_overall": 76,
       "n_surface": 76,
-      "R_overall": 1621.3,
-      "R_surface": 1621.3,
-      "R_adjusted": 1621.3
+      "R_overall": 1624.4,
+      "R_surface": 1624.4,
+      "R_adjusted": 1624.4
     }
   },
   "Sergiy Stakhovsky": {
@@ -8222,17 +8222,17 @@
         "match_id": "2017-wimbledon-1126",
         "round": "R128",
         "opponent": "Julien Benneteau",
-        "opponent_elo": 1636.7,
+        "opponent_elo": 1641.0,
         "w_t": 1.0,
-        "w_q": 1.0692
+        "w_q": 1.0721
       },
       {
         "match_id": "2017-wimbledon-1213",
         "round": "R64",
         "opponent": "Kei Nishikori",
-        "opponent_elo": 1779.1,
+        "opponent_elo": 1777.2,
         "w_t": 0.9973,
-        "w_q": 1.1622
+        "w_q": 1.1611
       }
     ],
     "tier1": {
@@ -8264,15 +8264,15 @@
       "rgw_pct": {
         "value": 23.4,
         "ci_90_lo": 14.3,
-        "ci_90_hi": 43.0
+        "ci_90_hi": 43.1
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8223,
+        "value": 0.8209,
         "max_bits": 1.585,
-        "pct_of_max": 51.9
+        "pct_of_max": 51.8
       },
       "rally_win_curve": {
         "1_3": {
@@ -8337,7 +8337,7 @@
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.354,
-        "bp_conversion": 0.462,
+        "bp_conversion": 0.463,
         "bp_created": 7.4,
         "bp_converted": 3.4
       },
@@ -8369,9 +8369,9 @@
       "name": "Sergiy Stakhovsky",
       "n_overall": 54,
       "n_surface": 54,
-      "R_overall": 1545.5,
-      "R_surface": 1545.5,
-      "R_adjusted": 1545.5
+      "R_overall": 1546.5,
+      "R_surface": 1546.5,
+      "R_adjusted": 1546.5
     }
   },
   "Peter Gojowczyk": {
@@ -8379,7 +8379,7 @@
     "surface": "grass",
     "year": 2017,
     "n_matches": 2,
-    "n_points": 234,
+    "n_points": 233,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -8389,7 +8389,7 @@
         "match_id": "2017-wimbledon-1127",
         "round": "R128",
         "opponent": "Marius Copil",
-        "opponent_elo": 1458.6,
+        "opponent_elo": 1458.4,
         "w_t": 1.0,
         "w_q": 0.9528
       },
@@ -8397,14 +8397,14 @@
         "match_id": "2017-wimbledon-1214",
         "round": "R64",
         "opponent": "Roberto Bautista Agut",
-        "opponent_elo": 1739.6,
+        "opponent_elo": 1756.1,
         "w_t": 0.9973,
-        "w_q": 1.1364
+        "w_q": 1.1473
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 52.0,
+        "value": 51.9,
         "ci_90_lo": 44.3,
         "ci_90_hi": 59.4
       },
@@ -8414,9 +8414,9 @@
         "ci_90_hi": 76.7
       },
       "sspw_pct": {
-        "value": 52.8,
-        "ci_90_lo": 41.5,
-        "ci_90_hi": 63.6
+        "value": 52.7,
+        "ci_90_lo": 41.4,
+        "ci_90_hi": 63.5
       },
       "rpw_pct": {
         "value": 37.5,
@@ -8424,9 +8424,9 @@
         "ci_90_hi": 45.2
       },
       "sgw_pct": {
-        "value": 68.9,
-        "ci_90_lo": 47.7,
-        "ci_90_hi": 81.2
+        "value": 68.8,
+        "ci_90_lo": 47.6,
+        "ci_90_hi": 81.1
       },
       "rgw_pct": {
         "value": 24.9,
@@ -8441,7 +8441,7 @@
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 48.1,
+          "win_pct": 48.0,
           "n": 225
         },
         "4_6": {
@@ -8469,13 +8469,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 2.0,
-        "bp_df_rate": 6.0,
+        "value": 1.9,
+        "bp_df_rate": 5.9,
         "baseline_df_rate": 4.0,
         "n_eff": 17,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.02
+        "modifier_delta": 0.019
       },
       "serve_speed_courage": {
         "available": false,
@@ -8489,32 +8489,32 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 7.28,
+        "streak_initiation_rate": 7.27,
         "streak_survival_rate": 0.331,
-        "streak_recovery_rate": 0.348
+        "streak_recovery_rate": 0.349
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.6,
-        "bp_conversion": 0.372,
+        "bp_per_return_game": 0.599,
+        "bp_conversion": 0.373,
         "bp_created": 10.7,
         "bp_converted": 4.0
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.1,
+        "value": 0.095,
         "components": {
           "df_rate_delta": {
-            "delta_frac": 0.5,
+            "delta_frac": 0.475,
             "weight": 0.2,
-            "contribution": 0.1
+            "contribution": 0.095
           }
         },
         "components_used": 1,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.1,
+        "modifier_delta": 0.095,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -8522,9 +8522,9 @@
       "name": "Peter Gojowczyk",
       "n_overall": 26,
       "n_surface": 26,
-      "R_overall": 1572.7,
-      "R_surface": 1572.7,
-      "R_adjusted": 1572.7
+      "R_overall": 1579.9,
+      "R_surface": 1579.9,
+      "R_adjusted": 1579.9
     }
   },
   "Marius Copil": {
@@ -8542,9 +8542,9 @@
         "match_id": "2017-wimbledon-1127",
         "round": "R128",
         "opponent": "Peter Gojowczyk",
-        "opponent_elo": 1547.2,
+        "opponent_elo": 1543.3,
         "w_t": 1.0,
-        "w_q": 1.0107
+        "w_q": 1.0083
       }
     ],
     "tier1": {
@@ -8667,9 +8667,9 @@
       "name": "Marius Copil",
       "n_overall": 15,
       "n_surface": 15,
-      "R_overall": 1462.2,
-      "R_surface": 1462.2,
-      "R_adjusted": 1462.2
+      "R_overall": 1446.9,
+      "R_surface": 1446.9,
+      "R_adjusted": 1446.9
     }
   },
   "Andreas Haider Maurer": {
@@ -8687,9 +8687,9 @@
         "match_id": "2017-wimbledon-1128",
         "round": "R128",
         "opponent": "Roberto Bautista Agut",
-        "opponent_elo": 1809.5,
+        "opponent_elo": 1808.4,
         "w_t": 1.0,
-        "w_q": 1.1821
+        "w_q": 1.1815
       }
     ],
     "tier1": {
@@ -8812,9 +8812,9 @@
       "name": "Andreas Haider Maurer",
       "n_overall": 14,
       "n_surface": 14,
-      "R_overall": 1352.4,
-      "R_surface": 1352.4,
-      "R_adjusted": 1352.4
+      "R_overall": 1350.7,
+      "R_surface": 1350.7,
+      "R_adjusted": 1350.7
     }
   },
   "Roberto Bautista Agut": {
@@ -8832,33 +8832,33 @@
         "match_id": "2017-wimbledon-1128",
         "round": "R128",
         "opponent": "Andreas Haider Maurer",
-        "opponent_elo": 1359.5,
+        "opponent_elo": 1357.6,
         "w_t": 1.0,
-        "w_q": 0.8881
+        "w_q": 0.887
       },
       {
         "match_id": "2017-wimbledon-1214",
         "round": "R64",
         "opponent": "Peter Gojowczyk",
-        "opponent_elo": 1431.0,
+        "opponent_elo": 1426.0,
         "w_t": 0.9973,
-        "w_q": 0.9348
+        "w_q": 0.9316
       },
       {
         "match_id": "2017-wimbledon-1307",
         "round": "R32",
         "opponent": "Kei Nishikori",
-        "opponent_elo": 1779.1,
+        "opponent_elo": 1777.2,
         "w_t": 0.9945,
-        "w_q": 1.1622
+        "w_q": 1.1611
       },
       {
         "match_id": "2017-wimbledon-1404",
         "round": "R16",
         "opponent": "Marin Cilic",
-        "opponent_elo": 1896.9,
+        "opponent_elo": 1892.9,
         "w_t": 0.9918,
-        "w_q": 1.2391
+        "w_q": 1.2367
       }
     ],
     "tier1": {
@@ -8888,7 +8888,7 @@
         "ci_90_hi": 86.3
       },
       "rgw_pct": {
-        "value": 31.2,
+        "value": 31.1,
         "ci_90_lo": 18.7,
         "ci_90_hi": 53.0
       }
@@ -8896,7 +8896,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8558,
+        "value": 0.8561,
         "max_bits": 1.585,
         "pct_of_max": 54.0
       },
@@ -8993,11 +8993,11 @@
     },
     "elo_snapshot": {
       "name": "Roberto Bautista Agut",
-      "n_overall": 67,
-      "n_surface": 67,
-      "R_overall": 1777.9,
-      "R_surface": 1777.9,
-      "R_adjusted": 1777.9
+      "n_overall": 76,
+      "n_surface": 76,
+      "R_overall": 1771.0,
+      "R_surface": 1771.0,
+      "R_adjusted": 1771.0
     }
   },
   "Steve Johnson": {
@@ -9017,23 +9017,23 @@
         "opponent": "Nicolas Kicker",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2017-wimbledon-1215",
         "round": "R64",
         "opponent": "Radu Albot",
-        "opponent_elo": 1553.3,
+        "opponent_elo": 1521.6,
         "w_t": 0.9973,
-        "w_q": 1.0147
+        "w_q": 0.9941
       },
       {
         "match_id": "2017-wimbledon-1308",
         "round": "R32",
         "opponent": "Marin Cilic",
-        "opponent_elo": 1896.9,
+        "opponent_elo": 1892.9,
         "w_t": 0.9945,
-        "w_q": 1.2391
+        "w_q": 1.2367
       }
     ],
     "tier1": {
@@ -9071,9 +9071,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.4318,
+        "value": 1.4324,
         "max_bits": 1.585,
-        "pct_of_max": 90.3
+        "pct_of_max": 90.4
       },
       "rally_win_curve": {
         "1_3": {
@@ -9089,7 +9089,7 @@
           "n": 16
         },
         "10+": {
-          "win_pct": 53.5,
+          "win_pct": 53.4,
           "n": 8
         }
       },
@@ -9105,13 +9105,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 3.9,
-        "bp_df_rate": 7.1,
+        "value": 4.0,
+        "bp_df_rate": 7.2,
         "baseline_df_rate": 3.2,
         "n_eff": 11,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.039
+        "modifier_delta": 0.04
       },
       "serve_speed_courage": {
         "available": true,
@@ -9132,20 +9132,20 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.5,
-        "streak_survival_rate": 0.398,
-        "streak_recovery_rate": 0.41
+        "streak_initiation_rate": 5.49,
+        "streak_survival_rate": 0.397,
+        "streak_recovery_rate": 0.408
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.348,
-        "bp_conversion": 0.486,
+        "bp_per_return_game": 0.347,
+        "bp_conversion": 0.487,
         "bp_created": 6.0,
         "bp_converted": 2.9
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.2416,
+        "value": 0.2478,
         "components": {
           "serve_speed_delta": {
             "delta_frac": -0.0073,
@@ -9153,16 +9153,16 @@
             "contribution": -0.0022
           },
           "df_rate_delta": {
-            "delta_frac": 1.2188,
+            "delta_frac": 1.25,
             "weight": 0.2,
-            "contribution": 0.2438
+            "contribution": 0.25
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.2416,
+        "modifier_delta": 0.2478,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -9170,9 +9170,9 @@
       "name": "Steve Johnson",
       "n_overall": 68,
       "n_surface": 68,
-      "R_overall": 1652.6,
-      "R_surface": 1652.6,
-      "R_adjusted": 1652.6
+      "R_overall": 1651.3,
+      "R_surface": 1651.3,
+      "R_adjusted": 1651.3
     }
   },
   "Nicolas Kicker": {
@@ -9190,9 +9190,9 @@
         "match_id": "2017-wimbledon-1129",
         "round": "R128",
         "opponent": "Steve Johnson",
-        "opponent_elo": 1737.9,
+        "opponent_elo": 1730.8,
         "w_t": 1.0,
-        "w_q": 1.1353
+        "w_q": 1.1308
       }
     ],
     "tier1": {
@@ -9324,9 +9324,9 @@
       "name": "Nicolas Kicker",
       "n_overall": 1,
       "n_surface": 1,
-      "R_overall": 1469.3,
-      "R_surface": 1469.3,
-      "R_adjusted": 1469.3
+      "R_overall": 1468.1,
+      "R_surface": 1468.1,
+      "R_adjusted": 1468.1
     }
   },
   "Facundo Bagnis": {
@@ -9344,9 +9344,9 @@
         "match_id": "2017-wimbledon-1130",
         "round": "R128",
         "opponent": "Radu Albot",
-        "opponent_elo": 1599.0,
+        "opponent_elo": 1603.4,
         "w_t": 1.0,
-        "w_q": 1.0445
+        "w_q": 1.0475
       }
     ],
     "tier1": {
@@ -9469,9 +9469,9 @@
       "name": "Facundo Bagnis",
       "n_overall": 5,
       "n_surface": 5,
-      "R_overall": 1319.1,
-      "R_surface": 1319.1,
-      "R_adjusted": 1319.1
+      "R_overall": 1319.7,
+      "R_surface": 1319.7,
+      "R_adjusted": 1319.7
     }
   },
   "Radu Albot": {
@@ -9489,7 +9489,7 @@
         "match_id": "2017-wimbledon-1130",
         "round": "R128",
         "opponent": "Facundo Bagnis",
-        "opponent_elo": 1403.3,
+        "opponent_elo": 1403.1,
         "w_t": 1.0,
         "w_q": 0.9167
       },
@@ -9497,14 +9497,14 @@
         "match_id": "2017-wimbledon-1215",
         "round": "R64",
         "opponent": "Steve Johnson",
-        "opponent_elo": 1733.6,
+        "opponent_elo": 1724.1,
         "w_t": 0.9973,
-        "w_q": 1.1325
+        "w_q": 1.1264
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 68.1,
+        "value": 68.2,
         "ci_90_lo": 61.0,
         "ci_90_hi": 74.0
       },
@@ -9529,7 +9529,7 @@
         "ci_90_hi": 89.3
       },
       "rgw_pct": {
-        "value": 13.1,
+        "value": 13.2,
         "ci_90_lo": 7.9,
         "ci_90_hi": 32.9
       }
@@ -9537,9 +9537,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8201,
+        "value": 0.8182,
         "max_bits": 1.585,
-        "pct_of_max": 51.7
+        "pct_of_max": 51.6
       },
       "rally_win_curve": {
         "1_3": {
@@ -9571,13 +9571,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 11.4,
-        "bp_df_rate": 14.9,
+        "value": 11.3,
+        "bp_df_rate": 14.8,
         "baseline_df_rate": 3.5,
         "n_eff": 10,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.114
+        "modifier_delta": 0.113
       },
       "serve_speed_courage": {
         "available": true,
@@ -9593,25 +9593,25 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 50.1,
-        "ad_win_pct": 46.1,
-        "asymmetry": 4.0,
+        "ad_win_pct": 46.2,
+        "asymmetry": 3.9,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 7.74,
+        "streak_initiation_rate": 7.75,
         "streak_survival_rate": 0.294,
         "streak_recovery_rate": 0.737
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.729,
-        "bp_conversion": 0.151,
+        "bp_conversion": 0.152,
         "bp_created": 15.5,
         "bp_converted": 2.3
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.6404,
+        "value": 0.6347,
         "components": {
           "serve_speed_delta": {
             "delta_frac": -0.0365,
@@ -9619,26 +9619,26 @@
             "contribution": -0.011
           },
           "df_rate_delta": {
-            "delta_frac": 3.2571,
+            "delta_frac": 3.2286,
             "weight": 0.2,
-            "contribution": 0.6514
+            "contribution": 0.6457
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.6404,
+        "modifier_delta": 0.6347,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
     "elo_snapshot": {
       "name": "Radu Albot",
-      "n_overall": 22,
-      "n_surface": 22,
-      "R_overall": 1428.8,
-      "R_surface": 1428.8,
-      "R_adjusted": 1428.8
+      "n_overall": 24,
+      "n_surface": 24,
+      "R_overall": 1398.8,
+      "R_surface": 1398.8,
+      "R_adjusted": 1398.8
     }
   },
   "Viktor Troicki": {
@@ -9656,9 +9656,9 @@
         "match_id": "2017-wimbledon-1131",
         "round": "R128",
         "opponent": "Florian Mayer",
-        "opponent_elo": 1829.0,
+        "opponent_elo": 1827.3,
         "w_t": 1.0,
-        "w_q": 1.1948
+        "w_q": 1.1939
       }
     ],
     "tier1": {
@@ -9781,9 +9781,9 @@
       "name": "Viktor Troicki",
       "n_overall": 64,
       "n_surface": 64,
-      "R_overall": 1591.4,
-      "R_surface": 1591.4,
-      "R_adjusted": 1591.4
+      "R_overall": 1585.8,
+      "R_surface": 1585.8,
+      "R_adjusted": 1585.8
     }
   },
   "Florian Mayer": {
@@ -9801,17 +9801,17 @@
         "match_id": "2017-wimbledon-1131",
         "round": "R128",
         "opponent": "Viktor Troicki",
-        "opponent_elo": 1586.5,
+        "opponent_elo": 1584.5,
         "w_t": 1.0,
-        "w_q": 1.0364
+        "w_q": 1.0352
       },
       {
         "match_id": "2017-wimbledon-1216",
         "round": "R64",
         "opponent": "Marin Cilic",
-        "opponent_elo": 1896.9,
+        "opponent_elo": 1892.9,
         "w_t": 0.9973,
-        "w_q": 1.2391
+        "w_q": 1.2367
       }
     ],
     "tier1": {
@@ -9841,7 +9841,7 @@
         "ci_90_hi": 88.4
       },
       "rgw_pct": {
-        "value": 21.1,
+        "value": 21.2,
         "ci_90_lo": 12.0,
         "ci_90_hi": 48.3
       }
@@ -9849,7 +9849,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8312,
+        "value": 0.8308,
         "max_bits": 1.585,
         "pct_of_max": 52.4
       },
@@ -9904,8 +9904,8 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 50.4,
-        "ad_win_pct": 41.2,
+        "deuce_win_pct": 50.5,
+        "ad_win_pct": 41.3,
         "asymmetry": 9.2,
         "stronger_side": "deuce"
       },
@@ -9948,9 +9948,9 @@
       "name": "Florian Mayer",
       "n_overall": 65,
       "n_surface": 65,
-      "R_overall": 1715.0,
-      "R_surface": 1715.0,
-      "R_adjusted": 1715.0
+      "R_overall": 1712.5,
+      "R_surface": 1712.5,
+      "R_adjusted": 1712.5
     }
   },
   "Philipp Kohlschreiber": {
@@ -9968,9 +9968,9 @@
         "match_id": "2017-wimbledon-1132",
         "round": "R128",
         "opponent": "Marin Cilic",
-        "opponent_elo": 1965.0,
+        "opponent_elo": 1958.8,
         "w_t": 1.0,
-        "w_q": 1.2837
+        "w_q": 1.2798
       }
     ],
     "tier1": {
@@ -10107,9 +10107,9 @@
       "name": "Philipp Kohlschreiber",
       "n_overall": 101,
       "n_surface": 101,
-      "R_overall": 1660.7,
-      "R_surface": 1660.7,
-      "R_adjusted": 1660.7
+      "R_overall": 1655.8,
+      "R_surface": 1655.8,
+      "R_adjusted": 1655.8
     }
   },
   "Marin Cilic": {
@@ -10127,68 +10127,68 @@
         "match_id": "2017-wimbledon-1132",
         "round": "R128",
         "opponent": "Philipp Kohlschreiber",
-        "opponent_elo": 1777.3,
+        "opponent_elo": 1772.3,
         "w_t": 1.0,
-        "w_q": 1.161
+        "w_q": 1.1579
       },
       {
         "match_id": "2017-wimbledon-1216",
         "round": "R64",
         "opponent": "Florian Mayer",
-        "opponent_elo": 1795.2,
+        "opponent_elo": 1825.9,
         "w_t": 0.9973,
-        "w_q": 1.1727
+        "w_q": 1.1929
       },
       {
         "match_id": "2017-wimbledon-1308",
         "round": "R32",
         "opponent": "Steve Johnson",
-        "opponent_elo": 1733.6,
+        "opponent_elo": 1724.1,
         "w_t": 0.9945,
-        "w_q": 1.1325
+        "w_q": 1.1264
       },
       {
         "match_id": "2017-wimbledon-1404",
         "round": "R16",
         "opponent": "Roberto Bautista Agut",
-        "opponent_elo": 1739.6,
+        "opponent_elo": 1756.1,
         "w_t": 0.9918,
-        "w_q": 1.1364
+        "w_q": 1.1473
       },
       {
         "match_id": "2017-wimbledon-1502",
         "round": "QF",
         "opponent": "Gilles Muller",
-        "opponent_elo": 1837.5,
+        "opponent_elo": 1844.9,
         "w_t": 0.9891,
-        "w_q": 1.2003
+        "w_q": 1.2053
       },
       {
         "match_id": "2017-wimbledon-1601",
         "round": "SF",
         "opponent": "Sam Querrey",
-        "opponent_elo": 1770.3,
+        "opponent_elo": 1768.6,
         "w_t": 0.9864,
-        "w_q": 1.1564
+        "w_q": 1.1555
       },
       {
         "match_id": "2017-wimbledon-1701",
         "round": "F",
         "opponent": "Roger Federer",
-        "opponent_elo": 2097.8,
+        "opponent_elo": 2099.5,
         "w_t": 0.9837,
-        "w_q": 1.3704
+        "w_q": 1.3717
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 62.1,
-        "ci_90_lo": 53.8,
+        "ci_90_lo": 53.7,
         "ci_90_hi": 69.3
       },
       "fspw_pct": {
-        "value": 81.5,
-        "ci_90_lo": 71.1,
+        "value": 81.6,
+        "ci_90_lo": 71.2,
         "ci_90_hi": 87.2
       },
       "sspw_pct": {
@@ -10233,7 +10233,7 @@
           "n": 15
         },
         "10+": {
-          "win_pct": 63.1,
+          "win_pct": 63.2,
           "n": 9
         }
       },
@@ -10271,18 +10271,18 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 55.2,
-        "ad_win_pct": 51.7,
-        "asymmetry": 3.5,
+        "ad_win_pct": 51.8,
+        "asymmetry": 3.4,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
         "streak_initiation_rate": 2.21,
         "streak_survival_rate": 0.45,
-        "streak_recovery_rate": 0.338
+        "streak_recovery_rate": 0.337
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.501,
-        "bp_conversion": 0.383,
+        "bp_conversion": 0.384,
         "bp_created": 9.1,
         "bp_converted": 3.5
       },
@@ -10314,9 +10314,9 @@
       "name": "Marin Cilic",
       "n_overall": 114,
       "n_surface": 114,
-      "R_overall": 1901.0,
-      "R_surface": 1901.0,
-      "R_adjusted": 1901.0
+      "R_overall": 1897.5,
+      "R_surface": 1897.5,
+      "R_adjusted": 1897.5
     }
   },
   "Milos Raonic": {
@@ -10334,17 +10334,17 @@
         "match_id": "2017-wimbledon-1133",
         "round": "R128",
         "opponent": "Jan Lennard Struff",
-        "opponent_elo": 1411.6,
+        "opponent_elo": 1411.8,
         "w_t": 1.0,
-        "w_q": 0.9221
+        "w_q": 0.9224
       },
       {
         "match_id": "2017-wimbledon-1217",
         "round": "R64",
         "opponent": "Mikhail Youzhny",
-        "opponent_elo": 1681.7,
+        "opponent_elo": 1681.2,
         "w_t": 0.9973,
-        "w_q": 1.0986
+        "w_q": 1.0984
       },
       {
         "match_id": "2017-wimbledon-1309",
@@ -10358,17 +10358,17 @@
         "match_id": "2017-wimbledon-1405",
         "round": "R16",
         "opponent": "Alexander Zverev",
-        "opponent_elo": 1852.3,
+        "opponent_elo": 1847.1,
         "w_t": 0.9918,
-        "w_q": 1.21
+        "w_q": 1.2068
       },
       {
         "match_id": "2017-wimbledon-1503",
         "round": "QF",
         "opponent": "Roger Federer",
-        "opponent_elo": 2097.8,
+        "opponent_elo": 2099.5,
         "w_t": 0.9891,
-        "w_q": 1.3704
+        "w_q": 1.3717
       }
     ],
     "tier1": {
@@ -10398,7 +10398,7 @@
         "ci_90_hi": 93.6
       },
       "rgw_pct": {
-        "value": 16.5,
+        "value": 16.4,
         "ci_90_lo": 9.8,
         "ci_90_hi": 36.9
       }
@@ -10406,7 +10406,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.3647,
+        "value": 1.3648,
         "max_bits": 1.585,
         "pct_of_max": 86.1
       },
@@ -10503,11 +10503,11 @@
     },
     "elo_snapshot": {
       "name": "Milos Raonic",
-      "n_overall": 76,
-      "n_surface": 76,
-      "R_overall": 1816.4,
-      "R_surface": 1816.4,
-      "R_adjusted": 1816.4
+      "n_overall": 81,
+      "n_surface": 81,
+      "R_overall": 1810.8,
+      "R_surface": 1810.8,
+      "R_adjusted": 1810.8
     }
   },
   "Jan Lennard Struff": {
@@ -10525,9 +10525,9 @@
         "match_id": "2017-wimbledon-1133",
         "round": "R128",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1907.0,
+        "opponent_elo": 1903.3,
         "w_t": 1.0,
-        "w_q": 1.2458
+        "w_q": 1.2435
       }
     ],
     "tier1": {
@@ -10662,11 +10662,11 @@
     },
     "elo_snapshot": {
       "name": "Jan Lennard Struff",
-      "n_overall": 47,
-      "n_surface": 47,
-      "R_overall": 1652.2,
-      "R_surface": 1652.2,
-      "R_adjusted": 1652.2
+      "n_overall": 56,
+      "n_surface": 56,
+      "R_overall": 1689.1,
+      "R_surface": 1689.1,
+      "R_adjusted": 1689.1
     }
   },
   "Mikhail Youzhny": {
@@ -10684,17 +10684,17 @@
         "match_id": "2017-wimbledon-1134",
         "round": "R128",
         "opponent": "Nicolas Mahut",
-        "opponent_elo": 1741.6,
+        "opponent_elo": 1744.9,
         "w_t": 1.0,
-        "w_q": 1.1377
+        "w_q": 1.14
       },
       {
         "match_id": "2017-wimbledon-1217",
         "round": "R64",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1947.2,
+        "opponent_elo": 1943.0,
         "w_t": 0.9973,
-        "w_q": 1.272
+        "w_q": 1.2694
       }
     ],
     "tier1": {
@@ -10716,7 +10716,7 @@
       "rpw_pct": {
         "value": 31.4,
         "ci_90_lo": 24.9,
-        "ci_90_hi": 39.7
+        "ci_90_hi": 39.8
       },
       "sgw_pct": {
         "value": 89.0,
@@ -10724,7 +10724,7 @@
         "ci_90_hi": 93.3
       },
       "rgw_pct": {
-        "value": 20.2,
+        "value": 20.3,
         "ci_90_lo": 12.1,
         "ci_90_hi": 41.1
       }
@@ -10732,14 +10732,14 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8062,
+        "value": 0.8047,
         "max_bits": 1.585,
-        "pct_of_max": 50.9
+        "pct_of_max": 50.8
       },
       "rally_win_curve": {
         "1_3": {
           "win_pct": 51.1,
-          "n": 176
+          "n": 177
         },
         "4_6": {
           "win_pct": 45.9,
@@ -10766,13 +10766,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 2.9,
-        "bp_df_rate": 5.7,
+        "value": 2.8,
+        "bp_df_rate": 5.6,
         "baseline_df_rate": 2.8,
         "n_eff": 9,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.029
+        "modifier_delta": 0.028
       },
       "serve_speed_courage": {
         "available": true,
@@ -10787,13 +10787,13 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 48.0,
+        "deuce_win_pct": 48.1,
         "ad_win_pct": 52.0,
-        "asymmetry": 4.0,
+        "asymmetry": 3.9,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 7.85,
+        "streak_initiation_rate": 7.84,
         "streak_survival_rate": 0.416,
         "streak_recovery_rate": 0.433
       },
@@ -10806,7 +10806,7 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.219,
+        "value": 0.2119,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0396,
@@ -10814,16 +10814,16 @@
             "contribution": 0.0119
           },
           "df_rate_delta": {
-            "delta_frac": 1.0357,
+            "delta_frac": 1.0,
             "weight": 0.2,
-            "contribution": 0.2071
+            "contribution": 0.2
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.219,
+        "modifier_delta": 0.2119,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -10831,9 +10831,9 @@
       "name": "Mikhail Youzhny",
       "n_overall": 108,
       "n_surface": 108,
-      "R_overall": 1600.7,
-      "R_surface": 1600.7,
-      "R_adjusted": 1600.7
+      "R_overall": 1602.2,
+      "R_surface": 1602.2,
+      "R_adjusted": 1602.2
     }
   },
   "Nicolas Mahut": {
@@ -10851,7 +10851,7 @@
         "match_id": "2017-wimbledon-1134",
         "round": "R128",
         "opponent": "Mikhail Youzhny",
-        "opponent_elo": 1678.1,
+        "opponent_elo": 1677.8,
         "w_t": 1.0,
         "w_q": 1.0962
       }
@@ -10976,9 +10976,9 @@
       "name": "Nicolas Mahut",
       "n_overall": 108,
       "n_surface": 108,
-      "R_overall": 1705.9,
-      "R_surface": 1705.9,
-      "R_adjusted": 1705.9
+      "R_overall": 1712.2,
+      "R_surface": 1712.2,
+      "R_adjusted": 1712.2
     }
   },
   "Andrey Rublev": {
@@ -10998,7 +10998,7 @@
         "opponent": "Stefano Travaglia",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2017-wimbledon-1218",
@@ -11044,7 +11044,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7652,
+        "value": 0.7651,
         "max_bits": 1.585,
         "pct_of_max": 48.3
       },
@@ -11141,11 +11141,11 @@
     },
     "elo_snapshot": {
       "name": "Andrey Rublev",
-      "n_overall": 27,
-      "n_surface": 27,
-      "R_overall": 1865.8,
-      "R_surface": 1865.8,
-      "R_adjusted": 1865.8
+      "n_overall": 29,
+      "n_surface": 29,
+      "R_overall": 1765.5,
+      "R_surface": 1765.5,
+      "R_adjusted": 1765.5
     }
   },
   "Stefano Travaglia": {
@@ -11163,9 +11163,9 @@
         "match_id": "2017-wimbledon-1135",
         "round": "R128",
         "opponent": "Andrey Rublev",
-        "opponent_elo": 1642.6,
+        "opponent_elo": 1643.0,
         "w_t": 1.0,
-        "w_q": 1.073
+        "w_q": 1.0734
       }
     ],
     "tier1": {
@@ -11288,9 +11288,9 @@
       "name": "Stefano Travaglia",
       "n_overall": 6,
       "n_surface": 6,
-      "R_overall": 1431.8,
-      "R_surface": 1431.8,
-      "R_adjusted": 1431.8
+      "R_overall": 1431.7,
+      "R_surface": 1431.7,
+      "R_adjusted": 1431.7
     }
   },
   "Jordan Thompson": {
@@ -11431,11 +11431,11 @@
     },
     "elo_snapshot": {
       "name": "Jordan Thompson",
-      "n_overall": 53,
-      "n_surface": 53,
-      "R_overall": 1693.4,
-      "R_surface": 1693.4,
-      "R_adjusted": 1693.4
+      "n_overall": 60,
+      "n_surface": 60,
+      "R_overall": 1718.1,
+      "R_surface": 1718.1,
+      "R_adjusted": 1718.1
     }
   },
   "Albert Ramos Vinolas": {
@@ -11453,25 +11453,25 @@
         "match_id": "2017-wimbledon-1136",
         "round": "R128",
         "opponent": "Jordan Thompson",
-        "opponent_elo": 1474.0,
+        "opponent_elo": 1473.5,
         "w_t": 1.0,
-        "w_q": 0.9629
+        "w_q": 0.9627
       },
       {
         "match_id": "2017-wimbledon-1218",
         "round": "R64",
         "opponent": "Andrey Rublev",
-        "opponent_elo": 1521.9,
+        "opponent_elo": 1522.6,
         "w_t": 0.9973,
-        "w_q": 0.9942
+        "w_q": 0.9947
       },
       {
         "match_id": "2017-wimbledon-1309",
         "round": "R32",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1947.2,
+        "opponent_elo": 1943.0,
         "w_t": 0.9945,
-        "w_q": 1.272
+        "w_q": 1.2694
       }
     ],
     "tier1": {
@@ -11509,7 +11509,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.0759,
+        "value": 1.0757,
         "max_bits": 1.585,
         "pct_of_max": 67.9
       },
@@ -11754,9 +11754,9 @@
       "name": "Jack Sock",
       "n_overall": 31,
       "n_surface": 31,
-      "R_overall": 1621.8,
-      "R_surface": 1621.8,
-      "R_adjusted": 1621.8
+      "R_overall": 1618.9,
+      "R_surface": 1618.9,
+      "R_adjusted": 1618.9
     }
   },
   "Christian Garin": {
@@ -11774,9 +11774,9 @@
         "match_id": "2017-wimbledon-1137",
         "round": "R128",
         "opponent": "Jack Sock",
-        "opponent_elo": 1710.7,
+        "opponent_elo": 1703.7,
         "w_t": 1.0,
-        "w_q": 1.1175
+        "w_q": 1.1131
       }
     ],
     "tier1": {
@@ -11912,9 +11912,9 @@
         "match_id": "2017-wimbledon-1138",
         "round": "R128",
         "opponent": "Sebastian Ofner",
-        "opponent_elo": 1543.2,
+        "opponent_elo": 1646.0,
         "w_t": 1.0,
-        "w_q": 1.0081
+        "w_q": 1.0754
       }
     ],
     "tier1": {
@@ -12037,9 +12037,9 @@
       "name": "Thomaz Bellucci",
       "n_overall": 18,
       "n_surface": 18,
-      "R_overall": 1434.7,
-      "R_surface": 1434.7,
-      "R_adjusted": 1434.7
+      "R_overall": 1442.8,
+      "R_surface": 1442.8,
+      "R_adjusted": 1442.8
     }
   },
   "Sebastian Ofner": {
@@ -12057,25 +12057,25 @@
         "match_id": "2017-wimbledon-1138",
         "round": "R128",
         "opponent": "Thomaz Bellucci",
-        "opponent_elo": 1467.6,
+        "opponent_elo": 1476.6,
         "w_t": 1.0,
-        "w_q": 0.9587
+        "w_q": 0.9647
       },
       {
         "match_id": "2017-wimbledon-1219",
         "round": "R64",
         "opponent": "Jack Sock",
-        "opponent_elo": 1715.7,
+        "opponent_elo": 1706.8,
         "w_t": 0.9973,
-        "w_q": 1.1208
+        "w_q": 1.1151
       },
       {
         "match_id": "2017-wimbledon-1310",
         "round": "R32",
         "opponent": "Alexander Zverev",
-        "opponent_elo": 1852.3,
+        "opponent_elo": 1847.1,
         "w_t": 0.9945,
-        "w_q": 1.21
+        "w_q": 1.2068
       }
     ],
     "tier1": {
@@ -12107,15 +12107,15 @@
       "rgw_pct": {
         "value": 26.6,
         "ci_90_lo": 15.9,
-        "ci_90_hi": 48.2
+        "ci_90_hi": 48.3
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.5659,
+        "value": 0.5649,
         "max_bits": 1.585,
-        "pct_of_max": 35.7
+        "pct_of_max": 35.6
       },
       "rally_win_curve": {
         "1_3": {
@@ -12137,13 +12137,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 4.6,
+        "value": 4.5,
         "high_lev_win_pct": 53.7,
-        "baseline_win_pct": 49.1,
+        "baseline_win_pct": 49.2,
         "n_eff": 35,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.046
+        "modifier_delta": 0.045
       },
       "df_pressure_delta": {
         "available": true,
@@ -12160,7 +12160,7 @@
         "value": -1.6,
         "bp_speed_kmh": 174.7,
         "overall_speed_kmh": 176.3,
-        "n_eff": 6,
+        "n_eff": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
         "modifier_delta": -0.016,
@@ -12168,9 +12168,9 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 48.0,
+        "deuce_win_pct": 48.1,
         "ad_win_pct": 49.8,
-        "asymmetry": 1.8,
+        "asymmetry": 1.7,
         "stronger_side": "ad"
       },
       "momentum_profile": {
@@ -12179,7 +12179,7 @@
         "streak_recovery_rate": 0.397
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.718,
+        "bp_per_return_game": 0.719,
         "bp_conversion": 0.319,
         "bp_created": 12.3,
         "bp_converted": 3.9
@@ -12210,11 +12210,11 @@
     },
     "elo_snapshot": {
       "name": "Sebastian Ofner",
-      "n_overall": 7,
-      "n_surface": 7,
-      "R_overall": 1552.0,
-      "R_surface": 1552.0,
-      "R_adjusted": 1552.0
+      "n_overall": 15,
+      "n_surface": 15,
+      "R_overall": 1572.1,
+      "R_surface": 1572.1,
+      "R_adjusted": 1572.1
     }
   },
   "Robin Haase": {
@@ -12232,7 +12232,7 @@
         "match_id": "2017-wimbledon-1139",
         "round": "R128",
         "opponent": "Frances Tiafoe",
-        "opponent_elo": 1568.5,
+        "opponent_elo": 1568.3,
         "w_t": 1.0,
         "w_q": 1.0246
       }
@@ -12357,9 +12357,9 @@
       "name": "Robin Haase",
       "n_overall": 56,
       "n_surface": 56,
-      "R_overall": 1576.2,
-      "R_surface": 1576.2,
-      "R_adjusted": 1576.2
+      "R_overall": 1573.9,
+      "R_surface": 1573.9,
+      "R_adjusted": 1573.9
     }
   },
   "Frances Tiafoe": {
@@ -12377,17 +12377,17 @@
         "match_id": "2017-wimbledon-1139",
         "round": "R128",
         "opponent": "Robin Haase",
-        "opponent_elo": 1632.8,
+        "opponent_elo": 1631.8,
         "w_t": 1.0,
-        "w_q": 1.0666
+        "w_q": 1.0661
       },
       {
         "match_id": "2017-wimbledon-1220",
         "round": "R64",
         "opponent": "Alexander Zverev",
-        "opponent_elo": 1852.3,
+        "opponent_elo": 1847.1,
         "w_t": 0.9973,
-        "w_q": 1.21
+        "w_q": 1.2068
       }
     ],
     "tier1": {
@@ -12404,7 +12404,7 @@
       "sspw_pct": {
         "value": 59.6,
         "ci_90_lo": 45.4,
-        "ci_90_hi": 71.2
+        "ci_90_hi": 71.3
       },
       "rpw_pct": {
         "value": 32.4,
@@ -12425,7 +12425,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7741,
+        "value": 0.7733,
         "max_bits": 1.585,
         "pct_of_max": 48.8
       },
@@ -12449,13 +12449,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": -1.6,
-        "high_lev_win_pct": 46.6,
+        "value": -1.5,
+        "high_lev_win_pct": 46.7,
         "baseline_win_pct": 48.2,
         "n_eff": 25,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.016
+        "modifier_delta": -0.015
       },
       "df_pressure_delta": {
         "available": true,
@@ -12481,8 +12481,8 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 46.9,
-        "ad_win_pct": 49.1,
-        "asymmetry": 2.2,
+        "ad_win_pct": 49.2,
+        "asymmetry": 2.3,
         "stronger_side": "ad"
       },
       "momentum_profile": {
@@ -12522,11 +12522,11 @@
     },
     "elo_snapshot": {
       "name": "Frances Tiafoe",
-      "n_overall": 35,
-      "n_surface": 35,
-      "R_overall": 1710.3,
-      "R_surface": 1710.3,
-      "R_adjusted": 1710.3
+      "n_overall": 41,
+      "n_surface": 41,
+      "R_overall": 1690.1,
+      "R_surface": 1690.1,
+      "R_adjusted": 1690.1
     }
   },
   "Evgeny Donskoy": {
@@ -12544,9 +12544,9 @@
         "match_id": "2017-wimbledon-1140",
         "round": "R128",
         "opponent": "Alexander Zverev",
-        "opponent_elo": 1900.8,
+        "opponent_elo": 1901.1,
         "w_t": 1.0,
-        "w_q": 1.2417
+        "w_q": 1.2421
       }
     ],
     "tier1": {
@@ -12683,9 +12683,9 @@
       "name": "Evgeny Donskoy",
       "n_overall": 16,
       "n_surface": 16,
-      "R_overall": 1377.9,
-      "R_surface": 1377.9,
-      "R_adjusted": 1377.9
+      "R_overall": 1391.5,
+      "R_surface": 1391.5,
+      "R_adjusted": 1391.5
     }
   },
   "Alexander Zverev": {
@@ -12703,9 +12703,9 @@
         "match_id": "2017-wimbledon-1140",
         "round": "R128",
         "opponent": "Evgeny Donskoy",
-        "opponent_elo": 1463.2,
+        "opponent_elo": 1462.1,
         "w_t": 1.0,
-        "w_q": 0.9559
+        "w_q": 0.9552
       },
       {
         "match_id": "2017-wimbledon-1220",
@@ -12713,7 +12713,7 @@
         "opponent": "Frances Tiafoe",
         "opponent_elo": 1500.0,
         "w_t": 0.9973,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2017-wimbledon-1310",
@@ -12727,9 +12727,9 @@
         "match_id": "2017-wimbledon-1405",
         "round": "R16",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1947.2,
+        "opponent_elo": 1943.0,
         "w_t": 0.9918,
-        "w_q": 1.272
+        "w_q": 1.2694
       }
     ],
     "tier1": {
@@ -12823,8 +12823,8 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 54.2,
-        "ad_win_pct": 49.8,
-        "asymmetry": 4.4,
+        "ad_win_pct": 49.9,
+        "asymmetry": 4.3,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
@@ -12864,11 +12864,11 @@
     },
     "elo_snapshot": {
       "name": "Alexander Zverev",
-      "n_overall": 51,
-      "n_surface": 51,
-      "R_overall": 1787.1,
-      "R_surface": 1787.1,
-      "R_adjusted": 1787.1
+      "n_overall": 59,
+      "n_surface": 59,
+      "R_overall": 1803.9,
+      "R_surface": 1803.9,
+      "R_adjusted": 1803.9
     }
   },
   "Grigor Dimitrov": {
@@ -12886,33 +12886,33 @@
         "match_id": "2017-wimbledon-1141",
         "round": "R128",
         "opponent": "Diego Schwartzman",
-        "opponent_elo": 1290.0,
+        "opponent_elo": 1289.3,
         "w_t": 1.0,
-        "w_q": 0.8427
+        "w_q": 0.8423
       },
       {
         "match_id": "2017-wimbledon-1221",
         "round": "R64",
         "opponent": "Marcos Baghdatis",
-        "opponent_elo": 1701.2,
+        "opponent_elo": 1699.5,
         "w_t": 0.9973,
-        "w_q": 1.1113
+        "w_q": 1.1103
       },
       {
         "match_id": "2017-wimbledon-1311",
         "round": "R32",
         "opponent": "Dudi Sela",
-        "opponent_elo": 1566.7,
+        "opponent_elo": 1569.2,
         "w_t": 0.9945,
-        "w_q": 1.0234
+        "w_q": 1.0252
       },
       {
         "match_id": "2017-wimbledon-1406",
         "round": "R16",
         "opponent": "Roger Federer",
-        "opponent_elo": 2097.8,
+        "opponent_elo": 2099.5,
         "w_t": 0.9918,
-        "w_q": 1.3704
+        "w_q": 1.3717
       }
     ],
     "tier1": {
@@ -12932,7 +12932,7 @@
         "ci_90_hi": 75.8
       },
       "rpw_pct": {
-        "value": 41.5,
+        "value": 41.4,
         "ci_90_lo": 32.5,
         "ci_90_hi": 51.6
       },
@@ -12950,7 +12950,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.5298,
+        "value": 1.5299,
         "max_bits": 1.585,
         "pct_of_max": 96.5
       },
@@ -13047,11 +13047,11 @@
     },
     "elo_snapshot": {
       "name": "Grigor Dimitrov",
-      "n_overall": 74,
-      "n_surface": 74,
-      "R_overall": 1706.2,
-      "R_surface": 1706.2,
-      "R_adjusted": 1706.2
+      "n_overall": 80,
+      "n_surface": 80,
+      "R_overall": 1741.0,
+      "R_surface": 1741.0,
+      "R_adjusted": 1741.0
     }
   },
   "Diego Schwartzman": {
@@ -13069,9 +13069,9 @@
         "match_id": "2017-wimbledon-1141",
         "round": "R128",
         "opponent": "Grigor Dimitrov",
-        "opponent_elo": 1809.6,
+        "opponent_elo": 1810.8,
         "w_t": 1.0,
-        "w_q": 1.1821
+        "w_q": 1.183
       }
     ],
     "tier1": {
@@ -13208,9 +13208,9 @@
       "name": "Diego Schwartzman",
       "n_overall": 26,
       "n_surface": 26,
-      "R_overall": 1557.1,
-      "R_surface": 1557.1,
-      "R_adjusted": 1557.1
+      "R_overall": 1558.9,
+      "R_surface": 1558.9,
+      "R_adjusted": 1558.9
     }
   },
   "James Ward": {
@@ -13228,9 +13228,9 @@
         "match_id": "2017-wimbledon-1142",
         "round": "R128",
         "opponent": "Marcos Baghdatis",
-        "opponent_elo": 1686.1,
+        "opponent_elo": 1684.6,
         "w_t": 1.0,
-        "w_q": 1.1014
+        "w_q": 1.1006
       }
     ],
     "tier1": {
@@ -13367,9 +13367,9 @@
       "name": "James Ward",
       "n_overall": 45,
       "n_surface": 45,
-      "R_overall": 1335.5,
-      "R_surface": 1335.5,
-      "R_adjusted": 1335.5
+      "R_overall": 1337.0,
+      "R_surface": 1337.0,
+      "R_adjusted": 1337.0
     }
   },
   "Marcos Baghdatis": {
@@ -13387,17 +13387,17 @@
         "match_id": "2017-wimbledon-1142",
         "round": "R128",
         "opponent": "James Ward",
-        "opponent_elo": 1396.4,
+        "opponent_elo": 1397.4,
         "w_t": 1.0,
-        "w_q": 0.9122
+        "w_q": 0.913
       },
       {
         "match_id": "2017-wimbledon-1221",
         "round": "R64",
         "opponent": "Grigor Dimitrov",
-        "opponent_elo": 1755.7,
+        "opponent_elo": 1756.8,
         "w_t": 0.9973,
-        "w_q": 1.1469
+        "w_q": 1.1478
       }
     ],
     "tier1": {
@@ -13497,7 +13497,7 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 3.67,
-        "streak_survival_rate": 0.378,
+        "streak_survival_rate": 0.379,
         "streak_recovery_rate": 0.693
       },
       "bp_creation_profile": {
@@ -13534,9 +13534,9 @@
       "name": "Marcos Baghdatis",
       "n_overall": 95,
       "n_surface": 95,
-      "R_overall": 1637.3,
-      "R_surface": 1637.3,
-      "R_adjusted": 1637.3
+      "R_overall": 1636.6,
+      "R_surface": 1636.6,
+      "R_adjusted": 1636.6
     }
   },
   "Dudi Sela": {
@@ -13554,25 +13554,25 @@
         "match_id": "2017-wimbledon-1143",
         "round": "R128",
         "opponent": "Marcel Granollers",
-        "opponent_elo": 1555.6,
+        "opponent_elo": 1555.7,
         "w_t": 1.0,
-        "w_q": 1.0162
+        "w_q": 1.0164
       },
       {
         "match_id": "2017-wimbledon-1222",
         "round": "R64",
         "opponent": "John Isner",
-        "opponent_elo": 1781.8,
+        "opponent_elo": 1777.5,
         "w_t": 0.9973,
-        "w_q": 1.164
+        "w_q": 1.1613
       },
       {
         "match_id": "2017-wimbledon-1311",
         "round": "R32",
         "opponent": "Grigor Dimitrov",
-        "opponent_elo": 1755.7,
+        "opponent_elo": 1756.8,
         "w_t": 0.9945,
-        "w_q": 1.1469
+        "w_q": 1.1478
       }
     ],
     "tier1": {
@@ -13598,7 +13598,7 @@
       },
       "sgw_pct": {
         "value": 82.1,
-        "ci_90_lo": 60.9,
+        "ci_90_lo": 60.8,
         "ci_90_hi": 89.4
       },
       "rgw_pct": {
@@ -13610,7 +13610,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.92,
+        "value": 0.9196,
         "max_bits": 1.585,
         "pct_of_max": 58.0
       },
@@ -13709,9 +13709,9 @@
       "name": "Dudi Sela",
       "n_overall": 54,
       "n_surface": 54,
-      "R_overall": 1671.1,
-      "R_surface": 1671.1,
-      "R_adjusted": 1671.1
+      "R_overall": 1668.0,
+      "R_surface": 1668.0,
+      "R_adjusted": 1668.0
     }
   },
   "Marcel Granollers": {
@@ -13729,9 +13729,9 @@
         "match_id": "2017-wimbledon-1143",
         "round": "R128",
         "opponent": "Dudi Sela",
-        "opponent_elo": 1656.6,
+        "opponent_elo": 1658.4,
         "w_t": 1.0,
-        "w_q": 1.0822
+        "w_q": 1.0835
       }
     ],
     "tier1": {
@@ -13854,9 +13854,9 @@
       "name": "Marcel Granollers",
       "n_overall": 38,
       "n_surface": 38,
-      "R_overall": 1655.0,
-      "R_surface": 1655.0,
-      "R_adjusted": 1655.0
+      "R_overall": 1652.7,
+      "R_surface": 1652.7,
+      "R_adjusted": 1652.7
     }
   },
   "Taylor Fritz": {
@@ -13874,9 +13874,9 @@
         "match_id": "2017-wimbledon-1144",
         "round": "R128",
         "opponent": "John Isner",
-        "opponent_elo": 1769.8,
+        "opponent_elo": 1764.6,
         "w_t": 1.0,
-        "w_q": 1.1561
+        "w_q": 1.1529
       }
     ],
     "tier1": {
@@ -13991,11 +13991,11 @@
     },
     "elo_snapshot": {
       "name": "Taylor Fritz",
-      "n_overall": 44,
-      "n_surface": 44,
-      "R_overall": 1663.8,
-      "R_surface": 1663.8,
-      "R_adjusted": 1663.8
+      "n_overall": 56,
+      "n_surface": 56,
+      "R_overall": 1786.8,
+      "R_surface": 1786.8,
+      "R_adjusted": 1786.8
     }
   },
   "John Isner": {
@@ -14003,7 +14003,7 @@
     "surface": "grass",
     "year": 2017,
     "n_matches": 2,
-    "n_points": 266,
+    "n_points": 267,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -14013,17 +14013,17 @@
         "match_id": "2017-wimbledon-1144",
         "round": "R128",
         "opponent": "Taylor Fritz",
-        "opponent_elo": 1473.7,
+        "opponent_elo": 1471.1,
         "w_t": 1.0,
-        "w_q": 0.9627
+        "w_q": 0.9611
       },
       {
         "match_id": "2017-wimbledon-1222",
         "round": "R64",
         "opponent": "Dudi Sela",
-        "opponent_elo": 1566.7,
+        "opponent_elo": 1569.2,
         "w_t": 0.9973,
-        "w_q": 1.0234
+        "w_q": 1.0252
       }
     ],
     "tier1": {
@@ -14035,7 +14035,7 @@
       "fspw_pct": {
         "value": 84.6,
         "ci_90_lo": 76.8,
-        "ci_90_hi": 89.0
+        "ci_90_hi": 88.9
       },
       "sspw_pct": {
         "value": 56.5,
@@ -14055,15 +14055,15 @@
       "rgw_pct": {
         "value": 12.6,
         "ci_90_lo": 7.7,
-        "ci_90_hi": 31.1
+        "ci_90_hi": 31.0
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7575,
+        "value": 0.7587,
         "max_bits": 1.585,
-        "pct_of_max": 47.8
+        "pct_of_max": 47.9
       },
       "rally_win_curve": {
         "1_3": {
@@ -14122,13 +14122,13 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 9.57,
+        "streak_initiation_rate": 9.58,
         "streak_survival_rate": 0.524,
         "streak_recovery_rate": 0.495
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.345,
-        "bp_conversion": 0.245,
+        "bp_conversion": 0.244,
         "bp_created": 8.2,
         "bp_converted": 2.0
       },
@@ -14160,9 +14160,9 @@
       "name": "John Isner",
       "n_overall": 85,
       "n_surface": 85,
-      "R_overall": 1751.2,
-      "R_surface": 1751.2,
-      "R_adjusted": 1751.2
+      "R_overall": 1748.9,
+      "R_surface": 1748.9,
+      "R_adjusted": 1748.9
     }
   },
   "Mischa Zverev": {
@@ -14180,31 +14180,31 @@
         "match_id": "2017-wimbledon-1145",
         "round": "R128",
         "opponent": "Bernard Tomic",
-        "opponent_elo": 1764.9,
+        "opponent_elo": 1760.9,
         "w_t": 1.0,
-        "w_q": 1.1529
+        "w_q": 1.1504
       },
       {
         "match_id": "2017-wimbledon-1223",
         "round": "R64",
         "opponent": "Mikhail Kukushkin",
-        "opponent_elo": 1492.4,
+        "opponent_elo": 1488.0,
         "w_t": 0.9973,
-        "w_q": 0.9749
+        "w_q": 0.9722
       },
       {
         "match_id": "2017-wimbledon-1312",
         "round": "R32",
         "opponent": "Roger Federer",
-        "opponent_elo": 2097.8,
+        "opponent_elo": 2099.5,
         "w_t": 0.9945,
-        "w_q": 1.3704
+        "w_q": 1.3717
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 70.3,
-        "ci_90_lo": 61.7,
+        "ci_90_lo": 61.6,
         "ci_90_hi": 76.8
       },
       "fspw_pct": {
@@ -14220,7 +14220,7 @@
       "rpw_pct": {
         "value": 35.0,
         "ci_90_lo": 28.3,
-        "ci_90_hi": 43.1
+        "ci_90_hi": 43.0
       },
       "sgw_pct": {
         "value": 84.4,
@@ -14236,9 +14236,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.6179,
+        "value": 0.6191,
         "max_bits": 1.585,
-        "pct_of_max": 39.0
+        "pct_of_max": 39.1
       },
       "rally_win_curve": {
         "1_3": {
@@ -14335,9 +14335,9 @@
       "name": "Mischa Zverev",
       "n_overall": 60,
       "n_surface": 60,
-      "R_overall": 1641.4,
-      "R_surface": 1641.4,
-      "R_adjusted": 1641.4
+      "R_overall": 1639.5,
+      "R_surface": 1639.5,
+      "R_adjusted": 1639.5
     }
   },
   "Bernard Tomic": {
@@ -14355,9 +14355,9 @@
         "match_id": "2017-wimbledon-1145",
         "round": "R128",
         "opponent": "Mischa Zverev",
-        "opponent_elo": 1692.5,
+        "opponent_elo": 1690.8,
         "w_t": 1.0,
-        "w_q": 1.1056
+        "w_q": 1.1047
       }
     ],
     "tier1": {
@@ -14480,9 +14480,9 @@
       "name": "Bernard Tomic",
       "n_overall": 70,
       "n_surface": 70,
-      "R_overall": 1661.2,
-      "R_surface": 1661.2,
-      "R_adjusted": 1661.2
+      "R_overall": 1663.3,
+      "R_surface": 1663.3,
+      "R_adjusted": 1663.3
     }
   },
   "Mikhail Kukushkin": {
@@ -14502,15 +14502,15 @@
         "opponent": "Taro Daniel",
         "opponent_elo": 1444.1,
         "w_t": 1.0,
-        "w_q": 0.9434
+        "w_q": 0.9435
       },
       {
         "match_id": "2017-wimbledon-1223",
         "round": "R64",
         "opponent": "Mischa Zverev",
-        "opponent_elo": 1660.7,
+        "opponent_elo": 1659.6,
         "w_t": 0.9973,
-        "w_q": 1.0848
+        "w_q": 1.0842
       }
     ],
     "tier1": {
@@ -14633,9 +14633,9 @@
       "name": "Mikhail Kukushkin",
       "n_overall": 41,
       "n_surface": 41,
-      "R_overall": 1551.8,
-      "R_surface": 1551.8,
-      "R_adjusted": 1551.8
+      "R_overall": 1551.1,
+      "R_surface": 1551.1,
+      "R_adjusted": 1551.1
     }
   },
   "Taro Daniel": {
@@ -14653,9 +14653,9 @@
         "match_id": "2017-wimbledon-1146",
         "round": "R128",
         "opponent": "Mikhail Kukushkin",
-        "opponent_elo": 1511.5,
+        "opponent_elo": 1507.9,
         "w_t": 1.0,
-        "w_q": 0.9874
+        "w_q": 0.9851
       }
     ],
     "tier1": {
@@ -14776,11 +14776,11 @@
     },
     "elo_snapshot": {
       "name": "Taro Daniel",
-      "n_overall": 7,
-      "n_surface": 7,
-      "R_overall": 1273.0,
-      "R_surface": 1273.0,
-      "R_adjusted": 1273.0
+      "n_overall": 10,
+      "n_surface": 10,
+      "R_overall": 1251.7,
+      "R_surface": 1251.7,
+      "R_adjusted": 1251.7
     }
   },
   "Stefanos Tsitsipas": {
@@ -14798,7 +14798,7 @@
         "match_id": "2017-wimbledon-1147",
         "round": "R128",
         "opponent": "Dusan Lajovic",
-        "opponent_elo": 1516.5,
+        "opponent_elo": 1516.3,
         "w_t": 1.0,
         "w_q": 0.9906
       }
@@ -14921,11 +14921,11 @@
     },
     "elo_snapshot": {
       "name": "Stefanos Tsitsipas",
-      "n_overall": 35,
-      "n_surface": 35,
-      "R_overall": 1712.8,
-      "R_surface": 1712.8,
-      "R_adjusted": 1712.8
+      "n_overall": 39,
+      "n_surface": 39,
+      "R_overall": 1653.1,
+      "R_surface": 1653.1,
+      "R_adjusted": 1653.1
     }
   },
   "Dusan Lajovic": {
@@ -14945,15 +14945,15 @@
         "opponent": "Stefanos Tsitsipas",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2017-wimbledon-1224",
         "round": "R64",
         "opponent": "Roger Federer",
-        "opponent_elo": 2097.8,
+        "opponent_elo": 2099.5,
         "w_t": 0.9973,
-        "w_q": 1.3704
+        "w_q": 1.3717
       }
     ],
     "tier1": {
@@ -14991,7 +14991,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.9051,
+        "value": 0.9054,
         "max_bits": 1.585,
         "pct_of_max": 57.1
       },
@@ -15088,11 +15088,11 @@
     },
     "elo_snapshot": {
       "name": "Dusan Lajovic",
-      "n_overall": 23,
-      "n_surface": 23,
-      "R_overall": 1416.4,
-      "R_surface": 1416.4,
-      "R_adjusted": 1416.4
+      "n_overall": 24,
+      "n_surface": 24,
+      "R_overall": 1408.1,
+      "R_surface": 1408.1,
+      "R_adjusted": 1408.1
     }
   },
   "Alexandr Dolgopolov": {
@@ -15110,9 +15110,9 @@
         "match_id": "2017-wimbledon-1148",
         "round": "R128",
         "opponent": "Roger Federer",
-        "opponent_elo": 2130.5,
+        "opponent_elo": 2130.7,
         "w_t": 1.0,
-        "w_q": 1.3918
+        "w_q": 1.3921
       }
     ],
     "tier1": {
@@ -15249,9 +15249,9 @@
       "name": "Alexandr Dolgopolov",
       "n_overall": 43,
       "n_surface": 43,
-      "R_overall": 1631.6,
-      "R_surface": 1631.6,
-      "R_adjusted": 1631.6
+      "R_overall": 1627.0,
+      "R_surface": 1627.0,
+      "R_adjusted": 1627.0
     }
   },
   "Roger Federer": {
@@ -15269,9 +15269,9 @@
         "match_id": "2017-wimbledon-1148",
         "round": "R128",
         "opponent": "Alexandr Dolgopolov",
-        "opponent_elo": 1635.0,
+        "opponent_elo": 1630.3,
         "w_t": 1.0,
-        "w_q": 1.068
+        "w_q": 1.0651
       },
       {
         "match_id": "2017-wimbledon-1224",
@@ -15279,47 +15279,47 @@
         "opponent": "Dusan Lajovic",
         "opponent_elo": 1483.3,
         "w_t": 0.9973,
-        "w_q": 0.969
+        "w_q": 0.9691
       },
       {
         "match_id": "2017-wimbledon-1312",
         "round": "R32",
         "opponent": "Mischa Zverev",
-        "opponent_elo": 1660.7,
+        "opponent_elo": 1659.6,
         "w_t": 0.9945,
-        "w_q": 1.0848
+        "w_q": 1.0842
       },
       {
         "match_id": "2017-wimbledon-1406",
         "round": "R16",
         "opponent": "Grigor Dimitrov",
-        "opponent_elo": 1755.7,
+        "opponent_elo": 1756.8,
         "w_t": 0.9918,
-        "w_q": 1.1469
+        "w_q": 1.1478
       },
       {
         "match_id": "2017-wimbledon-1503",
         "round": "QF",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1947.2,
+        "opponent_elo": 1943.0,
         "w_t": 0.9891,
-        "w_q": 1.272
+        "w_q": 1.2694
       },
       {
         "match_id": "2017-wimbledon-1602",
         "round": "SF",
         "opponent": "Tomas Berdych",
-        "opponent_elo": 1856.8,
+        "opponent_elo": 1856.6,
         "w_t": 0.9864,
-        "w_q": 1.2129
+        "w_q": 1.213
       },
       {
         "match_id": "2017-wimbledon-1701",
         "round": "F",
         "opponent": "Marin Cilic",
-        "opponent_elo": 1896.9,
+        "opponent_elo": 1892.9,
         "w_t": 0.9837,
-        "w_q": 1.2391
+        "w_q": 1.2367
       }
     ],
     "tier1": {
@@ -15357,7 +15357,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.4457,
+        "value": 1.4458,
         "max_bits": 1.585,
         "pct_of_max": 91.2
       },
@@ -15456,9 +15456,9 @@
       "name": "Roger Federer",
       "n_overall": 223,
       "n_surface": 223,
-      "R_overall": 2096.3,
-      "R_surface": 2096.3,
-      "R_adjusted": 2096.3
+      "R_overall": 2095.1,
+      "R_surface": 2095.1,
+      "R_adjusted": 2095.1
     }
   },
   "Dominic Thiem": {
@@ -15466,7 +15466,7 @@
     "surface": "grass",
     "year": 2017,
     "n_matches": 4,
-    "n_points": 226,
+    "n_points": 227,
     "n_eff_matches": 4.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -15476,33 +15476,33 @@
         "match_id": "2017-wimbledon-1149",
         "round": "R128",
         "opponent": "Vasek Pospisil",
-        "opponent_elo": 1585.6,
+        "opponent_elo": 1582.8,
         "w_t": 1.0,
-        "w_q": 1.0358
+        "w_q": 1.0341
       },
       {
         "match_id": "2017-wimbledon-1225",
         "round": "R64",
         "opponent": "Gilles Simon",
-        "opponent_elo": 1722.6,
+        "opponent_elo": 1718.9,
         "w_t": 0.9973,
-        "w_q": 1.1253
+        "w_q": 1.123
       },
       {
         "match_id": "2017-wimbledon-1313",
         "round": "R32",
         "opponent": "Jared Donaldson",
-        "opponent_elo": 1456.1,
+        "opponent_elo": 1455.7,
         "w_t": 0.9945,
-        "w_q": 0.9512
+        "w_q": 0.951
       },
       {
         "match_id": "2017-wimbledon-1407",
         "round": "R16",
         "opponent": "Tomas Berdych",
-        "opponent_elo": 1856.8,
+        "opponent_elo": 1856.6,
         "w_t": 0.9918,
-        "w_q": 1.2129
+        "w_q": 1.213
       }
     ],
     "tier1": {
@@ -15522,7 +15522,7 @@
         "ci_90_hi": 74.0
       },
       "rpw_pct": {
-        "value": 34.7,
+        "value": 34.6,
         "ci_90_lo": 28.3,
         "ci_90_hi": 42.2
       },
@@ -15608,7 +15608,7 @@
       "bp_creation_profile": {
         "bp_per_return_game": 0.584,
         "bp_conversion": 0.327,
-        "bp_created": 11.2,
+        "bp_created": 11.1,
         "bp_converted": 3.6
       },
       "rluep": null,
@@ -15637,11 +15637,11 @@
     },
     "elo_snapshot": {
       "name": "Dominic Thiem",
-      "n_overall": 32,
-      "n_surface": 32,
-      "R_overall": 1576.4,
-      "R_surface": 1576.4,
-      "R_adjusted": 1576.4
+      "n_overall": 33,
+      "n_surface": 33,
+      "R_overall": 1549.1,
+      "R_surface": 1549.1,
+      "R_adjusted": 1549.1
     }
   },
   "Vasek Pospisil": {
@@ -15659,9 +15659,9 @@
         "match_id": "2017-wimbledon-1149",
         "round": "R128",
         "opponent": "Dominic Thiem",
-        "opponent_elo": 1733.5,
+        "opponent_elo": 1736.1,
         "w_t": 1.0,
-        "w_q": 1.1324
+        "w_q": 1.1343
       }
     ],
     "tier1": {
@@ -15798,9 +15798,9 @@
       "name": "Vasek Pospisil",
       "n_overall": 48,
       "n_surface": 48,
-      "R_overall": 1517.1,
-      "R_surface": 1517.1,
-      "R_adjusted": 1517.1
+      "R_overall": 1511.0,
+      "R_surface": 1511.0,
+      "R_adjusted": 1511.0
     }
   },
   "Gilles Simon": {
@@ -15820,15 +15820,15 @@
         "opponent": "Nicolas Jarry",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2017-wimbledon-1225",
         "round": "R64",
         "opponent": "Dominic Thiem",
-        "opponent_elo": 1708.6,
+        "opponent_elo": 1713.2,
         "w_t": 0.9973,
-        "w_q": 1.1162
+        "w_q": 1.1193
       }
     ],
     "tier1": {
@@ -15866,7 +15866,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8378,
+        "value": 0.8388,
         "max_bits": 1.585,
         "pct_of_max": 52.9
       },
@@ -15932,7 +15932,7 @@
         "streak_recovery_rate": 0.387
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.462,
+        "bp_per_return_game": 0.461,
         "bp_conversion": 0.341,
         "bp_created": 8.6,
         "bp_converted": 2.9
@@ -15965,9 +15965,9 @@
       "name": "Gilles Simon",
       "n_overall": 96,
       "n_surface": 96,
-      "R_overall": 1592.3,
-      "R_surface": 1592.3,
-      "R_adjusted": 1592.3
+      "R_overall": 1596.2,
+      "R_surface": 1596.2,
+      "R_adjusted": 1596.2
     }
   },
   "Nicolas Jarry": {
@@ -15985,9 +15985,9 @@
         "match_id": "2017-wimbledon-1150",
         "round": "R128",
         "opponent": "Gilles Simon",
-        "opponent_elo": 1698.7,
+        "opponent_elo": 1695.4,
         "w_t": 1.0,
-        "w_q": 1.1097
+        "w_q": 1.1077
       }
     ],
     "tier1": {
@@ -16108,11 +16108,11 @@
     },
     "elo_snapshot": {
       "name": "Nicolas Jarry",
-      "n_overall": 17,
-      "n_surface": 17,
-      "R_overall": 1608.8,
-      "R_surface": 1608.8,
-      "R_adjusted": 1608.8
+      "n_overall": 18,
+      "n_surface": 18,
+      "R_overall": 1583.7,
+      "R_surface": 1583.7,
+      "R_adjusted": 1583.7
     }
   },
   "Janko Tipsarevic": {
@@ -16130,9 +16130,9 @@
         "match_id": "2017-wimbledon-1151",
         "round": "R128",
         "opponent": "Jared Donaldson",
-        "opponent_elo": 1522.8,
+        "opponent_elo": 1522.6,
         "w_t": 1.0,
-        "w_q": 0.9948
+        "w_q": 0.9947
       }
     ],
     "tier1": {
@@ -16249,9 +16249,9 @@
       "name": "Janko Tipsarevic",
       "n_overall": 72,
       "n_surface": 72,
-      "R_overall": 1576.2,
-      "R_surface": 1576.2,
-      "R_adjusted": 1576.2
+      "R_overall": 1577.8,
+      "R_surface": 1577.8,
+      "R_adjusted": 1577.8
     }
   },
   "Jared Donaldson": {
@@ -16269,31 +16269,31 @@
         "match_id": "2017-wimbledon-1151",
         "round": "R128",
         "opponent": "Janko Tipsarevic",
-        "opponent_elo": 1642.8,
+        "opponent_elo": 1644.6,
         "w_t": 1.0,
-        "w_q": 1.0732
+        "w_q": 1.0745
       },
       {
         "match_id": "2017-wimbledon-1226",
         "round": "R64",
         "opponent": "Paolo Lorenzi",
-        "opponent_elo": 1285.3,
+        "opponent_elo": 1283.1,
         "w_t": 0.9973,
-        "w_q": 0.8396
+        "w_q": 0.8383
       },
       {
         "match_id": "2017-wimbledon-1313",
         "round": "R32",
         "opponent": "Dominic Thiem",
-        "opponent_elo": 1708.6,
+        "opponent_elo": 1713.2,
         "w_t": 0.9945,
-        "w_q": 1.1162
+        "w_q": 1.1193
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 51.5,
-        "ci_90_lo": 42.2,
+        "ci_90_lo": 42.1,
         "ci_90_hi": 60.7
       },
       "fspw_pct": {
@@ -16313,7 +16313,7 @@
       },
       "sgw_pct": {
         "value": 80.0,
-        "ci_90_lo": 53.1,
+        "ci_90_lo": 53.0,
         "ci_90_hi": 88.6
       },
       "rgw_pct": {
@@ -16325,7 +16325,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.5367,
+        "value": 0.5377,
         "max_bits": 1.585,
         "pct_of_max": 33.9
       },
@@ -16392,7 +16392,7 @@
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.532,
-        "bp_conversion": 0.42,
+        "bp_conversion": 0.419,
         "bp_created": 6.9,
         "bp_converted": 2.9
       },
@@ -16424,9 +16424,9 @@
       "name": "Jared Donaldson",
       "n_overall": 14,
       "n_surface": 14,
-      "R_overall": 1466.7,
-      "R_surface": 1466.7,
-      "R_adjusted": 1466.7
+      "R_overall": 1466.3,
+      "R_surface": 1466.3,
+      "R_adjusted": 1466.3
     }
   },
   "Horacio Zeballos": {
@@ -16444,9 +16444,9 @@
         "match_id": "2017-wimbledon-1152",
         "round": "R128",
         "opponent": "Paolo Lorenzi",
-        "opponent_elo": 1306.4,
+        "opponent_elo": 1302.7,
         "w_t": 1.0,
-        "w_q": 0.8534
+        "w_q": 0.8511
       }
     ],
     "tier1": {
@@ -16569,9 +16569,9 @@
       "name": "Horacio Zeballos",
       "n_overall": 13,
       "n_surface": 13,
-      "R_overall": 1286.3,
-      "R_surface": 1286.3,
-      "R_adjusted": 1286.3
+      "R_overall": 1283.8,
+      "R_surface": 1283.8,
+      "R_adjusted": 1283.8
     }
   },
   "Paolo Lorenzi": {
@@ -16589,17 +16589,17 @@
         "match_id": "2017-wimbledon-1152",
         "round": "R128",
         "opponent": "Horacio Zeballos",
-        "opponent_elo": 1258.7,
+        "opponent_elo": 1256.1,
         "w_t": 1.0,
-        "w_q": 0.8222
+        "w_q": 0.8207
       },
       {
         "match_id": "2017-wimbledon-1226",
         "round": "R64",
         "opponent": "Jared Donaldson",
-        "opponent_elo": 1456.1,
+        "opponent_elo": 1455.7,
         "w_t": 0.9973,
-        "w_q": 0.9512
+        "w_q": 0.951
       }
     ],
     "tier1": {
@@ -16722,9 +16722,9 @@
       "name": "Paolo Lorenzi",
       "n_overall": 26,
       "n_surface": 26,
-      "R_overall": 1298.3,
-      "R_surface": 1298.3,
-      "R_adjusted": 1298.3
+      "R_overall": 1299.6,
+      "R_surface": 1299.6,
+      "R_adjusted": 1299.6
     }
   },
   "Richard Gasquet": {
@@ -16742,9 +16742,9 @@
         "match_id": "2017-wimbledon-1153",
         "round": "R128",
         "opponent": "David Ferrer",
-        "opponent_elo": 1706.0,
+        "opponent_elo": 1705.6,
         "w_t": 1.0,
-        "w_q": 1.1144
+        "w_q": 1.1143
       }
     ],
     "tier1": {
@@ -16874,11 +16874,11 @@
     },
     "elo_snapshot": {
       "name": "Richard Gasquet",
-      "n_overall": 116,
-      "n_surface": 116,
-      "R_overall": 1681.5,
-      "R_surface": 1681.5,
-      "R_adjusted": 1681.5
+      "n_overall": 117,
+      "n_surface": 117,
+      "R_overall": 1658.8,
+      "R_surface": 1658.8,
+      "R_adjusted": 1658.8
     }
   },
   "David Ferrer": {
@@ -16896,25 +16896,25 @@
         "match_id": "2017-wimbledon-1153",
         "round": "R128",
         "opponent": "Richard Gasquet",
-        "opponent_elo": 1835.0,
+        "opponent_elo": 1834.5,
         "w_t": 1.0,
-        "w_q": 1.1987
+        "w_q": 1.1986
       },
       {
         "match_id": "2017-wimbledon-1227",
         "round": "R64",
         "opponent": "Steve Darcis",
-        "opponent_elo": 1630.6,
+        "opponent_elo": 1628.5,
         "w_t": 0.9973,
-        "w_q": 1.0652
+        "w_q": 1.064
       },
       {
         "match_id": "2017-wimbledon-1314",
         "round": "R32",
         "opponent": "Tomas Berdych",
-        "opponent_elo": 1856.8,
+        "opponent_elo": 1856.6,
         "w_t": 0.9945,
-        "w_q": 1.2129
+        "w_q": 1.213
       }
     ],
     "tier1": {
@@ -16946,13 +16946,13 @@
       "rgw_pct": {
         "value": 18.9,
         "ci_90_lo": 10.8,
-        "ci_90_hi": 45.5
+        "ci_90_hi": 45.4
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.048,
+        "value": 1.0483,
         "max_bits": 1.585,
         "pct_of_max": 66.1
       },
@@ -17051,9 +17051,9 @@
       "name": "David Ferrer",
       "n_overall": 70,
       "n_surface": 70,
-      "R_overall": 1652.1,
-      "R_surface": 1652.1,
-      "R_adjusted": 1652.1
+      "R_overall": 1654.8,
+      "R_surface": 1654.8,
+      "R_adjusted": 1654.8
     }
   },
   "Steve Darcis": {
@@ -17071,17 +17071,17 @@
         "match_id": "2017-wimbledon-1154",
         "round": "R128",
         "opponent": "Ricardas Berankis",
-        "opponent_elo": 1291.2,
+        "opponent_elo": 1290.5,
         "w_t": 1.0,
-        "w_q": 0.8435
+        "w_q": 0.8431
       },
       {
         "match_id": "2017-wimbledon-1227",
         "round": "R64",
         "opponent": "David Ferrer",
-        "opponent_elo": 1684.5,
+        "opponent_elo": 1683.5,
         "w_t": 0.9973,
-        "w_q": 1.1004
+        "w_q": 1.0999
       }
     ],
     "tier1": {
@@ -17204,9 +17204,9 @@
       "name": "Steve Darcis",
       "n_overall": 35,
       "n_surface": 35,
-      "R_overall": 1575.2,
-      "R_surface": 1575.2,
-      "R_adjusted": 1575.2
+      "R_overall": 1572.1,
+      "R_surface": 1572.1,
+      "R_adjusted": 1572.1
     }
   },
   "Ricardas Berankis": {
@@ -17224,9 +17224,9 @@
         "match_id": "2017-wimbledon-1154",
         "round": "R128",
         "opponent": "Steve Darcis",
-        "opponent_elo": 1580.5,
+        "opponent_elo": 1609.4,
         "w_t": 1.0,
-        "w_q": 1.0324
+        "w_q": 1.0515
       }
     ],
     "tier1": {
@@ -17349,9 +17349,9 @@
       "name": "Ricardas Berankis",
       "n_overall": 26,
       "n_surface": 26,
-      "R_overall": 1450.7,
-      "R_surface": 1450.7,
-      "R_adjusted": 1450.7
+      "R_overall": 1449.5,
+      "R_surface": 1449.5,
+      "R_adjusted": 1449.5
     }
   },
   "Borna Coric": {
@@ -17369,9 +17369,9 @@
         "match_id": "2017-wimbledon-1155",
         "round": "R128",
         "opponent": "Ryan Harrison",
-        "opponent_elo": 1461.1,
+        "opponent_elo": 1460.6,
         "w_t": 1.0,
-        "w_q": 0.9545
+        "w_q": 0.9542
       }
     ],
     "tier1": {
@@ -17492,11 +17492,11 @@
     },
     "elo_snapshot": {
       "name": "Borna Coric",
-      "n_overall": 24,
-      "n_surface": 24,
-      "R_overall": 1578.1,
-      "R_surface": 1578.1,
-      "R_adjusted": 1578.1
+      "n_overall": 26,
+      "n_surface": 26,
+      "R_overall": 1572.3,
+      "R_surface": 1572.3,
+      "R_adjusted": 1572.3
     }
   },
   "Ryan Harrison": {
@@ -17514,17 +17514,17 @@
         "match_id": "2017-wimbledon-1155",
         "round": "R128",
         "opponent": "Borna Coric",
-        "opponent_elo": 1459.0,
+        "opponent_elo": 1454.9,
         "w_t": 1.0,
-        "w_q": 0.9531
+        "w_q": 0.9505
       },
       {
         "match_id": "2017-wimbledon-1228",
         "round": "R64",
         "opponent": "Tomas Berdych",
-        "opponent_elo": 1856.8,
+        "opponent_elo": 1856.6,
         "w_t": 0.9973,
-        "w_q": 1.2129
+        "w_q": 1.213
       }
     ],
     "tier1": {
@@ -17562,9 +17562,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.874,
+        "value": 0.875,
         "max_bits": 1.585,
-        "pct_of_max": 55.1
+        "pct_of_max": 55.2
       },
       "rally_win_curve": {
         "1_3": {
@@ -17625,7 +17625,7 @@
       "momentum_profile": {
         "streak_initiation_rate": 8.06,
         "streak_survival_rate": 0.422,
-        "streak_recovery_rate": 0.488
+        "streak_recovery_rate": 0.487
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.159,
@@ -17661,9 +17661,9 @@
       "name": "Ryan Harrison",
       "n_overall": 37,
       "n_surface": 37,
-      "R_overall": 1415.3,
-      "R_surface": 1415.3,
-      "R_adjusted": 1415.3
+      "R_overall": 1414.7,
+      "R_surface": 1414.7,
+      "R_adjusted": 1414.7
     }
   },
   "Jeremy Chardy": {
@@ -17681,9 +17681,9 @@
         "match_id": "2017-wimbledon-1156",
         "round": "R128",
         "opponent": "Tomas Berdych",
-        "opponent_elo": 1887.0,
+        "opponent_elo": 1887.7,
         "w_t": 1.0,
-        "w_q": 1.2327
+        "w_q": 1.2333
       }
     ],
     "tier1": {
@@ -17820,9 +17820,9 @@
       "name": "Jeremy Chardy",
       "n_overall": 63,
       "n_surface": 63,
-      "R_overall": 1559.8,
-      "R_surface": 1559.8,
-      "R_adjusted": 1559.8
+      "R_overall": 1556.2,
+      "R_surface": 1556.2,
+      "R_adjusted": 1556.2
     }
   },
   "Tomas Berdych": {
@@ -17840,15 +17840,15 @@
         "match_id": "2017-wimbledon-1156",
         "round": "R128",
         "opponent": "Jeremy Chardy",
-        "opponent_elo": 1586.8,
+        "opponent_elo": 1589.4,
         "w_t": 1.0,
-        "w_q": 1.0366
+        "w_q": 1.0384
       },
       {
         "match_id": "2017-wimbledon-1228",
         "round": "R64",
         "opponent": "Ryan Harrison",
-        "opponent_elo": 1442.6,
+        "opponent_elo": 1442.5,
         "w_t": 0.9973,
         "w_q": 0.9424
       },
@@ -17856,33 +17856,33 @@
         "match_id": "2017-wimbledon-1314",
         "round": "R32",
         "opponent": "David Ferrer",
-        "opponent_elo": 1684.5,
+        "opponent_elo": 1683.5,
         "w_t": 0.9945,
-        "w_q": 1.1004
+        "w_q": 1.0999
       },
       {
         "match_id": "2017-wimbledon-1407",
         "round": "R16",
         "opponent": "Dominic Thiem",
-        "opponent_elo": 1708.6,
+        "opponent_elo": 1713.2,
         "w_t": 0.9918,
-        "w_q": 1.1162
+        "w_q": 1.1193
       },
       {
         "match_id": "2017-wimbledon-1504",
         "round": "QF",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2155.7,
+        "opponent_elo": 2154.4,
         "w_t": 0.9891,
-        "w_q": 1.4082
+        "w_q": 1.4076
       },
       {
         "match_id": "2017-wimbledon-1602",
         "round": "SF",
         "opponent": "Roger Federer",
-        "opponent_elo": 2097.8,
+        "opponent_elo": 2099.5,
         "w_t": 0.9864,
-        "w_q": 1.3704
+        "w_q": 1.3717
       }
     ],
     "tier1": {
@@ -18019,9 +18019,9 @@
       "name": "Tomas Berdych",
       "n_overall": 99,
       "n_surface": 99,
-      "R_overall": 1825.6,
-      "R_surface": 1825.6,
-      "R_adjusted": 1825.6
+      "R_overall": 1826.1,
+      "R_surface": 1826.1,
+      "R_adjusted": 1826.1
     }
   },
   "Gael Monfils": {
@@ -18039,25 +18039,25 @@
         "match_id": "2017-wimbledon-1157",
         "round": "R128",
         "opponent": "Daniel Brands",
-        "opponent_elo": 1518.8,
+        "opponent_elo": 1517.8,
         "w_t": 1.0,
-        "w_q": 0.9922
+        "w_q": 0.9916
       },
       {
         "match_id": "2017-wimbledon-1229",
         "round": "R64",
         "opponent": "Kyle Edmund",
-        "opponent_elo": 1433.5,
+        "opponent_elo": 1431.9,
         "w_t": 0.9973,
-        "w_q": 0.9364
+        "w_q": 0.9355
       },
       {
         "match_id": "2017-wimbledon-1315",
         "round": "R32",
         "opponent": "Adrian Mannarino",
-        "opponent_elo": 1746.9,
+        "opponent_elo": 1743.3,
         "w_t": 0.9945,
-        "w_q": 1.1412
+        "w_q": 1.139
       }
     ],
     "tier1": {
@@ -18078,12 +18078,12 @@
       },
       "rpw_pct": {
         "value": 35.4,
-        "ci_90_lo": 28.9,
+        "ci_90_lo": 29.0,
         "ci_90_hi": 43.1
       },
       "sgw_pct": {
         "value": 83.1,
-        "ci_90_lo": 62.0,
+        "ci_90_lo": 62.1,
         "ci_90_hi": 90.0
       },
       "rgw_pct": {
@@ -18192,11 +18192,11 @@
     },
     "elo_snapshot": {
       "name": "Gael Monfils",
-      "n_overall": 73,
-      "n_surface": 73,
-      "R_overall": 1612.3,
-      "R_surface": 1612.3,
-      "R_adjusted": 1612.3
+      "n_overall": 80,
+      "n_surface": 80,
+      "R_overall": 1672.3,
+      "R_surface": 1672.3,
+      "R_adjusted": 1672.3
     }
   },
   "Daniel Brands": {
@@ -18214,9 +18214,9 @@
         "match_id": "2017-wimbledon-1157",
         "round": "R128",
         "opponent": "Gael Monfils",
-        "opponent_elo": 1763.9,
+        "opponent_elo": 1762.5,
         "w_t": 1.0,
-        "w_q": 1.1523
+        "w_q": 1.1515
       }
     ],
     "tier1": {
@@ -18353,9 +18353,9 @@
       "name": "Daniel Brands",
       "n_overall": 17,
       "n_surface": 17,
-      "R_overall": 1460.0,
-      "R_surface": 1460.0,
-      "R_adjusted": 1460.0
+      "R_overall": 1459.0,
+      "R_surface": 1459.0,
+      "R_adjusted": 1459.0
     }
   },
   "Kyle Edmund": {
@@ -18373,17 +18373,17 @@
         "match_id": "2017-wimbledon-1158",
         "round": "R128",
         "opponent": "Alexander Ward",
-        "opponent_elo": 1414.2,
+        "opponent_elo": 1409.8,
         "w_t": 1.0,
-        "w_q": 0.9238
+        "w_q": 0.921
       },
       {
         "match_id": "2017-wimbledon-1229",
         "round": "R64",
         "opponent": "Gael Monfils",
-        "opponent_elo": 1716.7,
+        "opponent_elo": 1715.6,
         "w_t": 0.9973,
-        "w_q": 1.1215
+        "w_q": 1.1208
       }
     ],
     "tier1": {
@@ -18393,7 +18393,7 @@
         "ci_90_hi": 62.9
       },
       "fspw_pct": {
-        "value": 75.0,
+        "value": 74.9,
         "ci_90_lo": 63.1,
         "ci_90_hi": 82.3
       },
@@ -18455,23 +18455,23 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 3.4,
-        "bp_df_rate": 8.6,
+        "value": 3.3,
+        "bp_df_rate": 8.5,
         "baseline_df_rate": 5.2,
         "n_eff": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.034
+        "modifier_delta": 0.033
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 1.4,
+        "value": 1.3,
         "bp_speed_kmh": 174.0,
-        "overall_speed_kmh": 172.6,
+        "overall_speed_kmh": 172.7,
         "n_eff": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.014,
+        "modifier_delta": 0.013,
         "note": null
       },
       "court_side_asymmetry": {
@@ -18483,8 +18483,8 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 6.63,
-        "streak_survival_rate": 0.452,
-        "streak_recovery_rate": 0.178
+        "streak_survival_rate": 0.453,
+        "streak_recovery_rate": 0.177
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.608,
@@ -18495,24 +18495,24 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.1332,
+        "value": 0.1292,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0081,
+            "delta_frac": 0.0075,
             "weight": 0.3,
-            "contribution": 0.0024
+            "contribution": 0.0023
           },
           "df_rate_delta": {
-            "delta_frac": 0.6538,
+            "delta_frac": 0.6346,
             "weight": 0.2,
-            "contribution": 0.1308
+            "contribution": 0.1269
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.1332,
+        "modifier_delta": 0.1292,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -18520,9 +18520,9 @@
       "name": "Kyle Edmund",
       "n_overall": 31,
       "n_surface": 31,
-      "R_overall": 1546.0,
-      "R_surface": 1546.0,
-      "R_adjusted": 1546.0
+      "R_overall": 1549.8,
+      "R_surface": 1549.8,
+      "R_adjusted": 1549.8
     }
   },
   "Alexander Ward": {
@@ -18540,9 +18540,9 @@
         "match_id": "2017-wimbledon-1158",
         "round": "R128",
         "opponent": "Kyle Edmund",
-        "opponent_elo": 1448.3,
+        "opponent_elo": 1446.5,
         "w_t": 1.0,
-        "w_q": 0.9461
+        "w_q": 0.9451
       }
     ],
     "tier1": {
@@ -18679,9 +18679,9 @@
       "name": "Alexander Ward",
       "n_overall": 3,
       "n_surface": 3,
-      "R_overall": 1356.3,
-      "R_surface": 1356.3,
-      "R_adjusted": 1356.3
+      "R_overall": 1352.3,
+      "R_surface": 1352.3,
+      "R_adjusted": 1352.3
     }
   },
   "Yuichi Sugita": {
@@ -18699,17 +18699,17 @@
         "match_id": "2017-wimbledon-1159",
         "round": "R128",
         "opponent": "Brydan Klein",
-        "opponent_elo": 1421.0,
+        "opponent_elo": 1416.6,
         "w_t": 1.0,
-        "w_q": 0.9283
+        "w_q": 0.9255
       },
       {
         "match_id": "2017-wimbledon-1230",
         "round": "R64",
         "opponent": "Adrian Mannarino",
-        "opponent_elo": 1746.9,
+        "opponent_elo": 1743.3,
         "w_t": 0.9973,
-        "w_q": 1.1412
+        "w_q": 1.139
       }
     ],
     "tier1": {
@@ -18832,9 +18832,9 @@
       "name": "Yuichi Sugita",
       "n_overall": 31,
       "n_surface": 31,
-      "R_overall": 1571.9,
-      "R_surface": 1571.9,
-      "R_adjusted": 1571.9
+      "R_overall": 1576.1,
+      "R_surface": 1576.1,
+      "R_adjusted": 1576.1
     }
   },
   "Brydan Klein": {
@@ -18852,9 +18852,9 @@
         "match_id": "2017-wimbledon-1159",
         "round": "R128",
         "opponent": "Yuichi Sugita",
-        "opponent_elo": 1729.9,
+        "opponent_elo": 1731.0,
         "w_t": 1.0,
-        "w_q": 1.1301
+        "w_q": 1.1309
       }
     ],
     "tier1": {
@@ -18977,9 +18977,9 @@
       "name": "Brydan Klein",
       "n_overall": 6,
       "n_surface": 6,
-      "R_overall": 1405.8,
-      "R_surface": 1405.8,
-      "R_adjusted": 1405.8
+      "R_overall": 1401.8,
+      "R_surface": 1401.8,
+      "R_adjusted": 1401.8
     }
   },
   "Adrian Mannarino": {
@@ -18997,33 +18997,33 @@
         "match_id": "2017-wimbledon-1160",
         "round": "R128",
         "opponent": "Feliciano Lopez",
-        "opponent_elo": 1886.2,
+        "opponent_elo": 1888.1,
         "w_t": 1.0,
-        "w_q": 1.2321
+        "w_q": 1.2335
       },
       {
         "match_id": "2017-wimbledon-1230",
         "round": "R64",
         "opponent": "Yuichi Sugita",
-        "opponent_elo": 1679.6,
+        "opponent_elo": 1681.3,
         "w_t": 0.9973,
-        "w_q": 1.0972
+        "w_q": 1.0985
       },
       {
         "match_id": "2017-wimbledon-1315",
         "round": "R32",
         "opponent": "Gael Monfils",
-        "opponent_elo": 1716.7,
+        "opponent_elo": 1715.6,
         "w_t": 0.9945,
-        "w_q": 1.1215
+        "w_q": 1.1208
       },
       {
         "match_id": "2017-wimbledon-1408",
         "round": "R16",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2165.8,
+        "opponent_elo": 2164.5,
         "w_t": 0.9918,
-        "w_q": 1.4148
+        "w_q": 1.4141
       }
     ],
     "tier1": {
@@ -19061,7 +19061,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8152,
+        "value": 0.8145,
         "max_bits": 1.585,
         "pct_of_max": 51.4
       },
@@ -19158,11 +19158,11 @@
     },
     "elo_snapshot": {
       "name": "Adrian Mannarino",
-      "n_overall": 115,
-      "n_surface": 115,
-      "R_overall": 1759.0,
-      "R_surface": 1759.0,
-      "R_adjusted": 1759.0
+      "n_overall": 121,
+      "n_surface": 121,
+      "R_overall": 1638.9,
+      "R_surface": 1638.9,
+      "R_adjusted": 1638.9
     }
   },
   "Feliciano Lopez": {
@@ -19180,9 +19180,9 @@
         "match_id": "2017-wimbledon-1160",
         "round": "R128",
         "opponent": "Adrian Mannarino",
-        "opponent_elo": 1796.1,
+        "opponent_elo": 1793.5,
         "w_t": 1.0,
-        "w_q": 1.1733
+        "w_q": 1.1717
       }
     ],
     "tier1": {
@@ -19305,9 +19305,9 @@
       "name": "Feliciano Lopez",
       "n_overall": 142,
       "n_surface": 142,
-      "R_overall": 1666.6,
-      "R_surface": 1666.6,
-      "R_adjusted": 1666.6
+      "R_overall": 1665.5,
+      "R_surface": 1665.5,
+      "R_adjusted": 1665.5
     }
   },
   "Juan Martin Del Potro": {
@@ -19325,17 +19325,17 @@
         "match_id": "2017-wimbledon-1161",
         "round": "R128",
         "opponent": "Thanasi Kokkinakis",
-        "opponent_elo": 1535.8,
+        "opponent_elo": 1536.5,
         "w_t": 1.0,
-        "w_q": 1.0033
+        "w_q": 1.0039
       },
       {
         "match_id": "2017-wimbledon-1231",
         "round": "R64",
         "opponent": "Ernests Gulbis",
-        "opponent_elo": 1530.0,
+        "opponent_elo": 1534.6,
         "w_t": 0.9973,
-        "w_q": 0.9995
+        "w_q": 1.0026
       }
     ],
     "tier1": {
@@ -19360,7 +19360,7 @@
         "ci_90_hi": 39.7
       },
       "sgw_pct": {
-        "value": 83.4,
+        "value": 83.3,
         "ci_90_lo": 61.6,
         "ci_90_hi": 90.1
       },
@@ -19622,11 +19622,11 @@
     },
     "elo_snapshot": {
       "name": "Thanasi Kokkinakis",
-      "n_overall": 11,
-      "n_surface": 11,
-      "R_overall": 1566.1,
-      "R_surface": 1566.1,
-      "R_adjusted": 1566.1
+      "n_overall": 13,
+      "n_surface": 13,
+      "R_overall": 1587.9,
+      "R_surface": 1587.9,
+      "R_adjusted": 1587.9
     }
   },
   "Ernests Gulbis": {
@@ -19660,9 +19660,9 @@
         "match_id": "2017-wimbledon-1316",
         "round": "R32",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2165.8,
+        "opponent_elo": 2164.5,
         "w_t": 0.9945,
-        "w_q": 1.4148
+        "w_q": 1.4141
       }
     ],
     "tier1": {
@@ -19684,7 +19684,7 @@
       "rpw_pct": {
         "value": 36.9,
         "ci_90_lo": 29.5,
-        "ci_90_hi": 45.8
+        "ci_90_hi": 45.9
       },
       "sgw_pct": {
         "value": 82.9,
@@ -19700,7 +19700,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.0849,
+        "value": 1.0848,
         "max_bits": 1.585,
         "pct_of_max": 68.4
       },
@@ -19799,9 +19799,9 @@
       "name": "Ernests Gulbis",
       "n_overall": 39,
       "n_surface": 39,
-      "R_overall": 1563.8,
-      "R_surface": 1563.8,
-      "R_adjusted": 1563.8
+      "R_overall": 1562.9,
+      "R_surface": 1562.9,
+      "R_adjusted": 1562.9
     }
   },
   "Victor Estrella Burgos": {
@@ -19819,9 +19819,9 @@
         "match_id": "2017-wimbledon-1162",
         "round": "R128",
         "opponent": "Ernests Gulbis",
-        "opponent_elo": 1589.5,
+        "opponent_elo": 1592.6,
         "w_t": 1.0,
-        "w_q": 1.0384
+        "w_q": 1.0405
       }
     ],
     "tier1": {
@@ -19957,29 +19957,29 @@
         "match_id": "2017-wimbledon-1163",
         "round": "R128",
         "opponent": "Ernesto Escobedo",
-        "opponent_elo": 1491.3,
+        "opponent_elo": 1482.3,
         "w_t": 1.0,
-        "w_q": 0.9742
+        "w_q": 0.9685
       },
       {
         "match_id": "2017-wimbledon-1232",
         "round": "R64",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2165.8,
+        "opponent_elo": 2164.5,
         "w_t": 0.9973,
-        "w_q": 1.4148
+        "w_q": 1.4141
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 60.2,
+        "value": 60.1,
         "ci_90_lo": 51.4,
         "ci_90_hi": 67.8
       },
       "fspw_pct": {
         "value": 71.5,
-        "ci_90_lo": 60.0,
-        "ci_90_hi": 79.4
+        "ci_90_lo": 59.9,
+        "ci_90_hi": 79.3
       },
       "sspw_pct": {
         "value": 49.2,
@@ -19989,12 +19989,12 @@
       "rpw_pct": {
         "value": 34.5,
         "ci_90_lo": 27.2,
-        "ci_90_hi": 43.6
+        "ci_90_hi": 43.5
       },
       "sgw_pct": {
         "value": 67.5,
-        "ci_90_lo": 44.2,
-        "ci_90_hi": 81.1
+        "ci_90_lo": 44.1,
+        "ci_90_hi": 81.0
       },
       "rgw_pct": {
         "value": 24.7,
@@ -20005,9 +20005,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.9241,
+        "value": 0.9262,
         "max_bits": 1.585,
-        "pct_of_max": 58.3
+        "pct_of_max": 58.4
       },
       "rally_win_curve": {
         "1_3": {
@@ -20029,13 +20029,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 8.2,
-        "high_lev_win_pct": 55.9,
+        "value": 8.1,
+        "high_lev_win_pct": 55.8,
         "baseline_win_pct": 47.7,
         "n_eff": 31,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.082
+        "modifier_delta": 0.081
       },
       "df_pressure_delta": {
         "available": true,
@@ -20066,12 +20066,12 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.45,
-        "streak_survival_rate": 0.429,
+        "streak_initiation_rate": 5.44,
+        "streak_survival_rate": 0.428,
         "streak_recovery_rate": 0.419
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.535,
+        "bp_per_return_game": 0.533,
         "bp_conversion": 0.411,
         "bp_created": 7.9,
         "bp_converted": 3.3
@@ -20104,9 +20104,9 @@
       "name": "Adam Pavlasek",
       "n_overall": 2,
       "n_surface": 2,
-      "R_overall": 1560.4,
-      "R_surface": 1560.4,
-      "R_adjusted": 1560.4
+      "R_overall": 1558.7,
+      "R_surface": 1558.7,
+      "R_adjusted": 1558.7
     }
   },
   "Ernesto Escobedo": {
@@ -20124,9 +20124,9 @@
         "match_id": "2017-wimbledon-1163",
         "round": "R128",
         "opponent": "Adam Pavlasek",
-        "opponent_elo": 1564.0,
+        "opponent_elo": 1562.3,
         "w_t": 1.0,
-        "w_q": 1.0217
+        "w_q": 1.0207
       }
     ],
     "tier1": {
@@ -20249,9 +20249,9 @@
       "name": "Ernesto Escobedo",
       "n_overall": 6,
       "n_surface": 6,
-      "R_overall": 1442.8,
-      "R_surface": 1442.8,
-      "R_adjusted": 1442.8
+      "R_overall": 1435.1,
+      "R_surface": 1435.1,
+      "R_adjusted": 1435.1
     }
   },
   "Martin Klizan": {
@@ -20269,9 +20269,9 @@
         "match_id": "2017-wimbledon-1164",
         "round": "R128",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2135.9,
+        "opponent_elo": 2134.6,
         "w_t": 1.0,
-        "w_q": 1.3953
+        "w_q": 1.3946
       }
     ],
     "tier1": {
@@ -20408,9 +20408,9 @@
       "name": "Martin Klizan",
       "n_overall": 17,
       "n_surface": 17,
-      "R_overall": 1388.8,
-      "R_surface": 1388.8,
-      "R_adjusted": 1388.8
+      "R_overall": 1387.2,
+      "R_surface": 1387.2,
+      "R_adjusted": 1387.2
     }
   },
   "Novak Djokovic": {
@@ -20428,9 +20428,9 @@
         "match_id": "2017-wimbledon-1164",
         "round": "R128",
         "opponent": "Martin Klizan",
-        "opponent_elo": 1404.9,
+        "opponent_elo": 1403.5,
         "w_t": 1.0,
-        "w_q": 0.9178
+        "w_q": 0.9169
       },
       {
         "match_id": "2017-wimbledon-1232",
@@ -20444,25 +20444,25 @@
         "match_id": "2017-wimbledon-1316",
         "round": "R32",
         "opponent": "Ernests Gulbis",
-        "opponent_elo": 1530.0,
+        "opponent_elo": 1534.6,
         "w_t": 0.9945,
-        "w_q": 0.9995
+        "w_q": 1.0026
       },
       {
         "match_id": "2017-wimbledon-1408",
         "round": "R16",
         "opponent": "Adrian Mannarino",
-        "opponent_elo": 1746.9,
+        "opponent_elo": 1743.3,
         "w_t": 0.9918,
-        "w_q": 1.1412
+        "w_q": 1.139
       },
       {
         "match_id": "2017-wimbledon-1504",
         "round": "QF",
         "opponent": "Tomas Berdych",
-        "opponent_elo": 1856.8,
+        "opponent_elo": 1856.6,
         "w_t": 0.9891,
-        "w_q": 1.2129
+        "w_q": 1.213
       }
     ],
     "tier1": {
@@ -20500,7 +20500,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.4684,
+        "value": 1.4685,
         "max_bits": 1.585,
         "pct_of_max": 92.6
       },
@@ -20561,7 +20561,7 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 2.36,
+        "streak_initiation_rate": 2.37,
         "streak_survival_rate": 0.315,
         "streak_recovery_rate": 0.516
       },
@@ -20597,11 +20597,11 @@
     },
     "elo_snapshot": {
       "name": "Novak Djokovic",
-      "n_overall": 133,
-      "n_surface": 133,
-      "R_overall": 2205.0,
-      "R_surface": 2205.0,
-      "R_adjusted": 2205.0
+      "n_overall": 140,
+      "n_surface": 140,
+      "R_overall": 2184.9,
+      "R_surface": 2184.9,
+      "R_adjusted": 2184.9
     }
   }
 }

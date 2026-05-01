@@ -1,0 +1,91 @@
+{
+  "year": 2023,
+  "n_players": 128,
+  "serve": {
+    "first_in_pct": 63.6,
+    "first_won_pct": 71.2,
+    "second_won_pct": 56.2,
+    "ace_pct": 7.9,
+    "df_pct": 3.8
+  },
+  "serve_speed": {
+    "first_avg_kmh": 187.6,
+    "second_avg_kmh": 154.9
+  },
+  "serve_direction": {
+    "wide_pct": 42.9,
+    "body_pct": 27.9,
+    "centre_pct": 29.1
+  },
+  "rally_shots": {
+    "srv_all_avg": 1.9,
+    "srv_1st_avg": 1.7,
+    "srv_2nd_avg": 2.3,
+    "ret_all_avg": 1.8,
+    "ret_1st_avg": 1.6,
+    "ret_2nd_avg": 2.2
+  },
+  "pressure": {
+    "bp_created_per_opp_sg": 0.4,
+    "bp_saved_pct": 59.9,
+    "bp_conv_pct": 33.4
+  },
+  "aggression": {
+    "aggression_index": 50.8
+  },
+  "clean_games": {
+    "srv_clean_pct": 61.2,
+    "ret_clean_pct": 69.9
+  },
+  "streaks": {
+    "streaks_per_match": 14.0
+  },
+  "bad_breaks": [
+    {
+      "winner": "Alexandre Muller",
+      "loser": "Arthur Rinderknech",
+      "winner_pts": 119,
+      "loser_pts": 129,
+      "bad_break": true,
+      "margin": -10
+    },
+    {
+      "winner": "Jordan Thompson",
+      "loser": "Brandon Nakashima",
+      "winner_pts": 137,
+      "loser_pts": 141,
+      "bad_break": true,
+      "margin": -4
+    },
+    {
+      "winner": "Stefanos Tsitsipas",
+      "loser": "Andy Murray",
+      "winner_pts": 169,
+      "loser_pts": 176,
+      "bad_break": true,
+      "margin": -7
+    },
+    {
+      "winner": "Mikael Ymer",
+      "loser": "Taylor Fritz",
+      "winner_pts": 133,
+      "loser_pts": 135,
+      "bad_break": true,
+      "margin": -2
+    },
+    {
+      "winner": "Christopher Eubanks",
+      "loser": "Stefanos Tsitsipas",
+      "winner_pts": 137,
+      "loser_pts": 149,
+      "bad_break": true,
+      "margin": -12
+    }
+  ],
+  "match_duration": {
+    "avg_mins": 634.8
+  },
+  "distance": {
+    "avg_km_per_match": 3.3
+  }
+}

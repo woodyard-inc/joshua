@@ -1,0 +1,75 @@
+{
+  "year": 2016,
+  "n_players": 128,
+  "serve": {
+    "first_in_pct": 62.8,
+    "first_won_pct": 71.4,
+    "second_won_pct": 56.4,
+    "ace_pct": 8.4,
+    "df_pct": 3.8
+  },
+  "serve_speed": {
+    "first_avg_kmh": 185.5,
+    "second_avg_kmh": 155.1
+  },
+  "serve_direction": {
+    "wide_pct": 41.9,
+    "body_pct": 27.3,
+    "centre_pct": 30.8
+  },
+  "rally_shots": {
+    "srv_all_avg": 2.6,
+    "srv_1st_avg": 2.5,
+    "srv_2nd_avg": 3.1,
+    "ret_all_avg": 2.5,
+    "ret_1st_avg": 2.4,
+    "ret_2nd_avg": 3.0
+  },
+  "pressure": {
+    "bp_created_per_opp_sg": 0.4,
+    "bp_saved_pct": 56.0,
+    "bp_conv_pct": 38.5
+  },
+  "aggression": {
+    "aggression_index": 55.1
+  },
+  "clean_games": {
+    "srv_clean_pct": 61.2,
+    "ret_clean_pct": 71.4
+  },
+  "streaks": {
+    "streaks_per_match": 13.8
+  },
+  "bad_breaks": [
+    {
+      "winner": "Damir Dzumhur",
+      "loser": "Denis Kudla",
+      "winner_pts": 153,
+      "loser_pts": 164,
+      "bad_break": true,
+      "margin": -11
+    },
+    {
+      "winner": "Nicolas Almagro",
+      "loser": "Rogerio Dutra Silva",
+      "winner_pts": 161,
+      "loser_pts": 162,
+      "bad_break": true,
+      "margin": -1
+    },
+    {
+      "winner": "Benoit Paire",
+      "loser": "Franko Skugor",
+      "winner_pts": 191,
+      "loser_pts": 194,
+      "bad_break": true,
+      "margin": -3
+    }
+  ],
+  "match_duration": {
+    "avg_mins": 153.5
+  },
+  "distance": {
+    "avg_km_per_match": 2.0
+  }
+}

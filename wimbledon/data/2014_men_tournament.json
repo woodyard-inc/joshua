@@ -1,0 +1,91 @@
+{
+  "year": 2014,
+  "n_players": 128,
+  "serve": {
+    "first_in_pct": 64.3,
+    "first_won_pct": 72.1,
+    "second_won_pct": 55.3,
+    "ace_pct": 9.7,
+    "df_pct": 3.2
+  },
+  "serve_speed": {
+    "first_avg_kmh": 183.7,
+    "second_avg_kmh": 154.0
+  },
+  "serve_direction": {
+    "wide_pct": null,
+    "body_pct": null,
+    "centre_pct": null
+  },
+  "rally_shots": {
+    "srv_all_avg": null,
+    "srv_1st_avg": null,
+    "srv_2nd_avg": null,
+    "ret_all_avg": null,
+    "ret_1st_avg": null,
+    "ret_2nd_avg": null
+  },
+  "pressure": {
+    "bp_created_per_opp_sg": 0.4,
+    "bp_saved_pct": 62.8,
+    "bp_conv_pct": 30.6
+  },
+  "aggression": {
+    "aggression_index": 58.8
+  },
+  "clean_games": {
+    "srv_clean_pct": 63.0,
+    "ret_clean_pct": 75.0
+  },
+  "streaks": {
+    "streaks_per_match": 13.8
+  },
+  "bad_breaks": [
+    {
+      "winner": "Fabio Fognini",
+      "loser": "Alex Kuznetsov",
+      "winner_pts": 146,
+      "loser_pts": 154,
+      "bad_break": true,
+      "margin": -8
+    },
+    {
+      "winner": "Leonardo Mayer",
+      "loser": "Andreas Seppi",
+      "winner_pts": 147,
+      "loser_pts": 157,
+      "bad_break": true,
+      "margin": -10
+    },
+    {
+      "winner": "Dusan Lajovic",
+      "loser": "Guillermo Garcia-Lopez",
+      "winner_pts": 157,
+      "loser_pts": 159,
+      "bad_break": true,
+      "margin": -2
+    },
+    {
+      "winner": "Nick Kyrgios",
+      "loser": "Richard Gasquet",
+      "winner_pts": 196,
+      "loser_pts": 200,
+      "bad_break": true,
+      "margin": -4
+    },
+    {
+      "winner": "Kei Nishikori",
+      "loser": "Simone Bolelli",
+      "winner_pts": 146,
+      "loser_pts": 147,
+      "bad_break": true,
+      "margin": -1
+    }
+  ],
+  "match_duration": {
+    "avg_mins": 141.8
+  },
+  "distance": {
+    "avg_km_per_match": null
+  }
+}

@@ -3,7 +3,7 @@
 
 // ── State ─────────────────────────────────────────────────────────
 const state = {
-  year:         2017,
+  year:         2019,
   playerName:   null,
   profiles:     null,
   tournament:   null,
@@ -12,11 +12,13 @@ const state = {
   lbMetric:     "fspw_pct",
 };
 
-const AVAILABLE_YEARS = [2017, 2018, 2019];
+const AVAILABLE_YEARS = [2011, 2012, 2013, 2014, 2015, 2016,
+                          2017, 2018, 2019,
+                          2021, 2022, 2023, 2024];
 
 // ── Boot ──────────────────────────────────────────────────────────
 async function boot() {
-  // Set active year pill
+  // Set active year pill (matches state.year default)
   document.querySelectorAll(".pill").forEach(p => {
     p.classList.toggle("active", +p.dataset.year === state.year);
   });

@@ -1,0 +1,75 @@
+{
+  "year": 2011,
+  "n_players": 69,
+  "serve": {
+    "first_in_pct": 0.0,
+    "first_won_pct": null,
+    "second_won_pct": null,
+    "ace_pct": 9.4,
+    "df_pct": 3.3
+  },
+  "serve_speed": {
+    "first_avg_kmh": null,
+    "second_avg_kmh": null
+  },
+  "serve_direction": {
+    "wide_pct": null,
+    "body_pct": null,
+    "centre_pct": null
+  },
+  "rally_shots": {
+    "srv_all_avg": null,
+    "srv_1st_avg": null,
+    "srv_2nd_avg": null,
+    "ret_all_avg": null,
+    "ret_1st_avg": null,
+    "ret_2nd_avg": null
+  },
+  "pressure": {
+    "bp_created_per_opp_sg": 0.4,
+    "bp_saved_pct": 57.4,
+    "bp_conv_pct": 34.4
+  },
+  "aggression": {
+    "aggression_index": 63.1
+  },
+  "clean_games": {
+    "srv_clean_pct": 62.3,
+    "ret_clean_pct": 74.6
+  },
+  "streaks": {
+    "streaks_per_match": 12.3
+  },
+  "bad_breaks": [
+    {
+      "winner": "Fernando Verdasco",
+      "loser": "Radek Stepanek",
+      "winner_pts": 171,
+      "loser_pts": 178,
+      "bad_break": true,
+      "margin": -7
+    },
+    {
+      "winner": "Robin Soderling",
+      "loser": "Philipp Petzschner",
+      "winner_pts": 147,
+      "loser_pts": 150,
+      "bad_break": true,
+      "margin": -3
+    },
+    {
+      "winner": "Jo-Wilfried Tsonga",
+      "loser": "Roger Federer",
+      "winner_pts": 135,
+      "loser_pts": 146,
+      "bad_break": true,
+      "margin": -11
+    }
+  ],
+  "match_duration": {
+    "avg_mins": 152.5
+  },
+  "distance": {
+    "avg_km_per_match": null
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "year": 2021,
+  "n_players": 128,
+  "serve": {
+    "first_in_pct": 62.6,
+    "first_won_pct": 71.4,
+    "second_won_pct": 54.5,
+    "ace_pct": 7.9,
+    "df_pct": 3.6
+  },
+  "serve_speed": {
+    "first_avg_kmh": 185.5,
+    "second_avg_kmh": 154.8
+  },
+  "serve_direction": {
+    "wide_pct": 42.8,
+    "body_pct": 29.0,
+    "centre_pct": 28.2
+  },
+  "rally_shots": {
+    "srv_all_avg": 2.8,
+    "srv_1st_avg": 2.7,
+    "srv_2nd_avg": 3.4,
+    "ret_all_avg": 2.7,
+    "ret_1st_avg": 2.6,
+    "ret_2nd_avg": 3.3
+  },
+  "pressure": {
+    "bp_created_per_opp_sg": 0.4,
+    "bp_saved_pct": 58.0,
+    "bp_conv_pct": 36.7
+  },
+  "aggression": {
+    "aggression_index": 52.1
+  },
+  "clean_games": {
+    "srv_clean_pct": 60.2,
+    "ret_clean_pct": 72.6
+  },
+  "streaks": {
+    "streaks_per_match": 13.9
+  },
+  "bad_breaks": [
+    {
+      "winner": "Laslo Djere",
+      "loser": "Pablo Cuevas",
+      "winner_pts": 101,
+      "loser_pts": 103,
+      "bad_break": true,
+      "margin": -2
+    },
+    {
+      "winner": "Pablo Andujar",
+      "loser": "Pierre Hugues Herbert",
+      "winner_pts": 218,
+      "loser_pts": 229,
+      "bad_break": true,
+      "margin": -11
+    },
+    {
+      "winner": "Yoshihito Nishioka",
+      "loser": "John Isner",
+      "winner_pts": 151,
+      "loser_pts": 155,
+      "bad_break": true,
+      "margin": -4
+    },
+    {
+      "winner": "Marcos Giron",
+      "loser": "Emil Ruusuvuori",
+      "winner_pts": 131,
+      "loser_pts": 139,
+      "bad_break": true,
+      "margin": -8
+    },
+    {
+      "winner": "Hubert Hurkacz",
+      "loser": "Daniil Medvedev",
+      "winner_pts": 145,
+      "loser_pts": 150,
+      "bad_break": true,
+      "margin": -5
+    }
+  ],
+  "match_duration": {
+    "avg_mins": 269.2
+  },
+  "distance": {
+    "avg_km_per_match": 5.6
+  }
+}

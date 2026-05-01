@@ -1,0 +1,91 @@
+{
+  "year": 2022,
+  "n_players": 128,
+  "serve": {
+    "first_in_pct": 62.4,
+    "first_won_pct": 70.8,
+    "second_won_pct": 56.9,
+    "ace_pct": 7.4,
+    "df_pct": 4.4
+  },
+  "serve_speed": {
+    "first_avg_kmh": 185.6,
+    "second_avg_kmh": 154.5
+  },
+  "serve_direction": {
+    "wide_pct": 42.7,
+    "body_pct": 29.4,
+    "centre_pct": 27.9
+  },
+  "rally_shots": {
+    "srv_all_avg": 1.7,
+    "srv_1st_avg": 1.6,
+    "srv_2nd_avg": 2.1,
+    "ret_all_avg": 1.6,
+    "ret_1st_avg": 1.5,
+    "ret_2nd_avg": 2.0
+  },
+  "pressure": {
+    "bp_created_per_opp_sg": 0.4,
+    "bp_saved_pct": 58.1,
+    "bp_conv_pct": 35.6
+  },
+  "aggression": {
+    "aggression_index": 50.0
+  },
+  "clean_games": {
+    "srv_clean_pct": 60.3,
+    "ret_clean_pct": 71.2
+  },
+  "streaks": {
+    "streaks_per_match": 13.3
+  },
+  "bad_breaks": [
+    {
+      "winner": "Grigor Dimitrov",
+      "loser": "Steve Johnson",
+      "winner_pts": 46,
+      "loser_pts": 52,
+      "bad_break": true,
+      "margin": -6
+    },
+    {
+      "winner": "Filip Krajinovic",
+      "loser": "Jiri Lehecka",
+      "winner_pts": 171,
+      "loser_pts": 177,
+      "bad_break": true,
+      "margin": -6
+    },
+    {
+      "winner": "Nikoloz Basilashvili",
+      "loser": "Quentin Halys",
+      "winner_pts": 118,
+      "loser_pts": 133,
+      "bad_break": true,
+      "margin": -15
+    },
+    {
+      "winner": "Liam Broady",
+      "loser": "Diego Schwartzman",
+      "winner_pts": 145,
+      "loser_pts": 151,
+      "bad_break": true,
+      "margin": -6
+    },
+    {
+      "winner": "Cameron Norrie",
+      "loser": "David Goffin",
+      "winner_pts": 145,
+      "loser_pts": 151,
+      "bad_break": true,
+      "margin": -6
+    }
+  ],
+  "match_duration": {
+    "avg_mins": 213.7
+  },
+  "distance": {
+    "avg_km_per_match": 3.7
+  }
+}

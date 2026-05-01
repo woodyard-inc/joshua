@@ -2,20 +2,20 @@
   "year": 2012,
   "n_players": 79,
   "serve": {
-    "first_in_pct": 68.9,
-    "first_won_pct": 71.0,
-    "second_won_pct": 53.7,
+    "first_in_pct": 0.0,
+    "first_won_pct": null,
+    "second_won_pct": null,
     "ace_pct": 9.2,
     "df_pct": 2.9
   },
   "serve_speed": {
-    "first_avg_kmh": 183.9,
-    "second_avg_kmh": 147.7
+    "first_avg_kmh": null,
+    "second_avg_kmh": null
   },
   "serve_direction": {
-    "wide_pct": 49.1,
-    "body_pct": 39.7,
-    "t_pct": 9.4
+    "wide_pct": null,
+    "body_pct": null,
+    "centre_pct": null
   },
   "rally_shots": {
     "srv_all_avg": null,
@@ -24,10 +24,6 @@
     "ret_all_avg": null,
     "ret_1st_avg": null,
     "ret_2nd_avg": null
-  },
-  "rally_time": {
-    "as_server_avg_s": 39.8,
-    "as_returner_avg_s": 39.8
   },
   "pressure": {
     "bp_created_per_opp_sg": 0.3,
@@ -42,7 +38,7 @@
     "ret_clean_pct": 70.2
   },
   "streaks": {
-    "streaks_per_match": 27.9
+    "streaks_per_match": 13.6
   },
   "bad_breaks": [
     {
@@ -101,5 +97,11 @@
       "bad_break": true,
       "margin": -1
     }
-  ]
+  ],
+  "match_duration": {
+    "avg_mins": 159.3
+  },
+  "distance": {
+    "avg_km_per_match": null
+  }
 }

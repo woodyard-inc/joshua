@@ -14,41 +14,41 @@
         "match_id": "2018-wimbledon-1101",
         "round": "R128",
         "opponent": "Dusan Lajovic",
-        "opponent_elo": 1511.3,
+        "opponent_elo": 1507.0,
         "w_t": 1.0,
-        "w_q": 0.9872
+        "w_q": 0.9846
       },
       {
         "match_id": "2018-wimbledon-1201",
         "round": "R64",
         "opponent": "Lukas Lacko",
-        "opponent_elo": 1542.8,
+        "opponent_elo": 1497.3,
         "w_t": 0.9973,
-        "w_q": 1.0078
+        "w_q": 0.9783
       },
       {
         "match_id": "2018-wimbledon-1301",
         "round": "R32",
         "opponent": "Jan Lennard Struff",
-        "opponent_elo": 1381.0,
+        "opponent_elo": 1381.2,
         "w_t": 0.9945,
-        "w_q": 0.9022
+        "w_q": 0.9024
       },
       {
         "match_id": "2018-wimbledon-1401",
         "round": "R16",
         "opponent": "Adrian Mannarino",
-        "opponent_elo": 1726.1,
+        "opponent_elo": 1777.2,
         "w_t": 0.9918,
-        "w_q": 1.1276
+        "w_q": 1.1611
       },
       {
         "match_id": "2018-wimbledon-1501",
         "round": "QF",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1778.9,
+        "opponent_elo": 1784.8,
         "w_t": 0.9891,
-        "w_q": 1.1621
+        "w_q": 1.1661
       }
     ],
     "tier1": {
@@ -65,7 +65,7 @@
       "sspw_pct": {
         "value": 62.2,
         "ci_90_lo": 46.7,
-        "ci_90_hi": 74.1
+        "ci_90_hi": 74.0
       },
       "rpw_pct": {
         "value": 39.7,
@@ -79,16 +79,16 @@
       },
       "rgw_pct": {
         "value": 25.9,
-        "ci_90_lo": 15.7,
+        "ci_90_lo": 15.6,
         "ci_90_hi": 46.8
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.4238,
+        "value": 1.4243,
         "max_bits": 1.585,
-        "pct_of_max": 89.8
+        "pct_of_max": 89.9
       },
       "rally_win_curve": {
         "1_3": {
@@ -100,11 +100,11 @@
           "n": 45
         },
         "7_9": {
-          "win_pct": 58.9,
+          "win_pct": 58.8,
           "n": 14
         },
         "10+": {
-          "win_pct": 61.9,
+          "win_pct": 61.7,
           "n": 10
         }
       },
@@ -142,18 +142,18 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 55.8,
-        "ad_win_pct": 55.9,
-        "asymmetry": 0.1,
-        "stronger_side": "ad"
+        "ad_win_pct": 55.8,
+        "asymmetry": 0.0,
+        "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.65,
-        "streak_survival_rate": 0.541,
-        "streak_recovery_rate": 0.365
+        "streak_initiation_rate": 3.66,
+        "streak_survival_rate": 0.539,
+        "streak_recovery_rate": 0.364
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.628,
-        "bp_conversion": 0.379,
+        "bp_conversion": 0.378,
         "bp_created": 11.6,
         "bp_converted": 4.4
       },
@@ -185,9 +185,9 @@
       "name": "Roger Federer",
       "n_overall": 223,
       "n_surface": 223,
-      "R_overall": 2096.3,
-      "R_surface": 2096.3,
-      "R_adjusted": 2096.3
+      "R_overall": 2095.1,
+      "R_surface": 2095.1,
+      "R_adjusted": 2095.1
     }
   },
   "Dusan Lajovic": {
@@ -205,9 +205,9 @@
         "match_id": "2018-wimbledon-1101",
         "round": "R128",
         "opponent": "Roger Federer",
-        "opponent_elo": 2131.0,
+        "opponent_elo": 2130.3,
         "w_t": 1.0,
-        "w_q": 1.392
+        "w_q": 1.3918
       }
     ],
     "tier1": {
@@ -342,11 +342,11 @@
     },
     "elo_snapshot": {
       "name": "Dusan Lajovic",
-      "n_overall": 23,
-      "n_surface": 23,
-      "R_overall": 1416.4,
-      "R_surface": 1416.4,
-      "R_adjusted": 1416.4
+      "n_overall": 24,
+      "n_surface": 24,
+      "R_overall": 1408.1,
+      "R_surface": 1408.1,
+      "R_adjusted": 1408.1
     }
   },
   "Lukas Lacko": {
@@ -366,60 +366,60 @@
         "opponent": "Benjamin Bonzi",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2018-wimbledon-1201",
         "round": "R64",
         "opponent": "Roger Federer",
-        "opponent_elo": 2153.3,
+        "opponent_elo": 2123.0,
         "w_t": 0.9973,
-        "w_q": 1.4066
+        "w_q": 1.387
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 62.8,
-        "ci_90_lo": 54.6,
+        "ci_90_lo": 54.7,
         "ci_90_hi": 69.8
       },
       "fspw_pct": {
         "value": 69.9,
-        "ci_90_lo": 59.4,
+        "ci_90_lo": 59.5,
         "ci_90_hi": 77.5
       },
       "sspw_pct": {
         "value": 53.9,
         "ci_90_lo": 40.4,
-        "ci_90_hi": 66.3
+        "ci_90_hi": 66.4
       },
       "rpw_pct": {
-        "value": 27.0,
-        "ci_90_lo": 20.5,
+        "value": 27.1,
+        "ci_90_lo": 20.6,
         "ci_90_hi": 36.2
       },
       "sgw_pct": {
-        "value": 73.7,
-        "ci_90_lo": 51.2,
+        "value": 73.8,
+        "ci_90_lo": 51.3,
         "ci_90_hi": 84.5
       },
       "rgw_pct": {
         "value": 17.7,
-        "ci_90_lo": 10.4,
-        "ci_90_hi": 39.9
+        "ci_90_lo": 10.5,
+        "ci_90_hi": 40.0
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8958,
+        "value": 0.8906,
         "max_bits": 1.585,
-        "pct_of_max": 56.5
+        "pct_of_max": 56.2
       },
       "rally_win_curve": {
         "1_3": {
           "win_pct": 49.0,
-          "n": 158
+          "n": 159
         },
         "4_6": {
           "win_pct": 37.5,
@@ -473,12 +473,12 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.56,
+        "streak_initiation_rate": 5.57,
         "streak_survival_rate": 0.344,
-        "streak_recovery_rate": 0.206
+        "streak_recovery_rate": 0.207
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.143,
+        "bp_per_return_game": 0.144,
         "bp_conversion": 0.833,
         "bp_created": 2.5,
         "bp_converted": 2.1
@@ -511,9 +511,9 @@
       "name": "Lukas Lacko",
       "n_overall": 45,
       "n_surface": 45,
-      "R_overall": 1556.2,
-      "R_surface": 1556.2,
-      "R_adjusted": 1556.2
+      "R_overall": 1555.2,
+      "R_surface": 1555.2,
+      "R_adjusted": 1555.2
     }
   },
   "Benjamin Bonzi": {
@@ -531,9 +531,9 @@
         "match_id": "2018-wimbledon-1102",
         "round": "R128",
         "opponent": "Lukas Lacko",
-        "opponent_elo": 1554.6,
+        "opponent_elo": 1554.0,
         "w_t": 1.0,
-        "w_q": 1.0155
+        "w_q": 1.0153
       }
     ],
     "tier1": {
@@ -656,9 +656,9 @@
       "name": "Benjamin Bonzi",
       "n_overall": 18,
       "n_surface": 18,
-      "R_overall": 1562.3,
-      "R_surface": 1562.3,
-      "R_adjusted": 1562.3
+      "R_overall": 1560.2,
+      "R_surface": 1560.2,
+      "R_adjusted": 1560.2
     }
   },
   "Ivo Karlovic": {
@@ -676,17 +676,17 @@
         "match_id": "2018-wimbledon-1103",
         "round": "R128",
         "opponent": "Mikhail Youzhny",
-        "opponent_elo": 1613.9,
+        "opponent_elo": 1615.5,
         "w_t": 1.0,
-        "w_q": 1.0543
+        "w_q": 1.0555
       },
       {
         "match_id": "2018-wimbledon-1202",
         "round": "R64",
         "opponent": "Jan Lennard Struff",
-        "opponent_elo": 1381.0,
+        "opponent_elo": 1381.2,
         "w_t": 0.9973,
-        "w_q": 0.9022
+        "w_q": 0.9024
       }
     ],
     "tier1": {
@@ -729,7 +729,7 @@
       "rally_win_curve": {
         "1_3": {
           "win_pct": 50.5,
-          "n": 317
+          "n": 316
         },
         "4_6": {
           "win_pct": null,
@@ -809,9 +809,9 @@
       "name": "Ivo Karlovic",
       "n_overall": 118,
       "n_surface": 118,
-      "R_overall": 1640.7,
-      "R_surface": 1640.7,
-      "R_adjusted": 1640.7
+      "R_overall": 1641.4,
+      "R_surface": 1641.4,
+      "R_adjusted": 1641.4
     }
   },
   "Mikhail Youzhny": {
@@ -829,9 +829,9 @@
         "match_id": "2018-wimbledon-1103",
         "round": "R128",
         "opponent": "Ivo Karlovic",
-        "opponent_elo": 1736.3,
+        "opponent_elo": 1734.7,
         "w_t": 1.0,
-        "w_q": 1.1342
+        "w_q": 1.1333
       }
     ],
     "tier1": {
@@ -954,9 +954,9 @@
       "name": "Mikhail Youzhny",
       "n_overall": 108,
       "n_surface": 108,
-      "R_overall": 1600.7,
-      "R_surface": 1600.7,
-      "R_adjusted": 1600.7
+      "R_overall": 1602.2,
+      "R_surface": 1602.2,
+      "R_adjusted": 1602.2
     }
   },
   "Jan Lennard Struff": {
@@ -974,25 +974,25 @@
         "match_id": "2018-wimbledon-1104",
         "round": "R128",
         "opponent": "Leonardo Mayer",
-        "opponent_elo": 1607.6,
+        "opponent_elo": 1612.5,
         "w_t": 1.0,
-        "w_q": 1.0502
+        "w_q": 1.0535
       },
       {
         "match_id": "2018-wimbledon-1202",
         "round": "R64",
         "opponent": "Ivo Karlovic",
-        "opponent_elo": 1750.0,
+        "opponent_elo": 1748.2,
         "w_t": 0.9973,
-        "w_q": 1.1432
+        "w_q": 1.1421
       },
       {
         "match_id": "2018-wimbledon-1301",
         "round": "R32",
         "opponent": "Roger Federer",
-        "opponent_elo": 2153.3,
+        "opponent_elo": 2123.0,
         "w_t": 0.9945,
-        "w_q": 1.4066
+        "w_q": 1.387
       }
     ],
     "tier1": {
@@ -1003,7 +1003,7 @@
       },
       "fspw_pct": {
         "value": 82.6,
-        "ci_90_lo": 73.9,
+        "ci_90_lo": 74.0,
         "ci_90_hi": 87.5
       },
       "sspw_pct": {
@@ -1012,17 +1012,17 @@
         "ci_90_hi": 72.9
       },
       "rpw_pct": {
-        "value": 24.8,
+        "value": 24.9,
         "ci_90_lo": 19.9,
         "ci_90_hi": 31.6
       },
       "sgw_pct": {
-        "value": 88.6,
-        "ci_90_lo": 70.7,
+        "value": 88.7,
+        "ci_90_lo": 70.8,
         "ci_90_hi": 93.1
       },
       "rgw_pct": {
-        "value": 8.2,
+        "value": 8.3,
         "ci_90_lo": 5.2,
         "ci_90_hi": 25.3
       }
@@ -1030,14 +1030,14 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.6114,
+        "value": 0.6058,
         "max_bits": 1.585,
-        "pct_of_max": 38.6
+        "pct_of_max": 38.2
       },
       "rally_win_curve": {
         "1_3": {
           "win_pct": 49.7,
-          "n": 262
+          "n": 263
         },
         "4_6": {
           "win_pct": 27.3,
@@ -1086,19 +1086,19 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 49.3,
-        "ad_win_pct": 46.9,
-        "asymmetry": 2.4,
+        "ad_win_pct": 47.0,
+        "asymmetry": 2.3,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.64,
-        "streak_survival_rate": 0.492,
-        "streak_recovery_rate": 0.223
+        "streak_initiation_rate": 5.65,
+        "streak_survival_rate": 0.493,
+        "streak_recovery_rate": 0.222
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.176,
+        "bp_per_return_game": 0.177,
         "bp_conversion": 0.199,
-        "bp_created": 4.5,
+        "bp_created": 4.6,
         "bp_converted": 0.9
       },
       "rluep": null,
@@ -1127,11 +1127,11 @@
     },
     "elo_snapshot": {
       "name": "Jan Lennard Struff",
-      "n_overall": 47,
-      "n_surface": 47,
-      "R_overall": 1652.2,
-      "R_surface": 1652.2,
-      "R_adjusted": 1652.2
+      "n_overall": 56,
+      "n_surface": 56,
+      "R_overall": 1689.1,
+      "R_surface": 1689.1,
+      "R_adjusted": 1689.1
     }
   },
   "Leonardo Mayer": {
@@ -1149,9 +1149,9 @@
         "match_id": "2018-wimbledon-1104",
         "round": "R128",
         "opponent": "Jan Lennard Struff",
-        "opponent_elo": 1487.7,
+        "opponent_elo": 1428.9,
         "w_t": 1.0,
-        "w_q": 0.9718
+        "w_q": 0.9335
       }
     ],
     "tier1": {
@@ -1274,9 +1274,9 @@
       "name": "Leonardo Mayer",
       "n_overall": 35,
       "n_surface": 35,
-      "R_overall": 1561.5,
-      "R_surface": 1561.5,
-      "R_adjusted": 1561.5
+      "R_overall": 1565.1,
+      "R_surface": 1565.1,
+      "R_adjusted": 1565.1
     }
   },
   "Adrian Mannarino": {
@@ -1302,37 +1302,37 @@
         "match_id": "2018-wimbledon-1203",
         "round": "R64",
         "opponent": "Ryan Harrison",
-        "opponent_elo": 1424.2,
+        "opponent_elo": 1423.6,
         "w_t": 0.9973,
-        "w_q": 0.9304
+        "w_q": 0.9301
       },
       {
         "match_id": "2018-wimbledon-1302",
         "round": "R32",
         "opponent": "Daniil Medvedev",
-        "opponent_elo": 1707.1,
+        "opponent_elo": 1708.2,
         "w_t": 0.9945,
-        "w_q": 1.1152
+        "w_q": 1.116
       },
       {
         "match_id": "2018-wimbledon-1401",
         "round": "R16",
         "opponent": "Roger Federer",
-        "opponent_elo": 2153.3,
+        "opponent_elo": 2123.0,
         "w_t": 0.9918,
-        "w_q": 1.4066
+        "w_q": 1.387
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 65.2,
-        "ci_90_lo": 57.4,
+        "value": 65.1,
+        "ci_90_lo": 57.3,
         "ci_90_hi": 71.7
       },
       "fspw_pct": {
-        "value": 65.5,
-        "ci_90_lo": 55.7,
-        "ci_90_hi": 73.3
+        "value": 65.6,
+        "ci_90_lo": 55.8,
+        "ci_90_hi": 73.4
       },
       "sspw_pct": {
         "value": 56.5,
@@ -1341,7 +1341,7 @@
       },
       "rpw_pct": {
         "value": 37.2,
-        "ci_90_lo": 30.2,
+        "ci_90_lo": 30.3,
         "ci_90_hi": 45.3
       },
       "sgw_pct": {
@@ -1350,22 +1350,22 @@
         "ci_90_hi": 85.0
       },
       "rgw_pct": {
-        "value": 25.3,
-        "ci_90_lo": 15.3,
+        "value": 25.4,
+        "ci_90_lo": 15.4,
         "ci_90_hi": 45.8
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8584,
+        "value": 0.8557,
         "max_bits": 1.585,
-        "pct_of_max": 54.2
+        "pct_of_max": 54.0
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 50.9,
-          "n": 154
+          "win_pct": 51.0,
+          "n": 155
         },
         "4_6": {
           "win_pct": 42.1,
@@ -1376,7 +1376,7 @@
           "n": 13
         },
         "10+": {
-          "win_pct": 52.2,
+          "win_pct": 52.3,
           "n": 15
         }
       },
@@ -1402,42 +1402,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -5.4,
+        "value": -5.3,
         "bp_speed_kmh": 162.6,
-        "overall_speed_kmh": 168.0,
+        "overall_speed_kmh": 167.9,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.054,
+        "modifier_delta": -0.053,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 45.1,
-        "ad_win_pct": 53.7,
-        "asymmetry": 8.6,
+        "ad_win_pct": 53.8,
+        "asymmetry": 8.7,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.46,
+        "streak_initiation_rate": 3.47,
         "streak_survival_rate": 0.553,
         "streak_recovery_rate": 0.367
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.416,
-        "bp_conversion": 0.553,
+        "bp_conversion": 0.555,
         "bp_created": 8.0,
         "bp_converted": 4.4
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.0183,
+        "value": -0.0182,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0321,
+            "delta_frac": -0.0316,
             "weight": 0.3,
-            "contribution": -0.0096
+            "contribution": -0.0095
           },
           "df_rate_delta": {
             "delta_frac": -0.0435,
@@ -1449,17 +1449,17 @@
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": -0.0183,
+        "modifier_delta": -0.0182,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
     "elo_snapshot": {
       "name": "Adrian Mannarino",
-      "n_overall": 115,
-      "n_surface": 115,
-      "R_overall": 1759.0,
-      "R_surface": 1759.0,
-      "R_adjusted": 1759.0
+      "n_overall": 121,
+      "n_surface": 121,
+      "R_overall": 1638.9,
+      "R_surface": 1638.9,
+      "R_adjusted": 1638.9
     }
   },
   "Christian Garin": {
@@ -1477,9 +1477,9 @@
         "match_id": "2018-wimbledon-1105",
         "round": "R128",
         "opponent": "Adrian Mannarino",
-        "opponent_elo": 1759.1,
+        "opponent_elo": 1781.0,
         "w_t": 1.0,
-        "w_q": 1.1491
+        "w_q": 1.1636
       }
     ],
     "tier1": {
@@ -1615,49 +1615,49 @@
         "match_id": "2018-wimbledon-1106",
         "round": "R128",
         "opponent": "Roberto Carballes Baena",
-        "opponent_elo": 1433.6,
+        "opponent_elo": 1432.8,
         "w_t": 1.0,
-        "w_q": 0.9365
+        "w_q": 0.9361
       },
       {
         "match_id": "2018-wimbledon-1203",
         "round": "R64",
         "opponent": "Adrian Mannarino",
-        "opponent_elo": 1726.1,
+        "opponent_elo": 1777.2,
         "w_t": 0.9973,
-        "w_q": 1.1276
+        "w_q": 1.1611
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 61.7,
-        "ci_90_lo": 53.1,
-        "ci_90_hi": 69.0
+        "ci_90_lo": 53.2,
+        "ci_90_hi": 69.1
       },
       "fspw_pct": {
-        "value": 72.4,
-        "ci_90_lo": 61.3,
-        "ci_90_hi": 79.9
+        "value": 72.3,
+        "ci_90_lo": 61.2,
+        "ci_90_hi": 79.8
       },
       "sspw_pct": {
         "value": 59.2,
-        "ci_90_lo": 45.0,
+        "ci_90_lo": 44.9,
         "ci_90_hi": 71.0
       },
       "rpw_pct": {
-        "value": 38.3,
-        "ci_90_lo": 31.1,
-        "ci_90_hi": 46.7
+        "value": 38.2,
+        "ci_90_lo": 31.0,
+        "ci_90_hi": 46.6
       },
       "sgw_pct": {
-        "value": 78.6,
-        "ci_90_lo": 55.0,
-        "ci_90_hi": 87.5
+        "value": 78.3,
+        "ci_90_lo": 54.9,
+        "ci_90_hi": 87.4
       },
       "rgw_pct": {
-        "value": 30.2,
-        "ci_90_lo": 18.1,
-        "ci_90_hi": 51.9
+        "value": 30.0,
+        "ci_90_lo": 18.0,
+        "ci_90_hi": 51.7
       }
     },
     "tier2": {
@@ -1667,7 +1667,7 @@
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 51.7,
+          "win_pct": 51.6,
           "n": 191
         },
         "4_6": {
@@ -1685,13 +1685,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 1.1,
-        "high_lev_win_pct": 52.7,
-        "baseline_win_pct": 51.6,
+        "value": 1.3,
+        "high_lev_win_pct": 52.8,
+        "baseline_win_pct": 51.5,
         "n_eff": 33,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.011
+        "modifier_delta": 0.013
       },
       "df_pressure_delta": {
         "available": true,
@@ -1709,8 +1709,8 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 53.7,
-        "ad_win_pct": 48.3,
+        "deuce_win_pct": 53.6,
+        "ad_win_pct": 48.2,
         "asymmetry": 5.4,
         "stronger_side": "deuce"
       },
@@ -1720,9 +1720,9 @@
         "streak_recovery_rate": 0.75
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.704,
-        "bp_conversion": 0.341,
-        "bp_created": 11.5,
+        "bp_per_return_game": 0.696,
+        "bp_conversion": 0.343,
+        "bp_created": 11.4,
         "bp_converted": 3.9
       },
       "rluep": null,
@@ -1748,9 +1748,9 @@
       "name": "Ryan Harrison",
       "n_overall": 37,
       "n_surface": 37,
-      "R_overall": 1415.3,
-      "R_surface": 1415.3,
-      "R_adjusted": 1415.3
+      "R_overall": 1414.7,
+      "R_surface": 1414.7,
+      "R_adjusted": 1414.7
     }
   },
   "Roberto Carballes Baena": {
@@ -1768,9 +1768,9 @@
         "match_id": "2018-wimbledon-1106",
         "round": "R128",
         "opponent": "Ryan Harrison",
-        "opponent_elo": 1431.7,
+        "opponent_elo": 1431.1,
         "w_t": 1.0,
-        "w_q": 0.9352
+        "w_q": 0.935
       }
     ],
     "tier1": {
@@ -1891,11 +1891,11 @@
     },
     "elo_snapshot": {
       "name": "Roberto Carballes Baena",
-      "n_overall": 14,
-      "n_surface": 14,
-      "R_overall": 1408.0,
-      "R_surface": 1408.0,
-      "R_adjusted": 1408.0
+      "n_overall": 17,
+      "n_surface": 17,
+      "R_overall": 1430.9,
+      "R_surface": 1430.9,
+      "R_adjusted": 1430.9
     }
   },
   "Guillermo Garcia Lopez": {
@@ -1915,15 +1915,15 @@
         "opponent": "Gastao Elias",
         "opponent_elo": 1386.1,
         "w_t": 1.0,
-        "w_q": 0.9055
+        "w_q": 0.9056
       },
       {
         "match_id": "2018-wimbledon-1204",
         "round": "R64",
         "opponent": "Daniil Medvedev",
-        "opponent_elo": 1707.1,
+        "opponent_elo": 1708.2,
         "w_t": 0.9973,
-        "w_q": 1.1152
+        "w_q": 1.116
       }
     ],
     "tier1": {
@@ -2046,9 +2046,9 @@
       "name": "Guillermo Garcia Lopez",
       "n_overall": 60,
       "n_surface": 60,
-      "R_overall": 1510.3,
-      "R_surface": 1510.3,
-      "R_adjusted": 1510.3
+      "R_overall": 1511.9,
+      "R_surface": 1511.9,
+      "R_adjusted": 1511.9
     }
   },
   "Gastao Elias": {
@@ -2066,9 +2066,9 @@
         "match_id": "2018-wimbledon-1107",
         "round": "R128",
         "opponent": "Guillermo Garcia Lopez",
-        "opponent_elo": 1522.4,
+        "opponent_elo": 1524.0,
         "w_t": 1.0,
-        "w_q": 0.9945
+        "w_q": 0.9957
       }
     ],
     "tier1": {
@@ -2191,9 +2191,9 @@
       "name": "Gastao Elias",
       "n_overall": 3,
       "n_surface": 3,
-      "R_overall": 1347.8,
-      "R_surface": 1347.8,
-      "R_adjusted": 1347.8
+      "R_overall": 1348.1,
+      "R_surface": 1348.1,
+      "R_adjusted": 1348.1
     }
   },
   "Daniil Medvedev": {
@@ -2201,7 +2201,7 @@
     "surface": "grass",
     "year": 2018,
     "n_matches": 3,
-    "n_points": 206,
+    "n_points": 207,
     "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -2211,25 +2211,25 @@
         "match_id": "2018-wimbledon-1108",
         "round": "R128",
         "opponent": "Borna Coric",
-        "opponent_elo": 1731.7,
+        "opponent_elo": 1713.4,
         "w_t": 1.0,
-        "w_q": 1.1312
+        "w_q": 1.1194
       },
       {
         "match_id": "2018-wimbledon-1204",
         "round": "R64",
         "opponent": "Guillermo Garcia Lopez",
-        "opponent_elo": 1516.6,
+        "opponent_elo": 1473.3,
         "w_t": 0.9973,
-        "w_q": 0.9907
+        "w_q": 0.9626
       },
       {
         "match_id": "2018-wimbledon-1302",
         "round": "R32",
         "opponent": "Adrian Mannarino",
-        "opponent_elo": 1726.1,
+        "opponent_elo": 1777.2,
         "w_t": 0.9945,
-        "w_q": 1.1276
+        "w_q": 1.1611
       }
     ],
     "tier1": {
@@ -2239,136 +2239,136 @@
         "ci_90_hi": 60.3
       },
       "fspw_pct": {
-        "value": 76.8,
-        "ci_90_lo": 65.5,
-        "ci_90_hi": 83.6
+        "value": 76.6,
+        "ci_90_lo": 65.3,
+        "ci_90_hi": 83.5
       },
       "sspw_pct": {
-        "value": 55.0,
-        "ci_90_lo": 43.1,
-        "ci_90_hi": 65.9
+        "value": 54.7,
+        "ci_90_lo": 42.9,
+        "ci_90_hi": 65.6
       },
       "rpw_pct": {
         "value": 39.1,
-        "ci_90_lo": 31.7,
+        "ci_90_lo": 31.8,
         "ci_90_hi": 47.5
       },
       "sgw_pct": {
-        "value": 79.8,
-        "ci_90_lo": 57.6,
-        "ci_90_hi": 88.1
+        "value": 79.4,
+        "ci_90_lo": 57.3,
+        "ci_90_hi": 87.8
       },
       "rgw_pct": {
-        "value": 34.5,
+        "value": 34.4,
         "ci_90_lo": 21.5,
-        "ci_90_hi": 54.4
+        "ci_90_hi": 54.2
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.9004,
+        "value": 0.912,
         "max_bits": 1.585,
-        "pct_of_max": 56.8
+        "pct_of_max": 57.5
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 52.5,
+          "win_pct": 52.3,
           "n": 127
         },
         "4_6": {
-          "win_pct": 51.7,
+          "win_pct": 51.8,
           "n": 40
         },
         "7_9": {
-          "win_pct": 57.2,
+          "win_pct": 57.0,
           "n": 15
         },
         "10+": {
-          "win_pct": 52.0,
+          "win_pct": 51.8,
           "n": 18
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 5.8,
+        "value": 6.0,
         "high_lev_win_pct": 58.2,
-        "baseline_win_pct": 52.4,
+        "baseline_win_pct": 52.2,
         "n_eff": 26,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.058
+        "modifier_delta": 0.06
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 1.1,
+        "value": 1.2,
         "bp_df_rate": 4.5,
-        "baseline_df_rate": 3.4,
+        "baseline_df_rate": 3.3,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.011
+        "modifier_delta": 0.012
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 3.6,
-        "bp_speed_kmh": 166.8,
+        "value": 3.5,
+        "bp_speed_kmh": 166.7,
         "overall_speed_kmh": 163.2,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.036,
+        "modifier_delta": 0.035,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 54.7,
-        "ad_win_pct": 48.7,
-        "asymmetry": 6.0,
+        "deuce_win_pct": 54.6,
+        "ad_win_pct": 48.5,
+        "asymmetry": 6.1,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 4.81,
-        "streak_survival_rate": 0.347,
+        "streak_initiation_rate": 4.82,
+        "streak_survival_rate": 0.345,
         "streak_recovery_rate": 0.0
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.543,
-        "bp_conversion": 0.537,
-        "bp_created": 10.0,
+        "bp_per_return_game": 0.54,
+        "bp_conversion": 0.538,
+        "bp_created": 10.1,
         "bp_converted": 5.4
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0713,
+        "value": 0.0791,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0221,
+            "delta_frac": 0.0214,
             "weight": 0.3,
-            "contribution": 0.0066
+            "contribution": 0.0064
           },
           "df_rate_delta": {
-            "delta_frac": 0.3235,
+            "delta_frac": 0.3636,
             "weight": 0.2,
-            "contribution": 0.0647
+            "contribution": 0.0727
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.0713,
+        "modifier_delta": 0.0791,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
     "elo_snapshot": {
       "name": "Daniil Medvedev",
-      "n_overall": 60,
-      "n_surface": 60,
-      "R_overall": 1853.3,
-      "R_surface": 1853.3,
-      "R_adjusted": 1853.3
+      "n_overall": 68,
+      "n_surface": 68,
+      "R_overall": 1886.6,
+      "R_surface": 1886.6,
+      "R_adjusted": 1886.6
     }
   },
   "Borna Coric": {
@@ -2386,9 +2386,9 @@
         "match_id": "2018-wimbledon-1108",
         "round": "R128",
         "opponent": "Daniil Medvedev",
-        "opponent_elo": 1726.1,
+        "opponent_elo": 1727.2,
         "w_t": 1.0,
-        "w_q": 1.1276
+        "w_q": 1.1284
       }
     ],
     "tier1": {
@@ -2523,11 +2523,11 @@
     },
     "elo_snapshot": {
       "name": "Borna Coric",
-      "n_overall": 24,
-      "n_surface": 24,
-      "R_overall": 1578.1,
-      "R_surface": 1578.1,
-      "R_adjusted": 1578.1
+      "n_overall": 26,
+      "n_surface": 26,
+      "R_overall": 1572.3,
+      "R_surface": 1572.3,
+      "R_adjusted": 1572.3
     }
   },
   "Sam Querrey": {
@@ -2545,25 +2545,25 @@
         "match_id": "2018-wimbledon-1109",
         "round": "R128",
         "opponent": "Jordan Thompson",
-        "opponent_elo": 1406.5,
+        "opponent_elo": 1405.7,
         "w_t": 1.0,
-        "w_q": 0.9188
+        "w_q": 0.9184
       },
       {
         "match_id": "2018-wimbledon-1205",
         "round": "R64",
         "opponent": "Sergiy Stakhovsky",
-        "opponent_elo": 1617.6,
+        "opponent_elo": 1619.8,
         "w_t": 0.9973,
-        "w_q": 1.0567
+        "w_q": 1.0582
       },
       {
         "match_id": "2018-wimbledon-1303",
         "round": "R32",
         "opponent": "Gael Monfils",
-        "opponent_elo": 1756.1,
+        "opponent_elo": 1723.8,
         "w_t": 0.9945,
-        "w_q": 1.1472
+        "w_q": 1.1262
       }
     ],
     "tier1": {
@@ -2573,35 +2573,35 @@
         "ci_90_hi": 69.3
       },
       "fspw_pct": {
-        "value": 84.2,
-        "ci_90_lo": 73.5,
+        "value": 84.3,
+        "ci_90_lo": 73.6,
         "ci_90_hi": 89.4
       },
       "sspw_pct": {
-        "value": 57.0,
+        "value": 57.1,
         "ci_90_lo": 42.7,
         "ci_90_hi": 69.4
       },
       "rpw_pct": {
-        "value": 34.1,
-        "ci_90_lo": 27.2,
+        "value": 34.2,
+        "ci_90_lo": 27.3,
         "ci_90_hi": 42.6
       },
       "sgw_pct": {
-        "value": 90.8,
-        "ci_90_lo": 67.2,
-        "ci_90_hi": 94.1
+        "value": 90.9,
+        "ci_90_lo": 67.3,
+        "ci_90_hi": 94.2
       },
       "rgw_pct": {
-        "value": 20.7,
-        "ci_90_lo": 12.2,
-        "ci_90_hi": 42.8
+        "value": 20.8,
+        "ci_90_lo": 12.3,
+        "ci_90_hi": 42.9
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.4922,
+        "value": 1.4921,
         "max_bits": 1.585,
         "pct_of_max": 94.1
       },
@@ -2615,23 +2615,23 @@
           "n": 44
         },
         "7_9": {
-          "win_pct": 44.8,
+          "win_pct": 44.9,
           "n": 16
         },
         "10+": {
-          "win_pct": 60.0,
+          "win_pct": 60.1,
           "n": 6
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 12.2,
+        "value": 12.1,
         "high_lev_win_pct": 64.6,
-        "baseline_win_pct": 52.4,
+        "baseline_win_pct": 52.5,
         "n_eff": 21,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.122
+        "modifier_delta": 0.121
       },
       "df_pressure_delta": {
         "available": true,
@@ -2657,18 +2657,18 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 51.6,
-        "ad_win_pct": 52.2,
-        "asymmetry": 0.6,
+        "ad_win_pct": 52.3,
+        "asymmetry": 0.7,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 4.16,
-        "streak_survival_rate": 0.455,
-        "streak_recovery_rate": 0.233
+        "streak_initiation_rate": 4.17,
+        "streak_survival_rate": 0.454,
+        "streak_recovery_rate": 0.232
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.312,
-        "bp_conversion": 0.531,
+        "bp_per_return_game": 0.314,
+        "bp_conversion": 0.532,
         "bp_created": 5.4,
         "bp_converted": 2.9
       },
@@ -2700,9 +2700,9 @@
       "name": "Sam Querrey",
       "n_overall": 125,
       "n_surface": 125,
-      "R_overall": 1716.5,
-      "R_surface": 1716.5,
-      "R_adjusted": 1716.5
+      "R_overall": 1706.9,
+      "R_surface": 1706.9,
+      "R_adjusted": 1706.9
     }
   },
   "Jordan Thompson": {
@@ -2720,9 +2720,9 @@
         "match_id": "2018-wimbledon-1109",
         "round": "R128",
         "opponent": "Sam Querrey",
-        "opponent_elo": 1860.5,
+        "opponent_elo": 1857.2,
         "w_t": 1.0,
-        "w_q": 1.2154
+        "w_q": 1.2134
       }
     ],
     "tier1": {
@@ -2857,11 +2857,11 @@
     },
     "elo_snapshot": {
       "name": "Jordan Thompson",
-      "n_overall": 53,
-      "n_surface": 53,
-      "R_overall": 1693.4,
-      "R_surface": 1693.4,
-      "R_adjusted": 1693.4
+      "n_overall": 60,
+      "n_surface": 60,
+      "R_overall": 1718.1,
+      "R_surface": 1718.1,
+      "R_adjusted": 1718.1
     }
   },
   "Sergiy Stakhovsky": {
@@ -2869,7 +2869,7 @@
     "surface": "grass",
     "year": 2018,
     "n_matches": 2,
-    "n_points": 255,
+    "n_points": 256,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -2879,17 +2879,17 @@
         "match_id": "2018-wimbledon-1110",
         "round": "R128",
         "opponent": "Joao Sousa",
-        "opponent_elo": 1532.4,
+        "opponent_elo": 1537.4,
         "w_t": 1.0,
-        "w_q": 1.001
+        "w_q": 1.0044
       },
       {
         "match_id": "2018-wimbledon-1205",
         "round": "R64",
         "opponent": "Sam Querrey",
-        "opponent_elo": 1834.6,
+        "opponent_elo": 1831.0,
         "w_t": 0.9973,
-        "w_q": 1.1984
+        "w_q": 1.1963
       }
     ],
     "tier1": {
@@ -2927,14 +2927,14 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8283,
+        "value": 0.8264,
         "max_bits": 1.585,
-        "pct_of_max": 52.3
+        "pct_of_max": 52.1
       },
       "rally_win_curve": {
         "1_3": {
           "win_pct": 49.7,
-          "n": 214
+          "n": 215
         },
         "4_6": {
           "win_pct": 38.9,
@@ -2951,13 +2951,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 1.6,
+        "value": 1.5,
         "high_lev_win_pct": 49.6,
-        "baseline_win_pct": 48.0,
+        "baseline_win_pct": 48.1,
         "n_eff": 46,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.016
+        "modifier_delta": 0.015
       },
       "df_pressure_delta": {
         "available": true,
@@ -2988,13 +2988,13 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 6.73,
+        "streak_initiation_rate": 6.74,
         "streak_survival_rate": 0.284,
         "streak_recovery_rate": 0.388
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.311,
-        "bp_conversion": 0.373,
+        "bp_conversion": 0.374,
         "bp_created": 6.1,
         "bp_converted": 2.3
       },
@@ -3026,9 +3026,9 @@
       "name": "Sergiy Stakhovsky",
       "n_overall": 54,
       "n_surface": 54,
-      "R_overall": 1545.5,
-      "R_surface": 1545.5,
-      "R_adjusted": 1545.5
+      "R_overall": 1546.5,
+      "R_surface": 1546.5,
+      "R_adjusted": 1546.5
     }
   },
   "Joao Sousa": {
@@ -3046,9 +3046,9 @@
         "match_id": "2018-wimbledon-1110",
         "round": "R128",
         "opponent": "Sergiy Stakhovsky",
-        "opponent_elo": 1622.1,
+        "opponent_elo": 1622.8,
         "w_t": 1.0,
-        "w_q": 1.0596
+        "w_q": 1.0602
       }
     ],
     "tier1": {
@@ -3171,9 +3171,9 @@
       "name": "Joao Sousa",
       "n_overall": 39,
       "n_surface": 39,
-      "R_overall": 1468.6,
-      "R_surface": 1468.6,
-      "R_adjusted": 1468.6
+      "R_overall": 1466.3,
+      "R_surface": 1466.3,
+      "R_adjusted": 1466.3
     }
   },
   "Laslo Djere": {
@@ -3191,9 +3191,9 @@
         "match_id": "2018-wimbledon-1111",
         "round": "R128",
         "opponent": "Paolo Lorenzi",
-        "opponent_elo": 1326.4,
+        "opponent_elo": 1323.4,
         "w_t": 1.0,
-        "w_q": 0.8664
+        "w_q": 0.8646
       }
     ],
     "tier1": {
@@ -3314,11 +3314,11 @@
     },
     "elo_snapshot": {
       "name": "Laslo Djere",
-      "n_overall": 19,
-      "n_surface": 19,
-      "R_overall": 1550.8,
-      "R_surface": 1550.8,
-      "R_adjusted": 1550.8
+      "n_overall": 21,
+      "n_surface": 21,
+      "R_overall": 1496.4,
+      "R_surface": 1496.4,
+      "R_adjusted": 1496.4
     }
   },
   "Paolo Lorenzi": {
@@ -3338,22 +3338,22 @@
         "opponent": "Laslo Djere",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2018-wimbledon-1206",
         "round": "R64",
         "opponent": "Gael Monfils",
-        "opponent_elo": 1756.1,
+        "opponent_elo": 1723.8,
         "w_t": 0.9973,
-        "w_q": 1.1472
+        "w_q": 1.1262
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 60.2,
         "ci_90_lo": 53.1,
-        "ci_90_hi": 66.5
+        "ci_90_hi": 66.6
       },
       "fspw_pct": {
         "value": 72.6,
@@ -3372,25 +3372,25 @@
       },
       "sgw_pct": {
         "value": 83.6,
-        "ci_90_lo": 64.2,
+        "ci_90_lo": 64.3,
         "ci_90_hi": 90.1
       },
       "rgw_pct": {
         "value": 20.3,
-        "ci_90_lo": 12.3,
+        "ci_90_lo": 12.4,
         "ci_90_hi": 39.6
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8115,
+        "value": 0.8045,
         "max_bits": 1.585,
-        "pct_of_max": 51.2
+        "pct_of_max": 50.8
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 47.9,
+          "win_pct": 48.0,
           "n": 206
         },
         "4_6": {
@@ -3408,23 +3408,23 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": -3.6,
-        "high_lev_win_pct": 47.5,
+        "value": -3.7,
+        "high_lev_win_pct": 47.4,
         "baseline_win_pct": 51.1,
         "n_eff": 41,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": -0.036
+        "modifier_delta": -0.037
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 3.7,
-        "bp_df_rate": 5.9,
+        "value": 3.6,
+        "bp_df_rate": 5.8,
         "baseline_df_rate": 2.2,
         "n_eff": 9,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.037
+        "modifier_delta": 0.036
       },
       "serve_speed_courage": {
         "available": true,
@@ -3445,20 +3445,20 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 11.11,
+        "streak_initiation_rate": 11.13,
         "streak_survival_rate": 0.443,
-        "streak_recovery_rate": 0.391
+        "streak_recovery_rate": 0.392
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.528,
-        "bp_conversion": 0.344,
-        "bp_created": 11.6,
+        "bp_per_return_game": 0.53,
+        "bp_conversion": 0.343,
+        "bp_created": 11.7,
         "bp_converted": 4.0
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.3073,
+        "value": 0.2982,
         "components": {
           "serve_speed_delta": {
             "delta_frac": -0.0969,
@@ -3466,16 +3466,16 @@
             "contribution": -0.0291
           },
           "df_rate_delta": {
-            "delta_frac": 1.6818,
+            "delta_frac": 1.6364,
             "weight": 0.2,
-            "contribution": 0.3364
+            "contribution": 0.3273
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.3073,
+        "modifier_delta": 0.2982,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -3483,9 +3483,9 @@
       "name": "Paolo Lorenzi",
       "n_overall": 26,
       "n_surface": 26,
-      "R_overall": 1298.3,
-      "R_surface": 1298.3,
-      "R_adjusted": 1298.3
+      "R_overall": 1299.6,
+      "R_surface": 1299.6,
+      "R_adjusted": 1299.6
     }
   },
   "Gael Monfils": {
@@ -3503,7 +3503,7 @@
         "match_id": "2018-wimbledon-1112",
         "round": "R128",
         "opponent": "Richard Gasquet",
-        "opponent_elo": 1820.9,
+        "opponent_elo": 1820.6,
         "w_t": 1.0,
         "w_q": 1.1895
       },
@@ -3511,25 +3511,25 @@
         "match_id": "2018-wimbledon-1206",
         "round": "R64",
         "opponent": "Paolo Lorenzi",
-        "opponent_elo": 1289.4,
+        "opponent_elo": 1286.0,
         "w_t": 0.9973,
-        "w_q": 0.8423
+        "w_q": 0.8402
       },
       {
         "match_id": "2018-wimbledon-1303",
         "round": "R32",
         "opponent": "Sam Querrey",
-        "opponent_elo": 1834.6,
+        "opponent_elo": 1831.0,
         "w_t": 0.9945,
-        "w_q": 1.1984
+        "w_q": 1.1963
       },
       {
         "match_id": "2018-wimbledon-1402",
         "round": "R16",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1778.9,
+        "opponent_elo": 1784.8,
         "w_t": 0.9918,
-        "w_q": 1.1621
+        "w_q": 1.1661
       }
     ],
     "tier1": {
@@ -3549,7 +3549,7 @@
         "ci_90_hi": 69.0
       },
       "rpw_pct": {
-        "value": 33.0,
+        "value": 32.9,
         "ci_90_lo": 26.9,
         "ci_90_hi": 40.3
       },
@@ -3577,7 +3577,7 @@
           "n": 158
         },
         "4_6": {
-          "win_pct": 43.8,
+          "win_pct": 43.7,
           "n": 55
         },
         "7_9": {
@@ -3591,13 +3591,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 4.2,
-        "high_lev_win_pct": 55.2,
+        "value": 4.3,
+        "high_lev_win_pct": 55.3,
         "baseline_win_pct": 51.0,
         "n_eff": 33,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.042
+        "modifier_delta": 0.043
       },
       "df_pressure_delta": {
         "available": true,
@@ -3629,11 +3629,11 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 4.3,
-        "streak_survival_rate": 0.381,
+        "streak_survival_rate": 0.38,
         "streak_recovery_rate": 0.456
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.348,
+        "bp_per_return_game": 0.347,
         "bp_conversion": 0.496,
         "bp_created": 7.5,
         "bp_converted": 3.7
@@ -3664,11 +3664,11 @@
     },
     "elo_snapshot": {
       "name": "Gael Monfils",
-      "n_overall": 73,
-      "n_surface": 73,
-      "R_overall": 1612.3,
-      "R_surface": 1612.3,
-      "R_adjusted": 1612.3
+      "n_overall": 80,
+      "n_surface": 80,
+      "R_overall": 1672.3,
+      "R_surface": 1672.3,
+      "R_adjusted": 1672.3
     }
   },
   "Richard Gasquet": {
@@ -3686,9 +3686,9 @@
         "match_id": "2018-wimbledon-1112",
         "round": "R128",
         "opponent": "Gael Monfils",
-        "opponent_elo": 1792.8,
+        "opponent_elo": 1791.9,
         "w_t": 1.0,
-        "w_q": 1.1712
+        "w_q": 1.1707
       }
     ],
     "tier1": {
@@ -3823,11 +3823,11 @@
     },
     "elo_snapshot": {
       "name": "Richard Gasquet",
-      "n_overall": 116,
-      "n_surface": 116,
-      "R_overall": 1681.5,
-      "R_surface": 1681.5,
-      "R_adjusted": 1681.5
+      "n_overall": 117,
+      "n_surface": 117,
+      "R_overall": 1658.8,
+      "R_surface": 1658.8,
+      "R_adjusted": 1658.8
     }
   },
   "Philipp Kohlschreiber": {
@@ -3845,25 +3845,25 @@
         "match_id": "2018-wimbledon-1113",
         "round": "R128",
         "opponent": "Evgeny Donskoy",
-        "opponent_elo": 1417.3,
+        "opponent_elo": 1416.3,
         "w_t": 1.0,
-        "w_q": 0.9258
+        "w_q": 0.9253
       },
       {
         "match_id": "2018-wimbledon-1207",
         "round": "R64",
         "opponent": "Gilles Muller",
-        "opponent_elo": 1843.6,
+        "opponent_elo": 1850.8,
         "w_t": 0.9973,
-        "w_q": 1.2043
+        "w_q": 1.2092
       },
       {
         "match_id": "2018-wimbledon-1304",
         "round": "R32",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1778.9,
+        "opponent_elo": 1784.8,
         "w_t": 0.9945,
-        "w_q": 1.1621
+        "w_q": 1.1661
       }
     ],
     "tier1": {
@@ -3901,7 +3901,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.5296,
+        "value": 0.5301,
         "max_bits": 1.585,
         "pct_of_max": 33.4
       },
@@ -3957,8 +3957,8 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 48.8,
-        "ad_win_pct": 52.3,
-        "asymmetry": 3.5,
+        "ad_win_pct": 52.2,
+        "asymmetry": 3.4,
         "stronger_side": "ad"
       },
       "momentum_profile": {
@@ -3967,8 +3967,8 @@
         "streak_recovery_rate": 0.558
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.511,
-        "bp_conversion": 0.197,
+        "bp_per_return_game": 0.51,
+        "bp_conversion": 0.196,
         "bp_created": 9.0,
         "bp_converted": 1.8
       },
@@ -4000,9 +4000,9 @@
       "name": "Philipp Kohlschreiber",
       "n_overall": 101,
       "n_surface": 101,
-      "R_overall": 1660.7,
-      "R_surface": 1660.7,
-      "R_adjusted": 1660.7
+      "R_overall": 1655.8,
+      "R_surface": 1655.8,
+      "R_adjusted": 1655.8
     }
   },
   "Evgeny Donskoy": {
@@ -4020,9 +4020,9 @@
         "match_id": "2018-wimbledon-1113",
         "round": "R128",
         "opponent": "Philipp Kohlschreiber",
-        "opponent_elo": 1748.3,
+        "opponent_elo": 1744.6,
         "w_t": 1.0,
-        "w_q": 1.1421
+        "w_q": 1.1398
       }
     ],
     "tier1": {
@@ -4145,9 +4145,9 @@
       "name": "Evgeny Donskoy",
       "n_overall": 16,
       "n_surface": 16,
-      "R_overall": 1377.9,
-      "R_surface": 1377.9,
-      "R_adjusted": 1377.9
+      "R_overall": 1391.5,
+      "R_surface": 1391.5,
+      "R_adjusted": 1391.5
     }
   },
   "Gilles Muller": {
@@ -4167,15 +4167,15 @@
         "opponent": "Michael Mmoh",
         "opponent_elo": 1434.3,
         "w_t": 1.0,
-        "w_q": 0.937
+        "w_q": 0.9371
       },
       {
         "match_id": "2018-wimbledon-1207",
         "round": "R64",
         "opponent": "Philipp Kohlschreiber",
-        "opponent_elo": 1743.3,
+        "opponent_elo": 1738.6,
         "w_t": 0.9973,
-        "w_q": 1.1388
+        "w_q": 1.1359
       }
     ],
     "tier1": {
@@ -4196,7 +4196,7 @@
       },
       "rpw_pct": {
         "value": 27.6,
-        "ci_90_lo": 22.1,
+        "ci_90_lo": 22.2,
         "ci_90_hi": 34.7
       },
       "sgw_pct": {
@@ -4235,13 +4235,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": -0.3,
+        "value": -0.4,
         "high_lev_win_pct": 48.9,
-        "baseline_win_pct": 49.2,
+        "baseline_win_pct": 49.3,
         "n_eff": 28,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.003
+        "modifier_delta": -0.004
       },
       "df_pressure_delta": {
         "available": true,
@@ -4266,7 +4266,7 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 8.86,
-        "streak_survival_rate": 0.353,
+        "streak_survival_rate": 0.354,
         "streak_recovery_rate": 0.48
       },
       "bp_creation_profile": {
@@ -4298,9 +4298,9 @@
       "name": "Gilles Muller",
       "n_overall": 81,
       "n_surface": 81,
-      "R_overall": 1765.2,
-      "R_surface": 1765.2,
-      "R_adjusted": 1765.2
+      "R_overall": 1768.8,
+      "R_surface": 1768.8,
+      "R_adjusted": 1768.8
     }
   },
   "Michael Mmoh": {
@@ -4318,9 +4318,9 @@
         "match_id": "2018-wimbledon-1114",
         "round": "R128",
         "opponent": "Gilles Muller",
-        "opponent_elo": 1811.2,
+        "opponent_elo": 1818.1,
         "w_t": 1.0,
-        "w_q": 1.1832
+        "w_q": 1.1878
       }
     ],
     "tier1": {
@@ -4443,9 +4443,9 @@
       "name": "Michael Mmoh",
       "n_overall": 4,
       "n_surface": 4,
-      "R_overall": 1462.6,
-      "R_surface": 1462.6,
-      "R_adjusted": 1462.6
+      "R_overall": 1462.7,
+      "R_surface": 1462.7,
+      "R_adjusted": 1462.7
     }
   },
   "John Patrick Smith": {
@@ -4463,9 +4463,9 @@
         "match_id": "2018-wimbledon-1115",
         "round": "R128",
         "opponent": "Andreas Seppi",
-        "opponent_elo": 1706.6,
+        "opponent_elo": 1706.1,
         "w_t": 1.0,
-        "w_q": 1.1148
+        "w_q": 1.1147
       }
     ],
     "tier1": {
@@ -4588,9 +4588,9 @@
       "name": "John Patrick Smith",
       "n_overall": 9,
       "n_surface": 9,
-      "R_overall": 1476.9,
-      "R_surface": 1476.9,
-      "R_adjusted": 1476.9
+      "R_overall": 1476.6,
+      "R_surface": 1476.6,
+      "R_adjusted": 1476.6
     }
   },
   "Andreas Seppi": {
@@ -4608,7 +4608,7 @@
         "match_id": "2018-wimbledon-1115",
         "round": "R128",
         "opponent": "John Patrick Smith",
-        "opponent_elo": 1498.5,
+        "opponent_elo": 1498.3,
         "w_t": 1.0,
         "w_q": 0.9789
       },
@@ -4616,9 +4616,9 @@
         "match_id": "2018-wimbledon-1208",
         "round": "R64",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1778.9,
+        "opponent_elo": 1784.8,
         "w_t": 0.9973,
-        "w_q": 1.1621
+        "w_q": 1.1661
       }
     ],
     "tier1": {
@@ -4650,15 +4650,15 @@
       "rgw_pct": {
         "value": 21.6,
         "ci_90_lo": 12.8,
-        "ci_90_hi": 43.6
+        "ci_90_hi": 43.5
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8496,
+        "value": 0.8509,
         "max_bits": 1.585,
-        "pct_of_max": 53.6
+        "pct_of_max": 53.7
       },
       "rally_win_curve": {
         "1_3": {
@@ -4722,7 +4722,7 @@
         "streak_recovery_rate": 0.276
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.553,
+        "bp_per_return_game": 0.552,
         "bp_conversion": 0.391,
         "bp_created": 9.6,
         "bp_converted": 3.7
@@ -4755,9 +4755,9 @@
       "name": "Andreas Seppi",
       "n_overall": 112,
       "n_surface": 112,
-      "R_overall": 1628.0,
-      "R_surface": 1628.0,
-      "R_adjusted": 1628.0
+      "R_overall": 1626.9,
+      "R_surface": 1626.9,
+      "R_adjusted": 1626.9
     }
   },
   "Norbert Gombos": {
@@ -4775,9 +4775,9 @@
         "match_id": "2018-wimbledon-1116",
         "round": "R128",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1836.0,
+        "opponent_elo": 1839.7,
         "w_t": 1.0,
-        "w_q": 1.1994
+        "w_q": 1.2019
       }
     ],
     "tier1": {
@@ -4914,9 +4914,9 @@
       "name": "Norbert Gombos",
       "n_overall": 5,
       "n_surface": 5,
-      "R_overall": 1366.1,
-      "R_surface": 1366.1,
-      "R_adjusted": 1366.1
+      "R_overall": 1366.5,
+      "R_surface": 1366.5,
+      "R_adjusted": 1366.5
     }
   },
   "Kevin Anderson": {
@@ -4924,7 +4924,7 @@
     "surface": "grass",
     "year": 2018,
     "n_matches": 7,
-    "n_points": 300,
+    "n_points": 299,
     "n_eff_matches": 6.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -4934,15 +4934,15 @@
         "match_id": "2018-wimbledon-1116",
         "round": "R128",
         "opponent": "Norbert Gombos",
-        "opponent_elo": 1458.6,
+        "opponent_elo": 1457.7,
         "w_t": 1.0,
-        "w_q": 0.9528
+        "w_q": 0.9524
       },
       {
         "match_id": "2018-wimbledon-1208",
         "round": "R64",
         "opponent": "Andreas Seppi",
-        "opponent_elo": 1718.9,
+        "opponent_elo": 1718.5,
         "w_t": 0.9973,
         "w_q": 1.1228
       },
@@ -4950,48 +4950,48 @@
         "match_id": "2018-wimbledon-1304",
         "round": "R32",
         "opponent": "Philipp Kohlschreiber",
-        "opponent_elo": 1743.3,
+        "opponent_elo": 1738.6,
         "w_t": 0.9945,
-        "w_q": 1.1388
+        "w_q": 1.1359
       },
       {
         "match_id": "2018-wimbledon-1402",
         "round": "R16",
         "opponent": "Gael Monfils",
-        "opponent_elo": 1756.1,
+        "opponent_elo": 1723.8,
         "w_t": 0.9918,
-        "w_q": 1.1472
+        "w_q": 1.1262
       },
       {
         "match_id": "2018-wimbledon-1501",
         "round": "QF",
         "opponent": "Roger Federer",
-        "opponent_elo": 2153.3,
+        "opponent_elo": 2123.0,
         "w_t": 0.9891,
-        "w_q": 1.4066
+        "w_q": 1.387
       },
       {
         "match_id": "2018-wimbledon-1601",
         "round": "SF",
         "opponent": "John Isner",
-        "opponent_elo": 1776.7,
+        "opponent_elo": 1760.8,
         "w_t": 0.9864,
-        "w_q": 1.1606
+        "w_q": 1.1504
       },
       {
         "match_id": "2018-wimbledon-1701",
         "round": "F",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2122.2,
+        "opponent_elo": 2120.7,
         "w_t": 0.9837,
-        "w_q": 1.3864
+        "w_q": 1.3855
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 67.4,
         "ci_90_lo": 60.5,
-        "ci_90_hi": 73.0
+        "ci_90_hi": 73.1
       },
       "fspw_pct": {
         "value": 80.8,
@@ -5001,7 +5001,7 @@
       "sspw_pct": {
         "value": 60.2,
         "ci_90_lo": 47.5,
-        "ci_90_hi": 70.6
+        "ci_90_hi": 70.7
       },
       "rpw_pct": {
         "value": 31.7,
@@ -5014,7 +5014,7 @@
         "ci_90_hi": 94.0
       },
       "rgw_pct": {
-        "value": 15.1,
+        "value": 15.2,
         "ci_90_lo": 9.3,
         "ci_90_hi": 32.8
       }
@@ -5029,10 +5029,10 @@
       "rally_win_curve": {
         "1_3": {
           "win_pct": 52.3,
-          "n": 210
+          "n": 209
         },
         "4_6": {
-          "win_pct": 52.8,
+          "win_pct": 52.7,
           "n": 54
         },
         "7_9": {
@@ -5040,7 +5040,7 @@
           "n": 15
         },
         "10+": {
-          "win_pct": 43.7,
+          "win_pct": 43.8,
           "n": 12
         }
       },
@@ -5083,7 +5083,7 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.24,
+        "streak_initiation_rate": 3.23,
         "streak_survival_rate": 0.5,
         "streak_recovery_rate": 0.514
       },
@@ -5121,9 +5121,9 @@
       "name": "Kevin Anderson",
       "n_overall": 76,
       "n_surface": 76,
-      "R_overall": 1844.0,
-      "R_surface": 1844.0,
-      "R_adjusted": 1844.0
+      "R_overall": 1841.0,
+      "R_surface": 1841.0,
+      "R_adjusted": 1841.0
     }
   },
   "Marin Cilic": {
@@ -5141,17 +5141,17 @@
         "match_id": "2018-wimbledon-1117",
         "round": "R128",
         "opponent": "Yoshihito Nishioka",
-        "opponent_elo": 1386.8,
+        "opponent_elo": 1387.2,
         "w_t": 1.0,
-        "w_q": 0.906
+        "w_q": 0.9063
       },
       {
         "match_id": "2018-wimbledon-1209",
         "round": "R64",
         "opponent": "Guido Pella",
-        "opponent_elo": 1490.1,
+        "opponent_elo": 1489.3,
         "w_t": 0.9973,
-        "w_q": 0.9734
+        "w_q": 0.973
       }
     ],
     "tier1": {
@@ -5288,9 +5288,9 @@
       "name": "Marin Cilic",
       "n_overall": 114,
       "n_surface": 114,
-      "R_overall": 1901.0,
-      "R_surface": 1901.0,
-      "R_adjusted": 1901.0
+      "R_overall": 1897.5,
+      "R_surface": 1897.5,
+      "R_adjusted": 1897.5
     }
   },
   "Yoshihito Nishioka": {
@@ -5308,9 +5308,9 @@
         "match_id": "2018-wimbledon-1117",
         "round": "R128",
         "opponent": "Marin Cilic",
-        "opponent_elo": 2044.5,
+        "opponent_elo": 2040.6,
         "w_t": 1.0,
-        "w_q": 1.3356
+        "w_q": 1.3332
       }
     ],
     "tier1": {
@@ -5440,11 +5440,11 @@
     },
     "elo_snapshot": {
       "name": "Yoshihito Nishioka",
-      "n_overall": 10,
-      "n_surface": 10,
-      "R_overall": 1335.2,
-      "R_surface": 1335.2,
-      "R_adjusted": 1335.2
+      "n_overall": 15,
+      "n_surface": 15,
+      "R_overall": 1435.7,
+      "R_surface": 1435.7,
+      "R_adjusted": 1435.7
     }
   },
   "Jason Kubler": {
@@ -5462,9 +5462,9 @@
         "match_id": "2018-wimbledon-1118",
         "round": "R128",
         "opponent": "Guido Pella",
-        "opponent_elo": 1598.2,
+        "opponent_elo": 1597.7,
         "w_t": 1.0,
-        "w_q": 1.044
+        "w_q": 1.0439
       }
     ],
     "tier1": {
@@ -5587,9 +5587,9 @@
       "name": "Jason Kubler",
       "n_overall": 13,
       "n_surface": 13,
-      "R_overall": 1586.8,
-      "R_surface": 1586.8,
-      "R_adjusted": 1586.8
+      "R_overall": 1582.8,
+      "R_surface": 1582.8,
+      "R_adjusted": 1582.8
     }
   },
   "Guido Pella": {
@@ -5609,15 +5609,15 @@
         "opponent": "Jason Kubler",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2018-wimbledon-1209",
         "round": "R64",
         "opponent": "Marin Cilic",
-        "opponent_elo": 2033.0,
+        "opponent_elo": 2028.5,
         "w_t": 0.9973,
-        "w_q": 1.3281
+        "w_q": 1.3253
       },
       {
         "match_id": "2018-wimbledon-1305",
@@ -5663,9 +5663,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.0867,
+        "value": 1.0862,
         "max_bits": 1.585,
-        "pct_of_max": 68.6
+        "pct_of_max": 68.5
       },
       "rally_win_curve": {
         "1_3": {
@@ -5762,9 +5762,9 @@
       "name": "Guido Pella",
       "n_overall": 27,
       "n_surface": 27,
-      "R_overall": 1593.4,
-      "R_surface": 1593.4,
-      "R_adjusted": 1593.4
+      "R_overall": 1592.4,
+      "R_surface": 1592.4,
+      "R_adjusted": 1592.4
     }
   },
   "Ricardas Berankis": {
@@ -5907,9 +5907,9 @@
       "name": "Ricardas Berankis",
       "n_overall": 26,
       "n_surface": 26,
-      "R_overall": 1450.7,
-      "R_surface": 1450.7,
-      "R_adjusted": 1450.7
+      "R_overall": 1449.5,
+      "R_surface": 1449.5,
+      "R_adjusted": 1449.5
     }
   },
   "Mackenzie McDonald": {
@@ -5927,33 +5927,33 @@
         "match_id": "2018-wimbledon-1119",
         "round": "R128",
         "opponent": "Ricardas Berankis",
-        "opponent_elo": 1329.1,
+        "opponent_elo": 1331.8,
         "w_t": 1.0,
-        "w_q": 0.8682
+        "w_q": 0.8701
       },
       {
         "match_id": "2018-wimbledon-1210",
         "round": "R64",
         "opponent": "Nicolas Jarry",
-        "opponent_elo": 1466.7,
+        "opponent_elo": 1466.2,
         "w_t": 0.9973,
-        "w_q": 0.9581
+        "w_q": 0.9579
       },
       {
         "match_id": "2018-wimbledon-1305",
         "round": "R32",
         "opponent": "Guido Pella",
-        "opponent_elo": 1490.1,
+        "opponent_elo": 1489.3,
         "w_t": 0.9945,
-        "w_q": 0.9734
+        "w_q": 0.973
       },
       {
         "match_id": "2018-wimbledon-1403",
         "round": "R16",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1962.7,
+        "opponent_elo": 1960.7,
         "w_t": 0.9918,
-        "w_q": 1.2822
+        "w_q": 1.281
       }
     ],
     "tier1": {
@@ -5991,7 +5991,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8311,
+        "value": 0.8305,
         "max_bits": 1.585,
         "pct_of_max": 52.4
       },
@@ -6053,12 +6053,12 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 3.82,
-        "streak_survival_rate": 0.397,
+        "streak_survival_rate": 0.398,
         "streak_recovery_rate": 0.271
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.27,
-        "bp_conversion": 0.374,
+        "bp_conversion": 0.373,
         "bp_created": 6.1,
         "bp_converted": 2.3
       },
@@ -6105,7 +6105,7 @@
         "opponent": "Filip Krajinovic",
         "opponent_elo": 1478.1,
         "w_t": 1.0,
-        "w_q": 0.9656
+        "w_q": 0.9657
       },
       {
         "match_id": "2018-wimbledon-1210",
@@ -6234,11 +6234,11 @@
     },
     "elo_snapshot": {
       "name": "Nicolas Jarry",
-      "n_overall": 17,
-      "n_surface": 17,
-      "R_overall": 1608.8,
-      "R_surface": 1608.8,
-      "R_adjusted": 1608.8
+      "n_overall": 18,
+      "n_surface": 18,
+      "R_overall": 1583.7,
+      "R_surface": 1583.7,
+      "R_adjusted": 1583.7
     }
   },
   "Filip Krajinovic": {
@@ -6256,9 +6256,9 @@
         "match_id": "2018-wimbledon-1120",
         "round": "R128",
         "opponent": "Nicolas Jarry",
-        "opponent_elo": 1408.8,
+        "opponent_elo": 1502.9,
         "w_t": 1.0,
-        "w_q": 0.9203
+        "w_q": 0.9819
       }
     ],
     "tier1": {
@@ -6381,9 +6381,9 @@
       "name": "Filip Krajinovic",
       "n_overall": 11,
       "n_surface": 11,
-      "R_overall": 1615.2,
-      "R_surface": 1615.2,
-      "R_adjusted": 1615.2
+      "R_overall": 1615.6,
+      "R_surface": 1615.6,
+      "R_adjusted": 1615.6
     }
   },
   "Lucas Pouille": {
@@ -6401,9 +6401,9 @@
         "match_id": "2018-wimbledon-1121",
         "round": "R128",
         "opponent": "Denis Kudla",
-        "opponent_elo": 1601.1,
+        "opponent_elo": 1596.9,
         "w_t": 1.0,
-        "w_q": 1.0459
+        "w_q": 1.0433
       },
       {
         "match_id": "2018-wimbledon-1211",
@@ -6443,7 +6443,7 @@
       "rgw_pct": {
         "value": 21.2,
         "ci_90_lo": 12.9,
-        "ci_90_hi": 40.8
+        "ci_90_hi": 40.7
       }
     },
     "tier2": {
@@ -6463,7 +6463,7 @@
           "n": 56
         },
         "7_9": {
-          "win_pct": 56.9,
+          "win_pct": 56.8,
           "n": 15
         },
         "10+": {
@@ -6546,11 +6546,11 @@
     },
     "elo_snapshot": {
       "name": "Lucas Pouille",
-      "n_overall": 33,
-      "n_surface": 33,
-      "R_overall": 1671.2,
-      "R_surface": 1671.2,
-      "R_adjusted": 1671.2
+      "n_overall": 36,
+      "n_surface": 36,
+      "R_overall": 1691.7,
+      "R_surface": 1691.7,
+      "R_adjusted": 1691.7
     }
   },
   "Denis Kudla": {
@@ -6568,9 +6568,9 @@
         "match_id": "2018-wimbledon-1121",
         "round": "R128",
         "opponent": "Lucas Pouille",
-        "opponent_elo": 1727.7,
+        "opponent_elo": 1728.9,
         "w_t": 1.0,
-        "w_q": 1.1286
+        "w_q": 1.1296
       }
     ],
     "tier1": {
@@ -6707,9 +6707,9 @@
       "name": "Denis Kudla",
       "n_overall": 52,
       "n_surface": 52,
-      "R_overall": 1621.1,
-      "R_surface": 1621.1,
-      "R_adjusted": 1621.1
+      "R_overall": 1622.2,
+      "R_surface": 1622.2,
+      "R_adjusted": 1622.2
     }
   },
   "Peter Polansky": {
@@ -6727,9 +6727,9 @@
         "match_id": "2018-wimbledon-1122",
         "round": "R128",
         "opponent": "Dennis Novak",
-        "opponent_elo": 1643.5,
+        "opponent_elo": 1643.7,
         "w_t": 1.0,
-        "w_q": 1.0736
+        "w_q": 1.0739
       }
     ],
     "tier1": {
@@ -6872,25 +6872,25 @@
         "match_id": "2018-wimbledon-1122",
         "round": "R128",
         "opponent": "Peter Polansky",
-        "opponent_elo": 1439.1,
+        "opponent_elo": 1439.2,
         "w_t": 1.0,
-        "w_q": 0.9401
+        "w_q": 0.9403
       },
       {
         "match_id": "2018-wimbledon-1211",
         "round": "R64",
         "opponent": "Lucas Pouille",
-        "opponent_elo": 1756.7,
+        "opponent_elo": 1759.2,
         "w_t": 0.9973,
-        "w_q": 1.1476
+        "w_q": 1.1494
       },
       {
         "match_id": "2018-wimbledon-1306",
         "round": "R32",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1962.7,
+        "opponent_elo": 1960.7,
         "w_t": 0.9945,
-        "w_q": 1.2822
+        "w_q": 1.281
       }
     ],
     "tier1": {
@@ -6906,7 +6906,7 @@
       },
       "sspw_pct": {
         "value": 65.0,
-        "ci_90_lo": 51.2,
+        "ci_90_lo": 51.3,
         "ci_90_hi": 75.2
       },
       "rpw_pct": {
@@ -6920,7 +6920,7 @@
         "ci_90_hi": 90.5
       },
       "rgw_pct": {
-        "value": 23.1,
+        "value": 23.2,
         "ci_90_lo": 14.1,
         "ci_90_hi": 42.8
       }
@@ -7027,9 +7027,9 @@
       "name": "Dennis Novak",
       "n_overall": 8,
       "n_surface": 8,
-      "R_overall": 1481.7,
-      "R_surface": 1481.7,
-      "R_adjusted": 1481.7
+      "R_overall": 1481.0,
+      "R_surface": 1481.0,
+      "R_adjusted": 1481.0
     }
   },
   "John Millman": {
@@ -7047,17 +7047,17 @@
         "match_id": "2018-wimbledon-1123",
         "round": "R128",
         "opponent": "Stefano Travaglia",
-        "opponent_elo": 1453.4,
+        "opponent_elo": 1453.5,
         "w_t": 1.0,
-        "w_q": 0.9494
+        "w_q": 0.9496
       },
       {
         "match_id": "2018-wimbledon-1212",
         "round": "R64",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1962.7,
+        "opponent_elo": 1960.7,
         "w_t": 0.9973,
-        "w_q": 1.2822
+        "w_q": 1.281
       }
     ],
     "tier1": {
@@ -7089,20 +7089,20 @@
       "rgw_pct": {
         "value": 19.1,
         "ci_90_lo": 11.5,
-        "ci_90_hi": 39.0
+        "ci_90_hi": 39.1
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8917,
+        "value": 0.8913,
         "max_bits": 1.585,
-        "pct_of_max": 56.3
+        "pct_of_max": 56.2
       },
       "rally_win_curve": {
         "1_3": {
           "win_pct": 50.9,
-          "n": 204
+          "n": 205
         },
         "4_6": {
           "win_pct": 50.0,
@@ -7162,7 +7162,7 @@
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.382,
-        "bp_conversion": 0.447,
+        "bp_conversion": 0.446,
         "bp_created": 8.0,
         "bp_converted": 3.6
       },
@@ -7194,9 +7194,9 @@
       "name": "John Millman",
       "n_overall": 31,
       "n_surface": 31,
-      "R_overall": 1551.5,
-      "R_surface": 1551.5,
-      "R_adjusted": 1551.5
+      "R_overall": 1543.3,
+      "R_surface": 1543.3,
+      "R_adjusted": 1543.3
     }
   },
   "Stefano Travaglia": {
@@ -7214,9 +7214,9 @@
         "match_id": "2018-wimbledon-1123",
         "round": "R128",
         "opponent": "John Millman",
-        "opponent_elo": 1624.4,
+        "opponent_elo": 1615.8,
         "w_t": 1.0,
-        "w_q": 1.0611
+        "w_q": 1.0556
       }
     ],
     "tier1": {
@@ -7339,9 +7339,9 @@
       "name": "Stefano Travaglia",
       "n_overall": 6,
       "n_surface": 6,
-      "R_overall": 1431.8,
-      "R_surface": 1431.8,
-      "R_adjusted": 1431.8
+      "R_overall": 1431.7,
+      "R_surface": 1431.7,
+      "R_adjusted": 1431.7
     }
   },
   "Liam Broady": {
@@ -7359,9 +7359,9 @@
         "match_id": "2018-wimbledon-1124",
         "round": "R128",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1912.8,
+        "opponent_elo": 1910.5,
         "w_t": 1.0,
-        "w_q": 1.2496
+        "w_q": 1.2482
       }
     ],
     "tier1": {
@@ -7496,11 +7496,11 @@
     },
     "elo_snapshot": {
       "name": "Liam Broady",
-      "n_overall": 25,
-      "n_surface": 25,
-      "R_overall": 1512.4,
-      "R_surface": 1512.4,
-      "R_adjusted": 1512.4
+      "n_overall": 27,
+      "n_surface": 27,
+      "R_overall": 1444.2,
+      "R_surface": 1444.2,
+      "R_adjusted": 1444.2
     }
   },
   "Milos Raonic": {
@@ -7518,17 +7518,17 @@
         "match_id": "2018-wimbledon-1124",
         "round": "R128",
         "opponent": "Liam Broady",
-        "opponent_elo": 1379.5,
+        "opponent_elo": 1378.6,
         "w_t": 1.0,
-        "w_q": 0.9012
+        "w_q": 0.9007
       },
       {
         "match_id": "2018-wimbledon-1212",
         "round": "R64",
         "opponent": "John Millman",
-        "opponent_elo": 1648.8,
+        "opponent_elo": 1645.8,
         "w_t": 0.9973,
-        "w_q": 1.0771
+        "w_q": 1.0753
       },
       {
         "match_id": "2018-wimbledon-1306",
@@ -7550,9 +7550,9 @@
         "match_id": "2018-wimbledon-1502",
         "round": "QF",
         "opponent": "John Isner",
-        "opponent_elo": 1776.7,
+        "opponent_elo": 1760.8,
         "w_t": 0.9891,
-        "w_q": 1.1606
+        "w_q": 1.1504
       }
     ],
     "tier1": {
@@ -7574,17 +7574,17 @@
       "rpw_pct": {
         "value": 33.3,
         "ci_90_lo": 27.0,
-        "ci_90_hi": 41.0
+        "ci_90_hi": 41.1
       },
       "sgw_pct": {
-        "value": 93.2,
+        "value": 93.3,
         "ci_90_lo": 72.3,
         "ci_90_hi": 95.5
       },
       "rgw_pct": {
-        "value": 20.1,
+        "value": 20.2,
         "ci_90_lo": 12.1,
-        "ci_90_hi": 40.5
+        "ci_90_hi": 40.6
       }
     },
     "tier2": {
@@ -7608,19 +7608,19 @@
           "n": 11
         },
         "10+": {
-          "win_pct": 42.7,
+          "win_pct": 42.8,
           "n": 6
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": -7.4,
-        "high_lev_win_pct": 46.5,
+        "value": -7.5,
+        "high_lev_win_pct": 46.4,
         "baseline_win_pct": 53.9,
         "n_eff": 21,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.074
+        "modifier_delta": -0.075
       },
       "df_pressure_delta": {
         "available": true,
@@ -7634,13 +7634,13 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -11.5,
-        "bp_speed_kmh": 186.0,
+        "value": -11.4,
+        "bp_speed_kmh": 186.1,
         "overall_speed_kmh": 197.5,
         "n_eff": 3,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.115,
+        "modifier_delta": -0.114,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
@@ -7653,10 +7653,10 @@
       "momentum_profile": {
         "streak_initiation_rate": 3.81,
         "streak_survival_rate": 0.502,
-        "streak_recovery_rate": 0.454
+        "streak_recovery_rate": 0.455
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.393,
+        "bp_per_return_game": 0.394,
         "bp_conversion": 0.359,
         "bp_created": 7.9,
         "bp_converted": 2.8
@@ -7664,12 +7664,12 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2175,
+        "value": -0.2173,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0582,
+            "delta_frac": -0.0577,
             "weight": 0.3,
-            "contribution": -0.0175
+            "contribution": -0.0173
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -7681,17 +7681,17 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.2175,
+        "modifier_delta": -0.2173,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
     "elo_snapshot": {
       "name": "Milos Raonic",
-      "n_overall": 76,
-      "n_surface": 76,
-      "R_overall": 1816.4,
-      "R_surface": 1816.4,
-      "R_adjusted": 1816.4
+      "n_overall": 81,
+      "n_surface": 81,
+      "R_overall": 1810.8,
+      "R_surface": 1810.8,
+      "R_adjusted": 1810.8
     }
   },
   "John Isner": {
@@ -7709,7 +7709,7 @@
         "match_id": "2018-wimbledon-1125",
         "round": "R128",
         "opponent": "Yannick Maden",
-        "opponent_elo": 1478.0,
+        "opponent_elo": 1477.8,
         "w_t": 1.0,
         "w_q": 0.9655
       },
@@ -7717,41 +7717,41 @@
         "match_id": "2018-wimbledon-1213",
         "round": "R64",
         "opponent": "Ruben Bemelmans",
-        "opponent_elo": 1541.2,
+        "opponent_elo": 1541.5,
         "w_t": 0.9973,
-        "w_q": 1.0068
+        "w_q": 1.0071
       },
       {
         "match_id": "2018-wimbledon-1307",
         "round": "R32",
         "opponent": "Radu Albot",
-        "opponent_elo": 1599.0,
+        "opponent_elo": 1603.4,
         "w_t": 0.9945,
-        "w_q": 1.0445
+        "w_q": 1.0475
       },
       {
         "match_id": "2018-wimbledon-1404",
         "round": "R16",
         "opponent": "Stefanos Tsitsipas",
-        "opponent_elo": 1625.7,
+        "opponent_elo": 1617.8,
         "w_t": 0.9918,
-        "w_q": 1.062
+        "w_q": 1.057
       },
       {
         "match_id": "2018-wimbledon-1502",
         "round": "QF",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1962.7,
+        "opponent_elo": 1960.7,
         "w_t": 0.9891,
-        "w_q": 1.2822
+        "w_q": 1.281
       },
       {
         "match_id": "2018-wimbledon-1601",
         "round": "SF",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1778.9,
+        "opponent_elo": 1784.8,
         "w_t": 0.9864,
-        "w_q": 1.1621
+        "w_q": 1.1661
       }
     ],
     "tier1": {
@@ -7763,7 +7763,7 @@
       "fspw_pct": {
         "value": 82.5,
         "ci_90_lo": 74.9,
-        "ci_90_hi": 87.1
+        "ci_90_hi": 87.0
       },
       "sspw_pct": {
         "value": 61.4,
@@ -7773,7 +7773,7 @@
       "rpw_pct": {
         "value": 29.6,
         "ci_90_lo": 24.2,
-        "ci_90_hi": 36.4
+        "ci_90_hi": 36.3
       },
       "sgw_pct": {
         "value": 96.5,
@@ -7807,7 +7807,7 @@
           "n": 15
         },
         "10+": {
-          "win_pct": 57.9,
+          "win_pct": 57.8,
           "n": 6
         }
       },
@@ -7850,7 +7850,7 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.27,
+        "streak_initiation_rate": 3.28,
         "streak_survival_rate": 0.527,
         "streak_recovery_rate": 0.259
       },
@@ -7888,9 +7888,9 @@
       "name": "John Isner",
       "n_overall": 85,
       "n_surface": 85,
-      "R_overall": 1751.2,
-      "R_surface": 1751.2,
-      "R_adjusted": 1751.2
+      "R_overall": 1748.9,
+      "R_surface": 1748.9,
+      "R_adjusted": 1748.9
     }
   },
   "Yannick Maden": {
@@ -7908,9 +7908,9 @@
         "match_id": "2018-wimbledon-1125",
         "round": "R128",
         "opponent": "John Isner",
-        "opponent_elo": 1825.2,
+        "opponent_elo": 1817.8,
         "w_t": 1.0,
-        "w_q": 1.1923
+        "w_q": 1.1877
       }
     ],
     "tier1": {
@@ -8047,9 +8047,9 @@
       "name": "Yannick Maden",
       "n_overall": 2,
       "n_surface": 2,
-      "R_overall": 1460.3,
-      "R_surface": 1460.3,
-      "R_adjusted": 1460.3
+      "R_overall": 1459.2,
+      "R_surface": 1459.2,
+      "R_adjusted": 1459.2
     }
   },
   "Steve Johnson": {
@@ -8069,7 +8069,7 @@
         "opponent": "Ruben Bemelmans",
         "opponent_elo": 1580.4,
         "w_t": 1.0,
-        "w_q": 1.0324
+        "w_q": 1.0325
       }
     ],
     "tier1": {
@@ -8192,9 +8192,9 @@
       "name": "Steve Johnson",
       "n_overall": 68,
       "n_surface": 68,
-      "R_overall": 1652.6,
-      "R_surface": 1652.6,
-      "R_adjusted": 1652.6
+      "R_overall": 1651.3,
+      "R_surface": 1651.3,
+      "R_adjusted": 1651.3
     }
   },
   "Ruben Bemelmans": {
@@ -8212,17 +8212,17 @@
         "match_id": "2018-wimbledon-1126",
         "round": "R128",
         "opponent": "Steve Johnson",
-        "opponent_elo": 1693.9,
+        "opponent_elo": 1685.3,
         "w_t": 1.0,
-        "w_q": 1.1065
+        "w_q": 1.101
       },
       {
         "match_id": "2018-wimbledon-1213",
         "round": "R64",
         "opponent": "John Isner",
-        "opponent_elo": 1776.7,
+        "opponent_elo": 1760.8,
         "w_t": 0.9973,
-        "w_q": 1.1606
+        "w_q": 1.1504
       }
     ],
     "tier1": {
@@ -8237,12 +8237,12 @@
         "ci_90_hi": 80.9
       },
       "sspw_pct": {
-        "value": 53.3,
+        "value": 53.2,
         "ci_90_lo": 42.5,
-        "ci_90_hi": 63.5
+        "ci_90_hi": 63.4
       },
       "rpw_pct": {
-        "value": 29.5,
+        "value": 29.6,
         "ci_90_lo": 24.4,
         "ci_90_hi": 36.0
       },
@@ -8254,15 +8254,15 @@
       "rgw_pct": {
         "value": 12.1,
         "ci_90_lo": 7.4,
-        "ci_90_hi": 28.4
+        "ci_90_hi": 28.5
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7824,
+        "value": 0.7809,
         "max_bits": 1.585,
-        "pct_of_max": 49.4
+        "pct_of_max": 49.3
       },
       "rally_win_curve": {
         "1_3": {
@@ -8323,7 +8323,7 @@
       "momentum_profile": {
         "streak_initiation_rate": 11.72,
         "streak_survival_rate": 0.489,
-        "streak_recovery_rate": 0.547
+        "streak_recovery_rate": 0.546
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.38,
@@ -8359,9 +8359,9 @@
       "name": "Ruben Bemelmans",
       "n_overall": 20,
       "n_surface": 20,
-      "R_overall": 1507.8,
-      "R_surface": 1507.8,
-      "R_adjusted": 1507.8
+      "R_overall": 1509.4,
+      "R_surface": 1509.4,
+      "R_adjusted": 1509.4
     }
   },
   "Aljaz Bedene": {
@@ -8379,17 +8379,17 @@
         "match_id": "2018-wimbledon-1127",
         "round": "R128",
         "opponent": "Cameron Norrie",
-        "opponent_elo": 1508.4,
+        "opponent_elo": 1502.5,
         "w_t": 1.0,
-        "w_q": 0.9854
+        "w_q": 0.9816
       },
       {
         "match_id": "2018-wimbledon-1214",
         "round": "R64",
         "opponent": "Radu Albot",
-        "opponent_elo": 1599.0,
+        "opponent_elo": 1603.4,
         "w_t": 0.9973,
-        "w_q": 1.0445
+        "w_q": 1.0475
       }
     ],
     "tier1": {
@@ -8406,7 +8406,7 @@
       "sspw_pct": {
         "value": 56.3,
         "ci_90_lo": 45.4,
-        "ci_90_hi": 66.2
+        "ci_90_hi": 66.1
       },
       "rpw_pct": {
         "value": 34.5,
@@ -8480,7 +8480,7 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 9.76,
-        "streak_survival_rate": 0.485,
+        "streak_survival_rate": 0.484,
         "streak_recovery_rate": 0.522
       },
       "bp_creation_profile": {
@@ -8512,9 +8512,9 @@
       "name": "Aljaz Bedene",
       "n_overall": 35,
       "n_surface": 35,
-      "R_overall": 1493.8,
-      "R_surface": 1493.8,
-      "R_adjusted": 1493.8
+      "R_overall": 1492.5,
+      "R_surface": 1492.5,
+      "R_adjusted": 1492.5
     }
   },
   "Cameron Norrie": {
@@ -8532,9 +8532,9 @@
         "match_id": "2018-wimbledon-1127",
         "round": "R128",
         "opponent": "Aljaz Bedene",
-        "opponent_elo": 1631.9,
+        "opponent_elo": 1631.0,
         "w_t": 1.0,
-        "w_q": 1.066
+        "w_q": 1.0656
       }
     ],
     "tier1": {
@@ -8655,11 +8655,11 @@
     },
     "elo_snapshot": {
       "name": "Cameron Norrie",
-      "n_overall": 36,
-      "n_surface": 36,
-      "R_overall": 1746.0,
-      "R_surface": 1746.0,
-      "R_adjusted": 1746.0
+      "n_overall": 41,
+      "n_surface": 41,
+      "R_overall": 1706.6,
+      "R_surface": 1706.6,
+      "R_adjusted": 1706.6
     }
   },
   "Radu Albot": {
@@ -8667,7 +8667,7 @@
     "surface": "grass",
     "year": 2018,
     "n_matches": 3,
-    "n_points": 261,
+    "n_points": 262,
     "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -8677,32 +8677,32 @@
         "match_id": "2018-wimbledon-1128",
         "round": "R128",
         "opponent": "Pablo Carreno Busta",
-        "opponent_elo": 1383.4,
+        "opponent_elo": 1383.7,
         "w_t": 1.0,
-        "w_q": 0.9037
+        "w_q": 0.904
       },
       {
         "match_id": "2018-wimbledon-1214",
         "round": "R64",
         "opponent": "Aljaz Bedene",
-        "opponent_elo": 1610.7,
+        "opponent_elo": 1610.8,
         "w_t": 0.9973,
-        "w_q": 1.0522
+        "w_q": 1.0524
       },
       {
         "match_id": "2018-wimbledon-1307",
         "round": "R32",
         "opponent": "John Isner",
-        "opponent_elo": 1776.7,
+        "opponent_elo": 1760.8,
         "w_t": 0.9945,
-        "w_q": 1.1606
+        "w_q": 1.1504
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 62.9,
         "ci_90_lo": 55.4,
-        "ci_90_hi": 69.4
+        "ci_90_hi": 69.3
       },
       "fspw_pct": {
         "value": 67.7,
@@ -8721,26 +8721,26 @@
       },
       "sgw_pct": {
         "value": 79.9,
-        "ci_90_lo": 59.3,
+        "ci_90_lo": 59.4,
         "ci_90_hi": 87.9
       },
       "rgw_pct": {
-        "value": 25.4,
-        "ci_90_lo": 15.6,
+        "value": 25.5,
+        "ci_90_lo": 15.7,
         "ci_90_hi": 45.1
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.5411,
+        "value": 0.538,
         "max_bits": 1.585,
-        "pct_of_max": 34.1
+        "pct_of_max": 33.9
       },
       "rally_win_curve": {
         "1_3": {
           "win_pct": 51.7,
-          "n": 233
+          "n": 234
         },
         "4_6": {
           "win_pct": 43.3,
@@ -8789,20 +8789,20 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 50.5,
-        "ad_win_pct": 52.3,
-        "asymmetry": 1.8,
+        "ad_win_pct": 52.4,
+        "asymmetry": 1.9,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 6.64,
+        "streak_initiation_rate": 6.66,
         "streak_survival_rate": 0.454,
-        "streak_recovery_rate": 0.37
+        "streak_recovery_rate": 0.371
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.678,
+        "bp_per_return_game": 0.68,
         "bp_conversion": 0.351,
         "bp_created": 14.1,
-        "bp_converted": 4.9
+        "bp_converted": 5.0
       },
       "rluep": null,
       "spci": {
@@ -8830,11 +8830,11 @@
     },
     "elo_snapshot": {
       "name": "Radu Albot",
-      "n_overall": 22,
-      "n_surface": 22,
-      "R_overall": 1428.8,
-      "R_surface": 1428.8,
-      "R_adjusted": 1428.8
+      "n_overall": 24,
+      "n_surface": 24,
+      "R_overall": 1398.8,
+      "R_surface": 1398.8,
+      "R_adjusted": 1398.8
     }
   },
   "Pablo Carreno Busta": {
@@ -8852,9 +8852,9 @@
         "match_id": "2018-wimbledon-1128",
         "round": "R128",
         "opponent": "Radu Albot",
-        "opponent_elo": 1641.0,
+        "opponent_elo": 1643.1,
         "w_t": 1.0,
-        "w_q": 1.072
+        "w_q": 1.0735
       }
     ],
     "tier1": {
@@ -8975,11 +8975,11 @@
     },
     "elo_snapshot": {
       "name": "Pablo Carreno Busta",
-      "n_overall": 19,
-      "n_surface": 19,
-      "R_overall": 1499.7,
-      "R_surface": 1499.7,
-      "R_adjusted": 1499.7
+      "n_overall": 20,
+      "n_surface": 20,
+      "R_overall": 1463.5,
+      "R_surface": 1463.5,
+      "R_adjusted": 1463.5
     }
   },
   "Stefanos Tsitsipas": {
@@ -8999,7 +8999,7 @@
         "opponent": "Gregoire Barrere",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2018-wimbledon-1215",
@@ -9007,29 +9007,29 @@
         "opponent": "Jared Donaldson",
         "opponent_elo": 1418.4,
         "w_t": 0.9973,
-        "w_q": 0.9266
+        "w_q": 0.9267
       },
       {
         "match_id": "2018-wimbledon-1308",
         "round": "R32",
         "opponent": "Thomas Fabbiano",
-        "opponent_elo": 1517.7,
+        "opponent_elo": 1516.2,
         "w_t": 0.9945,
-        "w_q": 0.9914
+        "w_q": 0.9906
       },
       {
         "match_id": "2018-wimbledon-1404",
         "round": "R16",
         "opponent": "John Isner",
-        "opponent_elo": 1776.7,
+        "opponent_elo": 1760.8,
         "w_t": 0.9918,
-        "w_q": 1.1606
+        "w_q": 1.1504
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 65.2,
-        "ci_90_lo": 57.1,
+        "ci_90_lo": 57.2,
         "ci_90_hi": 71.9
       },
       "fspw_pct": {
@@ -9043,9 +9043,9 @@
         "ci_90_hi": 76.3
       },
       "rpw_pct": {
-        "value": 36.8,
+        "value": 36.9,
         "ci_90_lo": 30.2,
-        "ci_90_hi": 44.6
+        "ci_90_hi": 44.7
       },
       "sgw_pct": {
         "value": 87.5,
@@ -9075,7 +9075,7 @@
           "n": 48
         },
         "7_9": {
-          "win_pct": 43.6,
+          "win_pct": 43.5,
           "n": 17
         },
         "10+": {
@@ -9085,13 +9085,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 0.7,
+        "value": 0.6,
         "high_lev_win_pct": 53.6,
-        "baseline_win_pct": 52.9,
+        "baseline_win_pct": 53.0,
         "n_eff": 30,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.007
+        "modifier_delta": 0.006
       },
       "df_pressure_delta": {
         "available": true,
@@ -9127,9 +9127,9 @@
         "streak_recovery_rate": 0.539
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.538,
+        "bp_per_return_game": 0.539,
         "bp_conversion": 0.413,
-        "bp_created": 10.4,
+        "bp_created": 10.5,
         "bp_converted": 4.3
       },
       "rluep": null,
@@ -9158,11 +9158,11 @@
     },
     "elo_snapshot": {
       "name": "Stefanos Tsitsipas",
-      "n_overall": 35,
-      "n_surface": 35,
-      "R_overall": 1712.8,
-      "R_surface": 1712.8,
-      "R_adjusted": 1712.8
+      "n_overall": 39,
+      "n_surface": 39,
+      "R_overall": 1653.1,
+      "R_surface": 1653.1,
+      "R_adjusted": 1653.1
     }
   },
   "Gregoire Barrere": {
@@ -9180,9 +9180,9 @@
         "match_id": "2018-wimbledon-1129",
         "round": "R128",
         "opponent": "Stefanos Tsitsipas",
-        "opponent_elo": 1681.2,
+        "opponent_elo": 1674.2,
         "w_t": 1.0,
-        "w_q": 1.0982
+        "w_q": 1.0938
       }
     ],
     "tier1": {
@@ -9319,9 +9319,9 @@
       "name": "Gregoire Barrere",
       "n_overall": 13,
       "n_surface": 13,
-      "R_overall": 1589.1,
-      "R_surface": 1589.1,
-      "R_adjusted": 1589.1
+      "R_overall": 1582.4,
+      "R_surface": 1582.4,
+      "R_adjusted": 1582.4
     }
   },
   "Malek Jaziri": {
@@ -9339,9 +9339,9 @@
         "match_id": "2018-wimbledon-1130",
         "round": "R128",
         "opponent": "Jared Donaldson",
-        "opponent_elo": 1493.7,
+        "opponent_elo": 1494.3,
         "w_t": 1.0,
-        "w_q": 0.9758
+        "w_q": 0.9763
       }
     ],
     "tier1": {
@@ -9464,9 +9464,9 @@
       "name": "Malek Jaziri",
       "n_overall": 27,
       "n_surface": 27,
-      "R_overall": 1375.7,
-      "R_surface": 1375.7,
-      "R_adjusted": 1375.7
+      "R_overall": 1381.9,
+      "R_surface": 1381.9,
+      "R_adjusted": 1381.9
     }
   },
   "Jared Donaldson": {
@@ -9484,23 +9484,23 @@
         "match_id": "2018-wimbledon-1130",
         "round": "R128",
         "opponent": "Malek Jaziri",
-        "opponent_elo": 1420.1,
+        "opponent_elo": 1427.1,
         "w_t": 1.0,
-        "w_q": 0.9276
+        "w_q": 0.9323
       },
       {
         "match_id": "2018-wimbledon-1215",
         "round": "R64",
         "opponent": "Stefanos Tsitsipas",
-        "opponent_elo": 1625.7,
+        "opponent_elo": 1617.8,
         "w_t": 0.9973,
-        "w_q": 1.062
+        "w_q": 1.057
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 49.2,
-        "ci_90_lo": 42.2,
+        "ci_90_lo": 42.1,
         "ci_90_hi": 56.4
       },
       "fspw_pct": {
@@ -9510,8 +9510,8 @@
       },
       "sspw_pct": {
         "value": 57.3,
-        "ci_90_lo": 46.2,
-        "ci_90_hi": 67.1
+        "ci_90_lo": 46.3,
+        "ci_90_hi": 67.2
       },
       "rpw_pct": {
         "value": 33.4,
@@ -9519,22 +9519,22 @@
         "ci_90_hi": 41.3
       },
       "sgw_pct": {
-        "value": 85.4,
+        "value": 85.5,
         "ci_90_lo": 63.8,
         "ci_90_hi": 91.3
       },
       "rgw_pct": {
-        "value": 20.4,
-        "ci_90_lo": 12.2,
-        "ci_90_hi": 41.2
+        "value": 20.5,
+        "ci_90_lo": 12.3,
+        "ci_90_hi": 41.3
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.826,
+        "value": 0.8222,
         "max_bits": 1.585,
-        "pct_of_max": 52.1
+        "pct_of_max": 51.9
       },
       "rally_win_curve": {
         "1_3": {
@@ -9566,13 +9566,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -2.7,
+        "value": -2.8,
         "bp_df_rate": 4.6,
-        "baseline_df_rate": 7.3,
+        "baseline_df_rate": 7.4,
         "n_eff": 12,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.027
+        "modifier_delta": -0.028
       },
       "serve_speed_courage": {
         "available": true,
@@ -9598,15 +9598,15 @@
         "streak_recovery_rate": 0.5
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.356,
-        "bp_conversion": 0.505,
+        "bp_per_return_game": 0.357,
+        "bp_conversion": 0.504,
         "bp_created": 6.9,
         "bp_converted": 3.5
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.0666,
+        "value": -0.0683,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0248,
@@ -9614,16 +9614,16 @@
             "contribution": 0.0074
           },
           "df_rate_delta": {
-            "delta_frac": -0.3699,
+            "delta_frac": -0.3784,
             "weight": 0.2,
-            "contribution": -0.074
+            "contribution": -0.0757
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "MARGINAL",
-        "modifier_delta": -0.0666,
+        "modifier_delta": -0.0683,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -9631,9 +9631,9 @@
       "name": "Jared Donaldson",
       "n_overall": 14,
       "n_surface": 14,
-      "R_overall": 1466.7,
-      "R_surface": 1466.7,
-      "R_adjusted": 1466.7
+      "R_overall": 1466.3,
+      "R_surface": 1466.3,
+      "R_adjusted": 1466.3
     }
   },
   "Yuki Bhambri": {
@@ -9651,9 +9651,9 @@
         "match_id": "2018-wimbledon-1131",
         "round": "R128",
         "opponent": "Thomas Fabbiano",
-        "opponent_elo": 1623.5,
+        "opponent_elo": 1621.9,
         "w_t": 1.0,
-        "w_q": 1.0606
+        "w_q": 1.0597
       }
     ],
     "tier1": {
@@ -9776,9 +9776,9 @@
       "name": "Yuki Bhambri",
       "n_overall": 4,
       "n_surface": 4,
-      "R_overall": 1482.4,
-      "R_surface": 1482.4,
-      "R_adjusted": 1482.4
+      "R_overall": 1482.2,
+      "R_surface": 1482.2,
+      "R_adjusted": 1482.2
     }
   },
   "Thomas Fabbiano": {
@@ -9798,23 +9798,23 @@
         "opponent": "Yuki Bhambri",
         "opponent_elo": 1468.1,
         "w_t": 1.0,
-        "w_q": 0.959
+        "w_q": 0.9592
       },
       {
         "match_id": "2018-wimbledon-1216",
         "round": "R64",
         "opponent": "Stan Wawrinka",
-        "opponent_elo": 1722.1,
+        "opponent_elo": 1719.7,
         "w_t": 0.9973,
-        "w_q": 1.125
+        "w_q": 1.1235
       },
       {
         "match_id": "2018-wimbledon-1308",
         "round": "R32",
         "opponent": "Stefanos Tsitsipas",
-        "opponent_elo": 1625.7,
+        "opponent_elo": 1617.8,
         "w_t": 0.9945,
-        "w_q": 1.062
+        "w_q": 1.057
       }
     ],
     "tier1": {
@@ -9834,14 +9834,14 @@
         "ci_90_hi": 66.4
       },
       "rpw_pct": {
-        "value": 41.1,
+        "value": 41.2,
         "ci_90_lo": 34.0,
         "ci_90_hi": 49.1
       },
       "sgw_pct": {
         "value": 69.5,
         "ci_90_lo": 47.0,
-        "ci_90_hi": 81.9
+        "ci_90_hi": 82.0
       },
       "rgw_pct": {
         "value": 31.8,
@@ -9852,9 +9852,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.0866,
+        "value": 1.0856,
         "max_bits": 1.585,
-        "pct_of_max": 68.6
+        "pct_of_max": 68.5
       },
       "rally_win_curve": {
         "1_3": {
@@ -9862,7 +9862,7 @@
           "n": 151
         },
         "4_6": {
-          "win_pct": 44.1,
+          "win_pct": 44.2,
           "n": 29
         },
         "7_9": {
@@ -9876,13 +9876,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 8.2,
+        "value": 8.1,
         "high_lev_win_pct": 57.6,
-        "baseline_win_pct": 49.4,
+        "baseline_win_pct": 49.5,
         "n_eff": 38,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.082
+        "modifier_delta": 0.081
       },
       "df_pressure_delta": {
         "available": true,
@@ -9908,14 +9908,14 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 48.5,
-        "ad_win_pct": 49.3,
-        "asymmetry": 0.8,
+        "ad_win_pct": 49.4,
+        "asymmetry": 0.9,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.62,
+        "streak_initiation_rate": 3.63,
         "streak_survival_rate": 0.398,
-        "streak_recovery_rate": 0.519
+        "streak_recovery_rate": 0.52
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.593,
@@ -9951,9 +9951,9 @@
       "name": "Thomas Fabbiano",
       "n_overall": 14,
       "n_surface": 14,
-      "R_overall": 1666.1,
-      "R_surface": 1666.1,
-      "R_adjusted": 1666.1
+      "R_overall": 1670.3,
+      "R_surface": 1670.3,
+      "R_adjusted": 1670.3
     }
   },
   "Stan Wawrinka": {
@@ -9971,17 +9971,17 @@
         "match_id": "2018-wimbledon-1132",
         "round": "R128",
         "opponent": "Grigor Dimitrov",
-        "opponent_elo": 1805.5,
+        "opponent_elo": 1806.9,
         "w_t": 1.0,
-        "w_q": 1.1795
+        "w_q": 1.1805
       },
       {
         "match_id": "2018-wimbledon-1216",
         "round": "R64",
         "opponent": "Thomas Fabbiano",
-        "opponent_elo": 1517.7,
+        "opponent_elo": 1516.2,
         "w_t": 0.9973,
-        "w_q": 0.9914
+        "w_q": 0.9906
       }
     ],
     "tier1": {
@@ -10019,7 +10019,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.5045,
+        "value": 1.5046,
         "max_bits": 1.585,
         "pct_of_max": 94.9
       },
@@ -10033,7 +10033,7 @@
           "n": 54
         },
         "7_9": {
-          "win_pct": 50.5,
+          "win_pct": 50.6,
           "n": 23
         },
         "10+": {
@@ -10116,11 +10116,11 @@
     },
     "elo_snapshot": {
       "name": "Stan Wawrinka",
-      "n_overall": 68,
-      "n_surface": 68,
-      "R_overall": 1646.3,
-      "R_surface": 1646.3,
-      "R_adjusted": 1646.3
+      "n_overall": 70,
+      "n_surface": 70,
+      "R_overall": 1633.2,
+      "R_surface": 1633.2,
+      "R_adjusted": 1633.2
     }
   },
   "Grigor Dimitrov": {
@@ -10138,9 +10138,9 @@
         "match_id": "2018-wimbledon-1132",
         "round": "R128",
         "opponent": "Stan Wawrinka",
-        "opponent_elo": 1747.1,
+        "opponent_elo": 1744.1,
         "w_t": 1.0,
-        "w_q": 1.1413
+        "w_q": 1.1395
       }
     ],
     "tier1": {
@@ -10275,11 +10275,11 @@
     },
     "elo_snapshot": {
       "name": "Grigor Dimitrov",
-      "n_overall": 74,
-      "n_surface": 74,
-      "R_overall": 1706.2,
-      "R_surface": 1706.2,
-      "R_adjusted": 1706.2
+      "n_overall": 80,
+      "n_surface": 80,
+      "R_overall": 1741.0,
+      "R_surface": 1741.0,
+      "R_adjusted": 1741.0
     }
   },
   "Dominic Thiem": {
@@ -10297,9 +10297,9 @@
         "match_id": "2018-wimbledon-1133",
         "round": "R128",
         "opponent": "Marcos Baghdatis",
-        "opponent_elo": 1658.9,
+        "opponent_elo": 1657.9,
         "w_t": 1.0,
-        "w_q": 1.0837
+        "w_q": 1.0831
       }
     ],
     "tier1": {
@@ -10434,11 +10434,11 @@
     },
     "elo_snapshot": {
       "name": "Dominic Thiem",
-      "n_overall": 32,
-      "n_surface": 32,
-      "R_overall": 1576.4,
-      "R_surface": 1576.4,
-      "R_adjusted": 1576.4
+      "n_overall": 33,
+      "n_surface": 33,
+      "R_overall": 1549.1,
+      "R_surface": 1549.1,
+      "R_adjusted": 1549.1
     }
   },
   "Marcos Baghdatis": {
@@ -10456,27 +10456,27 @@
         "match_id": "2018-wimbledon-1133",
         "round": "R128",
         "opponent": "Dominic Thiem",
-        "opponent_elo": 1699.1,
+        "opponent_elo": 1701.5,
         "w_t": 1.0,
-        "w_q": 1.11
+        "w_q": 1.1116
       },
       {
         "match_id": "2018-wimbledon-1217",
         "round": "R64",
         "opponent": "Karen Khachanov",
-        "opponent_elo": 1735.4,
+        "opponent_elo": 1735.0,
         "w_t": 0.9973,
-        "w_q": 1.1336
+        "w_q": 1.1335
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 58.0,
-        "ci_90_lo": 49.9,
+        "ci_90_lo": 49.8,
         "ci_90_hi": 65.4
       },
       "fspw_pct": {
-        "value": 79.9,
+        "value": 80.0,
         "ci_90_lo": 69.2,
         "ci_90_hi": 86.0
       },
@@ -10565,7 +10565,7 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 9.27,
+        "streak_initiation_rate": 9.26,
         "streak_survival_rate": 0.432,
         "streak_recovery_rate": 0.25
       },
@@ -10603,9 +10603,9 @@
       "name": "Marcos Baghdatis",
       "n_overall": 95,
       "n_surface": 95,
-      "R_overall": 1637.3,
-      "R_surface": 1637.3,
-      "R_adjusted": 1637.3
+      "R_overall": 1636.6,
+      "R_surface": 1636.6,
+      "R_adjusted": 1636.6
     }
   },
   "David Ferrer": {
@@ -10623,7 +10623,7 @@
         "match_id": "2018-wimbledon-1134",
         "round": "R128",
         "opponent": "Karen Khachanov",
-        "opponent_elo": 1860.5,
+        "opponent_elo": 1860.4,
         "w_t": 1.0,
         "w_q": 1.2154
       }
@@ -10748,9 +10748,9 @@
       "name": "David Ferrer",
       "n_overall": 70,
       "n_surface": 70,
-      "R_overall": 1652.1,
-      "R_surface": 1652.1,
-      "R_adjusted": 1652.1
+      "R_overall": 1654.8,
+      "R_surface": 1654.8,
+      "R_adjusted": 1654.8
     }
   },
   "Karen Khachanov": {
@@ -10768,33 +10768,33 @@
         "match_id": "2018-wimbledon-1134",
         "round": "R128",
         "opponent": "David Ferrer",
-        "opponent_elo": 1667.4,
+        "opponent_elo": 1670.3,
         "w_t": 1.0,
-        "w_q": 1.0892
+        "w_q": 1.0912
       },
       {
         "match_id": "2018-wimbledon-1217",
         "round": "R64",
         "opponent": "Marcos Baghdatis",
-        "opponent_elo": 1670.8,
+        "opponent_elo": 1669.5,
         "w_t": 0.9973,
-        "w_q": 1.0915
+        "w_q": 1.0908
       },
       {
         "match_id": "2018-wimbledon-1309",
         "round": "R32",
         "opponent": "Frances Tiafoe",
-        "opponent_elo": 1657.1,
+        "opponent_elo": 1656.3,
         "w_t": 0.9945,
-        "w_q": 1.0825
+        "w_q": 1.0821
       },
       {
         "match_id": "2018-wimbledon-1405",
         "round": "R16",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2122.2,
+        "opponent_elo": 2120.7,
         "w_t": 0.9918,
-        "w_q": 1.3864
+        "w_q": 1.3855
       }
     ],
     "tier1": {
@@ -10809,7 +10809,7 @@
         "ci_90_hi": 81.1
       },
       "sspw_pct": {
-        "value": 50.3,
+        "value": 50.4,
         "ci_90_lo": 37.6,
         "ci_90_hi": 63.0
       },
@@ -10832,9 +10832,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.2059,
+        "value": 1.2052,
         "max_bits": 1.585,
-        "pct_of_max": 76.1
+        "pct_of_max": 76.0
       },
       "rally_win_curve": {
         "1_3": {
@@ -10893,8 +10893,8 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.84,
-        "streak_survival_rate": 0.519,
+        "streak_initiation_rate": 3.85,
+        "streak_survival_rate": 0.52,
         "streak_recovery_rate": 0.427
       },
       "bp_creation_profile": {
@@ -10929,11 +10929,11 @@
     },
     "elo_snapshot": {
       "name": "Karen Khachanov",
-      "n_overall": 35,
-      "n_surface": 35,
-      "R_overall": 1778.6,
-      "R_surface": 1778.6,
-      "R_adjusted": 1778.6
+      "n_overall": 39,
+      "n_surface": 39,
+      "R_overall": 1689.9,
+      "R_surface": 1689.9,
+      "R_adjusted": 1689.9
     }
   },
   "Julien Benneteau": {
@@ -10951,17 +10951,17 @@
         "match_id": "2018-wimbledon-1135",
         "round": "R128",
         "opponent": "Marton Fucsovics",
-        "opponent_elo": 1427.9,
+        "opponent_elo": 1426.9,
         "w_t": 1.0,
-        "w_q": 0.9327
+        "w_q": 0.9322
       },
       {
         "match_id": "2018-wimbledon-1218",
         "round": "R64",
         "opponent": "Frances Tiafoe",
-        "opponent_elo": 1657.1,
+        "opponent_elo": 1656.3,
         "w_t": 0.9973,
-        "w_q": 1.0825
+        "w_q": 1.0821
       }
     ],
     "tier1": {
@@ -11084,9 +11084,9 @@
       "name": "Julien Benneteau",
       "n_overall": 76,
       "n_surface": 76,
-      "R_overall": 1621.3,
-      "R_surface": 1621.3,
-      "R_adjusted": 1621.3
+      "R_overall": 1624.4,
+      "R_surface": 1624.4,
+      "R_adjusted": 1624.4
     }
   },
   "Marton Fucsovics": {
@@ -11104,9 +11104,9 @@
         "match_id": "2018-wimbledon-1135",
         "round": "R128",
         "opponent": "Julien Benneteau",
-        "opponent_elo": 1641.7,
+        "opponent_elo": 1645.1,
         "w_t": 1.0,
-        "w_q": 1.0724
+        "w_q": 1.0748
       }
     ],
     "tier1": {
@@ -11227,11 +11227,11 @@
     },
     "elo_snapshot": {
       "name": "Marton Fucsovics",
-      "n_overall": 33,
-      "n_surface": 33,
-      "R_overall": 1729.0,
-      "R_surface": 1729.0,
-      "R_adjusted": 1729.0
+      "n_overall": 34,
+      "n_surface": 34,
+      "R_overall": 1712.3,
+      "R_surface": 1712.3,
+      "R_adjusted": 1712.3
     }
   },
   "Frances Tiafoe": {
@@ -11249,35 +11249,35 @@
         "match_id": "2018-wimbledon-1136",
         "round": "R128",
         "opponent": "Fernando Verdasco",
-        "opponent_elo": 1646.8,
+        "opponent_elo": 1640.4,
         "w_t": 1.0,
-        "w_q": 1.0758
+        "w_q": 1.0717
       },
       {
         "match_id": "2018-wimbledon-1218",
         "round": "R64",
         "opponent": "Julien Benneteau",
-        "opponent_elo": 1648.1,
+        "opponent_elo": 1652.1,
         "w_t": 0.9973,
-        "w_q": 1.0766
+        "w_q": 1.0794
       },
       {
         "match_id": "2018-wimbledon-1309",
         "round": "R32",
         "opponent": "Karen Khachanov",
-        "opponent_elo": 1735.4,
+        "opponent_elo": 1735.0,
         "w_t": 0.9945,
-        "w_q": 1.1336
+        "w_q": 1.1335
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 58.9,
         "ci_90_lo": 51.8,
-        "ci_90_hi": 65.4
+        "ci_90_hi": 65.3
       },
       "fspw_pct": {
-        "value": 73.7,
+        "value": 73.8,
         "ci_90_lo": 64.5,
         "ci_90_hi": 80.2
       },
@@ -11289,7 +11289,7 @@
       "rpw_pct": {
         "value": 32.8,
         "ci_90_lo": 26.7,
-        "ci_90_hi": 40.3
+        "ci_90_hi": 40.4
       },
       "sgw_pct": {
         "value": 85.8,
@@ -11305,9 +11305,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.4984,
+        "value": 0.4986,
         "max_bits": 1.585,
-        "pct_of_max": 31.4
+        "pct_of_max": 31.5
       },
       "rally_win_curve": {
         "1_3": {
@@ -11371,8 +11371,8 @@
         "streak_recovery_rate": 0.398
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.245,
-        "bp_conversion": 0.621,
+        "bp_per_return_game": 0.246,
+        "bp_conversion": 0.622,
         "bp_created": 5.3,
         "bp_converted": 3.3
       },
@@ -11402,11 +11402,11 @@
     },
     "elo_snapshot": {
       "name": "Frances Tiafoe",
-      "n_overall": 35,
-      "n_surface": 35,
-      "R_overall": 1710.3,
-      "R_surface": 1710.3,
-      "R_adjusted": 1710.3
+      "n_overall": 41,
+      "n_surface": 41,
+      "R_overall": 1690.1,
+      "R_surface": 1690.1,
+      "R_adjusted": 1690.1
     }
   },
   "Fernando Verdasco": {
@@ -11424,9 +11424,9 @@
         "match_id": "2018-wimbledon-1136",
         "round": "R128",
         "opponent": "Frances Tiafoe",
-        "opponent_elo": 1706.3,
+        "opponent_elo": 1705.5,
         "w_t": 1.0,
-        "w_q": 1.1146
+        "w_q": 1.1143
       }
     ],
     "tier1": {
@@ -11549,9 +11549,9 @@
       "name": "Fernando Verdasco",
       "n_overall": 95,
       "n_surface": 95,
-      "R_overall": 1621.7,
-      "R_surface": 1621.7,
-      "R_adjusted": 1621.7
+      "R_overall": 1616.8,
+      "R_surface": 1616.8,
+      "R_adjusted": 1616.8
     }
   },
   "Kyle Edmund": {
@@ -11569,25 +11569,25 @@
         "match_id": "2018-wimbledon-1137",
         "round": "R128",
         "opponent": "Alex Bolt",
-        "opponent_elo": 1504.2,
+        "opponent_elo": 1505.0,
         "w_t": 1.0,
-        "w_q": 0.9826
+        "w_q": 0.9832
       },
       {
         "match_id": "2018-wimbledon-1219",
         "round": "R64",
         "opponent": "Bradley Klahn",
-        "opponent_elo": 1422.9,
+        "opponent_elo": 1423.5,
         "w_t": 0.9973,
-        "w_q": 0.9295
+        "w_q": 0.93
       },
       {
         "match_id": "2018-wimbledon-1310",
         "round": "R32",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2122.2,
+        "opponent_elo": 2120.7,
         "w_t": 0.9945,
-        "w_q": 1.3864
+        "w_q": 1.3855
       }
     ],
     "tier1": {
@@ -11639,7 +11639,7 @@
           "n": 44
         },
         "7_9": {
-          "win_pct": 59.3,
+          "win_pct": 59.4,
           "n": 16
         },
         "10+": {
@@ -11724,9 +11724,9 @@
       "name": "Kyle Edmund",
       "n_overall": 31,
       "n_surface": 31,
-      "R_overall": 1546.0,
-      "R_surface": 1546.0,
-      "R_adjusted": 1546.0
+      "R_overall": 1549.8,
+      "R_surface": 1549.8,
+      "R_adjusted": 1549.8
     }
   },
   "Alex Bolt": {
@@ -11744,9 +11744,9 @@
         "match_id": "2018-wimbledon-1137",
         "round": "R128",
         "opponent": "Kyle Edmund",
-        "opponent_elo": 1564.6,
+        "opponent_elo": 1563.4,
         "w_t": 1.0,
-        "w_q": 1.0221
+        "w_q": 1.0214
       }
     ],
     "tier1": {
@@ -11881,11 +11881,11 @@
     },
     "elo_snapshot": {
       "name": "Alex Bolt",
-      "n_overall": 9,
-      "n_surface": 9,
-      "R_overall": 1368.3,
-      "R_surface": 1368.3,
-      "R_adjusted": 1368.3
+      "n_overall": 13,
+      "n_surface": 13,
+      "R_overall": 1452.3,
+      "R_surface": 1452.3,
+      "R_adjusted": 1452.3
     }
   },
   "Yuichi Sugita": {
@@ -11903,9 +11903,9 @@
         "match_id": "2018-wimbledon-1138",
         "round": "R128",
         "opponent": "Bradley Klahn",
-        "opponent_elo": 1492.4,
+        "opponent_elo": 1493.1,
         "w_t": 1.0,
-        "w_q": 0.9749
+        "w_q": 0.9755
       }
     ],
     "tier1": {
@@ -12028,9 +12028,9 @@
       "name": "Yuichi Sugita",
       "n_overall": 31,
       "n_surface": 31,
-      "R_overall": 1571.9,
-      "R_surface": 1571.9,
-      "R_adjusted": 1571.9
+      "R_overall": 1576.1,
+      "R_surface": 1576.1,
+      "R_adjusted": 1576.1
     }
   },
   "Bradley Klahn": {
@@ -12048,17 +12048,17 @@
         "match_id": "2018-wimbledon-1138",
         "round": "R128",
         "opponent": "Yuichi Sugita",
-        "opponent_elo": 1644.4,
+        "opponent_elo": 1648.4,
         "w_t": 1.0,
-        "w_q": 1.0742
+        "w_q": 1.077
       },
       {
         "match_id": "2018-wimbledon-1219",
         "round": "R64",
         "opponent": "Kyle Edmund",
-        "opponent_elo": 1534.1,
+        "opponent_elo": 1532.5,
         "w_t": 0.9973,
-        "w_q": 1.0022
+        "w_q": 1.0013
       }
     ],
     "tier1": {
@@ -12096,9 +12096,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7447,
+        "value": 0.7434,
         "max_bits": 1.585,
-        "pct_of_max": 47.0
+        "pct_of_max": 46.9
       },
       "rally_win_curve": {
         "1_3": {
@@ -12130,13 +12130,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 8.9,
+        "value": 9.0,
         "bp_df_rate": 14.7,
-        "baseline_df_rate": 5.8,
+        "baseline_df_rate": 5.7,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.089
+        "modifier_delta": 0.09
       },
       "serve_speed_courage": {
         "available": true,
@@ -12157,7 +12157,7 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 6.57,
+        "streak_initiation_rate": 6.58,
         "streak_survival_rate": 0.499,
         "streak_recovery_rate": 0.167
       },
@@ -12170,7 +12170,7 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.2933,
+        "value": 0.3022,
         "components": {
           "serve_speed_delta": {
             "delta_frac": -0.0455,
@@ -12178,16 +12178,16 @@
             "contribution": -0.0136
           },
           "df_rate_delta": {
-            "delta_frac": 1.5345,
+            "delta_frac": 1.5789,
             "weight": 0.2,
-            "contribution": 0.3069
+            "contribution": 0.3158
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.2933,
+        "modifier_delta": 0.3022,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -12195,9 +12195,9 @@
       "name": "Bradley Klahn",
       "n_overall": 9,
       "n_surface": 9,
-      "R_overall": 1442.4,
-      "R_surface": 1442.4,
-      "R_adjusted": 1442.4
+      "R_overall": 1442.7,
+      "R_surface": 1442.7,
+      "R_adjusted": 1442.7
     }
   },
   "Guido Andreozzi": {
@@ -12215,9 +12215,9 @@
         "match_id": "2018-wimbledon-1139",
         "round": "R128",
         "opponent": "Horacio Zeballos",
-        "opponent_elo": 1286.9,
+        "opponent_elo": 1284.4,
         "w_t": 1.0,
-        "w_q": 0.8407
+        "w_q": 0.8391
       }
     ],
     "tier1": {
@@ -12340,9 +12340,9 @@
       "name": "Guido Andreozzi",
       "n_overall": 4,
       "n_surface": 4,
-      "R_overall": 1400.7,
-      "R_surface": 1400.7,
-      "R_adjusted": 1400.7
+      "R_overall": 1400.0,
+      "R_surface": 1400.0,
+      "R_adjusted": 1400.0
     }
   },
   "Horacio Zeballos": {
@@ -12362,22 +12362,22 @@
         "opponent": "Guido Andreozzi",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2018-wimbledon-1220",
         "round": "R64",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2122.2,
+        "opponent_elo": 2120.7,
         "w_t": 0.9973,
-        "w_q": 1.3864
+        "w_q": 1.3855
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 60.8,
         "ci_90_lo": 52.5,
-        "ci_90_hi": 68.1
+        "ci_90_hi": 68.0
       },
       "fspw_pct": {
         "value": 74.5,
@@ -12408,7 +12408,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.9226,
+        "value": 0.9223,
         "max_bits": 1.585,
         "pct_of_max": 58.2
       },
@@ -12432,13 +12432,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": -3.3,
+        "value": -3.4,
         "high_lev_win_pct": 43.0,
-        "baseline_win_pct": 46.3,
+        "baseline_win_pct": 46.4,
         "n_eff": 31,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": -0.033
+        "modifier_delta": -0.034
       },
       "df_pressure_delta": {
         "available": true,
@@ -12507,9 +12507,9 @@
       "name": "Horacio Zeballos",
       "n_overall": 13,
       "n_surface": 13,
-      "R_overall": 1286.3,
-      "R_surface": 1286.3,
-      "R_adjusted": 1286.3
+      "R_overall": 1283.8,
+      "R_surface": 1283.8,
+      "R_adjusted": 1283.8
     }
   },
   "Tennys Sandgren": {
@@ -12527,9 +12527,9 @@
         "match_id": "2018-wimbledon-1140",
         "round": "R128",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2147.2,
+        "opponent_elo": 2144.5,
         "w_t": 1.0,
-        "w_q": 1.4026
+        "w_q": 1.4011
       }
     ],
     "tier1": {
@@ -12666,9 +12666,9 @@
       "name": "Tennys Sandgren",
       "n_overall": 16,
       "n_surface": 16,
-      "R_overall": 1582.3,
-      "R_surface": 1582.3,
-      "R_adjusted": 1582.3
+      "R_overall": 1589.0,
+      "R_surface": 1589.0,
+      "R_adjusted": 1589.0
     }
   },
   "Novak Djokovic": {
@@ -12686,57 +12686,57 @@
         "match_id": "2018-wimbledon-1140",
         "round": "R128",
         "opponent": "Tennys Sandgren",
-        "opponent_elo": 1442.2,
+        "opponent_elo": 1442.4,
         "w_t": 1.0,
-        "w_q": 0.9421
+        "w_q": 0.9423
       },
       {
         "match_id": "2018-wimbledon-1220",
         "round": "R64",
         "opponent": "Horacio Zeballos",
-        "opponent_elo": 1258.7,
+        "opponent_elo": 1256.1,
         "w_t": 0.9973,
-        "w_q": 0.8222
+        "w_q": 0.8207
       },
       {
         "match_id": "2018-wimbledon-1310",
         "round": "R32",
         "opponent": "Kyle Edmund",
-        "opponent_elo": 1534.1,
+        "opponent_elo": 1532.5,
         "w_t": 0.9945,
-        "w_q": 1.0022
+        "w_q": 1.0013
       },
       {
         "match_id": "2018-wimbledon-1405",
         "round": "R16",
         "opponent": "Karen Khachanov",
-        "opponent_elo": 1735.4,
+        "opponent_elo": 1735.0,
         "w_t": 0.9918,
-        "w_q": 1.1336
+        "w_q": 1.1335
       },
       {
         "match_id": "2018-wimbledon-1503",
         "round": "QF",
         "opponent": "Kei Nishikori",
-        "opponent_elo": 1753.8,
+        "opponent_elo": 1754.3,
         "w_t": 0.9891,
-        "w_q": 1.1457
+        "w_q": 1.1461
       },
       {
         "match_id": "2018-wimbledon-1602",
         "round": "SF",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1902.7,
+        "opponent_elo": 1900.6,
         "w_t": 0.9864,
-        "w_q": 1.2429
+        "w_q": 1.2417
       },
       {
         "match_id": "2018-wimbledon-1701",
         "round": "F",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1778.9,
+        "opponent_elo": 1784.8,
         "w_t": 0.9837,
-        "w_q": 1.1621
+        "w_q": 1.1661
       }
     ],
     "tier1": {
@@ -12774,7 +12774,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.5303,
+        "value": 1.5302,
         "max_bits": 1.585,
         "pct_of_max": 96.5
       },
@@ -12840,8 +12840,8 @@
         "streak_recovery_rate": 0.605
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.802,
-        "bp_conversion": 0.388,
+        "bp_per_return_game": 0.801,
+        "bp_conversion": 0.389,
         "bp_created": 14.2,
         "bp_converted": 5.5
       },
@@ -12871,11 +12871,11 @@
     },
     "elo_snapshot": {
       "name": "Novak Djokovic",
-      "n_overall": 133,
-      "n_surface": 133,
-      "R_overall": 2205.0,
-      "R_surface": 2205.0,
-      "R_adjusted": 2205.0
+      "n_overall": 140,
+      "n_surface": 140,
+      "R_overall": 2184.9,
+      "R_surface": 2184.9,
+      "R_adjusted": 2184.9
     }
   },
   "Nick Kyrgios": {
@@ -12883,7 +12883,7 @@
     "surface": "grass",
     "year": 2018,
     "n_matches": 3,
-    "n_points": 203,
+    "n_points": 202,
     "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -12893,99 +12893,99 @@
         "match_id": "2018-wimbledon-1141",
         "round": "R128",
         "opponent": "Denis Istomin",
-        "opponent_elo": 1674.3,
+        "opponent_elo": 1669.2,
         "w_t": 1.0,
-        "w_q": 1.0937
+        "w_q": 1.0906
       },
       {
         "match_id": "2018-wimbledon-1221",
         "round": "R64",
         "opponent": "Robin Haase",
-        "opponent_elo": 1580.2,
+        "opponent_elo": 1643.9,
         "w_t": 0.9973,
-        "w_q": 1.0323
+        "w_q": 1.074
       },
       {
         "match_id": "2018-wimbledon-1311",
         "round": "R32",
         "opponent": "Kei Nishikori",
-        "opponent_elo": 1753.8,
+        "opponent_elo": 1754.3,
         "w_t": 0.9945,
-        "w_q": 1.1457
+        "w_q": 1.1461
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 67.0,
-        "ci_90_lo": 58.6,
-        "ci_90_hi": 73.7
+        "value": 66.9,
+        "ci_90_lo": 58.5,
+        "ci_90_hi": 73.6
       },
       "fspw_pct": {
-        "value": 82.1,
+        "value": 82.2,
         "ci_90_lo": 72.3,
-        "ci_90_hi": 87.5
+        "ci_90_hi": 87.6
       },
       "sspw_pct": {
-        "value": 65.6,
+        "value": 65.7,
         "ci_90_lo": 49.2,
-        "ci_90_hi": 77.0
+        "ci_90_hi": 77.1
       },
       "rpw_pct": {
-        "value": 28.1,
-        "ci_90_lo": 21.9,
-        "ci_90_hi": 36.4
+        "value": 28.2,
+        "ci_90_lo": 22.0,
+        "ci_90_hi": 36.6
       },
       "sgw_pct": {
         "value": 86.8,
-        "ci_90_lo": 65.0,
+        "ci_90_lo": 64.9,
         "ci_90_hi": 92.1
       },
       "rgw_pct": {
-        "value": 15.9,
-        "ci_90_lo": 9.4,
-        "ci_90_hi": 37.5
+        "value": 16.1,
+        "ci_90_lo": 9.6,
+        "ci_90_hi": 37.7
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.4443,
+        "value": 1.4445,
         "max_bits": 1.585,
         "pct_of_max": 91.1
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 53.1,
+          "win_pct": 53.2,
           "n": 140
         },
         "4_6": {
-          "win_pct": 45.8,
+          "win_pct": 46.0,
           "n": 34
         },
         "7_9": {
-          "win_pct": 52.1,
+          "win_pct": 52.4,
           "n": 13
         },
         "10+": {
-          "win_pct": 44.6,
+          "win_pct": 44.8,
           "n": 7
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 9.3,
-        "high_lev_win_pct": 59.8,
+        "value": 9.1,
+        "high_lev_win_pct": 59.6,
         "baseline_win_pct": 50.5,
         "n_eff": 14,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.093
+        "modifier_delta": 0.091
       },
       "df_pressure_delta": {
         "available": true,
         "value": 5.5,
-        "bp_df_rate": 11.6,
-        "baseline_df_rate": 6.1,
+        "bp_df_rate": 11.7,
+        "baseline_df_rate": 6.2,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
@@ -13005,25 +13005,25 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 48.4,
-        "ad_win_pct": 51.7,
-        "asymmetry": 3.3,
+        "ad_win_pct": 51.8,
+        "asymmetry": 3.4,
         "stronger_side": "ad"
       },
       "momentum_profile": {
         "streak_initiation_rate": 4.87,
-        "streak_survival_rate": 0.61,
-        "streak_recovery_rate": 0.425
+        "streak_survival_rate": 0.613,
+        "streak_recovery_rate": 0.424
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.212,
-        "bp_conversion": 0.583,
+        "bp_per_return_game": 0.215,
+        "bp_conversion": 0.584,
         "bp_created": 3.9,
         "bp_converted": 2.3
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.175,
+        "value": 0.1721,
         "components": {
           "serve_speed_delta": {
             "delta_frac": -0.0176,
@@ -13031,16 +13031,16 @@
             "contribution": -0.0053
           },
           "df_rate_delta": {
-            "delta_frac": 0.9016,
+            "delta_frac": 0.8871,
             "weight": 0.2,
-            "contribution": 0.1803
+            "contribution": 0.1774
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.175,
+        "modifier_delta": 0.1721,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -13048,9 +13048,9 @@
       "name": "Nick Kyrgios",
       "n_overall": 57,
       "n_surface": 57,
-      "R_overall": 1855.6,
-      "R_surface": 1855.6,
-      "R_adjusted": 1855.6
+      "R_overall": 1853.9,
+      "R_surface": 1853.9,
+      "R_adjusted": 1853.9
     }
   },
   "Denis Istomin": {
@@ -13068,9 +13068,9 @@
         "match_id": "2018-wimbledon-1141",
         "round": "R128",
         "opponent": "Nick Kyrgios",
-        "opponent_elo": 1863.3,
+        "opponent_elo": 1809.0,
         "w_t": 1.0,
-        "w_q": 1.2172
+        "w_q": 1.1818
       }
     ],
     "tier1": {
@@ -13207,9 +13207,9 @@
       "name": "Denis Istomin",
       "n_overall": 76,
       "n_surface": 76,
-      "R_overall": 1607.5,
-      "R_surface": 1607.5,
-      "R_adjusted": 1607.5
+      "R_overall": 1603.1,
+      "R_surface": 1603.1,
+      "R_adjusted": 1603.1
     }
   },
   "Marius Copil": {
@@ -13227,9 +13227,9 @@
         "match_id": "2018-wimbledon-1142",
         "round": "R128",
         "opponent": "Robin Haase",
-        "opponent_elo": 1629.9,
+        "opponent_elo": 1625.2,
         "w_t": 1.0,
-        "w_q": 1.0647
+        "w_q": 1.0618
       }
     ],
     "tier1": {
@@ -13352,9 +13352,9 @@
       "name": "Marius Copil",
       "n_overall": 15,
       "n_surface": 15,
-      "R_overall": 1462.2,
-      "R_surface": 1462.2,
-      "R_adjusted": 1462.2
+      "R_overall": 1446.9,
+      "R_surface": 1446.9,
+      "R_adjusted": 1446.9
     }
   },
   "Robin Haase": {
@@ -13362,7 +13362,7 @@
     "surface": "grass",
     "year": 2018,
     "n_matches": 2,
-    "n_points": 232,
+    "n_points": 231,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -13372,24 +13372,24 @@
         "match_id": "2018-wimbledon-1142",
         "round": "R128",
         "opponent": "Marius Copil",
-        "opponent_elo": 1531.1,
+        "opponent_elo": 1512.3,
         "w_t": 1.0,
-        "w_q": 1.0002
+        "w_q": 0.988
       },
       {
         "match_id": "2018-wimbledon-1221",
         "round": "R64",
         "opponent": "Nick Kyrgios",
-        "opponent_elo": 1824.8,
+        "opponent_elo": 1824.0,
         "w_t": 0.9973,
-        "w_q": 1.1921
+        "w_q": 1.1917
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 60.3,
         "ci_90_lo": 52.7,
-        "ci_90_hi": 67.1
+        "ci_90_hi": 67.2
       },
       "fspw_pct": {
         "value": 73.0,
@@ -13398,18 +13398,18 @@
       },
       "sspw_pct": {
         "value": 57.3,
-        "ci_90_lo": 44.6,
-        "ci_90_hi": 68.5
+        "ci_90_lo": 44.5,
+        "ci_90_hi": 68.4
       },
       "rpw_pct": {
         "value": 30.6,
         "ci_90_lo": 24.4,
-        "ci_90_hi": 38.5
+        "ci_90_hi": 38.4
       },
       "sgw_pct": {
         "value": 78.6,
-        "ci_90_lo": 57.8,
-        "ci_90_hi": 87.2
+        "ci_90_lo": 57.7,
+        "ci_90_hi": 87.1
       },
       "rgw_pct": {
         "value": 14.8,
@@ -13420,14 +13420,14 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8543,
+        "value": 0.8589,
         "max_bits": 1.585,
-        "pct_of_max": 53.9
+        "pct_of_max": 54.2
       },
       "rally_win_curve": {
         "1_3": {
           "win_pct": 48.5,
-          "n": 196
+          "n": 195
         },
         "4_6": {
           "win_pct": 39.3,
@@ -13454,13 +13454,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 4.8,
-        "bp_df_rate": 9.3,
+        "value": 4.7,
+        "bp_df_rate": 9.2,
         "baseline_df_rate": 4.5,
         "n_eff": 10,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.048
+        "modifier_delta": 0.047
       },
       "serve_speed_courage": {
         "available": true,
@@ -13481,20 +13481,20 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 7.7,
-        "streak_survival_rate": 0.338,
-        "streak_recovery_rate": 0.379
+        "streak_initiation_rate": 7.68,
+        "streak_survival_rate": 0.337,
+        "streak_recovery_rate": 0.377
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.366,
-        "bp_conversion": 0.341,
+        "bp_conversion": 0.342,
         "bp_created": 7.2,
         "bp_converted": 2.5
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.2158,
+        "value": 0.2114,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0084,
@@ -13502,16 +13502,16 @@
             "contribution": 0.0025
           },
           "df_rate_delta": {
-            "delta_frac": 1.0667,
+            "delta_frac": 1.0444,
             "weight": 0.2,
-            "contribution": 0.2133
+            "contribution": 0.2089
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.2158,
+        "modifier_delta": 0.2114,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -13519,9 +13519,9 @@
       "name": "Robin Haase",
       "n_overall": 56,
       "n_surface": 56,
-      "R_overall": 1576.2,
-      "R_surface": 1576.2,
-      "R_adjusted": 1576.2
+      "R_overall": 1573.9,
+      "R_surface": 1573.9,
+      "R_adjusted": 1573.9
     }
   },
   "Bernard Tomic": {
@@ -13541,15 +13541,15 @@
         "opponent": "Hubert Hurkacz",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2018-wimbledon-1222",
         "round": "R64",
         "opponent": "Kei Nishikori",
-        "opponent_elo": 1753.8,
+        "opponent_elo": 1754.3,
         "w_t": 0.9973,
-        "w_q": 1.1457
+        "w_q": 1.1461
       }
     ],
     "tier1": {
@@ -13564,7 +13564,7 @@
         "ci_90_hi": 81.5
       },
       "sspw_pct": {
-        "value": 56.8,
+        "value": 56.7,
         "ci_90_lo": 43.6,
         "ci_90_hi": 68.3
       },
@@ -13587,7 +13587,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7998,
+        "value": 0.7999,
         "max_bits": 1.585,
         "pct_of_max": 50.5
       },
@@ -13686,9 +13686,9 @@
       "name": "Bernard Tomic",
       "n_overall": 70,
       "n_surface": 70,
-      "R_overall": 1661.2,
-      "R_surface": 1661.2,
-      "R_adjusted": 1661.2
+      "R_overall": 1663.3,
+      "R_surface": 1663.3,
+      "R_adjusted": 1663.3
     }
   },
   "Hubert Hurkacz": {
@@ -13708,7 +13708,7 @@
         "opponent": "Bernard Tomic",
         "opponent_elo": 1766.4,
         "w_t": 1.0,
-        "w_q": 1.1539
+        "w_q": 1.1541
       }
     ],
     "tier1": {
@@ -13829,11 +13829,11 @@
     },
     "elo_snapshot": {
       "name": "Hubert Hurkacz",
-      "n_overall": 32,
-      "n_surface": 32,
-      "R_overall": 1801.3,
-      "R_surface": 1801.3,
-      "R_adjusted": 1801.3
+      "n_overall": 39,
+      "n_surface": 39,
+      "R_overall": 1793.0,
+      "R_surface": 1793.0,
+      "R_adjusted": 1793.0
     }
   },
   "Christian Harrison": {
@@ -13851,9 +13851,9 @@
         "match_id": "2018-wimbledon-1144",
         "round": "R128",
         "opponent": "Kei Nishikori",
-        "opponent_elo": 1788.9,
+        "opponent_elo": 1788.1,
         "w_t": 1.0,
-        "w_q": 1.1686
+        "w_q": 1.1682
       }
     ],
     "tier1": {
@@ -13976,9 +13976,9 @@
       "name": "Christian Harrison",
       "n_overall": 5,
       "n_surface": 5,
-      "R_overall": 1514.0,
-      "R_surface": 1514.0,
-      "R_adjusted": 1514.0
+      "R_overall": 1508.8,
+      "R_surface": 1508.8,
+      "R_adjusted": 1508.8
     }
   },
   "Kei Nishikori": {
@@ -13998,44 +13998,44 @@
         "opponent": "Christian Harrison",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2018-wimbledon-1222",
         "round": "R64",
         "opponent": "Bernard Tomic",
-        "opponent_elo": 1739.0,
+        "opponent_elo": 1741.6,
         "w_t": 0.9973,
-        "w_q": 1.136
+        "w_q": 1.1378
       },
       {
         "match_id": "2018-wimbledon-1311",
         "round": "R32",
         "opponent": "Nick Kyrgios",
-        "opponent_elo": 1824.8,
+        "opponent_elo": 1824.0,
         "w_t": 0.9945,
-        "w_q": 1.1921
+        "w_q": 1.1917
       },
       {
         "match_id": "2018-wimbledon-1406",
         "round": "R16",
         "opponent": "Ernests Gulbis",
-        "opponent_elo": 1589.5,
+        "opponent_elo": 1592.6,
         "w_t": 0.9918,
-        "w_q": 1.0384
+        "w_q": 1.0405
       },
       {
         "match_id": "2018-wimbledon-1503",
         "round": "QF",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2122.2,
+        "opponent_elo": 2120.7,
         "w_t": 0.9891,
-        "w_q": 1.3864
+        "w_q": 1.3855
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 67.3,
+        "value": 67.2,
         "ci_90_lo": 59.6,
         "ci_90_hi": 73.5
       },
@@ -14047,7 +14047,7 @@
       "sspw_pct": {
         "value": 57.0,
         "ci_90_lo": 43.3,
-        "ci_90_hi": 68.9
+        "ci_90_hi": 69.0
       },
       "rpw_pct": {
         "value": 35.5,
@@ -14055,7 +14055,7 @@
         "ci_90_hi": 43.3
       },
       "sgw_pct": {
-        "value": 82.3,
+        "value": 82.4,
         "ci_90_lo": 60.6,
         "ci_90_hi": 89.5
       },
@@ -14068,7 +14068,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.2429,
+        "value": 1.243,
         "max_bits": 1.585,
         "pct_of_max": 78.4
       },
@@ -14082,7 +14082,7 @@
           "n": 41
         },
         "7_9": {
-          "win_pct": 53.3,
+          "win_pct": 53.4,
           "n": 17
         },
         "10+": {
@@ -14165,11 +14165,11 @@
     },
     "elo_snapshot": {
       "name": "Kei Nishikori",
-      "n_overall": 70,
-      "n_surface": 70,
-      "R_overall": 1778.1,
-      "R_surface": 1778.1,
-      "R_adjusted": 1778.1
+      "n_overall": 71,
+      "n_surface": 71,
+      "R_overall": 1740.6,
+      "R_surface": 1740.6,
+      "R_adjusted": 1740.6
     }
   },
   "Damir Dzumhur": {
@@ -14177,7 +14177,7 @@
     "surface": "grass",
     "year": 2018,
     "n_matches": 2,
-    "n_points": 212,
+    "n_points": 213,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -14187,17 +14187,17 @@
         "match_id": "2018-wimbledon-1145",
         "round": "R128",
         "opponent": "Maximilian Marterer",
-        "opponent_elo": 1425.5,
+        "opponent_elo": 1425.8,
         "w_t": 1.0,
-        "w_q": 0.9312
+        "w_q": 0.9315
       },
       {
         "match_id": "2018-wimbledon-1223",
         "round": "R64",
         "opponent": "Ernests Gulbis",
-        "opponent_elo": 1589.5,
+        "opponent_elo": 1592.6,
         "w_t": 0.9973,
-        "w_q": 1.0384
+        "w_q": 1.0405
       }
     ],
     "tier1": {
@@ -14235,7 +14235,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7922,
+        "value": 0.7928,
         "max_bits": 1.585,
         "pct_of_max": 50.0
       },
@@ -14334,9 +14334,9 @@
       "name": "Damir Dzumhur",
       "n_overall": 18,
       "n_surface": 18,
-      "R_overall": 1619.7,
-      "R_surface": 1619.7,
-      "R_adjusted": 1619.7
+      "R_overall": 1632.0,
+      "R_surface": 1632.0,
+      "R_adjusted": 1632.0
     }
   },
   "Maximilian Marterer": {
@@ -14354,9 +14354,9 @@
         "match_id": "2018-wimbledon-1145",
         "round": "R128",
         "opponent": "Damir Dzumhur",
-        "opponent_elo": 1718.2,
+        "opponent_elo": 1731.2,
         "w_t": 1.0,
-        "w_q": 1.1224
+        "w_q": 1.131
       }
     ],
     "tier1": {
@@ -14477,11 +14477,11 @@
     },
     "elo_snapshot": {
       "name": "Maximilian Marterer",
-      "n_overall": 12,
-      "n_surface": 12,
-      "R_overall": 1518.9,
-      "R_surface": 1518.9,
-      "R_adjusted": 1518.9
+      "n_overall": 14,
+      "n_surface": 14,
+      "R_overall": 1461.8,
+      "R_surface": 1461.8,
+      "R_adjusted": 1461.8
     }
   },
   "Ernests Gulbis": {
@@ -14499,17 +14499,17 @@
         "match_id": "2018-wimbledon-1146",
         "round": "R128",
         "opponent": "Jay Clarke",
-        "opponent_elo": 1463.6,
+        "opponent_elo": 1471.9,
         "w_t": 1.0,
-        "w_q": 0.9561
+        "w_q": 0.9617
       },
       {
         "match_id": "2018-wimbledon-1223",
         "round": "R64",
         "opponent": "Damir Dzumhur",
-        "opponent_elo": 1677.2,
+        "opponent_elo": 1664.4,
         "w_t": 0.9973,
-        "w_q": 1.0956
+        "w_q": 1.0874
       },
       {
         "match_id": "2018-wimbledon-1312",
@@ -14517,15 +14517,15 @@
         "opponent": "Alexander Zverev",
         "opponent_elo": 1870.5,
         "w_t": 0.9945,
-        "w_q": 1.2219
+        "w_q": 1.222
       },
       {
         "match_id": "2018-wimbledon-1406",
         "round": "R16",
         "opponent": "Kei Nishikori",
-        "opponent_elo": 1753.8,
+        "opponent_elo": 1754.3,
         "w_t": 0.9918,
-        "w_q": 1.1457
+        "w_q": 1.1461
       }
     ],
     "tier1": {
@@ -14545,12 +14545,12 @@
         "ci_90_hi": 74.3
       },
       "rpw_pct": {
-        "value": 32.0,
+        "value": 31.9,
         "ci_90_lo": 26.1,
         "ci_90_hi": 39.1
       },
       "sgw_pct": {
-        "value": 85.7,
+        "value": 85.8,
         "ci_90_lo": 66.9,
         "ci_90_hi": 91.4
       },
@@ -14563,7 +14563,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.5029,
+        "value": 1.503,
         "max_bits": 1.585,
         "pct_of_max": 94.8
       },
@@ -14629,7 +14629,7 @@
         "streak_recovery_rate": 0.429
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.35,
+        "bp_per_return_game": 0.349,
         "bp_conversion": 0.4,
         "bp_created": 8.3,
         "bp_converted": 3.3
@@ -14662,9 +14662,9 @@
       "name": "Ernests Gulbis",
       "n_overall": 39,
       "n_surface": 39,
-      "R_overall": 1563.8,
-      "R_surface": 1563.8,
-      "R_adjusted": 1563.8
+      "R_overall": 1562.9,
+      "R_surface": 1562.9,
+      "R_adjusted": 1562.9
     }
   },
   "Jay Clarke": {
@@ -14682,9 +14682,9 @@
         "match_id": "2018-wimbledon-1146",
         "round": "R128",
         "opponent": "Ernests Gulbis",
-        "opponent_elo": 1687.8,
+        "opponent_elo": 1691.8,
         "w_t": 1.0,
-        "w_q": 1.1026
+        "w_q": 1.1053
       }
     ],
     "tier1": {
@@ -14821,9 +14821,9 @@
       "name": "Jay Clarke",
       "n_overall": 12,
       "n_surface": 12,
-      "R_overall": 1319.3,
-      "R_surface": 1319.3,
-      "R_adjusted": 1319.3
+      "R_overall": 1322.8,
+      "R_surface": 1322.8,
+      "R_adjusted": 1322.8
     }
   },
   "Lorenzo Sonego": {
@@ -14841,9 +14841,9 @@
         "match_id": "2018-wimbledon-1147",
         "round": "R128",
         "opponent": "Taylor Fritz",
-        "opponent_elo": 1419.0,
+        "opponent_elo": 1417.6,
         "w_t": 1.0,
-        "w_q": 0.9269
+        "w_q": 0.9262
       }
     ],
     "tier1": {
@@ -14964,11 +14964,11 @@
     },
     "elo_snapshot": {
       "name": "Lorenzo Sonego",
-      "n_overall": 32,
-      "n_surface": 32,
-      "R_overall": 1652.9,
-      "R_surface": 1652.9,
-      "R_adjusted": 1652.9
+      "n_overall": 38,
+      "n_surface": 38,
+      "R_overall": 1622.1,
+      "R_surface": 1622.1,
+      "R_adjusted": 1622.1
     }
   },
   "Taylor Fritz": {
@@ -14988,7 +14988,7 @@
         "opponent": "Lorenzo Sonego",
         "opponent_elo": 1500.0,
         "w_t": 1.0,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2018-wimbledon-1224",
@@ -14996,7 +14996,7 @@
         "opponent": "Alexander Zverev",
         "opponent_elo": 1870.5,
         "w_t": 0.9973,
-        "w_q": 1.2219
+        "w_q": 1.222
       }
     ],
     "tier1": {
@@ -15131,11 +15131,11 @@
     },
     "elo_snapshot": {
       "name": "Taylor Fritz",
-      "n_overall": 44,
-      "n_surface": 44,
-      "R_overall": 1663.8,
-      "R_surface": 1663.8,
-      "R_adjusted": 1663.8
+      "n_overall": 56,
+      "n_surface": 56,
+      "R_overall": 1786.8,
+      "R_surface": 1786.8,
+      "R_adjusted": 1786.8
     }
   },
   "James Duckworth": {
@@ -15153,9 +15153,9 @@
         "match_id": "2018-wimbledon-1148",
         "round": "R128",
         "opponent": "Alexander Zverev",
-        "opponent_elo": 1826.9,
+        "opponent_elo": 1828.9,
         "w_t": 1.0,
-        "w_q": 1.1934
+        "w_q": 1.1948
       }
     ],
     "tier1": {
@@ -15290,11 +15290,11 @@
     },
     "elo_snapshot": {
       "name": "James Duckworth",
-      "n_overall": 23,
-      "n_surface": 23,
-      "R_overall": 1524.1,
-      "R_surface": 1524.1,
-      "R_adjusted": 1524.1
+      "n_overall": 29,
+      "n_surface": 29,
+      "R_overall": 1587.2,
+      "R_surface": 1587.2,
+      "R_adjusted": 1587.2
     }
   },
   "Alexander Zverev": {
@@ -15312,25 +15312,25 @@
         "match_id": "2018-wimbledon-1148",
         "round": "R128",
         "opponent": "James Duckworth",
-        "opponent_elo": 1487.9,
+        "opponent_elo": 1487.5,
         "w_t": 1.0,
-        "w_q": 0.9719
+        "w_q": 0.9718
       },
       {
         "match_id": "2018-wimbledon-1224",
         "round": "R64",
         "opponent": "Taylor Fritz",
-        "opponent_elo": 1402.6,
+        "opponent_elo": 1400.9,
         "w_t": 0.9973,
-        "w_q": 0.9162
+        "w_q": 0.9152
       },
       {
         "match_id": "2018-wimbledon-1312",
         "round": "R32",
         "opponent": "Ernests Gulbis",
-        "opponent_elo": 1589.5,
+        "opponent_elo": 1592.6,
         "w_t": 0.9945,
-        "w_q": 1.0384
+        "w_q": 1.0405
       }
     ],
     "tier1": {
@@ -15374,7 +15374,7 @@
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 51.7,
+          "win_pct": 51.6,
           "n": 151
         },
         "4_6": {
@@ -15424,12 +15424,12 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 52.8,
-        "ad_win_pct": 52.6,
-        "asymmetry": 0.2,
+        "ad_win_pct": 52.5,
+        "asymmetry": 0.3,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 6.59,
+        "streak_initiation_rate": 6.58,
         "streak_survival_rate": 0.502,
         "streak_recovery_rate": 0.456
       },
@@ -15465,11 +15465,11 @@
     },
     "elo_snapshot": {
       "name": "Alexander Zverev",
-      "n_overall": 51,
-      "n_surface": 51,
-      "R_overall": 1787.1,
-      "R_surface": 1787.1,
-      "R_adjusted": 1787.1
+      "n_overall": 59,
+      "n_surface": 59,
+      "R_overall": 1803.9,
+      "R_surface": 1803.9,
+      "R_adjusted": 1803.9
     }
   },
   "Juan Martin Del Potro": {
@@ -15487,15 +15487,15 @@
         "match_id": "2018-wimbledon-1149",
         "round": "R128",
         "opponent": "Peter Gojowczyk",
-        "opponent_elo": 1592.8,
+        "opponent_elo": 1601.5,
         "w_t": 1.0,
-        "w_q": 1.0405
+        "w_q": 1.0463
       },
       {
         "match_id": "2018-wimbledon-1225",
         "round": "R64",
         "opponent": "Feliciano Lopez",
-        "opponent_elo": 1838.1,
+        "opponent_elo": 1837.8,
         "w_t": 0.9973,
         "w_q": 1.2007
       },
@@ -15503,25 +15503,25 @@
         "match_id": "2018-wimbledon-1313",
         "round": "R32",
         "opponent": "Benoit Paire",
-        "opponent_elo": 1681.6,
+        "opponent_elo": 1678.5,
         "w_t": 0.9945,
-        "w_q": 1.0985
+        "w_q": 1.0966
       },
       {
         "match_id": "2018-wimbledon-1407",
         "round": "R16",
         "opponent": "Gilles Simon",
-        "opponent_elo": 1672.5,
+        "opponent_elo": 1671.3,
         "w_t": 0.9918,
-        "w_q": 1.0925
+        "w_q": 1.0919
       },
       {
         "match_id": "2018-wimbledon-1504",
         "round": "QF",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1902.7,
+        "opponent_elo": 1900.6,
         "w_t": 0.9891,
-        "w_q": 1.2429
+        "w_q": 1.2417
       }
     ],
     "tier1": {
@@ -15553,7 +15553,7 @@
       "rgw_pct": {
         "value": 26.2,
         "ci_90_lo": 16.0,
-        "ci_90_hi": 46.3
+        "ci_90_hi": 46.4
       }
     },
     "tier2": {
@@ -15622,7 +15622,7 @@
       "momentum_profile": {
         "streak_initiation_rate": 3.35,
         "streak_survival_rate": 0.457,
-        "streak_recovery_rate": 0.309
+        "streak_recovery_rate": 0.31
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.63,
@@ -15810,9 +15810,9 @@
       "name": "Peter Gojowczyk",
       "n_overall": 26,
       "n_surface": 26,
-      "R_overall": 1572.7,
-      "R_surface": 1572.7,
-      "R_adjusted": 1572.7
+      "R_overall": 1579.9,
+      "R_surface": 1579.9,
+      "R_adjusted": 1579.9
     }
   },
   "Feliciano Lopez": {
@@ -15832,7 +15832,7 @@
         "opponent": "Federico Delbonis",
         "opponent_elo": 1315.2,
         "w_t": 1.0,
-        "w_q": 0.8591
+        "w_q": 0.8592
       },
       {
         "match_id": "2018-wimbledon-1225",
@@ -15977,9 +15977,9 @@
       "name": "Feliciano Lopez",
       "n_overall": 142,
       "n_surface": 142,
-      "R_overall": 1666.6,
-      "R_surface": 1666.6,
-      "R_adjusted": 1666.6
+      "R_overall": 1665.5,
+      "R_surface": 1665.5,
+      "R_adjusted": 1665.5
     }
   },
   "Federico Delbonis": {
@@ -15997,9 +15997,9 @@
         "match_id": "2018-wimbledon-1150",
         "round": "R128",
         "opponent": "Feliciano Lopez",
-        "opponent_elo": 1864.3,
+        "opponent_elo": 1864.0,
         "w_t": 1.0,
-        "w_q": 1.2179
+        "w_q": 1.2178
       }
     ],
     "tier1": {
@@ -16122,9 +16122,9 @@
       "name": "Federico Delbonis",
       "n_overall": 12,
       "n_surface": 12,
-      "R_overall": 1244.8,
-      "R_surface": 1244.8,
-      "R_adjusted": 1244.8
+      "R_overall": 1244.5,
+      "R_surface": 1244.5,
+      "R_adjusted": 1244.5
     }
   },
   "Benoit Paire": {
@@ -16132,7 +16132,7 @@
     "surface": "grass",
     "year": 2018,
     "n_matches": 3,
-    "n_points": 218,
+    "n_points": 219,
     "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -16142,17 +16142,17 @@
         "match_id": "2018-wimbledon-1151",
         "round": "R128",
         "opponent": "Jason Jung",
-        "opponent_elo": 1421.1,
+        "opponent_elo": 1427.5,
         "w_t": 1.0,
-        "w_q": 0.9283
+        "w_q": 0.9326
       },
       {
         "match_id": "2018-wimbledon-1226",
         "round": "R64",
         "opponent": "Denis Shapovalov",
-        "opponent_elo": 1492.4,
+        "opponent_elo": 1492.9,
         "w_t": 0.9973,
-        "w_q": 0.9749
+        "w_q": 0.9754
       },
       {
         "match_id": "2018-wimbledon-1313",
@@ -16175,7 +16175,7 @@
         "ci_90_hi": 83.3
       },
       "sspw_pct": {
-        "value": 53.7,
+        "value": 53.8,
         "ci_90_lo": 40.8,
         "ci_90_hi": 65.8
       },
@@ -16198,9 +16198,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.0049,
+        "value": 1.0034,
         "max_bits": 1.585,
-        "pct_of_max": 63.4
+        "pct_of_max": 63.3
       },
       "rally_win_curve": {
         "1_3": {
@@ -16295,11 +16295,11 @@
     },
     "elo_snapshot": {
       "name": "Benoit Paire",
-      "n_overall": 50,
-      "n_surface": 50,
-      "R_overall": 1596.5,
-      "R_surface": 1596.5,
-      "R_adjusted": 1596.5
+      "n_overall": 52,
+      "n_surface": 52,
+      "R_overall": 1591.4,
+      "R_surface": 1591.4,
+      "R_adjusted": 1591.4
     }
   },
   "Jason Jung": {
@@ -16317,9 +16317,9 @@
         "match_id": "2018-wimbledon-1151",
         "round": "R128",
         "opponent": "Benoit Paire",
-        "opponent_elo": 1705.5,
+        "opponent_elo": 1702.7,
         "w_t": 1.0,
-        "w_q": 1.1141
+        "w_q": 1.1124
       }
     ],
     "tier1": {
@@ -16442,9 +16442,9 @@
       "name": "Jason Jung",
       "n_overall": 9,
       "n_surface": 9,
-      "R_overall": 1550.7,
-      "R_surface": 1550.7,
-      "R_adjusted": 1550.7
+      "R_overall": 1551.1,
+      "R_surface": 1551.1,
+      "R_adjusted": 1551.1
     }
   },
   "Jeremy Chardy": {
@@ -16462,9 +16462,9 @@
         "match_id": "2018-wimbledon-1152",
         "round": "R128",
         "opponent": "Denis Shapovalov",
-        "opponent_elo": 1547.4,
+        "opponent_elo": 1550.0,
         "w_t": 1.0,
-        "w_q": 1.0108
+        "w_q": 1.0126
       }
     ],
     "tier1": {
@@ -16587,9 +16587,9 @@
       "name": "Jeremy Chardy",
       "n_overall": 63,
       "n_surface": 63,
-      "R_overall": 1559.8,
-      "R_surface": 1559.8,
-      "R_adjusted": 1559.8
+      "R_overall": 1556.2,
+      "R_surface": 1556.2,
+      "R_adjusted": 1556.2
     }
   },
   "Denis Shapovalov": {
@@ -16607,17 +16607,17 @@
         "match_id": "2018-wimbledon-1152",
         "round": "R128",
         "opponent": "Jeremy Chardy",
-        "opponent_elo": 1727.1,
+        "opponent_elo": 1728.1,
         "w_t": 1.0,
-        "w_q": 1.1282
+        "w_q": 1.129
       },
       {
         "match_id": "2018-wimbledon-1226",
         "round": "R64",
         "opponent": "Benoit Paire",
-        "opponent_elo": 1681.6,
+        "opponent_elo": 1678.5,
         "w_t": 0.9973,
-        "w_q": 1.0985
+        "w_q": 1.0966
       }
     ],
     "tier1": {
@@ -16643,7 +16643,7 @@
       },
       "sgw_pct": {
         "value": 86.6,
-        "ci_90_lo": 65.1,
+        "ci_90_lo": 65.2,
         "ci_90_hi": 92.0
       },
       "rgw_pct": {
@@ -16655,9 +16655,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7748,
+        "value": 0.7738,
         "max_bits": 1.585,
-        "pct_of_max": 48.9
+        "pct_of_max": 48.8
       },
       "rally_win_curve": {
         "1_3": {
@@ -16752,11 +16752,11 @@
     },
     "elo_snapshot": {
       "name": "Denis Shapovalov",
-      "n_overall": 36,
-      "n_surface": 36,
-      "R_overall": 1646.9,
-      "R_surface": 1646.9,
-      "R_adjusted": 1646.9
+      "n_overall": 41,
+      "n_surface": 41,
+      "R_overall": 1652.0,
+      "R_surface": 1652.0,
+      "R_adjusted": 1652.0
     }
   },
   "Jack Sock": {
@@ -16774,9 +16774,9 @@
         "match_id": "2018-wimbledon-1153",
         "round": "R128",
         "opponent": "Matteo Berrettini",
-        "opponent_elo": 1529.3,
+        "opponent_elo": 1413.7,
         "w_t": 1.0,
-        "w_q": 0.999
+        "w_q": 0.9236
       }
     ],
     "tier1": {
@@ -16913,9 +16913,9 @@
       "name": "Jack Sock",
       "n_overall": 31,
       "n_surface": 31,
-      "R_overall": 1621.8,
-      "R_surface": 1621.8,
-      "R_adjusted": 1621.8
+      "R_overall": 1618.9,
+      "R_surface": 1618.9,
+      "R_adjusted": 1618.9
     }
   },
   "Matteo Berrettini": {
@@ -16933,17 +16933,17 @@
         "match_id": "2018-wimbledon-1153",
         "round": "R128",
         "opponent": "Jack Sock",
-        "opponent_elo": 1632.3,
+        "opponent_elo": 1628.0,
         "w_t": 1.0,
-        "w_q": 1.0663
+        "w_q": 1.0636
       },
       {
         "match_id": "2018-wimbledon-1227",
         "round": "R64",
         "opponent": "Gilles Simon",
-        "opponent_elo": 1672.5,
+        "opponent_elo": 1671.3,
         "w_t": 0.9973,
-        "w_q": 1.0925
+        "w_q": 1.0919
       }
     ],
     "tier1": {
@@ -16974,16 +16974,16 @@
       },
       "rgw_pct": {
         "value": 16.2,
-        "ci_90_lo": 9.8,
+        "ci_90_lo": 9.7,
         "ci_90_hi": 35.9
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7838,
+        "value": 0.783,
         "max_bits": 1.585,
-        "pct_of_max": 49.5
+        "pct_of_max": 49.4
       },
       "rally_win_curve": {
         "1_3": {
@@ -17015,13 +17015,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 13.9,
-        "bp_df_rate": 16.8,
+        "value": 14.0,
+        "bp_df_rate": 16.9,
         "baseline_df_rate": 2.9,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.139
+        "modifier_delta": 0.14
       },
       "serve_speed_courage": {
         "available": true,
@@ -17044,7 +17044,7 @@
       "momentum_profile": {
         "streak_initiation_rate": 8.69,
         "streak_survival_rate": 0.429,
-        "streak_recovery_rate": 0.305
+        "streak_recovery_rate": 0.304
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.488,
@@ -17055,7 +17055,7 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.9737,
+        "value": 0.9806,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0502,
@@ -17063,26 +17063,26 @@
             "contribution": 0.0151
           },
           "df_rate_delta": {
-            "delta_frac": 4.7931,
+            "delta_frac": 4.8276,
             "weight": 0.2,
-            "contribution": 0.9586
+            "contribution": 0.9655
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.9737,
+        "modifier_delta": 0.9806,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
     "elo_snapshot": {
       "name": "Matteo Berrettini",
-      "n_overall": 44,
-      "n_surface": 44,
-      "R_overall": 2008.1,
-      "R_surface": 2008.1,
-      "R_adjusted": 2008.1
+      "n_overall": 53,
+      "n_surface": 53,
+      "R_overall": 1925.1,
+      "R_surface": 1925.1,
+      "R_adjusted": 1925.1
     }
   },
   "Gilles Simon": {
@@ -17100,25 +17100,25 @@
         "match_id": "2018-wimbledon-1154",
         "round": "R128",
         "opponent": "Nikoloz Basilashvili",
-        "opponent_elo": 1544.4,
+        "opponent_elo": 1547.1,
         "w_t": 1.0,
-        "w_q": 1.0089
+        "w_q": 1.0108
       },
       {
         "match_id": "2018-wimbledon-1227",
         "round": "R64",
         "opponent": "Matteo Berrettini",
-        "opponent_elo": 1470.1,
+        "opponent_elo": 1469.6,
         "w_t": 0.9973,
-        "w_q": 0.9604
+        "w_q": 0.9601
       },
       {
         "match_id": "2018-wimbledon-1314",
         "round": "R32",
         "opponent": "Matthew Ebden",
-        "opponent_elo": 1639.0,
+        "opponent_elo": 1640.5,
         "w_t": 0.9945,
-        "w_q": 1.0707
+        "w_q": 1.0718
       },
       {
         "match_id": "2018-wimbledon-1407",
@@ -17164,7 +17164,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7517,
+        "value": 0.7516,
         "max_bits": 1.585,
         "pct_of_max": 47.4
       },
@@ -17233,7 +17233,7 @@
         "bp_per_return_game": 0.578,
         "bp_conversion": 0.465,
         "bp_created": 11.3,
-        "bp_converted": 5.2
+        "bp_converted": 5.3
       },
       "rluep": null,
       "spci": {
@@ -17263,9 +17263,9 @@
       "name": "Gilles Simon",
       "n_overall": 96,
       "n_surface": 96,
-      "R_overall": 1592.3,
-      "R_surface": 1592.3,
-      "R_adjusted": 1592.3
+      "R_overall": 1596.2,
+      "R_surface": 1596.2,
+      "R_adjusted": 1596.2
     }
   },
   "Nikoloz Basilashvili": {
@@ -17283,9 +17283,9 @@
         "match_id": "2018-wimbledon-1154",
         "round": "R128",
         "opponent": "Gilles Simon",
-        "opponent_elo": 1700.0,
+        "opponent_elo": 1693.7,
         "w_t": 1.0,
-        "w_q": 1.1106
+        "w_q": 1.1066
       }
     ],
     "tier1": {
@@ -17408,9 +17408,9 @@
       "name": "Nikoloz Basilashvili",
       "n_overall": 33,
       "n_surface": 33,
-      "R_overall": 1635.1,
-      "R_surface": 1635.1,
-      "R_adjusted": 1635.1
+      "R_overall": 1640.4,
+      "R_surface": 1640.4,
+      "R_adjusted": 1640.4
     }
   },
   "Albert Ramos Vinolas": {
@@ -17428,9 +17428,9 @@
         "match_id": "2018-wimbledon-1155",
         "round": "R128",
         "opponent": "Stephane Robert",
-        "opponent_elo": 1499.3,
+        "opponent_elo": 1503.0,
         "w_t": 1.0,
-        "w_q": 0.9794
+        "w_q": 0.982
       }
     ],
     "tier1": {
@@ -17574,9 +17574,9 @@
         "match_id": "2018-wimbledon-1228",
         "round": "R64",
         "opponent": "Matthew Ebden",
-        "opponent_elo": 1639.0,
+        "opponent_elo": 1640.5,
         "w_t": 0.9973,
-        "w_q": 1.0707
+        "w_q": 1.0718
       }
     ],
     "tier1": {
@@ -17636,13 +17636,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 15.2,
+        "value": 15.3,
         "high_lev_win_pct": 65.9,
-        "baseline_win_pct": 50.7,
+        "baseline_win_pct": 50.6,
         "n_eff": 28,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.152
+        "modifier_delta": 0.153
       },
       "df_pressure_delta": {
         "available": true,
@@ -17671,7 +17671,7 @@
         "streak_recovery_rate": 0.489
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.538,
+        "bp_per_return_game": 0.537,
         "bp_conversion": 0.526,
         "bp_created": 9.5,
         "bp_converted": 5.0
@@ -17699,9 +17699,9 @@
       "name": "Stephane Robert",
       "n_overall": 12,
       "n_surface": 12,
-      "R_overall": 1480.2,
-      "R_surface": 1480.2,
-      "R_adjusted": 1480.2
+      "R_overall": 1483.7,
+      "R_surface": 1483.7,
+      "R_adjusted": 1483.7
     }
   },
   "Matthew Ebden": {
@@ -17719,25 +17719,25 @@
         "match_id": "2018-wimbledon-1156",
         "round": "R128",
         "opponent": "David Goffin",
-        "opponent_elo": 1703.0,
+        "opponent_elo": 1701.5,
         "w_t": 1.0,
-        "w_q": 1.1125
+        "w_q": 1.1117
       },
       {
         "match_id": "2018-wimbledon-1228",
         "round": "R64",
         "opponent": "Stephane Robert",
-        "opponent_elo": 1450.4,
+        "opponent_elo": 1455.5,
         "w_t": 0.9973,
-        "w_q": 0.9475
+        "w_q": 0.9509
       },
       {
         "match_id": "2018-wimbledon-1314",
         "round": "R32",
         "opponent": "Gilles Simon",
-        "opponent_elo": 1672.5,
+        "opponent_elo": 1671.3,
         "w_t": 0.9945,
-        "w_q": 1.0925
+        "w_q": 1.0919
       }
     ],
     "tier1": {
@@ -17754,7 +17754,7 @@
       "sspw_pct": {
         "value": 63.1,
         "ci_90_lo": 48.5,
-        "ci_90_hi": 74.3
+        "ci_90_hi": 74.2
       },
       "rpw_pct": {
         "value": 37.3,
@@ -17767,7 +17767,7 @@
         "ci_90_hi": 89.1
       },
       "rgw_pct": {
-        "value": 25.1,
+        "value": 25.2,
         "ci_90_lo": 15.1,
         "ci_90_hi": 46.4
       }
@@ -17775,9 +17775,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.0663,
+        "value": 1.065,
         "max_bits": 1.585,
-        "pct_of_max": 67.3
+        "pct_of_max": 67.2
       },
       "rally_win_curve": {
         "1_3": {
@@ -17841,7 +17841,7 @@
         "streak_recovery_rate": 0.569
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.545,
+        "bp_per_return_game": 0.546,
         "bp_conversion": 0.364,
         "bp_created": 9.8,
         "bp_converted": 3.6
@@ -17874,9 +17874,9 @@
       "name": "Matthew Ebden",
       "n_overall": 46,
       "n_surface": 46,
-      "R_overall": 1548.7,
-      "R_surface": 1548.7,
-      "R_adjusted": 1548.7
+      "R_overall": 1552.6,
+      "R_surface": 1552.6,
+      "R_adjusted": 1552.6
     }
   },
   "David Goffin": {
@@ -17894,9 +17894,9 @@
         "match_id": "2018-wimbledon-1156",
         "round": "R128",
         "opponent": "Matthew Ebden",
-        "opponent_elo": 1721.0,
+        "opponent_elo": 1721.9,
         "w_t": 1.0,
-        "w_q": 1.1242
+        "w_q": 1.125
       }
     ],
     "tier1": {
@@ -18031,11 +18031,11 @@
     },
     "elo_snapshot": {
       "name": "David Goffin",
-      "n_overall": 54,
-      "n_surface": 54,
-      "R_overall": 1762.8,
-      "R_surface": 1762.8,
-      "R_adjusted": 1762.8
+      "n_overall": 56,
+      "n_surface": 56,
+      "R_overall": 1678.7,
+      "R_surface": 1678.7,
+      "R_adjusted": 1678.7
     }
   },
   "Diego Schwartzman": {
@@ -18053,17 +18053,17 @@
         "match_id": "2018-wimbledon-1157",
         "round": "R128",
         "opponent": "Mirza Basic",
-        "opponent_elo": 1471.7,
+        "opponent_elo": 1469.2,
         "w_t": 1.0,
-        "w_q": 0.9614
+        "w_q": 0.9598
       },
       {
         "match_id": "2018-wimbledon-1229",
         "round": "R64",
         "opponent": "Jiri Vesely",
-        "opponent_elo": 1615.0,
+        "opponent_elo": 1605.0,
         "w_t": 0.9973,
-        "w_q": 1.055
+        "w_q": 1.0486
       }
     ],
     "tier1": {
@@ -18079,12 +18079,12 @@
       },
       "sspw_pct": {
         "value": 67.2,
-        "ci_90_lo": 50.2,
+        "ci_90_lo": 50.3,
         "ci_90_hi": 78.5
       },
       "rpw_pct": {
         "value": 44.2,
-        "ci_90_lo": 36.2,
+        "ci_90_lo": 36.3,
         "ci_90_hi": 52.7
       },
       "sgw_pct": {
@@ -18093,9 +18093,9 @@
         "ci_90_hi": 85.3
       },
       "rgw_pct": {
-        "value": 34.5,
-        "ci_90_lo": 20.4,
-        "ci_90_hi": 57.0
+        "value": 34.6,
+        "ci_90_lo": 20.5,
+        "ci_90_hi": 57.1
       }
     },
     "tier2": {
@@ -18123,23 +18123,23 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 2.8,
-        "high_lev_win_pct": 55.8,
+        "value": 2.9,
+        "high_lev_win_pct": 55.9,
         "baseline_win_pct": 53.0,
         "n_eff": 27,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.028
+        "modifier_delta": 0.029
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 5.6,
-        "bp_df_rate": 8.6,
+        "value": 5.7,
+        "bp_df_rate": 8.7,
         "baseline_df_rate": 3.0,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.056
+        "modifier_delta": 0.057
       },
       "serve_speed_courage": {
         "available": false,
@@ -18155,7 +18155,7 @@
       "momentum_profile": {
         "streak_initiation_rate": 5.22,
         "streak_survival_rate": 0.521,
-        "streak_recovery_rate": 0.489
+        "streak_recovery_rate": 0.49
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.639,
@@ -18166,19 +18166,19 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.3733,
+        "value": 0.38,
         "components": {
           "df_rate_delta": {
-            "delta_frac": 1.8667,
+            "delta_frac": 1.9,
             "weight": 0.2,
-            "contribution": 0.3733
+            "contribution": 0.38
           }
         },
         "components_used": 1,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.3733,
+        "modifier_delta": 0.38,
         "note": "Partial SPCI: 2/5 components. Missing: rally_length@pressure, distance_per_shot@pressure, serve_dir_variety@pressure."
       }
     },
@@ -18186,9 +18186,9 @@
       "name": "Diego Schwartzman",
       "n_overall": 26,
       "n_surface": 26,
-      "R_overall": 1557.1,
-      "R_surface": 1557.1,
-      "R_adjusted": 1557.1
+      "R_overall": 1558.9,
+      "R_surface": 1558.9,
+      "R_adjusted": 1558.9
     }
   },
   "Mirza Basic": {
@@ -18206,9 +18206,9 @@
         "match_id": "2018-wimbledon-1157",
         "round": "R128",
         "opponent": "Diego Schwartzman",
-        "opponent_elo": 1333.2,
+        "opponent_elo": 1331.7,
         "w_t": 1.0,
-        "w_q": 0.8709
+        "w_q": 0.87
       }
     ],
     "tier1": {
@@ -18331,9 +18331,9 @@
       "name": "Mirza Basic",
       "n_overall": 6,
       "n_surface": 6,
-      "R_overall": 1395.1,
-      "R_surface": 1395.1,
-      "R_adjusted": 1395.1
+      "R_overall": 1392.7,
+      "R_surface": 1392.7,
+      "R_adjusted": 1392.7
     }
   },
   "Jiri Vesely": {
@@ -18341,7 +18341,7 @@
     "surface": "grass",
     "year": 2018,
     "n_matches": 4,
-    "n_points": 224,
+    "n_points": 223,
     "n_eff_matches": 3.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -18351,45 +18351,45 @@
         "match_id": "2018-wimbledon-1158",
         "round": "R128",
         "opponent": "Florian Mayer",
-        "opponent_elo": 1744.4,
+        "opponent_elo": 1742.6,
         "w_t": 1.0,
-        "w_q": 1.1395
+        "w_q": 1.1385
       },
       {
         "match_id": "2018-wimbledon-1229",
         "round": "R64",
         "opponent": "Diego Schwartzman",
-        "opponent_elo": 1284.2,
+        "opponent_elo": 1283.5,
         "w_t": 0.9973,
-        "w_q": 0.8389
+        "w_q": 0.8386
       },
       {
         "match_id": "2018-wimbledon-1315",
         "round": "R32",
         "opponent": "Fabio Fognini",
-        "opponent_elo": 1666.1,
+        "opponent_elo": 1632.3,
         "w_t": 0.9945,
-        "w_q": 1.0884
+        "w_q": 1.0664
       },
       {
         "match_id": "2018-wimbledon-1408",
         "round": "R16",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1902.7,
+        "opponent_elo": 1900.6,
         "w_t": 0.9918,
-        "w_q": 1.2429
+        "w_q": 1.2417
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 69.9,
+        "value": 69.8,
         "ci_90_lo": 62.1,
         "ci_90_hi": 75.9
       },
       "fspw_pct": {
         "value": 70.3,
         "ci_90_lo": 60.9,
-        "ci_90_hi": 77.3
+        "ci_90_hi": 77.2
       },
       "sspw_pct": {
         "value": 60.5,
@@ -18402,12 +18402,12 @@
         "ci_90_hi": 43.0
       },
       "sgw_pct": {
-        "value": 84.7,
-        "ci_90_lo": 62.2,
+        "value": 84.6,
+        "ci_90_lo": 62.1,
         "ci_90_hi": 90.9
       },
       "rgw_pct": {
-        "value": 21.4,
+        "value": 21.5,
         "ci_90_lo": 12.7,
         "ci_90_hi": 43.2
       }
@@ -18415,9 +18415,9 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.844,
+        "value": 0.8403,
         "max_bits": 1.585,
-        "pct_of_max": 53.2
+        "pct_of_max": 53.0
       },
       "rally_win_curve": {
         "1_3": {
@@ -18425,8 +18425,8 @@
           "n": 173
         },
         "4_6": {
-          "win_pct": 42.5,
-          "n": 28
+          "win_pct": 42.4,
+          "n": 27
         },
         "7_9": {
           "win_pct": 35.0,
@@ -18439,20 +18439,20 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 1.4,
-        "high_lev_win_pct": 52.2,
+        "value": 1.3,
+        "high_lev_win_pct": 52.1,
         "baseline_win_pct": 50.8,
         "n_eff": 44,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.014
+        "modifier_delta": 0.013
       },
       "df_pressure_delta": {
         "available": true,
         "value": 1.8,
         "bp_df_rate": 4.6,
         "baseline_df_rate": 2.8,
-        "n_eff": 11,
+        "n_eff": 10,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
         "modifier_delta": 0.018
@@ -18471,17 +18471,17 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 49.2,
-        "ad_win_pct": 51.6,
-        "asymmetry": 2.4,
+        "ad_win_pct": 51.5,
+        "asymmetry": 2.3,
         "stronger_side": "ad"
       },
       "momentum_profile": {
         "streak_initiation_rate": 3.63,
-        "streak_survival_rate": 0.533,
-        "streak_recovery_rate": 0.405
+        "streak_survival_rate": 0.531,
+        "streak_recovery_rate": 0.403
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.498,
+        "bp_per_return_game": 0.499,
         "bp_conversion": 0.327,
         "bp_created": 8.8,
         "bp_converted": 2.9
@@ -18514,9 +18514,9 @@
       "name": "Jiri Vesely",
       "n_overall": 41,
       "n_surface": 41,
-      "R_overall": 1658.7,
-      "R_surface": 1658.7,
-      "R_adjusted": 1658.7
+      "R_overall": 1654.3,
+      "R_surface": 1654.3,
+      "R_adjusted": 1654.3
     }
   },
   "Florian Mayer": {
@@ -18534,9 +18534,9 @@
         "match_id": "2018-wimbledon-1158",
         "round": "R128",
         "opponent": "Jiri Vesely",
-        "opponent_elo": 1727.3,
+        "opponent_elo": 1716.4,
         "w_t": 1.0,
-        "w_q": 1.1284
+        "w_q": 1.1213
       }
     ],
     "tier1": {
@@ -18659,9 +18659,9 @@
       "name": "Florian Mayer",
       "n_overall": 65,
       "n_surface": 65,
-      "R_overall": 1715.0,
-      "R_surface": 1715.0,
-      "R_adjusted": 1715.0
+      "R_overall": 1712.5,
+      "R_surface": 1712.5,
+      "R_adjusted": 1712.5
     }
   },
   "Pablo Cuevas": {
@@ -18679,9 +18679,9 @@
         "match_id": "2018-wimbledon-1159",
         "round": "R128",
         "opponent": "Simone Bolelli",
-        "opponent_elo": 1673.8,
+        "opponent_elo": 1672.7,
         "w_t": 1.0,
-        "w_q": 1.0934
+        "w_q": 1.0928
       }
     ],
     "tier1": {
@@ -18804,9 +18804,9 @@
       "name": "Pablo Cuevas",
       "n_overall": 18,
       "n_surface": 18,
-      "R_overall": 1489.1,
-      "R_surface": 1489.1,
-      "R_adjusted": 1489.1
+      "R_overall": 1489.3,
+      "R_surface": 1489.3,
+      "R_adjusted": 1489.3
     }
   },
   "Simone Bolelli": {
@@ -18824,17 +18824,17 @@
         "match_id": "2018-wimbledon-1159",
         "round": "R128",
         "opponent": "Pablo Cuevas",
-        "opponent_elo": 1577.5,
+        "opponent_elo": 1579.9,
         "w_t": 1.0,
-        "w_q": 1.0305
+        "w_q": 1.0322
       },
       {
         "match_id": "2018-wimbledon-1230",
         "round": "R64",
         "opponent": "Fabio Fognini",
-        "opponent_elo": 1666.1,
+        "opponent_elo": 1632.3,
         "w_t": 0.9973,
-        "w_q": 1.0884
+        "w_q": 1.0664
       }
     ],
     "tier1": {
@@ -18844,42 +18844,42 @@
         "ci_90_hi": 79.8
       },
       "fspw_pct": {
-        "value": 69.9,
+        "value": 70.0,
         "ci_90_lo": 60.0,
         "ci_90_hi": 77.2
       },
       "sspw_pct": {
-        "value": 48.3,
-        "ci_90_lo": 33.2,
-        "ci_90_hi": 64.0
+        "value": 48.6,
+        "ci_90_lo": 33.4,
+        "ci_90_hi": 64.3
       },
       "rpw_pct": {
         "value": 35.9,
         "ci_90_lo": 28.8,
-        "ci_90_hi": 44.5
+        "ci_90_hi": 44.4
       },
       "sgw_pct": {
-        "value": 77.9,
-        "ci_90_lo": 53.3,
-        "ci_90_hi": 87.3
+        "value": 78.2,
+        "ci_90_lo": 53.6,
+        "ci_90_hi": 87.4
       },
       "rgw_pct": {
-        "value": 19.2,
-        "ci_90_lo": 11.2,
+        "value": 19.3,
+        "ci_90_lo": 11.3,
         "ci_90_hi": 42.8
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7897,
+        "value": 0.7812,
         "max_bits": 1.585,
-        "pct_of_max": 49.8
+        "pct_of_max": 49.3
       },
       "rally_win_curve": {
         "1_3": {
           "win_pct": 51.8,
-          "n": 149
+          "n": 150
         },
         "4_6": {
           "win_pct": 40.0,
@@ -18897,8 +18897,8 @@
       "clutch_differential": {
         "available": true,
         "value": -4.1,
-        "high_lev_win_pct": 45.5,
-        "baseline_win_pct": 49.6,
+        "high_lev_win_pct": 45.6,
+        "baseline_win_pct": 49.7,
         "n_eff": 34,
         "confidence": "LOW",
         "verdict": "MARGINAL",
@@ -18927,19 +18927,19 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 50.3,
+        "deuce_win_pct": 50.4,
         "ad_win_pct": 47.8,
-        "asymmetry": 2.5,
+        "asymmetry": 2.6,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.68,
-        "streak_survival_rate": 0.388,
-        "streak_recovery_rate": 0.527
+        "streak_initiation_rate": 5.71,
+        "streak_survival_rate": 0.39,
+        "streak_recovery_rate": 0.528
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.516,
-        "bp_conversion": 0.186,
+        "bp_conversion": 0.187,
         "bp_created": 8.0,
         "bp_converted": 1.5
       },
@@ -18971,9 +18971,9 @@
       "name": "Simone Bolelli",
       "n_overall": 32,
       "n_surface": 32,
-      "R_overall": 1643.7,
-      "R_surface": 1643.7,
-      "R_adjusted": 1643.7
+      "R_overall": 1642.6,
+      "R_surface": 1642.6,
+      "R_adjusted": 1642.6
     }
   },
   "Taro Daniel": {
@@ -18991,9 +18991,9 @@
         "match_id": "2018-wimbledon-1160",
         "round": "R128",
         "opponent": "Fabio Fognini",
-        "opponent_elo": 1700.6,
+        "opponent_elo": 1699.4,
         "w_t": 1.0,
-        "w_q": 1.1109
+        "w_q": 1.1102
       }
     ],
     "tier1": {
@@ -19128,11 +19128,11 @@
     },
     "elo_snapshot": {
       "name": "Taro Daniel",
-      "n_overall": 7,
-      "n_surface": 7,
-      "R_overall": 1273.0,
-      "R_surface": 1273.0,
-      "R_adjusted": 1273.0
+      "n_overall": 10,
+      "n_surface": 10,
+      "R_overall": 1251.7,
+      "R_surface": 1251.7,
+      "R_adjusted": 1251.7
     }
   },
   "Fabio Fognini": {
@@ -19150,32 +19150,32 @@
         "match_id": "2018-wimbledon-1160",
         "round": "R128",
         "opponent": "Taro Daniel",
-        "opponent_elo": 1344.4,
+        "opponent_elo": 1343.6,
         "w_t": 1.0,
-        "w_q": 0.8783
+        "w_q": 0.8778
       },
       {
         "match_id": "2018-wimbledon-1230",
         "round": "R64",
         "opponent": "Simone Bolelli",
-        "opponent_elo": 1662.4,
+        "opponent_elo": 1660.9,
         "w_t": 0.9973,
-        "w_q": 1.0859
+        "w_q": 1.0851
       },
       {
         "match_id": "2018-wimbledon-1315",
         "round": "R32",
         "opponent": "Jiri Vesely",
-        "opponent_elo": 1615.0,
+        "opponent_elo": 1605.0,
         "w_t": 0.9945,
-        "w_q": 1.055
+        "w_q": 1.0486
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 59.0,
         "ci_90_lo": 50.9,
-        "ci_90_hi": 66.3
+        "ci_90_hi": 66.2
       },
       "fspw_pct": {
         "value": 75.5,
@@ -19184,8 +19184,8 @@
       },
       "sspw_pct": {
         "value": 54.5,
-        "ci_90_lo": 41.5,
-        "ci_90_hi": 66.4
+        "ci_90_lo": 41.6,
+        "ci_90_hi": 66.5
       },
       "rpw_pct": {
         "value": 38.9,
@@ -19200,7 +19200,7 @@
       "rgw_pct": {
         "value": 25.2,
         "ci_90_lo": 15.0,
-        "ci_90_hi": 47.1
+        "ci_90_hi": 47.2
       }
     },
     "tier2": {
@@ -19231,8 +19231,8 @@
       "clutch_differential": {
         "available": true,
         "value": -1.8,
-        "high_lev_win_pct": 49.5,
-        "baseline_win_pct": 51.3,
+        "high_lev_win_pct": 49.6,
+        "baseline_win_pct": 51.4,
         "n_eff": 44,
         "confidence": "LOW",
         "verdict": "PASS",
@@ -19273,7 +19273,7 @@
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.845,
-        "bp_conversion": 0.298,
+        "bp_conversion": 0.299,
         "bp_created": 14.3,
         "bp_converted": 4.3
       },
@@ -19303,11 +19303,11 @@
     },
     "elo_snapshot": {
       "name": "Fabio Fognini",
-      "n_overall": 43,
-      "n_surface": 43,
-      "R_overall": 1652.2,
-      "R_surface": 1652.2,
-      "R_adjusted": 1652.2
+      "n_overall": 48,
+      "n_surface": 48,
+      "R_overall": 1642.6,
+      "R_surface": 1642.6,
+      "R_adjusted": 1642.6
     }
   },
   "Marco Cecchinato": {
@@ -19325,9 +19325,9 @@
         "match_id": "2018-wimbledon-1161",
         "round": "R128",
         "opponent": "Alex De Minaur",
-        "opponent_elo": 1603.8,
+        "opponent_elo": 1596.6,
         "w_t": 1.0,
-        "w_q": 1.0477
+        "w_q": 1.0431
       }
     ],
     "tier1": {
@@ -19450,9 +19450,9 @@
       "name": "Marco Cecchinato",
       "n_overall": 11,
       "n_surface": 11,
-      "R_overall": 1321.2,
-      "R_surface": 1321.2,
-      "R_adjusted": 1321.2
+      "R_overall": 1330.2,
+      "R_surface": 1330.2,
+      "R_adjusted": 1330.2
     }
   },
   "Alex De Minaur": {
@@ -19460,7 +19460,7 @@
     "surface": "grass",
     "year": 2018,
     "n_matches": 3,
-    "n_points": 237,
+    "n_points": 238,
     "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -19470,25 +19470,25 @@
         "match_id": "2018-wimbledon-1161",
         "round": "R128",
         "opponent": "Marco Cecchinato",
-        "opponent_elo": 1566.5,
+        "opponent_elo": 1579.0,
         "w_t": 1.0,
-        "w_q": 1.0233
+        "w_q": 1.0316
       },
       {
         "match_id": "2018-wimbledon-1231",
         "round": "R64",
         "opponent": "Pierre Hugues Herbert",
-        "opponent_elo": 1564.5,
+        "opponent_elo": 1589.2,
         "w_t": 0.9973,
-        "w_q": 1.022
+        "w_q": 1.0383
       },
       {
         "match_id": "2018-wimbledon-1316",
         "round": "R32",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1902.7,
+        "opponent_elo": 1900.6,
         "w_t": 0.9945,
-        "w_q": 1.2429
+        "w_q": 1.2417
       }
     ],
     "tier1": {
@@ -19499,12 +19499,12 @@
       },
       "fspw_pct": {
         "value": 72.6,
-        "ci_90_lo": 61.7,
-        "ci_90_hi": 79.9
+        "ci_90_lo": 61.8,
+        "ci_90_hi": 80.0
       },
       "sspw_pct": {
         "value": 67.3,
-        "ci_90_lo": 54.3,
+        "ci_90_lo": 54.4,
         "ci_90_hi": 76.6
       },
       "rpw_pct": {
@@ -19513,22 +19513,22 @@
         "ci_90_hi": 43.7
       },
       "sgw_pct": {
-        "value": 81.1,
-        "ci_90_lo": 59.6,
+        "value": 81.2,
+        "ci_90_lo": 59.7,
         "ci_90_hi": 88.8
       },
       "rgw_pct": {
-        "value": 18.4,
+        "value": 18.5,
         "ci_90_lo": 11.0,
-        "ci_90_hi": 39.7
+        "ci_90_hi": 39.8
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.5847,
+        "value": 0.58,
         "max_bits": 1.585,
-        "pct_of_max": 36.9
+        "pct_of_max": 36.6
       },
       "rally_win_curve": {
         "1_3": {
@@ -19545,7 +19545,7 @@
         },
         "10+": {
           "win_pct": 35.0,
-          "n": 8
+          "n": 7
         }
       },
       "clutch_differential": {
@@ -19563,7 +19563,7 @@
         "value": -2.0,
         "bp_df_rate": 3.3,
         "baseline_df_rate": 5.3,
-        "n_eff": 10,
+        "n_eff": 9,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
         "modifier_delta": -0.02
@@ -19573,7 +19573,7 @@
         "value": -12.0,
         "bp_speed_kmh": 159.2,
         "overall_speed_kmh": 171.2,
-        "n_eff": 5,
+        "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
         "modifier_delta": -0.12,
@@ -19587,14 +19587,14 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 4.72,
+        "streak_initiation_rate": 4.73,
         "streak_survival_rate": 0.546,
-        "streak_recovery_rate": 0.288
+        "streak_recovery_rate": 0.289
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.63,
-        "bp_conversion": 0.292,
-        "bp_created": 11.7,
+        "bp_per_return_game": 0.631,
+        "bp_conversion": 0.293,
+        "bp_created": 11.8,
         "bp_converted": 3.4
       },
       "rluep": null,
@@ -19623,11 +19623,11 @@
     },
     "elo_snapshot": {
       "name": "Alex De Minaur",
-      "n_overall": 41,
-      "n_surface": 41,
-      "R_overall": 1763.8,
-      "R_surface": 1763.8,
-      "R_adjusted": 1763.8
+      "n_overall": 51,
+      "n_surface": 51,
+      "R_overall": 1839.9,
+      "R_surface": 1839.9,
+      "R_adjusted": 1839.9
     }
   },
   "Pierre Hugues Herbert": {
@@ -19645,9 +19645,9 @@
         "match_id": "2018-wimbledon-1162",
         "round": "R128",
         "opponent": "Mischa Zverev",
-        "opponent_elo": 1758.0,
+        "opponent_elo": 1756.3,
         "w_t": 1.0,
-        "w_q": 1.1484
+        "w_q": 1.1474
       },
       {
         "match_id": "2018-wimbledon-1231",
@@ -19655,7 +19655,7 @@
         "opponent": "Alex De Minaur",
         "opponent_elo": 1500.0,
         "w_t": 0.9973,
-        "w_q": 0.9799
+        "w_q": 0.98
       }
     ],
     "tier1": {
@@ -19740,8 +19740,8 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 46.8,
-        "ad_win_pct": 51.8,
-        "asymmetry": 5.0,
+        "ad_win_pct": 51.7,
+        "asymmetry": 4.9,
         "stronger_side": "ad"
       },
       "momentum_profile": {
@@ -19751,7 +19751,7 @@
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.706,
-        "bp_conversion": 0.324,
+        "bp_conversion": 0.323,
         "bp_created": 12.9,
         "bp_converted": 4.2
       },
@@ -19776,11 +19776,11 @@
     },
     "elo_snapshot": {
       "name": "Pierre Hugues Herbert",
-      "n_overall": 29,
-      "n_surface": 29,
-      "R_overall": 1624.3,
-      "R_surface": 1624.3,
-      "R_adjusted": 1624.3
+      "n_overall": 30,
+      "n_surface": 30,
+      "R_overall": 1585.0,
+      "R_surface": 1585.0,
+      "R_adjusted": 1585.0
     }
   },
   "Mischa Zverev": {
@@ -19798,9 +19798,9 @@
         "match_id": "2018-wimbledon-1162",
         "round": "R128",
         "opponent": "Pierre Hugues Herbert",
-        "opponent_elo": 1664.6,
+        "opponent_elo": 1654.4,
         "w_t": 1.0,
-        "w_q": 1.0874
+        "w_q": 1.0809
       }
     ],
     "tier1": {
@@ -19923,9 +19923,9 @@
       "name": "Mischa Zverev",
       "n_overall": 60,
       "n_surface": 60,
-      "R_overall": 1641.4,
-      "R_surface": 1641.4,
-      "R_adjusted": 1641.4
+      "R_overall": 1639.5,
+      "R_surface": 1639.5,
+      "R_adjusted": 1639.5
     }
   },
   "Vasek Pospisil": {
@@ -19943,9 +19943,9 @@
         "match_id": "2018-wimbledon-1163",
         "round": "R128",
         "opponent": "Mikhail Kukushkin",
-        "opponent_elo": 1608.9,
+        "opponent_elo": 1607.5,
         "w_t": 1.0,
-        "w_q": 1.051
+        "w_q": 1.0502
       }
     ],
     "tier1": {
@@ -20068,9 +20068,9 @@
       "name": "Vasek Pospisil",
       "n_overall": 48,
       "n_surface": 48,
-      "R_overall": 1517.1,
-      "R_surface": 1517.1,
-      "R_adjusted": 1517.1
+      "R_overall": 1511.0,
+      "R_surface": 1511.0,
+      "R_adjusted": 1511.0
     }
   },
   "Mikhail Kukushkin": {
@@ -20088,17 +20088,17 @@
         "match_id": "2018-wimbledon-1163",
         "round": "R128",
         "opponent": "Vasek Pospisil",
-        "opponent_elo": 1528.7,
+        "opponent_elo": 1526.7,
         "w_t": 1.0,
-        "w_q": 0.9986
+        "w_q": 0.9974
       },
       {
         "match_id": "2018-wimbledon-1232",
         "round": "R64",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1902.7,
+        "opponent_elo": 1900.6,
         "w_t": 0.9973,
-        "w_q": 1.2429
+        "w_q": 1.2417
       }
     ],
     "tier1": {
@@ -20136,7 +20136,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.8545,
+        "value": 0.8546,
         "max_bits": 1.585,
         "pct_of_max": 53.9
       },
@@ -20235,9 +20235,9 @@
       "name": "Mikhail Kukushkin",
       "n_overall": 41,
       "n_surface": 41,
-      "R_overall": 1551.8,
-      "R_surface": 1551.8,
-      "R_adjusted": 1551.8
+      "R_overall": 1551.1,
+      "R_surface": 1551.1,
+      "R_adjusted": 1551.1
     }
   },
   "Dudi Sela": {
@@ -20255,9 +20255,9 @@
         "match_id": "2018-wimbledon-1164",
         "round": "R128",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1912.3,
+        "opponent_elo": 1910.8,
         "w_t": 1.0,
-        "w_q": 1.2492
+        "w_q": 1.2484
       }
     ],
     "tier1": {
@@ -20394,9 +20394,9 @@
       "name": "Dudi Sela",
       "n_overall": 54,
       "n_surface": 54,
-      "R_overall": 1671.1,
-      "R_surface": 1671.1,
-      "R_adjusted": 1671.1
+      "R_overall": 1668.0,
+      "R_surface": 1668.0,
+      "R_adjusted": 1668.0
     }
   },
   "Rafael Nadal": {
@@ -20414,17 +20414,17 @@
         "match_id": "2018-wimbledon-1164",
         "round": "R128",
         "opponent": "Dudi Sela",
-        "opponent_elo": 1640.8,
+        "opponent_elo": 1642.6,
         "w_t": 1.0,
-        "w_q": 1.0719
+        "w_q": 1.0732
       },
       {
         "match_id": "2018-wimbledon-1232",
         "round": "R64",
         "opponent": "Mikhail Kukushkin",
-        "opponent_elo": 1553.3,
+        "opponent_elo": 1551.9,
         "w_t": 0.9973,
-        "w_q": 1.0147
+        "w_q": 1.0139
       },
       {
         "match_id": "2018-wimbledon-1316",
@@ -20432,15 +20432,15 @@
         "opponent": "Alex De Minaur",
         "opponent_elo": 1500.0,
         "w_t": 0.9945,
-        "w_q": 0.9799
+        "w_q": 0.98
       },
       {
         "match_id": "2018-wimbledon-1408",
         "round": "R16",
         "opponent": "Jiri Vesely",
-        "opponent_elo": 1615.0,
+        "opponent_elo": 1605.0,
         "w_t": 0.9918,
-        "w_q": 1.055
+        "w_q": 1.0486
       },
       {
         "match_id": "2018-wimbledon-1504",
@@ -20454,9 +20454,9 @@
         "match_id": "2018-wimbledon-1602",
         "round": "SF",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2122.2,
+        "opponent_elo": 2120.7,
         "w_t": 0.9864,
-        "w_q": 1.3864
+        "w_q": 1.3855
       }
     ],
     "tier1": {
@@ -20486,7 +20486,7 @@
         "ci_90_hi": 93.5
       },
       "rgw_pct": {
-        "value": 29.5,
+        "value": 29.4,
         "ci_90_lo": 18.2,
         "ci_90_hi": 49.3
       }
@@ -20494,7 +20494,7 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.5433,
+        "value": 1.5434,
         "max_bits": 1.585,
         "pct_of_max": 97.4
       },
@@ -20593,9 +20593,9 @@
       "name": "Rafael Nadal",
       "n_overall": 97,
       "n_surface": 97,
-      "R_overall": 1969.1,
-      "R_surface": 1969.1,
-      "R_adjusted": 1969.1
+      "R_overall": 1965.8,
+      "R_surface": 1965.8,
+      "R_adjusted": 1965.8
     }
   }
 }

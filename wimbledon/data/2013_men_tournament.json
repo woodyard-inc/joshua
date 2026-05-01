@@ -1,0 +1,75 @@
+{
+  "year": 2013,
+  "n_players": 81,
+  "serve": {
+    "first_in_pct": 0.0,
+    "first_won_pct": null,
+    "second_won_pct": null,
+    "ace_pct": 9.5,
+    "df_pct": 3.3
+  },
+  "serve_speed": {
+    "first_avg_kmh": null,
+    "second_avg_kmh": null
+  },
+  "serve_direction": {
+    "wide_pct": null,
+    "body_pct": null,
+    "centre_pct": null
+  },
+  "rally_shots": {
+    "srv_all_avg": null,
+    "srv_1st_avg": null,
+    "srv_2nd_avg": null,
+    "ret_all_avg": null,
+    "ret_1st_avg": null,
+    "ret_2nd_avg": null
+  },
+  "pressure": {
+    "bp_created_per_opp_sg": 0.3,
+    "bp_saved_pct": 62.8,
+    "bp_conv_pct": 32.8
+  },
+  "aggression": {
+    "aggression_index": 64.2
+  },
+  "clean_games": {
+    "srv_clean_pct": 61.5,
+    "ret_clean_pct": 81.5
+  },
+  "streaks": {
+    "streaks_per_match": 12.4
+  },
+  "bad_breaks": [
+    {
+      "winner": "Bernard Tomic",
+      "loser": "Sam Querrey",
+      "winner_pts": 146,
+      "loser_pts": 159,
+      "bad_break": true,
+      "margin": -13
+    },
+    {
+      "winner": "Grega Zemlja",
+      "loser": "Grigor Dimitrov",
+      "winner_pts": 185,
+      "loser_pts": 193,
+      "bad_break": true,
+      "margin": -8
+    },
+    {
+      "winner": "Bernard Tomic",
+      "loser": "Richard Gasquet",
+      "winner_pts": 147,
+      "loser_pts": 160,
+      "bad_break": true,
+      "margin": -13
+    }
+  ],
+  "match_duration": {
+    "avg_mins": 130.3
+  },
+  "distance": {
+    "avg_km_per_match": null
+  }
+}

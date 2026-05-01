@@ -1591,26 +1591,23 @@ function renderMatchupResult(r) {
                   : r.edge > 0     ? "edge-a"
                   : "edge-b";
 
+  const winnerA = pA >= pB;
   el.innerHTML = `
     <div class="mu-result-inner">
 
       <div class="mu-prob-header">
-        <div class="mu-prob-player mu-prob-player-a">
+        <div class="mu-prob-side mu-prob-side-a ${winnerA ? "is-winner" : ""}">
+          <span class="mu-prob-pct">${pA}%</span>
           <span class="mu-prob-name">${r.nameA}</span>
           <span class="mu-prob-serve">Srv win ${Math.round(r.pServeA * 100)}%</span>
-        </div>
-        <div class="mu-prob-centre">
-          <span class="mu-prob-num mu-prob-num-a">${pA}%</span>
-          <span class="mu-prob-dash">—</span>
-          <span class="mu-prob-num mu-prob-num-b">${pB}%</span>
-          <div class="mu-prob-bar">
-            <div class="mu-prob-bar-a" style="width:${pA}%"></div>
-          </div>
           <span class="mu-prob-label">match win probability</span>
         </div>
-        <div class="mu-prob-player mu-prob-player-b">
+        <div class="mu-prob-divider"></div>
+        <div class="mu-prob-side mu-prob-side-b ${!winnerA ? "is-winner" : ""}">
+          <span class="mu-prob-pct">${pB}%</span>
           <span class="mu-prob-name">${r.nameB}</span>
           <span class="mu-prob-serve">Srv win ${Math.round(r.pServeB * 100)}%</span>
+          <span class="mu-prob-label">match win probability</span>
         </div>
       </div>
 

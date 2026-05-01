@@ -103,7 +103,8 @@
   color: var(--paper);
 }
 
-/* Player select */
+/* Header selects — year + player share the same treatment */
+select#year-select,
 select#player-select {
   background: var(--paper);
   border: 1px solid var(--ink);
@@ -115,13 +116,15 @@ select#player-select {
   text-transform: uppercase;
   outline: none;
   cursor: pointer;
-  min-width: 190px;
   border-radius: 0;
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23141414' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 8px center;
 }
+select#year-select   { min-width: 80px; }
+select#player-select { min-width: 190px; }
+select#year-select:focus,
 select#player-select:focus { outline: 1px solid var(--cobalt); }
 
 /* ── EMPTY STATE ─────────────────────────────────────────────── */

@@ -3,13 +3,17 @@
 
 // ── State ─────────────────────────────────────────────────────────
 const state = {
-  year:         2019,
-  playerName:   null,
-  profiles:     null,
-  tournament:   null,
-  fingerprints: null,
-  mode:         "profile",   // "profile" | "leaderboard"
-  lbMetric:     "fspw_pct",
+  year:            2019,
+  playerName:      null,
+  profiles:        null,
+  tournament:      null,
+  fingerprints:    null,
+  eraStats:        null,        // loaded once at boot
+  curatedMatchups: null,        // loaded once at boot
+  mode:            "profile",   // "profile" | "leaderboard" | "matchup"
+  lbMetric:        "fspw_pct",
+  matchupA:        null,
+  matchupB:        null,
 };
 
 const AVAILABLE_YEARS = [2011, 2012, 2013, 2014, 2015, 2016,
@@ -18,12 +22,23 @@ const AVAILABLE_YEARS = [2011, 2012, 2013, 2014, 2015, 2016,
 
 // ── Boot ──────────────────────────────────────────────────────────
 async function boot() {
-  // Set active year pill (matches state.year default)
-  document.querySelectorAll(".pill").forEach(p => {
-    p.classList.toggle("active", +p.dataset.year === state.year);
-  });
+  // Set year select to match default state
+  document.getElementById("year-select").value = state.year;
 
-  await loadYear(state.year);
+  const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
+  const nc   = { cache: "no-store" };
+
+  // Load global (non-year-specific) data alongside the first year
+  const [,, eraStats, curated] = await Promise.all([
+    loadYear(state.year),
+    null,
+    fetch(`${base}/data/era_stats.json`, nc).then(r => r.json()).catch(() => ({})),
+    fetch(`${base}/data/curated_matchups.json`, nc).then(r => r.json()).catch(() => []),
+  ]);
+  state.eraStats        = eraStats;
+  state.curatedMatchups = curated;
+  renderFeatured();
+  renderBacktest();
 
   function onPlayerChange(name) {
     if (!name) { showEmpty(); return; }
@@ -35,9 +50,9 @@ async function boot() {
   document.getElementById("player-select")
     .addEventListener("change", e => onPlayerChange(e.target.value));
 
+  // ── Leaderboard toggle ───────────────────────────────────────────
   document.getElementById("lb-toggle").addEventListener("click", () => {
     if (state.mode === "leaderboard") {
-      // Switch back to profile / empty
       state.mode = "profile";
       document.getElementById("lb-toggle").classList.remove("active");
       document.getElementById("leaderboard").classList.add("hidden");
@@ -48,9 +63,10 @@ async function boot() {
         showEmpty();
       }
     } else {
-      // Switch to leaderboard
+      enterMatchupMode(false);   // exit matchup if active
       state.mode = "leaderboard";
       document.getElementById("lb-toggle").classList.add("active");
+      document.getElementById("mu-toggle").classList.remove("active");
       document.getElementById("empty-state").classList.add("hidden");
       document.getElementById("profile").classList.add("hidden");
       document.getElementById("leaderboard").classList.remove("hidden");
@@ -58,24 +74,51 @@ async function boot() {
     }
   });
 
-  document.getElementById("year-pills").addEventListener("click", e => {
-    const btn = e.target.closest(".pill");
-    if (!btn) return;
-    const yr = +btn.dataset.year;
+  // ── Compare toggle ───────────────────────────────────────────────
+  document.getElementById("mu-toggle").addEventListener("click", () => {
+    if (state.mode === "matchup") {
+      exitMatchupMode();
+    } else {
+      enterMatchupMode(true);
+    }
+  });
+
+  // ── Matchup selectors ────────────────────────────────────────────
+  document.getElementById("mu-select-a").addEventListener("change", e => {
+    state.matchupA = e.target.value || null;
+  });
+  document.getElementById("mu-select-b").addEventListener("change", e => {
+    state.matchupB = e.target.value || null;
+  });
+
+  document.getElementById("mu-swap").addEventListener("click", () => {
+    const a = state.matchupA, b = state.matchupB;
+    state.matchupA = b; state.matchupB = a;
+    document.getElementById("mu-select-a").value = b || "";
+    document.getElementById("mu-select-b").value = a || "";
+    if (state.matchupA && state.matchupB) runComparison(state.matchupA, state.matchupB);
+  });
+
+  document.getElementById("mu-analyse").addEventListener("click", () => {
+    if (state.matchupA && state.matchupB) runComparison(state.matchupA, state.matchupB);
+  });
+
+  // ── Year select ───────────────────────────────────────────────────
+  document.getElementById("year-select").addEventListener("change", e => {
+    const yr = +e.target.value;
     if (yr === state.year) return;
-    document.querySelectorAll(".pill").forEach(p => p.classList.remove("active"));
-    btn.classList.add("active");
     state.year = yr;
     loadYear(yr).then(() => {
-      // If leaderboard is active, loadYear already re-rendered it — nothing more to do
       if (state.mode === "leaderboard") return;
-      // Try to keep same player; if they didn't compete this year say so
+      if (state.mode === "matchup") {
+        if (state.matchupA && state.matchupB) runComparison(state.matchupA, state.matchupB);
+        return;
+      }
       const prev = state.playerName;
       if (prev && state.profiles[prev]) {
         document.getElementById("player-select").value = prev;
         renderProfile(prev);
       } else if (prev) {
-        // Player known but not in this year's draw
         showNotCompeting(prev, yr);
       } else {
         showEmpty();
@@ -97,6 +140,7 @@ async function loadYear(year) {
   state.fingerprints = fingerprints;
   state.year         = year;
   populateDropdown();
+  populateMuDropdowns();
   if (state.mode === "leaderboard") renderLeaderboard();
 }
 
@@ -115,7 +159,9 @@ function populateDropdown() {
 function showEmpty() {
   state.mode = "profile";
   document.getElementById("lb-toggle").classList.remove("active");
+  document.getElementById("mu-toggle").classList.remove("active");
   document.getElementById("leaderboard").classList.add("hidden");
+  document.getElementById("matchup-panel").classList.add("hidden");
   document.getElementById("empty-state").classList.remove("hidden");
   document.getElementById("profile").classList.add("hidden");
   document.getElementById("player-select").value = "";
@@ -158,7 +204,9 @@ function renderProfile(name) {
 
   state.mode = "profile";
   document.getElementById("lb-toggle").classList.remove("active");
+  document.getElementById("mu-toggle").classList.remove("active");
   document.getElementById("leaderboard").classList.add("hidden");
+  document.getElementById("matchup-panel").classList.add("hidden");
   document.getElementById("empty-state").classList.add("hidden");
   document.getElementById("profile").classList.remove("hidden");
 
@@ -1416,6 +1464,275 @@ function renderLbList() {
 function renderLeaderboard() {
   renderLbMetricNav();
   renderLbList();
+}
+
+// ── Matchup mode ──────────────────────────────────────────────────
+
+function enterMatchupMode(show) {
+  state.mode = "matchup";
+  document.getElementById("mu-toggle").classList.add("active");
+  document.getElementById("lb-toggle").classList.remove("active");
+  document.getElementById("profile").classList.add("hidden");
+  document.getElementById("leaderboard").classList.add("hidden");
+  document.getElementById("empty-state").classList.add("hidden");
+  if (show) {
+    const panel = document.getElementById("matchup-panel");
+    panel.classList.remove("hidden");
+    requestAnimationFrame(() => panel.scrollIntoView({ behavior: "smooth", block: "start" }));
+  }
+}
+
+function exitMatchupMode() {
+  document.getElementById("mu-toggle").classList.remove("active");
+  document.getElementById("matchup-panel").classList.add("hidden");
+  if (state.playerName && state.profiles && state.profiles[state.playerName]) {
+    renderProfile(state.playerName);
+  } else {
+    showEmpty();
+  }
+}
+
+function populateMuDropdowns() {
+  const names = Object.keys(state.profiles || {}).sort();
+  ["mu-select-a", "mu-select-b"].forEach(id => {
+    const sel = document.getElementById(id);
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">Choose player…</option>';
+    names.forEach(n => {
+      const o = document.createElement("option");
+      o.value = o.textContent = n;
+      sel.appendChild(o);
+    });
+    if (cur && state.profiles[cur]) sel.value = cur;
+  });
+}
+
+function runComparison(nameA, nameB) {
+  const fps = state.fingerprints || {};
+  const fpA = fps[nameA];
+  const fpB = fps[nameB];
+  if (!fpA || !fpB) {
+    const resultEl = document.getElementById("mu-result");
+    resultEl.removeAttribute("hidden");
+    resultEl.innerHTML = `<p class="mu-error">One or both players have no fingerprint data for ${state.year}. Try a different year.</p>`;
+    return;
+  }
+  fpA.player = nameA;
+  fpB.player = nameB;
+  const result = compareEngine(fpA, fpB, state.year, state.eraStats || {});
+  renderMatchupResult(result);
+}
+
+// ── Render matchup result ─────────────────────────────────────────
+
+const AXIS_DEFS = [
+  { key: "serveReturn",   label: "Serve / Return",   weight: "0.35" },
+  { key: "rallyShape",    label: "Rally Shape",       weight: "0.15" },
+  { key: "pressure",      label: "Pressure",          weight: "0.25" },
+  { key: "durability",    label: "Durability",        weight: "0.10" },
+  { key: "breakPressure", label: "Break Pressure",    weight: "0.15" },
+];
+
+function renderMatchupResult(r) {
+  const el = document.getElementById("mu-result");
+  el.removeAttribute("hidden");
+
+  const pA = Math.round(r.pWinA * 100);
+  const pB = 100 - pA;
+
+  // Score distribution — sorted A-wins then B-wins
+  const aWins = [], bWins = [];
+  for (const [k, p] of Object.entries(r.scoreDist)) {
+    const [sa] = k.split("-").map(Number);
+    (sa === 3 ? aWins : bWins).push([k, p]);
+  }
+  aWins.sort((a, b) => b[1] - a[1]);
+  bWins.sort((a, b) => b[1] - a[1]);
+  const allScores = [...aWins, ...bWins];
+  const maxP = Math.max(...allScores.map(([, p]) => p));
+
+  const scoreRows = allScores.map(([k, p]) => {
+    const pct = Math.round(p * 100);
+    const barW = Math.round((p / maxP) * 100);
+    const [sa] = k.split("-").map(Number);
+    const cls  = sa === 3 ? "dist-bar-a" : "dist-bar-b";
+    return `<div class="mu-dist-row">
+      <span class="mu-dist-score">${k}</span>
+      <div class="mu-dist-bar-wrap"><div class="${cls}" style="width:${barW}%"></div></div>
+      <span class="mu-dist-pct">${pct}%</span>
+    </div>`;
+  }).join("");
+
+  // Axis bars
+  const axisRows = AXIS_DEFS.map(ax => {
+    const edge  = r.axes[ax.key];
+    const pct   = Math.round(Math.abs(edge) * 45);   // max 45% per side
+    const isA   = edge >= 0;
+    const fill  = isA
+      ? `left:50%;width:${pct}%`
+      : `left:${50 - pct}%;width:${pct}%`;
+    const cls   = isA ? "mu-axis-fill-a" : "mu-axis-fill-b";
+    const sign  = edge >= 0 ? "+" : "";
+    const label = Math.abs(edge) < 0.03 ? "Even"
+                : isA ? `+${(Math.abs(edge)).toFixed(2)} A`
+                : `+${(Math.abs(edge)).toFixed(2)} B`;
+    return `<div class="mu-axis-row">
+      <span class="mu-axis-name">${ax.label}</span>
+      <div class="mu-axis-bar-wrap">
+        <div class="mu-axis-center"></div>
+        <div class="${cls} mu-axis-fill" style="${fill}"></div>
+      </div>
+      <span class="mu-axis-edge ${isA ? "edge-a" : "edge-b"}">${label}</span>
+    </div>`;
+  }).join("");
+
+  const edgeMag = Math.abs(r.edge);
+  const edgeClass = edgeMag < 0.05 ? "edge-neutral"
+                  : r.edge > 0     ? "edge-a"
+                  : "edge-b";
+
+  el.innerHTML = `
+    <div class="mu-result-inner">
+
+      <div class="mu-prob-header">
+        <div class="mu-prob-player mu-prob-player-a">
+          <span class="mu-prob-name">${r.nameA}</span>
+          <span class="mu-prob-serve">Srv win ${Math.round(r.pServeA * 100)}%</span>
+        </div>
+        <div class="mu-prob-centre">
+          <span class="mu-prob-num mu-prob-num-a">${pA}%</span>
+          <span class="mu-prob-dash">—</span>
+          <span class="mu-prob-num mu-prob-num-b">${pB}%</span>
+          <div class="mu-prob-bar">
+            <div class="mu-prob-bar-a" style="width:${pA}%"></div>
+          </div>
+          <span class="mu-prob-label">match win probability</span>
+        </div>
+        <div class="mu-prob-player mu-prob-player-b">
+          <span class="mu-prob-name">${r.nameB}</span>
+          <span class="mu-prob-serve">Srv win ${Math.round(r.pServeB * 100)}%</span>
+        </div>
+      </div>
+
+      <div class="mu-section-head">
+        <span class="mu-section-title">Five-Axis Breakdown</span>
+        <span class="mu-section-sub">← B edge · 0 · A edge →</span>
+      </div>
+      <div class="mu-axes">${axisRows}</div>
+
+      <div class="mu-bottom-row">
+        <div class="mu-dist-col">
+          <div class="mu-section-head"><span class="mu-section-title">Score Distribution</span></div>
+          <div class="mu-dist">${scoreRows}</div>
+        </div>
+        <div class="mu-narrative-col">
+          <div class="mu-section-head"><span class="mu-section-title">Edge</span></div>
+          <p class="mu-narrative ${edgeClass}">${r.narrative}</p>
+          <div class="mu-edge-chip ${edgeClass}">Weighted edge ${r.edge >= 0 ? "+" : ""}${r.edge.toFixed(3)}</div>
+        </div>
+      </div>
+
+    </div>`;
+}
+
+// ── Featured curated matchups ──────────────────────────────────────
+
+function renderFeatured() {
+  const row = document.getElementById("mu-featured-row");
+  if (!row) return;
+  const data = state.curatedMatchups || [];
+  if (!data.length) { row.innerHTML = ""; return; }
+
+  row.innerHTML = data.map((m, i) => {
+    const pA = Math.round(m.p_win_a * 100);
+    const pB = 100 - pA;
+    const fav = pA >= pB ? m.player_a.split(" ").pop() : m.player_b.split(" ").pop();
+    return `<button class="mu-feat-chip" data-idx="${i}" title="${m.player_a} vs ${m.player_b} · ${m.year}">
+      <span class="mu-feat-label">${m.label}</span>
+      <span class="mu-feat-odds">${Math.max(pA,pB)}%</span>
+    </button>`;
+  }).join("");
+
+  row.querySelectorAll(".mu-feat-chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const m = data[+btn.dataset.idx];
+      // Snap selects to these players (may not be in current year's dropdown)
+      document.getElementById("mu-select-a").value = m.player_a;
+      document.getElementById("mu-select-b").value = m.player_b;
+      state.matchupA = m.player_a;
+      state.matchupB = m.player_b;
+      // Render from pre-computed data (no live engine call needed)
+      renderPrecomputedMatchup(m);
+      // Make sure matchup panel is visible
+      enterMatchupMode(true);
+    });
+  });
+}
+
+function renderPrecomputedMatchup(m) {
+  // Convert curated format → compareEngine result shape
+  const result = {
+    nameA: m.player_a, nameB: m.player_b, year: m.year,
+    pServeA: m.p_serve_a, pServeB: m.p_serve_b,
+    pWinA: m.p_win_a, pWinB: 1 - m.p_win_a,
+    axes: {
+      serveReturn:   m.axes.serve_return,
+      rallyShape:    m.axes.rally_shape,
+      pressure:      m.axes.pressure,
+      durability:    m.axes.durability,
+      breakPressure: m.axes.break_pressure,
+    },
+    edge: m.weighted_edge,
+    scoreDist: m.score_dist,
+    narrative: m.edge_narrative,
+  };
+  renderMatchupResult(result);
+}
+
+// ── Backtest panel ────────────────────────────────────────────────
+
+const BACKTEST_DATA = {
+  total: 863, correct: 633,
+  byEdge: [
+    { label: "Toss-up  |edge| < 0.05",  n: 92,  correct: 34  },
+    { label: "Close    |edge| < 0.10",  n: 187, correct: 86  },
+    { label: "Moderate |edge| < 0.20",  n: 362, correct: 186 },
+    { label: "Clear    |edge| ≥ 0.20",  n: 501, correct: 447 },
+    { label: "Dominant |edge| ≥ 0.35",  n: 309, correct: 299 },
+  ],
+};
+
+function renderBacktest() {
+  const el = document.getElementById("mu-backtest-body");
+  if (!el) return;
+
+  const overall = BACKTEST_DATA.correct / BACKTEST_DATA.total;
+
+  const rows = BACKTEST_DATA.byEdge.map(d => {
+    const acc = d.correct / d.n;
+    const barW = Math.round(acc * 100);
+    const barClass = acc >= 0.7 ? "bt-bar-strong" : acc >= 0.5 ? "bt-bar-mid" : "bt-bar-weak";
+    return `<div class="bt-row">
+      <span class="bt-label">${d.label}</span>
+      <div class="bt-bar-wrap">
+        <div class="bt-bar ${barClass}" style="width:${barW}%"></div>
+        <div class="bt-baseline" style="left:50%"></div>
+      </div>
+      <span class="bt-acc ${acc >= 0.7 ? "bt-acc-strong" : acc < 0.5 ? "bt-acc-weak" : ""}">${Math.round(acc*100)}%</span>
+      <span class="bt-n">${d.n} matches</span>
+    </div>`;
+  }).join("");
+
+  el.innerHTML = `
+    <div class="bt-headline">
+      <span class="bt-headline-num">${Math.round(overall*100)}%</span>
+      <span class="bt-headline-label">overall accuracy · ${BACKTEST_DATA.total} matches</span>
+      <span class="bt-headline-note">Naive baseline: 50%</span>
+    </div>
+    <div class="bt-rows">${rows}</div>
+    <p class="bt-caveat">Fingerprints built from same-year data — in-sample test.
+    Model discriminates quality gap clearly; tight matchups (|edge| &lt; 0.10) are near-random,
+    which is the honest expected behaviour.</p>`;
 }
 
 // ── Start ─────────────────────────────────────────────────────────

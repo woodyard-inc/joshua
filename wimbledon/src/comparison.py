@@ -41,7 +41,7 @@ import numpy as np
 
 # ── paths ─────────────────────────────────────────────────────────────────
 
-DATA_DIR = Path("docs/data")
+DATA_DIR = Path(__file__).parent.parent / "data"
 
 # ── surface-specific axis weights ─────────────────────────────────────────
 

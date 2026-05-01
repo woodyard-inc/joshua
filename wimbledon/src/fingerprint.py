@@ -56,9 +56,9 @@ from build_player_profiles import (
 
 # ── constants ──────────────────────────────────────────────────────────────
 
-DATA_DIR        = Path("data/raw")
-PROC_DIR        = Path("data/processed")
-OUT_DIR         = Path("docs/data")
+DATA_DIR        = Path(__file__).parent.parent / "data" / "raw"
+PROC_DIR        = Path(__file__).parent.parent / "data" / "processed"
+OUT_DIR         = Path(__file__).parent.parent / "data"
 SUPPORTED_YEARS = [2017, 2018, 2019]
 
 DECAY_LAMBDA      = 0.5    # recency half-life ≈ 1.4 years

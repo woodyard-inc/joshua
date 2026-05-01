@@ -47,8 +47,8 @@ def parse_elapsed_mins(s):
         pass
     return None
 
-DATA_DIR        = Path("data/raw")
-OUT_DIR         = Path("docs/data")
+DATA_DIR        = Path(__file__).parent.parent / "data" / "raw"
+OUT_DIR         = Path(__file__).parent.parent / "data"
 MEN_MAX_MATCH   = 1999   # men's draw: 1101–1701; women's: 2101+
 SUPPORTED_YEARS = [2017, 2018, 2019]
 

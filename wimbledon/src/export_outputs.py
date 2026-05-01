@@ -81,7 +81,7 @@ def copy_metrics(json_path: Path, out_path: Path) -> None:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--outputs_dir", default="outputs")
-    parser.add_argument("--docs_data",   default="docs/data")
+    parser.add_argument("--docs_data",   default="data")
     args = parser.parse_args()
 
     src = Path(args.outputs_dir)

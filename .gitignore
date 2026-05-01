@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.env
+
+# Virtual environments
+venv/
+.venv/
+
+# Data (raw inputs and intermediate outputs are local only)
+wimbledon/data/raw/
+wimbledon/data/processed/
+
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Editor
+.vscode/
+.idea/

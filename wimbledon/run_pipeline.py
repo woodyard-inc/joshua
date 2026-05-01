@@ -29,7 +29,7 @@ STEPS = [
                              "--out", "outputs/player_season_indices.csv"]),
     ("Export outputs",     ["python", "src/export_outputs.py",
                              "--outputs_dir", "outputs",
-                             "--docs_data", "docs/data"]),
+                             "--docs_data", "data"]),
     # ── Fingerprint pipeline (new) ─────────────────────────────────────────
     ("Elo ratings",        ["python", "src/elo.py",
                              "--all_grass", "data/processed/all_grass_matches.csv",
@@ -70,7 +70,7 @@ def main():
     for name, cmd in steps:
         run_step(name, cmd, download=args.download)
 
-    print("\nPipeline complete. Check outputs/ and docs/data/.")
+    print("\nPipeline complete. Check outputs/ and data/.")
 
 
 if __name__ == "__main__":

@@ -211,19 +211,25 @@ const AXIS_META = [
   { key: "breakPressure", label: "Break Pressure",    weight: 0.15 },
 ];
 
-function edgeNarrative(axes, nameA, nameB, edge) {
+function edgeNarrative(axes, nameA, nameB, pWinA) {
+  // Dominant axis = largest absolute structural differential
   const dominant = AXIS_META.reduce((best, ax) =>
     Math.abs(axes[ax.key]) > Math.abs(axes[best.key]) ? ax : best
   , AXIS_META[0]);
 
-  const mag   = Math.abs(edge);
-  const favours = edge >= 0 ? nameA : nameB;
-  const suffix  = mag < 0.05 ? "too close to call"
-                : mag < 0.15 ? "a slight structural edge"
-                : mag < 0.30 ? "a clear structural edge"
-                : "a dominant structural edge";
+  // Always agree with the Markov winner so narrative never contradicts headline %
+  const gap = Math.abs(pWinA - 0.5);
+  const favours = pWinA >= 0.5 ? nameA : nameB;
 
-  return `${favours} holds ${suffix} — driven by ${dominant.label.toLowerCase()}.`;
+  const confidence = gap < 0.03 ? "too close to call"
+                   : gap < 0.08 ? "has a slight advantage"
+                   : gap < 0.18 ? "is the likelier winner"
+                   : "is the clear favourite";
+
+  if (gap < 0.03) {
+    return `Too close to call — the decisive axis will be ${dominant.label.toLowerCase()}.`;
+  }
+  return `${favours} ${confidence} — the decisive axis is ${dominant.label.toLowerCase()}.`;
 }
 
 // ── main compare function ──────────────────────────────────────────────────
@@ -260,6 +266,6 @@ function compareEngine(fpA, fpB, year, eraStats) {
     axes, edge,
     pWinA, pWinB: 1 - pWinA,
     scoreDist,
-    narrative: edgeNarrative(axes, nameA, nameB, edge),
+    narrative: edgeNarrative(axes, nameA, nameB, pWinA),
   };
 }

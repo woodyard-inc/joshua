@@ -1586,11 +1586,6 @@ function renderMatchupResult(r) {
     </div>`;
   }).join("");
 
-  const edgeMag = Math.abs(r.edge);
-  const edgeClass = edgeMag < 0.05 ? "edge-neutral"
-                  : r.edge > 0     ? "edge-a"
-                  : "edge-b";
-
   const winnerA = pA >= pB;
 
   function tryApplyPhoto(sideEl, name) {
@@ -1645,9 +1640,8 @@ function renderMatchupResult(r) {
           <div class="mu-dist">${scoreRows}</div>
         </div>
         <div class="mu-narrative-col">
-          <div class="mu-section-head"><span class="mu-section-title">Edge</span></div>
-          <p class="mu-narrative ${edgeClass}">${r.narrative}</p>
-          <div class="mu-edge-chip ${edgeClass}">Weighted edge ${r.edge >= 0 ? "+" : ""}${r.edge.toFixed(3)}</div>
+          <div class="mu-section-head"><span class="mu-section-title">Key Factor</span></div>
+          <p class="mu-narrative">${r.narrative}</p>
         </div>
       </div>
 

@@ -2205,27 +2205,46 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  padding: 56px 24px 60px;
+  gap: 0;
+  background: #0d0d0d;
   font-family: var(--font-sans, sans-serif);
+  overflow: hidden;
+}
+.mu-loading-video {
+  width: 100%;
+  max-width: 540px;
+  height: auto;
+  display: block;
+  /* slight fade at bottom to blend into text panel */
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+.mu-loading-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 32px 28px;
+  background: #0d0d0d;
 }
 .mu-loading-label {
-  font-size: var(--t-micro, 10px);
-  letter-spacing: 0.14em;
+  font-size: 9px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--cobalt, #1a44c2);
   font-weight: 600;
 }
 .mu-loading-msg {
-  font-size: 12px;
-  color: var(--ink-muted, #888);
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
   letter-spacing: 0.04em;
   min-height: 16px;
 }
 .mu-loading-bar-wrap {
   width: 220px;
   height: 2px;
-  background: var(--ink-10, #e8e8e8);
+  background: rgba(255,255,255,0.08);
   border-radius: 2px;
   overflow: hidden;
 }
@@ -2233,12 +2252,12 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   height: 100%;
   background: var(--cobalt, #1a44c2);
   border-radius: 2px;
-  transition: width 0.4s ease;
+  transition: width 0.5s ease;
 }
 .mu-loading-sub {
-  font-size: 11px;
-  color: var(--ink-20, #bbb);
-  letter-spacing: 0.04em;
+  font-size: 10px;
+  color: rgba(255,255,255,0.18);
+  letter-spacing: 0.06em;
 }
 
 /* ── Probability header ───────────────────────────────────────── */

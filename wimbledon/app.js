@@ -1525,20 +1525,29 @@ function runComparison(nameA, nameB) {
   // ── Loading state ────────────────────────────────────────────────
   resultEl.removeAttribute("hidden");
   resultEl.innerHTML = `
-    <div class="mu-loading">
-      <div class="mu-loading-label">Monte Carlo Simulation</div>
-      <div class="mu-loading-msg" id="mu-loading-msg">Preparing fingerprints…</div>
-      <div class="mu-loading-bar-wrap">
-        <div class="mu-loading-bar" id="mu-progress-bar" style="width:0%"></div>
+    <div class="mu-result-inner">
+      <div class="mu-loading">
+        <video class="mu-loading-video" autoplay loop muted playsinline>
+          <source src="card_dealer.webm" type="video/webm">
+        </video>
+        <div class="mu-loading-text">
+          <div class="mu-loading-label">Monte Carlo Simulation</div>
+          <div class="mu-loading-msg" id="mu-loading-msg">Preparing fingerprints…</div>
+          <div class="mu-loading-bar-wrap">
+            <div class="mu-loading-bar" id="mu-progress-bar" style="width:0%"></div>
+          </div>
+          <div class="mu-loading-sub">25,000 point-by-point matches · fingerprint-driven</div>
+        </div>
       </div>
-      <div class="mu-loading-sub">10,000 point-by-point matches · fingerprint-driven</div>
     </div>`;
 
   // Terminate any prior worker
   if (window._mcWorker) { window._mcWorker.terminate(); window._mcWorker = null; }
 
-  const worker = new Worker("mc_worker.js");
-  window._mcWorker = worker;
+  const worker      = new Worker("mc_worker.js");
+  const startTime   = Date.now();
+  const MIN_LOAD_MS = 5200;   // keep animation visible for a full loop
+  window._mcWorker  = worker;
 
   worker.onmessage = (e) => {
     const { type } = e.data;
@@ -1552,6 +1561,10 @@ function runComparison(nameA, nameB) {
     }
 
     if (type === "result") {
+      const elapsed  = Date.now() - startTime;
+      const delay    = Math.max(0, MIN_LOAD_MS - elapsed);
+
+      setTimeout(() => {
       worker.terminate();
       window._mcWorker = null;
 
@@ -1578,7 +1591,8 @@ function runComparison(nameA, nameB) {
         narrative: edgeNarrative(structural.axes, nameA, nameB, e.data.pWinA),
       };
 
-      renderMatchupResult(merged);
+        renderMatchupResult(merged);
+      }, delay);
     }
   };
 
@@ -1586,7 +1600,7 @@ function runComparison(nameA, nameB) {
     resultEl.innerHTML = `<p class="mu-error">Simulation error: ${err.message || "unknown"}. Check console for details.</p>`;
   };
 
-  worker.postMessage({ fpA, fpB, nSims: 10000 });
+  worker.postMessage({ fpA, fpB, nSims: 25000 });
 }
 
 // ── Render matchup result ─────────────────────────────────────────

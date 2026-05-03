@@ -1511,16 +1511,82 @@ function runComparison(nameA, nameB) {
   const fps = state.fingerprints || {};
   const fpA = fps[nameA];
   const fpB = fps[nameB];
+  const resultEl = document.getElementById("mu-result");
+
   if (!fpA || !fpB) {
-    const resultEl = document.getElementById("mu-result");
     resultEl.removeAttribute("hidden");
     resultEl.innerHTML = `<p class="mu-error">One or both players have no fingerprint data for ${state.year}. Try a different year.</p>`;
     return;
   }
+
   fpA.player = nameA;
   fpB.player = nameB;
-  const result = compareEngine(fpA, fpB, state.year, state.eraStats || {});
-  renderMatchupResult(result);
+
+  // ── Loading state ────────────────────────────────────────────────
+  resultEl.removeAttribute("hidden");
+  resultEl.innerHTML = `
+    <div class="mu-loading">
+      <div class="mu-loading-label">Monte Carlo Simulation</div>
+      <div class="mu-loading-msg" id="mu-loading-msg">Preparing fingerprints…</div>
+      <div class="mu-loading-bar-wrap">
+        <div class="mu-loading-bar" id="mu-progress-bar" style="width:0%"></div>
+      </div>
+      <div class="mu-loading-sub">10,000 point-by-point matches · fingerprint-driven</div>
+    </div>`;
+
+  // Terminate any prior worker
+  if (window._mcWorker) { window._mcWorker.terminate(); window._mcWorker = null; }
+
+  const worker = new Worker("mc_worker.js");
+  window._mcWorker = worker;
+
+  worker.onmessage = (e) => {
+    const { type } = e.data;
+
+    if (type === "progress") {
+      const bar = document.getElementById("mu-progress-bar");
+      const msg = document.getElementById("mu-loading-msg");
+      if (bar) bar.style.width = `${e.data.pct}%`;
+      if (msg) msg.textContent = e.data.msg;
+      return;
+    }
+
+    if (type === "result") {
+      worker.terminate();
+      window._mcWorker = null;
+
+      // Run structural 5-axis breakdown (still driven by compare.js)
+      const structural = compareEngine(fpA, fpB, state.year, state.eraStats || {});
+
+      // Merge: probabilities + score dist + CI come from MC;
+      // structural axes + pServe come from compareEngine
+      const merged = {
+        nameA, nameB,
+        year:     state.year,
+        pServeA:  structural.pServeA,
+        pServeB:  structural.pServeB,
+        axes:     structural.axes,
+        pWinA:    e.data.pWinA,
+        pWinB:    e.data.pWinB,
+        ciLow:    e.data.ciLow,
+        ciHigh:   e.data.ciHigh,
+        scoreDist: e.data.scoreDist,
+        axisContrib:  e.data.axisContrib,
+        dominantAxis: e.data.dominantAxis,
+        nSims:    e.data.nSims,
+        // Narrative always agrees with MC winner
+        narrative: edgeNarrative(structural.axes, nameA, nameB, e.data.pWinA),
+      };
+
+      renderMatchupResult(merged);
+    }
+  };
+
+  worker.onerror = (err) => {
+    resultEl.innerHTML = `<p class="mu-error">Simulation error: ${err.message || "unknown"}. Check console for details.</p>`;
+  };
+
+  worker.postMessage({ fpA, fpB, nSims: 10000 });
 }
 
 // ── Render matchup result ─────────────────────────────────────────
@@ -1533,12 +1599,33 @@ const AXIS_DEFS = [
   { key: "breakPressure", label: "Break Pressure",    weight: "0.15" },
 ];
 
+// MC axis name → display label
+const MC_AXIS_LABELS = {
+  rallyShape:    "Rally Shape",
+  pressure:      "Pressure",
+  serveEntropy:  "Serve Entropy",
+  breakPressure: "Break Pressure",
+};
+
 function renderMatchupResult(r) {
   const el = document.getElementById("mu-result");
   el.removeAttribute("hidden");
 
   const pA = Math.round(r.pWinA * 100);
   const pB = 100 - pA;
+
+  // Confidence interval string (only from MC results)
+  const ciA = (r.ciLow != null)
+    ? `<span class="mu-prob-ci">${Math.round(r.ciLow * 100)}–${Math.round(r.ciHigh * 100)}% range</span>`
+    : "";
+
+  // Probability header label
+  const probLabelA = r.nSims
+    ? `<span class="mu-prob-label">MC · ${r.nSims.toLocaleString()} simulations</span>`
+    : `<span class="mu-prob-label">match win probability</span>`;
+  const probLabelB = r.nSims
+    ? `<span class="mu-prob-label">MC · ${r.nSims.toLocaleString()} simulations</span>`
+    : `<span class="mu-prob-label">match win probability</span>`;
 
   // Score distribution — sorted A-wins then B-wins
   const aWins = [], bWins = [];
@@ -1554,16 +1641,19 @@ function renderMatchupResult(r) {
   const scoreRows = allScores.map(([k, p]) => {
     const pct = Math.round(p * 100);
     const barW = Math.round((p / maxP) * 100);
-    const [sa] = k.split("-").map(Number);
-    const cls  = sa === 3 ? "dist-bar-a" : "dist-bar-b";
+    const [sa, sb] = k.split("-").map(Number);
+    const aWon = sa === 3;
+    const cls  = aWon ? "dist-bar-a" : "dist-bar-b";
+    // Display "winner sets – loser sets" for readability
+    const displayLabel = aWon ? `${sa}-${sb}` : `${sb}-${sa}`;
     return `<div class="mu-dist-row">
-      <span class="mu-dist-score">${k}</span>
+      <span class="mu-dist-score">${displayLabel}</span>
       <div class="mu-dist-bar-wrap"><div class="${cls}" style="width:${barW}%"></div></div>
       <span class="mu-dist-pct">${pct}%</span>
     </div>`;
   }).join("");
 
-  // Axis bars
+  // Structural axis bars
   const axisRows = AXIS_DEFS.map(ax => {
     const edge  = r.axes[ax.key];
     const pct   = Math.round(Math.abs(edge) * 45);   // max 45% per side
@@ -1572,7 +1662,6 @@ function renderMatchupResult(r) {
       ? `left:50%;width:${pct}%`
       : `left:${50 - pct}%;width:${pct}%`;
     const cls   = isA ? "mu-axis-fill-a" : "mu-axis-fill-b";
-    const sign  = edge >= 0 ? "+" : "";
     const label = Math.abs(edge) < 0.03 ? "Even"
                 : isA ? `+${(Math.abs(edge)).toFixed(2)} A`
                 : `+${(Math.abs(edge)).toFixed(2)} B`;
@@ -1585,6 +1674,26 @@ function renderMatchupResult(r) {
       <span class="mu-axis-edge ${isA ? "edge-a" : "edge-b"}">${label}</span>
     </div>`;
   }).join("");
+
+  // Key Factor — incorporate MC dominant axis if available
+  let keyFactorHTML = `<p class="mu-narrative">${r.narrative}</p>`;
+  if (r.dominantAxis && r.axisContrib) {
+    const axLabel   = MC_AXIS_LABELS[r.dominantAxis] || r.dominantAxis;
+    const contrib   = r.axisContrib[r.dominantAxis];
+    const contribPp = Math.abs(Math.round(contrib * 100));
+    const beneficiary = contrib > 0
+      ? r.nameA.split(" ").pop()
+      : r.nameB.split(" ").pop();
+    const contribStr = contribPp > 0
+      ? `<span class="mu-mc-axis-contrib">+${contribPp}pp for ${beneficiary}</span>`
+      : "";
+    keyFactorHTML += `
+      <div class="mu-mc-axis">
+        <span class="mu-mc-axis-tag">Decisive axis</span>
+        <span class="mu-mc-axis-name">${axLabel}</span>
+        ${contribStr}
+      </div>`;
+  }
 
   const winnerA = pA >= pB;
 
@@ -1611,9 +1720,10 @@ function renderMatchupResult(r) {
           <div class="mu-prob-photo"></div>
           <div class="mu-prob-text">
             <span class="mu-prob-pct">${pA}%</span>
+            ${ciA}
             <span class="mu-prob-name">${r.nameA}</span>
             <span class="mu-prob-serve">Srv win ${Math.round(r.pServeA * 100)}%</span>
-            <span class="mu-prob-label">match win probability</span>
+            ${probLabelA}
           </div>
         </div>
         <div class="mu-prob-divider"></div>
@@ -1621,15 +1731,16 @@ function renderMatchupResult(r) {
           <div class="mu-prob-photo"></div>
           <div class="mu-prob-text">
             <span class="mu-prob-pct">${pB}%</span>
+            ${ciA ? `<span class="mu-prob-ci">${Math.round((1-r.ciHigh) * 100)}–${Math.round((1-r.ciLow) * 100)}% range</span>` : ""}
             <span class="mu-prob-name">${r.nameB}</span>
             <span class="mu-prob-serve">Srv win ${Math.round(r.pServeB * 100)}%</span>
-            <span class="mu-prob-label">match win probability</span>
+            ${probLabelB}
           </div>
         </div>
       </div>
 
       <div class="mu-section-head">
-        <span class="mu-section-title">Five-Axis Breakdown</span>
+        <span class="mu-section-title">Structural Profile</span>
         <span class="mu-section-sub">← B edge · 0 · A edge →</span>
       </div>
       <div class="mu-axes">${axisRows}</div>
@@ -1641,7 +1752,7 @@ function renderMatchupResult(r) {
         </div>
         <div class="mu-narrative-col">
           <div class="mu-section-head"><span class="mu-section-title">Key Factor</span></div>
-          <p class="mu-narrative">${r.narrative}</p>
+          ${keyFactorHTML}
         </div>
       </div>
 

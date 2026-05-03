@@ -2200,6 +2200,47 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   font-size: 13px;
 }
 
+/* ── Monte Carlo loading state ────────────────────────────────── */
+.mu-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 56px 24px 60px;
+  font-family: var(--font-sans, sans-serif);
+}
+.mu-loading-label {
+  font-size: var(--t-micro, 10px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--cobalt, #1a44c2);
+  font-weight: 600;
+}
+.mu-loading-msg {
+  font-size: 12px;
+  color: var(--ink-muted, #888);
+  letter-spacing: 0.04em;
+  min-height: 16px;
+}
+.mu-loading-bar-wrap {
+  width: 220px;
+  height: 2px;
+  background: var(--ink-10, #e8e8e8);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.mu-loading-bar {
+  height: 100%;
+  background: var(--cobalt, #1a44c2);
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+.mu-loading-sub {
+  font-size: 11px;
+  color: var(--ink-20, #bbb);
+  letter-spacing: 0.04em;
+}
+
 /* ── Probability header ───────────────────────────────────────── */
 .mu-prob-header {
   display: grid;
@@ -2312,6 +2353,50 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-muted, #bbb);
+}
+
+/* Confidence interval range */
+.mu-prob-ci {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted, #aaa);
+  margin-bottom: 2px;
+}
+.mu-prob-side.has-photo .mu-prob-ci { color: rgba(255,255,255,0.35); }
+
+/* ── MC dominant axis block (Key Factor) ─────────────────────── */
+.mu-mc-axis {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: var(--paper-warm, #f9f9f7);
+  border: 1px solid var(--ink-10, #e8e8e8);
+  border-radius: 3px;
+}
+.mu-mc-axis-tag {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-muted, #999);
+}
+.mu-mc-axis-name {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink, #111);
+  letter-spacing: 0.04em;
+}
+.mu-mc-axis-contrib {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 10px;
+  color: var(--cobalt, #1a44c2);
+  letter-spacing: 0.04em;
+  margin-left: auto;
 }
 
 /* ── Section heading ──────────────────────────────────────────── */

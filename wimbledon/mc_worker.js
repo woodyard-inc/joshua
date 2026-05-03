@@ -401,17 +401,17 @@ function neutraliseBP(fpA, fpB) {
 self.onmessage = function (e) {
   const { fpA, fpB, nSims = 10000 } = e.data;
 
-  self.postMessage({ type: "progress", pct: 5, msg: "Starting simulation…" });
+  self.postMessage({ type: "progress", pct: 5, msg: "Loading player data…" });
 
   const result = runMonteCarlo(fpA, fpB, nSims, (count, pct) => {
     self.postMessage({
       type: "progress",
       pct,
-      msg: `Simulating matches… ${count.toLocaleString()} / ${nSims.toLocaleString()}`,
+      msg: `Running simulations… ${count.toLocaleString()} / ${nSims.toLocaleString()}`,
     });
   });
 
-  self.postMessage({ type: "progress", pct: 82, msg: "Analysing axis contributions…" });
+  self.postMessage({ type: "progress", pct: 82, msg: "Calculating probabilities…" });
 
   const { contrib, dominantAxis } = measureAxisContrib(fpA, fpB, result.pWinA);
 

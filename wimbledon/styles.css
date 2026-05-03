@@ -1863,27 +1863,27 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 /* ── LEADERBOARD TOGGLE BUTTON ───────────────────────────────── */
 .lb-toggle-btn {
   font-family: var(--font-sans, system-ui, sans-serif);
-  font-size: var(--t-micro, 11px);
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--ink-muted, #888);
+  color: var(--ink-muted, #8A857B);
   background: transparent;
-  border: 1.5px solid var(--paper-warm, #f2ede8);
+  border: 1px solid var(--ink-20, #d0cbc4);
   border-radius: 2px;
-  padding: 5px 14px;
+  padding: 9px 14px;
   cursor: pointer;
-  transition: border-color 0.15s, color 0.15s, background 0.15s;
+  transition: border-color 0.12s, color 0.12s, background 0.12s;
   white-space: nowrap;
 }
 .lb-toggle-btn:hover {
-  border-color: var(--ink-muted, #888);
-  color: var(--ink, #111);
+  border-color: var(--ink, #141414);
+  color: var(--ink, #141414);
 }
 .lb-toggle-btn.active {
-  background: var(--ink, #111);
-  border-color: var(--ink, #111);
-  color: var(--paper, #fafaf8);
+  background: var(--ink, #141414);
+  border-color: var(--ink, #141414);
+  color: var(--paper, #FFFDF8);
 }
 
 /* ── LEADERBOARD CONTAINER ───────────────────────────────────── */
@@ -2092,10 +2092,11 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   background: var(--paper);
   border: 1px solid var(--ink);
   color: var(--ink);
-  padding: 5px 28px 5px 10px;
+  padding: 10px 28px 10px 12px;
   font-family: var(--font-sans);
-  font-size: var(--t-micro);
-  letter-spacing: 0.1em;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   outline: none;
   cursor: pointer;
@@ -2104,38 +2105,47 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   appearance: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23141414' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 8px center;
+  background-position: right 10px center;
 }
 .mu-select:focus { outline: 1px solid var(--cobalt); }
 .mu-swap-btn {
   font-family: var(--font-sans, sans-serif);
-  font-size: 16px;
-  padding: 7px 12px;
-  border: 1px solid var(--ink-20, #ccc);
-  border-radius: 3px;
+  font-size: 18px;
+  font-weight: 300;
+  padding: 10px 14px;
+  border: 1px solid var(--ink, #141414);
+  border-radius: 2px;
   background: transparent;
   cursor: pointer;
-  color: var(--ink-muted, #666);
-  transition: background 0.15s;
+  color: var(--ink, #141414);
+  transition: background 0.12s, color 0.12s;
   align-self: flex-end;
+  line-height: 1;
 }
-.mu-swap-btn:hover { background: var(--paper-warm, #f5f5f0); }
+.mu-swap-btn:hover {
+  background: var(--ink, #141414);
+  color: var(--paper, #FFFDF8);
+}
 
 .mu-analyse-btn {
   font-family: var(--font-sans, sans-serif);
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 8px 20px;
-  border: 1.5px solid var(--ink, #111);
-  border-radius: 3px;
-  background: var(--ink, #111);
-  color: var(--paper, #fff);
+  padding: 14px 22px;
+  border: 1px solid var(--cobalt, #002FA7);
+  border-radius: 2px;
+  background: var(--cobalt, #002FA7);
+  color: var(--paper, #FFFDF8);
   cursor: pointer;
   align-self: flex-end;
-  transition: opacity 0.15s;
+  transition: background 0.12s, border-color 0.12s;
 }
-.mu-analyse-btn:hover { opacity: 0.8; }
+.mu-analyse-btn:hover {
+  background: var(--cobalt-ink, #001E6B);
+  border-color: var(--cobalt-ink, #001E6B);
+}
 
 /* ── Featured matchup chips ───────────────────────────────────── */
 .mu-featured {
@@ -2162,27 +2172,46 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .mu-feat-chip {
   font-family: var(--font-sans, sans-serif);
-  font-size: 11px;
-  padding: 5px 11px;
-  border: 1px solid var(--ink-20, #ccc);
-  border-radius: 20px;
+  font-size: 12px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--ink, #111);
+  border-radius: 2px;
   background: transparent;
   cursor: pointer;
   color: var(--ink, #111);
   display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: background 0.15s, border-color 0.15s;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+  text-align: left;
 }
 .mu-feat-chip:hover {
-  background: var(--cobalt, #1a44c2);
-  border-color: var(--cobalt, #1a44c2);
+  background: var(--ink, #111);
+  border-color: var(--ink, #111);
   color: #fff;
 }
-.mu-feat-label { font-weight: 500; }
-.mu-feat-odds  {
+.mu-feat-matchup {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.01em;
+}
+.mu-feat-vs {
+  font-weight: 400;
+  opacity: 0.5;
   font-size: 10px;
-  opacity: 0.6;
+  margin: 0 3px;
+}
+.mu-feat-label {
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.mu-feat-chip:hover .mu-feat-label,
+.mu-feat-chip:hover .mu-feat-vs {
+  opacity: 0.7;
 }
 
 /* ── Result panel ─────────────────────────────────────────────── */
@@ -2611,15 +2640,32 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .bt-row {
   display: grid;
-  grid-template-columns: 210px 1fr 44px 90px;
+  grid-template-columns: 200px 1fr 44px 56px;
   align-items: center;
   gap: 12px;
+  padding: 6px 8px;
+  border-radius: 2px;
+}
+.bt-row-highlight {
+  background: var(--cobalt-5, #f0f4ff);
+  outline: 1px solid var(--cobalt-20, #c8d4f8);
 }
 .bt-label {
   font-family: var(--font-sans, sans-serif);
   font-size: 11px;
   color: var(--ink-muted, #666);
   font-variant-numeric: tabular-nums;
+}
+.bt-row-highlight .bt-label {
+  color: var(--ink, #111);
+  font-weight: 500;
+}
+.bt-auc {
+  font-family: var(--font-sans, sans-serif);
+  font-size: 10px;
+  color: var(--cobalt, #1a44c2);
+  font-weight: 500;
+  letter-spacing: 0.02em;
 }
 .bt-bar-wrap {
   position: relative;

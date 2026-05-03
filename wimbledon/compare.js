@@ -103,7 +103,8 @@ function axisServeReturn(fpA, fpB, year, eraStats) {
 
 // ── Axis 2: Rally Shape ────────────────────────────────────────────────────
 
-const GRASS_RALLY_W = { "1_3": 0.50, "4_6": 0.30, "7_9": 0.12, "10+": 0.08 };
+// Kept in sync with GRASS_PRIOR in mc_worker.js
+const GRASS_RALLY_W = { "1_3": 0.55, "4_6": 0.30, "7_9": 0.10, "10+": 0.05 };
 
 function axisRallyShape(fpA, fpB) {
   const rwcA = (fpA.tier2 || {}).rally_win_curve || {};
@@ -193,22 +194,30 @@ function axisBreakPressure(fpA, fpB, year, eraStats) {
   const cvrA = bpcA.bp_conversion;
   const cvrB = bpcB.bp_conversion;
 
+  // On grass, opportunities are scarce — converting them (cvrScore) matters
+  // more than the volume of chances created (crScore). Weights flipped.
   let crScore  = 0;
   let cvrScore = 0;
-  if (crA  != null && crB  != null) crScore  = 0.35 * _clamp((crA  - crB)  / 0.30);
-  if (cvrA != null && cvrB != null) cvrScore = 0.25 * _clamp((cvrA - cvrB) / 0.20);
+  if (crA  != null && crB  != null) crScore  = 0.20 * _clamp((crA  - crB)  / 0.30);
+  if (cvrA != null && cvrB != null) cvrScore = 0.40 * _clamp((cvrA - cvrB) / 0.20);
 
   return _clamp(rgwScore + crScore + cvrScore);
 }
 
 // ── weighted edge narrative ────────────────────────────────────────────────
 
+// Axis weights rebalanced for grass:
+//  • Serve/Return remains dominant — grass is won on serve.
+//  • Rally Shape elevated — short-ball dominance defines Wimbledon.
+//  • Break Pressure elevated — BPs are rare; converting them is decisive.
+//  • Pressure equalised with break pressure — clutch hold/return matter equally.
+//  • Durability trimmed — grass matches are shorter; endurance matters less.
 const AXIS_META = [
   { key: "serveReturn",   label: "Serve / Return",   weight: 0.35 },
-  { key: "rallyShape",    label: "Rally Shape",       weight: 0.15 },
-  { key: "pressure",      label: "Pressure",          weight: 0.25 },
-  { key: "durability",    label: "Durability",        weight: 0.10 },
-  { key: "breakPressure", label: "Break Pressure",    weight: 0.15 },
+  { key: "rallyShape",    label: "Rally Shape",       weight: 0.20 },
+  { key: "breakPressure", label: "Break Pressure",    weight: 0.20 },
+  { key: "pressure",      label: "Pressure",          weight: 0.20 },
+  { key: "durability",    label: "Durability",        weight: 0.05 },
 ];
 
 function edgeNarrative(axes, nameA, nameB, pWinA) {
@@ -249,7 +258,7 @@ function compareEngine(fpA, fpB, year, eraStats) {
     breakPressure: ax5,
   };
 
-  const edge = 0.35*ax1 + 0.15*ax2 + 0.25*ax3 + 0.10*ax4 + 0.15*ax5;
+  const edge = 0.35*ax1 + 0.20*ax2 + 0.20*ax3 + 0.05*ax4 + 0.20*ax5;
 
   const pA = pServe(fpA);
   const pB = pServe(fpB);

@@ -31,7 +31,9 @@ function confWeight(conf) {
 // ── Rally length ───────────────────────────────────────────────────────────
 
 const RALLY_BANDS   = ["1_3", "4_6", "7_9", "10+"];
-const GRASS_PRIOR   = { "1_3": 0.50, "4_6": 0.30, "7_9": 0.12, "10+": 0.08 };
+// Grass prior updated to better reflect Wimbledon reality:
+// ~55% of points end within 1–3 shots; long (10+) rallies are rare on fast grass.
+const GRASS_PRIOR   = { "1_3": 0.55, "4_6": 0.30, "7_9": 0.10, "10+": 0.05 };
 
 /**
  * Build a rally-length probability distribution for a server/returner pair.
@@ -117,34 +119,45 @@ function pointWinProb(server, returner, band, isBreakPoint, isDeuce, opts = {}) 
   // ── Serve entropy (unpredictability of direction) ──────────────────────
   const entropy = server.tier2?.serve_entropy?.pct_of_max;
   if (entropy != null) {
-    // Max effect ±1.5 pp; centred at 75% of maximum entropy
-    p += 0.015 * ((entropy / 100) - 0.75);
+    // Max effect ±2.5 pp; centred at 75% of maximum entropy.
+    // Increased from 0.015 — serve variety is more decisive on fast grass.
+    p += 0.025 * ((entropy / 100) - 0.75);
   }
 
   // ── Pressure adjustments ───────────────────────────────────────────────
   if (isBreakPoint || isDeuce) {
-    // Server SPCI (service pressure clutch index)
+    // Server SPCI — raised from 0.40: holding serve under pressure is the
+    // defining skill on grass where breaks are rare and costly.
     const spci = server.tier2?.spci;
     if (spci?.modifier_delta != null) {
       const w = confWeight(spci.confidence);
-      // modifier_delta is already a probability fraction; scale down to avoid overweighting
-      p += w * spci.modifier_delta * 0.40;
+      p += w * spci.modifier_delta * 0.50;
     }
 
-    // Returner clutch differential — positive value = returner lifts under pressure
+    // Returner clutch differential — raised from 0.50: on grass, a returner
+    // who lifts their game at break point has an outsized impact.
     const clutch = returner.tier2?.clutch_differential;
     if (clutch?.modifier_delta != null) {
       const w = confWeight(clutch.confidence);
-      // modifier_delta in pp units (e.g. 0.2 pp difference) → convert to fraction
-      p -= w * (clutch.modifier_delta / 100) * 0.50;
+      p -= w * (clutch.modifier_delta / 100) * 0.60;
     }
 
-    // Server double fault risk — negative modifier_delta = fewer DFs under pressure
+    // Server double fault risk under pressure
     const dfDelta = server.tier2?.df_pressure_delta;
     if (dfDelta?.modifier_delta != null && isBreakPoint) {
       const w = confWeight(dfDelta.confidence);
-      // modifier_delta is a percentage-point change in DF rate (e.g. -2.1 pp)
       p += w * (dfDelta.modifier_delta / 100);
+    }
+
+    // Returner BP conversion ability — how efficiently a player converts
+    // break-point opportunities. Average ATP conversion ~45%.
+    // A 55% converter vs 35% creates a meaningful edge at this moment.
+    if (isBreakPoint) {
+      const bpc = returner.tier2?.bp_creation_profile;
+      if (bpc?.bp_conversion != null) {
+        const avgConversion = 0.45;
+        p -= (bpc.bp_conversion - avgConversion) * 0.15;
+      }
     }
   }
 
@@ -155,7 +168,9 @@ function pointWinProb(server, returner, band, isBreakPoint, isDeuce, opts = {}) 
       const rate = opts.prevWonByServer
         ? mom.streak_survival_rate   // continuing a run
         : mom.streak_recovery_rate;  // recovering after a loss
-      p += (rate - 0.5) * 0.04;
+      // Raised from 0.04 — momentum streaks are more persistent on grass
+      // (serve dominance means once a player finds rhythm it compounds).
+      p += (rate - 0.5) * 0.06;
     }
   }
 
@@ -391,9 +406,17 @@ function neutraliseEntropy(fpA, fpB) {
 }
 
 function neutraliseBP(fpA, fpB) {
-  // BP creation/conversion currently informs axis display but doesn't
-  // directly modify the point simulation — skip for now.
-  return [deepClone(fpA), deepClone(fpB)];
+  // Neutralise break-point conversion advantage by setting both players to
+  // the average ATP grass conversion rate. This makes the axis contribution
+  // meaningful rather than a no-op.
+  const avgConv = 0.45;
+  const nA = deepClone(fpA), nB = deepClone(fpB);
+  for (const fp of [nA, nB]) {
+    if (fp.tier2?.bp_creation_profile) {
+      fp.tier2.bp_creation_profile.bp_conversion = avgConv;
+    }
+  }
+  return [nA, nB];
 }
 
 // ── Worker entry point ─────────────────────────────────────────────────────

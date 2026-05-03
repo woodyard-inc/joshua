@@ -2206,27 +2206,28 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   flex-direction: column;
   align-items: center;
   gap: 0;
-  background: #0d0d0d;
+  background: var(--paper-warm, #f9f9f7);
   font-family: var(--font-sans, sans-serif);
-  overflow: hidden;
+  padding: 28px 24px 32px;
 }
-.mu-loading-video {
-  width: 100%;
-  max-width: 540px;
-  height: auto;
-  display: block;
-  /* slight fade at bottom to blend into text panel */
-  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+
+/* Sprite sheet: 8 cols × 5 rows, each frame 280×158 px */
+.mu-loading-sprite {
+  width: 280px;
+  height: 158px;
+  background-image: url('card_dealer_sprite.webp');
+  background-size: 2240px 790px;   /* 280×8 = 2240, 158×5 = 790 */
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  image-rendering: auto;
 }
+
 .mu-loading-text {
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  padding: 16px 32px 28px;
-  background: #0d0d0d;
+  gap: 8px;
+  padding-top: 20px;
 }
 .mu-loading-label {
   font-size: 9px;
@@ -2237,14 +2238,14 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .mu-loading-msg {
   font-size: 11px;
-  color: rgba(255,255,255,0.45);
+  color: var(--ink-muted, #999);
   letter-spacing: 0.04em;
   min-height: 16px;
 }
 .mu-loading-bar-wrap {
   width: 220px;
   height: 2px;
-  background: rgba(255,255,255,0.08);
+  background: var(--ink-10, #e8e8e8);
   border-radius: 2px;
   overflow: hidden;
 }
@@ -2256,7 +2257,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .mu-loading-sub {
   font-size: 10px;
-  color: rgba(255,255,255,0.18);
+  color: var(--ink-20, #ccc);
   letter-spacing: 0.06em;
 }
 

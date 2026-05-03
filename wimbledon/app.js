@@ -1527,9 +1527,7 @@ function runComparison(nameA, nameB) {
   resultEl.innerHTML = `
     <div class="mu-result-inner">
       <div class="mu-loading">
-        <video class="mu-loading-video" autoplay loop muted playsinline>
-          <source src="card_dealer.webm" type="video/webm">
-        </video>
+        <div class="mu-loading-sprite" id="mu-dealer-sprite"></div>
         <div class="mu-loading-text">
           <div class="mu-loading-label">Monte Carlo Simulation</div>
           <div class="mu-loading-msg" id="mu-loading-msg">Preparing fingerprints…</div>
@@ -1540,6 +1538,19 @@ function runComparison(nameA, nameB) {
         </div>
       </div>
     </div>`;
+
+  // ── Sprite animation (8fps, 8×5 grid, 280×158 per frame) ─────────
+  if (window._spriteTimer) { clearInterval(window._spriteTimer); window._spriteTimer = null; }
+  const spriteEl = document.getElementById("mu-dealer-sprite");
+  if (spriteEl) {
+    const COLS = 8, TOTAL = 40, FW = 280, FH = 158;
+    let frame = 0;
+    window._spriteTimer = setInterval(() => {
+      spriteEl.style.backgroundPosition =
+        `-${(frame % COLS) * FW}px -${Math.floor(frame / COLS) * FH}px`;
+      frame = (frame + 1) % TOTAL;
+    }, 125);  // 8fps
+  }
 
   // Terminate any prior worker
   if (window._mcWorker) { window._mcWorker.terminate(); window._mcWorker = null; }
@@ -1565,6 +1576,7 @@ function runComparison(nameA, nameB) {
       const delay    = Math.max(0, MIN_LOAD_MS - elapsed);
 
       setTimeout(() => {
+      if (window._spriteTimer) { clearInterval(window._spriteTimer); window._spriteTimer = null; }
       worker.terminate();
       window._mcWorker = null;
 

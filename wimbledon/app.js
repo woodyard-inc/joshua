@@ -1592,22 +1592,44 @@ function renderMatchupResult(r) {
                   : "edge-b";
 
   const winnerA = pA >= pB;
+
+  function tryApplyPhoto(sideEl, name) {
+    const src = `players/${name.replace(/ /g, "_")}.webp`;
+    const probe = new Image();
+    probe.onload = () => {
+      const wrap = sideEl.querySelector(".mu-prob-photo");
+      if (!wrap) return;
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = name;
+      wrap.appendChild(img);
+      sideEl.classList.add("has-photo");
+    };
+    probe.src = src;  // onerror = do nothing, stays text-only
+  }
+
   el.innerHTML = `
     <div class="mu-result-inner">
 
       <div class="mu-prob-header">
-        <div class="mu-prob-side mu-prob-side-a ${winnerA ? "is-winner" : ""}">
-          <span class="mu-prob-pct">${pA}%</span>
-          <span class="mu-prob-name">${r.nameA}</span>
-          <span class="mu-prob-serve">Srv win ${Math.round(r.pServeA * 100)}%</span>
-          <span class="mu-prob-label">match win probability</span>
+        <div class="mu-prob-side mu-prob-side-a ${winnerA ? "is-winner" : ""}" id="mu-side-a">
+          <div class="mu-prob-photo"></div>
+          <div class="mu-prob-text">
+            <span class="mu-prob-pct">${pA}%</span>
+            <span class="mu-prob-name">${r.nameA}</span>
+            <span class="mu-prob-serve">Srv win ${Math.round(r.pServeA * 100)}%</span>
+            <span class="mu-prob-label">match win probability</span>
+          </div>
         </div>
         <div class="mu-prob-divider"></div>
-        <div class="mu-prob-side mu-prob-side-b ${!winnerA ? "is-winner" : ""}">
-          <span class="mu-prob-pct">${pB}%</span>
-          <span class="mu-prob-name">${r.nameB}</span>
-          <span class="mu-prob-serve">Srv win ${Math.round(r.pServeB * 100)}%</span>
-          <span class="mu-prob-label">match win probability</span>
+        <div class="mu-prob-side mu-prob-side-b ${!winnerA ? "is-winner" : ""}" id="mu-side-b">
+          <div class="mu-prob-photo"></div>
+          <div class="mu-prob-text">
+            <span class="mu-prob-pct">${pB}%</span>
+            <span class="mu-prob-name">${r.nameB}</span>
+            <span class="mu-prob-serve">Srv win ${Math.round(r.pServeB * 100)}%</span>
+            <span class="mu-prob-label">match win probability</span>
+          </div>
         </div>
       </div>
 
@@ -1630,6 +1652,10 @@ function renderMatchupResult(r) {
       </div>
 
     </div>`;
+
+  // Async photo injection — falls back silently if image missing
+  tryApplyPhoto(document.getElementById("mu-side-a"), r.nameA);
+  tryApplyPhoto(document.getElementById("mu-side-b"), r.nameB);
 }
 
 // ── Featured curated matchups ──────────────────────────────────────

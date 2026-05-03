@@ -2213,12 +2213,38 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .mu-prob-side {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-  padding: 24px 28px 20px;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
 }
-.mu-prob-side-a { align-items: flex-start; }
-.mu-prob-side-b { align-items: flex-end;   text-align: right; }
+.mu-prob-side-a { flex-direction: row; }
+.mu-prob-side-b { flex-direction: row-reverse; text-align: right; }
+
+/* 16:9 thumbnail — hidden when empty, shown when JS injects an img */
+.mu-prob-photo {
+  flex-shrink: 0;
+  width: 112px;
+  height: 63px;   /* 16:9 */
+  overflow: hidden;
+  background: var(--ink-10, #eee);
+  display: none;  /* JS adds has-photo to show it */
+}
+.mu-prob-side.has-photo .mu-prob-photo { display: block; }
+.mu-prob-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
+
+.mu-prob-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
 
 /* The big win-probability number */
 .mu-prob-pct {
@@ -2229,6 +2255,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   letter-spacing: -0.02em;
   color: var(--ink-20, #bbb);      /* loser: muted */
   transition: color 0.2s;
+  white-space: nowrap;
 }
 .mu-prob-side.is-winner .mu-prob-pct {
   color: var(--cobalt, #1a44c2);   /* winner: cobalt */
@@ -2513,7 +2540,8 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 @media (max-width: 760px) {
   .mu-prob-header    { grid-template-columns: 1fr; }
   .mu-prob-divider   { width: auto; height: 1px; margin: 0 20px; }
-  .mu-prob-side-b    { align-items: flex-start; text-align: left; }
+  .mu-prob-side-b    { flex-direction: row; text-align: left; }
+  .mu-prob-photo     { width: 80px; height: 45px; }
   .mu-bottom-row     { grid-template-columns: 1fr; }
   .mu-dist-col       { border-right: none; border-bottom: var(--hairline-ink, 1px solid #e0e0e0); }
   .mu-axis-row       { grid-template-columns: 100px 1fr 70px; }

@@ -2206,6 +2206,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   grid-template-columns: 1fr 1px 1fr;
   border-bottom: var(--hairline-ink, 1px solid #e0e0e0);
   background: var(--paper-warm, #f9f9f7);
+  min-height: 220px;
 }
 .mu-prob-divider {
   background: var(--ink-10, #e0e0e0);
@@ -2213,38 +2214,63 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .mu-prob-side {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 24px;
-}
-.mu-prob-side-a { flex-direction: row; }
-.mu-prob-side-b { flex-direction: row-reverse; text-align: right; }
-
-/* 16:9 thumbnail — hidden when empty, shown when JS injects an img */
-.mu-prob-photo {
-  flex-shrink: 0;
-  width: 112px;
-  height: 63px;   /* 16:9 */
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 24px 18px;
   overflow: hidden;
-  background: var(--ink-10, #eee);
-  display: none;  /* JS adds has-photo to show it */
+  position: relative;
+  min-height: 220px;
+}
+.mu-prob-side-a { align-items: flex-start; }
+.mu-prob-side-b { align-items: flex-end; text-align: right; }
+
+/* Text sits above the photo (or alone when no photo) */
+.mu-prob-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  position: relative;
+  z-index: 2;
+  margin-top: auto;   /* push to bottom so it rides on top of gradient */
+}
+
+/* Photo — absolute fill when present */
+.mu-prob-photo {
+  display: none;
+  position: absolute;
+  inset: 0;
 }
 .mu-prob-side.has-photo .mu-prob-photo { display: block; }
 .mu-prob-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 20%;
   display: block;
 }
 
-.mu-prob-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
+/* Gradient scrim — bottom-heavy for text legibility */
+.mu-prob-side.has-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.40) 50%,
+    rgba(0,0,0,0.10) 100%
+  );
+  pointer-events: none;
 }
+
+/* Text colours when photo is present */
+.mu-prob-side.has-photo .mu-prob-pct         { color: rgba(255,255,255,0.45); }
+.mu-prob-side.has-photo.is-winner .mu-prob-pct { color: #fff; }
+.mu-prob-side.has-photo .mu-prob-name         { color: rgba(255,255,255,0.60); }
+.mu-prob-side.has-photo.is-winner .mu-prob-name { color: rgba(255,255,255,0.95); }
+.mu-prob-side.has-photo .mu-prob-serve        { color: rgba(255,255,255,0.45); }
+.mu-prob-side.has-photo .mu-prob-label        { color: rgba(255,255,255,0.30); }
 
 /* The big win-probability number */
 .mu-prob-pct {
@@ -2540,8 +2566,8 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 @media (max-width: 760px) {
   .mu-prob-header    { grid-template-columns: 1fr; }
   .mu-prob-divider   { width: auto; height: 1px; margin: 0 20px; }
-  .mu-prob-side-b    { flex-direction: row; text-align: left; }
-  .mu-prob-photo     { width: 80px; height: 45px; }
+  .mu-prob-side-b    { align-items: flex-start; text-align: left; }
+  .mu-prob-side      { min-height: 160px; }
   .mu-bottom-row     { grid-template-columns: 1fr; }
   .mu-dist-col       { border-right: none; border-bottom: var(--hairline-ink, 1px solid #e0e0e0); }
   .mu-axis-row       { grid-template-columns: 100px 1fr 70px; }

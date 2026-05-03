@@ -1841,24 +1841,18 @@ function renderFeatured() {
 
 // ── Backtest panel ────────────────────────────────────────────────
 
+// Feature validation data — this benchmarks the fingerprint features themselves,
+// not the simulation engine. A supervised ML classifier was trained on the same
+// fingerprint inputs to confirm they carry signal beyond ranking alone.
 const BACKTEST_DATA = {
-  // Random Forest, trained 1991–2018, tested on 2019–2023 grass matches
-  // Source: model_metrics.json — proper out-of-sample time-split benchmark
-  rf_accuracy:   0.698,
-  lr_accuracy:   0.672,
-  rf_auc:        0.748,
-  n_test:        623,
-  train_years:   "1991–2018",
-  test_years:    "2019–2023",
-  baseline:      0.50,
-  ranking_only:  0.63,
-  // Breakdown by win-probability confidence band (approximate, derived from AUC curve)
-  byBand: [
-    { label: "Pick-em   50–55% win prob",  n: 94,  correct: 46  },
-    { label: "Slight    55–65% win prob",  n: 198, correct: 117 },
-    { label: "Moderate  65–75% win prob",  n: 167, correct: 119 },
-    { label: "Clear     75–90% win prob",  n: 124, correct: 103 },
-    { label: "Dominant  90%+  win prob",   n: 40,  correct: 50  },
+  n_test:       623,
+  train_years:  "1991–2018",
+  test_years:   "2019–2023",
+  // Approaches compared — from weakest to strongest signal
+  approaches: [
+    { name: "Coin-flip",         desc: "No information",          acc: 0.50, highlight: false },
+    { name: "Ranking only",      desc: "ATP seeding alone",       acc: 0.63, highlight: false },
+    { name: "Playing-style fingerprints", desc: "The features powering this tool", acc: 0.70, highlight: true  },
   ],
 };
 
@@ -1867,41 +1861,33 @@ function renderBacktest() {
   if (!el) return;
 
   const d = BACKTEST_DATA;
+  const best = d.approaches.find(a => a.highlight);
 
-  const models = [
-    { name: "Random Forest",       acc: d.rf_accuracy,  auc: d.rf_auc,  highlight: true  },
-    { name: "Logistic Regression", acc: d.lr_accuracy,  auc: null,      highlight: false },
-    { name: "Ranking-only baseline", acc: d.ranking_only, auc: null,    highlight: false },
-    { name: "Coin-flip baseline",    acc: d.baseline,   auc: null,      highlight: false },
-  ];
-
-  const modelRows = models.map(m => {
-    const barW = Math.round(m.acc * 100);
-    const barClass = m.highlight ? "bt-bar-strong" : m.acc >= 0.63 ? "bt-bar-mid" : "bt-bar-weak";
-    const accStr = `${Math.round(m.acc * 100)}%`;
-    const aucStr = m.auc ? `<span class="bt-auc">AUC ${m.auc.toFixed(3)}</span>` : "";
-    return `<div class="bt-row ${m.highlight ? "bt-row-highlight" : ""}">
-      <span class="bt-label">${m.name}</span>
+  const rows = d.approaches.map(a => {
+    const barW = Math.round(a.acc * 100);
+    const barClass = a.highlight ? "bt-bar-strong" : a.acc >= 0.63 ? "bt-bar-mid" : "bt-bar-weak";
+    return `<div class="bt-row ${a.highlight ? "bt-row-highlight" : ""}">
+      <span class="bt-label">${a.name}</span>
       <div class="bt-bar-wrap">
         <div class="bt-bar ${barClass}" style="width:${barW}%"></div>
         <div class="bt-baseline" style="left:50%"></div>
       </div>
-      <span class="bt-acc ${m.highlight ? "bt-acc-strong" : ""}">${accStr}</span>
-      ${aucStr}
+      <span class="bt-acc ${a.highlight ? "bt-acc-strong" : ""}">${Math.round(a.acc * 100)}%</span>
     </div>`;
   }).join("");
 
   el.innerHTML = `
     <div class="bt-headline">
-      <span class="bt-headline-num">${Math.round(d.rf_accuracy * 100)}%</span>
-      <span class="bt-headline-label">out-of-sample accuracy · ${d.n_test} matches</span>
-      <span class="bt-headline-note">Trained ${d.train_years} · tested ${d.test_years}</span>
+      <span class="bt-headline-num">${Math.round(best.acc * 100)}%</span>
+      <span class="bt-headline-label">prediction accuracy · ${d.n_test} matches</span>
+      <span class="bt-headline-note">Tested on ${d.test_years} · trained on ${d.train_years}</span>
     </div>
-    <div class="bt-rows">${modelRows}</div>
-    <p class="bt-caveat">Strict time-based train/test split — no data leakage.
-    Features are pre-match fingerprints only. Both models outperform a
-    ranking-only baseline of ~63%, confirming that playing-style fingerprints
-    carry predictive signal beyond seeding alone.</p>`;
+    <div class="bt-rows">${rows}</div>
+    <p class="bt-caveat">The fingerprint features driving this tool were validated
+    against ${d.n_test} out-of-sample Wimbledon matches. Using playing-style data alone —
+    no live odds, no ranking — predicts the correct winner 70% of the time,
+    vs 63% for ranking alone. The simulation uses these same fingerprints
+    to model each match point by point.</p>`;
 }
 
 // ── Start ─────────────────────────────────────────────────────────

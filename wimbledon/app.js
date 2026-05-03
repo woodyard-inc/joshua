@@ -134,6 +134,13 @@ async function boot() {
   });
 }
 
+async function loadFingerprintsOnly(year) {
+  const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
+  return fetch(`${base}/data/${year}_fingerprints.json`, { cache: "no-store" })
+    .then(r => r.json())
+    .catch(() => null);
+}
+
 async function loadYear(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
   const nc   = { cache: "no-store" };
@@ -1514,10 +1521,13 @@ function populateMuDropdowns() {
   });
 }
 
-function runComparison(nameA, nameB) {
-  const fps = state.fingerprints || {};
+// overrideFps: optional fingerprint set from a different year (e.g. prior year
+// to avoid within-tournament data leakage when predicting a specific matchup).
+function runComparison(nameA, nameB, overrideFps = null) {
+  const fps = overrideFps || state.fingerprints || {};
   const fpA = fps[nameA];
   const fpB = fps[nameB];
+  const fingerprintYear = overrideFps ? overrideFps._year : null;
   const resultEl = document.getElementById("mu-result");
 
   if (!fpA || !fpB) {
@@ -1595,6 +1605,7 @@ function runComparison(nameA, nameB) {
       const merged = {
         nameA, nameB,
         year:     state.year,
+        fingerprintYear,          // null = current year; set = prior year (leak-free)
         pServeA:  structural.pServeA,
         pServeB:  structural.pServeB,
         axes:     structural.axes,
@@ -1606,7 +1617,6 @@ function runComparison(nameA, nameB) {
         axisContrib:  e.data.axisContrib,
         dominantAxis: e.data.dominantAxis,
         nSims:    e.data.nSims,
-        // Narrative always agrees with MC winner
         narrative: edgeNarrative(structural.axes, nameA, nameB, e.data.pWinA),
       };
 
@@ -1782,6 +1792,10 @@ function renderMatchupResult(r) {
         <div class="mu-narrative-col">
           <div class="mu-section-head"><span class="mu-section-title">Key Factor</span></div>
           ${keyFactorHTML}
+          ${r.fingerprintYear
+            ? `<p class="mu-fp-note">Using ${r.fingerprintYear} pre-tournament fingerprints — excludes within-tournament data for a clean prediction.</p>`
+            : `<p class="mu-fp-note mu-fp-note--warn">Using ${r.year} fingerprints — includes same-tournament data.</p>`
+          }
         </div>
       </div>
 
@@ -1810,31 +1824,36 @@ function renderFeatured() {
   }).join("");
 
   row.querySelectorAll(".mu-feat-chip").forEach(btn => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", async () => {
       const m = data[+btn.dataset.idx];
-
-      // Set matchup state so the year-change handler can call runComparison
       state.matchupA = m.player_a;
       state.matchupB = m.player_b;
-
-      // Ensure comparison panel is open
       enterMatchupMode(true);
 
-      const yearSel = document.getElementById("year-select");
-
+      // Load match year data (for dropdowns / display context)
       if (state.year !== m.year) {
-        // Update the year selector and dispatch change — the existing year-change
-        // listener handles loadYear + runComparison + all dependent UI updates
-        yearSel.value = m.year;
-        yearSel.dispatchEvent(new Event("change"));
-      } else {
-        // Same year — just update player dropdowns and run directly
-        const selA = document.getElementById("mu-select-a");
-        const selB = document.getElementById("mu-select-b");
-        if ([...selA.options].some(o => o.value === m.player_a)) selA.value = m.player_a;
-        if ([...selB.options].some(o => o.value === m.player_b)) selB.value = m.player_b;
-        runComparison(m.player_a, m.player_b);
+        document.getElementById("year-select").value = m.year;
+        await loadYear(m.year);
       }
+
+      // Snap player dropdowns to the matchup players
+      const selA = document.getElementById("mu-select-a");
+      const selB = document.getElementById("mu-select-b");
+      if ([...selA.options].some(o => o.value === m.player_a)) selA.value = m.player_a;
+      if ([...selB.options].some(o => o.value === m.player_b)) selB.value = m.player_b;
+
+      // Load prior-year fingerprints to avoid within-tournament data leakage.
+      // e.g. for the 2019 Final we use 2018 fingerprints — genuinely pre-tournament.
+      let overrideFps = null;
+      if (m.fingerprint_year) {
+        const priorFps = await loadFingerprintsOnly(m.fingerprint_year);
+        if (priorFps && priorFps[m.player_a] && priorFps[m.player_b]) {
+          priorFps._year = m.fingerprint_year;  // tag so the result can display it
+          overrideFps = priorFps;
+        }
+      }
+
+      runComparison(m.player_a, m.player_b, overrideFps);
     });
   });
 }

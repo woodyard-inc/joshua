@@ -2586,6 +2586,19 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   line-height: 1.6;
   color: var(--ink, #111);
 }
+.mu-fp-note {
+  margin: 12px 28px 0;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-muted, #8A857B);
+  line-height: 1.5;
+  border-left: 2px solid var(--cobalt, #002FA7);
+  padding-left: 8px;
+}
+.mu-fp-note--warn {
+  border-left-color: var(--ink-20, #ccc);
+}
 .mu-edge-chip {
   display: inline-block;
   margin: 0 28px;

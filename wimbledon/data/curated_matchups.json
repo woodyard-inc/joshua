@@ -2,6 +2,7 @@
   {
     "label": "2015 Semi-Final",
     "year": 2015,
+    "fingerprint_year": 2014,
     "player_a": "Andy Murray",
     "player_b": "Roger Federer",
     "p_win_a": 0.39
@@ -9,6 +10,7 @@
   {
     "label": "2019 Final",
     "year": 2019,
+    "fingerprint_year": 2018,
     "player_a": "Novak Djokovic",
     "player_b": "Roger Federer",
     "p_win_a": 0.52
@@ -16,6 +18,7 @@
   {
     "label": "2015 Final",
     "year": 2015,
+    "fingerprint_year": 2014,
     "player_a": "Novak Djokovic",
     "player_b": "Roger Federer",
     "p_win_a": 0.54
@@ -23,6 +26,7 @@
   {
     "label": "2014 R4",
     "year": 2014,
+    "fingerprint_year": null,
     "player_a": "Nick Kyrgios",
     "player_b": "Rafael Nadal",
     "p_win_a": 0.28
@@ -30,6 +34,7 @@
   {
     "label": "2015 R2",
     "year": 2015,
+    "fingerprint_year": 2014,
     "player_a": "Dustin Brown",
     "player_b": "Rafael Nadal",
     "p_win_a": 0.23
@@ -37,6 +42,7 @@
   {
     "label": "2017 Quarter-Final",
     "year": 2017,
+    "fingerprint_year": 2016,
     "player_a": "Roger Federer",
     "player_b": "Milos Raonic",
     "p_win_a": 0.65

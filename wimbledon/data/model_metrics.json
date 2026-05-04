@@ -17,26 +17,176 @@
     "auc": 0.775,
     "brier": 0.194
   },
-  "train_years": "1991–2018",
-  "test_years": "2019–2024",
+  "train_years": "1991\u20132018",
+  "test_years": "2019\u20132024",
   "n_train": 3075,
   "n_test": 560,
   "baseline_accuracy": 0.5,
-  "leakage_delta_auc": 0.000,
-  "leakage_verdict": "No measurable leakage from same-tournament history — AUC identical with and without it.",
+  "leakage_delta_auc": 0.0,
+  "leakage_verdict": "No measurable leakage from same-tournament history \u2014 AUC identical with and without it.",
   "axis_weight_analysis": {
     "method": "OLS + LogisticRegression + RandomForest on axis composite scores, time-split 2019",
     "r2_test": 0.116,
-    "r2_note": "R² of 0.10–0.15 is normal for match-level sports prediction; low R² reflects genuine randomness, not model failure.",
+    "r2_note": "R\u00b2 of 0.10\u20130.15 is normal for match-level sports prediction; low R\u00b2 reflects genuine randomness, not model failure.",
     "declared_vs_empirical": {
-      "serveReturn":   { "declared": 0.35, "empirical": 0.470, "significant": true,  "note": "Underweighted — serves dominate on grass" },
-      "rallyShape":    { "declared": 0.20, "empirical": 0.448, "significant": true,  "note": "Underweighted — grass form/win% highly predictive" },
-      "breakPressure": { "declared": 0.20, "empirical": 0.056, "significant": false, "note": "Overweighted — BP conversion low-signal in this dataset" },
-      "pressure":      { "declared": 0.20, "empirical": 0.026, "significant": false, "note": "Overweighted — clutch metrics sparse; low predictive signal" },
-      "durability":    { "declared": 0.05, "empirical": 0.000, "significant": false, "note": "Near zero empirical signal — grass matches are short" }
+      "serveReturn": {
+        "declared": 0.35,
+        "empirical": 0.47,
+        "significant": true,
+        "note": "Underweighted \u2014 serves dominate on grass"
+      },
+      "rallyShape": {
+        "declared": 0.2,
+        "empirical": 0.448,
+        "significant": true,
+        "note": "Underweighted \u2014 grass form/win% highly predictive"
+      },
+      "breakPressure": {
+        "declared": 0.2,
+        "empirical": 0.056,
+        "significant": false,
+        "note": "Overweighted \u2014 BP conversion low-signal in this dataset"
+      },
+      "pressure": {
+        "declared": 0.2,
+        "empirical": 0.026,
+        "significant": false,
+        "note": "Overweighted \u2014 clutch metrics sparse; low predictive signal"
+      },
+      "durability": {
+        "declared": 0.05,
+        "empirical": 0.0,
+        "significant": false,
+        "note": "Near zero empirical signal \u2014 grass matches are short"
+      }
     },
-    "interpretation": "The declared weights are qualitatively correct in ordering serveReturn first. However the regression evidence suggests breakPressure and pressure are given more weight than the data supports, and rallyShape (grass-specific win rate) is the second most predictive axis. The fingerprint-based axes (SPCI, clutch) carry meaning not captured in the simple delta-feature proxy — treat the suggested weights as a benchmark, not a prescription.",
+    "interpretation": "The declared weights are qualitatively correct in ordering serveReturn first. However the regression evidence suggests breakPressure and pressure are given more weight than the data supports, and rallyShape (grass-specific win rate) is the second most predictive axis. The fingerprint-based axes (SPCI, clutch) carry meaning not captured in the simple delta-feature proxy \u2014 treat the suggested weights as a benchmark, not a prescription.",
     "curated_backtest": "6/6 directional predictions correct across 6 historical matchups"
   },
-  "notes": "Time-based split (train ≤2018, test ≥2019). Features are pre-match only (no leakage). All three models outperform ranking-only baseline (~63%). Brier score confirms well-calibrated probabilities."
+  "notes": "Time-based split (train \u22642018, test \u22652019). Features are pre-match only (no leakage). All three models outperform ranking-only baseline (~63%). Brier score confirms well-calibrated probabilities.",
+  "mc_fingerprint_backtest": {
+    "method": "Prior-edition fingerprints \u2192 MC simulation \u2192 actual outcomes",
+    "leakage_note": "Fingerprints built from editions BEFORE the predicted year. Career window (last 3 editions) never includes the test year.",
+    "n_sims": 1000,
+    "test_years": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "min_test_year": 2014,
+    "n_total": 646,
+    "accuracy": 0.638,
+    "brier": 0.2561,
+    "brier_skill": -0.024,
+    "log_loss": 0.8508,
+    "naive_brier": 0.25,
+    "per_year": {
+      "2014": {
+        "n_matches": 49,
+        "accuracy": 0.592,
+        "brier": 0.249,
+        "log_loss": 0.736
+      },
+      "2015": {
+        "n_matches": 66,
+        "accuracy": 0.53,
+        "brier": 0.335,
+        "log_loss": 1.265
+      },
+      "2016": {
+        "n_matches": 83,
+        "accuracy": 0.699,
+        "brier": 0.205,
+        "log_loss": 0.614
+      },
+      "2017": {
+        "n_matches": 72,
+        "accuracy": 0.708,
+        "brier": 0.223,
+        "log_loss": 0.703
+      },
+      "2018": {
+        "n_matches": 77,
+        "accuracy": 0.701,
+        "brier": 0.2,
+        "log_loss": 0.63
+      },
+      "2019": {
+        "n_matches": 71,
+        "accuracy": 0.606,
+        "brier": 0.298,
+        "log_loss": 1.222
+      },
+      "2021": {
+        "n_matches": 70,
+        "accuracy": 0.571,
+        "brier": 0.29,
+        "log_loss": 0.892
+      },
+      "2022": {
+        "n_matches": 53,
+        "accuracy": 0.623,
+        "brier": 0.283,
+        "log_loss": 0.979
+      },
+      "2023": {
+        "n_matches": 46,
+        "accuracy": 0.717,
+        "brier": 0.254,
+        "log_loss": 0.754
+      },
+      "2024": {
+        "n_matches": 59,
+        "accuracy": 0.61,
+        "brier": 0.247,
+        "log_loss": 0.749
+      }
+    },
+    "calibration": [
+      {
+        "pred_range": "0.00\u20130.19",
+        "pred_mean": 0.086,
+        "actual_rate": 0.31,
+        "n": 129
+      },
+      {
+        "pred_range": "0.19\u20130.45",
+        "pred_mean": 0.328,
+        "actual_rate": 0.426,
+        "n": 129
+      },
+      {
+        "pred_range": "0.45\u20130.63",
+        "pred_mean": 0.535,
+        "actual_rate": 0.597,
+        "n": 129
+      },
+      {
+        "pred_range": "0.63\u20130.83",
+        "pred_mean": 0.736,
+        "actual_rate": 0.667,
+        "n": 129
+      },
+      {
+        "pred_range": "0.84\u20131.00",
+        "pred_mean": 0.927,
+        "actual_rate": 0.659,
+        "n": 129
+      },
+      {
+        "pred_range": "1.00\u20131.00",
+        "pred_mean": 1.0,
+        "actual_rate": 1.0,
+        "n": 1
+      }
+    ],
+    "notes": "Coverage ~50\u201370% per year \u2014 first-time Wimbledon players have no prior fingerprint and are excluded. These tend to be lower-seeded players, so excluded matches are systematically easier to predict, meaning true accuracy on uncovered matches may be lower."
+  }
 }

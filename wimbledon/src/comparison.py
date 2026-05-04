@@ -207,6 +207,12 @@ def _t2_conf(fp: dict, *keys) -> Optional[str]:
 
 # ── p_serve computation ───────────────────────────────────────────────────
 
+# Grass-court tour average return points won (~35% across ATP grass events).
+# Used as the baseline for matchup adjustment: if the opponent's rpw is above
+# this, the server's effective probability decreases and vice versa.
+GRASS_RPW_AVG = 35.0
+
+
 def p_serve_from_fp(fp: dict) -> float:
     """
     Compute baseline per-point serve win probability from Tier 1 stats.
@@ -223,15 +229,42 @@ def p_serve_from_fp(fp: dict) -> float:
         # Fallback: use sgw_pct as proxy for serve dominance
         sgw = _t1(fp, "sgw_pct")
         if sgw is not None:
-            # Service game win % → approximate point win % on serve
-            # sgw = (p_serve)^4 * (1 + 4q + 10q^2) + 20p^3q^3 * p^2/(p^2+q^2)
-            # Numerically invert: rough approximation
             return max(0.50, min(0.80, sgw / 100 * 0.93 + 0.05))
         return 0.63   # grass tour average
     fsp_f  = fsp  / 100.0
     fspw_f = fspw / 100.0
     sspw_f = sspw / 100.0
     return fsp_f * fspw_f + (1.0 - fsp_f) * sspw_f
+
+
+def p_serve_matchup(fp_server: dict, fp_returner: dict) -> float:
+    """
+    Compute matchup-adjusted serve win probability.
+
+    Takes the server's isolated serve rate and adjusts for the opponent's
+    return quality relative to the tour average.
+
+    Formula:
+      p_serve_A_vs_B = p_raw_A − (rpw_B − rpw_avg) / 100
+
+    If B is a stronger returner than average (rpw_B > rpw_avg), A's serve
+    probability decreases. If B is a weaker returner, it increases.
+
+    This is the "common opponent" adjustment: without it, two servers with
+    65% SPW look identical even if one faced top returners and the other
+    faced qualifiers. The Elo system handles this through quality ratings;
+    here we handle it directly in the probability model.
+
+    Clamped to [0.45, 0.85] to prevent degenerate probabilities.
+    """
+    p_raw = p_serve_from_fp(fp_server)
+
+    rpw_returner = _t1(fp_returner, "rpw_pct")
+    if rpw_returner is None:
+        return p_raw   # no return data → no adjustment
+
+    adjustment = (rpw_returner - GRASS_RPW_AVG) / 100.0
+    return max(0.45, min(0.85, p_raw - adjustment))
 
 
 # ── Axis 1: Serve vs Return ───────────────────────────────────────────────
@@ -768,9 +801,10 @@ def compare(fp_a: dict, fp_b: dict,
     defl    = _get_deflator()
     weights = SURFACE_WEIGHTS.get(surface, SURFACE_WEIGHTS["grass"])
 
-    # ── baseline serve probabilities ─────────────────────────────────
-    p_serve_a = p_serve_from_fp(fp_a)
-    p_serve_b = p_serve_from_fp(fp_b)
+    # ── baseline serve probabilities (matchup-adjusted) ─────────────
+    # A's serve rate is adjusted for B's return quality, and vice versa.
+    p_serve_a = p_serve_matchup(fp_a, fp_b)
+    p_serve_b = p_serve_matchup(fp_b, fp_a)
 
     # ── five axes ────────────────────────────────────────────────────
     e1, c1 = _axis_serve_return(fp_a, fp_b, year, defl)

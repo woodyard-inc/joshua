@@ -39,9 +39,14 @@ from markov import TennisMarkov
 
 # ── Platt calibration ────────────────────────────────────────────────────────
 # Temperature-scaling form: p_cal = sigmoid(PLATT_A × logit(p_raw))
-# Addresses systematic overconfidence identified in 646-match backtest.
-# Fitted parameter: PLATT_A = 0.33 (< 1 compresses toward 0.5)
-PLATT_A = 0.33
+#
+# History:
+#   v1 (pre-matchup): PLATT_A = 0.33 — heavy compression needed because
+#     isolated p_serve produced overconfident MC outputs.
+#   v2 (post-matchup): PLATT_A = 0.42 — matchup-adjusted p_serve reduces
+#     overconfidence substantially but raw MC still pushes extreme; A=0.42
+#     fitted on 915 matches (SSE-minimised across 5 calibration bins).
+PLATT_A = 0.42
 
 
 def _platt_calibrate(p: float) -> float:

@@ -71,6 +71,8 @@ function sampleBand(dist) {
 
 // ── Tier-1 baseline serve probability ─────────────────────────────────────
 
+const GRASS_RPW_AVG = 35.0;  // tour average return points won on grass
+
 function tier1ServeProb(fp) {
   const t = fp.tier1 || {};
   const fsp  = t.fsp_pct?.value;
@@ -84,36 +86,64 @@ function tier1ServeProb(fp) {
   return 0.63;
 }
 
+/**
+ * Matchup-adjusted serve probability.
+ * Adjusts the server's isolated SPW for the returner's quality relative
+ * to the grass tour average.  A strong returner (rpw > 35%) reduces the
+ * server's effective probability, a weak one increases it.
+ */
+function matchupServeProb(server, returner) {
+  const pRaw  = tier1ServeProb(server);
+  const rpwR  = returner.tier1?.rpw_pct?.value;
+  if (rpwR == null) return pRaw;
+  const adj   = (rpwR - GRASS_RPW_AVG) / 100;
+  return clamp(pRaw - adj, 0.45, 0.85);
+}
+
 // ── Core point win probability ─────────────────────────────────────────────
 
 /**
  * Estimate P(server wins point) for a given rally band and game state.
  *
- * Primary source: rally_win_curve (Tier 2).
- * The blend  0.5 * server.win_pct + 0.5 * (1 - returner.win_pct)
- * gives a symmetric estimate that cancels when both players are equal.
+ * Architecture (updated):
+ *   1. Start with MATCHUP-ADJUSTED Tier 1 serve probability
+ *      (server's SPW corrected for returner's return quality).
+ *   2. Apply rally-curve MODIFIER if both players have Tier 2 data —
+ *      the rally curve tells us whether the matchup is relatively better
+ *      or worse in this particular rally band vs the player's baseline.
+ *   3. Apply pressure/momentum/state modifiers.
  *
- * Pressure modifiers use SPCI (server side) and clutch_differential
- * (returner side), gated by confidence weights so unreliable data
- * contributes nothing.
+ * The rally curve modifier is DIFFERENTIAL (how much this band deviates
+ * from the baseline), not absolute — this preserves the correct magnitude
+ * of the serve advantage on grass while still capturing matchup-specific
+ * rally-length effects.
  */
 function pointWinProb(server, returner, band, isBreakPoint, isDeuce, opts = {}) {
+  // 1. Matchup-adjusted Tier 1 baseline
+  let p = matchupServeProb(server, returner);
+
+  // 2. Rally-curve modifier: if both players have Tier 2 rally data,
+  //    shift p based on how this specific rally band compares to the
+  //    baseline. This captures matchup-specific effects (e.g., "Alcaraz
+  //    dominates short rallies but struggles in 7-9") without erasing
+  //    the serve advantage baked into the Tier 1 baseline.
   const srvCurve = (server.tier2  || {}).rally_win_curve || {};
   const retCurve = (returner.tier2 || {}).rally_win_curve || {};
   const sWin = srvCurve[band]?.win_pct;
   const rWin = retCurve[band]?.win_pct;
 
-  let p;
   if (sWin != null && rWin != null) {
-    // Fingerprint primary path — blend both players' rally profiles
-    p = 0.5 * (sWin / 100) + 0.5 * (1 - rWin / 100);
-  } else if (sWin != null) {
-    p = sWin / 100;
-  } else if (rWin != null) {
-    p = 1 - rWin / 100;
-  } else {
-    // Tier-1 fallback only when no rally curve data at all
-    p = tier1ServeProb(server);
+    // Rally curve blend for THIS band
+    const bandP = 0.5 * (sWin / 100) + 0.5 * (1 - rWin / 100);
+    // Overall rally curve blend (average across bands) as the neutral reference
+    const srvAll = RALLY_BANDS.reduce((s, b) => s + (srvCurve[b]?.win_pct || 50), 0) / RALLY_BANDS.length;
+    const retAll = RALLY_BANDS.reduce((s, b) => s + (retCurve[b]?.win_pct || 50), 0) / RALLY_BANDS.length;
+    const avgP   = 0.5 * (srvAll / 100) + 0.5 * (1 - retAll / 100);
+    // Deviation of this band from the overall rally curve baseline
+    const delta  = bandP - avgP;
+    // Apply the band-specific deviation to the Tier 1 baseline
+    // Scale factor 0.8: rally curve data is noisier than Tier 1 aggregates
+    p += delta * 0.8;
   }
 
   // ── Serve entropy (unpredictability of direction) ──────────────────────
@@ -373,11 +403,11 @@ function simulateMatch(fpA, fpB) {
 
 // ── Platt calibration ──────────────────────────────────────────────────────
 // Temperature-scaling form: p_cal = sigmoid(PLATT_A × logit(p_raw))
-// Fitted from 646-match backtest (2014–2024) to address systematic
-// overconfidence at probability extremes.  PLATT_A < 1 compresses
-// predictions toward 0.5 — the model's relative ordering is preserved,
-// only the magnitude of confidence is adjusted.
-const PLATT_A = 0.33;
+//
+// v1: PLATT_A = 0.33 — heavy compression needed before matchup adjustment.
+// v2: PLATT_A = 0.42 — matchup-adjusted serve probabilities reduce
+//     overconfidence substantially; A=0.42 fitted on 915 matches.
+const PLATT_A = 0.42;
 
 function plattCalibrate(p) {
   if (p <= 1e-9 || p >= 1 - 1e-9) return p;

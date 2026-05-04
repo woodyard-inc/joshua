@@ -904,10 +904,12 @@ def build_fingerprint(player_name: str, year: int,
     # Attrition slope: OLS slope of per-set distance avg across sets 1..5
     attrition_slope: Optional[dict] = None
     _set_avgs = []
+    _set_ns   = []
     for si in range(1, 6):
         sn_w = ws(f"dist_s{si}_n")
         if sn_w >= 5:
             _set_avgs.append((si, ws(f"dist_s{si}_sum") / sn_w))
+            _set_ns.append(sn_w)
     if len(_set_avgs) >= 2:
         xs = [a[0] for a in _set_avgs]
         ys = [a[1] for a in _set_avgs]
@@ -915,10 +917,15 @@ def build_fingerprint(player_name: str, year: int,
         _num = sum((x-_xm)*(y-_ym) for x, y in zip(xs, ys))
         _den = sum((x-_xm)**2 for x in xs)
         slope_val = round(_num / _den, 4) if _den > 0 else 0.0
+        # Confidence based on min per-set point count — slope reliability
+        # is limited by the thinnest set bucket.
+        _att_n_eff = round(min(_set_ns))
         attrition_slope = {
             "available":  True,
             "value":      slope_val,  # positive = running more per point as match progresses
             "n_sets":     len(_set_avgs),
+            "n_eff":      _att_n_eff,
+            "confidence": confidence_flag(_att_n_eff),
             "set_avgs_m": {str(a[0]): round(a[1], 3) for a in _set_avgs},
         }
     else:

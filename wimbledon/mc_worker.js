@@ -211,13 +211,15 @@ function pointWinProb(server, returner, band, isBreakPoint, isDeuce, opts = {}) 
   // A positive attrition_slope means the player runs more per point as
   // the match progresses — a proxy for fatigue. Negative is efficient.
   // Effect grows linearly with set number (setIndex 0 = first set, no effect).
+  // confWeight gates out low-n slope estimates to prevent outlier values
+  // (max observed: 9.5 m/set → −38pp unchecked) from breaking predictions.
   if (opts.setIndex != null && opts.setIndex > 0) {
     const att  = server.tier2?.attrition_slope;
     const attR = returner.tier2?.attrition_slope;
     if (att?.available && att.value != null)
-      p += -(att.value / 2.0) * opts.setIndex * 0.02;
+      p += confWeight(att.confidence) * (-(att.value / 2.0) * opts.setIndex * 0.02);
     if (attR?.available && attR.value != null)
-      p -= -(attR.value / 2.0) * opts.setIndex * 0.02;
+      p -= confWeight(attR.confidence) * (-(attR.value / 2.0) * opts.setIndex * 0.02);
   }
 
   return clamp(p);

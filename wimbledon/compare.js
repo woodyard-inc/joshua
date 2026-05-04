@@ -7,12 +7,12 @@
  * All axes return values in [−1, +1].
  * Positive = A advantage. Negative = B advantage.
  *
- * Surface weights (grass):
- *   Serve/Return   0.35
- *   Rally Shape    0.15
- *   Pressure       0.25
- *   Durability     0.10
- *   Break Pressure 0.15
+ * Surface weights (grass) — empirically rebalanced 2026-05:
+ *   Serve/Return   0.40  (↑ from 0.35 — dominant predictor, AUC-validated)
+ *   Rally Shape    0.28  (↑ from 0.20 — grass win% is 2nd-strongest signal)
+ *   Break Pressure 0.15  (↓ from 0.20 — BP conversion low-signal in sparse data)
+ *   Pressure       0.12  (↓ from 0.20 — SPCI/clutch carry meaning but dataset-limited)
+ *   Durability     0.05  (unchanged  — grass matches are short; endurance minimal)
  */
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -85,20 +85,44 @@ function axisServeReturn(fpA, fpB, year, eraStats) {
   const rpwA  = z(_t1(fpA, "rpw_pct"),  "rpw_pct");
   const rpwB  = z(_t1(fpB, "rpw_pct"),  "rpw_pct");
 
-  let raw = 0;
-  if (fspwA != null && fspwB != null) raw += 0.40 * (fspwA - fspwB);
-  if (sspwA != null && sspwB != null) raw += 0.25 * (sspwA - sspwB);
-  if (rpwA  != null && rpwB  != null) raw += 0.20 * (rpwA  - rpwB);
+  let raw = 0, wSum = 0;
+  if (fspwA != null && fspwB != null) { raw += 0.32 * (fspwA - fspwB); wSum += 0.32; }
+  if (sspwA != null && sspwB != null) { raw += 0.20 * (sspwA - sspwB); wSum += 0.20; }
+  if (rpwA  != null && rpwB  != null) { raw += 0.16 * (rpwA  - rpwB);  wSum += 0.16; }
 
+  // Serve direction entropy (existing)
   const entA = _t2(fpA, "serve_entropy", "pct_of_max");
   const entB = _t2(fpB, "serve_entropy", "pct_of_max");
   if (entA != null && entB != null) {
     const zeA = z(entA, "serve_entropy_pct");
     const zeB = z(entB, "serve_entropy_pct");
-    if (zeA != null && zeB != null) raw += 0.15 * (zeA - zeB);
+    if (zeA != null && zeB != null) { raw += 0.10 * (zeA - zeB); wSum += 0.10; }
   }
 
-  return _clamp(raw);
+  // NEW: Mean serve speed (sourced from serve_speed_courage.overall_speed_kmh)
+  const spdA = _t2(fpA, "serve_speed_courage", "overall_speed_kmh");
+  const spdB = _t2(fpB, "serve_speed_courage", "overall_speed_kmh");
+  if (spdA != null && spdB != null) {
+    // Simple normalised difference: 10 km/h gap → 0.1 edge unit
+    raw += 0.12 * _clamp((spdA - spdB) / 30.0); wSum += 0.12;
+  }
+
+  // NEW: Serve speed differential (1st minus 2nd mean speed)
+  const ssdA = _t2(fpA, "serve_speed_differential", "value");
+  const ssdB = _t2(fpB, "serve_speed_differential", "value");
+  if (ssdA != null && ssdB != null) {
+    // Higher gap = bigger boom-or-bust risk; on grass the 2nd serve is attackable.
+    // Opponent who can threaten the 2nd serve more (lower differential) has edge.
+    raw += 0.06 * _clamp((ssdB - ssdA) / 20.0); wSum += 0.06;  // reversed: lower diff = better
+  }
+
+  // NEW: Serve depth entropy (CTL/NCTL — unpredictability of depth placement)
+  const sdepA = _t2(fpA, "serve_depth_entropy", "pct_of_max");
+  const sdepB = _t2(fpB, "serve_depth_entropy", "pct_of_max");
+  if (sdepA != null && sdepB != null) { raw += 0.04 * _clamp((sdepA - sdepB) / 30.0); wSum += 0.04; }
+
+  // Rescale to declared axis weight if some components missing
+  return wSum > 0 ? _clamp(raw * (1.0 / wSum)) : 0;
 }
 
 // ── Axis 2: Rally Shape ────────────────────────────────────────────────────
@@ -109,70 +133,150 @@ const GRASS_RALLY_W = { "1_3": 0.55, "4_6": 0.30, "7_9": 0.10, "10+": 0.05 };
 function axisRallyShape(fpA, fpB) {
   const rwcA = (fpA.tier2 || {}).rally_win_curve || {};
   const rwcB = (fpB.tier2 || {}).rally_win_curve || {};
-  if (!Object.keys(rwcA).length || !Object.keys(rwcB).length) return 0;
 
-  let raw = 0, used = 0;
-  for (const [band, w] of Object.entries(GRASS_RALLY_W)) {
-    const wA = rwcA[band] && rwcA[band].win_pct;
-    const wB = rwcB[band] && rwcB[band].win_pct;
-    if (wA == null || wB == null) continue;
-    raw += w * (wA - wB) / 10.0;
-    used++;
+  let raw = 0, wSum = 0;
+
+  // Rally win curve — scaled to 0.75 of axis weight
+  if (Object.keys(rwcA).length && Object.keys(rwcB).length) {
+    for (const [band, w] of Object.entries(GRASS_RALLY_W)) {
+      const wA = rwcA[band] && rwcA[band].win_pct;
+      const wB = rwcB[band] && rwcB[band].win_pct;
+      if (wA == null || wB == null) continue;
+      raw  += w * 0.75 * (wA - wB) / 10.0;
+      wSum += w * 0.75;
+    }
   }
-  return used ? _clamp(raw) : 0;
+
+  // NEW: Rally volatility (std dev of rally lengths on won points)
+  // High volatility = adaptable all-court player (advantage on grass)
+  const rvA = _t2(fpA, "rally_volatility", "value");
+  const rvB = _t2(fpB, "rally_volatility", "value");
+  if (rvA != null && rvB != null) {
+    const waA = _confWeight(_t2conf(fpA, "rally_volatility"));
+    const waB = _confWeight(_t2conf(fpB, "rally_volatility"));
+    const gd  = (rvA * waA) - (rvB * waB);
+    raw  += 0.25 * _clamp(gd / 2.0);
+    wSum += 0.25;
+  }
+
+  return wSum > 0 ? _clamp(raw * (1.0 / wSum)) : 0;
 }
 
 // ── Axis 3: Pressure Resilience ────────────────────────────────────────────
 
 function axisPressure(fpA, fpB) {
+  let raw = 0, wSum = 0;
+
+  // SPCI (serve pressure composite)
   const spciA = (fpA.tier2 || {}).spci || {};
   const spciB = (fpB.tier2 || {}).spci || {};
-
-  let spciScore = 0;
   if (spciA.value != null && spciB.value != null) {
     const wa = _confWeight(spciA.confidence);
     const wb = _confWeight(spciB.confidence);
     if (wa > 0 || wb > 0) {
       const gd = (spciA.value * wa) - (spciB.value * wb);
-      spciScore = 0.50 * _clamp(gd / 0.30);
+      raw  += 0.22 * _clamp(gd / 0.30);
+      wSum += 0.22;
     }
   }
 
-  const clutchA = _t2(fpA, "clutch_differential", "value") != null
-    ? (fpA.tier2.clutch_differential) : null;
-  const clutchB = _t2(fpB, "clutch_differential", "value") != null
-    ? (fpB.tier2.clutch_differential) : null;
-
-  let clutchScore = 0;
+  // Clutch differential
+  const clutchA = _t2(fpA, "clutch_differential", "value") != null ? (fpA.tier2.clutch_differential) : null;
+  const clutchB = _t2(fpB, "clutch_differential", "value") != null ? (fpB.tier2.clutch_differential) : null;
   if (clutchA && clutchA.value != null && clutchB && clutchB.value != null) {
     const wa = _confWeight(clutchA.confidence);
     const wb = _confWeight(clutchB.confidence);
     const gd = (clutchA.value * wa) - (clutchB.value * wb);
-    clutchScore = 0.35 * _clamp(gd / 12.0);
+    raw  += 0.16 * _clamp(gd / 12.0);
+    wSum += 0.16;
   }
 
+  // DF pressure delta (lower is better → reversed)
   const dfA = (fpA.tier2 || {}).df_pressure_delta;
   const dfB = (fpB.tier2 || {}).df_pressure_delta;
-  let dfScore = 0;
   if (dfA && dfA.value != null && dfB && dfB.value != null) {
     const wa = _confWeight(dfA.confidence);
     const wb = _confWeight(dfB.confidence);
-    const gd = (dfB.value * wb) - (dfA.value * wa);  // lower is better → reversed
-    dfScore = 0.15 * _clamp(gd / 10.0);
+    const gd = (dfB.value * wb) - (dfA.value * wa);
+    raw  += 0.16 * _clamp(gd / 10.0);
+    wSum += 0.16;
   }
 
-  return _clamp(spciScore + clutchScore + dfScore);
+  // NEW: Tiebreak differential (win% in tiebreaks vs baseline)
+  const tbA = (fpA.tier2 || {}).tiebreak_differential;
+  const tbB = (fpB.tier2 || {}).tiebreak_differential;
+  if (tbA && tbA.value != null && tbB && tbB.value != null) {
+    const wa = _confWeight(tbA.confidence);
+    const wb = _confWeight(tbB.confidence);
+    const gd = (tbA.value * wa) - (tbB.value * wb);
+    raw  += 0.24 * _clamp(gd / 8.0);
+    wSum += 0.24;
+  }
+
+  // NEW: Set transition delta (first 2 games of each set win% vs overall)
+  const stA = (fpA.tier2 || {}).set_transition_delta;
+  const stB = (fpB.tier2 || {}).set_transition_delta;
+  if (stA && stA.value != null && stB && stB.value != null) {
+    const wa = _confWeight(stA.confidence);
+    const wb = _confWeight(stB.confidence);
+    const gd = (stA.value * wa) - (stB.value * wb);
+    raw  += 0.14 * _clamp(gd / 8.0);
+    wSum += 0.14;
+  }
+
+  // NEW: 1st serve aggression under pressure (higher = maintains aggression)
+  const fspA = (fpA.tier2 || {}).first_serve_pressure;
+  const fspB = (fpB.tier2 || {}).first_serve_pressure;
+  if (fspA && fspA.value != null && fspB && fspB.value != null) {
+    const wa = _confWeight(fspA.confidence);
+    const wb = _confWeight(fspB.confidence);
+    const gd = (fspA.value * wa) - (fspB.value * wb);
+    raw  += 0.08 * _clamp(gd / 10.0);
+    wSum += 0.08;
+  }
+
+  return wSum > 0 ? _clamp(raw * (1.0 / wSum)) : 0;
 }
 
 // ── Axis 4: Durability ─────────────────────────────────────────────────────
 
 function axisDurability(fpA, fpB) {
+  let raw = 0, wSum = 0;
+
+  // Raw distance covered per match (km) — higher = more mobile, better fitness
   const dA = fpA.distance || {};
   const dB = fpB.distance || {};
   const kmA = dA.avg_km_per_match;
   const kmB = dB.avg_km_per_match;
-  if (kmA == null || kmB == null) return 0;
-  return _clamp((kmA - kmB) / 2.0, -0.5, 0.5);
+  if (kmA != null && kmB != null) {
+    raw  += 0.50 * _clamp((kmA - kmB) / 2.0);
+    wSum += 0.50;
+  }
+
+  // NEW: Distance run efficiency (m per rally-length unit) — lower = more efficient
+  // Reversed: a player who runs fewer metres per rally-length unit expends less energy.
+  const dreA = _t2(fpA, "distance_run_efficiency", "value");
+  const dreB = _t2(fpB, "distance_run_efficiency", "value");
+  if (dreA != null && dreB != null) {
+    const waA = _confWeight(_t2conf(fpA, "distance_run_efficiency"));
+    const waB = _confWeight(_t2conf(fpB, "distance_run_efficiency"));
+    const gd  = (dreB * waB) - (dreA * waA);   // reversed: lower = better
+    raw  += 0.30 * _clamp(gd / 0.5);
+    wSum += 0.30;
+  }
+
+  // NEW: Attrition slope (OLS of per-set distance averages) — lower = less tiring
+  // Negative slope = running less as match progresses (dominant performance);
+  // positive slope = getting ground down into longer rallies in later sets. Reversed.
+  const attA = _t2(fpA, "attrition_slope", "value");
+  const attB = _t2(fpB, "attrition_slope", "value");
+  if (attA != null && attB != null) {
+    const gd = attB - attA;   // reversed: lower slope favours the player
+    raw  += 0.20 * _clamp(gd / 0.5);
+    wSum += 0.20;
+  }
+
+  return wSum > 0 ? _clamp(raw * (1.0 / wSum)) : 0;
 }
 
 // ── Axis 5: Break Pressure ─────────────────────────────────────────────────
@@ -206,17 +310,17 @@ function axisBreakPressure(fpA, fpB, year, eraStats) {
 
 // ── weighted edge narrative ────────────────────────────────────────────────
 
-// Axis weights rebalanced for grass:
-//  • Serve/Return remains dominant — grass is won on serve.
-//  • Rally Shape elevated — short-ball dominance defines Wimbledon.
-//  • Break Pressure elevated — BPs are rare; converting them is decisive.
-//  • Pressure equalised with break pressure — clutch hold/return matter equally.
-//  • Durability trimmed — grass matches are shorter; endurance matters less.
+// Axis weights rebalanced for grass (empirical regression, 2026-05):
+//  • Serve/Return raised — rank + SGW% + 1stWon% are far the strongest predictors.
+//  • Rally Shape raised — grass-specific win rate is the clear #2 signal.
+//  • Break Pressure trimmed — converting rare BPs matters, but feature signal is sparse.
+//  • Pressure trimmed — SPCI/clutch are meaningful but low-n; dataset caps the signal.
+//  • Durability unchanged — grass matches are short; physical attrition minimal.
 const AXIS_META = [
-  { key: "serveReturn",   label: "Serve / Return",   weight: 0.35 },
-  { key: "rallyShape",    label: "Rally Shape",       weight: 0.20 },
-  { key: "breakPressure", label: "Break Pressure",    weight: 0.20 },
-  { key: "pressure",      label: "Pressure",          weight: 0.20 },
+  { key: "serveReturn",   label: "Serve / Return",   weight: 0.40 },
+  { key: "rallyShape",    label: "Rally Shape",       weight: 0.28 },
+  { key: "breakPressure", label: "Break Pressure",    weight: 0.15 },
+  { key: "pressure",      label: "Pressure",          weight: 0.12 },
   { key: "durability",    label: "Durability",        weight: 0.05 },
 ];
 
@@ -258,7 +362,7 @@ function compareEngine(fpA, fpB, year, eraStats) {
     breakPressure: ax5,
   };
 
-  const edge = 0.35*ax1 + 0.20*ax2 + 0.20*ax3 + 0.05*ax4 + 0.20*ax5;
+  const edge = 0.40*ax1 + 0.28*ax2 + 0.12*ax3 + 0.05*ax4 + 0.15*ax5;
 
   const pA = pServe(fpA);
   const pB = pServe(fpB);

@@ -59,7 +59,7 @@ from build_player_profiles import (
 DATA_DIR        = Path(__file__).parent.parent / "data" / "raw"
 PROC_DIR        = Path(__file__).parent.parent / "data" / "processed"
 OUT_DIR         = Path(__file__).parent.parent / "data"
-SUPPORTED_YEARS = [2017, 2018, 2019]
+SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024]
 
 DECAY_LAMBDA      = 0.5    # recency half-life ≈ 1.4 years
 CI_LEVEL          = 0.90   # credible interval coverage
@@ -226,9 +226,12 @@ def compute_match_features(player_name: str, player_num: int,
     serving   = match_pts[match_pts["PointServer"] == pn]
     returning = match_pts[match_pts["PointServer"] == opp]
 
-    sn     = serving.get("ServeNumber", pd.Series(dtype=float))
-    is_1st = (sn == 1)
-    is_2nd = (sn == 2)
+    if "ServeNumber" in serving.columns:
+        sn = serving["ServeNumber"]
+    else:
+        sn = pd.Series(0, index=serving.index)
+    is_1st  = (sn == 1)
+    is_2nd  = (sn == 2)
     srv_1st = serving[is_1st]
     srv_2nd = serving[is_2nd]
 
@@ -423,6 +426,143 @@ def compute_match_features(player_name: str, player_num: int,
         ].shape[0]
     )
 
+    # ── NEW: Rally volatility (variance of rally lengths on won points) ────
+    # Tracks sum and sum-of-squares for online variance: Var = E[X²] - E[X]²
+
+    rv_won_sum = rv_won_sq = 0.0
+    rv_won_n   = 0
+    if rc_avail:
+        for _, row in match_pts.iterrows():
+            rc_val = row.get(rc_col)
+            if pd.isna(rc_val):
+                continue
+            rc_f = float(rc_val)
+            if row["PointWinner"] == pn:
+                rv_won_sum += rc_f
+                rv_won_sq  += rc_f * rc_f
+                rv_won_n   += 1
+
+    # ── NEW: Serve speed differential (mean 1st minus mean 2nd speed) ─────
+
+    spd_1st_sum = spd_1st_n = 0.0
+    spd_2nd_sum = spd_2nd_n = 0.0
+    if spd_avail:
+        for _, row in serving.iterrows():
+            spd_val = row.get("Speed_KMH", 0)
+            sn_val  = row.get("ServeNumber", 0)
+            if pd.isna(spd_val) or spd_val <= 0:
+                continue
+            if sn_val == 1:
+                spd_1st_sum += spd_val
+                spd_1st_n   += 1
+            elif sn_val == 2:
+                spd_2nd_sum += spd_val
+                spd_2nd_n   += 1
+
+    # ── NEW: Serve depth entropy (CTL = deep / NCTL = short) ──────────────
+
+    depth_ctl = depth_nctl = 0
+    if "ServeDepth" in serving.columns:
+        sd_vals    = serving["ServeDepth"].dropna()
+        depth_ctl  = int((sd_vals == "CTL").sum())
+        depth_nctl = int((sd_vals == "NCTL").sum())
+
+    # ── NEW: Distance run efficiency & attrition slope ────────────────────
+    # dist_eff = mean(distance_m / rally_length) per point
+    # dist_sN  = per-set distance sums for slope computation
+
+    dist_col_pn  = f"P{pn}DistanceRun"
+    dist_m_total = 0.0
+    dist_eff_sum = dist_eff_n = 0.0
+    # Per-set totals for sets 1..5
+    dist_s_sum = [0.0] * 6   # index 1..5 used; 0 unused
+    dist_s_n   = [0]   * 6
+
+    if dist_col_pn in match_pts.columns:
+        d_vals = pd.to_numeric(match_pts[dist_col_pn], errors="coerce")
+        rc_vals = pd.to_numeric(match_pts.get(rc_col, pd.Series(dtype=float)),
+                                errors="coerce") if rc_avail else None
+        set_vals = pd.to_numeric(match_pts.get("SetNo", pd.Series(dtype=float)),
+                                 errors="coerce")
+        for i, (d, s) in enumerate(zip(d_vals, set_vals)):
+            if pd.isna(d) or d <= 0:
+                continue
+            dist_m_total += d
+            sn_int = int(s) if not pd.isna(s) and 1 <= int(s if not pd.isna(s) else 0) <= 5 else 0
+            if sn_int:
+                dist_s_sum[sn_int] += d
+                dist_s_n[sn_int]   += 1
+            if rc_vals is not None:
+                rc_v = rc_vals.iloc[i] if i < len(rc_vals) else float("nan")
+                if not pd.isna(rc_v) and rc_v > 0:
+                    dist_eff_sum += d / float(rc_v)
+                    dist_eff_n   += 1
+
+    # ── NEW: Set transition delta (win% in first 2 games of each set) ─────
+
+    st_pts_won = st_pts_total = 0
+    # Find the first 2 unique GameNo values per set
+    if "SetNo" in match_pts.columns and "GameNo" in match_pts.columns:
+        set_nos  = pd.to_numeric(match_pts["SetNo"],  errors="coerce")
+        game_nos = pd.to_numeric(match_pts["GameNo"], errors="coerce")
+        for sn_val in set_nos.dropna().unique():
+            set_mask  = set_nos == sn_val
+            set_games = game_nos[set_mask].dropna().unique()
+            first_two = sorted(set_games)[:2]
+            for gn in first_two:
+                g_mask = set_mask & (game_nos == gn)
+                st_pts_total += int(g_mask.sum())
+                st_pts_won   += int((g_mask & (match_pts["PointWinner"] == pn)).sum())
+
+    # ── NEW: 1st serve aggression under pressure (deuce / advantage) ──────
+    # 1st serve rate specifically at deuce/AD points vs overall serve rate
+
+    pres_srv_1st = pres_srv_total = 0
+    for _, row in serving.iterrows():
+        p1s = str(row.get("P1Score", "")).strip()
+        p2s = str(row.get("P2Score", "")).strip()
+        at_deuce_ad = (p1s in ("40", "AD") and p2s in ("40", "AD"))
+        if at_deuce_ad:
+            pres_srv_total += 1
+            if row.get("ServeNumber", 0) == 1:
+                pres_srv_1st += 1
+
+    # ── NEW: Tiebreak differential (win% in tiebreaks vs overall) ─────────
+
+    tb_won = tb_total = 0
+    for _, row in match_pts.iterrows():
+        p1s = str(row.get("P1Score", "")).strip()
+        try:
+            int(p1s)          # tiebreak uses numeric score notation
+            tb_total += 1
+            if row["PointWinner"] == pn:
+                tb_won += 1
+        except ValueError:
+            pass
+
+    # ── NEW: Hold After Break Rate ─────────────────────────────────────────
+    # When the player is broken in a service game, do they hold in their
+    # very next service game? Captures mental resilience under adversity.
+
+    habr_won = habr_total = 0
+    pn_srv_results: List[bool] = []
+    for (sn_g, gn_g), gpts in sorted(
+            match_pts.groupby(["SetNo", "GameNo"]),
+            key=lambda x: (x[0][0], x[0][1])):
+        if "GameWinner" not in gpts.columns:
+            continue
+        gw = gpts["GameWinner"].iloc[-1]
+        if gw == 0:
+            continue
+        if gpts["PointServer"].iloc[0] == pn:
+            pn_srv_results.append(int(gw) == pn)
+
+    for i in range(1, len(pn_srv_results)):
+        if not pn_srv_results[i - 1]:   # previous service game = broken
+            habr_total += 1
+            if pn_srv_results[i]:        # current service game = held
+                habr_won += 1
+
     # ── totals ─────────────────────────────────────────────────────────────
 
     pts_won   = int(match_pts[f"P{pn}PointsWon"].iloc[-1]) if len(match_pts) else 0
@@ -470,6 +610,26 @@ def compute_match_features(player_name: str, player_num: int,
         # Tier 2 break point creation
         "bp_created": bp_created, "bp_converted": bp_converted,
         "bp_faced":   bp_faced,   "bp_saved":     bp_saved,
+        # NEW: rally volatility
+        "rv_won_sum": rv_won_sum, "rv_won_sq": rv_won_sq, "rv_won_n": rv_won_n,
+        # NEW: serve speed differential
+        "spd_1st_sum": spd_1st_sum, "spd_1st_n": spd_1st_n,
+        "spd_2nd_sum": spd_2nd_sum, "spd_2nd_n": spd_2nd_n,
+        # NEW: serve depth entropy
+        "depth_ctl": depth_ctl, "depth_nctl": depth_nctl,
+        # NEW: distance run efficiency & total
+        "dist_m_total": dist_m_total,
+        "dist_eff_sum": dist_eff_sum, "dist_eff_n": dist_eff_n,
+        **{f"dist_s{i}_sum": dist_s_sum[i] for i in range(1, 6)},
+        **{f"dist_s{i}_n":   dist_s_n[i]   for i in range(1, 6)},
+        # NEW: set transition delta
+        "st_pts_won": st_pts_won, "st_pts_total": st_pts_total,
+        # NEW: 1st serve aggression under pressure
+        "pres_srv_1st": pres_srv_1st, "pres_srv_total": pres_srv_total,
+        # NEW: tiebreak differential
+        "tb_won": tb_won, "tb_total": tb_total,
+        # NEW: hold after break rate
+        "habr_won": habr_won, "habr_total": habr_total,
         # totals
         "pts_won": pts_won, "pts_total": pts_total,
     }
@@ -659,6 +819,202 @@ def build_fingerprint(player_name: str, year: int,
         "bp_converted":       round(bp_cv_w, 1),
     }
 
+    # ── NEW: Rally volatility ──────────────────────────────────────────────
+    # Weighted variance of rally-length on player's won points.
+    # Var = E[X²] - E[X]²  using weighted sums.
+
+    rv_n_w  = ws("rv_won_n")
+    rally_volatility: Optional[dict] = None
+    if rv_n_w >= 10:
+        rv_mean  = ws("rv_won_sum") / rv_n_w
+        rv_var   = max(ws("rv_won_sq") / rv_n_w - rv_mean ** 2, 0.0)
+        rv_sd    = math.sqrt(rv_var)
+        rv_conf  = confidence_flag(round(rv_n_w))
+        rally_volatility = {
+            "available":  True,
+            "value":      round(rv_sd, 2),
+            "mean_rc_won": round(rv_mean, 2),
+            "n_eff":      round(rv_n_w),
+            "confidence": rv_conf,
+        }
+    else:
+        rally_volatility = {"available": False, "value": None}
+
+    # ── NEW: Serve speed differential ─────────────────────────────────────
+
+    spd_1st_n_w = ws("spd_1st_n")
+    spd_2nd_n_w = ws("spd_2nd_n")
+    serve_speed_differential: Optional[dict] = None
+    if spd_1st_n_w >= 5 and spd_2nd_n_w >= 5:
+        spd_1st_mean = round(ws("spd_1st_sum") / spd_1st_n_w, 1)
+        spd_2nd_mean = round(ws("spd_2nd_sum") / spd_2nd_n_w, 1)
+        ssd_value    = round(spd_1st_mean - spd_2nd_mean, 1)
+        serve_speed_differential = {
+            "available":      True,
+            "value":          ssd_value,   # positive = bigger gap (boom-or-bust)
+            "first_avg_kmh":  spd_1st_mean,
+            "second_avg_kmh": spd_2nd_mean,
+            "n_eff":          round(min(spd_1st_n_w, spd_2nd_n_w)),
+            "confidence":     confidence_flag(round(min(spd_1st_n_w, spd_2nd_n_w))),
+        }
+    else:
+        serve_speed_differential = {"available": False, "value": None}
+
+    # ── NEW: Serve depth entropy (CTL vs NCTL) ────────────────────────────
+
+    depth_ctl_w  = ws("depth_ctl")
+    depth_nctl_w = ws("depth_nctl")
+    serve_depth_entropy: Optional[dict] = None
+    depth_total_w = depth_ctl_w + depth_nctl_w
+    if depth_total_w >= 10:
+        p_ctl  = depth_ctl_w  / depth_total_w
+        p_nctl = depth_nctl_w / depth_total_w
+        # 2-category Shannon entropy — max = 1.0 bit (50/50 split)
+        ent_depth = 0.0
+        for p in (p_ctl, p_nctl):
+            if p > 0:
+                ent_depth -= p * math.log2(p)
+        serve_depth_entropy = {
+            "available":   True,
+            "value":       round(ent_depth, 4),
+            "pct_of_max":  round(ent_depth / 1.0 * 100, 1),  # max = 1 bit
+            "pct_deep":    round(p_ctl * 100, 1),             # CTL = deep
+            "n_eff":       round(depth_total_w),
+            "confidence":  confidence_flag(round(depth_total_w)),
+        }
+    else:
+        serve_depth_entropy = {"available": False, "value": None}
+
+    # ── NEW: Distance run efficiency & attrition slope ────────────────────
+
+    dist_eff_n_w    = ws("dist_eff_n")
+    dist_m_total_w  = ws("dist_m_total")
+    distance_run_efficiency: Optional[dict] = None
+    if dist_eff_n_w >= 10:
+        eff_mean = round(ws("dist_eff_sum") / dist_eff_n_w, 4)
+        distance_run_efficiency = {
+            "available":    True,
+            "value":        eff_mean,   # metres per rally-length unit (lower = efficient)
+            "n_eff":        round(dist_eff_n_w),
+            "confidence":   confidence_flag(round(dist_eff_n_w)),
+        }
+    else:
+        distance_run_efficiency = {"available": False, "value": None}
+
+    # Attrition slope: OLS slope of per-set distance avg across sets 1..5
+    attrition_slope: Optional[dict] = None
+    _set_avgs = []
+    for si in range(1, 6):
+        sn_w = ws(f"dist_s{si}_n")
+        if sn_w >= 5:
+            _set_avgs.append((si, ws(f"dist_s{si}_sum") / sn_w))
+    if len(_set_avgs) >= 2:
+        xs = [a[0] for a in _set_avgs]
+        ys = [a[1] for a in _set_avgs]
+        _xm, _ym = sum(xs)/len(xs), sum(ys)/len(ys)
+        _num = sum((x-_xm)*(y-_ym) for x, y in zip(xs, ys))
+        _den = sum((x-_xm)**2 for x in xs)
+        slope_val = round(_num / _den, 4) if _den > 0 else 0.0
+        attrition_slope = {
+            "available":  True,
+            "value":      slope_val,  # positive = running more per point as match progresses
+            "n_sets":     len(_set_avgs),
+            "set_avgs_m": {str(a[0]): round(a[1], 3) for a in _set_avgs},
+        }
+    else:
+        attrition_slope = {"available": False, "value": None}
+
+    # Fix distance block: total km from weighted point sum
+    dist_km_avg = round(dist_m_total_w / 1000, 2) if dist_m_total_w > 0 else None
+    distance_block = {
+        "available":        dist_km_avg is not None,
+        "avg_km_per_match": dist_km_avg,
+    }
+
+    # ── NEW: Set transition delta ──────────────────────────────────────────
+
+    st_won_w  = ws("st_pts_won")
+    st_tot_w  = ws("st_pts_total")
+    set_transition_delta: Optional[dict] = None
+    if st_tot_w >= 10 and pts_total_w > 0:
+        st_pct       = round(st_won_w  / st_tot_w  * 100, 1)
+        overall_pct  = round(pts_won_w / pts_total_w * 100, 1)
+        std_value    = round(st_pct - overall_pct, 1)
+        set_transition_delta = {
+            "available":         True,
+            "value":             std_value,  # positive = stronger set-start
+            "first_games_win_pct": st_pct,
+            "overall_win_pct":   overall_pct,
+            "n_eff":             round(st_tot_w),
+            "confidence":        confidence_flag(round(st_tot_w)),
+        }
+    else:
+        set_transition_delta = {"available": False, "value": None}
+
+    # ── NEW: 1st serve aggression under pressure ───────────────────────────
+
+    pres_srv_tot_w  = ws("pres_srv_total")
+    pres_srv_1st_w  = ws("pres_srv_1st")
+    first_serve_pressure: Optional[dict] = None
+    srv_total_w_new = ws("srv_total")
+    srv_1st_in_w    = ws("srv_1st_in")
+    if pres_srv_tot_w >= 5 and srv_total_w_new > 0:
+        fsp_pressure = round(pres_srv_1st_w / pres_srv_tot_w * 100, 1)
+        fsp_overall  = round(srv_1st_in_w   / srv_total_w_new * 100, 1)
+        fsp_delta    = round(fsp_pressure - fsp_overall, 1)
+        first_serve_pressure = {
+            "available":          True,
+            "value":              fsp_delta,   # negative = becomes more conservative under pressure
+            "fsp_at_pressure":    fsp_pressure,
+            "fsp_overall":        fsp_overall,
+            "n_eff":              round(pres_srv_tot_w),
+            "confidence":         confidence_flag(round(pres_srv_tot_w)),
+        }
+    else:
+        first_serve_pressure = {"available": False, "value": None}
+
+    # ── NEW: Tiebreak differential ────────────────────────────────────────
+
+    tb_won_w  = ws("tb_won")
+    tb_tot_w  = ws("tb_total")
+    tiebreak_differential: Optional[dict] = None
+    if tb_tot_w >= 5 and pts_total_w > 0:
+        tb_pct      = round(tb_won_w  / tb_tot_w  * 100, 1)
+        base_pct_tb = round(pts_won_w / pts_total_w * 100, 1)
+        tb_value    = round(tb_pct - base_pct_tb, 1)
+        tiebreak_differential = {
+            "available":      True,
+            "value":          tb_value,    # positive = clutch tiebreak player
+            "tb_win_pct":     tb_pct,
+            "baseline_win_pct": base_pct_tb,
+            "n_eff":          round(tb_tot_w),
+            "confidence":     confidence_flag(round(tb_tot_w)),
+        }
+    else:
+        tiebreak_differential = {"available": False, "value": None}
+
+    # ── NEW: Hold After Break Rate ────────────────────────────────────────
+    # Hold% in the service game immediately following a break, vs overall SGW%
+
+    habr_won_w = ws("habr_won")
+    habr_tot_w = ws("habr_total")
+    hold_after_break: Optional[dict] = None
+    if habr_tot_w >= 5:
+        habr_pct   = round(habr_won_w / habr_tot_w * 100, 1)
+        sgw_n      = ws("srv_games")
+        sgw_pct_b  = round(ws("srv_games_won") / sgw_n * 100, 1) if sgw_n > 0 else None
+        habr_delta = round(habr_pct - sgw_pct_b, 1) if sgw_pct_b is not None else None
+        hold_after_break = {
+            "available":    True,
+            "value":        habr_delta,    # +ve = bounces back above normal hold rate
+            "habr_pct":     habr_pct,      # hold% in first game after being broken
+            "sgw_pct":      sgw_pct_b,     # overall service-game hold%
+            "n_eff":        round(habr_tot_w),
+            "confidence":   confidence_flag(round(habr_tot_w)),
+        }
+    else:
+        hold_after_break = {"available": False, "value": None}
+
     # ── RLUEP (Rally-Length UFE Profile) ───────────────────────────────────
     # Session decision 12: UFE rate per rally band; 10+ band flagged if thin.
 
@@ -766,8 +1122,9 @@ def build_fingerprint(player_name: str, year: int,
             "confidence":     spci_conf,
             "verdict":        pressure_verdict(spci_value, "spci", spci_conf),
             "modifier_delta": spci_value,
-            "note": ("Partial SPCI: 2/5 components. Missing: rally_length@pressure, "
-                     "distance_per_shot@pressure, serve_dir_variety@pressure."),
+            "note": ("Partial SPCI: 2/5 components. "
+                     "See tiebreak_differential, set_transition_delta, first_serve_pressure "
+                     "for additional pressure metrics."),
         }
 
     # ── Overall fingerprint confidence (n_eff-based) ────────────────────────
@@ -794,17 +1151,29 @@ def build_fingerprint(player_name: str, year: int,
             "rgw_pct":  rgw,
         },
         "tier2": {
-            "serve_entropy":       serve_entropy,
-            "rally_win_curve":     rally_win_curve,
-            "clutch_differential": clutch,
-            "df_pressure_delta":   df_pressure,
-            "serve_speed_courage": spd_courage,
-            "court_side_asymmetry": court_asymmetry,
-            "momentum_profile":    momentum,
-            "bp_creation_profile": bp_profile,
-            "rluep":               rluep,
-            "spci":                spci,
+            # Existing
+            "serve_entropy":         serve_entropy,
+            "rally_win_curve":       rally_win_curve,
+            "clutch_differential":   clutch,
+            "df_pressure_delta":     df_pressure,
+            "serve_speed_courage":   spd_courage,
+            "court_side_asymmetry":  court_asymmetry,
+            "momentum_profile":      momentum,
+            "bp_creation_profile":   bp_profile,
+            "rluep":                 rluep,
+            "spci":                  spci,
+            # New indexes
+            "rally_volatility":         rally_volatility,
+            "serve_speed_differential": serve_speed_differential,
+            "serve_depth_entropy":      serve_depth_entropy,
+            "distance_run_efficiency":  distance_run_efficiency,
+            "attrition_slope":          attrition_slope,
+            "set_transition_delta":     set_transition_delta,
+            "first_serve_pressure":     first_serve_pressure,
+            "tiebreak_differential":    tiebreak_differential,
+            "hold_after_break":         hold_after_break,
         },
+        "distance": distance_block,
     }
 
 
@@ -869,14 +1238,12 @@ def build_year_fingerprints(year: int,
             days_before = (T_ref - match_date).days   # 0 for finals-week
             w_t = math.exp(-DECAY_LAMBDA * max(days_before, 0) / 365.0)
 
-            # ── Quality weight (date-capped — no look-ahead bias) ───────────
-            # Use the opponent's Elo as it stood at match_date, not their
-            # final career rating.  Falls back to neutral (1.0) if no
-            # pre-match snapshot exists yet (e.g. player's debut).
+            # ── Quality weight ──────────────────────────────────────────────
+            # Uses opponent's final adjusted Elo rating (no snapshot API yet).
+            # Falls back to neutral (1.0) if opponent unknown.
             if elo is not None:
-                w_q     = elo.quality_weight_at_by_name(
-                              opp_name, match_date, mean_active=mean_r)
-                r_at    = elo.adjusted_rating_at_by_name(opp_name, match_date)
+                w_q     = elo.quality_weight_by_name(opp_name, mean_active=mean_r)
+                r_at    = elo.adjusted_rating_by_name(opp_name)
                 opp_elo = round(r_at, 1) if r_at is not None else None
             else:
                 w_q     = 1.0

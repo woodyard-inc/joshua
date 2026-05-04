@@ -174,6 +174,52 @@ function pointWinProb(server, returner, band, isBreakPoint, isDeuce, opts = {}) 
     }
   }
 
+  // ── Tiebreak differential ─────────────────────────────────────────────
+  // Players with a positive tiebreak_differential win more points in
+  // tiebreaks than their overall baseline — wire that into tiebreak points.
+  if (opts.isTiebreak) {
+    const tb  = server.tier2?.tiebreak_differential;
+    const tbR = returner.tier2?.tiebreak_differential;
+    if (tb?.available && tb.value != null)
+      p += confWeight(tb.confidence) * (tb.value / 100) * 0.60;
+    if (tbR?.available && tbR.value != null)
+      p -= confWeight(tbR.confidence) * (tbR.value / 100) * 0.60;
+  }
+
+  // ── Set transition delta ──────────────────────────────────────────────
+  // Players with a positive set_transition_delta start sets stronger than
+  // their average — apply that edge to the opening games of each set.
+  if (opts.isSetOpener) {
+    const st  = server.tier2?.set_transition_delta;
+    const stR = returner.tier2?.set_transition_delta;
+    if (st?.available && st.value != null)
+      p += confWeight(st.confidence) * (st.value / 100) * 0.50;
+    if (stR?.available && stR.value != null)
+      p -= confWeight(stR.confidence) * (stR.value / 100) * 0.50;
+  }
+
+  // ── Hold after break ──────────────────────────────────────────────────
+  // When a server was broken in their previous service game, their
+  // hold_after_break rate captures whether they respond well or poorly.
+  if (opts.isPostBreak) {
+    const habr = server.tier2?.hold_after_break;
+    if (habr?.available && habr.value != null)
+      p += confWeight(habr.confidence) * (habr.value / 100) * 0.50;
+  }
+
+  // ── Attrition slope (per-set physical decay) ──────────────────────────
+  // A positive attrition_slope means the player runs more per point as
+  // the match progresses — a proxy for fatigue. Negative is efficient.
+  // Effect grows linearly with set number (setIndex 0 = first set, no effect).
+  if (opts.setIndex != null && opts.setIndex > 0) {
+    const att  = server.tier2?.attrition_slope;
+    const attR = returner.tier2?.attrition_slope;
+    if (att?.available && att.value != null)
+      p += -(att.value / 2.0) * opts.setIndex * 0.02;
+    if (attR?.available && attR.value != null)
+      p -= -(attR.value / 2.0) * opts.setIndex * 0.02;
+  }
+
   return clamp(p);
 }
 
@@ -182,8 +228,9 @@ function pointWinProb(server, returner, band, isBreakPoint, isDeuce, opts = {}) 
 /**
  * Simulate a single service game.
  * Returns true if the server holds, false if the returner breaks.
+ * gameOpts are forwarded into pointWinProb: { isSetOpener, isPostBreak, setIndex }.
  */
-function simulateGame(server, returner, rallyDist) {
+function simulateGame(server, returner, rallyDist, gameOpts = {}) {
   let s = 0, r = 0;
   let prevWonByServer = null;
 
@@ -197,7 +244,8 @@ function simulateGame(server, returner, rallyDist) {
 
     const band = sampleBand(rallyDist);
     const won  = Math.random() < pointWinProb(
-      server, returner, band, isBreakPoint, isDeuce, { prevWonByServer }
+      server, returner, band, isBreakPoint, isDeuce,
+      { prevWonByServer, ...gameOpts }
     );
 
     prevWonByServer = won;
@@ -237,7 +285,8 @@ function simulateTiebreak(fpA, fpB) {
     const isPressure = (pA >= 5 && pB >= 5) || atDeuce || adA || adB;
     const band = sampleBand(buildRallyDist(server, returner));
     const sWon = Math.random() < pointWinProb(
-      server, returner, band, adB /* break point from server's pov */, atDeuce, { prevWonByServer: prevWon }
+      server, returner, band, adB /* break point from server's pov */, atDeuce,
+      { prevWonByServer: prevWon, isTiebreak: true }
     );
 
     if (adA) { if (sWon === (server === fpA)) return true;  else { pA = 6; pB = 6; } }
@@ -257,16 +306,33 @@ function simulateTiebreak(fpA, fpB) {
 
 // ── Set simulation ─────────────────────────────────────────────────────────
 
-function simulateSet(fpA, fpB, aServesFirst) {
+/**
+ * Simulate a single set.
+ * setIndex: 0 = first set, 1 = second, etc. Used for attrition_slope decay.
+ * Tracks gameInSet for set_transition_delta (first 2 games of each set)
+ * and lastWasBreak for hold_after_break (server broken in previous game).
+ */
+function simulateSet(fpA, fpB, aServesFirst, setIndex = 0) {
   let gA = 0, gB = 0;
   let aServes = aServesFirst;
+  let gameInSet = 0;
+  let lastWasBreak = false;  // was the server broken in their last service game?
 
-  // Pre-build rally distributions (server perspective changes each game)
   for (;;) {
     const server   = aServes ? fpA : fpB;
     const returner = aServes ? fpB : fpA;
     const dist     = buildRallyDist(server, returner);
-    const held     = simulateGame(server, returner, dist);
+
+    const gameOpts = {
+      isSetOpener: gameInSet < 2,   // first two games of each set
+      isPostBreak: lastWasBreak,    // server was broken in their last service game
+      setIndex,                     // for attrition_slope decay
+    };
+
+    const held = simulateGame(server, returner, dist, gameOpts);
+
+    lastWasBreak = !held;  // update for next time this player serves
+    gameInSet++;
 
     if (aServes) { if (held) gA++; else gB++; }
     else          { if (held) gB++; else gA++; }
@@ -288,14 +354,16 @@ function simulateSet(fpA, fpB, aServesFirst) {
 function simulateMatch(fpA, fpB) {
   let sA = 0, sB = 0;
   let aServesSet = true;
+  let setIndex = 0;
 
   const setScores = [];
 
   while (sA < 3 && sB < 3) {
-    const { aWins, gA, gB } = simulateSet(fpA, fpB, aServesSet);
+    const { aWins, gA, gB } = simulateSet(fpA, fpB, aServesSet, setIndex);
     setScores.push(aWins ? `${gA}-${gB}` : `${gB}-${gA}`);
     if (aWins) sA++; else sB++;
     aServesSet = !aServesSet;  // alternate who serves first each set
+    setIndex++;
   }
 
   return { aWins: sA === 3, sA, sB };

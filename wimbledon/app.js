@@ -248,14 +248,27 @@ function renderProfile(name) {
   // ── Fingerprint cards ─────────────────────────────────────────
   renderTier1(f);
   renderEloSnapshot(f);
+  // Serve
   renderServeEntropy(f);
   renderServeSpeedCourage(f);
+  renderServeSpeedDifferential(f);
+  renderServeDepthEntropy(f);
+  // Return & Pressure
   renderDfPressure(f);
   renderBpCreation(f);
   renderClutch(f);
+  renderTiebreakDifferential(f);
+  renderSetTransitionDelta(f);
+  renderFirstServePressure(f);
+  // Rally & Shape
   renderRallyCurve(f);
+  renderRallyVolatility(f);
   renderCourtSide(f);
   renderMomentum(f);
+  // Physical
+  renderRunEfficiency(f);
+  renderAttritionSlope(f);
+  renderHoldAfterBreak(f);
 }
 
 // ── Player photos ─────────────────────────────────────────────────
@@ -1339,6 +1352,296 @@ function renderMomentum(f) {
     </div>`;
 }
 
+// ── Fingerprint: Serve Speed Differential ────────────────────────
+function renderServeSpeedDifferential(f) {
+  const container = document.getElementById("srv-speed-diff-viz");
+  const sd = f?.tier2?.serve_speed_differential;
+  if (!sd?.available) {
+    container.innerHTML = naCard("Speed Differential", f?.year || "this year");
+    return;
+  }
+  const gap    = sd.value;
+  const first  = sd.first_avg_kmh;
+  const second = sd.second_avg_kmh;
+  const MAX    = Math.max(first, second, 100) * 1.1;
+  const tight  = gap < 30;
+
+  container.innerHTML = `
+    <div class="courage-delta ${tight ? "courage-pos" : "courage-neg"}">${gap.toFixed(0)} km/h gap</div>
+    <div class="courage-sub">${tight ? "tight differential — consistent delivery" : "large gap — 2nd serve attackable"}</div>
+    <div class="courage-bars">
+      <div class="courage-row">
+        <span class="courage-row-label">1st Serve</span>
+        <div class="courage-track">
+          <div class="courage-fill courage-overall" style="width:${(first / MAX * 100).toFixed(1)}%">
+            <span class="courage-fill-label">${first.toFixed(0)} km/h</span>
+          </div>
+        </div>
+      </div>
+      <div class="courage-row">
+        <span class="courage-row-label">2nd Serve</span>
+        <div class="courage-track">
+          <div class="courage-fill courage-bp" style="width:${(second / MAX * 100).toFixed(1)}%">
+            <span class="courage-fill-label">${second.toFixed(0)} km/h</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Fingerprint: Serve Depth Entropy ─────────────────────────────
+function renderServeDepthEntropy(f) {
+  const container = document.getElementById("srv-depth-viz");
+  const sd = f?.tier2?.serve_depth_entropy;
+  if (!sd?.available) {
+    container.innerHTML = naCard("Serve Depth", f?.year || "this year");
+    return;
+  }
+  const pct  = sd.pct_of_max;
+  const deep = sd.pct_deep;
+  const bits = sd.value?.toFixed(3) ?? "—";
+
+  container.innerHTML = `
+    <div class="entropy-big-row">
+      <div class="entropy-big">${pct}%</div>
+      <div class="entropy-label">depth<br>mix</div>
+    </div>
+    <div class="entropy-track">
+      <div class="entropy-fill" style="width:${pct}%"></div>
+    </div>
+    <div class="entropy-axis"><span>← Predictable</span><span>Mixed →</span></div>
+    <div class="entropy-detail">${bits} bits · ${deep}% deep (CTL) · ${(100 - deep).toFixed(1)}% short (NCTL)</div>`;
+}
+
+// ── Fingerprint: Tiebreak Differential ───────────────────────────
+function renderTiebreakDifferential(f) {
+  const container = document.getElementById("tiebreak-viz");
+  const tb = f?.tier2?.tiebreak_differential;
+  if (!tb?.available) {
+    container.innerHTML = naCard("Tiebreak Differential", f?.year || "this year");
+    return;
+  }
+  const val     = tb.value;
+  const pos     = val >= 0;
+  const tbPct   = tb.tb_win_pct;
+  const basePct = tb.baseline_win_pct;
+
+  container.innerHTML = `
+    <div class="clutch-big ${pos ? "clutch-pos" : "clutch-neg"}">${pos ? "+" : ""}${val.toFixed(1)}%</div>
+    <div class="clutch-sub">${pos ? "above" : "below"} baseline in tiebreaks</div>
+    <div class="clutch-bars">
+      <div class="clutch-row">
+        <span class="clutch-row-label">Baseline win%</span>
+        <div class="clutch-track">
+          <div class="clutch-fill clutch-base-fill" style="width:${basePct}%">
+            <span class="clutch-fill-label">${basePct.toFixed(1)}%</span>
+          </div>
+        </div>
+      </div>
+      <div class="clutch-row">
+        <span class="clutch-row-label">Tiebreak win%</span>
+        <div class="clutch-track">
+          <div class="clutch-fill clutch-hl-fill" style="width:${tbPct}%">
+            <span class="clutch-fill-label">${tbPct.toFixed(1)}%</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Fingerprint: Set Transition Delta ────────────────────────────
+function renderSetTransitionDelta(f) {
+  const container = document.getElementById("set-transition-viz");
+  const st = f?.tier2?.set_transition_delta;
+  if (!st?.available) {
+    container.innerHTML = naCard("Set Transition", f?.year || "this year");
+    return;
+  }
+  const val     = st.value;
+  const pos     = val >= 0;
+  const first   = st.first_games_win_pct;
+  const overall = st.overall_win_pct;
+
+  container.innerHTML = `
+    <div class="clutch-big ${pos ? "clutch-pos" : "clutch-neg"}">${pos ? "+" : ""}${val.toFixed(1)}%</div>
+    <div class="clutch-sub">${pos ? "stronger" : "weaker"} in the first 2 games of each set</div>
+    <div class="clutch-bars">
+      <div class="clutch-row">
+        <span class="clutch-row-label">Overall win%</span>
+        <div class="clutch-track">
+          <div class="clutch-fill clutch-base-fill" style="width:${overall}%">
+            <span class="clutch-fill-label">${overall.toFixed(1)}%</span>
+          </div>
+        </div>
+      </div>
+      <div class="clutch-row">
+        <span class="clutch-row-label">Set openers</span>
+        <div class="clutch-track">
+          <div class="clutch-fill clutch-hl-fill" style="width:${first}%">
+            <span class="clutch-fill-label">${first.toFixed(1)}%</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Fingerprint: 1st Serve % Under Pressure ───────────────────────
+function renderFirstServePressure(f) {
+  const container = document.getElementById("fsp-pressure-viz");
+  const fsp = f?.tier2?.first_serve_pressure;
+  if (!fsp?.available) {
+    container.innerHTML = naCard("1st Serve Under Pressure", f?.year || "this year");
+    return;
+  }
+  const delta   = fsp.value;
+  const pos     = delta >= 0;
+  const atPres  = fsp.fsp_at_pressure;
+  const overall = fsp.fsp_overall;
+  const MAX     = Math.max(atPres, overall, 50) * 1.2;
+
+  container.innerHTML = `
+    <div class="courage-delta ${pos ? "courage-pos" : "courage-neg"}">${pos ? "+" : ""}${delta.toFixed(1)}%</div>
+    <div class="courage-sub">${pos ? "more aggressive" : "more cautious"} on deuce / ad points</div>
+    <div class="courage-bars">
+      <div class="courage-row">
+        <span class="courage-row-label">Overall 1st%</span>
+        <div class="courage-track">
+          <div class="courage-fill courage-overall" style="width:${(overall / MAX * 100).toFixed(1)}%">
+            <span class="courage-fill-label">${overall.toFixed(1)}%</span>
+          </div>
+        </div>
+      </div>
+      <div class="courage-row">
+        <span class="courage-row-label">At deuce / AD</span>
+        <div class="courage-track">
+          <div class="courage-fill courage-bp" style="width:${(atPres / MAX * 100).toFixed(1)}%">
+            <span class="courage-fill-label">${atPres.toFixed(1)}%</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ── Fingerprint: Rally Volatility ────────────────────────────────
+function renderRallyVolatility(f) {
+  const container = document.getElementById("rally-vol-viz");
+  const rv = f?.tier2?.rally_volatility;
+  if (!rv?.available) {
+    container.innerHTML = naCard("Rally Volatility", f?.year || "this year");
+    return;
+  }
+  const val  = rv.value;
+  const mean = rv.mean_rc_won;
+  // Typical range 1.5–6.0 shots std dev; normalise bar to 6.0
+  const pct  = Math.min(val / 6.0 * 100, 100).toFixed(1);
+
+  container.innerHTML = `
+    <div class="entropy-big-row">
+      <div class="entropy-big">${val.toFixed(2)}</div>
+      <div class="entropy-label">shots<br>std dev</div>
+    </div>
+    <div class="entropy-track">
+      <div class="entropy-fill" style="width:${pct}%"></div>
+    </div>
+    <div class="entropy-axis"><span>← Specialist</span><span>All-court →</span></div>
+    <div class="entropy-detail">Mean rally length (won pts): ${mean?.toFixed(1) ?? "—"} shots</div>`;
+}
+
+// ── Fingerprint: Run Efficiency ───────────────────────────────────
+function renderRunEfficiency(f) {
+  const container = document.getElementById("run-efficiency-viz");
+  const dre = f?.tier2?.distance_run_efficiency;
+  if (!dre?.available) {
+    container.innerHTML = naCard("Run Efficiency", f?.year || "this year");
+    return;
+  }
+  const val = dre.value;
+  // Range roughly 1–7 m/shot; invert so a low (efficient) value fills the bar more
+  const effPct = Math.max(0, Math.min(100, (1 - (val - 1) / 6) * 100)).toFixed(1);
+
+  container.innerHTML = `
+    <div class="entropy-big-row">
+      <div class="entropy-big">${val.toFixed(2)}</div>
+      <div class="entropy-label">m per<br>shot</div>
+    </div>
+    <div class="entropy-track">
+      <div class="entropy-fill" style="width:${effPct}%"></div>
+    </div>
+    <div class="entropy-axis"><span>← Efficient</span><span>Heavy runner →</span></div>
+    <div class="entropy-detail">Metres covered per rally-length unit (Elo-weighted)</div>`;
+}
+
+// ── Fingerprint: Attrition Slope ─────────────────────────────────
+function renderAttritionSlope(f) {
+  const container = document.getElementById("attrition-viz");
+  const at = f?.tier2?.attrition_slope;
+  if (!at?.available) {
+    container.innerHTML = naCard("Attrition Slope", f?.year || "this year");
+    return;
+  }
+  const slope  = at.value;
+  const neg    = slope < 0;
+  const avgs   = at.set_avgs_m || {};
+  const setNums = Object.keys(avgs).sort((a, b) => +a - +b);
+  const vals   = setNums.map(k => avgs[k]);
+  const MAX_V  = Math.max(...vals, 1) * 1.15;
+
+  const barsHtml = setNums.map(k => {
+    const v   = avgs[k];
+    const pct = (v / MAX_V * 100).toFixed(1);
+    return `
+      <div class="courage-row">
+        <span class="courage-row-label">Set ${k}</span>
+        <div class="courage-track">
+          <div class="courage-fill ${neg ? "courage-overall" : "courage-bp"}" style="width:${pct}%">
+            <span class="courage-fill-label">${(v / 1000).toFixed(2)} km</span>
+          </div>
+        </div>
+      </div>`;
+  }).join("");
+
+  container.innerHTML = `
+    <div class="courage-delta ${neg ? "courage-pos" : "courage-neg"}">${neg ? "" : "+"}${slope.toFixed(1)} m/set</div>
+    <div class="courage-sub">${neg ? "fresher in later sets" : "heavier load in later sets"}</div>
+    <div class="courage-bars">${barsHtml}</div>`;
+}
+
+function renderHoldAfterBreak(f) {
+  const container = document.getElementById("hold-after-break-viz");
+  const hab = f?.tier2?.hold_after_break;
+  if (!hab?.available) {
+    container.innerHTML = naCard("Hold After Break", f?.year || "this year");
+    return;
+  }
+  const habPct = hab.habr_pct;
+  const sgwPct = hab.sgw_pct;
+  const delta  = hab.value;
+  const pos    = delta >= 0;
+  const MAX_V  = Math.max(habPct, sgwPct, 1) * 1.1;
+
+  container.innerHTML = `
+    <div class="clutch-delta ${pos ? "clutch-pos" : "clutch-neg"}">${pos ? "+" : ""}${delta != null ? delta.toFixed(1) : "–"}pp after being broken</div>
+    <div class="clutch-sub">${pos ? "Bounces back above normal hold rate" : "Struggles to recover service hold after break"}</div>
+    <div class="clutch-bars">
+      <div class="clutch-row">
+        <span class="clutch-row-label">After Break</span>
+        <div class="clutch-track">
+          <div class="clutch-fill clutch-fill-hl" style="width:${(habPct / MAX_V * 100).toFixed(1)}%">
+            <span class="clutch-fill-label">${habPct.toFixed(1)}%</span>
+          </div>
+        </div>
+      </div>
+      <div class="clutch-row">
+        <span class="clutch-row-label">Overall Hold</span>
+        <div class="clutch-track">
+          <div class="clutch-fill clutch-fill-base" style="width:${(sgwPct / MAX_V * 100).toFixed(1)}%">
+            <span class="clutch-fill-label">${sgwPct.toFixed(1)}%</span>
+          </div>
+        </div>
+      </div>
+    </div>`;
+}
+
 // ── Helpers ───────────────────────────────────────────────────────
 function naCard(metric, year) {
   return `<div class="rally-na">
@@ -1361,21 +1664,31 @@ const LEADERBOARD_METRICS = [
   // Serve
   { id:"entropy",   label:"Serve Entropy",     section:"Serve",              fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.serve_entropy?.pct_of_max },
   { id:"courage",   label:"Serve Courage",     section:"Serve",              fmt:"kmh",   dir:"desc", extract:f=>f?.tier2?.serve_speed_courage?.value },
+  { id:"spd_diff",  label:"Speed Gap 1st–2nd", section:"Serve",              fmt:"dec1",  dir:"asc",  extract:f=>f?.tier2?.serve_speed_differential?.value },
+  { id:"depth_ent", label:"Depth Mix",         section:"Serve",              fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.serve_depth_entropy?.pct_of_max },
   // Return & Pressure
   { id:"clutch",    label:"Clutch Diff",       section:"Return & Pressure",  fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.clutch_differential?.value },
   { id:"df_delta",  label:"DF Pressure Δ",    section:"Return & Pressure",  fmt:"pp",    dir:"asc",  extract:f=>f?.tier2?.df_pressure_delta?.value },
   { id:"bp_per_g",  label:"BPs / Ret Game",   section:"Return & Pressure",  fmt:"dec3",  dir:"desc", extract:f=>f?.tier2?.bp_creation_profile?.bp_per_return_game },
   { id:"bp_conv",   label:"BP Conversion",     section:"Return & Pressure",  fmt:"pct1",  dir:"desc", extract:f=>{ const v=f?.tier2?.bp_creation_profile?.bp_conversion; return v!=null?v*100:null; }},
+  { id:"tiebreak",  label:"Tiebreak Diff",     section:"Return & Pressure",  fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.tiebreak_differential?.value },
+  { id:"set_trans", label:"Set Transition Δ",  section:"Return & Pressure",  fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.set_transition_delta?.value },
+  { id:"fsp_pres",  label:"1st Srv @ Pressure",section:"Return & Pressure",  fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.first_serve_pressure?.value },
   // Rally & Shape
   { id:"rw_1_3",    label:"Win % 1–3 shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["1_3"]?.win_pct },
   { id:"rw_4_6",    label:"Win % 4–6 shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["4_6"]?.win_pct },
   { id:"rw_7_9",    label:"Win % 7–9 shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["7_9"]?.win_pct },
   { id:"rw_10",     label:"Win % 10+ shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["10+"]?.win_pct },
+  { id:"rally_vol", label:"Rally Volatility",  section:"Rally & Shape",      fmt:"dec2",  dir:"desc", extract:f=>f?.tier2?.rally_volatility?.value },
   { id:"csa",       label:"Court Asymmetry",   section:"Rally & Shape",      fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.court_side_asymmetry?.asymmetry },
   // Momentum
   { id:"str_init",  label:"Streak Initiation", section:"Momentum",           fmt:"dec2",  dir:"desc", extract:f=>f?.tier2?.momentum_profile?.streak_initiation_rate },
   { id:"str_surv",  label:"Streak Survival",   section:"Momentum",           fmt:"pct1",  dir:"desc", extract:f=>{ const v=f?.tier2?.momentum_profile?.streak_survival_rate; return v!=null?v*100:null; }},
   { id:"str_rec",   label:"Streak Recovery",   section:"Momentum",           fmt:"pct1",  dir:"desc", extract:f=>{ const v=f?.tier2?.momentum_profile?.streak_recovery_rate; return v!=null?v*100:null; }},
+  // Physical
+  { id:"run_eff",   label:"Run Efficiency",    section:"Physical",           fmt:"dec2",  dir:"asc",  extract:f=>f?.tier2?.distance_run_efficiency?.value },
+  { id:"attrition", label:"Attrition Slope",   section:"Physical",           fmt:"dec1",  dir:"asc",  extract:f=>f?.tier2?.attrition_slope?.value },
+  { id:"hold_ab",   label:"Hold After Break",  section:"Physical",           fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.hold_after_break?.value },
 ];
 
 function fmtLbVal(val, fmt) {
@@ -1386,6 +1699,7 @@ function fmtLbVal(val, fmt) {
     case "elo":   return Math.round(val);
     case "kmh":   return (val >= 0 ? "+" : "") + val.toFixed(1) + " km/h";
     case "pp":    return (val >= 0 ? "+" : "") + val.toFixed(1) + "pp";
+    case "dec1":  return val.toFixed(1);
     case "dec2":  return val.toFixed(2);
     case "dec3":  return val.toFixed(3);
     default:      return val;

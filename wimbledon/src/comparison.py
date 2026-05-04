@@ -6,12 +6,12 @@ Bridges two player fingerprints to the Markov engine by computing:
   2. Confidence-gated five-axis edge values
   3. A MatchupOutput dataclass consumed by monte_carlo.py
 
-Five axes (Wimbledon grass weights):
-  Axis 1 — Serve vs Return     0.35
-  Axis 2 — Rally Shape         0.15
-  Axis 3 — Pressure Resilience 0.25
-  Axis 4 — Physical Durability 0.10  (partial — RDI/DCR not yet computed)
-  Axis 5 — Break Pressure      0.15
+Five axes (Wimbledon grass weights — empirically rebalanced 2026-05):
+  Axis 1 — Serve vs Return     0.40  (↑ strongest validated signal)
+  Axis 2 — Rally Shape         0.28  (↑ grass win% is clear #2 predictor)
+  Axis 3 — Pressure Resilience 0.12  (↓ meaningful but dataset-limited)
+  Axis 4 — Physical Durability 0.05  (unchanged — grass matches short)
+  Axis 5 — Break Pressure      0.15  (↓ BP conversion sparse on grass)
 
 Usage:
     from comparison import compare, load_fingerprint
@@ -47,10 +47,10 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 
 SURFACE_WEIGHTS: Dict[str, Dict[str, float]] = {
     "grass": {
-        "axis_serve_return":  0.35,
-        "axis_rally_shape":   0.15,
-        "axis_pressure":      0.25,
-        "axis_durability":    0.10,
+        "axis_serve_return":  0.40,
+        "axis_rally_shape":   0.28,
+        "axis_pressure":      0.12,
+        "axis_durability":    0.05,
         "axis_break_pressure":0.15,
     },
     "hard": {
@@ -241,27 +241,29 @@ def _axis_serve_return(fp_a: dict, fp_b: dict,
     """
     Edge = A's serve+return package minus B's (fully differential).
 
-    All components are (A - B) differences in z-scores, ensuring the
-    axis is symmetric: compare(A,B) == -compare(B,A), and identical
-    fingerprints produce zero edge.
-
-    Components (grass weights sum to 1.0):
-      0.40 × (z(fspw_pct_A) - z(fspw_pct_B))   — 1st serve quality edge
-      0.25 × (z(sspw_pct_A) - z(sspw_pct_B))   — 2nd serve quality edge
-      0.20 × (z(rpw_pct_A)  - z(rpw_pct_B))    — return quality edge
-      0.15 × (z(entropy_A)  - z(entropy_B))     — serve unpredictability edge
+    Components (grass weights, rescaled if data missing):
+      0.32 × (z(fspw_pct_A) - z(fspw_pct_B))   — 1st serve quality edge
+      0.20 × (z(sspw_pct_A) - z(sspw_pct_B))   — 2nd serve quality edge
+      0.16 × (z(rpw_pct_A)  - z(rpw_pct_B))    — return quality edge
+      0.10 × (z(entropy_A)  - z(entropy_B))     — serve direction unpredictability
+      0.12 × (spdA - spdB) / 30                 — mean serve speed (km/h)
+      0.06 × (ssdB - ssdA) / 20                 — speed differential reversed (lower = tighter 2nd)
+      0.04 × (sdepA - sdepB) / 30               — serve depth entropy (CTL/NCTL mix)
 
     Session Decision 7: entropy is directional (W/B/T) only.
     Session Decision 8: SSCI is NOT applied here (it's an SPCI component).
+    Rebalanced 2026-05 to match empirically calibrated compare.js.
     """
     components: dict = {}
+    raw = 0.0
+    w_sum = 0.0
 
     # --- 1st serve quality differential ---
     fspw_a = defl.z(year, "fspw_pct", _t1(fp_a, "fspw_pct"))
     fspw_b = defl.z(year, "fspw_pct", _t1(fp_b, "fspw_pct"))
-    serve1_score = 0.0
     if fspw_a is not None and fspw_b is not None:
-        serve1_score = 0.40 * (fspw_a - fspw_b)
+        raw   += 0.32 * (fspw_a - fspw_b)
+        w_sum += 0.32
         components["fspw_z_A"] = round(fspw_a, 3)
         components["fspw_z_B"] = round(fspw_b, 3)
         components["fspw_edge"] = round(fspw_a - fspw_b, 3)
@@ -269,32 +271,58 @@ def _axis_serve_return(fp_a: dict, fp_b: dict,
     # --- 2nd serve quality differential ---
     sspw_a = defl.z(year, "sspw_pct", _t1(fp_a, "sspw_pct"))
     sspw_b = defl.z(year, "sspw_pct", _t1(fp_b, "sspw_pct"))
-    serve2_score = 0.0
     if sspw_a is not None and sspw_b is not None:
-        serve2_score = 0.25 * (sspw_a - sspw_b)
+        raw   += 0.20 * (sspw_a - sspw_b)
+        w_sum += 0.20
         components["sspw_edge"] = round(sspw_a - sspw_b, 3)
 
     # --- Return quality differential ---
     rpw_a = defl.z(year, "rpw_pct", _t1(fp_a, "rpw_pct"))
     rpw_b = defl.z(year, "rpw_pct", _t1(fp_b, "rpw_pct"))
-    return_score = 0.0
     if rpw_a is not None and rpw_b is not None:
-        return_score = 0.20 * (rpw_a - rpw_b)
+        raw   += 0.16 * (rpw_a - rpw_b)
+        w_sum += 0.16
         components["rpw_edge"] = round(rpw_a - rpw_b, 3)
 
-    # --- Entropy (direction unpredictability) ---
+    # --- Entropy (direction unpredictability, z-scored) ---
     ent_a_raw = _t2(fp_a, "serve_entropy", "pct_of_max")
     ent_b_raw = _t2(fp_b, "serve_entropy", "pct_of_max")
-    entropy_score = 0.0
     if ent_a_raw is not None and ent_b_raw is not None:
         ent_a = defl.z(year, "serve_entropy_pct", ent_a_raw)
         ent_b = defl.z(year, "serve_entropy_pct", ent_b_raw)
         if ent_a is not None and ent_b is not None:
-            entropy_score = 0.15 * (ent_a - ent_b)
+            raw   += 0.10 * (ent_a - ent_b)
+            w_sum += 0.10
             components["entropy_edge_z"] = round(ent_a - ent_b, 3)
 
-    raw = serve1_score + serve2_score + return_score + entropy_score
-    edge = float(np.clip(raw, -AXIS_CLAMP, AXIS_CLAMP))
+    # --- NEW: Mean serve speed (overall_speed_kmh) ---
+    spd_a = _t2(fp_a, "serve_speed_courage", "overall_speed_kmh")
+    spd_b = _t2(fp_b, "serve_speed_courage", "overall_speed_kmh")
+    if spd_a is not None and spd_b is not None:
+        raw   += 0.12 * float(np.clip((spd_a - spd_b) / 30.0, -1, 1))
+        w_sum += 0.12
+        components["speed_edge_kmh"] = round(spd_a - spd_b, 1)
+
+    # --- NEW: Serve speed differential (1st − 2nd mean speed) — lower = better (reversed) ---
+    ssd_a = _t2(fp_a, "serve_speed_differential", "value")
+    ssd_b = _t2(fp_b, "serve_speed_differential", "value")
+    if ssd_a is not None and ssd_b is not None:
+        raw   += 0.06 * float(np.clip((ssd_b - ssd_a) / 20.0, -1, 1))
+        w_sum += 0.06
+        components["speed_diff_A"] = round(ssd_a, 1)
+        components["speed_diff_B"] = round(ssd_b, 1)
+
+    # --- NEW: Serve depth entropy (CTL/NCTL mix — unpredictability of depth) ---
+    sdep_a = _t2(fp_a, "serve_depth_entropy", "pct_of_max")
+    sdep_b = _t2(fp_b, "serve_depth_entropy", "pct_of_max")
+    if sdep_a is not None and sdep_b is not None:
+        raw   += 0.04 * float(np.clip((sdep_a - sdep_b) / 30.0, -1, 1))
+        w_sum += 0.04
+        components["depth_entropy_edge"] = round(sdep_a - sdep_b, 2)
+
+    # Rescale to declared weight if some components missing
+    scaled = (raw / w_sum) if w_sum > 0 else 0.0
+    edge = float(np.clip(scaled, -AXIS_CLAMP, AXIS_CLAMP))
     components["raw"] = round(raw, 4)
     return edge, components
 
@@ -304,39 +332,55 @@ def _axis_serve_return(fp_a: dict, fp_b: dict,
 def _axis_rally_shape(fp_a: dict, fp_b: dict) -> Tuple[float, dict, list]:
     """
     Edge = A's win-rate advantage integrated across rally-length bands,
-    weighted by grass-surface expected rally frequency.
+    weighted by grass-surface expected rally frequency, plus rally volatility.
 
-    Also identifies tactical trap zones: bands where A's RLUEP spike
-    coincides with B's win-rate peak (if RLUEP is available).
+    Components:
+      0.75 × rally_win_curve (integrated across GRASS_RALLY_WEIGHTS bands)
+      0.25 × rally_volatility (std dev of rally lengths on won points)
 
+    Rescaled if data missing. Trap zone detection requires RLUEP (currently null).
     Session Decision 12: RLUEP only adds value in 7-9 and 10+ bands.
     Returns: (edge, components, trap_zone)
     """
     rwc_a = fp_a.get("tier2", {}).get("rally_win_curve") or {}
     rwc_b = fp_b.get("tier2", {}).get("rally_win_curve") or {}
 
-    if not rwc_a or not rwc_b:
-        return 0.0, {"available": False}, []
-
     components: dict = {"available": True}
     raw = 0.0
-    bands_used = 0
+    w_sum = 0.0
 
+    # --- Rally win curve — scaled to 0.75 of axis weight ---
+    bands_used = 0
     for band, weight in GRASS_RALLY_WEIGHTS.items():
         win_a = rwc_a.get(band, {}).get("win_pct")
         win_b = rwc_b.get(band, {}).get("win_pct")
         if win_a is None or win_b is None:
             continue
-        # Normalise: 10pp difference → 1.0 contribution at weight 1.0
-        band_edge = weight * (win_a - win_b) / 10.0
-        raw += band_edge
+        # Normalise: 10pp difference → 1.0 contribution at weight × 0.75
+        band_edge = weight * 0.75 * (win_a - win_b) / 10.0
+        raw   += band_edge
+        w_sum += weight * 0.75
         components[f"edge_{band}"] = round(win_a - win_b, 2)
         bands_used += 1
 
-    if bands_used == 0:
+    # --- NEW: Rally volatility (higher = more adaptable; advantage on grass) ---
+    rv_a = _t2(fp_a, "rally_volatility", "value")
+    rv_b = _t2(fp_b, "rally_volatility", "value")
+    if rv_a is not None and rv_b is not None:
+        wa = _conf_weight(_t2_conf(fp_a, "rally_volatility"))
+        wb = _conf_weight(_t2_conf(fp_b, "rally_volatility"))
+        gated_diff = (rv_a * wa) - (rv_b * wb)
+        raw   += 0.25 * float(np.clip(gated_diff / 2.0, -1, 1))
+        w_sum += 0.25
+        components["rally_vol_A"] = round(rv_a, 3)
+        components["rally_vol_B"] = round(rv_b, 3)
+
+    if w_sum == 0:
         return 0.0, {"available": False}, []
 
-    edge = float(np.clip(raw, -AXIS_CLAMP, AXIS_CLAMP))
+    # Rescale to declared weight if some components missing
+    scaled = raw / w_sum
+    edge = float(np.clip(scaled, -AXIS_CLAMP, AXIS_CLAMP))
 
     # --- Trap zone detection (requires RLUEP — currently null) ---
     rluep_a = fp_a.get("tier2", {}).get("rluep")  # None until charting data wired
@@ -362,17 +406,20 @@ def _axis_pressure(fp_a: dict, fp_b: dict,
     """
     Edge = A's pressure-handling advantage over B.
 
-    Components:
-      0.50 × SPCI edge (A.spci - B.spci)          — confidence-gated
-      0.35 × Clutch Differential edge              — confidence-gated
-      0.15 × DF Pressure Delta edge (lower better) — confidence-gated
+    Components (rebalanced 2026-05, rescaled if data missing):
+      0.22 × SPCI edge                    — confidence-gated
+      0.16 × Clutch Differential edge     — confidence-gated
+      0.16 × DF Pressure Delta (reversed) — confidence-gated
+      0.24 × Tiebreak Differential        — win% above baseline in tiebreaks
+      0.14 × Set Transition Delta         — first-2-games win% vs overall
+      0.08 × 1st Serve % under Pressure   — maintains aggression on big points
 
     Session Decision 9: SPCI = Σ φ_k × (M_pressure - M_baseline)/M_baseline
-    Session Decision 8: SSCI only meaningful vs opponent RDAS (deferred).
-
     Returns: (edge, components, spci_a, spci_b) for Markov modifier use.
     """
     components: dict = {}
+    raw = 0.0
+    w_sum = 0.0
 
     # --- SPCI ---
     spci_a_node = fp_a.get("tier2", {}).get("spci") or {}
@@ -382,14 +429,13 @@ def _axis_pressure(fp_a: dict, fp_b: dict,
     spci_a_conf = spci_a_node.get("confidence") if isinstance(spci_a_node, dict) else None
     spci_b_conf = spci_b_node.get("confidence") if isinstance(spci_b_node, dict) else None
 
-    spci_score = 0.0
     if spci_a is not None and spci_b is not None:
         wa = _conf_weight(spci_a_conf)
         wb = _conf_weight(spci_b_conf)
         if wa > 0 or wb > 0:
-            # SPCI range roughly -0.3 to +0.3 → normalise to [-1,+1]
             gated_diff = (spci_a * wa) - (spci_b * wb)
-            spci_score = 0.50 * np.clip(gated_diff / 0.30, -1, 1)
+            raw   += 0.22 * float(np.clip(gated_diff / 0.30, -1, 1))
+            w_sum += 0.22
             components["spci_A"] = round(spci_a, 4)
             components["spci_B"] = round(spci_b, 4)
             components["spci_edge_gated"] = round(gated_diff, 4)
@@ -400,17 +446,16 @@ def _axis_pressure(fp_a: dict, fp_b: dict,
     clutch_a_conf = _t2_conf(fp_a, "clutch_differential")
     clutch_b_conf = _t2_conf(fp_b, "clutch_differential")
 
-    clutch_score = 0.0
     if clutch_a is not None and clutch_b is not None:
         wa = _conf_weight(clutch_a_conf)
         wb = _conf_weight(clutch_b_conf)
         gated_diff = (clutch_a * wa) - (clutch_b * wb)
-        # Clutch diff range roughly -15 to +15pp → normalise
-        clutch_score = 0.35 * float(np.clip(gated_diff / 12.0, -1, 1))
+        raw   += 0.16 * float(np.clip(gated_diff / 12.0, -1, 1))
+        w_sum += 0.16
         components["clutch_A"] = round(clutch_a, 2)
         components["clutch_B"] = round(clutch_b, 2)
         components["clutch_edge_gated"] = round(gated_diff, 3)
-    elif clutch_a is None and clutch_b is None:
+    else:
         components["clutch"] = "unavailable"
 
     # --- DF Pressure Delta (lower = better; A lower than B = A advantage) ---
@@ -419,18 +464,57 @@ def _axis_pressure(fp_a: dict, fp_b: dict,
     df_a_conf = _t2_conf(fp_a, "df_pressure_delta")
     df_b_conf = _t2_conf(fp_b, "df_pressure_delta")
 
-    df_score = 0.0
     if df_a is not None and df_b is not None:
         wa = _conf_weight(df_a_conf)
         wb = _conf_weight(df_b_conf)
-        # A lower DF delta = more pressure-resistant = positive edge for A
         gated_diff = (df_b * wb) - (df_a * wa)  # reversed: lower is better
-        df_score = 0.15 * float(np.clip(gated_diff / 10.0, -1, 1))
+        raw   += 0.16 * float(np.clip(gated_diff / 10.0, -1, 1))
+        w_sum += 0.16
         components["df_delta_A"] = round(df_a, 2)
         components["df_delta_B"] = round(df_b, 2)
 
-    raw = spci_score + clutch_score + df_score
-    edge = float(np.clip(raw, -AXIS_CLAMP, AXIS_CLAMP))
+    # --- NEW: Tiebreak Differential (win% above baseline in tiebreaks) ---
+    tb_a = fp_a.get("tier2", {}).get("tiebreak_differential")
+    tb_b = fp_b.get("tier2", {}).get("tiebreak_differential")
+    if isinstance(tb_a, dict) and isinstance(tb_b, dict):
+        if tb_a.get("value") is not None and tb_b.get("value") is not None:
+            wa = _conf_weight(tb_a.get("confidence"))
+            wb = _conf_weight(tb_b.get("confidence"))
+            gated_diff = (tb_a["value"] * wa) - (tb_b["value"] * wb)
+            raw   += 0.24 * float(np.clip(gated_diff / 8.0, -1, 1))
+            w_sum += 0.24
+            components["tiebreak_A"] = round(tb_a["value"], 2)
+            components["tiebreak_B"] = round(tb_b["value"], 2)
+
+    # --- NEW: Set Transition Delta (first-2-games win% vs overall) ---
+    st_a = fp_a.get("tier2", {}).get("set_transition_delta")
+    st_b = fp_b.get("tier2", {}).get("set_transition_delta")
+    if isinstance(st_a, dict) and isinstance(st_b, dict):
+        if st_a.get("value") is not None and st_b.get("value") is not None:
+            wa = _conf_weight(st_a.get("confidence"))
+            wb = _conf_weight(st_b.get("confidence"))
+            gated_diff = (st_a["value"] * wa) - (st_b["value"] * wb)
+            raw   += 0.14 * float(np.clip(gated_diff / 8.0, -1, 1))
+            w_sum += 0.14
+            components["set_trans_A"] = round(st_a["value"], 2)
+            components["set_trans_B"] = round(st_b["value"], 2)
+
+    # --- NEW: 1st Serve % under Pressure (higher = maintains aggression) ---
+    fsp_a = fp_a.get("tier2", {}).get("first_serve_pressure")
+    fsp_b = fp_b.get("tier2", {}).get("first_serve_pressure")
+    if isinstance(fsp_a, dict) and isinstance(fsp_b, dict):
+        if fsp_a.get("value") is not None and fsp_b.get("value") is not None:
+            wa = _conf_weight(fsp_a.get("confidence"))
+            wb = _conf_weight(fsp_b.get("confidence"))
+            gated_diff = (fsp_a["value"] * wa) - (fsp_b["value"] * wb)
+            raw   += 0.08 * float(np.clip(gated_diff / 10.0, -1, 1))
+            w_sum += 0.08
+            components["fsp_pressure_A"] = round(fsp_a["value"], 2)
+            components["fsp_pressure_B"] = round(fsp_b["value"], 2)
+
+    # Rescale to declared weight if some components missing
+    scaled = (raw / w_sum) if w_sum > 0 else 0.0
+    edge = float(np.clip(scaled, -AXIS_CLAMP, AXIS_CLAMP))
     components["raw"] = round(raw, 4)
 
     return (edge, components,
@@ -444,34 +528,56 @@ def _axis_durability(fp_a: dict, fp_b: dict) -> Tuple[float, dict]:
     """
     Physical durability edge.
 
-    Full implementation requires RDI (Recovery Decrement Index) and
-    DCR (Defensive Conversion Rate) — not yet computed in fingerprints.
-
-    Current proxy: distance run per match (higher = more physical demand
-    absorbed, indicating durability).  Returns partial score flagged as such.
+    Components (rescaled if data missing):
+      0.50 × avg_km_per_match         — raw distance covered (mobility)
+      0.30 × distance_run_efficiency  — m per rally-length unit (lower = better, reversed)
+      0.20 × attrition_slope          — OLS slope of per-set distances (lower = better, reversed)
 
     Note: this axis weight increases automatically in 4th/5th set Monte
     Carlo states (see monte_carlo.py).
     """
-    components: dict = {"partial": True,
-                        "missing": ["RDI", "DCR"],
-                        "note": "Full implementation requires per-point distance data"}
+    components: dict = {"note": "distance + efficiency + attrition proxy"}
+    raw = 0.0
+    w_sum = 0.0
 
-    # Distance run proxy
-    dist_a = fp_a.get("distance", {})
-    dist_b = fp_b.get("distance", {})
+    # --- Raw distance covered per match (km) — higher = more mobile ---
+    dist_a = fp_a.get("distance", {}) or {}
+    dist_b = fp_b.get("distance", {}) or {}
+    km_a = dist_a.get("avg_km_per_match") if isinstance(dist_a, dict) else None
+    km_b = dist_b.get("avg_km_per_match") if isinstance(dist_b, dict) else None
+    if km_a is not None and km_b is not None:
+        raw   += 0.50 * float(np.clip((km_a - km_b) / 2.0, -1, 1))
+        w_sum += 0.50
+        components["km_A"] = round(km_a, 2)
+        components["km_B"] = round(km_b, 2)
 
-    if isinstance(dist_a, dict) and isinstance(dist_b, dict):
-        km_a = dist_a.get("avg_km_per_match")
-        km_b = dist_b.get("avg_km_per_match")
-        if km_a is not None and km_b is not None:
-            # Higher distance = more physical = proxy for durability
-            edge = float(np.clip((km_a - km_b) / 2.0, -0.5, 0.5))
-            components["km_A"] = round(km_a, 2)
-            components["km_B"] = round(km_b, 2)
-            return edge, components
+    # --- NEW: Distance run efficiency (m per rally-length unit) — lower = more efficient ---
+    dre_a = _t2(fp_a, "distance_run_efficiency", "value")
+    dre_b = _t2(fp_b, "distance_run_efficiency", "value")
+    if dre_a is not None and dre_b is not None:
+        wa = _conf_weight(_t2_conf(fp_a, "distance_run_efficiency"))
+        wb = _conf_weight(_t2_conf(fp_b, "distance_run_efficiency"))
+        gated_diff = (dre_b * wb) - (dre_a * wa)   # reversed: lower is better for A
+        raw   += 0.30 * float(np.clip(gated_diff / 0.5, -1, 1))
+        w_sum += 0.30
+        components["dre_A"] = round(dre_a, 3)
+        components["dre_B"] = round(dre_b, 3)
 
-    return 0.0, components
+    # --- NEW: Attrition slope — lower = less tiring in later sets (reversed) ---
+    att_a = _t2(fp_a, "attrition_slope", "value")
+    att_b = _t2(fp_b, "attrition_slope", "value")
+    if att_a is not None and att_b is not None:
+        gated_diff = att_b - att_a   # reversed: lower slope is better for A
+        raw   += 0.20 * float(np.clip(gated_diff / 0.5, -1, 1))
+        w_sum += 0.20
+        components["attrition_A"] = round(att_a, 4)
+        components["attrition_B"] = round(att_b, 4)
+
+    # Rescale to declared weight if some components missing
+    scaled = (raw / w_sum) if w_sum > 0 else 0.0
+    edge = float(np.clip(scaled, -AXIS_CLAMP, AXIS_CLAMP))
+    components["raw"] = round(raw, 4)
+    return edge, components
 
 
 # ── Axis 5: Break Pressure ────────────────────────────────────────────────

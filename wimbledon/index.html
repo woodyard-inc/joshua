@@ -222,6 +222,20 @@
         <div id="courage-viz" class="courage-viz"></div>
       </div>
 
+      <!-- Serve Speed Differential -->
+      <div class="card">
+        <div class="card-header"><h3>Speed Differential</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Mean 1st vs 2nd serve speed · large gap = explosive 1st but attackable 2nd</p>
+        <div id="srv-speed-diff-viz" class="courage-viz"></div>
+      </div>
+
+      <!-- Serve Depth -->
+      <div class="card">
+        <div class="card-header"><h3>Serve Depth</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Deep (CTL) vs short (NCTL) placement · entropy = unpredictability of depth mix</p>
+        <div id="srv-depth-viz" class="entropy-viz"></div>
+      </div>
+
       <!-- ── SECTION: Return & Pressure ─────────────────────────── -->
       <div class="section-divider">
         <span class="section-divider-label">Return &amp; Pressure</span>
@@ -269,6 +283,27 @@
         <div id="df-pressure-viz" class="df-pressure-viz"></div>
       </div>
 
+      <!-- Tiebreak Differential -->
+      <div class="card">
+        <div class="card-header"><h3>Tiebreak Differential</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Win rate in tiebreaks vs baseline win rate · positive = clutch performer when the set is on the line</p>
+        <div id="tiebreak-viz" class="clutch-viz"></div>
+      </div>
+
+      <!-- Set Transition Delta -->
+      <div class="card">
+        <div class="card-header"><h3>Set Transition</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Win rate in first 2 games of each set vs overall · positive = starts sets on the front foot</p>
+        <div id="set-transition-viz" class="clutch-viz"></div>
+      </div>
+
+      <!-- First Serve Under Pressure -->
+      <div class="card">
+        <div class="card-header"><h3>1st Serve Under Pressure</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">1st serve % at deuce/ad points vs overall · positive = maintains aggression on the biggest points</p>
+        <div id="fsp-pressure-viz" class="courage-viz"></div>
+      </div>
+
       <!-- ── SECTION: Rally & Shape ──────────────────────────────── -->
       <div class="section-divider">
         <span class="section-divider-label">Rally &amp; Shape</span>
@@ -294,6 +329,13 @@
         <div class="card-header"><h3>Rally Win Curve</h3><span class="card-tag">Fingerprint</span></div>
         <p class="card-note">Win rate by rally length band · short-point specialist vs grinder profile</p>
         <div id="rally-curve-viz" class="rally-curve-viz"></div>
+      </div>
+
+      <!-- Rally Volatility -->
+      <div class="card">
+        <div class="card-header"><h3>Rally Volatility</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Std dev of rally lengths on won points · higher = adapts across all lengths · grass specialists often score high</p>
+        <div id="rally-vol-viz" class="entropy-viz"></div>
       </div>
 
       <!-- Court Side Asymmetry -->
@@ -355,6 +397,27 @@
         <div class="card-header"><h3>Distance Run</h3></div>
         <p class="card-note">Average km covered per match · from P1/P2DistanceRun · matches without tracking data excluded</p>
         <div id="distance-viz" class="distance-viz"></div>
+      </div>
+
+      <!-- Run Efficiency -->
+      <div class="card">
+        <div class="card-header"><h3>Run Efficiency</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Metres covered per rally-length unit · lower = more economical movement · grass serve-dominance keeps this low</p>
+        <div id="run-efficiency-viz" class="entropy-viz"></div>
+      </div>
+
+      <!-- Attrition Slope -->
+      <div class="card">
+        <div class="card-header"><h3>Attrition Slope</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Distance trend across sets · negative = running less in later sets (dominant) · positive = getting ground down</p>
+        <div id="attrition-viz" class="courage-viz"></div>
+      </div>
+
+      <!-- Hold After Break -->
+      <div class="card">
+        <div class="card-header"><h3>Hold After Break</h3><span class="card-tag">Fingerprint</span></div>
+        <p class="card-note">Service-hold rate in the game immediately following being broken vs overall hold% · measures bounce-back resilience</p>
+        <div id="hold-after-break-viz" class="clutch-viz"></div>
       </div>
 
       <!-- Match Log -->

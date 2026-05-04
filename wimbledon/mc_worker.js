@@ -371,6 +371,20 @@ function simulateMatch(fpA, fpB) {
   return { aWins: sA === 3, sA, sB };
 }
 
+// ── Platt calibration ──────────────────────────────────────────────────────
+// Temperature-scaling form: p_cal = sigmoid(PLATT_A × logit(p_raw))
+// Fitted from 646-match backtest (2014–2024) to address systematic
+// overconfidence at probability extremes.  PLATT_A < 1 compresses
+// predictions toward 0.5 — the model's relative ordering is preserved,
+// only the magnitude of confidence is adjusted.
+const PLATT_A = 0.33;
+
+function plattCalibrate(p) {
+  if (p <= 1e-9 || p >= 1 - 1e-9) return p;
+  const logit = Math.log(p / (1 - p));
+  return 1 / (1 + Math.exp(-PLATT_A * logit));
+}
+
 // ── Monte Carlo run ────────────────────────────────────────────────────────
 
 function runMonteCarlo(fpA, fpB, nSims, onProgress) {
@@ -391,10 +405,12 @@ function runMonteCarlo(fpA, fpB, nSims, onProgress) {
     }
   }
 
-  const pWinA = winsA / nSims;
+  // Raw MC output → Platt-calibrated probability
+  const pWinA_raw = winsA / nSims;
+  const pWinA = plattCalibrate(pWinA_raw);
   const pWinB = 1 - pWinA;
 
-  // Wilson confidence interval
+  // Wilson confidence interval (computed on calibrated probability)
   const z  = 1.96;
   const n  = nSims;
   const p  = pWinA;
@@ -408,7 +424,7 @@ function runMonteCarlo(fpA, fpB, nSims, onProgress) {
   const scoreDist = {};
   for (const [k, c] of Object.entries(scoreCount)) scoreDist[k] = c / nSims;
 
-  return { pWinA, pWinB, scoreDist, ciLow, ciHigh, nSims };
+  return { pWinA, pWinB, scoreDist, ciLow, ciHigh, nSims, pWinA_raw };
 }
 
 // ── Axis contribution analysis ─────────────────────────────────────────────

@@ -834,26 +834,186 @@ def compare(fp_a: dict, fp_b: dict,
     )
 
 
+# ── grass profile merging ─────────────────────────────────────────────────
+
+# Relevance multiplier: Wimbledon PBP data is from the actual venue so
+# each observation carries more weight than a Queen's / Halle match.
+WIMBLEDON_RELEVANCE = 1.5
+
+_TIER1_KEYS = ["fsp_pct", "fspw_pct", "sspw_pct", "rpw_pct", "sgw_pct", "rgw_pct"]
+
+
+def _load_grass_profiles(year: int, data_dir: Path = DATA_DIR) -> Dict[str, dict]:
+    """Load the grass profile file for `year`, returning {} if missing."""
+    for gp_path in [data_dir / "processed" / f"{year}_grass_profiles.json",
+                    data_dir / f"{year}_grass_profiles.json"]:
+        if gp_path.exists():
+            return json.loads(gp_path.read_text())
+    return {}
+
+
+def _lookup_name(pool: dict, name: str) -> Optional[dict]:
+    """Case-insensitive + partial-match lookup in a name→dict pool."""
+    # Exact (case-insensitive)
+    for k, v in pool.items():
+        if k.lower() == name.lower():
+            return v
+    # Unique partial match
+    matches = [v for k, v in pool.items() if name.lower() in k.lower()]
+    return matches[0] if len(matches) == 1 else None
+
+
+def merge_grass_tier1(fp: dict, grass: dict) -> dict:
+    """
+    Blend grass-circuit Tier 1 into a Wimbledon fingerprint by sample size.
+
+    Both sources measure the same metrics (fsp_pct, etc.) on grass courts.
+    Weighting by n_eff with a relevance multiplier for Wimbledon data
+    is a principled Bayesian pooling of two independent samples.
+    """
+    import copy
+    merged = copy.deepcopy(fp)
+
+    # Estimate fingerprint-wide n_eff from n_points (total PBP points observed)
+    fp_n_total = fp.get("n_points") or fp.get("n_srv_points") or 0
+
+    for key in _TIER1_KEYS:
+        fp_metric  = fp.get("tier1", {}).get(key, {}) or {}
+        gp_metric  = grass.get("tier1", {}).get(key, {}) or {}
+
+        fp_val = fp_metric.get("value") if isinstance(fp_metric, dict) else None
+        gp_val = gp_metric.get("value") if isinstance(gp_metric, dict) else None
+
+        if fp_val is None and gp_val is None:
+            continue
+
+        # Per-metric n_eff: use metric-level if available, else top-level proxy
+        fp_n = (fp_metric.get("n_eff") or fp_n_total) * WIMBLEDON_RELEVANCE
+        gp_n = gp_metric.get("n_eff") or grass.get("n_srv_points") or 0
+
+        if fp_val is None:
+            # No Wimbledon data for this metric — use grass profile entirely
+            merged.setdefault("tier1", {})[key] = gp_metric
+        elif gp_val is None:
+            pass  # keep existing fingerprint value
+        else:
+            # Both available — n_eff-weighted blend
+            total_n = fp_n + gp_n
+            if total_n > 0:
+                blended = (fp_val * fp_n + gp_val * gp_n) / total_n
+            else:
+                blended = (fp_val + gp_val) / 2
+            # Merge CI bounds if the fingerprint has them
+            new_metric = {
+                "value": round(blended, 1),
+                "n_eff": round(total_n),
+                "confidence": "RELIABLE" if total_n >= 60 else
+                              "LOW"      if total_n >= 30 else "UNRELIABLE",
+            }
+            if "ci_90_lo" in fp_metric:
+                new_metric["ci_90_lo"] = fp_metric["ci_90_lo"]
+                new_metric["ci_90_hi"] = fp_metric["ci_90_hi"]
+            merged["tier1"][key] = new_metric
+
+    merged["grass_enriched"]        = True
+    merged["grass_n_matches"]       = grass.get("n_matches", 0)
+    merged["grass_n_srv_points"]    = grass.get("n_srv_points", 0)
+    return merged
+
+
+def grass_profile_as_fingerprint(grass: dict) -> dict:
+    """
+    Wrap a grass-only profile as a fingerprint-compatible dict.
+
+    Used for players without Wimbledon PBP data so the comparison
+    engine can still compute Tier 1 axes (serve/return/break pressure).
+    Tier 2 is empty — the MC engine gracefully ignores missing Tier 2.
+    """
+    return {
+        "player":           grass.get("player", ""),
+        "year":             grass.get("year"),
+        "surface":          "grass",
+        "source":           "grass_atp_only",
+        "confidence":       grass.get("confidence", "LOW"),
+        "n_points":         grass.get("n_srv_points", 0),
+        "n_matches":        grass.get("n_matches", 0),
+        "tier2_available":  False,
+        "tier1":            grass.get("tier1", {}),
+        "tier2":            {},
+        "elo_snapshot":     grass.get("elo_snapshot"),
+        "grass_enriched":   True,
+        "grass_n_matches":  grass.get("n_matches", 0),
+        "grass_n_srv_points": grass.get("n_srv_points", 0),
+    }
+
+
 # ── fingerprint loader ────────────────────────────────────────────────────
 
 def load_fingerprint(player: str, year: int,
-                     data_dir: Path = DATA_DIR) -> Optional[dict]:
-    """Load a single player fingerprint from the docs/data JSON files."""
+                     data_dir: Path = DATA_DIR,
+                     merge_grass: bool = True) -> Optional[dict]:
+    """
+    Load a player fingerprint, optionally enriched with grass ATP profile.
+
+    Priority:
+      1. Wimbledon PBP fingerprint + grass profile blend (both exist)
+      2. Wimbledon PBP fingerprint alone (no grass data)
+      3. Grass-only synthetic fingerprint (no Wimbledon PBP)
+      4. None (player not found anywhere)
+    """
+    # Load fingerprint pool
+    fp = None
     fp_file = data_dir / f"{year}_fingerprints.json"
-    if not fp_file.exists():
-        raise FileNotFoundError(f"No fingerprint file for {year}: {fp_file}")
-    fps = json.loads(fp_file.read_text())
-    # Case-insensitive name lookup
-    for name, fp in fps.items():
-        if name.lower() == player.lower():
-            return fp
-    # Partial match fallback
-    matches = [fp for name, fp in fps.items()
-               if player.lower() in name.lower()]
-    if len(matches) == 1:
-        return matches[0]
-    if len(matches) > 1:
-        names = [fp["player"] for fp in matches]
-        raise ValueError(f"Ambiguous player '{player}'. Matches: {names}")
-    raise ValueError(f"Player '{player}' not found in {year} fingerprints. "
-                     f"Available: {sorted(fps.keys())[:10]}...")
+    if fp_file.exists():
+        fps = json.loads(fp_file.read_text())
+        fp = _lookup_name(fps, player)
+
+    # Load grass profile
+    grass = None
+    if merge_grass:
+        gps = _load_grass_profiles(year, data_dir)
+        grass = _lookup_name(gps, player)
+
+    # Merge or fall back
+    if fp is not None and grass is not None:
+        return merge_grass_tier1(fp, grass)
+    elif fp is not None:
+        return fp
+    elif grass is not None:
+        return grass_profile_as_fingerprint(grass)
+    else:
+        return None
+
+
+def load_all_fingerprints(year: int, data_dir: Path = DATA_DIR,
+                          merge_grass: bool = True) -> Dict[str, dict]:
+    """
+    Load all fingerprints for a year, merged with grass profiles.
+
+    Returns dict keyed by player name.
+    Used by the backtest for bulk loading.
+    """
+    result: Dict[str, dict] = {}
+
+    # Load Wimbledon PBP fingerprints
+    fp_file = data_dir / f"{year}_fingerprints.json"
+    fps = json.loads(fp_file.read_text()) if fp_file.exists() else {}
+
+    # Load grass profiles
+    gps = _load_grass_profiles(year, data_dir) if merge_grass else {}
+
+    # All players from both sources
+    all_names = set(fps.keys()) | set(gps.keys())
+
+    for name in all_names:
+        fp    = fps.get(name)
+        grass = gps.get(name)
+
+        if fp is not None and grass is not None:
+            result[name] = merge_grass_tier1(fp, grass)
+        elif fp is not None:
+            result[name] = fp
+        elif grass is not None:
+            result[name] = grass_profile_as_fingerprint(grass)
+
+    return result

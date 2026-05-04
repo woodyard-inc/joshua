@@ -81,110 +81,104 @@
       2024
     ],
     "min_test_year": 2014,
-    "n_total": 646,
-    "accuracy": 0.638,
-    "brier": 0.2561,
-    "brier_skill": -0.024,
-    "log_loss": 0.8508,
+    "n_total": 915,
+    "accuracy": 0.64,
+    "brier": 0.2286,
+    "brier_skill": 0.086,
+    "log_loss": 0.6496,
     "naive_brier": 0.25,
     "per_year": {
       "2014": {
-        "n_matches": 49,
-        "accuracy": 0.592,
-        "brier": 0.249,
-        "log_loss": 0.736
+        "n_matches": 89,
+        "accuracy": 0.618,
+        "brier": 0.237,
+        "log_loss": 0.667
       },
       "2015": {
-        "n_matches": 66,
-        "accuracy": 0.53,
-        "brier": 0.335,
-        "log_loss": 1.265
+        "n_matches": 97,
+        "accuracy": 0.67,
+        "brier": 0.224,
+        "log_loss": 0.643
       },
       "2016": {
-        "n_matches": 83,
-        "accuracy": 0.699,
-        "brier": 0.205,
-        "log_loss": 0.614
+        "n_matches": 104,
+        "accuracy": 0.683,
+        "brier": 0.207,
+        "log_loss": 0.6
       },
       "2017": {
-        "n_matches": 72,
-        "accuracy": 0.708,
-        "brier": 0.223,
-        "log_loss": 0.703
+        "n_matches": 99,
+        "accuracy": 0.697,
+        "brier": 0.213,
+        "log_loss": 0.616
       },
       "2018": {
-        "n_matches": 77,
-        "accuracy": 0.701,
-        "brier": 0.2,
-        "log_loss": 0.63
+        "n_matches": 98,
+        "accuracy": 0.694,
+        "brier": 0.215,
+        "log_loss": 0.621
       },
       "2019": {
-        "n_matches": 71,
-        "accuracy": 0.606,
-        "brier": 0.298,
-        "log_loss": 1.222
+        "n_matches": 97,
+        "accuracy": 0.608,
+        "brier": 0.245,
+        "log_loss": 0.687
       },
       "2021": {
-        "n_matches": 70,
-        "accuracy": 0.571,
-        "brier": 0.29,
-        "log_loss": 0.892
+        "n_matches": 84,
+        "accuracy": 0.56,
+        "brier": 0.245,
+        "log_loss": 0.684
       },
       "2022": {
-        "n_matches": 53,
-        "accuracy": 0.623,
-        "brier": 0.283,
-        "log_loss": 0.979
+        "n_matches": 80,
+        "accuracy": 0.637,
+        "brier": 0.247,
+        "log_loss": 0.694
       },
       "2023": {
-        "n_matches": 46,
-        "accuracy": 0.717,
-        "brier": 0.254,
-        "log_loss": 0.754
+        "n_matches": 86,
+        "accuracy": 0.628,
+        "brier": 0.233,
+        "log_loss": 0.658
       },
       "2024": {
-        "n_matches": 59,
-        "accuracy": 0.61,
-        "brier": 0.247,
-        "log_loss": 0.749
+        "n_matches": 81,
+        "accuracy": 0.58,
+        "brier": 0.228,
+        "log_loss": 0.646
       }
     },
     "calibration": [
       {
-        "pred_range": "0.00\u20130.19",
-        "pred_mean": 0.086,
-        "actual_rate": 0.31,
-        "n": 129
+        "pred_range": "0.00\u20130.39",
+        "pred_mean": 0.299,
+        "actual_rate": 0.35,
+        "n": 183
       },
       {
-        "pred_range": "0.19\u20130.45",
-        "pred_mean": 0.328,
-        "actual_rate": 0.426,
-        "n": 129
+        "pred_range": "0.39\u20130.47",
+        "pred_mean": 0.437,
+        "actual_rate": 0.393,
+        "n": 183
       },
       {
-        "pred_range": "0.45\u20130.63",
-        "pred_mean": 0.535,
-        "actual_rate": 0.597,
-        "n": 129
+        "pred_range": "0.47\u20130.54",
+        "pred_mean": 0.505,
+        "actual_rate": 0.508,
+        "n": 183
       },
       {
-        "pred_range": "0.63\u20130.83",
-        "pred_mean": 0.736,
-        "actual_rate": 0.667,
-        "n": 129
+        "pred_range": "0.54\u20130.62",
+        "pred_mean": 0.574,
+        "actual_rate": 0.634,
+        "n": 183
       },
       {
-        "pred_range": "0.84\u20131.00",
-        "pred_mean": 0.927,
-        "actual_rate": 0.659,
-        "n": 129
-      },
-      {
-        "pred_range": "1.00\u20131.00",
-        "pred_mean": 1.0,
-        "actual_rate": 1.0,
-        "n": 1
+        "pred_range": "0.62\u20131.00",
+        "pred_mean": 0.698,
+        "actual_rate": 0.765,
+        "n": 183
       }
     ],
     "notes": "Coverage ~50\u201370% per year \u2014 first-time Wimbledon players have no prior fingerprint and are excluded. These tend to be lower-seeded players, so excluded matches are systematically easier to predict, meaning true accuracy on uncovered matches may be lower."

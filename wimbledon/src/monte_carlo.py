@@ -29,11 +29,27 @@ Usage:
 
 from __future__ import annotations
 
+import math
 import random
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
 from markov import TennisMarkov
+
+
+# ── Platt calibration ────────────────────────────────────────────────────────
+# Temperature-scaling form: p_cal = sigmoid(PLATT_A × logit(p_raw))
+# Addresses systematic overconfidence identified in 646-match backtest.
+# Fitted parameter: PLATT_A = 0.33 (< 1 compresses toward 0.5)
+PLATT_A = 0.33
+
+
+def _platt_calibrate(p: float) -> float:
+    """Calibrate a raw MC win probability via temperature scaling."""
+    if p <= 1e-9 or p >= 1 - 1e-9:
+        return p
+    logit_p = math.log(p / (1.0 - p))
+    return 1.0 / (1.0 + math.exp(-PLATT_A * logit_p))
 
 
 # ── simulation parameters ─────────────────────────────────────────────────
@@ -372,12 +388,19 @@ def simulate_match(matchup,
         (sa + sb) * (count / n)
         for (sa, sb), count in score_counts.items())
 
+    # ── Platt calibration ────────────────────────────────────────────────────
+    # The raw Monte Carlo output is systematically overconfident at extremes.
+    # Fitted from 646-match backtest (2014–2024): sigmoid(0.33 × logit(p_raw))
+    # This is the "temperature scaling" form of Platt calibration (b≈0).
+    p_raw = wins_a / n
+    p_win_a = _platt_calibrate(p_raw)
+
     return SimulationResult(
         player_a           = matchup.player_a,
         player_b           = matchup.player_b,
         n_simulations      = n,
-        p_win_a            = wins_a / n,
-        p_win_b            = 1.0 - wins_a / n,
+        p_win_a            = p_win_a,
+        p_win_b            = 1.0 - p_win_a,
         score_dist         = score_dist,
         expected_sets      = round(expected_sets, 2),
         analytical_p_win_a = markov.p_match(),

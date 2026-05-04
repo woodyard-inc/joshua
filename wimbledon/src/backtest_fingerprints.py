@@ -32,7 +32,7 @@ ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(Path(__file__).parent))
 
 from build_player_profiles import load_year, men_match_ids
-from comparison import compare, DATA_DIR as COMP_DATA_DIR
+from comparison import compare, load_all_fingerprints, DATA_DIR as COMP_DATA_DIR
 from monte_carlo import simulate_match
 
 # ── constants ─────────────────────────────────────────────────────────────────
@@ -54,14 +54,10 @@ def prior_edition(year: int) -> Optional[int]:
     return past[-1] if past else None
 
 
-def load_fp_file(year: int) -> Dict[str, dict]:
-    """Load all fingerprints for a given year (keyed by player name)."""
-    fp_file = ROOT / "data" / "processed" / f"{year}_fingerprints.json"
-    if not fp_file.exists():
-        fp_file = ROOT / "data" / f"{year}_fingerprints.json"
-    if not fp_file.exists():
-        return {}
-    return json.loads(fp_file.read_text())
+def load_fp_file(year: int, merge_grass: bool = True) -> Dict[str, dict]:
+    """Load all fingerprints for a given year, merged with grass profiles."""
+    data_dir = ROOT / "data"
+    return load_all_fingerprints(year, data_dir=data_dir, merge_grass=merge_grass)
 
 
 def match_winner_from_points(pts: pd.DataFrame, match_id: str) -> Optional[int]:

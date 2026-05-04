@@ -136,26 +136,107 @@ async function boot() {
 
 async function loadFingerprintsOnly(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
-  return fetch(`${base}/data/${year}_fingerprints.json`, { cache: "no-store" })
-    .then(r => r.json())
-    .catch(() => null);
+  const nc = { cache: "no-store" };
+  const [fps, gps] = await Promise.all([
+    fetch(`${base}/data/${year}_fingerprints.json`, nc).then(r => r.json()).catch(() => null),
+    fetch(`${base}/data/${year}_grass_profiles.json`, nc).then(r => r.json()).catch(() => ({})),
+  ]);
+  if (!fps) return null;
+  return mergeGrassProfiles(fps, gps);
 }
 
 async function loadYear(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
   const nc   = { cache: "no-store" };
-  const [profiles, tourn, fingerprints] = await Promise.all([
+  const [profiles, tourn, fingerprints, grassProfiles] = await Promise.all([
     fetch(`${base}/data/${year}_men_profiles.json`, nc).then(r => r.json()),
     fetch(`${base}/data/${year}_men_tournament.json`, nc).then(r => r.json()),
     fetch(`${base}/data/${year}_fingerprints.json`, nc).then(r => r.json()).catch(() => ({})),
+    fetch(`${base}/data/${year}_grass_profiles.json`, nc).then(r => r.json()).catch(() => ({})),
   ]);
   state.profiles     = profiles;
   state.tournament   = tourn;
-  state.fingerprints = fingerprints;
+  state.fingerprints = mergeGrassProfiles(fingerprints, grassProfiles);
   state.year         = year;
   populateDropdown();
   populateMuDropdowns();
   if (state.mode === "leaderboard") renderLeaderboard();
+}
+
+/**
+ * Merge grass ATP profiles into Wimbledon PBP fingerprints.
+ *
+ * For players WITH a fingerprint: blend Tier 1 metrics (n_eff-weighted).
+ * For players WITHOUT a fingerprint: create a synthetic fingerprint
+ * from the grass profile so the MC engine can still run.
+ *
+ * Wimbledon PBP data gets a 1.5× relevance multiplier per observation
+ * since it comes from the actual venue.
+ */
+function mergeGrassProfiles(fingerprints, grassProfiles) {
+  const WIMBLEDON_RELEVANCE = 1.5;
+  const T1_KEYS = ["fsp_pct", "fspw_pct", "sspw_pct", "rpw_pct", "sgw_pct", "rgw_pct"];
+  const merged = { ...fingerprints };
+
+  for (const [name, grass] of Object.entries(grassProfiles)) {
+    if (merged[name]) {
+      // Blend: fingerprint already exists — enrich Tier 1 with grass data
+      const fp = merged[name];
+      const fpN = (fp.n_points || fp.n_srv_points || 0) * WIMBLEDON_RELEVANCE;
+
+      for (const key of T1_KEYS) {
+        const fpM  = fp.tier1?.[key] || {};
+        const gpM  = grass.tier1?.[key] || {};
+        const fpVal = fpM?.value;
+        const gpVal = gpM?.value;
+
+        if (fpVal == null && gpVal == null) continue;
+        if (fpVal == null) {
+          if (!fp.tier1) fp.tier1 = {};
+          fp.tier1[key] = gpM;
+          continue;
+        }
+        if (gpVal == null) continue;
+
+        // Both available — weighted blend
+        const fN = (fpM.n_eff || fpN);
+        const gN = (gpM.n_eff || grass.n_srv_points || 0);
+        const total = fN + gN;
+        const blended = total > 0
+          ? (fpVal * fN + gpVal * gN) / total
+          : (fpVal + gpVal) / 2;
+
+        fp.tier1[key] = {
+          value: Math.round(blended * 10) / 10,
+          n_eff: Math.round(total),
+          confidence: total >= 60 ? "RELIABLE" : total >= 30 ? "LOW" : "UNRELIABLE",
+          ...(fpM.ci_90_lo != null ? { ci_90_lo: fpM.ci_90_lo, ci_90_hi: fpM.ci_90_hi } : {}),
+        };
+      }
+      fp.grass_enriched     = true;
+      fp.grass_n_matches    = grass.n_matches || 0;
+      fp.grass_n_srv_points = grass.n_srv_points || 0;
+    } else {
+      // No fingerprint — create synthetic from grass profile
+      merged[name] = {
+        player:          grass.player || name,
+        year:            grass.year,
+        surface:         "grass",
+        source:          "grass_atp_only",
+        confidence:      grass.confidence || "LOW",
+        n_points:        grass.n_srv_points || 0,
+        n_matches:       grass.n_matches || 0,
+        tier2_available: false,
+        tier1:           grass.tier1 || {},
+        tier2:           {},
+        elo_snapshot:    grass.elo_snapshot || null,
+        grass_enriched:  true,
+        grass_n_matches: grass.n_matches || 0,
+        grass_n_srv_points: grass.n_srv_points || 0,
+      };
+    }
+  }
+  return merged;
 }
 
 function populateDropdown() {

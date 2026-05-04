@@ -61,7 +61,28 @@ PROC_DIR        = Path(__file__).parent.parent / "data" / "processed"
 OUT_DIR         = Path(__file__).parent.parent / "data"
 SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024]
 
-DECAY_LAMBDA      = 0.5    # recency half-life ≈ 1.4 years
+# Career-window fingerprint settings
+CAREER_WINDOW   = 10   # max matches per fingerprint (across all eligible years)
+CAREER_EDITIONS = 3    # look back this many Wimbledon editions (not calendar years)
+                       # e.g. for 2024: use 2022, 2023, 2024 — 2020 gap handled naturally
+
+# Actual Wimbledon start dates (Monday of the fortnight)
+WIMBLEDON_STARTS: Dict[int, pd.Timestamp] = {
+    2011: pd.Timestamp("2011-06-27"),
+    2012: pd.Timestamp("2012-06-25"),
+    2013: pd.Timestamp("2013-06-24"),
+    2014: pd.Timestamp("2014-06-23"),
+    2015: pd.Timestamp("2015-06-29"),
+    2016: pd.Timestamp("2016-06-27"),
+    2017: pd.Timestamp("2017-07-03"),
+    2018: pd.Timestamp("2018-07-02"),
+    2019: pd.Timestamp("2019-07-01"),
+    2021: pd.Timestamp("2021-06-28"),
+    2022: pd.Timestamp("2022-06-27"),
+    2023: pd.Timestamp("2023-07-03"),
+    2024: pd.Timestamp("2024-07-01"),
+}
+
 CI_LEVEL          = 0.90   # credible interval coverage
 BETA_PRIOR_A      = 2.0    # Beta(2,2) prior — slightly centred, weak
 BETA_PRIOR_B      = 2.0
@@ -1186,89 +1207,143 @@ def build_fingerprint(player_name: str, year: int,
 
 # ── per-year pipeline ──────────────────────────────────────────────────────
 
+def _build_year_index(year: int) -> tuple:
+    """
+    Load one year's PBP data and return
+    (pts_df, men_ids, opp_lookup, player_info, T_start)
+    where player_info maps player_name → {match_id: player_num}.
+    """
+    pts, mat = load_year(year)
+    men_ids  = men_match_ids(mat)
+    T_start  = WIMBLEDON_STARTS.get(year, pd.Timestamp(f"{year}-07-01"))
+
+    opp_lookup: Dict[tuple, str] = {}
+    player_info: Dict[str, Dict[str, int]] = {}   # name → {match_id: pnum}
+
+    men_rows = mat[mat["match_id"].isin(men_ids)]
+    for _, row in men_rows.iterrows():
+        mid = row["match_id"]
+        p1, p2 = str(row["player1"]), str(row["player2"])
+        opp_lookup[(mid, p1)] = p2
+        opp_lookup[(mid, p2)] = p1
+        for name, pnum in ((p1, 1), (p2, 2)):
+            if name not in player_info:
+                player_info[name] = {}
+            player_info[name][mid] = pnum
+
+    return pts, men_ids, opp_lookup, player_info, T_start
+
+
 def build_year_fingerprints(year: int,
                              elo: Optional[GrassElo] = None,
-                             grass_df: Optional[pd.DataFrame] = None) -> dict:
+                             grass_df: Optional[pd.DataFrame] = None,
+                             career_window: int = CAREER_WINDOW,
+                             career_editions: int = CAREER_EDITIONS) -> dict:
     """
     Build fingerprints for every player in the Wimbledon draw for `year`.
 
+    Uses the player's last `career_window` matches across the most recent
+    `career_editions` Wimbledon editions (≤ `year`).  No temporal weighting
+    is applied — all matches in the window are weighted equally (w_t = 1.0).
+    Opponent Elo quality weights (w_q) still apply.
+
     Returns a dict: {player_name: fingerprint_dict}
     """
-    print(f"\n── Fingerprints {year} ──────────────────────────────────────")
-    pts, mat = load_year(year)
-    men_ids  = men_match_ids(mat)
-    players  = player_list(mat, men_ids)
+    print(f"\n── Fingerprints {year}  "
+          f"(window={career_window} matches / {career_editions} editions) "
+          f"──────────────────────────────────────")
 
-    # Match date lookup (use first point timestamp or tournament start)
-    # Wimbledon tournament reference dates for recency calculation
-    tourney_starts = {2017: pd.Timestamp("2017-07-03"),
-                      2018: pd.Timestamp("2018-07-02"),
-                      2019: pd.Timestamp("2019-07-01")}
-    T_ref = tourney_starts.get(year, pd.Timestamp(f"{year}-07-03"))
+    # ── Determine which editions to look back through ──────────────────────
+    # Take the last `career_editions` Wimbledons from SUPPORTED_YEARS ≤ year.
+    # This naturally skips 2020 (no tournament) without special-casing.
+    eligible_years = [y for y in SUPPORTED_YEARS if y <= year][-career_editions:]
 
-    # Build Elo quality weights if available
+    # ── Load all eligible years ────────────────────────────────────────────
+    year_index: Dict[int, tuple] = {}
+    for y in eligible_years:
+        try:
+            year_index[y] = _build_year_index(y)
+        except FileNotFoundError as exc:
+            print(f"  Warning: skipping {y} — {exc}")
+
+    if year not in year_index:
+        raise RuntimeError(f"No data found for target year {year}")
+
+    pts_cur, men_ids_cur, _, player_info_cur, _ = year_index[year]
+
+    # ── Elo setup ──────────────────────────────────────────────────────────
     mean_r = elo.mean_active_rating() if elo else None
 
-    # Build match → opponent name lookup from matches CSV
-    opp_lookup = {}
-    for _, row in mat[mat["match_id"].isin(men_ids)].iterrows():
-        mid = row["match_id"]
-        opp_lookup[(mid, str(row["player1"]))] = str(row["player2"])
-        opp_lookup[(mid, str(row["player2"]))] = str(row["player1"])
+    # ── Round → approximate day offset within a tournament ─────────────────
+    RND_ORDER = {"R128": 1, "R64": 2, "R32": 3, "R16": 4, "QF": 5, "SF": 6, "F": 7}
 
-    all_fingerprints = {}
+    # ── Build one fingerprint per player in the current year's draw ────────
+    all_fingerprints: Dict[str, dict] = {}
 
-    for player_name, info in players.items():
-        match_features_list = []
-        match_meta_list     = []
-        weights_raw         = []
+    for player_name in player_info_cur:
+        # Collect every match from every eligible year for this player,
+        # tagged with an approximate date for sorting purposes.
+        candidates: List[dict] = []
 
-        for match_id in info["matches"]:
-            if match_id not in men_ids:
+        for y, (pts_y, men_ids_y, opp_lkp_y, pinfo_y, T_y) in year_index.items():
+            if player_name not in pinfo_y:
                 continue
+            for match_id, pnum in pinfo_y[player_name].items():
+                if match_id not in men_ids_y:
+                    continue
+                rnd   = match_round(match_id)
+                # Later rounds happen ~2 days after earlier rounds.
+                day_n = (RND_ORDER.get(rnd, 1) - 1) * 2
+                match_date = T_y + pd.Timedelta(days=day_n)
+                candidates.append({
+                    "match_date": match_date,
+                    "year":       y,
+                    "match_id":   match_id,
+                    "player_num": pnum,
+                    "pts":        pts_y,
+                    "opp_name":   opp_lkp_y.get((match_id, player_name), "Unknown"),
+                    "round":      rnd,
+                })
 
-            pn       = info["side_in_match"][match_id]
-            match_pts = pts[pts["match_id"] == match_id].copy()
+        if not candidates:
+            continue
+
+        # Most-recent first; take up to career_window matches
+        candidates.sort(key=lambda c: c["match_date"], reverse=True)
+        selected = candidates[:career_window]
+
+        # ── Compute features for each selected match ───────────────────────
+        match_features_list: List[dict] = []
+        match_meta_list:     List[dict] = []
+        weights_raw:         List[float] = []
+
+        for rec in selected:
+            match_pts = rec["pts"][rec["pts"]["match_id"] == rec["match_id"]].copy()
             if match_pts.empty:
                 continue
 
-            # Opponent identity
-            opp_name = opp_lookup.get((match_id, player_name), "Unknown")
-
-            # ── Recency weight ──────────────────────────────────────────────
-            # All Wimbledon matches are close in time; scale by round depth
-            # (later rounds are slightly more recent within the tournament)
-            rnd_label = match_round(match_id)
-            rnd_order = {"R128":1,"R64":2,"R32":3,"R16":4,"QF":5,"SF":6,"F":7}
-            days_offset = -(rnd_order.get(rnd_label, 1) - 1) * 2  # 2 days per round
-            match_date  = T_ref + pd.Timedelta(days=days_offset)
-            days_before = (T_ref - match_date).days   # 0 for finals-week
-            w_t = math.exp(-DECAY_LAMBDA * max(days_before, 0) / 365.0)
-
-            # ── Quality weight ──────────────────────────────────────────────
-            # Uses opponent's final adjusted Elo rating (no snapshot API yet).
-            # Falls back to neutral (1.0) if opponent unknown.
+            # No temporal weighting — all matches in the window treated equally.
+            # Opponent quality weight still applied so finals/QF matches count more.
+            w_t = 1.0
             if elo is not None:
-                w_q     = elo.quality_weight_by_name(opp_name, mean_active=mean_r)
-                r_at    = elo.adjusted_rating_by_name(opp_name)
+                w_q     = elo.quality_weight_by_name(rec["opp_name"], mean_active=mean_r)
+                r_at    = elo.adjusted_rating_by_name(rec["opp_name"])
                 opp_elo = round(r_at, 1) if r_at is not None else None
             else:
                 w_q     = 1.0
                 opp_elo = None
 
-            # ── Per-match features ──────────────────────────────────────────
-            feats = compute_match_features(player_name, pn, match_pts)
+            feats = compute_match_features(player_name, rec["player_num"], match_pts)
             match_features_list.append(feats)
-
-            meta = {
-                "match_id":     match_id,
-                "round":        rnd_label,
-                "opponent":     opp_name,
-                "opponent_elo": round(opp_elo, 1) if opp_elo else None,
-                "w_t":          round(w_t, 4),
+            match_meta_list.append({
+                "match_id":     rec["match_id"],
+                "year":         rec["year"],
+                "round":        rec["round"],
+                "opponent":     rec["opp_name"],
+                "opponent_elo": opp_elo,
+                "w_t":          w_t,
                 "w_q":          round(w_q, 4),
-            }
-            match_meta_list.append(meta)
+            })
             weights_raw.append(w_t * w_q)
 
         if not match_features_list:
@@ -1281,13 +1356,19 @@ def build_year_fingerprints(year: int,
             weights_raw,
         )
 
-        # Attach final Elo snapshot for the player themselves (display only —
-        # quality weights already used date-capped ratings above)
+        # Attach Elo snapshot (display only)
         if elo is not None:
             fingerprint["elo_snapshot"] = elo.get_snapshot_by_name(player_name)
 
+        # Record which years contributed data
+        years_used = sorted({rec["year"] for rec in selected[:len(match_features_list)]})
+        fingerprint["career_editions_used"] = years_used
+        fingerprint["n_matches_career"]     = len(match_features_list)
+
         all_fingerprints[player_name] = fingerprint
-        print(f"  {player_name:<30}  {len(match_features_list)} matches")
+        yrs_str = ", ".join(str(y) for y in years_used)
+        print(f"  {player_name:<30}  {len(match_features_list):2d} matches  "
+              f"(editions: {yrs_str})")
 
     return all_fingerprints
 

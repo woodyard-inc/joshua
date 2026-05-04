@@ -11,36 +11,40 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1401",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "Rafael Nadal",
+        "opponent_elo": 1965.8,
+        "w_t": 1.0,
+        "w_q": 1.2843
+      },
+      {
+        "match_id": "2011-wimbledon-1302",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Gilles Simon",
+        "opponent_elo": 1596.2,
+        "w_t": 1.0,
+        "w_q": 1.0428
+      },
+      {
+        "match_id": "2011-wimbledon-1203",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Olivier Rochus",
+        "opponent_elo": 1581.8,
+        "w_t": 1.0,
+        "w_q": 1.0334
+      },
+      {
         "match_id": "2011-wimbledon-1105",
+        "year": 2011,
         "round": "R128",
         "opponent": "Flavio Cipolla",
         "opponent_elo": 1340.8,
         "w_t": 1.0,
         "w_q": 0.876
-      },
-      {
-        "match_id": "2011-wimbledon-1203",
-        "round": "R64",
-        "opponent": "Olivier Rochus",
-        "opponent_elo": 1581.8,
-        "w_t": 0.9973,
-        "w_q": 1.0334
-      },
-      {
-        "match_id": "2011-wimbledon-1302",
-        "round": "R32",
-        "opponent": "Gilles Simon",
-        "opponent_elo": 1596.2,
-        "w_t": 0.9945,
-        "w_q": 1.0428
-      },
-      {
-        "match_id": "2011-wimbledon-1401",
-        "round": "R16",
-        "opponent": "Rafael Nadal",
-        "opponent_elo": 1965.8,
-        "w_t": 0.9918,
-        "w_q": 1.2843
       }
     ],
     "tier1": {
@@ -62,7 +66,7 @@
       "rpw_pct": {
         "value": 37.4,
         "ci_90_lo": 30.7,
-        "ci_90_hi": 45.1
+        "ci_90_hi": 45.0
       },
       "sgw_pct": {
         "value": 95.9,
@@ -71,7 +75,7 @@
       },
       "rgw_pct": {
         "value": 20.0,
-        "ci_90_lo": 12.0,
+        "ci_90_lo": 11.9,
         "ci_90_hi": 41.2
       }
     },
@@ -125,7 +129,7 @@
         "streak_recovery_rate": 0.45
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.449,
+        "bp_per_return_game": 0.448,
         "bp_conversion": 0.417,
         "bp_created": 8.4,
         "bp_converted": 3.5
@@ -191,8 +195,8 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.6,
-        "tb_win_pct": 54.2,
+        "value": -0.7,
+        "tb_win_pct": 54.1,
         "baseline_win_pct": 54.8,
         "n_eff": 223,
         "confidence": "RELIABLE"
@@ -206,7 +210,11 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null
+    "elo_snapshot": null,
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 4
   },
   "Flavio Cipolla": {
     "player": "Flavio Cipolla",
@@ -221,6 +229,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1105",
+        "year": 2011,
         "round": "R128",
         "opponent": "Juan Martin Del Potro",
         "opponent_elo": null,
@@ -402,7 +411,11 @@
       "R_overall": 1340.8,
       "R_surface": 1340.8,
       "R_adjusted": 1340.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Radek Stepanek": {
     "player": "Radek Stepanek",
@@ -417,6 +430,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1112",
+        "year": 2011,
         "round": "R128",
         "opponent": "Fernando Verdasco",
         "opponent_elo": 1616.8,
@@ -594,7 +608,11 @@
       "R_overall": 1716.5,
       "R_surface": 1716.5,
       "R_adjusted": 1716.5
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Fernando Verdasco": {
     "player": "Fernando Verdasco",
@@ -608,20 +626,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1206",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Robin Haase",
+        "opponent_elo": 1573.9,
+        "w_t": 1.0,
+        "w_q": 1.0283
+      },
+      {
         "match_id": "2011-wimbledon-1112",
+        "year": 2011,
         "round": "R128",
         "opponent": "Radek Stepanek",
         "opponent_elo": 1716.5,
         "w_t": 1.0,
         "w_q": 1.1214
-      },
-      {
-        "match_id": "2011-wimbledon-1206",
-        "round": "R64",
-        "opponent": "Robin Haase",
-        "opponent_elo": 1573.9,
-        "w_t": 0.9973,
-        "w_q": 1.0283
       }
     ],
     "tier1": {
@@ -696,8 +716,8 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 44.8,
-        "ad_win_pct": 50.8,
-        "asymmetry": 6.0,
+        "ad_win_pct": 50.7,
+        "asymmetry": 5.9,
         "stronger_side": "ad"
       },
       "momentum_profile": {
@@ -775,7 +795,7 @@
         "value": 1.7,
         "tb_win_pct": 49.6,
         "baseline_win_pct": 47.9,
-        "n_eff": 298,
+        "n_eff": 297,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -794,7 +814,11 @@
       "R_overall": 1616.8,
       "R_surface": 1616.8,
       "R_adjusted": 1616.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Andy Murray": {
     "player": "Andy Murray",
@@ -808,52 +832,58 @@
     "tier2_wide_intervals": true,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1601",
+        "year": 2011,
+        "round": "SF",
+        "opponent": "Rafael Nadal",
+        "opponent_elo": 1965.8,
+        "w_t": 1.0,
+        "w_q": 1.2843
+      },
+      {
+        "match_id": "2011-wimbledon-1502",
+        "year": 2011,
+        "round": "QF",
+        "opponent": "Feliciano Lopez",
+        "opponent_elo": 1665.5,
+        "w_t": 1.0,
+        "w_q": 1.0881
+      },
+      {
+        "match_id": "2011-wimbledon-1403",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "Richard Gasquet",
+        "opponent_elo": 1658.8,
+        "w_t": 1.0,
+        "w_q": 1.0837
+      },
+      {
+        "match_id": "2011-wimbledon-1305",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Ivan Ljubicic",
+        "opponent_elo": 1623.0,
+        "w_t": 1.0,
+        "w_q": 1.0604
+      },
+      {
+        "match_id": "2011-wimbledon-1209",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Tobias Kamke",
+        "opponent_elo": 1557.3,
+        "w_t": 1.0,
+        "w_q": 1.0174
+      },
+      {
         "match_id": "2011-wimbledon-1117",
+        "year": 2011,
         "round": "R128",
         "opponent": "Daniel Gimeno-Traver",
         "opponent_elo": null,
         "w_t": 1.0,
         "w_q": 1.0
-      },
-      {
-        "match_id": "2011-wimbledon-1209",
-        "round": "R64",
-        "opponent": "Tobias Kamke",
-        "opponent_elo": 1557.3,
-        "w_t": 0.9973,
-        "w_q": 1.0174
-      },
-      {
-        "match_id": "2011-wimbledon-1305",
-        "round": "R32",
-        "opponent": "Ivan Ljubicic",
-        "opponent_elo": 1623.0,
-        "w_t": 0.9945,
-        "w_q": 1.0604
-      },
-      {
-        "match_id": "2011-wimbledon-1403",
-        "round": "R16",
-        "opponent": "Richard Gasquet",
-        "opponent_elo": 1658.8,
-        "w_t": 0.9918,
-        "w_q": 1.0837
-      },
-      {
-        "match_id": "2011-wimbledon-1502",
-        "round": "QF",
-        "opponent": "Feliciano Lopez",
-        "opponent_elo": 1665.5,
-        "w_t": 0.9891,
-        "w_q": 1.0881
-      },
-      {
-        "match_id": "2011-wimbledon-1601",
-        "round": "SF",
-        "opponent": "Rafael Nadal",
-        "opponent_elo": 1965.8,
-        "w_t": 0.9864,
-        "w_q": 1.2843
       }
     ],
     "tier1": {
@@ -875,7 +905,7 @@
       "rpw_pct": {
         "value": 37.7,
         "ci_90_lo": 30.5,
-        "ci_90_hi": 46.2
+        "ci_90_hi": 46.1
       },
       "sgw_pct": {
         "value": 89.9,
@@ -883,9 +913,9 @@
         "ci_90_hi": 93.7
       },
       "rgw_pct": {
-        "value": 27.6,
+        "value": 27.5,
         "ci_90_lo": 16.5,
-        "ci_90_hi": 49.1
+        "ci_90_hi": 49.0
       }
     },
     "tier2": {
@@ -896,23 +926,23 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 3.5,
-        "high_lev_win_pct": 57.2,
+        "value": 3.6,
+        "high_lev_win_pct": 57.3,
         "baseline_win_pct": 53.7,
         "n_eff": 25,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.035
+        "modifier_delta": 0.036
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 0.6,
-        "bp_df_rate": 4.3,
+        "value": 0.5,
+        "bp_df_rate": 4.2,
         "baseline_df_rate": 3.7,
         "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.006
+        "modifier_delta": 0.005
       },
       "serve_speed_courage": {
         "available": true,
@@ -927,14 +957,14 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 54.5,
+        "deuce_win_pct": 54.4,
         "ad_win_pct": 52.3,
-        "asymmetry": 2.2,
+        "asymmetry": 2.1,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
         "streak_initiation_rate": 2.28,
-        "streak_survival_rate": 0.352,
+        "streak_survival_rate": 0.351,
         "streak_recovery_rate": 0.425
       },
       "bp_creation_profile": {
@@ -946,7 +976,7 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0413,
+        "value": 0.0359,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0297,
@@ -954,16 +984,16 @@
             "contribution": 0.0089
           },
           "df_rate_delta": {
-            "delta_frac": 0.1622,
+            "delta_frac": 0.1351,
             "weight": 0.2,
-            "contribution": 0.0324
+            "contribution": 0.027
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.0413,
+        "modifier_delta": 0.0359,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -1026,7 +1056,11 @@
       "R_overall": 1861.5,
       "R_surface": 1861.5,
       "R_adjusted": 1861.5
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 6
   },
   "Daniel Gimeno-Traver": {
     "player": "Daniel Gimeno-Traver",
@@ -1041,6 +1075,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1117",
+        "year": 2011,
         "round": "R128",
         "opponent": "Andy Murray",
         "opponent_elo": 1861.5,
@@ -1215,7 +1250,11 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null
+    "elo_snapshot": null,
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Ivan Ljubicic": {
     "player": "Ivan Ljubicic",
@@ -1229,20 +1268,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1305",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Andy Murray",
+        "opponent_elo": 1861.5,
+        "w_t": 1.0,
+        "w_q": 1.2162
+      },
+      {
         "match_id": "2011-wimbledon-1120",
+        "year": 2011,
         "round": "R128",
         "opponent": "Marin Cilic",
         "opponent_elo": 1897.5,
         "w_t": 1.0,
         "w_q": 1.2397
-      },
-      {
-        "match_id": "2011-wimbledon-1305",
-        "round": "R32",
-        "opponent": "Andy Murray",
-        "opponent_elo": 1861.5,
-        "w_t": 0.9945,
-        "w_q": 1.2162
       }
     ],
     "tier1": {
@@ -1262,7 +1303,7 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 34.0,
+        "value": 34.1,
         "ci_90_lo": 27.6,
         "ci_90_hi": 41.9
       },
@@ -1295,23 +1336,23 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 5.9,
+        "value": 5.8,
         "bp_df_rate": 8.3,
-        "baseline_df_rate": 2.4,
+        "baseline_df_rate": 2.5,
         "n_eff": 12,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.059
+        "modifier_delta": 0.058
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -6.4,
-        "bp_speed_kmh": 172.6,
+        "value": -6.3,
+        "bp_speed_kmh": 172.7,
         "overall_speed_kmh": 179.0,
         "n_eff": 11,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.064,
+        "modifier_delta": -0.063,
         "note": null
       },
       "court_side_asymmetry": {
@@ -1335,24 +1376,24 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.481,
+        "value": 0.4534,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0358,
+            "delta_frac": -0.0352,
             "weight": 0.3,
-            "contribution": -0.0107
+            "contribution": -0.0106
           },
           "df_rate_delta": {
-            "delta_frac": 2.4583,
+            "delta_frac": 2.32,
             "weight": 0.2,
-            "contribution": 0.4917
+            "contribution": 0.464
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.481,
+        "modifier_delta": 0.4534,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -1415,7 +1456,11 @@
       "R_overall": 1623.0,
       "R_surface": 1623.0,
       "R_adjusted": 1623.0
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Marin Cilic": {
     "player": "Marin Cilic",
@@ -1430,6 +1475,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1120",
+        "year": 2011,
         "round": "R128",
         "opponent": "Ivan Ljubicic",
         "opponent_elo": 1623.0,
@@ -1603,7 +1649,11 @@
       "R_overall": 1897.5,
       "R_surface": 1897.5,
       "R_adjusted": 1897.5
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Ivo Karlovic": {
     "player": "Ivo Karlovic",
@@ -1618,6 +1668,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1128",
+        "year": 2011,
         "round": "R128",
         "opponent": "Janko Tipsarevic",
         "opponent_elo": 1577.8,
@@ -1757,7 +1808,11 @@
       "R_overall": 1641.4,
       "R_surface": 1641.4,
       "R_adjusted": 1641.4
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Janko Tipsarevic": {
     "player": "Janko Tipsarevic",
@@ -1772,6 +1827,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1128",
+        "year": 2011,
         "round": "R128",
         "opponent": "Ivo Karlovic",
         "opponent_elo": 1641.4,
@@ -1944,7 +2000,11 @@
       "R_overall": 1577.8,
       "R_surface": 1577.8,
       "R_adjusted": 1577.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Andreas Beck": {
     "player": "Andreas Beck",
@@ -1959,6 +2019,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1132",
+        "year": 2011,
         "round": "R128",
         "opponent": "Andy Roddick",
         "opponent_elo": 1924.3,
@@ -2136,7 +2197,11 @@
       "R_overall": 1589.0,
       "R_surface": 1589.0,
       "R_adjusted": 1589.0
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Andy Roddick": {
     "player": "Andy Roddick",
@@ -2150,28 +2215,31 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1308",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Feliciano Lopez",
+        "opponent_elo": 1665.5,
+        "w_t": 1.0,
+        "w_q": 1.0881
+      },
+      {
+        "match_id": "2011-wimbledon-1216",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Victor Hanescu",
+        "opponent_elo": 1458.3,
+        "w_t": 1.0,
+        "w_q": 0.9528
+      },
+      {
         "match_id": "2011-wimbledon-1132",
+        "year": 2011,
         "round": "R128",
         "opponent": "Andreas Beck",
         "opponent_elo": 1589.0,
         "w_t": 1.0,
         "w_q": 1.0381
-      },
-      {
-        "match_id": "2011-wimbledon-1216",
-        "round": "R64",
-        "opponent": "Victor Hanescu",
-        "opponent_elo": 1458.3,
-        "w_t": 0.9973,
-        "w_q": 0.9528
-      },
-      {
-        "match_id": "2011-wimbledon-1308",
-        "round": "R32",
-        "opponent": "Feliciano Lopez",
-        "opponent_elo": 1665.5,
-        "w_t": 0.9945,
-        "w_q": 1.0881
       }
     ],
     "tier1": {
@@ -2191,7 +2259,7 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 35.2,
+        "value": 35.1,
         "ci_90_lo": 28.3,
         "ci_90_hi": 43.4
       },
@@ -2224,13 +2292,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -2.7,
+        "value": -2.8,
         "bp_df_rate": 0.0,
-        "baseline_df_rate": 2.7,
+        "baseline_df_rate": 2.8,
         "n_eff": 3,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.027
+        "modifier_delta": -0.028
       },
       "serve_speed_courage": {
         "available": true,
@@ -2251,7 +2319,7 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 4.54,
+        "streak_initiation_rate": 4.55,
         "streak_survival_rate": 0.556,
         "streak_recovery_rate": 0.33
       },
@@ -2344,7 +2412,11 @@
       "R_overall": 1924.3,
       "R_surface": 1924.3,
       "R_adjusted": 1924.3
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 3
   },
   "David Ferrer": {
     "player": "David Ferrer",
@@ -2358,36 +2430,40 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1405",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "Jo-Wilfried Tsonga",
+        "opponent_elo": 1787.5,
+        "w_t": 1.0,
+        "w_q": 1.1678
+      },
+      {
+        "match_id": "2011-wimbledon-1309",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Karol Beck",
+        "opponent_elo": 1472.2,
+        "w_t": 1.0,
+        "w_q": 0.9618
+      },
+      {
+        "match_id": "2011-wimbledon-1217",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Ryan Harrison",
+        "opponent_elo": 1414.7,
+        "w_t": 1.0,
+        "w_q": 0.9243
+      },
+      {
         "match_id": "2011-wimbledon-1133",
+        "year": 2011,
         "round": "R128",
         "opponent": "Benoit Paire",
         "opponent_elo": 1591.4,
         "w_t": 1.0,
         "w_q": 1.0397
-      },
-      {
-        "match_id": "2011-wimbledon-1217",
-        "round": "R64",
-        "opponent": "Ryan Harrison",
-        "opponent_elo": 1414.7,
-        "w_t": 0.9973,
-        "w_q": 0.9243
-      },
-      {
-        "match_id": "2011-wimbledon-1309",
-        "round": "R32",
-        "opponent": "Karol Beck",
-        "opponent_elo": 1472.2,
-        "w_t": 0.9945,
-        "w_q": 0.9618
-      },
-      {
-        "match_id": "2011-wimbledon-1405",
-        "round": "R16",
-        "opponent": "Jo-Wilfried Tsonga",
-        "opponent_elo": 1787.5,
-        "w_t": 0.9918,
-        "w_q": 1.1678
       }
     ],
     "tier1": {
@@ -2408,7 +2484,7 @@
       },
       "rpw_pct": {
         "value": 39.2,
-        "ci_90_lo": 32.2,
+        "ci_90_lo": 32.1,
         "ci_90_hi": 47.2
       },
       "sgw_pct": {
@@ -2472,8 +2548,8 @@
         "streak_recovery_rate": 0.623
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.616,
-        "bp_conversion": 0.393,
+        "bp_per_return_game": 0.615,
+        "bp_conversion": 0.392,
         "bp_created": 10.8,
         "bp_converted": 4.3
       },
@@ -2560,7 +2636,11 @@
       "R_overall": 1654.8,
       "R_surface": 1654.8,
       "R_adjusted": 1654.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 4
   },
   "Benoit Paire": {
     "player": "Benoit Paire",
@@ -2575,6 +2655,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1133",
+        "year": 2011,
         "round": "R128",
         "opponent": "David Ferrer",
         "opponent_elo": 1654.8,
@@ -2756,7 +2837,11 @@
       "R_overall": 1591.4,
       "R_surface": 1591.4,
       "R_adjusted": 1591.4
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "John Isner": {
     "player": "John Isner",
@@ -2770,20 +2855,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1221",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Nicolas Almagro",
+        "opponent_elo": 1605.7,
+        "w_t": 1.0,
+        "w_q": 1.0491
+      },
+      {
         "match_id": "2011-wimbledon-1142",
+        "year": 2011,
         "round": "R128",
         "opponent": "Nicolas Mahut",
         "opponent_elo": 1712.2,
         "w_t": 1.0,
         "w_q": 1.1186
-      },
-      {
-        "match_id": "2011-wimbledon-1221",
-        "round": "R64",
-        "opponent": "Nicolas Almagro",
-        "opponent_elo": 1605.7,
-        "w_t": 0.9973,
-        "w_q": 1.0491
       }
     ],
     "tier1": {
@@ -2863,7 +2950,7 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 7.72,
+        "streak_initiation_rate": 7.73,
         "streak_survival_rate": 0.484,
         "streak_recovery_rate": 0.623
       },
@@ -2871,7 +2958,7 @@
         "bp_per_return_game": 0.124,
         "bp_conversion": 0.6,
         "bp_created": 2.6,
-        "bp_converted": 1.6
+        "bp_converted": 1.5
       },
       "rluep": null,
       "spci": {
@@ -2956,7 +3043,11 @@
       "R_overall": 1748.9,
       "R_surface": 1748.9,
       "R_adjusted": 1748.9
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Nicolas Mahut": {
     "player": "Nicolas Mahut",
@@ -2971,6 +3062,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1142",
+        "year": 2011,
         "round": "R128",
         "opponent": "John Isner",
         "opponent_elo": 1748.9,
@@ -3148,7 +3240,11 @@
       "R_overall": 1712.2,
       "R_surface": 1712.2,
       "R_adjusted": 1712.2
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Mikhail Kukushkin": {
     "player": "Mikhail Kukushkin",
@@ -3163,6 +3259,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1148",
+        "year": 2011,
         "round": "R128",
         "opponent": "Roger Federer",
         "opponent_elo": 2095.1,
@@ -3340,7 +3437,11 @@
       "R_overall": 1551.1,
       "R_surface": 1551.1,
       "R_adjusted": 1551.1
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Roger Federer": {
     "player": "Roger Federer",
@@ -3354,44 +3455,49 @@
     "tier2_wide_intervals": true,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1503",
+        "year": 2011,
+        "round": "QF",
+        "opponent": "Jo-Wilfried Tsonga",
+        "opponent_elo": 1787.5,
+        "w_t": 1.0,
+        "w_q": 1.1678
+      },
+      {
+        "match_id": "2011-wimbledon-1406",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "Mikhail Youzhny",
+        "opponent_elo": 1602.2,
+        "w_t": 1.0,
+        "w_q": 1.0468
+      },
+      {
+        "match_id": "2011-wimbledon-1312",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "David Nalbandian",
+        "opponent_elo": 1755.7,
+        "w_t": 1.0,
+        "w_q": 1.1471
+      },
+      {
+        "match_id": "2011-wimbledon-1224",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Adrian Mannarino",
+        "opponent_elo": 1638.9,
+        "w_t": 1.0,
+        "w_q": 1.0707
+      },
+      {
         "match_id": "2011-wimbledon-1148",
+        "year": 2011,
         "round": "R128",
         "opponent": "Mikhail Kukushkin",
         "opponent_elo": 1551.1,
         "w_t": 1.0,
         "w_q": 1.0134
-      },
-      {
-        "match_id": "2011-wimbledon-1224",
-        "round": "R64",
-        "opponent": "Adrian Mannarino",
-        "opponent_elo": 1638.9,
-        "w_t": 0.9973,
-        "w_q": 1.0707
-      },
-      {
-        "match_id": "2011-wimbledon-1312",
-        "round": "R32",
-        "opponent": "David Nalbandian",
-        "opponent_elo": 1755.7,
-        "w_t": 0.9945,
-        "w_q": 1.1471
-      },
-      {
-        "match_id": "2011-wimbledon-1406",
-        "round": "R16",
-        "opponent": "Mikhail Youzhny",
-        "opponent_elo": 1602.2,
-        "w_t": 0.9918,
-        "w_q": 1.0468
-      },
-      {
-        "match_id": "2011-wimbledon-1503",
-        "round": "QF",
-        "opponent": "Jo-Wilfried Tsonga",
-        "opponent_elo": 1787.5,
-        "w_t": 0.9891,
-        "w_q": 1.1678
       }
     ],
     "tier1": {
@@ -3413,7 +3519,7 @@
       "rpw_pct": {
         "value": 38.3,
         "ci_90_lo": 31.3,
-        "ci_90_hi": 46.4
+        "ci_90_hi": 46.3
       },
       "sgw_pct": {
         "value": 92.8,
@@ -3421,7 +3527,7 @@
         "ci_90_hi": 95.2
       },
       "rgw_pct": {
-        "value": 27.2,
+        "value": 27.1,
         "ci_90_lo": 16.4,
         "ci_90_hi": 48.0
       }
@@ -3472,13 +3578,13 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 3.29,
-        "streak_survival_rate": 0.609,
+        "streak_survival_rate": 0.608,
         "streak_recovery_rate": 0.449
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.418,
         "bp_conversion": 0.518,
-        "bp_created": 7.7,
+        "bp_created": 7.6,
         "bp_converted": 4.0
       },
       "rluep": null,
@@ -3564,7 +3670,11 @@
       "R_overall": 2095.1,
       "R_surface": 2095.1,
       "R_adjusted": 2095.1
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 5
   },
   "Robin Soderling": {
     "player": "Robin Soderling",
@@ -3578,28 +3688,31 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1313",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Bernard Tomic",
+        "opponent_elo": 1663.3,
+        "w_t": 1.0,
+        "w_q": 1.0867
+      },
+      {
+        "match_id": "2011-wimbledon-1225",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Lleyton Hewitt",
+        "opponent_elo": 1796.3,
+        "w_t": 1.0,
+        "w_q": 1.1736
+      },
+      {
         "match_id": "2011-wimbledon-1149",
+        "year": 2011,
         "round": "R128",
         "opponent": "Philipp Petzschner",
         "opponent_elo": 1678.5,
         "w_t": 1.0,
         "w_q": 1.0966
-      },
-      {
-        "match_id": "2011-wimbledon-1225",
-        "round": "R64",
-        "opponent": "Lleyton Hewitt",
-        "opponent_elo": 1796.3,
-        "w_t": 0.9973,
-        "w_q": 1.1736
-      },
-      {
-        "match_id": "2011-wimbledon-1313",
-        "round": "R32",
-        "opponent": "Bernard Tomic",
-        "opponent_elo": 1663.3,
-        "w_t": 0.9945,
-        "w_q": 1.0867
       }
     ],
     "tier1": {
@@ -3629,7 +3742,7 @@
         "ci_90_hi": 88.1
       },
       "rgw_pct": {
-        "value": 17.3,
+        "value": 17.2,
         "ci_90_lo": 10.4,
         "ci_90_hi": 36.9
       }
@@ -3642,13 +3755,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 3.1,
-        "high_lev_win_pct": 51.3,
+        "value": 3.0,
+        "high_lev_win_pct": 51.2,
         "baseline_win_pct": 48.2,
         "n_eff": 44,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.031
+        "modifier_delta": 0.03
       },
       "df_pressure_delta": {
         "available": true,
@@ -3674,14 +3787,14 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 45.5,
-        "ad_win_pct": 50.9,
-        "asymmetry": 5.4,
+        "ad_win_pct": 50.8,
+        "asymmetry": 5.3,
         "stronger_side": "ad"
       },
       "momentum_profile": {
         "streak_initiation_rate": 4.39,
         "streak_survival_rate": 0.46,
-        "streak_recovery_rate": 0.375
+        "streak_recovery_rate": 0.374
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.34,
@@ -3734,8 +3847,8 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -0.1,
-        "first_games_win_pct": 48.1,
+        "value": -0.2,
+        "first_games_win_pct": 48.0,
         "overall_win_pct": 48.2,
         "n_eff": 50,
         "confidence": "LOW"
@@ -3772,7 +3885,11 @@
       "R_overall": 1832.4,
       "R_surface": 1832.4,
       "R_adjusted": 1832.4
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 3
   },
   "Philipp Petzschner": {
     "player": "Philipp Petzschner",
@@ -3787,6 +3904,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1149",
+        "year": 2011,
         "round": "R128",
         "opponent": "Robin Soderling",
         "opponent_elo": 1832.4,
@@ -3968,7 +4086,11 @@
       "R_overall": 1678.5,
       "R_surface": 1678.5,
       "R_adjusted": 1678.5
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Kei Nishikori": {
     "player": "Kei Nishikori",
@@ -3983,6 +4105,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1150",
+        "year": 2011,
         "round": "R128",
         "opponent": "Lleyton Hewitt",
         "opponent_elo": 1796.3,
@@ -4164,7 +4287,11 @@
       "R_overall": 1740.6,
       "R_surface": 1740.6,
       "R_adjusted": 1740.6
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Lleyton Hewitt": {
     "player": "Lleyton Hewitt",
@@ -4178,20 +4305,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1225",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Robin Soderling",
+        "opponent_elo": 1832.4,
+        "w_t": 1.0,
+        "w_q": 1.1972
+      },
+      {
         "match_id": "2011-wimbledon-1150",
+        "year": 2011,
         "round": "R128",
         "opponent": "Kei Nishikori",
         "opponent_elo": 1740.6,
         "w_t": 1.0,
         "w_q": 1.1372
-      },
-      {
-        "match_id": "2011-wimbledon-1225",
-        "round": "R64",
-        "opponent": "Robin Soderling",
-        "opponent_elo": 1832.4,
-        "w_t": 0.9973,
-        "w_q": 1.1972
       }
     ],
     "tier1": {
@@ -4212,7 +4341,7 @@
       },
       "rpw_pct": {
         "value": 35.2,
-        "ci_90_lo": 29.3,
+        "ci_90_lo": 29.2,
         "ci_90_hi": 42.2
       },
       "sgw_pct": {
@@ -4222,7 +4351,7 @@
       },
       "rgw_pct": {
         "value": 18.5,
-        "ci_90_lo": 11.4,
+        "ci_90_lo": 11.3,
         "ci_90_hi": 36.9
       }
     },
@@ -4276,10 +4405,10 @@
         "streak_recovery_rate": 0.578
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.352,
+        "bp_per_return_game": 0.351,
         "bp_conversion": 0.467,
         "bp_created": 8.5,
-        "bp_converted": 4.0
+        "bp_converted": 3.9
       },
       "rluep": null,
       "spci": {
@@ -4364,7 +4493,11 @@
       "R_overall": 1796.3,
       "R_surface": 1796.3,
       "R_adjusted": 1796.3
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Ernests Gulbis": {
     "player": "Ernests Gulbis",
@@ -4379,6 +4512,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1155",
+        "year": 2011,
         "round": "R128",
         "opponent": "Dmitry Tursunov",
         "opponent_elo": 1529.7,
@@ -4556,7 +4690,11 @@
       "R_overall": 1562.9,
       "R_surface": 1562.9,
       "R_adjusted": 1562.9
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Dmitry Tursunov": {
     "player": "Dmitry Tursunov",
@@ -4570,20 +4708,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1228",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Jurgen Melzer",
+        "opponent_elo": 1668.4,
+        "w_t": 1.0,
+        "w_q": 1.09
+      },
+      {
         "match_id": "2011-wimbledon-1155",
+        "year": 2011,
         "round": "R128",
         "opponent": "Ernests Gulbis",
         "opponent_elo": 1562.9,
         "w_t": 1.0,
         "w_q": 1.0211
-      },
-      {
-        "match_id": "2011-wimbledon-1228",
-        "round": "R64",
-        "opponent": "Jurgen Melzer",
-        "opponent_elo": 1668.4,
-        "w_t": 0.9973,
-        "w_q": 1.09
       }
     ],
     "tier1": {
@@ -4608,7 +4748,7 @@
         "ci_90_hi": 40.3
       },
       "sgw_pct": {
-        "value": 80.7,
+        "value": 80.6,
         "ci_90_lo": 60.8,
         "ci_90_hi": 88.3
       },
@@ -4663,8 +4803,8 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 9.44,
-        "streak_survival_rate": 0.339,
+        "streak_initiation_rate": 9.43,
+        "streak_survival_rate": 0.338,
         "streak_recovery_rate": 0.624
       },
       "bp_creation_profile": {
@@ -4756,7 +4896,11 @@
       "R_overall": 1529.7,
       "R_surface": 1529.7,
       "R_adjusted": 1529.7
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "James Ward": {
     "player": "James Ward",
@@ -4771,6 +4915,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1160",
+        "year": 2011,
         "round": "R128",
         "opponent": "Michael Llodra",
         "opponent_elo": 1682.8,
@@ -4948,7 +5093,11 @@
       "R_overall": 1337.0,
       "R_surface": 1337.0,
       "R_adjusted": 1337.0
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Michael Llodra": {
     "player": "Michael Llodra",
@@ -4962,20 +5111,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1408",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "Novak Djokovic",
+        "opponent_elo": 2184.9,
+        "w_t": 1.0,
+        "w_q": 1.4275
+      },
+      {
         "match_id": "2011-wimbledon-1160",
+        "year": 2011,
         "round": "R128",
         "opponent": "James Ward",
         "opponent_elo": 1337.0,
         "w_t": 1.0,
         "w_q": 0.8735
-      },
-      {
-        "match_id": "2011-wimbledon-1408",
-        "round": "R16",
-        "opponent": "Novak Djokovic",
-        "opponent_elo": 2184.9,
-        "w_t": 0.9918,
-        "w_q": 1.4275
       }
     ],
     "tier1": {
@@ -5001,13 +5152,13 @@
       },
       "sgw_pct": {
         "value": 82.0,
-        "ci_90_lo": 56.8,
-        "ci_90_hi": 89.6
+        "ci_90_lo": 56.7,
+        "ci_90_hi": 89.5
       },
       "rgw_pct": {
         "value": 10.3,
-        "ci_90_lo": 6.5,
-        "ci_90_hi": 35.0
+        "ci_90_lo": 6.4,
+        "ci_90_hi": 34.9
       }
     },
     "tier2": {
@@ -5050,12 +5201,12 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 45.3,
-        "ad_win_pct": 48.2,
-        "asymmetry": 2.9,
+        "ad_win_pct": 48.1,
+        "asymmetry": 2.8,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.84,
+        "streak_initiation_rate": 5.83,
         "streak_survival_rate": 0.453,
         "streak_recovery_rate": 0.685
       },
@@ -5148,7 +5299,11 @@
       "R_overall": 1682.8,
       "R_surface": 1682.8,
       "R_adjusted": 1682.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Marcos Baghdatis": {
     "player": "Marcos Baghdatis",
@@ -5162,28 +5317,31 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1316",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Novak Djokovic",
+        "opponent_elo": 2184.9,
+        "w_t": 1.0,
+        "w_q": 1.4275
+      },
+      {
+        "match_id": "2011-wimbledon-1231",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Andreas Seppi",
+        "opponent_elo": 1626.9,
+        "w_t": 1.0,
+        "w_q": 1.0629
+      },
+      {
         "match_id": "2011-wimbledon-1161",
+        "year": 2011,
         "round": "R128",
         "opponent": "James Blake",
         "opponent_elo": 1543.3,
         "w_t": 1.0,
         "w_q": 1.0083
-      },
-      {
-        "match_id": "2011-wimbledon-1231",
-        "round": "R64",
-        "opponent": "Andreas Seppi",
-        "opponent_elo": 1626.9,
-        "w_t": 0.9973,
-        "w_q": 1.0629
-      },
-      {
-        "match_id": "2011-wimbledon-1316",
-        "round": "R32",
-        "opponent": "Novak Djokovic",
-        "opponent_elo": 2184.9,
-        "w_t": 0.9945,
-        "w_q": 1.4275
       }
     ],
     "tier1": {
@@ -5213,7 +5371,7 @@
         "ci_90_hi": 91.1
       },
       "rgw_pct": {
-        "value": 18.8,
+        "value": 18.7,
         "ci_90_lo": 11.3,
         "ci_90_hi": 38.6
       }
@@ -5226,13 +5384,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 4.6,
-        "high_lev_win_pct": 55.6,
+        "value": 4.5,
+        "high_lev_win_pct": 55.5,
         "baseline_win_pct": 51.0,
         "n_eff": 41,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.046
+        "modifier_delta": 0.045
       },
       "df_pressure_delta": {
         "available": true,
@@ -5356,7 +5514,11 @@
       "R_overall": 1636.6,
       "R_surface": 1636.6,
       "R_adjusted": 1636.6
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 3
   },
   "James Blake": {
     "player": "James Blake",
@@ -5371,6 +5533,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1161",
+        "year": 2011,
         "round": "R128",
         "opponent": "Marcos Baghdatis",
         "opponent_elo": 1636.6,
@@ -5548,7 +5711,11 @@
       "R_overall": 1543.3,
       "R_surface": 1543.3,
       "R_adjusted": 1543.3
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Jeremy Chardy": {
     "player": "Jeremy Chardy",
@@ -5563,6 +5730,7 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1164",
+        "year": 2011,
         "round": "R128",
         "opponent": "Novak Djokovic",
         "opponent_elo": 2184.9,
@@ -5744,7 +5912,11 @@
       "R_overall": 1556.2,
       "R_surface": 1556.2,
       "R_adjusted": 1556.2
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Novak Djokovic": {
     "player": "Novak Djokovic",
@@ -5758,60 +5930,67 @@
     "tier2_wide_intervals": true,
     "training_matches": [
       {
+        "match_id": "2011-wimbledon-1701",
+        "year": 2011,
+        "round": "F",
+        "opponent": "Rafael Nadal",
+        "opponent_elo": 1965.8,
+        "w_t": 1.0,
+        "w_q": 1.2843
+      },
+      {
+        "match_id": "2011-wimbledon-1602",
+        "year": 2011,
+        "round": "SF",
+        "opponent": "Jo-Wilfried Tsonga",
+        "opponent_elo": 1787.5,
+        "w_t": 1.0,
+        "w_q": 1.1678
+      },
+      {
+        "match_id": "2011-wimbledon-1504",
+        "year": 2011,
+        "round": "QF",
+        "opponent": "Bernard Tomic",
+        "opponent_elo": 1663.3,
+        "w_t": 1.0,
+        "w_q": 1.0867
+      },
+      {
+        "match_id": "2011-wimbledon-1408",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "Michael Llodra",
+        "opponent_elo": 1682.8,
+        "w_t": 1.0,
+        "w_q": 1.0994
+      },
+      {
+        "match_id": "2011-wimbledon-1316",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Marcos Baghdatis",
+        "opponent_elo": 1636.6,
+        "w_t": 1.0,
+        "w_q": 1.0692
+      },
+      {
+        "match_id": "2011-wimbledon-1232",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Kevin Anderson",
+        "opponent_elo": 1841.0,
+        "w_t": 1.0,
+        "w_q": 1.2028
+      },
+      {
         "match_id": "2011-wimbledon-1164",
+        "year": 2011,
         "round": "R128",
         "opponent": "Jeremy Chardy",
         "opponent_elo": 1556.2,
         "w_t": 1.0,
         "w_q": 1.0167
-      },
-      {
-        "match_id": "2011-wimbledon-1232",
-        "round": "R64",
-        "opponent": "Kevin Anderson",
-        "opponent_elo": 1841.0,
-        "w_t": 0.9973,
-        "w_q": 1.2028
-      },
-      {
-        "match_id": "2011-wimbledon-1316",
-        "round": "R32",
-        "opponent": "Marcos Baghdatis",
-        "opponent_elo": 1636.6,
-        "w_t": 0.9945,
-        "w_q": 1.0692
-      },
-      {
-        "match_id": "2011-wimbledon-1408",
-        "round": "R16",
-        "opponent": "Michael Llodra",
-        "opponent_elo": 1682.8,
-        "w_t": 0.9918,
-        "w_q": 1.0994
-      },
-      {
-        "match_id": "2011-wimbledon-1504",
-        "round": "QF",
-        "opponent": "Bernard Tomic",
-        "opponent_elo": 1663.3,
-        "w_t": 0.9891,
-        "w_q": 1.0867
-      },
-      {
-        "match_id": "2011-wimbledon-1602",
-        "round": "SF",
-        "opponent": "Jo-Wilfried Tsonga",
-        "opponent_elo": 1787.5,
-        "w_t": 0.9864,
-        "w_q": 1.1678
-      },
-      {
-        "match_id": "2011-wimbledon-1701",
-        "round": "F",
-        "opponent": "Rafael Nadal",
-        "opponent_elo": 1965.8,
-        "w_t": 0.9837,
-        "w_q": 1.2843
       }
     ],
     "tier1": {
@@ -5864,13 +6043,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 8.1,
-        "bp_df_rate": 10.5,
+        "value": 8.2,
+        "bp_df_rate": 10.6,
         "baseline_df_rate": 2.4,
         "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.081
+        "modifier_delta": 0.082
       },
       "serve_speed_courage": {
         "available": true,
@@ -5896,7 +6075,7 @@
         "streak_recovery_rate": 0.364
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.619,
+        "bp_per_return_game": 0.618,
         "bp_conversion": 0.479,
         "bp_created": 10.5,
         "bp_converted": 5.0
@@ -5904,7 +6083,7 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.6847,
+        "value": 0.693,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0324,
@@ -5912,16 +6091,16 @@
             "contribution": 0.0097
           },
           "df_rate_delta": {
-            "delta_frac": 3.375,
+            "delta_frac": 3.4167,
             "weight": 0.2,
-            "contribution": 0.675
+            "contribution": 0.6833
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.6847,
+        "modifier_delta": 0.693,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -5984,7 +6163,11 @@
       "R_overall": 2184.9,
       "R_surface": 2184.9,
       "R_adjusted": 2184.9
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 7
   },
   "Rafael Nadal": {
     "player": "Rafael Nadal",
@@ -5998,52 +6181,58 @@
     "tier2_wide_intervals": true,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1201",
-        "round": "R64",
-        "opponent": "Ryan Sweeting",
-        "opponent_elo": 1472.9,
-        "w_t": 0.9973,
-        "w_q": 0.9623
-      },
-      {
-        "match_id": "2011-wimbledon-1301",
-        "round": "R32",
-        "opponent": "Gilles Muller",
-        "opponent_elo": 1768.8,
-        "w_t": 0.9945,
-        "w_q": 1.1556
-      },
-      {
-        "match_id": "2011-wimbledon-1401",
-        "round": "R16",
-        "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
-        "w_t": 0.9918,
-        "w_q": 1.0
-      },
-      {
-        "match_id": "2011-wimbledon-1501",
-        "round": "QF",
-        "opponent": "Mardy Fish",
-        "opponent_elo": 1850.0,
-        "w_t": 0.9891,
-        "w_q": 1.2087
-      },
-      {
-        "match_id": "2011-wimbledon-1601",
-        "round": "SF",
-        "opponent": "Andy Murray",
-        "opponent_elo": 1861.5,
-        "w_t": 0.9864,
-        "w_q": 1.2162
-      },
-      {
         "match_id": "2011-wimbledon-1701",
+        "year": 2011,
         "round": "F",
         "opponent": "Novak Djokovic",
         "opponent_elo": 2184.9,
-        "w_t": 0.9837,
+        "w_t": 1.0,
         "w_q": 1.4275
+      },
+      {
+        "match_id": "2011-wimbledon-1601",
+        "year": 2011,
+        "round": "SF",
+        "opponent": "Andy Murray",
+        "opponent_elo": 1861.5,
+        "w_t": 1.0,
+        "w_q": 1.2162
+      },
+      {
+        "match_id": "2011-wimbledon-1501",
+        "year": 2011,
+        "round": "QF",
+        "opponent": "Mardy Fish",
+        "opponent_elo": 1850.0,
+        "w_t": 1.0,
+        "w_q": 1.2087
+      },
+      {
+        "match_id": "2011-wimbledon-1401",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "Juan Martin Del Potro",
+        "opponent_elo": null,
+        "w_t": 1.0,
+        "w_q": 1.0
+      },
+      {
+        "match_id": "2011-wimbledon-1301",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Gilles Muller",
+        "opponent_elo": 1768.8,
+        "w_t": 1.0,
+        "w_q": 1.1556
+      },
+      {
+        "match_id": "2011-wimbledon-1201",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Ryan Sweeting",
+        "opponent_elo": 1472.9,
+        "w_t": 1.0,
+        "w_q": 0.9623
       }
     ],
     "tier1": {
@@ -6086,13 +6275,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 2.7,
+        "value": 2.8,
         "high_lev_win_pct": 55.6,
-        "baseline_win_pct": 52.9,
+        "baseline_win_pct": 52.8,
         "n_eff": 21,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.027
+        "modifier_delta": 0.028
       },
       "df_pressure_delta": {
         "available": true,
@@ -6123,7 +6312,7 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 2.34,
+        "streak_initiation_rate": 2.35,
         "streak_survival_rate": 0.466,
         "streak_recovery_rate": 0.408
       },
@@ -6178,9 +6367,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 0.5,
+        "value": 0.6,
         "first_games_win_pct": 53.4,
-        "overall_win_pct": 52.9,
+        "overall_win_pct": 52.8,
         "n_eff": 44,
         "confidence": "LOW"
       },
@@ -6190,9 +6379,9 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -1.2,
+        "value": -1.1,
         "tb_win_pct": 51.7,
-        "baseline_win_pct": 52.9,
+        "baseline_win_pct": 52.8,
         "n_eff": 206,
         "confidence": "RELIABLE"
       },
@@ -6212,7 +6401,11 @@
       "R_overall": 1965.8,
       "R_surface": 1965.8,
       "R_adjusted": 1965.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 6
   },
   "Ryan Sweeting": {
     "player": "Ryan Sweeting",
@@ -6227,10 +6420,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1201",
+        "year": 2011,
         "round": "R64",
         "opponent": "Rafael Nadal",
         "opponent_elo": 1965.8,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.2843
       }
     ],
@@ -6408,7 +6602,11 @@
       "R_overall": 1472.9,
       "R_surface": 1472.9,
       "R_adjusted": 1472.9
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Gilles Muller": {
     "player": "Gilles Muller",
@@ -6422,27 +6620,29 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1202",
-        "round": "R64",
-        "opponent": "Milos Raonic",
-        "opponent_elo": 1810.8,
-        "w_t": 0.9973,
-        "w_q": 1.1831
-      },
-      {
         "match_id": "2011-wimbledon-1301",
+        "year": 2011,
         "round": "R32",
         "opponent": "Rafael Nadal",
         "opponent_elo": 1965.8,
-        "w_t": 0.9945,
+        "w_t": 1.0,
         "w_q": 1.2843
+      },
+      {
+        "match_id": "2011-wimbledon-1202",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Milos Raonic",
+        "opponent_elo": 1810.8,
+        "w_t": 1.0,
+        "w_q": 1.1831
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 0.0,
         "ci_90_lo": 0.6,
-        "ci_90_hi": 7.7
+        "ci_90_hi": 7.6
       },
       "fspw_pct": {
         "value": null,
@@ -6604,7 +6804,11 @@
       "R_overall": 1768.8,
       "R_surface": 1768.8,
       "R_adjusted": 1768.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Milos Raonic": {
     "player": "Milos Raonic",
@@ -6619,10 +6823,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1202",
+        "year": 2011,
         "round": "R64",
         "opponent": "Gilles Muller",
         "opponent_elo": 1768.8,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.1556
       }
     ],
@@ -6787,7 +6992,11 @@
       "R_overall": 1810.8,
       "R_surface": 1810.8,
       "R_adjusted": 1810.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Olivier Rochus": {
     "player": "Olivier Rochus",
@@ -6802,10 +7011,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1203",
+        "year": 2011,
         "round": "R64",
         "opponent": "Juan Martin Del Potro",
         "opponent_elo": null,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.0
       }
     ],
@@ -6983,7 +7193,11 @@
       "R_overall": 1581.8,
       "R_surface": 1581.8,
       "R_adjusted": 1581.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Mardy Fish": {
     "player": "Mardy Fish",
@@ -6997,28 +7211,31 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1205",
-        "round": "R64",
-        "opponent": "Denis Istomin",
-        "opponent_elo": 1603.1,
-        "w_t": 0.9973,
-        "w_q": 1.0474
-      },
-      {
-        "match_id": "2011-wimbledon-1402",
-        "round": "R16",
-        "opponent": "Tomas Berdych",
-        "opponent_elo": 1826.1,
-        "w_t": 0.9918,
-        "w_q": 1.193
-      },
-      {
         "match_id": "2011-wimbledon-1501",
+        "year": 2011,
         "round": "QF",
         "opponent": "Rafael Nadal",
         "opponent_elo": 1965.8,
-        "w_t": 0.9891,
+        "w_t": 1.0,
         "w_q": 1.2843
+      },
+      {
+        "match_id": "2011-wimbledon-1402",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "Tomas Berdych",
+        "opponent_elo": 1826.1,
+        "w_t": 1.0,
+        "w_q": 1.193
+      },
+      {
+        "match_id": "2011-wimbledon-1205",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Denis Istomin",
+        "opponent_elo": 1603.1,
+        "w_t": 1.0,
+        "w_q": 1.0474
       }
     ],
     "tier1": {
@@ -7169,8 +7386,8 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.6,
-        "tb_win_pct": 49.5,
+        "value": -0.7,
+        "tb_win_pct": 49.4,
         "baseline_win_pct": 50.1,
         "n_eff": 209,
         "confidence": "RELIABLE"
@@ -7191,7 +7408,11 @@
       "R_overall": 1850.0,
       "R_surface": 1850.0,
       "R_adjusted": 1850.0
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 3
   },
   "Denis Istomin": {
     "player": "Denis Istomin",
@@ -7206,10 +7427,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1205",
+        "year": 2011,
         "round": "R64",
         "opponent": "Mardy Fish",
         "opponent_elo": 1850.0,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.2087
       }
     ],
@@ -7383,7 +7605,11 @@
       "R_overall": 1603.1,
       "R_surface": 1603.1,
       "R_adjusted": 1603.1
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Robin Haase": {
     "player": "Robin Haase",
@@ -7398,10 +7624,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1206",
+        "year": 2011,
         "round": "R64",
         "opponent": "Fernando Verdasco",
         "opponent_elo": 1616.8,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.0563
       }
     ],
@@ -7575,7 +7802,11 @@
       "R_overall": 1573.9,
       "R_surface": 1573.9,
       "R_adjusted": 1573.9
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Julien Benneteau": {
     "player": "Julien Benneteau",
@@ -7590,10 +7821,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1208",
+        "year": 2011,
         "round": "R64",
         "opponent": "Tomas Berdych",
         "opponent_elo": 1826.1,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.193
       }
     ],
@@ -7771,7 +8003,11 @@
       "R_overall": 1624.4,
       "R_surface": 1624.4,
       "R_adjusted": 1624.4
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Tomas Berdych": {
     "player": "Tomas Berdych",
@@ -7785,28 +8021,31 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1208",
-        "round": "R64",
-        "opponent": "Julien Benneteau",
-        "opponent_elo": 1624.4,
-        "w_t": 0.9973,
-        "w_q": 1.0613
-      },
-      {
-        "match_id": "2011-wimbledon-1304",
-        "round": "R32",
-        "opponent": "Alex Bogomolov Jr.",
-        "opponent_elo": null,
-        "w_t": 0.9945,
-        "w_q": 1.0
-      },
-      {
         "match_id": "2011-wimbledon-1402",
+        "year": 2011,
         "round": "R16",
         "opponent": "Mardy Fish",
         "opponent_elo": 1850.0,
-        "w_t": 0.9918,
+        "w_t": 1.0,
         "w_q": 1.2087
+      },
+      {
+        "match_id": "2011-wimbledon-1304",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Alex Bogomolov Jr.",
+        "opponent_elo": null,
+        "w_t": 1.0,
+        "w_q": 1.0
+      },
+      {
+        "match_id": "2011-wimbledon-1208",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Julien Benneteau",
+        "opponent_elo": 1624.4,
+        "w_t": 1.0,
+        "w_q": 1.0613
       }
     ],
     "tier1": {
@@ -7836,9 +8075,9 @@
         "ci_90_hi": 94.7
       },
       "rgw_pct": {
-        "value": 25.8,
+        "value": 25.7,
         "ci_90_lo": 15.0,
-        "ci_90_hi": 49.2
+        "ci_90_hi": 49.1
       }
     },
     "tier2": {
@@ -7881,8 +8120,8 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 50.5,
-        "ad_win_pct": 59.4,
-        "asymmetry": 8.9,
+        "ad_win_pct": 59.3,
+        "asymmetry": 8.8,
         "stronger_side": "ad"
       },
       "momentum_profile": {
@@ -7979,7 +8218,11 @@
       "R_overall": 1826.1,
       "R_surface": 1826.1,
       "R_adjusted": 1826.1
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 3
   },
   "Tobias Kamke": {
     "player": "Tobias Kamke",
@@ -7994,10 +8237,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1209",
+        "year": 2011,
         "round": "R64",
         "opponent": "Andy Murray",
         "opponent_elo": 1861.5,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.2162
       }
     ],
@@ -8171,7 +8415,11 @@
       "R_overall": 1557.3,
       "R_surface": 1557.3,
       "R_adjusted": 1557.3
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Richard Gasquet": {
     "player": "Richard Gasquet",
@@ -8185,20 +8433,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1211",
-        "round": "R64",
-        "opponent": "Igor Kunitsyn",
-        "opponent_elo": 1433.4,
-        "w_t": 0.9973,
-        "w_q": 0.9365
-      },
-      {
         "match_id": "2011-wimbledon-1403",
+        "year": 2011,
         "round": "R16",
         "opponent": "Andy Murray",
         "opponent_elo": 1861.5,
-        "w_t": 0.9918,
+        "w_t": 1.0,
         "w_q": 1.2162
+      },
+      {
+        "match_id": "2011-wimbledon-1211",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Igor Kunitsyn",
+        "opponent_elo": 1433.4,
+        "w_t": 1.0,
+        "w_q": 0.9365
       }
     ],
     "tier1": {
@@ -8218,7 +8468,7 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 35.0,
+        "value": 34.9,
         "ci_90_lo": 27.5,
         "ci_90_hi": 44.1
       },
@@ -8229,8 +8479,8 @@
       },
       "rgw_pct": {
         "value": 23.9,
-        "ci_90_lo": 14.0,
-        "ci_90_hi": 47.3
+        "ci_90_lo": 13.9,
+        "ci_90_hi": 47.2
       }
     },
     "tier2": {
@@ -8241,13 +8491,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": -6.1,
-        "high_lev_win_pct": 44.4,
+        "value": -6.2,
+        "high_lev_win_pct": 44.3,
         "baseline_win_pct": 50.5,
         "n_eff": 18,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.061
+        "modifier_delta": -0.062
       },
       "df_pressure_delta": {
         "available": true,
@@ -8284,7 +8534,7 @@
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.305,
-        "bp_conversion": 0.567,
+        "bp_conversion": 0.566,
         "bp_created": 4.6,
         "bp_converted": 2.6
       },
@@ -8371,7 +8621,11 @@
       "R_overall": 1658.8,
       "R_surface": 1658.8,
       "R_adjusted": 1658.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Igor Kunitsyn": {
     "player": "Igor Kunitsyn",
@@ -8386,10 +8640,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1211",
+        "year": 2011,
         "round": "R64",
         "opponent": "Richard Gasquet",
         "opponent_elo": 1658.8,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.0837
       }
     ],
@@ -8567,7 +8822,11 @@
       "R_overall": 1433.4,
       "R_surface": 1433.4,
       "R_adjusted": 1433.4
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Simone Bolelli": {
     "player": "Simone Bolelli",
@@ -8582,10 +8841,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1212",
+        "year": 2011,
         "round": "R64",
         "opponent": "Stanislas Wawrinka",
         "opponent_elo": null,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.0
       }
     ],
@@ -8754,7 +9014,11 @@
       "R_overall": 1642.6,
       "R_surface": 1642.6,
       "R_adjusted": 1642.6
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Stanislas Wawrinka": {
     "player": "Stanislas Wawrinka",
@@ -8769,10 +9033,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1212",
+        "year": 2011,
         "round": "R64",
         "opponent": "Simone Bolelli",
         "opponent_elo": 1642.6,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.0732
       }
     ],
@@ -8939,7 +9204,11 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null
+    "elo_snapshot": null,
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Victor Hanescu": {
     "player": "Victor Hanescu",
@@ -8954,10 +9223,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1216",
+        "year": 2011,
         "round": "R64",
         "opponent": "Andy Roddick",
         "opponent_elo": 1924.3,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.2572
       }
     ],
@@ -9131,7 +9401,11 @@
       "R_overall": 1458.3,
       "R_surface": 1458.3,
       "R_adjusted": 1458.3
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Ryan Harrison": {
     "player": "Ryan Harrison",
@@ -9146,10 +9420,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1217",
+        "year": 2011,
         "round": "R64",
         "opponent": "David Ferrer",
         "opponent_elo": 1654.8,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.0811
       }
     ],
@@ -9327,7 +9602,11 @@
       "R_overall": 1414.7,
       "R_surface": 1414.7,
       "R_adjusted": 1414.7
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Grigor Dimitrov": {
     "player": "Grigor Dimitrov",
@@ -9342,10 +9621,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1220",
+        "year": 2011,
         "round": "R64",
         "opponent": "Jo-Wilfried Tsonga",
         "opponent_elo": 1787.5,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.1678
       }
     ],
@@ -9519,7 +9799,11 @@
       "R_overall": 1741.0,
       "R_surface": 1741.0,
       "R_adjusted": 1741.0
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Jo-Wilfried Tsonga": {
     "player": "Jo-Wilfried Tsonga",
@@ -9533,44 +9817,49 @@
     "tier2_wide_intervals": true,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1220",
-        "round": "R64",
-        "opponent": "Grigor Dimitrov",
-        "opponent_elo": 1741.0,
-        "w_t": 0.9973,
-        "w_q": 1.1375
-      },
-      {
-        "match_id": "2011-wimbledon-1310",
-        "round": "R32",
-        "opponent": "Fernando Gonzalez",
-        "opponent_elo": 1728.7,
-        "w_t": 0.9945,
-        "w_q": 1.1294
-      },
-      {
-        "match_id": "2011-wimbledon-1405",
-        "round": "R16",
-        "opponent": "David Ferrer",
-        "opponent_elo": 1654.8,
-        "w_t": 0.9918,
-        "w_q": 1.0811
-      },
-      {
-        "match_id": "2011-wimbledon-1503",
-        "round": "QF",
-        "opponent": "Roger Federer",
-        "opponent_elo": 2095.1,
-        "w_t": 0.9891,
-        "w_q": 1.3688
-      },
-      {
         "match_id": "2011-wimbledon-1602",
+        "year": 2011,
         "round": "SF",
         "opponent": "Novak Djokovic",
         "opponent_elo": 2184.9,
-        "w_t": 0.9864,
+        "w_t": 1.0,
         "w_q": 1.4275
+      },
+      {
+        "match_id": "2011-wimbledon-1503",
+        "year": 2011,
+        "round": "QF",
+        "opponent": "Roger Federer",
+        "opponent_elo": 2095.1,
+        "w_t": 1.0,
+        "w_q": 1.3688
+      },
+      {
+        "match_id": "2011-wimbledon-1405",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "David Ferrer",
+        "opponent_elo": 1654.8,
+        "w_t": 1.0,
+        "w_q": 1.0811
+      },
+      {
+        "match_id": "2011-wimbledon-1310",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Fernando Gonzalez",
+        "opponent_elo": 1728.7,
+        "w_t": 1.0,
+        "w_q": 1.1294
+      },
+      {
+        "match_id": "2011-wimbledon-1220",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Grigor Dimitrov",
+        "opponent_elo": 1741.0,
+        "w_t": 1.0,
+        "w_q": 1.1375
       }
     ],
     "tier1": {
@@ -9623,13 +9912,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -1.0,
+        "value": -0.9,
         "bp_df_rate": 2.7,
-        "baseline_df_rate": 3.7,
+        "baseline_df_rate": 3.6,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.01
+        "modifier_delta": -0.009
       },
       "serve_speed_courage": {
         "available": true,
@@ -9645,14 +9934,14 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 48.1,
-        "ad_win_pct": 52.0,
-        "asymmetry": 3.9,
+        "ad_win_pct": 51.9,
+        "asymmetry": 3.8,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.32,
+        "streak_initiation_rate": 3.31,
         "streak_survival_rate": 0.52,
-        "streak_recovery_rate": 0.444
+        "streak_recovery_rate": 0.443
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.404,
@@ -9663,7 +9952,7 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.0556,
+        "value": -0.0515,
         "components": {
           "serve_speed_delta": {
             "delta_frac": -0.005,
@@ -9671,16 +9960,16 @@
             "contribution": -0.0015
           },
           "df_rate_delta": {
-            "delta_frac": -0.2703,
+            "delta_frac": -0.25,
             "weight": 0.2,
-            "contribution": -0.0541
+            "contribution": -0.05
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": -0.0556,
+        "modifier_delta": -0.0515,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -9743,7 +10032,11 @@
       "R_overall": 1787.5,
       "R_surface": 1787.5,
       "R_adjusted": 1787.5
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 5
   },
   "Nicolas Almagro": {
     "player": "Nicolas Almagro",
@@ -9757,20 +10050,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1221",
-        "round": "R64",
-        "opponent": "John Isner",
-        "opponent_elo": 1748.9,
-        "w_t": 0.9973,
-        "w_q": 1.1426
-      },
-      {
         "match_id": "2011-wimbledon-1311",
+        "year": 2011,
         "round": "R32",
         "opponent": "Mikhail Youzhny",
         "opponent_elo": 1602.2,
-        "w_t": 0.9945,
+        "w_t": 1.0,
         "w_q": 1.0468
+      },
+      {
+        "match_id": "2011-wimbledon-1221",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "John Isner",
+        "opponent_elo": 1748.9,
+        "w_t": 1.0,
+        "w_q": 1.1426
       }
     ],
     "tier1": {
@@ -9845,17 +10140,17 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 50.5,
-        "ad_win_pct": 47.1,
-        "asymmetry": 3.4,
+        "ad_win_pct": 47.0,
+        "asymmetry": 3.5,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
         "streak_initiation_rate": 8.78,
-        "streak_survival_rate": 0.461,
+        "streak_survival_rate": 0.46,
         "streak_recovery_rate": 0.253
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.325,
+        "bp_per_return_game": 0.326,
         "bp_conversion": 0.136,
         "bp_created": 7.3,
         "bp_converted": 1.0
@@ -9905,8 +10200,8 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 1.3,
-        "first_games_win_pct": 50.3,
+        "value": 1.2,
+        "first_games_win_pct": 50.2,
         "overall_win_pct": 49.0,
         "n_eff": 45,
         "confidence": "LOW"
@@ -9943,7 +10238,11 @@
       "R_overall": 1605.7,
       "R_surface": 1605.7,
       "R_adjusted": 1605.7
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "David Nalbandian": {
     "player": "David Nalbandian",
@@ -9957,20 +10256,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1223",
-        "round": "R64",
-        "opponent": "Andreas Haider-Maurer",
-        "opponent_elo": null,
-        "w_t": 0.9973,
-        "w_q": 1.0
-      },
-      {
         "match_id": "2011-wimbledon-1312",
+        "year": 2011,
         "round": "R32",
         "opponent": "Roger Federer",
         "opponent_elo": 2095.1,
-        "w_t": 0.9945,
+        "w_t": 1.0,
         "w_q": 1.3688
+      },
+      {
+        "match_id": "2011-wimbledon-1223",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Andreas Haider-Maurer",
+        "opponent_elo": null,
+        "w_t": 1.0,
+        "w_q": 1.0
       }
     ],
     "tier1": {
@@ -10052,10 +10353,10 @@
       "momentum_profile": {
         "streak_initiation_rate": 5.77,
         "streak_survival_rate": 0.443,
-        "streak_recovery_rate": 0.254
+        "streak_recovery_rate": 0.255
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.56,
+        "bp_per_return_game": 0.559,
         "bp_conversion": 0.243,
         "bp_created": 9.3,
         "bp_converted": 2.3
@@ -10143,7 +10444,11 @@
       "R_overall": 1755.7,
       "R_surface": 1755.7,
       "R_adjusted": 1755.7
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Andreas Haider-Maurer": {
     "player": "Andreas Haider-Maurer",
@@ -10158,10 +10463,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1223",
+        "year": 2011,
         "round": "R64",
         "opponent": "David Nalbandian",
         "opponent_elo": 1755.7,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.1471
       }
     ],
@@ -10328,7 +10634,11 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null
+    "elo_snapshot": null,
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Adrian Mannarino": {
     "player": "Adrian Mannarino",
@@ -10343,10 +10653,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1224",
+        "year": 2011,
         "round": "R64",
         "opponent": "Roger Federer",
         "opponent_elo": 2095.1,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.3688
       }
     ],
@@ -10520,7 +10831,11 @@
       "R_overall": 1638.9,
       "R_surface": 1638.9,
       "R_adjusted": 1638.9
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Igor Andreev": {
     "player": "Igor Andreev",
@@ -10535,10 +10850,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1226",
+        "year": 2011,
         "round": "R64",
         "opponent": "Bernard Tomic",
         "opponent_elo": 1663.3,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.0867
       }
     ],
@@ -10716,7 +11032,11 @@
       "R_overall": 1520.6,
       "R_surface": 1520.6,
       "R_adjusted": 1520.6
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Bernard Tomic": {
     "player": "Bernard Tomic",
@@ -10730,36 +11050,40 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1226",
-        "round": "R64",
-        "opponent": "Igor Andreev",
-        "opponent_elo": 1520.6,
-        "w_t": 0.9973,
-        "w_q": 0.9935
-      },
-      {
-        "match_id": "2011-wimbledon-1313",
-        "round": "R32",
-        "opponent": "Robin Soderling",
-        "opponent_elo": 1832.4,
-        "w_t": 0.9945,
-        "w_q": 1.1972
-      },
-      {
-        "match_id": "2011-wimbledon-1407",
-        "round": "R16",
-        "opponent": "Xavier Malisse",
-        "opponent_elo": 1790.7,
-        "w_t": 0.9918,
-        "w_q": 1.1699
-      },
-      {
         "match_id": "2011-wimbledon-1504",
+        "year": 2011,
         "round": "QF",
         "opponent": "Novak Djokovic",
         "opponent_elo": 2184.9,
-        "w_t": 0.9891,
+        "w_t": 1.0,
         "w_q": 1.4275
+      },
+      {
+        "match_id": "2011-wimbledon-1407",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "Xavier Malisse",
+        "opponent_elo": 1790.7,
+        "w_t": 1.0,
+        "w_q": 1.1699
+      },
+      {
+        "match_id": "2011-wimbledon-1313",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Robin Soderling",
+        "opponent_elo": 1832.4,
+        "w_t": 1.0,
+        "w_q": 1.1972
+      },
+      {
+        "match_id": "2011-wimbledon-1226",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Igor Andreev",
+        "opponent_elo": 1520.6,
+        "w_t": 1.0,
+        "w_q": 0.9935
       }
     ],
     "tier1": {
@@ -10802,13 +11126,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 0.5,
+        "value": 0.6,
         "high_lev_win_pct": 53.4,
-        "baseline_win_pct": 52.9,
+        "baseline_win_pct": 52.8,
         "n_eff": 36,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.005
+        "modifier_delta": 0.006
       },
       "df_pressure_delta": {
         "available": true,
@@ -10840,7 +11164,7 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 3.58,
-        "streak_survival_rate": 0.445,
+        "streak_survival_rate": 0.444,
         "streak_recovery_rate": 0.246
       },
       "bp_creation_profile": {
@@ -10894,9 +11218,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -2.9,
+        "value": -2.8,
         "first_games_win_pct": 50.0,
-        "overall_win_pct": 52.9,
+        "overall_win_pct": 52.8,
         "n_eff": 48,
         "confidence": "LOW"
       },
@@ -10910,10 +11234,10 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.9,
+        "value": -0.8,
         "tb_win_pct": 52.0,
-        "baseline_win_pct": 52.9,
-        "n_eff": 215,
+        "baseline_win_pct": 52.8,
+        "n_eff": 214,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -10932,7 +11256,11 @@
       "R_overall": 1663.3,
       "R_surface": 1663.3,
       "R_adjusted": 1663.3
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 4
   },
   "Jurgen Melzer": {
     "player": "Jurgen Melzer",
@@ -10946,20 +11274,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1228",
-        "round": "R64",
-        "opponent": "Dmitry Tursunov",
-        "opponent_elo": 1529.7,
-        "w_t": 0.9973,
-        "w_q": 0.9994
-      },
-      {
         "match_id": "2011-wimbledon-1314",
+        "year": 2011,
         "round": "R32",
         "opponent": "Xavier Malisse",
         "opponent_elo": 1790.7,
-        "w_t": 0.9945,
+        "w_t": 1.0,
         "w_q": 1.1699
+      },
+      {
+        "match_id": "2011-wimbledon-1228",
+        "year": 2011,
+        "round": "R64",
+        "opponent": "Dmitry Tursunov",
+        "opponent_elo": 1529.7,
+        "w_t": 1.0,
+        "w_q": 0.9994
       }
     ],
     "tier1": {
@@ -10984,7 +11314,7 @@
         "ci_90_hi": 44.4
       },
       "sgw_pct": {
-        "value": 67.9,
+        "value": 67.8,
         "ci_90_lo": 47.0,
         "ci_90_hi": 80.4
       },
@@ -11039,7 +11369,7 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.27,
+        "streak_initiation_rate": 5.26,
         "streak_survival_rate": 0.277,
         "streak_recovery_rate": 0.571
       },
@@ -11119,8 +11449,8 @@
       "hold_after_break": {
         "available": true,
         "value": -9.4,
-        "habr_pct": 58.5,
-        "sgw_pct": 67.9,
+        "habr_pct": 58.4,
+        "sgw_pct": 67.8,
         "n_eff": 5,
         "confidence": "UNRELIABLE"
       }
@@ -11136,7 +11466,11 @@
       "R_overall": 1668.4,
       "R_surface": 1668.4,
       "R_adjusted": 1668.4
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Viktor Troicki": {
     "player": "Viktor Troicki",
@@ -11151,10 +11485,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1229",
+        "year": 2011,
         "round": "R64",
         "opponent": "Yen-Hsun Lu",
         "opponent_elo": null,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.0
       }
     ],
@@ -11328,7 +11663,11 @@
       "R_overall": 1585.8,
       "R_surface": 1585.8,
       "R_adjusted": 1585.8
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Yen-Hsun Lu": {
     "player": "Yen-Hsun Lu",
@@ -11343,10 +11682,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1229",
+        "year": 2011,
         "round": "R64",
         "opponent": "Viktor Troicki",
         "opponent_elo": 1585.8,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.0361
       }
     ],
@@ -11513,7 +11853,11 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null
+    "elo_snapshot": null,
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Andreas Seppi": {
     "player": "Andreas Seppi",
@@ -11528,10 +11872,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1231",
+        "year": 2011,
         "round": "R64",
         "opponent": "Marcos Baghdatis",
         "opponent_elo": 1636.6,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.0692
       }
     ],
@@ -11705,7 +12050,11 @@
       "R_overall": 1626.9,
       "R_surface": 1626.9,
       "R_adjusted": 1626.9
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Kevin Anderson": {
     "player": "Kevin Anderson",
@@ -11720,10 +12069,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1232",
+        "year": 2011,
         "round": "R64",
         "opponent": "Novak Djokovic",
         "opponent_elo": 2184.9,
-        "w_t": 0.9973,
+        "w_t": 1.0,
         "w_q": 1.4275
       }
     ],
@@ -11897,7 +12247,11 @@
       "R_overall": 1841.0,
       "R_surface": 1841.0,
       "R_adjusted": 1841.0
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Gilles Simon": {
     "player": "Gilles Simon",
@@ -11912,10 +12266,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1302",
+        "year": 2011,
         "round": "R32",
         "opponent": "Juan Martin Del Potro",
         "opponent_elo": null,
-        "w_t": 0.9945,
+        "w_t": 1.0,
         "w_q": 1.0
       }
     ],
@@ -12084,7 +12439,11 @@
       "R_overall": 1596.2,
       "R_surface": 1596.2,
       "R_adjusted": 1596.2
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Alex Bogomolov Jr.": {
     "player": "Alex Bogomolov Jr.",
@@ -12099,10 +12458,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1304",
+        "year": 2011,
         "round": "R32",
         "opponent": "Tomas Berdych",
         "opponent_elo": 1826.1,
-        "w_t": 0.9945,
+        "w_t": 1.0,
         "w_q": 1.193
       }
     ],
@@ -12269,7 +12629,11 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null
+    "elo_snapshot": null,
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Gael Monfils": {
     "player": "Gael Monfils",
@@ -12284,10 +12648,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1307",
+        "year": 2011,
         "round": "R32",
         "opponent": "Lukasz Kubot",
         "opponent_elo": 1625.1,
-        "w_t": 0.9945,
+        "w_t": 1.0,
         "w_q": 1.0617
       }
     ],
@@ -12465,7 +12830,11 @@
       "R_overall": 1672.3,
       "R_surface": 1672.3,
       "R_adjusted": 1672.3
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Lukasz Kubot": {
     "player": "Lukasz Kubot",
@@ -12479,20 +12848,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1307",
-        "round": "R32",
-        "opponent": "Gael Monfils",
-        "opponent_elo": 1672.3,
-        "w_t": 0.9945,
-        "w_q": 1.0926
-      },
-      {
         "match_id": "2011-wimbledon-1404",
+        "year": 2011,
         "round": "R16",
         "opponent": "Feliciano Lopez",
         "opponent_elo": 1665.5,
-        "w_t": 0.9918,
+        "w_t": 1.0,
         "w_q": 1.0881
+      },
+      {
+        "match_id": "2011-wimbledon-1307",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Gael Monfils",
+        "opponent_elo": 1672.3,
+        "w_t": 1.0,
+        "w_q": 1.0926
       }
     ],
     "tier1": {
@@ -12535,13 +12906,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 8.3,
-        "high_lev_win_pct": 58.4,
+        "value": 8.2,
+        "high_lev_win_pct": 58.3,
         "baseline_win_pct": 50.1,
         "n_eff": 36,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.083
+        "modifier_delta": 0.082
       },
       "df_pressure_delta": {
         "available": true,
@@ -12572,12 +12943,12 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 7.74,
+        "streak_initiation_rate": 7.75,
         "streak_survival_rate": 0.451,
         "streak_recovery_rate": 0.666
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.355,
+        "bp_per_return_game": 0.354,
         "bp_conversion": 0.53,
         "bp_created": 8.5,
         "bp_converted": 4.5
@@ -12627,8 +12998,8 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 1.6,
-        "first_games_win_pct": 51.7,
+        "value": 1.7,
+        "first_games_win_pct": 51.8,
         "overall_win_pct": 50.1,
         "n_eff": 57,
         "confidence": "LOW"
@@ -12665,42 +13036,49 @@
       "R_overall": 1625.1,
       "R_surface": 1625.1,
       "R_adjusted": 1625.1
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Feliciano Lopez": {
     "player": "Feliciano Lopez",
     "surface": "grass",
     "year": 2011,
     "n_matches": 3,
-    "n_points": 248,
+    "n_points": 247,
     "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1308",
-        "round": "R32",
-        "opponent": "Andy Roddick",
-        "opponent_elo": 1924.3,
-        "w_t": 0.9945,
-        "w_q": 1.2572
-      },
-      {
-        "match_id": "2011-wimbledon-1404",
-        "round": "R16",
-        "opponent": "Lukasz Kubot",
-        "opponent_elo": 1625.1,
-        "w_t": 0.9918,
-        "w_q": 1.0617
-      },
-      {
         "match_id": "2011-wimbledon-1502",
+        "year": 2011,
         "round": "QF",
         "opponent": "Andy Murray",
         "opponent_elo": 1861.5,
-        "w_t": 0.9891,
+        "w_t": 1.0,
         "w_q": 1.2162
+      },
+      {
+        "match_id": "2011-wimbledon-1404",
+        "year": 2011,
+        "round": "R16",
+        "opponent": "Lukasz Kubot",
+        "opponent_elo": 1625.1,
+        "w_t": 1.0,
+        "w_q": 1.0617
+      },
+      {
+        "match_id": "2011-wimbledon-1308",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Andy Roddick",
+        "opponent_elo": 1924.3,
+        "w_t": 1.0,
+        "w_q": 1.2572
       }
     ],
     "tier1": {
@@ -12781,7 +13159,7 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 5.12,
-        "streak_survival_rate": 0.355,
+        "streak_survival_rate": 0.356,
         "streak_recovery_rate": 0.217
       },
       "bp_creation_profile": {
@@ -12873,7 +13251,11 @@
       "R_overall": 1665.5,
       "R_surface": 1665.5,
       "R_adjusted": 1665.5
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 3
   },
   "Karol Beck": {
     "player": "Karol Beck",
@@ -12888,10 +13270,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1309",
+        "year": 2011,
         "round": "R32",
         "opponent": "David Ferrer",
         "opponent_elo": 1654.8,
-        "w_t": 0.9945,
+        "w_t": 1.0,
         "w_q": 1.0811
       }
     ],
@@ -13065,7 +13448,11 @@
       "R_overall": 1472.2,
       "R_surface": 1472.2,
       "R_adjusted": 1472.2
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Fernando Gonzalez": {
     "player": "Fernando Gonzalez",
@@ -13080,10 +13467,11 @@
     "training_matches": [
       {
         "match_id": "2011-wimbledon-1310",
+        "year": 2011,
         "round": "R32",
         "opponent": "Jo-Wilfried Tsonga",
         "opponent_elo": 1787.5,
-        "w_t": 0.9945,
+        "w_t": 1.0,
         "w_q": 1.1678
       }
     ],
@@ -13252,7 +13640,11 @@
       "R_overall": 1728.7,
       "R_surface": 1728.7,
       "R_adjusted": 1728.7
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 1
   },
   "Mikhail Youzhny": {
     "player": "Mikhail Youzhny",
@@ -13266,20 +13658,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1311",
-        "round": "R32",
-        "opponent": "Nicolas Almagro",
-        "opponent_elo": 1605.7,
-        "w_t": 0.9945,
-        "w_q": 1.0491
-      },
-      {
         "match_id": "2011-wimbledon-1406",
+        "year": 2011,
         "round": "R16",
         "opponent": "Roger Federer",
         "opponent_elo": 2095.1,
-        "w_t": 0.9918,
+        "w_t": 1.0,
         "w_q": 1.3688
+      },
+      {
+        "match_id": "2011-wimbledon-1311",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Nicolas Almagro",
+        "opponent_elo": 1605.7,
+        "w_t": 1.0,
+        "w_q": 1.0491
       }
     ],
     "tier1": {
@@ -13304,7 +13698,7 @@
         "ci_90_hi": 38.3
       },
       "sgw_pct": {
-        "value": 80.9,
+        "value": 80.8,
         "ci_90_lo": 60.4,
         "ci_90_hi": 88.5
       },
@@ -13360,7 +13754,7 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 6.8,
-        "streak_survival_rate": 0.486,
+        "streak_survival_rate": 0.485,
         "streak_recovery_rate": 0.705
       },
       "bp_creation_profile": {
@@ -13452,7 +13846,11 @@
       "R_overall": 1602.2,
       "R_surface": 1602.2,
       "R_adjusted": 1602.2
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   },
   "Xavier Malisse": {
     "player": "Xavier Malisse",
@@ -13466,20 +13864,22 @@
     "tier2_wide_intervals": false,
     "training_matches": [
       {
-        "match_id": "2011-wimbledon-1314",
-        "round": "R32",
-        "opponent": "Jurgen Melzer",
-        "opponent_elo": 1668.4,
-        "w_t": 0.9945,
-        "w_q": 1.09
-      },
-      {
         "match_id": "2011-wimbledon-1407",
+        "year": 2011,
         "round": "R16",
         "opponent": "Bernard Tomic",
         "opponent_elo": 1663.3,
-        "w_t": 0.9918,
+        "w_t": 1.0,
         "w_q": 1.0867
+      },
+      {
+        "match_id": "2011-wimbledon-1314",
+        "year": 2011,
+        "round": "R32",
+        "opponent": "Jurgen Melzer",
+        "opponent_elo": 1668.4,
+        "w_t": 1.0,
+        "w_q": 1.09
       }
     ],
     "tier1": {
@@ -13505,11 +13905,11 @@
       },
       "sgw_pct": {
         "value": 85.2,
-        "ci_90_lo": 59.5,
+        "ci_90_lo": 59.4,
         "ci_90_hi": 91.3
       },
       "rgw_pct": {
-        "value": 20.1,
+        "value": 20.0,
         "ci_90_lo": 11.7,
         "ci_90_hi": 43.9
       }
@@ -13542,13 +13942,13 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 6.8,
+        "value": 6.9,
         "bp_speed_kmh": 173.8,
-        "overall_speed_kmh": 167.0,
+        "overall_speed_kmh": 166.9,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.068,
+        "modifier_delta": 0.069,
         "note": null
       },
       "court_side_asymmetry": {
@@ -13559,25 +13959,25 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.76,
+        "streak_initiation_rate": 5.75,
         "streak_survival_rate": 0.522,
         "streak_recovery_rate": 0.333
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.3,
-        "bp_conversion": 0.668,
+        "bp_conversion": 0.667,
         "bp_created": 4.5,
         "bp_converted": 3.0
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1878,
+        "value": -0.1876,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0407,
+            "delta_frac": 0.0413,
             "weight": 0.3,
-            "contribution": 0.0122
+            "contribution": 0.0124
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -13589,7 +13989,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.1878,
+        "modifier_delta": -0.1876,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -13614,8 +14014,8 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -0.5,
-        "first_games_win_pct": 49.4,
+        "value": -0.6,
+        "first_games_win_pct": 49.3,
         "overall_win_pct": 49.9,
         "n_eff": 37,
         "confidence": "LOW"
@@ -13630,8 +14030,8 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.3,
-        "tb_win_pct": 49.6,
+        "value": -0.4,
+        "tb_win_pct": 49.5,
         "baseline_win_pct": 49.9,
         "n_eff": 161,
         "confidence": "RELIABLE"
@@ -13652,6 +14052,10 @@
       "R_overall": 1790.7,
       "R_surface": 1790.7,
       "R_adjusted": 1790.7
-    }
+    },
+    "career_editions_used": [
+      2011
+    ],
+    "n_matches_career": 2
   }
 }

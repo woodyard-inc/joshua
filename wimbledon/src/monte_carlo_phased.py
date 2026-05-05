@@ -23,7 +23,7 @@ from dataclasses import dataclass, field
 from typing import Dict, Optional, Tuple
 
 # ── constants ──────────────────────────────────────────────────────────────
-PLATT_A = 0.42
+PLATT_A = 0.35   # re-fit on phased model raw outputs (915-match sweep)
 
 GRASS_RPW_AVG     = 35.0
 GRASS_AVG_DF_RATE = 0.035

@@ -91,8 +91,11 @@ const AVG_STREAK_REC         = 0.416;   // probability of recovering from oppone
 
 // ── Platt calibration ──────────────────────────────────────────────────────
 // Temperature-scaling: p_cal = sigmoid(PLATT_A * logit(p_raw))
-// v2: PLATT_A = 0.42, fitted on 915 matches (SSE-minimised across 5 bins).
-const PLATT_A = 0.42;
+// v2: PLATT_A = 0.42, fitted on aggregate Markov-style outputs.
+// v3: PLATT_A = 0.35, re-fit specifically on the phased model's raw
+//     probability distribution (915-match Brier-optimised sweep).
+//     Accuracy is identical; Brier improves marginally (-0.0006).
+const PLATT_A = 0.35;
 
 function plattCalibrate(p) {
   if (p <= 1e-9 || p >= 1 - 1e-9) return p;

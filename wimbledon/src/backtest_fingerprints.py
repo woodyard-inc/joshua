@@ -34,6 +34,7 @@ sys.path.insert(0, str(Path(__file__).parent))
 from build_player_profiles import load_year, men_match_ids
 from comparison import compare, load_all_fingerprints, DATA_DIR as COMP_DATA_DIR
 from monte_carlo import simulate_match
+from monte_carlo_phased import simulate_match_phased
 
 # ── constants ─────────────────────────────────────────────────────────────────
 SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016,
@@ -83,7 +84,8 @@ def safe_log(p: float) -> float:
 # ── per-year evaluation ───────────────────────────────────────────────────────
 
 def evaluate_year(year: int, prior_fps: Dict[str, dict],
-                  n_sims: int = N_SIMS_DEFAULT) -> List[dict]:
+                  n_sims: int = N_SIMS_DEFAULT,
+                  engine: str = "aggregate") -> List[dict]:
     """
     Run MC predictions for every men's singles match in `year`
     using fingerprints from the prior edition.
@@ -122,8 +124,11 @@ def evaluate_year(year: int, prior_fps: Dict[str, dict],
 
         # Run MC
         try:
-            matchup = compare(fp1, fp2, year=year)
-            sim     = simulate_match(matchup, n=n_sims, seed=42)
+            if engine == "phased":
+                sim = simulate_match_phased(fp1, fp2, n=n_sims, seed=42)
+            else:
+                matchup = compare(fp1, fp2, year=year)
+                sim     = simulate_match(matchup, n=n_sims, seed=42)
             p_win_1 = sim.p_win_a   # p(player1 wins)
         except Exception as exc:
             print(f"  [{year}] Error on {p1} vs {p2}: {exc}")
@@ -192,12 +197,14 @@ def main():
                         help=f"Simulations per match (default {N_SIMS_DEFAULT})")
     parser.add_argument("--out", default=str(ROOT / "data" / "model_metrics.json"),
                         help="Output JSON path to update")
+    parser.add_argument("--engine", choices=["aggregate", "phased"], default="aggregate",
+                        help="MC engine: 'aggregate' (Markov-style) or 'phased' (per-phase point sim)")
     args = parser.parse_args()
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []
 
-    print(f"\nMC Fingerprint Backtest  (n_sims={args.n_sims})")
+    print(f"\nMC Fingerprint Backtest  (n_sims={args.n_sims}, engine={args.engine})")
     print(f"Strategy: prior-edition fingerprints → predict each match")
     print("=" * 60)
 
@@ -217,7 +224,7 @@ def main():
         print(f"\n  Predicting {year}  ←  {prior} fingerprints "
               f"({len(prior_fps)} players available)")
 
-        year_results = evaluate_year(year, prior_fps, n_sims=args.n_sims)
+        year_results = evaluate_year(year, prior_fps, n_sims=args.n_sims, engine=args.engine)
         all_results.extend(year_results)
 
         if year_results:

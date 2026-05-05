@@ -126,9 +126,11 @@ def evaluate_year(year: int, prior_fps: Dict[str, dict],
         try:
             if engine == "phased":
                 sim = simulate_match_phased(fp1, fp2, n=n_sims, seed=42)
+                p_win_1_raw = sim.p_win_a_raw
             else:
                 matchup = compare(fp1, fp2, year=year)
                 sim     = simulate_match(matchup, n=n_sims, seed=42)
+                p_win_1_raw = None
             p_win_1 = sim.p_win_a   # p(player1 wins)
         except Exception as exc:
             print(f"  [{year}] Error on {p1} vs {p2}: {exc}")
@@ -146,6 +148,7 @@ def evaluate_year(year: int, prior_fps: Dict[str, dict],
             "player1":     p1,
             "player2":     p2,
             "p_win_1":     round(p_win_1, 4),
+            "p_win_1_raw": round(p_win_1_raw, 4) if p_win_1_raw is not None else None,
             "actual_1_wins": actual_1_wins,
             "correct":     correct,
             "brier":       round(brier, 6),
@@ -199,7 +202,18 @@ def main():
                         help="Output JSON path to update")
     parser.add_argument("--engine", choices=["aggregate", "phased"], default="aggregate",
                         help="MC engine: 'aggregate' (Markov-style) or 'phased' (per-phase point sim)")
+    parser.add_argument("--save_per_match", default=None,
+                        help="If set, write per-match results JSON to this path "
+                             "(includes p_win_1_raw for offline PLATT sweeping)")
+    parser.add_argument("--ablate", default=None,
+                        help="(phased only) Comma-separated modifier names to disable, e.g. "
+                             "'momentum,courtSide,setTransition'. See monte_carlo_phased.ABLATABLE.")
     args = parser.parse_args()
+
+    # Apply ablation flags before importing happens (they're read at runtime)
+    if args.ablate:
+        import monte_carlo_phased as mcp
+        mcp.set_ablation(set(args.ablate.split(",")))
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []
@@ -299,6 +313,12 @@ def main():
 
     out_path.write_text(json.dumps(existing, indent=2))
     print(f"\nResults written → {out_path}")
+
+    if args.save_per_match:
+        from pathlib import Path as _P
+        per_match_path = _P(args.save_per_match)
+        per_match_path.write_text(json.dumps(all_results, indent=2))
+        print(f"Per-match results written → {per_match_path}")
 
 
 if __name__ == "__main__":

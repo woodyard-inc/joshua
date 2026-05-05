@@ -47,6 +47,39 @@ AVG_STREAK_REC         = 0.416
 SETS_TO_WIN = 3
 
 
+# ── ablation harness ──────────────────────────────────────────────────────
+# Set via set_ablation(); each name corresponds to a modifier block in
+# simulate_point.  Disabling = the modifier contributes 0pp to p.
+ABLATABLE = {
+    "courtSideServe",     # Phase 1 court-side fsp shift
+    "firstServePressure", # Phase 1 fsp drop at BPs
+    "dfPressure",         # Phase 1 DF rate modifier at BPs
+    "rallyCurve",         # Phase 2 rally curve differential
+    "courtSideRally",     # Phase 2 court-side rally outcome shift
+    "serveEntropy",       # Phase 3 entropy
+    "spci",               # Phase 3 SPCI under pressure
+    "clutch",             # Phase 3 returner clutch differential
+    "bpConversion",       # Phase 3 returner BP conversion
+    "momentum",           # Phase 3 catch-fire streak boost
+    "tiebreak",           # Phase 3 tiebreak differential
+    "setTransition",      # Phase 3 set-opener edge
+    "holdAfterBreak",     # Phase 3 post-break hold edge
+    "attrition",          # Phase 3 fatigue per set
+    "rallyVolatility",    # Phase 3 volatility direction kick
+}
+
+_ABLATED: set = set()
+
+def set_ablation(modifiers: set) -> None:
+    """Disable specific modifier blocks for the next simulation runs."""
+    global _ABLATED
+    invalid = modifiers - ABLATABLE
+    if invalid:
+        raise ValueError(f"Unknown ablation flags: {invalid}. Valid: {sorted(ABLATABLE)}")
+    _ABLATED = set(modifiers)
+    print(f"[monte_carlo_phased] Ablating: {sorted(_ABLATED)}")
+
+
 # ── helpers ────────────────────────────────────────────────────────────────
 
 def _clamp(v, lo=0.05, hi=0.95):
@@ -89,23 +122,29 @@ def extract_modifiers(fp: dict) -> dict:
 
     rally_curve = t2.get("rally_win_curve")
 
-    # Pre-compute rally curve average ONCE per player (not per point)
+    # Pre-compute rally curve average ONCE per player (not per point).
+    # Some bands may have win_pct=None (sparse data) — substitute 50.
     rally_curve_avg = None
-    if rally_curve:
-        vals = [(rally_curve.get(b) or {}).get("win_pct", 50) for b in RALLY_BANDS]
-        rally_curve_avg = sum(vals) / 4
-
-    # Pre-flatten rally curve into a band → win_pct dict (faster than nested .get)
     rally_curve_flat = None
     if rally_curve:
-        rally_curve_flat = {b: (rally_curve.get(b) or {}).get("win_pct") for b in RALLY_BANDS}
+        vals = []
+        flat = {}
+        for b in RALLY_BANDS:
+            wp = (rally_curve.get(b) or {}).get("win_pct")
+            flat[b] = wp                     # None preserved for downstream check
+            vals.append(50.0 if wp is None else wp)
+        rally_curve_avg = sum(vals) / 4
+        rally_curve_flat = flat
 
     csa = t2.get("court_side_asymmetry")
     csa_overall = csa_deuce = csa_ad = None
     if csa and csa.get("available"):
-        csa_deuce = csa["deuce_win_pct"]
-        csa_ad    = csa["ad_win_pct"]
-        csa_overall = (csa_deuce + csa_ad) / 2
+        csa_deuce = csa.get("deuce_win_pct")
+        csa_ad    = csa.get("ad_win_pct")
+        if csa_deuce is not None and csa_ad is not None:
+            csa_overall = (csa_deuce + csa_ad) / 2
+        else:
+            csa_deuce = csa_ad = None
 
     return {
         "fsp":  (_t1(fp, "fsp_pct",  GRASS_AVG_FSP * 100)) / 100,
@@ -203,11 +242,11 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
     # ──────────────── PHASE 1: SERVE ────────────────
     fsp = srv["fsp"]
 
-    if srv["csaOverall"] is not None:
+    if "courtSideServe" not in _ABLATED and srv["csaOverall"] is not None:
         side = srv["csaDeuce"] if is_deuce_court else srv["csaAd"]
         fsp += ((side - srv["csaOverall"]) / 100) * 0.30
 
-    if state["isBreakPoint"]:
+    if "firstServePressure" not in _ABLATED and state["isBreakPoint"]:
         fsp_press = srv["firstServePressure"]
         if fsp_press and fsp_press.get("available") and fsp_press.get("value") is not None:
             fsp += (fsp_press["value"] / 100) * 0.40
@@ -223,7 +262,7 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         if denom < 0.20: denom = 0.20
         df_rate = srv["baseDFRate"] / denom
 
-        if state["isBreakPoint"]:
+        if "dfPressure" not in _ABLATED and state["isBreakPoint"]:
             dfp = srv["dfPressureDelta"]
             if dfp and dfp.get("modifier_delta") is not None:
                 w = _conf_weight(dfp.get("confidence"))
@@ -241,43 +280,47 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
     p = srv["sspw"] if is_second else srv["fspw"]
     p -= (ret["rpw"] - GRASS_RPW_AVG) / 100
 
-    src = srv["rallyCurve"]
-    rcc = ret["rallyCurve"]
-    if src and rcc:
-        s_win = src.get(band)
-        r_win = rcc.get(band)
-        if s_win is not None and r_win is not None:
-            band_p = 0.5 * (s_win / 100) + 0.5 * (1 - r_win / 100)
-            avg_p  = 0.5 * (srv["rallyCurveAvg"] / 100) + 0.5 * (1 - ret["rallyCurveAvg"] / 100)
-            p += (band_p - avg_p) * 0.8
+    if "rallyCurve" not in _ABLATED:
+        src = srv["rallyCurve"]
+        rcc = ret["rallyCurve"]
+        if src and rcc:
+            s_win = src.get(band)
+            r_win = rcc.get(band)
+            if s_win is not None and r_win is not None:
+                band_p = 0.5 * (s_win / 100) + 0.5 * (1 - r_win / 100)
+                avg_p  = 0.5 * (srv["rallyCurveAvg"] / 100) + 0.5 * (1 - ret["rallyCurveAvg"] / 100)
+                p += (band_p - avg_p) * 0.8
 
-    if srv["csaOverall"] is not None:
-        side = srv["csaDeuce"] if is_deuce_court else srv["csaAd"]
-        p += ((side - srv["csaOverall"]) / 100) * 0.60
+    if "courtSideRally" not in _ABLATED:
+        if srv["csaOverall"] is not None:
+            side = srv["csaDeuce"] if is_deuce_court else srv["csaAd"]
+            p += ((side - srv["csaOverall"]) / 100) * 0.60
 
-    if ret["csaOverall"] is not None:
-        sideR = ret["csaDeuce"] if is_deuce_court else ret["csaAd"]
-        p -= ((sideR - ret["csaOverall"]) / 100) * 0.30
+        if ret["csaOverall"] is not None:
+            sideR = ret["csaDeuce"] if is_deuce_court else ret["csaAd"]
+            p -= ((sideR - ret["csaOverall"]) / 100) * 0.30
 
     # ──────────────── PHASE 3: MODIFIERS ────────────────
-    if srv.get("serveEntropy") is not None:
+    if "serveEntropy" not in _ABLATED and srv.get("serveEntropy") is not None:
         p += 0.025 * ((srv["serveEntropy"] / 100) - 0.75)
 
     if state["isBreakPoint"] or state["isDeuce"]:
-        spci = srv.get("spci")
-        if spci and spci.get("modifier_delta") is not None:
-            p += _conf_weight(spci.get("confidence")) * spci["modifier_delta"] * 0.50
+        if "spci" not in _ABLATED:
+            spci = srv.get("spci")
+            if spci and spci.get("modifier_delta") is not None:
+                p += _conf_weight(spci.get("confidence")) * spci["modifier_delta"] * 0.50
 
-        clutch = ret.get("clutch")
-        if clutch and clutch.get("modifier_delta") is not None:
-            p -= _conf_weight(clutch.get("confidence")) * (clutch["modifier_delta"] / 100) * 0.60
+        if "clutch" not in _ABLATED:
+            clutch = ret.get("clutch")
+            if clutch and clutch.get("modifier_delta") is not None:
+                p -= _conf_weight(clutch.get("confidence")) * (clutch["modifier_delta"] / 100) * 0.60
 
-        if state["isBreakPoint"] and ret.get("bpConversion") is not None:
+        if "bpConversion" not in _ABLATED and state["isBreakPoint"] and ret.get("bpConversion") is not None:
             p -= (ret["bpConversion"] - 0.45) * 0.15
 
     # Continuous momentum (catch fire from point 1)
     streak = state.get("streakCount", 0)
-    if streak != 0:
+    if "momentum" not in _ABLATED and streak != 0:
         abs_s = abs(streak)
         is_srv_streak = streak > 0
         streaker = srv if is_srv_streak else ret
@@ -300,7 +343,7 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
 
         p += boost if is_srv_streak else -boost
 
-    if state["isTiebreak"]:
+    if "tiebreak" not in _ABLATED and state["isTiebreak"]:
         tb = srv.get("tiebreak")
         tbR = ret.get("tiebreak")
         if tb and tb.get("available") and tb.get("value") is not None:
@@ -308,7 +351,7 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         if tbR and tbR.get("available") and tbR.get("value") is not None:
             p -= _conf_weight(tbR.get("confidence")) * (tbR["value"] / 100) * 0.60
 
-    if state["isSetOpener"]:
+    if "setTransition" not in _ABLATED and state["isSetOpener"]:
         st = srv.get("setTransition")
         stR = ret.get("setTransition")
         if st and st.get("available") and st.get("value") is not None:
@@ -316,12 +359,12 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         if stR and stR.get("available") and stR.get("value") is not None:
             p -= _conf_weight(stR.get("confidence")) * (stR["value"] / 100) * 0.50
 
-    if state["isPostBreak"]:
+    if "holdAfterBreak" not in _ABLATED and state["isPostBreak"]:
         habr = srv.get("holdAfterBreak")
         if habr and habr.get("available") and habr.get("value") is not None:
             p += _conf_weight(habr.get("confidence")) * (habr["value"] / 100) * 0.50
 
-    if state["setIndex"] is not None and state["setIndex"] > 0:
+    if "attrition" not in _ABLATED and state["setIndex"] is not None and state["setIndex"] > 0:
         att = srv.get("attrition")
         attR = ret.get("attrition")
         if att and att.get("available") and att.get("value") is not None:
@@ -329,12 +372,13 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         if attR and attR.get("available") and attR.get("value") is not None:
             p -= _conf_weight(attR.get("confidence")) * (-(attR["value"] / 2.0) * state["setIndex"] * 0.02)
 
-    rvS = srv.get("rallyVolatility")
-    rvR = ret.get("rallyVolatility")
-    if rvS and rvS.get("available") and rvR and rvR.get("available"):
-        rv_diff = rvS["value"] - rvR["value"]
-        direction = -1 if p > 0.5 else 1
-        p += direction * (rv_diff / 5.0) * 0.012
+    if "rallyVolatility" not in _ABLATED:
+        rvS = srv.get("rallyVolatility")
+        rvR = ret.get("rallyVolatility")
+        if rvS and rvS.get("available") and rvR and rvR.get("available"):
+            rv_diff = rvS["value"] - rvR["value"]
+            direction = -1 if p > 0.5 else 1
+            p += direction * (rv_diff / 5.0) * 0.012
 
     return rng.random() < _clamp(p)
 

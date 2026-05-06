@@ -65,7 +65,9 @@
   },
   "notes": "Time-based split (train \u22642018, test \u22652019). Features are pre-match only (no leakage). All three models outperform ranking-only baseline (~63%). Brier score confirms well-calibrated probabilities.",
   "mc_fingerprint_backtest": {
-    "method": "Prior-edition fingerprints \u2192 MC simulation \u2192 actual outcomes",
+    "method": "Phased point simulation (v3) \u2014 prior-edition fingerprints predict each match",
+    "engine": "phased",
+    "engine_version": "v3 (7 net-harmful modifiers ablated)",
     "leakage_note": "Fingerprints built from editions BEFORE the predicted year. Career window (last 3 editions) never includes the test year.",
     "n_sims": 1000,
     "test_years": [
@@ -82,105 +84,116 @@
     ],
     "min_test_year": 2014,
     "n_total": 915,
-    "accuracy": 0.671,
-    "brier": 0.2146,
-    "brier_skill": 0.142,
-    "log_loss": 0.7021,
+    "accuracy": 0.685,
+    "brier": 0.214,
+    "brier_skill": 0.144,
+    "log_loss": 0.7374,
     "naive_brier": 0.25,
     "per_year": {
       "2014": {
         "n_matches": 89,
-        "accuracy": 0.652,
-        "brier": 0.231,
-        "log_loss": 0.677
+        "accuracy": 0.663,
+        "brier": 0.228,
+        "log_loss": 0.86
       },
       "2015": {
         "n_matches": 97,
-        "accuracy": 0.68,
-        "brier": 0.208,
-        "log_loss": 0.788
+        "accuracy": 0.701,
+        "brier": 0.206,
+        "log_loss": 0.784
       },
       "2016": {
         "n_matches": 104,
-        "accuracy": 0.731,
-        "brier": 0.193,
-        "log_loss": 0.739
+        "accuracy": 0.75,
+        "brier": 0.197,
+        "log_loss": 0.753
       },
       "2017": {
         "n_matches": 99,
-        "accuracy": 0.697,
-        "brier": 0.194,
+        "accuracy": 0.727,
+        "brier": 0.192,
         "log_loss": 0.569
       },
       "2018": {
         "n_matches": 98,
         "accuracy": 0.704,
-        "brier": 0.204,
-        "log_loss": 0.601
+        "brier": 0.209,
+        "log_loss": 0.608
       },
       "2019": {
         "n_matches": 97,
-        "accuracy": 0.67,
-        "brier": 0.227,
-        "log_loss": 1.023
+        "accuracy": 0.691,
+        "brier": 0.219,
+        "log_loss": 1.005
       },
       "2021": {
         "n_matches": 84,
-        "accuracy": 0.583,
-        "brier": 0.246,
-        "log_loss": 0.708
+        "accuracy": 0.607,
+        "brier": 0.248,
+        "log_loss": 0.914
       },
       "2022": {
         "n_matches": 80,
-        "accuracy": 0.588,
-        "brier": 0.231,
-        "log_loss": 0.658
+        "accuracy": 0.6,
+        "brier": 0.23,
+        "log_loss": 0.652
       },
       "2023": {
         "n_matches": 86,
-        "accuracy": 0.663,
-        "brier": 0.213,
-        "log_loss": 0.609
+        "accuracy": 0.698,
+        "brier": 0.209,
+        "log_loss": 0.604
       },
       "2024": {
         "n_matches": 81,
-        "accuracy": 0.716,
-        "brier": 0.21,
-        "log_loss": 0.616
+        "accuracy": 0.679,
+        "brier": 0.211,
+        "log_loss": 0.612
       }
     },
     "calibration": [
       {
-        "pred_range": "0.00\u20130.31",
-        "pred_mean": 0.189,
-        "actual_rate": 0.23,
+        "pred_range": "0.00\u20130.34",
+        "pred_mean": 0.219,
+        "actual_rate": 0.219,
         "n": 183
       },
       {
-        "pred_range": "0.31\u20130.43",
-        "pred_mean": 0.378,
-        "actual_rate": 0.404,
+        "pred_range": "0.34\u20130.45",
+        "pred_mean": 0.395,
+        "actual_rate": 0.426,
         "n": 183
       },
       {
-        "pred_range": "0.43\u20130.57",
-        "pred_mean": 0.5,
-        "actual_rate": 0.568,
+        "pred_range": "0.45\u20130.56",
+        "pred_mean": 0.503,
+        "actual_rate": 0.541,
         "n": 183
       },
       {
-        "pred_range": "0.57\u20130.71",
-        "pred_mean": 0.633,
-        "actual_rate": 0.667,
+        "pred_range": "0.56\u20130.68",
+        "pred_mean": 0.619,
+        "actual_rate": 0.672,
         "n": 183
       },
       {
-        "pred_range": "0.71\u20131.00",
-        "pred_mean": 0.812,
-        "actual_rate": 0.781,
+        "pred_range": "0.68\u20131.00",
+        "pred_mean": 0.785,
+        "actual_rate": 0.792,
         "n": 183
       }
     ],
     "notes": "Coverage ~50\u201370% per year \u2014 first-time Wimbledon players have no prior fingerprint and are excluded. These tend to be lower-seeded players, so excluded matches are systematically easier to predict, meaning true accuracy on uncovered matches may be lower."
+  },
+  "mc_fingerprint_backtest_aggregate_baseline": {
+    "method": "Aggregate Markov-style engine \u2014 pre-v3 production baseline",
+    "engine": "aggregate",
+    "n_sims": 1000,
+    "n_total": 915,
+    "accuracy": 0.671,
+    "brier": 0.2146,
+    "brier_skill": 0.142,
+    "log_loss": 0.7021,
+    "note": "Reference baseline; v3 phased model surpasses it on accuracy and Brier."
   }
 }

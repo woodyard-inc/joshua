@@ -68,10 +68,41 @@ ABLATABLE = {
     "rallyVolatility",    # Phase 3 volatility direction kick
 }
 
-_ABLATED: set = set()
+# Production-default ablation set: 7 modifiers proved net-harmful in the
+# 915-match ablation backtest (committed as ablation_run2.json).  Removing
+# them gains +1.09pp accuracy and -0.0032 Brier vs the all-on phased model,
+# clearing the aggregate baseline (67.10% / 0.2146) on both metrics.
+#
+# Why each was dropped:
+#   rallyCurve         single biggest drag (Δacc +1.53pp ablated alone) —
+#                      per-band win% is too noisy on small samples and
+#                      duplicates signal already in fspw/sspw
+#   bpConversion       small-sample noise (most players have 5-15 BPs);
+#                      hurts both accuracy and Brier
+#   rallyVolatility    style signal that doesn't predict outcomes
+#   courtSideRally     court-side asymmetry signal washes out across long
+#   courtSideServe     matches, adds noise when applied per-point
+#   firstServePressure mostly UNRELIABLE confidence; gates limit firing
+#   momentum           catch-fire mechanic — conceptually compelling but
+#                      empirically degrades accuracy by 0.44pp.  Likely
+#                      time-scale mismatch (real momentum decays between
+#                      service games; we fire boost on every consecutive
+#                      point during the same game).
+PRODUCTION_ABLATED = frozenset({
+    "rallyCurve", "bpConversion", "rallyVolatility",
+    "courtSideRally", "courtSideServe",
+    "firstServePressure", "momentum",
+})
+
+_ABLATED: set = set(PRODUCTION_ABLATED)
+
 
 def set_ablation(modifiers: set) -> None:
-    """Disable specific modifier blocks for the next simulation runs."""
+    """Disable specific modifier blocks for the next simulation runs.
+
+    Pass the empty set to enable EVERY modifier (for ablation testing).
+    Pass PRODUCTION_ABLATED (default) for the production-tuned config.
+    """
     global _ABLATED
     invalid = modifiers - ABLATABLE
     if invalid:

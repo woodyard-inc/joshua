@@ -63,30 +63,11 @@ const GRASS_PRIOR = { "1_3": 0.55, "4_6": 0.30, "7_9": 0.10, "10+": 0.05 };
 const FIRST_SERVE_RALLY_WEIGHTS  = { "1_3": 1.15, "4_6": 1.00, "7_9": 0.80, "10+": 0.70 };
 const SECOND_SERVE_RALLY_WEIGHTS = { "1_3": 0.85, "4_6": 1.05, "7_9": 1.15, "10+": 1.20 };
 
-// Momentum — continuous "catch fire" mechanic
-// Builds from the FIRST consecutive point won, not after a threshold.
-// The growth rate and intensity are driven by each player's momentum_profile
-// (streak_initiation_rate, streak_survival_rate) against the opponent's
-// mental resilience (streak_recovery_rate).
-//
-// Boost curve (for an average player vs average opponent):
-//   1 in a row:  +0.4pp    — small initial nudge
-//   2 in a row:  +1.1pp    — building
-//   3 in a row:  +2.0pp    — catching fire
-//   4 in a row:  +3.3pp    — hot streak
-//   5 in a row:  +4.8pp    — dominant run
-//   6+ in a row: +6.0pp    — max (capped)
-//
-// A streaky player (high initiation + survival) against a mentally
-// fragile opponent (low recovery) can reach +8pp at streak 5.
-const STREAK_BOOST_PER_POINT = 0.004;   // base pp per point in streak
-const STREAK_GROWTH_RATE     = 0.35;    // compounding per additional point
-const STREAK_MAX_BOOST       = 0.06;    // hard cap on boost magnitude
-
-// Tour averages for momentum profile normalisation
-const AVG_STREAK_INIT        = 5.5;     // streaks initiated per match
-const AVG_STREAK_SURV        = 0.431;   // probability of continuing a streak
-const AVG_STREAK_REC         = 0.416;   // probability of recovering from opponent streak
+// NOTE: The momentum "catch-fire" streak mechanic was removed in v3 after
+// 915-match ablation testing showed it cost 0.44pp accuracy.  Likely cause:
+// real momentum decays between service games but our model fired the boost
+// on every consecutive point during the same game.  Concept may return in
+// a future revision applied across service games rather than within them.
 
 
 // ── Platt calibration ──────────────────────────────────────────────────────
@@ -119,51 +100,27 @@ function extractModifiers(fp) {
   }
 
   return {
-    // Tier 1 serve stats
+    // Tier 1 serve / return stats — backbone of the model
     fsp:  (t1.fsp_pct?.value  != null) ? t1.fsp_pct.value  / 100 : GRASS_AVG_FSP,
     fspw: (t1.fspw_pct?.value != null) ? t1.fspw_pct.value / 100 : GRASS_AVG_FSPW,
     sspw: (t1.sspw_pct?.value != null) ? t1.sspw_pct.value / 100 : GRASS_AVG_SSPW,
     rpw:  (t1.rpw_pct?.value  != null) ? t1.rpw_pct.value         : GRASS_RPW_AVG,
 
-    // Serve phase
+    // Phase 1: serve
     baseDFRate,
     dfPressureDelta:     t2.df_pressure_delta   || null,
-    firstServePressure:  t2.first_serve_pressure || null,
 
-    // Court side
-    courtSide:           t2.court_side_asymmetry || null,
-
-    // Rally curve
+    // Phase 2: rally distribution sampling (per-band sample sizes)
     rallyCurve:          t2.rally_win_curve || null,
 
-    // Entropy
+    // Phase 3: keepers (proven net-positive in 915-match ablation)
     serveEntropy:        (t2.serve_entropy?.pct_of_max != null) ? t2.serve_entropy.pct_of_max : null,
-
-    // Pressure
     spci:                t2.spci                  || null,
     clutch:              t2.clutch_differential   || null,
-    bpConversion:        (t2.bp_creation_profile?.bp_conversion != null) ? t2.bp_creation_profile.bp_conversion : null,
-
-    // Momentum
-    momentum:            t2.momentum_profile      || null,
-
-    // Tiebreak
     tiebreak:            t2.tiebreak_differential || null,
-
-    // Set transition
     setTransition:       t2.set_transition_delta  || null,
-
-    // Hold after break
     holdAfterBreak:      t2.hold_after_break      || null,
-
-    // Attrition
     attrition:           t2.attrition_slope       || null,
-
-    // Rally volatility
-    rallyVolatility:     t2.rally_volatility      || null,
-
-    // RLUEP (currently null for all players — stubbed for future use)
-    rluep:               t2.rluep                 || null,
   };
 }
 
@@ -253,30 +210,9 @@ function simulatePoint(srvMods, retMods, state) {
   // PHASE 1: SERVE
   // ────────────────────────────────────────────────────────────────────────
 
-  let fsp = srvMods.fsp;
-
-  // 1a. Court side asymmetry on serve
-  //     Shift FSP slightly based on which court the server is serving into.
-  //     Asymmetry data reflects overall win% by side — map to a small FSP shift.
-  const csa = srvMods.courtSide;
-  if (csa?.available) {
-    const overallWin = (csa.deuce_win_pct + csa.ad_win_pct) / 2;
-    const sideWin = (state.courtSide === "deuce") ? csa.deuce_win_pct : csa.ad_win_pct;
-    // Scale: 3.6pp asymmetry → ~0.5pp FSP shift per side
-    fsp += ((sideWin - overallWin) / 100) * 0.30;
-  }
-
-  // 1b. First serve pressure — FSP drops at break points for some servers.
-  //     Data is mostly UNRELIABLE but captures a real phenomenon (tightening up).
-  //     Scale to 40% of raw delta to hedge against noise.
-  if (state.isBreakPoint) {
-    const fsp_press = srvMods.firstServePressure;
-    if (fsp_press?.available && fsp_press.value != null) {
-      fsp += (fsp_press.value / 100) * 0.40;
-    }
-  }
-
-  fsp = Math.max(0.30, Math.min(0.90, fsp));  // guard rails
+  // courtSideServe and firstServePressure modifiers were dropped in v3
+  // (ablation results: each cost +0.33pp accuracy when ON).
+  const fsp = srvMods.fsp;
 
   // 1c. Draw: is the first serve in?
   const firstServeIn = Math.random() < fsp;
@@ -326,41 +262,10 @@ function simulatePoint(srvMods, retMods, state) {
   const adj = (retMods.rpw - GRASS_RPW_AVG) / 100;
   p -= adj;
 
-  // 2d. Rally curve differential modifier
-  //     How does this specific rally band compare to the player's overall
-  //     rally curve? Positive delta = server is relatively stronger here.
-  const srvCurve = srvMods.rallyCurve || {};
-  const retCurve = retMods.rallyCurve || {};
-  const sWin = srvCurve[band]?.win_pct;
-  const rWin = retCurve[band]?.win_pct;
-
-  if (sWin != null && rWin != null) {
-    const bandP = 0.5 * (sWin / 100) + 0.5 * (1 - rWin / 100);
-    const srvAll = RALLY_BANDS.reduce((s, b) => s + (srvCurve[b]?.win_pct || 50), 0) / RALLY_BANDS.length;
-    const retAll = RALLY_BANDS.reduce((s, b) => s + (retCurve[b]?.win_pct || 50), 0) / RALLY_BANDS.length;
-    const avgP   = 0.5 * (srvAll / 100) + 0.5 * (1 - retAll / 100);
-    const delta  = bandP - avgP;
-    p += delta * 0.8;
-  }
-
-  // 2e. Court side asymmetry on rally outcome
-  //     Separate from FSP shift — this captures the overall win% difference
-  //     between deuce and ad court (serve placement, return positioning, etc.)
-  if (csa?.available) {
-    const overallWin = (csa.deuce_win_pct + csa.ad_win_pct) / 2;
-    const sideWin = (state.courtSide === "deuce") ? csa.deuce_win_pct : csa.ad_win_pct;
-    p += ((sideWin - overallWin) / 100) * 0.60;
-  }
-
-  // Also apply returner's court side asymmetry (inverted — their strong side
-  // is bad for the server)
-  const csaR = retMods.courtSide;
-  if (csaR?.available) {
-    const overallWinR = (csaR.deuce_win_pct + csaR.ad_win_pct) / 2;
-    const sideWinR = (state.courtSide === "deuce") ? csaR.deuce_win_pct : csaR.ad_win_pct;
-    // Returner being strong on this side hurts the server
-    p -= ((sideWinR - overallWinR) / 100) * 0.30;
-  }
+  // rallyCurve differential, courtSideRally, courtSideServe modifiers were
+  // dropped in v3 (ablation: rallyCurve cost +1.53pp accuracy alone — the
+  // single biggest drag on the model.  Per-band win% is too noisy on small
+  // samples and duplicates signal already in the fspw/sspw baselines).
 
 
   // ────────────────────────────────────────────────────────────────────────
@@ -389,77 +294,13 @@ function simulatePoint(srvMods, retMods, state) {
       p -= w * (clutch.modifier_delta / 100) * 0.60;
     }
 
-    // Returner BP conversion ability at actual break points
-    if (state.isBreakPoint && retMods.bpConversion != null) {
-      const avgConversion = 0.45;
-      p -= (retMods.bpConversion - avgConversion) * 0.15;
-    }
+    // bpConversion modifier dropped in v3 (cost +0.44pp accuracy ablated).
   }
 
-  // 3c. Continuous momentum — builds from point 1
-  //
-  //     Every consecutive point won nudges the probability higher, growing
-  //     with each additional point. The rate of growth is player-specific:
-  //
-  //     • streak_initiation_rate (how often they enter "momentum mode")
-  //       — high initiators are mentally wired to ride waves. Normalised
-  //       via sqrt() to tame the 1.4–26.0 range into a usable factor.
-  //     • streak_survival_rate (how long they stay hot once started)
-  //       — the primary driver: can they KEEP the streak going?
-  //     • opponent's streak_recovery_rate (mental resilience)
-  //       — a high-recovery opponent dampens the streaker's boost.
-  //
-  //     Combined into a "streakiness" multiplier:
-  //       streakiness = (sqrt(init/avg)*0.35 + surv/avg*0.65) / (opp_rec/avg)
-  //       >1.0 = more streaky than average, <1.0 = less
-  //
-  //     streakCount > 0: server winning run  (boosts server)
-  //     streakCount < 0: returner winning run (boosts returner / hurts server)
-  if (state.streakCount != null && state.streakCount !== 0) {
-    const absStreak = Math.abs(state.streakCount);
-    const isServerStreak = state.streakCount > 0;
-
-    // Identify who is on the streak and who is resisting
-    const streaker = isServerStreak ? srvMods : retMods;
-    const resister = isServerStreak ? retMods : srvMods;
-
-    const momS = streaker.momentum;
-    const momR = resister.momentum;
-
-    // Streakiness factor — player's natural momentum tendency vs opponent
-    const initRate = momS?.streak_initiation_rate ?? AVG_STREAK_INIT;
-    const survRate = momS?.streak_survival_rate   ?? AVG_STREAK_SURV;
-    const recRate  = momR?.streak_recovery_rate    ?? AVG_STREAK_REC;
-
-    // sqrt on initiation tames outliers (26 → 2.17×, not 4.7×)
-    const initNorm = Math.sqrt(initRate / AVG_STREAK_INIT);
-    const survNorm = survRate / AVG_STREAK_SURV;
-    const recNorm  = Math.max(0.5, recRate / AVG_STREAK_REC);  // floor at 0.5 to prevent explosion
-
-    // Survival weighted higher — it directly measures "can they keep it going?"
-    // Clamped to [0.5, 1.8]: prevents degenerate extremes from outlier
-    // initiation rates (26) or near-zero recovery rates (0.0).
-    // A streaky player catches fire FASTER and HARDER, but there's a ceiling.
-    const streakiness = Math.min(Math.max(
-      (initNorm * 0.35 + survNorm * 0.65) / recNorm,
-      0.5), 1.8);
-
-    // Continuous boost curve: grows with each point, compounds slightly
-    //   Average player (streakiness = 1.0):
-    //     1 pt: 0.4pp   2 pt: 1.1pp   3 pt: 2.0pp   4 pt: 3.3pp   5 pt: 4.8pp
-    //   Streaky player (streakiness = 1.6):
-    //     1 pt: 0.6pp   2 pt: 1.7pp   3 pt: 3.3pp   4 pt: 5.2pp   5 pt: 6.0pp (capped)
-    //   Steady player (streakiness = 0.7):
-    //     1 pt: 0.3pp   2 pt: 0.8pp   3 pt: 1.4pp   4 pt: 2.3pp   5 pt: 3.4pp
-    const rawBoost = STREAK_BOOST_PER_POINT * absStreak * (1 + (absStreak - 1) * STREAK_GROWTH_RATE);
-    const boost = Math.min(rawBoost * streakiness, STREAK_MAX_BOOST);
-
-    if (isServerStreak) {
-      p += boost;
-    } else {
-      p -= boost;
-    }
-  }
+  // momentum catch-fire mechanic dropped in v3 (cost +0.44pp accuracy).
+  // The mechanism is plausible (real momentum exists) but the within-game
+  // application was too aggressive — real momentum decays between service
+  // games, not point-to-point during the same hold.
 
   // 3e. Tiebreak differential
   if (state.isTiebreak) {
@@ -500,16 +341,7 @@ function simulatePoint(srvMods, retMods, state) {
       p -= confWeight(attR.confidence) * (-(attR.value / 2.0) * state.setIndex * 0.02);
   }
 
-  // 3i. Rally volatility — high-volatility servers have more variance.
-  //     When the server is the favourite (p > 0.5), high volatility hurts.
-  //     When they're the underdog, it helps (more upsets).
-  const rvS = srvMods.rallyVolatility;
-  const rvR = retMods.rallyVolatility;
-  if (rvS?.available && rvR?.available) {
-    const rvDiff = rvS.value - rvR.value;
-    const direction = (p > 0.5) ? -1 : 1;
-    p += direction * (rvDiff / 5.0) * 0.012;
-  }
+  // rallyVolatility modifier dropped in v3 (cost +0.33pp accuracy ablated).
 
   // 3j. RLUEP — unforced error rate per rally band (future use, currently null)
   if (srvMods.rluep && srvMods.rluep[band]) {
@@ -802,24 +634,16 @@ function measureAxisContrib(fpA, fpB, basePWinA, nSims = 2000) {
   return { contrib, dominantAxis: dominant[0] };
 }
 
+// NOTE: rallyCurve, court-side, momentum, bp-conversion, rally-volatility,
+// first-serve-pressure modifiers were removed from the model in v3.
+// The neutralisation functions below only modify fields the model actually
+// reads; touching dropped fields would be a no-op.
+
 function neutraliseRally(fpA, fpB) {
-  const nA = deepClone(fpA), nB = deepClone(fpB);
-  for (const b of RALLY_BANDS) {
-    const wa = nA.tier2?.rally_win_curve?.[b]?.win_pct;
-    const wb = nB.tier2?.rally_win_curve?.[b]?.win_pct;
-    if (wa != null && wb != null) {
-      const avg = (wa + wb) / 2;
-      nA.tier2.rally_win_curve[b].win_pct = avg;
-      nB.tier2.rally_win_curve[b].win_pct = avg;
-    }
-  }
-  // Also neutralise rally volatility
-  if (nA.tier2?.rally_volatility && nB.tier2?.rally_volatility) {
-    const avg = (nA.tier2.rally_volatility.value + nB.tier2.rally_volatility.value) / 2;
-    nA.tier2.rally_volatility.value = avg;
-    nB.tier2.rally_volatility.value = avg;
-  }
-  return [nA, nB];
+  // The rally-shape "axis" no longer drives p in the model — only the
+  // rally-length sampling distribution uses rally_win_curve sample sizes.
+  // We leave the data unchanged here; the contribution will be ~0.
+  return [deepClone(fpA), deepClone(fpB)];
 }
 
 function neutralisePressure(fpA, fpB) {
@@ -827,18 +651,9 @@ function neutralisePressure(fpA, fpB) {
   for (const fp of [nA, nB]) {
     if (fp.tier2?.spci)                  fp.tier2.spci.modifier_delta = 0;
     if (fp.tier2?.clutch_differential)   fp.tier2.clutch_differential.modifier_delta = 0;
-    if (fp.tier2?.df_pressure_delta)     fp.tier2.df_pressure_delta.modifier_delta = 0;
-    if (fp.tier2?.first_serve_pressure)  fp.tier2.first_serve_pressure.value = 0;
-    // Neutralise tiebreak, set transition, hold after break
     if (fp.tier2?.tiebreak_differential) fp.tier2.tiebreak_differential.value = 0;
     if (fp.tier2?.set_transition_delta)  fp.tier2.set_transition_delta.value = 0;
     if (fp.tier2?.hold_after_break)      fp.tier2.hold_after_break.value = 0;
-    // Neutralise momentum (set to average rates)
-    if (fp.tier2?.momentum_profile) {
-      fp.tier2.momentum_profile.streak_survival_rate = 0.5;
-      fp.tier2.momentum_profile.streak_recovery_rate = 0.5;
-      fp.tier2.momentum_profile.streak_initiation_rate = 1.0;
-    }
   }
   return [nA, nB];
 }
@@ -847,27 +662,16 @@ function neutraliseEntropy(fpA, fpB) {
   const nA = deepClone(fpA), nB = deepClone(fpB);
   if (nA.tier2?.serve_entropy) nA.tier2.serve_entropy.pct_of_max = 75;
   if (nB.tier2?.serve_entropy) nB.tier2.serve_entropy.pct_of_max = 75;
-  // Neutralise court side asymmetry
-  if (nA.tier2?.court_side_asymmetry) {
-    const avg = (nA.tier2.court_side_asymmetry.deuce_win_pct + nA.tier2.court_side_asymmetry.ad_win_pct) / 2;
-    nA.tier2.court_side_asymmetry.deuce_win_pct = avg;
-    nA.tier2.court_side_asymmetry.ad_win_pct = avg;
-  }
-  if (nB.tier2?.court_side_asymmetry) {
-    const avg = (nB.tier2.court_side_asymmetry.deuce_win_pct + nB.tier2.court_side_asymmetry.ad_win_pct) / 2;
-    nB.tier2.court_side_asymmetry.deuce_win_pct = avg;
-    nB.tier2.court_side_asymmetry.ad_win_pct = avg;
-  }
   return [nA, nB];
 }
 
 function neutraliseBP(fpA, fpB) {
-  const avgConv = 0.45;
+  // bp-conversion modifier removed in v3 (see model header notes).
+  // Neutralising rgw at Tier 1 instead, since break creation/conversion
+  // is captured implicitly in the returner's rgw_pct that drives the model.
   const nA = deepClone(fpA), nB = deepClone(fpB);
   for (const fp of [nA, nB]) {
-    if (fp.tier2?.bp_creation_profile) {
-      fp.tier2.bp_creation_profile.bp_conversion = avgConv;
-    }
+    if (fp.tier1?.rgw_pct?.value != null) fp.tier1.rgw_pct.value = 17;  // tour avg
   }
   return [nA, nB];
 }

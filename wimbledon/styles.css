@@ -786,6 +786,13 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 .pts-opp  { color: var(--ink-soft); font-family: var(--font-serif); font-style: italic; flex: 1; font-size: 14px; }
 .pts-score { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
 .pts-won-frac { color: var(--ink-muted); font-size: 12px; }
+/* Terracotta tint on the win-% inline span flags an "upset" win
+ * (won despite scoring fewer total points). Replaces the old ⚡ chip. */
+.pts-pct-upset {
+  color: var(--terracotta);
+  font-weight: 600;
+  cursor: help;
+}
 .bb-flag {
   font-family: var(--font-sans);
   font-size: 9px;
@@ -1111,6 +1118,11 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .match-log-table .td-pts  { font-weight: 700; }
 .match-log-table .td-pct  { color: var(--ink-muted); }
+.match-log-table .td-pct.td-pct--upset {
+  color: var(--terracotta);
+  font-weight: 600;
+  cursor: help;
+}
 .match-log-table .td-dur   { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
 .match-log-table .td-dist  { color: var(--ink-muted); font-variant-numeric: tabular-nums; }
 .match-log-table .td-round { white-space: nowrap; }

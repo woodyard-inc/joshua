@@ -894,13 +894,18 @@ function renderPoints(p) {
     const mPct = m.points_played > 0
       ? (m.points_won / m.points_played * 100).toFixed(0)
       : "—";
-    const bb = m.bad_break_match ? `<span class="bb-flag">⚡ Bad Break</span>` : "";
+    // "Bad break" used to render as a separate ⚡ chip; instead, just
+    // tint the win% number in terracotta to flag the upset inline.
+    // Hover tooltip explains the meaning.
+    const upsetCls = m.bad_break_match ? "pts-pct-upset" : "";
+    const upsetTitle = m.bad_break_match
+      ? `Won despite winning fewer total points (${m.bad_break_detail || "bad-break match"})`
+      : "";
     html += `
       <div class="pts-match-row">
         <span class="pts-opp">vs ${m.opponent}</span>
         <span class="pts-score">${m.points_won}</span>
-        <span class="pts-won-frac">/ ${m.points_played} (${mPct}%)</span>
-        <span>${bb}</span>
+        <span class="pts-won-frac">/ ${m.points_played} <span class="${upsetCls}" title="${upsetTitle}">(${mPct}%)</span></span>
       </div>`;
   }
   document.getElementById("points-viz").innerHTML = html;
@@ -1324,23 +1329,27 @@ function renderMatchLog(p) {
     const pct = m.points_played > 0
       ? (m.points_won / m.points_played * 100).toFixed(0) + "%"
       : "—";
-    const bb  = m.bad_break_match ? `<span class="bb-flag">⚡ Bad Break</span>` : "";
+    // Bad-break matches are now flagged inline by tinting the Win % cell
+    // in terracotta — no separate "Flag" column needed.
+    const upsetCls = m.bad_break_match ? "td-pct--upset" : "";
+    const upsetTitle = m.bad_break_match
+      ? `Won despite winning fewer total points (${m.bad_break_detail || "bad-break match"})`
+      : "";
     const dur = fmtMins(m.duration_mins);
     const km  = m.distance_km != null ? `${m.distance_km.toFixed(2)} km` : "—";
     rows += `<tr>
       <td class="td-round"><span class="round-chip">${m.round}</span></td>
       <td class="td-opp">vs ${m.opponent}</td>
       <td class="td-pts">${m.points_won} / ${m.points_played}</td>
-      <td class="td-pct">${pct}</td>
+      <td class="td-pct ${upsetCls}" title="${upsetTitle}">${pct}</td>
       <td class="td-dur">${dur}</td>
       <td class="td-dist">${km}</td>
-      <td>${bb}</td>
     </tr>`;
   }
   document.getElementById("match-log").innerHTML = `
     <table class="match-log-table">
       <thead><tr>
-        <th>Rnd</th><th>Opponent</th><th>Points Won</th><th>Win %</th><th>Duration</th><th>Distance</th><th>Flag</th>
+        <th>Rnd</th><th>Opponent</th><th>Points Won</th><th>Win %</th><th>Duration</th><th>Distance</th>
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>`;

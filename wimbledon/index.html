@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Wins on Grass — Wimbledon Player Intelligence · Joshua Woodyard</title>
   <meta name="description" content="Point-by-point player intelligence and grass-court Monte Carlo prediction for the Wimbledon men's draw, 2011–2024. Built on Jeff Sackmann's open tennis datasets (Slam point-by-point + ATP match results), enriched with full grass-circuit aggregates and a custom Elo rating system.">
-  <link rel="stylesheet" href="../foundations.css?v=38">
-  <link rel="stylesheet" href="styles.css?v=38">
+  <link rel="stylesheet" href="../foundations.css?v=39">
+  <link rel="stylesheet" href="styles.css?v=39">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 </head>
 <body>
@@ -155,7 +155,7 @@
       <!-- ── SECTION: Core Stats ─────────────────────────────────── -->
       <div class="section-divider">
         <span class="section-divider-label">Core Stats</span>
-        <span class="section-divider-tag">Fingerprint · Elo-weighted · Tier 1</span>
+        <span class="section-divider-tag">Fingerprint · Tier 1</span>
       </div>
 
       <!-- Tier 1 Key Stats -->
@@ -164,14 +164,14 @@
           <h3>Key Stats</h3>
           <span class="card-badge" id="fp-confidence-badge"></span>
         </div>
-        <p class="card-note">Elo-quality weighted across all grass matches · 90% credible interval shown as shaded range · Beta(2,2) prior</p>
+        <p class="card-note">Aggregated across all grass matches in the player's career window · 90% credible interval shown as shaded range · Beta(2,2) prior</p>
         <div id="tier1-viz" class="tier1-viz"></div>
       </div>
 
       <!-- Grass Elo -->
       <div class="card">
         <div class="card-header"><h3>Grass Elo</h3><span class="card-tag">Surface</span></div>
-        <p class="card-note">Surface-adjusted: 60% grass Elo + 40% overall · Kovalchik adaptive K-factor · pre-match snapshots used for weighting</p>
+        <p class="card-note">Career-to-date grass Elo rating · Kovalchik adaptive K-factor · 1500 = tour average</p>
         <div id="elo-viz" class="elo-viz"></div>
       </div>
 
@@ -377,8 +377,8 @@
     <span class="pf-col-r">PBP &amp; ATP data · Jeff Sackmann · Grass Elo &amp; profiles built in-house</span>
   </footer>
 
-  <script src="markov.js?v=38"></script>
-  <script src="compare.js?v=38"></script>
-  <script src="app.js?v=38"></script>
+  <script src="markov.js?v=39"></script>
+  <script src="compare.js?v=39"></script>
+  <script src="app.js?v=39"></script>
 </body>
 </html>

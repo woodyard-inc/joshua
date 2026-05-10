@@ -1415,7 +1415,7 @@ function renderTier1(f) {
       </div>
     </div>`;
   }
-  html += `<div class="t1-footer">${f.n_matches} match${f.n_matches !== 1 ? "es" : ""} · Elo-quality weighted · Beta(2,2) prior · 90% CI</div>`;
+  html += `<div class="t1-footer">${f.n_matches} match${f.n_matches !== 1 ? "es" : ""} · Beta(2,2) prior · 90% CI</div>`;
   container.innerHTML = html;
 }
 
@@ -1429,10 +1429,14 @@ function renderEloSnapshot(f) {
     return;
   }
 
-  const adj  = snap.R_adjusted;
-  const surf = snap.R_surface;
-  const over = snap.R_overall;
-  const n    = snap.n_surface;
+  // Until the Elo pipeline is split (see TODO below), R_overall and
+  // R_surface are derived from the same grass-only input and end up
+  // identical for every player, so showing both as separate stats is
+  // misleading.  Surface only the grass rating + match count.
+  // TODO: rebuild Elo on full ATP match feed and add per-year snapshots
+  //       so the breakdown becomes meaningful again.
+  const adj = snap.R_adjusted;
+  const n   = snap.n_surface;
   // Symmetric axis around the 1500 default so the centre tick is always
   // at 50% of the bar regardless of the player's rating. Range ±700.
   const CENTRE = 1500;
@@ -1450,7 +1454,7 @@ function renderEloSnapshot(f) {
   container.innerHTML = `
     <div class="elo-big-row">
       <div class="elo-big">${adj}</div>
-      <div class="elo-big-label">adjusted<br>grass Elo</div>
+      <div class="elo-big-label">grass<br>Elo rating</div>
     </div>
     <div class="elo-track-wrap">
       <div class="elo-track">
@@ -1466,18 +1470,10 @@ function renderEloSnapshot(f) {
         <span>${MAX}+</span>
       </div>
     </div>
-    <div class="elo-breakdown">
-      <div class="elo-b-item">
-        <span class="elo-b-val">${surf}</span>
-        <span class="elo-b-label">Grass Elo</span>
-      </div>
-      <div class="elo-b-item">
-        <span class="elo-b-val">${over}</span>
-        <span class="elo-b-label">Overall Elo</span>
-      </div>
+    <div class="elo-breakdown elo-breakdown--single">
       <div class="elo-b-item">
         <span class="elo-b-val">${n}</span>
-        <span class="elo-b-label">Grass Matches</span>
+        <span class="elo-b-label">grass matches in dataset</span>
       </div>
     </div>`;
 }
@@ -2132,7 +2128,7 @@ function renderRunEfficiency(f, p) {
         <div class="entropy-fill" style="width:${effPct}%"></div>
       </div>
       <div class="entropy-axis"><span>← Efficient</span><span>Heavy runner →</span></div>
-      <div class="entropy-detail">Metres covered per rally-length unit (Elo-weighted)</div>`;
+      <div class="entropy-detail">Metres covered per rally-length unit</div>`;
     return;
   }
 
@@ -2162,7 +2158,7 @@ function renderRunEfficiency(f, p) {
       <span class="run-eff-end run-eff-end--best">${stats.min.toFixed(1)} ← most efficient<br><em>${stats.best.name}</em></span>
       <span class="run-eff-end run-eff-end--worst">heaviest runner → ${stats.max.toFixed(1)}<br><em>${stats.worst.name}</em></span>
     </div>
-    <div class="entropy-detail">Metres covered per rally-length unit (Elo-weighted) · benchmarks from ${f.year} draw</div>`;
+    <div class="entropy-detail">Metres covered per rally-length unit · benchmarks from ${f.year} draw</div>`;
 }
 
 // ── Fingerprint: Attrition Slope ─────────────────────────────────

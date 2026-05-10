@@ -1515,6 +1515,10 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   border-top: 2px solid var(--ink);
   border-bottom: 2px solid var(--ink);
 }
+/* Single-item variant — used while overall vs surface Elo are identical
+ * in the data; centre the lone tile so the layout stays balanced. */
+.elo-breakdown--single { justify-content: center; }
+.elo-breakdown--single .elo-b-item { flex: 0 1 auto; border-right: none; }
 .elo-b-item {
   flex: 1;
   padding: var(--s-3) var(--s-4);

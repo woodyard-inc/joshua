@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Wins on Grass — Wimbledon Player Intelligence · Joshua Woodyard</title>
   <meta name="description" content="Point-by-point player intelligence and grass-court Monte Carlo prediction for the Wimbledon men's draw, 2011–2024. Built on Jeff Sackmann's open tennis datasets (Slam point-by-point + ATP match results), enriched with full grass-circuit aggregates and a custom Elo rating system.">
-  <link rel="stylesheet" href="../foundations.css?v=42">
-  <link rel="stylesheet" href="styles.css?v=42">
+  <link rel="stylesheet" href="../foundations.css?v=43">
+  <link rel="stylesheet" href="styles.css?v=43">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 </head>
 <body>
@@ -205,14 +205,21 @@
         <div id="entropy-viz" class="entropy-viz"></div>
       </div>
 
-      <!-- Serve Direction -->
+      <!-- Serve Direction (1st and 2nd separated into two visuals) -->
       <div class="card card-wide">
         <div class="card-header"><h3>Serve Direction</h3></div>
         <p class="card-note">ServeWidth column (W/B/C) · deuce/ad court derived from game point sequence · equal zone areas · read the %</p>
-        <div class="direction-wrap">
-          <svg id="court-svg" class="court-svg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg"></svg>
-          <div class="direction-legend" id="direction-legend"></div>
+        <div class="direction-pair">
+          <div class="direction-block">
+            <div class="direction-block-title">1st Serve</div>
+            <svg id="court-svg-first" class="court-svg" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg"></svg>
+          </div>
+          <div class="direction-block">
+            <div class="direction-block-title">2nd Serve</div>
+            <svg id="court-svg-second" class="court-svg" viewBox="0 0 400 160" xmlns="http://www.w3.org/2000/svg"></svg>
+          </div>
         </div>
+        <div id="direction-detail" class="direction-detail"></div>
       </div>
 
       <!-- Serve Speed Courage -->
@@ -313,10 +320,10 @@
         <div id="aggression-viz" class="aggression-viz"></div>
       </div>
 
-      <!-- Game Control (was Streak Index + Clean Player Index, now combined) -->
-      <div class="card card-wide">
+      <!-- Game Control (sits right of Attack Precision, half-width) -->
+      <div class="card">
         <div class="card-header"><h3>Game Control</h3><span class="card-tag">Momentum profile</span></div>
-        <p class="card-note">Two facets of game-level momentum benchmarked against the field · streakiness shows how often a player generates 3+ point runs · clean-game % shows how often they hold without reaching deuce</p>
+        <p class="card-note">Three facets of game-level momentum benchmarked against the field · player type shown on the Attack Precision card to the left</p>
         <div id="streaks-viz" class="streaks-viz"></div>
       </div>
 
@@ -377,8 +384,8 @@
     <span class="pf-col-r">PBP &amp; ATP data · Jeff Sackmann · Grass Elo &amp; profiles built in-house</span>
   </footer>
 
-  <script src="markov.js?v=42"></script>
-  <script src="compare.js?v=42"></script>
-  <script src="app.js?v=42"></script>
+  <script src="markov.js?v=43"></script>
+  <script src="compare.js?v=43"></script>
+  <script src="app.js?v=43"></script>
 </body>
 </html>

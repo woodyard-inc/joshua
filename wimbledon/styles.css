@@ -595,6 +595,37 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 .court-svg { width: 100%; height: auto; display: block; }
 .direction-legend { display: none; }
 
+/* Split layout: 1st serve and 2nd serve as separate stacked diagrams */
+.direction-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.direction-block {
+  width: 100%;
+}
+.direction-block-title {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--paper-warm);
+}
+.direction-detail {
+  margin-top: 12px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
 /* ── RALLY VIZ ───────────────────────────────────────────────── */
 .rally-viz { display: flex; flex-direction: column; gap: var(--s-6); }
 /* Larger row gap so the avg-marker stack (number + arrow) above each row
@@ -826,8 +857,63 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
-.res-val.main { font-size: 42px; color: var(--cobalt); }
+/* Black + size carries the emphasis — colour modifier removed for
+ * consistency with the other headline call-outs (Speed Courage etc.) */
+.res-val.main { font-size: 42px; color: var(--ink); }
 .res-val.secondary { font-size: 26px; color: var(--ink-muted); }
+
+/* Resilience benchmark mini-table (top / similar / bottom players) */
+.res-bench-title {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-top: var(--s-4);
+  margin-bottom: 6px;
+}
+.res-bench-tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-sans);
+  font-size: 12px;
+}
+.res-bench-tbl td {
+  padding: 5px 8px;
+  border-top: 1px solid var(--paper-warm);
+}
+.res-tbl-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  width: 70px;
+}
+.res-tbl-row--top    .res-tbl-tag { color: var(--forest); }
+.res-tbl-row--bot    .res-tbl-tag { color: var(--terracotta); }
+.res-tbl-name { color: var(--ink); }
+.res-tbl-pct {
+  text-align: right;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  width: 42px;
+}
+.res-tbl-frac {
+  text-align: right;
+  color: var(--ink-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  width: 60px;
+}
+.res-bench-note {
+  margin-top: 6px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 10px;
+  color: var(--ink-muted);
+}
 .res-label {
   font-family: var(--font-sans);
   font-size: var(--t-micro);
@@ -987,6 +1073,39 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   text-transform: uppercase;
   color: var(--ink-muted);
   margin-top: 3px;
+}
+
+/* Player-type verdict — sits at the bottom of the Attack Precision card,
+ * combining streakiness · clean-holds · attack-precision into a single
+ * archetype label that anchors the Momentum & Game Control section. */
+.agg-verdict {
+  margin-top: var(--s-4);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--paper-warm);
+  text-align: center;
+}
+.agg-verdict-label {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+}
+.agg-verdict-val {
+  font-family: var(--font-sans);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.agg-verdict-help {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-muted);
 }
 
 /* ── CLEAN GAMES ─────────────────────────────────────────────── */
@@ -1346,6 +1465,48 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   .hl-stat .hl-val { font-size: 22px; }
   .brand-centre h1 { font-size: 22px; }
   select#player-select { min-width: 140px; }
+
+  /* Hero shrinks: keep the photo visible but stop it dominating the
+   * mobile viewport. 4:3 ratio caps height to roughly 75% of width. */
+  .hero-visual.has-photo { aspect-ratio: 4 / 3; }
+  /* Stronger gradient for white-text legibility on small screens */
+  .hero-visual.has-photo::after {
+    background: linear-gradient(
+      to right,
+      rgba(0,0,0,0.85) 0%,
+      rgba(0,0,0,0.65) 38%,
+      rgba(0,0,0,0.30) 70%,
+      rgba(0,0,0,0.10) 100%
+    );
+  }
+  .hero-section:has(.has-photo) .hero-nameplate {
+    bottom: 6%;
+    padding: var(--s-3) var(--s-4);
+  }
+  .hero-section:has(.has-photo) .hero-name-block h2 {
+    font-size: 28px;
+    line-height: 1.05;
+  }
+  /* Headline stats — 5-cell row gets too cramped; let it wrap to 2 rows */
+  .headline-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0;
+  }
+  .hl-stat {
+    min-width: 0;
+    padding: 6px 4px;
+  }
+  .hl-stat .hl-val { font-size: 18px; }
+  .hl-stat .hl-label {
+    font-size: 9px;
+    letter-spacing: 0.10em;
+  }
+  /* Card padding tightens so we waste less space on phones */
+  .card { padding: var(--s-4); }
+
+  /* Serve direction stacks even more cleanly on phones */
+  .direction-pair { gap: 16px; }
 }
 
 /* ── SECTION DIVIDERS ────────────────────────────────────────── */
@@ -2137,10 +2298,13 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   color: var(--ink);
 }
 .game-ctrl-pct {
-  font-family: var(--font-serif);
+  /* Neutral colour — terracotta was reading as "alarm" when the percentile
+   * was actually just informational. Black + bold sans carries the weight. */
+  font-family: var(--font-sans);
   font-size: 13px;
-  font-weight: 600;
-  color: var(--terracotta);
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.01em;
 }
 .game-ctrl-pct sup { font-size: 9px; }
 .game-ctrl-track {

@@ -517,6 +517,15 @@ function renderHero(p, t) {
     const img   = document.createElement("img");
     img.alt     = p.player;
     img.src     = `${base}/players/${photoFile}.webp`;
+    // Hero image is the LCP element on player pages — high priority,
+    // eager loading, and async decoding shave noticeable time on mobile.
+    img.loading       = "eager";
+    img.decoding      = "async";
+    img.fetchPriority = "high";
+    // Native intrinsic size (matches the source WebPs) — lets the browser
+    // size the box correctly before pixels arrive, removing layout shift.
+    img.width  = 2752;
+    img.height = 1536;
     img.onerror = showInitials;
     visualEl.className = "hero-visual has-photo";
     visualEl.innerHTML = "";
@@ -679,25 +688,28 @@ function renderServeSpeed(p, t) {
 }
 
 // ── Serve Direction ───────────────────────────────────────────────
-// ServeWidth (W/B/C) split by deduced court (even/odd point index within game).
+// ServeWidth (W/B/C) split by deduced court. 1st and 2nd serves are now
+// rendered as TWO separate court diagrams (stacked) so a reader can
+// see each serve's placement pattern without the within-card division
+// the original layout used.
 function renderServeDirection(p, t) {
-  const sd  = p.serve_direction;
-  const svg = document.getElementById("court-svg");
-  document.getElementById("direction-legend").innerHTML = "";
+  const sd       = p.serve_direction;
+  const svgFirst = document.getElementById("court-svg-first");
+  const svgSecond = document.getElementById("court-svg-second");
+  const detail   = document.getElementById("direction-detail");
 
   if (!sd?.available) {
-    svg.setAttribute("viewBox", "0 0 200 80");
-    svg.innerHTML = `<foreignObject x="0" y="0" width="200" height="80">${naCard("Serve Direction", p.year)}</foreignObject>`;
+    svgFirst.setAttribute("viewBox", "0 0 200 80");
+    svgFirst.innerHTML  = `<foreignObject x="0" y="0" width="200" height="80">${naCard("Serve Direction", p.year)}</foreignObject>`;
+    svgSecond.innerHTML = "";
+    detail.innerHTML    = "";
     return;
   }
 
   const C = { wide:"#002FA7", body:"#D35220", centre:"#01482A",
               ink:"#141414", paper:"#FFFDF8", muted:"#8A857B" };
 
-  // Two boxes: Deuce (left) and Ad (right)
-  // Deuce zones L→R: Wide | Body | T  (T on inner/centre side)
-  // Ad zones L→R:    T | Body | Wide  (T on inner/centre side, mirrored)
-  // Both T zones meet in the middle of the visualisation
+  // Two boxes per SVG: Deuce (left) and Ad (right). T zones meet at centre.
   const DEUCE_ZONES = [
     { key:"wide",   label:"Wide", color:C.wide   },
     { key:"body",   label:"Body", color:C.body   },
@@ -709,83 +721,69 @@ function renderServeDirection(p, t) {
     { key:"wide",   label:"Wide", color:C.wide   },
   ];
 
-  // Bring the two service boxes together so they share a centre seam —
-  // the T zones now visually meet in the middle (matches a real court).
+  // Single-row layout (just the zone band — no internal 1st/2nd division).
   const BOX_W = 200, ZONE_W = BOX_W / 3;
-  const GAP = 0;                            // boxes touch
-  const W = 2 * BOX_W + GAP, H = 232;
-  const LX = 0, RX = BOX_W + GAP;           // box x origins
+  const GAP   = 0;
+  const W     = 2 * BOX_W + GAP, H = 160;
+  const LX    = 0, RX = BOX_W + GAP;
 
   // Y layout
-  const TITLE_Y  = 13;
-  const NET_Y    = 18,  NET_H  = 10;
-  const LBL1_Y   = NET_Y + NET_H;           // 28
-  const LBL_H    = 15;
-  const Z1_Y     = LBL1_Y + LBL_H;          // 43
-  const ZONE_H   = 74;
-  const DIV_Y    = Z1_Y + ZONE_H;           // 117
-  const LBL2_Y   = DIV_Y + 2;              // 119
-  const Z2_Y     = LBL2_Y + LBL_H;         // 134
-  const BASE_Y   = Z2_Y + ZONE_H;          // 208
-  const NOTE_Y   = BASE_Y + 16;            // 224
+  const TITLE_Y = 13;
+  const NET_Y   = 18, NET_H = 10;
+  const ZONE_Y  = NET_Y + NET_H + 4;        // 32
+  const ZONE_H  = 102;
+  const BASE_Y  = ZONE_Y + ZONE_H;          // 134
+  const NOTE_Y  = BASE_Y + 16;              // 150
 
   const fmt = v => v != null ? Math.round(v) + "%" : "—";
   const F = "Helvetica,Arial,sans-serif";
 
-  function box(bx, zones, title, d1, d2) {
+  function zoneRow(bx, zones, data) {
     let h = "";
-    // Court title
-    h += `<text x="${bx + BOX_W/2}" y="${TITLE_Y}" text-anchor="middle" fill="${C.muted}" font-size="7" font-family="${F}" letter-spacing="0.30em">${title}</text>`;
-    // Net bar
-    h += `<rect x="${bx}" y="${NET_Y}" width="${BOX_W}" height="${NET_H}" fill="${C.ink}"/>`;
-    h += `<text x="${bx + BOX_W/2}" y="${NET_Y + NET_H - 2}" text-anchor="middle" fill="${C.paper}" font-size="5.5" font-family="${F}" letter-spacing="0.22em">NET</text>`;
-    // Box background
-    const BOX_TOTAL_H = BASE_Y - (NET_Y + NET_H);
-    h += `<rect x="${bx}" y="${LBL1_Y}" width="${BOX_W}" height="${BOX_TOTAL_H}" fill="${C.paper}" stroke="${C.ink}" stroke-width="0.8"/>`;
-    // Serve sections
-    h += serveSection(bx, LBL1_Y, Z1_Y, zones, d1, "1ST SERVE");
-    // Divider between 1st and 2nd
-    h += `<line x1="${bx}" y1="${DIV_Y}" x2="${bx+BOX_W}" y2="${DIV_Y}" stroke="${C.ink}" stroke-width="0.8" opacity="0.4"/>`;
-    h += serveSection(bx, LBL2_Y, Z2_Y, zones, d2, "2ND SERVE");
-    // Baseline
-    h += `<line x1="${bx}" y1="${BASE_Y}" x2="${bx+BOX_W}" y2="${BASE_Y}" stroke="${C.ink}" stroke-width="1"/>`;
-    return h;
-  }
-
-  function serveSection(bx, lblY, zoneY, zones, data, label) {
-    let h = "";
-    // Section header
-    h += `<rect x="${bx}" y="${lblY}" width="${BOX_W}" height="${LBL_H}" fill="${C.ink}" opacity="0.05"/>`;
-    h += `<text x="${bx + BOX_W/2}" y="${lblY + LBL_H - 4}" text-anchor="middle" fill="${C.muted}" font-size="6" font-family="${F}" letter-spacing="0.22em">${label}</text>`;
-    // Three equal zones
     for (let i = 0; i < 3; i++) {
       const z   = zones[i];
       const zx  = bx + i * ZONE_W;
       const val = data ? data[`${z.key}_pct`] : null;
-      const mid = zoneY + ZONE_H / 2;
-      // Zone fill (fixed equal area, low opacity tint)
-      h += `<rect x="${zx.toFixed(1)}" y="${zoneY}" width="${ZONE_W.toFixed(1)}" height="${ZONE_H}" fill="${z.color}" opacity="0.07"/>`;
-      // Zone divider
+      const mid = ZONE_Y + ZONE_H / 2;
+      h += `<rect x="${zx.toFixed(1)}" y="${ZONE_Y}" width="${ZONE_W.toFixed(1)}" height="${ZONE_H}" fill="${z.color}" opacity="0.08"/>`;
       if (i < 2) {
         const lx = zx + ZONE_W;
-        h += `<line x1="${lx.toFixed(1)}" y1="${zoneY}" x2="${lx.toFixed(1)}" y2="${zoneY+ZONE_H}" stroke="${C.ink}" stroke-width="0.4" stroke-dasharray="2,2" opacity="0.5"/>`;
+        h += `<line x1="${lx.toFixed(1)}" y1="${ZONE_Y}" x2="${lx.toFixed(1)}" y2="${ZONE_Y+ZONE_H}" stroke="${C.ink}" stroke-width="0.4" stroke-dasharray="2,2" opacity="0.5"/>`;
       }
-      // Percentage (large)
-      h += `<text x="${(zx + ZONE_W/2).toFixed(1)}" y="${(mid - 2).toFixed(1)}" text-anchor="middle" fill="${z.color}" font-size="16" font-family="${F}" font-weight="700">${fmt(val)}</text>`;
-      // Zone name (small, below)
-      h += `<text x="${(zx + ZONE_W/2).toFixed(1)}" y="${(mid + 14).toFixed(1)}" text-anchor="middle" fill="${C.muted}" font-size="6.5" font-family="${F}" letter-spacing="0.10em">${z.label}</text>`;
+      h += `<text x="${(zx + ZONE_W/2).toFixed(1)}" y="${(mid - 2).toFixed(1)}" text-anchor="middle" fill="${z.color}" font-size="22" font-family="${F}" font-weight="700">${fmt(val)}</text>`;
+      h += `<text x="${(zx + ZONE_W/2).toFixed(1)}" y="${(mid + 18).toFixed(1)}" text-anchor="middle" fill="${C.muted}" font-size="7" font-family="${F}" letter-spacing="0.12em">${z.label}</text>`;
     }
     return h;
   }
 
-  let html = "";
-  html += box(LX, DEUCE_ZONES, "DEUCE COURT", sd.deuce?.first_serve,  sd.deuce?.second_serve);
-  html += box(RX, AD_ZONES,    "AD COURT",    sd.ad?.first_serve,     sd.ad?.second_serve);
-  // Overall note at bottom centre
-  html += `<text x="${W/2}" y="${NOTE_Y}" text-anchor="middle" fill="${C.muted}" font-size="5.5" font-family="${F}" letter-spacing="0.12em">COURT DEDUCED FROM GAME POINT SEQUENCE · W=WIDE · B=BODY · C=T</text>`;
+  function box(bx, zones, title, data) {
+    let h = "";
+    h += `<text x="${bx + BOX_W/2}" y="${TITLE_Y}" text-anchor="middle" fill="${C.muted}" font-size="7" font-family="${F}" letter-spacing="0.30em">${title}</text>`;
+    h += `<rect x="${bx}" y="${NET_Y}" width="${BOX_W}" height="${NET_H}" fill="${C.ink}"/>`;
+    h += `<text x="${bx + BOX_W/2}" y="${NET_Y + NET_H - 2}" text-anchor="middle" fill="${C.paper}" font-size="5.5" font-family="${F}" letter-spacing="0.22em">NET</text>`;
+    h += `<rect x="${bx}" y="${ZONE_Y}" width="${BOX_W}" height="${ZONE_H}" fill="${C.paper}" stroke="${C.ink}" stroke-width="0.8"/>`;
+    h += zoneRow(bx, zones, data);
+    h += `<line x1="${bx}" y1="${BASE_Y}" x2="${bx+BOX_W}" y2="${BASE_Y}" stroke="${C.ink}" stroke-width="1"/>`;
+    return h;
+  }
 
-  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-  svg.innerHTML = html;
+  function buildSVG(deuceData, adData) {
+    let html = "";
+    html += box(LX, DEUCE_ZONES, "DEUCE COURT", deuceData);
+    html += box(RX, AD_ZONES,    "AD COURT",    adData);
+    return html;
+  }
+
+  svgFirst.setAttribute("viewBox",  `0 0 ${W} ${H}`);
+  svgFirst.innerHTML  = buildSVG(sd.deuce?.first_serve,  sd.ad?.first_serve);
+  svgSecond.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  svgSecond.innerHTML = buildSVG(sd.deuce?.second_serve, sd.ad?.second_serve);
+
+  // Detail line — match count + zone caption.  Total tracked serves
+  // come from the counts dict; matches_played is on the player profile.
+  const totalServes = (sd.counts?.wide || 0) + (sd.counts?.body || 0) + (sd.counts?.centre || 0);
+  const nMatches    = p.matches_played || 0;
+  detail.innerHTML = `Drawn from ${nMatches} match${nMatches !== 1 ? "es" : ""} · ${totalServes.toLocaleString()} tracked serves · W=Wide · B=Body · T=Centre`;
 }
 
 // ── Rally Length ─────────────────────────────────────────────────
@@ -916,6 +914,63 @@ function renderResilience(p, t) {
   const pr  = p.pressure;
   const avg = t.pressure.bp_saved_pct ?? 0;
   const val = pr.bp_saved_pct ?? 0;
+
+  // Build a small benchmark roster from this year's other players —
+  // top resilient, least resilient, plus 2-3 players closest to this
+  // player's bp_saved_pct so the reader sees who plays similarly.
+  // Filter by min BP-faced so noise doesn't dominate (e.g. someone
+  // who saved 1/1 isn't "100% resilient").
+  const MIN_FACED = 5;
+  const peers = [];
+  if (state.profiles) {
+    for (const [name, peer] of Object.entries(state.profiles)) {
+      if (name === p.player) continue;
+      const ppr = peer?.pressure;
+      if (!ppr) continue;
+      if ((ppr.bp_faced || 0) < MIN_FACED) continue;
+      if (ppr.bp_saved_pct == null) continue;
+      peers.push({
+        name,
+        pct:    ppr.bp_saved_pct,
+        saved:  ppr.bp_saved,
+        faced:  ppr.bp_faced,
+      });
+    }
+  }
+  peers.sort((a, b) => b.pct - a.pct);
+  const top  = peers[0];
+  const bot  = peers[peers.length - 1];
+  // Two players closest in BP-saved% to this player (excluding top/bot)
+  const similar = peers
+    .filter(x => x !== top && x !== bot)
+    .map(x => [x, Math.abs(x.pct - val)])
+    .sort((a, b) => a[1] - b[1])
+    .slice(0, 2)
+    .map(x => x[0]);
+
+  function row(label, peer, cls) {
+    if (!peer) return "";
+    return `
+      <tr class="${cls || ""}">
+        <td class="res-tbl-tag">${label}</td>
+        <td class="res-tbl-name">${peer.name}</td>
+        <td class="res-tbl-pct">${peer.pct.toFixed(0)}%</td>
+        <td class="res-tbl-frac">${peer.saved}/${peer.faced}</td>
+      </tr>`;
+  }
+
+  const benchTable = peers.length >= 2 ? `
+    <div class="res-bench-title">${p.year} draw benchmarks</div>
+    <table class="res-bench-tbl">
+      <tbody>
+        ${row("Top",      top,        "res-tbl-row--top")}
+        ${similar.map(x => row("Similar", x, "res-tbl-row--similar")).join("")}
+        ${row("Bottom",   bot,        "res-tbl-row--bot")}
+      </tbody>
+    </table>
+    <p class="res-bench-note">Filtered to players with ≥${MIN_FACED} break points faced.</p>
+  ` : "";
+
   document.getElementById("resilience-viz").innerHTML = `
     <div class="res-big-row">
       <div class="res-stat">
@@ -937,7 +992,8 @@ function renderResilience(p, t) {
         <div class="res-fill" style="width:${val}%"></div>
         <div class="res-avg-tick" style="left:${avg}%"></div>
       </div>
-    </div>`;
+    </div>
+    ${benchTable}`;
 }
 
 // ── Enforcer ──────────────────────────────────────────────────────
@@ -991,6 +1047,17 @@ function renderAggression(p, t) {
   const net  = ag.winners - ag.unf_err;
   const ratio = ag.unf_err > 0 ? (ag.winners / ag.unf_err).toFixed(2) : "∞";
 
+  // Player-type verdict combines this card's signal (attack precision)
+  // with the streakiness + clean-service-games signals from Game Control,
+  // so it's surfaced at the bottom of THIS card to anchor the section.
+  const verdict = _playerTypeVerdict(p);
+  const verdictBlock = verdict ? `
+    <div class="agg-verdict">
+      <div class="agg-verdict-label">Player type</div>
+      <div class="agg-verdict-val" style="color:${verdict.colour}">${verdict.label}</div>
+      <div class="agg-verdict-help">Combines streakiness · clean holds · attack precision</div>
+    </div>` : "";
+
   document.getElementById("aggression-viz").innerHTML = `
     <div class="agg-meter-wrap">
       <div class="agg-score">${val}</div>
@@ -1018,7 +1085,8 @@ function renderAggression(p, t) {
         <span class="agg-num">${ratio}</span>
         <span class="agg-sub">W : UE</span>
       </div>
-    </div>`;
+    </div>
+    ${verdictBlock}`;
 }
 
 // ── Clean Games ───────────────────────────────────────────────────
@@ -1059,15 +1127,17 @@ const _gameCtrlStatsCache = {};
 function _gameCtrlStats(year) {
   if (_gameCtrlStatsCache[year]) return _gameCtrlStatsCache[year];
   const profs = state.profiles || {};
-  const streaks = [], srvClean = [], retClean = [];
-  const namedStreaks = [], namedSrvClean = [], namedRetClean = [];
+  const streaks = [], srvClean = [], retClean = [], aggression = [];
+  const namedStreaks = [], namedSrvClean = [], namedRetClean = [], namedAggression = [];
   for (const [name, p] of Object.entries(profs)) {
     const s  = p?.streaks?.streaks_per_match;
     const sc = p?.clean_games?.srv_clean_pct;
     const rc = p?.clean_games?.ret_clean_pct;
-    if (s  != null) { streaks.push(s);   namedStreaks.push([name, s]); }
-    if (sc != null) { srvClean.push(sc); namedSrvClean.push([name, sc]); }
-    if (rc != null) { retClean.push(rc); namedRetClean.push([name, rc]); }
+    const ag = p?.aggression?.aggression_index;
+    if (s  != null) { streaks.push(s);     namedStreaks.push([name, s]); }
+    if (sc != null) { srvClean.push(sc);   namedSrvClean.push([name, sc]); }
+    if (rc != null) { retClean.push(rc);   namedRetClean.push([name, rc]); }
+    if (ag != null) { aggression.push(ag); namedAggression.push([name, ag]); }
   }
   if (streaks.length < 5) return null;
   const buildSorted = (arr, named) => {
@@ -1076,9 +1146,10 @@ function _gameCtrlStats(year) {
     named.sort((a, b) => b[1] - a[1]);
     return arr;
   };
-  buildSorted(streaks,  namedStreaks);
-  buildSorted(srvClean, namedSrvClean);
-  buildSorted(retClean, namedRetClean);
+  buildSorted(streaks,    namedStreaks);
+  buildSorted(srvClean,   namedSrvClean);
+  buildSorted(retClean,   namedRetClean);
+  buildSorted(aggression, namedAggression);
   const pctile = (sorted, v) => {
     let lo = 0, hi = sorted.length;
     while (lo < hi) {
@@ -1094,12 +1165,55 @@ function _gameCtrlStats(year) {
     pctile: v => pctile(sorted, v),
   }) : null;
   const stats = {
-    streaks:  buildSummary(streaks,  namedStreaks),
-    srvClean: buildSummary(srvClean, namedSrvClean),
-    retClean: buildSummary(retClean, namedRetClean),
+    streaks:    buildSummary(streaks,    namedStreaks),
+    srvClean:   buildSummary(srvClean,   namedSrvClean),
+    retClean:   buildSummary(retClean,   namedRetClean),
+    aggression: buildSummary(aggression, namedAggression),
   };
   _gameCtrlStatsCache[year] = stats;
   return stats;
+}
+
+/**
+ * Three-dimension player-type verdict — combines streakiness, clean
+ * service-game %, and attack precision.  Each axis collapses to
+ * Hi/Mid/Lo via percentile thresholds.  Returned as {label, colour}.
+ *
+ * Lives here (not inside renderStreaks) so the Attack Precision card
+ * can render the same verdict at its bottom.
+ */
+function _playerTypeVerdict(p) {
+  const stats = _gameCtrlStats(p?.year);
+  if (!stats) return null;
+  const sV = p?.streaks?.streaks_per_match;
+  const cV = p?.clean_games?.srv_clean_pct;
+  const aV = p?.aggression?.aggression_index;
+  if (sV == null || cV == null || aV == null) return null;
+  const sP = stats.streaks  ? stats.streaks .pctile(sV) : null;
+  const cP = stats.srvClean ? stats.srvClean.pctile(cV) : null;
+  const aP = stats.aggression ? stats.aggression.pctile(aV) : null;
+  if (sP == null || cP == null || aP == null) return null;
+
+  const HI = 65, LO = 35;
+  const tier = pctile => pctile >= HI ? "H" : pctile <= LO ? "L" : "M";
+  const code = `${tier(sP)}${tier(cP)}${tier(aP)}`;   // streak / clean / precision
+
+  // Heuristic taxonomy. Streak first, then clean, then precision.
+  // Includes a fallback "Balanced" for any combination not enumerated.
+  const map = {
+    HHH: { label: "Clinical Closer",   colour: "var(--forest)" },     // dominant runs, holds easy, finishes points
+    HHL: { label: "Dominant Runner",   colour: "var(--forest)" },     // wins by volume — clean game flow but errors creep in
+    HLH: { label: "Streaky Striker",   colour: "var(--terracotta)" }, // peaks in flurries, loose in between
+    HLL: { label: "Volatile Aggressor",colour: "var(--terracotta)" }, // hot-and-cold without clean execution
+    MHH: { label: "Steady Closer",     colour: "var(--cobalt)" },
+    MHL: { label: "Steady, Methodical",colour: "var(--cobalt)" },
+    MLH: { label: "Quick Striker",     colour: "var(--cobalt)" },
+    LHH: { label: "Patient Surgeon",   colour: "var(--cobalt)" },
+    LHL: { label: "Patient Holder",    colour: "var(--cobalt)" },
+    LLH: { label: "Counterpunch Striker", colour: "var(--ink)" },
+    LLL: { label: "Pure Grinder",      colour: "var(--ink)" },
+  };
+  return map[code] || { label: "Balanced", colour: "var(--ink-muted)" };
 }
 
 function renderStreaks(p, t) {
@@ -1126,20 +1240,9 @@ function renderStreaks(p, t) {
   const srvCleanP = srvCleanVal != null && stats.srvClean ? stats.srvClean.pctile(srvCleanVal) : null;
   const retCleanP = retCleanVal != null && stats.retClean ? stats.retClean.pctile(retCleanVal) : null;
 
-  // Verdict still combines streakiness vs serve-game cleanness — adding
-  // return-clean to the mix would over-complicate the interpretation, so
-  // we keep the four-quadrant taxonomy and surface return-clean as a
-  // standalone metric below.
-  let verdict = "—", verdictColour = "var(--ink-muted)";
-  if (streakP != null && srvCleanP != null) {
-    const sHi = streakP   >= 65, sLo = streakP   <= 35;
-    const cHi = srvCleanP >= 65, cLo = srvCleanP <= 35;
-    if      (sHi && cHi) { verdict = "Dominant runner";        verdictColour = "var(--forest)"; }
-    else if (sHi && cLo) { verdict = "Streaky finisher";       verdictColour = "var(--terracotta)"; }
-    else if (sLo && cHi) { verdict = "Steady, methodical";     verdictColour = "var(--cobalt)"; }
-    else if (sLo && cLo) { verdict = "Grinder";                verdictColour = "var(--ink)"; }
-    else                 { verdict = "Balanced";               verdictColour = "var(--ink-muted)"; }
-  }
+  // Player-type verdict has moved to the Attack Precision card (it now
+  // combines streak / clean / precision). This card just shows the
+  // metric breakdown.
 
   function metricRow(label, value, unit, pctileVal, axisMax, summary, helpText, decimals) {
     const pos = Math.min(value / axisMax * 100, 100).toFixed(2);
@@ -1164,10 +1267,9 @@ function renderStreaks(p, t) {
       </div>`;
   }
 
-  let html = `
-    <div class="game-ctrl-verdict" style="color:${verdictColour}">${verdict}</div>
-    <div class="game-ctrl-sub">vs ${Object.keys(state.profiles).length} players in the ${p.year} draw</div>
-  `;
+  // Compact header — the player-type verdict has moved to the Attack
+  // Precision card; this card now opens straight into the percentile rows.
+  let html = `<div class="game-ctrl-sub">vs ${Object.keys(state.profiles).length} players in the ${p.year} draw</div>`;
 
   if (streakVal != null && stats.streaks) {
     html += metricRow(
@@ -2687,8 +2789,10 @@ function renderMatchupResult(r) {
       const wrap = sideEl.querySelector(".mu-prob-photo");
       if (!wrap) return;
       const img = document.createElement("img");
-      img.src = src;
-      img.alt = name;
+      img.src      = src;
+      img.alt      = name;
+      img.loading  = "lazy";       // matchup tiles aren't above the fold
+      img.decoding = "async";
       wrap.appendChild(img);
       sideEl.classList.add("has-photo");
     };

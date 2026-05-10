@@ -222,8 +222,9 @@ async function loadYear(year) {
   state.archetypesMeta = archetypesMeta;
   state.year           = year;
   // Invalidate any per-year stat caches when the year changes
-  for (const k of Object.keys(_runEffStatsCache)) delete _runEffStatsCache[k];
-  for (const k of Object.keys(_bpcStatsCache))    delete _bpcStatsCache[k];
+  for (const k of Object.keys(_runEffStatsCache))   delete _runEffStatsCache[k];
+  for (const k of Object.keys(_bpcStatsCache))      delete _bpcStatsCache[k];
+  for (const k of Object.keys(_gameCtrlStatsCache)) delete _gameCtrlStatsCache[k];
   populateDropdown();
   populateMuDropdowns();
   if (state.mode === "leaderboard") renderLeaderboard();
@@ -390,7 +391,8 @@ function renderProfile(name) {
   // (creation rate + conversion) as a stacked-column visualization with
   // tournament average benchmarks.
   renderAggression(p, t);
-  renderCleanGames(p, t);
+  // Clean Player Index card removed in v34 — Game Control card (formerly
+  // Streak Index) absorbs both metrics with field percentile rankings.
   renderStreaks(p, t);
   renderDuration(p, t);
   renderDistance(p, t);
@@ -1039,31 +1041,146 @@ function renderCleanGames(p, t) {
   }
 }
 
-// ── Streaks ───────────────────────────────────────────────────────
-function renderStreaks(p, t) {
-  const st  = p.streaks;
-  const avg = t.streaks.streaks_per_match ?? 0;
-  const val = st.streaks_per_match ?? 0;
-  const MAX = Math.max(val, avg, 10) * 1.3;
+// ── Game Control & Momentum Profile (replaces Streaks + Clean Player) ────
+// Combines two metrics into one card with PERCENTILE rankings, so the
+// user can spot exceptional players (Tsonga 2021 with 21 streaks/match)
+// vs the median field around 14.
+const _gameCtrlStatsCache = {};
+function _gameCtrlStats(year) {
+  if (_gameCtrlStatsCache[year]) return _gameCtrlStatsCache[year];
+  const profs = state.profiles || {};
+  const streaks = [], srvClean = [];
+  const namedStreaks = [];   // [name, value] for surfacing exemplars
+  const namedClean   = [];
+  for (const [name, p] of Object.entries(profs)) {
+    const s = p?.streaks?.streaks_per_match;
+    const c = p?.clean_games?.srv_clean_pct;
+    if (s != null) { streaks.push(s);  namedStreaks.push([name, s]); }
+    if (c != null) { srvClean.push(c); namedClean.push([name, c]); }
+  }
+  if (streaks.length < 5) return null;
+  streaks.sort((a, b) => a - b);
+  srvClean.sort((a, b) => a - b);
+  const pctile = (sorted, v) => {
+    let lo = 0, hi = sorted.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >> 1;
+      if (sorted[mid] < v) lo = mid + 1; else hi = mid;
+    }
+    return Math.round(lo / sorted.length * 100);
+  };
+  namedStreaks.sort((a, b) => b[1] - a[1]);
+  namedClean.sort((a, b) => b[1] - a[1]);
+  const stats = {
+    streaks: {
+      median: streaks[Math.floor(streaks.length / 2)],
+      p90:    streaks[Math.floor(streaks.length * 0.9)],
+      p10:    streaks[Math.floor(streaks.length * 0.1)],
+      max:    streaks[streaks.length - 1],
+      top:    namedStreaks[0],
+      pctile: v => pctile(streaks, v),
+    },
+    srvClean: {
+      median: srvClean[Math.floor(srvClean.length / 2)],
+      p90:    srvClean[Math.floor(srvClean.length * 0.9)],
+      max:    srvClean[srvClean.length - 1],
+      top:    namedClean[0],
+      pctile: v => pctile(srvClean, v),
+    },
+  };
+  _gameCtrlStatsCache[year] = stats;
+  return stats;
+}
 
-  document.getElementById("streaks-viz").innerHTML = `
-    <div class="streak-big-row">
-      <div class="streak-num">${val}</div>
-      <div class="streak-unit">streaks/match</div>
-    </div>
-    <div class="streak-bar-section">
-      <div class="streak-bar-label">
-        <span>Streaks per match</span>
-        <span>avg ${avg}</span>
-      </div>
-      <div class="streak-track">
-        <div class="streak-fill" style="width:${(val/MAX*100).toFixed(1)}%"></div>
-        <div class="streak-avg-tick" style="left:${(avg/MAX*100).toFixed(1)}%"></div>
-      </div>
-    </div>
-    <div style="font-size:11px;color:var(--ink-muted);margin-top:10px">
-      Total streaks across tournament: ${st.total_streaks} · ${p.matches_played} matches played · 3+ pts in a row, resets per game
-    </div>`;
+function renderStreaks(p, t) {
+  const container = document.getElementById("streaks-viz");
+  const streakVal = p?.streaks?.streaks_per_match;
+  const cleanVal  = p?.clean_games?.srv_clean_pct;
+  if (streakVal == null && cleanVal == null) {
+    container.innerHTML = naCard("Game Control", p?.year || "this year");
+    return;
+  }
+
+  const stats = _gameCtrlStats(p.year);
+  if (!stats) {
+    // Fall back to the old simple display if benchmarks unavailable.
+    container.innerHTML = `
+      <div class="streak-big-row">
+        <div class="streak-num">${streakVal ?? "—"}</div>
+        <div class="streak-unit">streaks/match</div>
+      </div>`;
+    return;
+  }
+
+  // Percentile and verdict
+  const streakP = streakVal != null ? stats.streaks.pctile(streakVal) : null;
+  const cleanP  = cleanVal  != null ? stats.srvClean.pctile(cleanVal) : null;
+
+  // Verdict combines streakiness (does the player generate runs?)
+  // and cleanness (do they hold easily?). Four quadrants:
+  //   high streak + high clean → "Dominant runner"
+  //   high streak + low  clean → "Streaky finisher (volatile)"
+  //   low  streak + high clean → "Steady, methodical"
+  //   low  streak + low  clean → "Grinder"
+  let verdict = "—", verdictColour = "var(--ink-muted)";
+  if (streakP != null && cleanP != null) {
+    const sHi = streakP >= 65, sLo = streakP <= 35;
+    const cHi = cleanP  >= 65, cLo = cleanP  <= 35;
+    if      (sHi && cHi) { verdict = "Dominant runner";        verdictColour = "var(--forest)"; }
+    else if (sHi && cLo) { verdict = "Streaky finisher";       verdictColour = "var(--terracotta)"; }
+    else if (sLo && cHi) { verdict = "Steady, methodical";     verdictColour = "var(--cobalt)"; }
+    else if (sLo && cLo) { verdict = "Grinder";                verdictColour = "var(--ink)"; }
+    else                 { verdict = "Balanced";               verdictColour = "var(--ink-muted)"; }
+  }
+
+  function metricRow(label, value, unit, pctileVal, axisMax, topInfo, helpText) {
+    const pos = Math.min(value / axisMax * 100, 100).toFixed(2);
+    const medianPos = (label === "Streaks/match"
+        ? (stats.streaks.median / axisMax * 100)
+        : (stats.srvClean.median / axisMax * 100)).toFixed(2);
+    return `
+      <div class="game-ctrl-row">
+        <div class="game-ctrl-row-head">
+          <span class="game-ctrl-label">${label}</span>
+          <span class="game-ctrl-pct">${pctileVal}<sup>th</sup> percentile</span>
+        </div>
+        <div class="game-ctrl-track">
+          <div class="game-ctrl-median" style="left:${medianPos}%" title="Field median: ${(label === 'Streaks/match' ? stats.streaks.median : stats.srvClean.median).toFixed(1)}${unit}"></div>
+          <div class="game-ctrl-marker" style="left:${pos}%" title="${value}${unit}">
+            <span class="game-ctrl-marker-val">${value.toFixed(label === 'Streaks/match' ? 1 : 0)}${unit}</span>
+          </div>
+        </div>
+        <div class="game-ctrl-axis">
+          <span>0${unit}</span>
+          <span class="game-ctrl-top">top: ${topInfo[0].split(' ').pop()} · ${topInfo[1].toFixed(1)}${unit}</span>
+        </div>
+        <p class="game-ctrl-help">${helpText}</p>
+      </div>`;
+  }
+
+  let html = `
+    <div class="game-ctrl-verdict" style="color:${verdictColour}">${verdict}</div>
+    <div class="game-ctrl-sub">vs ${Object.keys(state.profiles).length} players in the ${p.year} draw</div>
+  `;
+
+  if (streakVal != null) {
+    html += metricRow(
+      "Streaks/match", streakVal, "", streakP,
+      Math.max(stats.streaks.max, 30) * 1.05,
+      stats.streaks.top,
+      "Runs of 3+ points within a single game · resets per game · higher = generates more dominant stretches"
+    );
+  }
+  if (cleanVal != null) {
+    html += metricRow(
+      "Clean service games", cleanVal, "%", cleanP,
+      100,
+      stats.srvClean.top,
+      "Service games won without reaching deuce · higher = holds without trouble"
+    );
+  }
+
+  container.innerHTML = html;
 }
 
 // ── Match Duration ────────────────────────────────────────────────

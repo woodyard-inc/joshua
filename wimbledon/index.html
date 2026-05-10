@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Wins on Grass — Wimbledon Player Intelligence · Joshua Woodyard</title>
   <meta name="description" content="Point-by-point player intelligence and grass-court Monte Carlo prediction for the Wimbledon men's draw, 2011–2024. Built on Jeff Sackmann's open tennis datasets (Slam point-by-point + ATP match results), enriched with full grass-circuit aggregates and a custom Elo rating system.">
-  <link rel="stylesheet" href="../foundations.css?v=33">
-  <link rel="stylesheet" href="styles.css?v=33">
+  <link rel="stylesheet" href="../foundations.css?v=34">
+  <link rel="stylesheet" href="styles.css?v=34">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 </head>
 <body>
@@ -313,17 +313,10 @@
         <div id="aggression-viz" class="aggression-viz"></div>
       </div>
 
-      <!-- Clean Player -->
-      <div class="card">
-        <div class="card-header"><h3>Clean Player Index</h3></div>
-        <p class="card-note">Service games and break games won without reaching deuce</p>
-        <div id="clean-viz" class="clean-viz"></div>
-      </div>
-
-      <!-- Streak Index -->
-      <div class="card">
-        <div class="card-header"><h3>Streak Index</h3></div>
-        <p class="card-note">Runs of 3+ consecutive points within a single game · resets each game</p>
+      <!-- Game Control (was Streak Index + Clean Player Index, now combined) -->
+      <div class="card card-wide">
+        <div class="card-header"><h3>Game Control</h3><span class="card-tag">Momentum profile</span></div>
+        <p class="card-note">Two facets of game-level momentum benchmarked against the field · streakiness shows how often a player generates 3+ point runs · clean-game % shows how often they hold without reaching deuce</p>
         <div id="streaks-viz" class="streaks-viz"></div>
       </div>
 
@@ -384,8 +377,8 @@
     <span class="pf-col-r">PBP &amp; ATP data · Jeff Sackmann · Grass Elo &amp; profiles built in-house</span>
   </footer>
 
-  <script src="markov.js?v=33"></script>
-  <script src="compare.js?v=33"></script>
-  <script src="app.js?v=33"></script>
+  <script src="markov.js?v=34"></script>
+  <script src="compare.js?v=34"></script>
+  <script src="app.js?v=34"></script>
 </body>
 </html>

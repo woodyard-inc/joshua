@@ -1970,6 +1970,107 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   color: var(--ink-muted);
 }
 
+/* ── GAME CONTROL (replaces Streak Index + Clean Player) ─────── */
+.game-ctrl-verdict {
+  font-family: var(--font-sans);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 2px;
+}
+.game-ctrl-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-bottom: var(--s-3);
+}
+.game-ctrl-row {
+  margin-bottom: 22px;
+}
+.game-ctrl-row:last-child { margin-bottom: 0; }
+.game-ctrl-row-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+.game-ctrl-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.game-ctrl-pct {
+  font-family: var(--font-serif);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--terracotta);
+}
+.game-ctrl-pct sup { font-size: 9px; }
+.game-ctrl-track {
+  position: relative;
+  height: 10px;
+  background: var(--paper-warm);
+  border-radius: 5px;
+  margin: 16px 0 4px 0;
+}
+.game-ctrl-median {
+  position: absolute;
+  top: -3px; bottom: -3px;
+  width: 1px;
+  background: var(--ink);
+  opacity: 0.35;
+  transform: translateX(-50%);
+  cursor: help;
+}
+.game-ctrl-marker {
+  position: absolute;
+  top: -7px;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  background: var(--terracotta);
+  border: 2px solid var(--paper);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: left .4s;
+  cursor: help;
+}
+.game-ctrl-marker-val {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--terracotta);
+  white-space: nowrap;
+}
+.game-ctrl-axis {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 10px;
+  color: var(--ink-muted);
+  margin-top: 18px;
+}
+.game-ctrl-top {
+  font-style: normal;
+  color: var(--ink-soft);
+}
+.game-ctrl-help {
+  font-size: 11px;
+  color: var(--ink-muted);
+  margin: 10px 0 0 0;
+  font-style: italic;
+}
+
 /* ── CLUTCH DIFFERENTIAL ─────────────────────────────────────── */
 .clutch-big {
   font-family: var(--font-sans);

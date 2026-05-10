@@ -341,17 +341,15 @@ function renderProfile(name) {
   renderServeSpeedDifferential(f);
   renderServeDepthEntropy(f);
   // Return & Pressure
-  renderDfPressure(f);
+  // Removed: renderDfPressure (ablated), renderClutch (mostly UNRELIABLE),
+  //          renderFirstServePressure (ablated, mostly UNRELIABLE)
   renderBpCreation(f);
-  renderClutch(f);
   renderTiebreakDifferential(f);
   renderSetTransitionDelta(f);
-  renderFirstServePressure(f);
   // Rally & Shape
+  // Removed: renderRallyVolatility (ablated), renderCourtSide (ablated),
+  //          renderMomentum (ablated catch-fire mechanic)
   renderRallyCurve(f);
-  renderRallyVolatility(f);
-  renderCourtSide(f);
-  renderMomentum(f);
   // Physical
   renderRunEfficiency(f);
   renderAttritionSlope(f);
@@ -1769,24 +1767,18 @@ const LEADERBOARD_METRICS = [
   { id:"spd_diff",  label:"Speed Gap 1st–2nd", section:"Serve",              fmt:"dec1",  dir:"asc",  extract:f=>f?.tier2?.serve_speed_differential?.value },
   { id:"depth_ent", label:"Depth Mix",         section:"Serve",              fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.serve_depth_entropy?.pct_of_max },
   // Return & Pressure
-  { id:"clutch",    label:"Clutch Diff",       section:"Return & Pressure",  fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.clutch_differential?.value },
-  { id:"df_delta",  label:"DF Pressure Δ",    section:"Return & Pressure",  fmt:"pp",    dir:"asc",  extract:f=>f?.tier2?.df_pressure_delta?.value },
+  // Removed: Clutch Diff, DF Pressure Δ, 1st Srv @ Pressure, BP Conversion
+  //          (all ablated or de-facto dead in the model)
   { id:"bp_per_g",  label:"BPs / Ret Game",   section:"Return & Pressure",  fmt:"dec3",  dir:"desc", extract:f=>f?.tier2?.bp_creation_profile?.bp_per_return_game },
-  { id:"bp_conv",   label:"BP Conversion",     section:"Return & Pressure",  fmt:"pct1",  dir:"desc", extract:f=>{ const v=f?.tier2?.bp_creation_profile?.bp_conversion; return v!=null?v*100:null; }},
   { id:"tiebreak",  label:"Tiebreak Diff",     section:"Return & Pressure",  fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.tiebreak_differential?.value },
   { id:"set_trans", label:"Set Transition Δ",  section:"Return & Pressure",  fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.set_transition_delta?.value },
-  { id:"fsp_pres",  label:"1st Srv @ Pressure",section:"Return & Pressure",  fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.first_serve_pressure?.value },
   // Rally & Shape
+  // Removed: Rally Volatility, Court Asymmetry (both ablated)
   { id:"rw_1_3",    label:"Win % 1–3 shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["1_3"]?.win_pct },
   { id:"rw_4_6",    label:"Win % 4–6 shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["4_6"]?.win_pct },
   { id:"rw_7_9",    label:"Win % 7–9 shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["7_9"]?.win_pct },
   { id:"rw_10",     label:"Win % 10+ shots",  section:"Rally & Shape",      fmt:"pct",   dir:"desc", extract:f=>f?.tier2?.rally_win_curve?.["10+"]?.win_pct },
-  { id:"rally_vol", label:"Rally Volatility",  section:"Rally & Shape",      fmt:"dec2",  dir:"desc", extract:f=>f?.tier2?.rally_volatility?.value },
-  { id:"csa",       label:"Court Asymmetry",   section:"Rally & Shape",      fmt:"pp",    dir:"desc", extract:f=>f?.tier2?.court_side_asymmetry?.asymmetry },
-  // Momentum
-  { id:"str_init",  label:"Streak Initiation", section:"Momentum",           fmt:"dec2",  dir:"desc", extract:f=>f?.tier2?.momentum_profile?.streak_initiation_rate },
-  { id:"str_surv",  label:"Streak Survival",   section:"Momentum",           fmt:"pct1",  dir:"desc", extract:f=>{ const v=f?.tier2?.momentum_profile?.streak_survival_rate; return v!=null?v*100:null; }},
-  { id:"str_rec",   label:"Streak Recovery",   section:"Momentum",           fmt:"pct1",  dir:"desc", extract:f=>{ const v=f?.tier2?.momentum_profile?.streak_recovery_rate; return v!=null?v*100:null; }},
+  // Momentum section removed entirely — catch-fire mechanic ablated, no signal
   // Physical
   { id:"run_eff",   label:"Run Efficiency",    section:"Physical",           fmt:"dec2",  dir:"asc",  extract:f=>f?.tier2?.distance_run_efficiency?.value },
   { id:"attrition", label:"Attrition Slope",   section:"Physical",           fmt:"dec1",  dir:"asc",  extract:f=>f?.tier2?.attrition_slope?.value },

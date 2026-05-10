@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Wins on Grass — Wimbledon Player Intelligence · Joshua Woodyard</title>
   <meta name="description" content="Point-by-point player intelligence and grass-court Monte Carlo prediction for the Wimbledon men's draw, 2011–2024. Built on Jeff Sackmann's open tennis datasets (Slam point-by-point + ATP match results), enriched with full grass-circuit aggregates and a custom Elo rating system.">
-  <link rel="stylesheet" href="../foundations.css?v=28">
-  <link rel="stylesheet" href="styles.css?v=28">
+  <link rel="stylesheet" href="../foundations.css?v=29">
+  <link rel="stylesheet" href="styles.css?v=29">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 </head>
 <body>
@@ -269,20 +269,6 @@
         <div id="bp-creation-viz" class="bp-creation-viz"></div>
       </div>
 
-      <!-- Clutch Differential -->
-      <div class="card">
-        <div class="card-header"><h3>Clutch Differential</h3><span class="card-tag">Fingerprint</span></div>
-        <p class="card-note">Win rate on high-leverage points (BPs &amp; deuce) minus overall win rate · positive = raises game under pressure</p>
-        <div id="clutch-viz" class="clutch-viz"></div>
-      </div>
-
-      <!-- DF Pressure Delta -->
-      <div class="card">
-        <div class="card-header"><h3>DF Pressure Delta</h3><span class="card-tag">Fingerprint</span></div>
-        <p class="card-note">Double-fault rate when facing a break point vs overall DF rate · positive = more nervy under pressure</p>
-        <div id="df-pressure-viz" class="df-pressure-viz"></div>
-      </div>
-
       <!-- Tiebreak Differential -->
       <div class="card">
         <div class="card-header"><h3>Tiebreak Differential</h3><span class="card-tag">Fingerprint</span></div>
@@ -295,13 +281,6 @@
         <div class="card-header"><h3>Set Transition</h3><span class="card-tag">Fingerprint</span></div>
         <p class="card-note">Win rate in first 2 games of each set vs overall · positive = starts sets on the front foot</p>
         <div id="set-transition-viz" class="clutch-viz"></div>
-      </div>
-
-      <!-- First Serve Under Pressure -->
-      <div class="card">
-        <div class="card-header"><h3>1st Serve Under Pressure</h3><span class="card-tag">Fingerprint</span></div>
-        <p class="card-note">1st serve % at deuce/ad points vs overall · positive = maintains aggression on the biggest points</p>
-        <div id="fsp-pressure-viz" class="courage-viz"></div>
       </div>
 
       <!-- ── SECTION: Rally & Shape ──────────────────────────────── -->
@@ -331,20 +310,6 @@
         <div id="rally-curve-viz" class="rally-curve-viz"></div>
       </div>
 
-      <!-- Rally Volatility -->
-      <div class="card">
-        <div class="card-header"><h3>Rally Volatility</h3><span class="card-tag">Fingerprint</span></div>
-        <p class="card-note">Std dev of rally lengths on won points · higher = adapts across all lengths · grass specialists often score high</p>
-        <div id="rally-vol-viz" class="entropy-viz"></div>
-      </div>
-
-      <!-- Court Side Asymmetry -->
-      <div class="card">
-        <div class="card-header"><h3>Court Side Asymmetry</h3><span class="card-tag">Fingerprint</span></div>
-        <p class="card-note">Win rate on all points from the deuce court vs ad court · reveals side-specific patterns</p>
-        <div id="court-side-viz" class="court-side-viz"></div>
-      </div>
-
       <!-- ── SECTION: Momentum & Game Control ───────────────────── -->
       <div class="section-divider">
         <span class="section-divider-label">Momentum &amp; Game Control</span>
@@ -370,13 +335,6 @@
         <div class="card-header"><h3>Streak Index</h3></div>
         <p class="card-note">Runs of 3+ consecutive points within a single game · resets each game</p>
         <div id="streaks-viz" class="streaks-viz"></div>
-      </div>
-
-      <!-- Momentum Profile -->
-      <div class="card">
-        <div class="card-header"><h3>Momentum Profile</h3><span class="card-tag">Fingerprint</span></div>
-        <p class="card-note">Streak initiation (3+ pt runs started), survival (extend to 4+), and recovery rate (point won right after opponent streak)</p>
-        <div id="momentum-viz" class="momentum-viz"></div>
       </div>
 
       <!-- ── SECTION: Physical ───────────────────────────────────── -->
@@ -436,8 +394,8 @@
     <span class="pf-col-r">PBP &amp; ATP data · Jeff Sackmann · Grass Elo &amp; profiles built in-house</span>
   </footer>
 
-  <script src="markov.js?v=28"></script>
-  <script src="compare.js?v=28"></script>
-  <script src="app.js?v=28"></script>
+  <script src="markov.js?v=29"></script>
+  <script src="compare.js?v=29"></script>
+  <script src="app.js?v=29"></script>
 </body>
 </html>

@@ -417,7 +417,7 @@ function renderProfile(name) {
   //          renderMomentum (ablated catch-fire mechanic)
   renderRallyCurve(f);
   // Physical
-  renderRunEfficiency(f);
+  renderRunEfficiency(f, p);
   renderAttritionSlope(f);
   renderHoldAfterBreak(f);
 }
@@ -2083,7 +2083,7 @@ function _runEffStats(year) {
   return stats;
 }
 
-function renderRunEfficiency(f) {
+function renderRunEfficiency(f, p) {
   const container = document.getElementById("run-efficiency-viz");
   const dre = f?.tier2?.distance_run_efficiency;
   // Hard NA gate — bail if the underlying field is missing or zero.
@@ -2094,14 +2094,40 @@ function renderRunEfficiency(f) {
   const val   = dre.value;
   const stats = _runEffStats(f.year);
 
+  // Compute metres run per POINT played, summed across the player's
+  // match log. Falls back to null if any required pieces are missing.
+  let mPerPoint = null;
+  const ms = p?.match_summaries || [];
+  if (ms.length) {
+    let totalKm = 0, totalPts = 0;
+    for (const m of ms) {
+      if (m.distance_km != null && m.points_played) {
+        totalKm  += m.distance_km;
+        totalPts += m.points_played;
+      }
+    }
+    if (totalKm > 0 && totalPts > 0) {
+      mPerPoint = (totalKm * 1000) / totalPts;
+    }
+  }
+
+  // Reusable headline that pairs m/shot with m/point when available
+  const headline = `
+    <div class="entropy-big-row">
+      <div class="entropy-big">${val.toFixed(2)}</div>
+      <div class="entropy-label">m per<br>shot</div>
+      ${mPerPoint != null ? `
+        <div class="entropy-divider"></div>
+        <div class="entropy-big entropy-big--secondary">${mPerPoint.toFixed(1)}</div>
+        <div class="entropy-label">m per<br>point</div>
+      ` : ""}
+    </div>`;
+
   // Without benchmarks, fall back to a simpler bar.
   if (!stats) {
     const effPct = Math.max(0, Math.min(100, (1 - (val - 1) / 6) * 100)).toFixed(1);
     container.innerHTML = `
-      <div class="entropy-big-row">
-        <div class="entropy-big">${val.toFixed(2)}</div>
-        <div class="entropy-label">m per<br>shot</div>
-      </div>
+      ${headline}
       <div class="entropy-track">
         <div class="entropy-fill" style="width:${effPct}%"></div>
       </div>
@@ -2117,10 +2143,7 @@ function renderRunEfficiency(f) {
   const playerPct = pos(val);
 
   container.innerHTML = `
-    <div class="entropy-big-row">
-      <div class="entropy-big">${val.toFixed(2)}</div>
-      <div class="entropy-label">m per<br>shot</div>
-    </div>
+    ${headline}
     <div class="run-eff-track">
       <!-- left = best (most efficient), right = worst (heaviest runner) -->
       <div class="run-eff-bar"></div>
@@ -2129,8 +2152,11 @@ function renderRunEfficiency(f) {
       </div>
       <img class="run-eff-marker" src="rafa_marker.webp" alt="player marker"
            style="left:${playerPct.toFixed(2)}%" title="${f.player || ''}: ${val.toFixed(2)} m/shot">
-      <!-- Pinned value label rounded to one decimal so it's easy to read at a glance -->
+      <!-- Floating value label sitting just above Rafa (read-at-a-glance) -->
       <div class="run-eff-marker-label" style="left:${playerPct.toFixed(2)}%">${val.toFixed(1)} m/shot</div>
+      <!-- Mirror label below the bar pinned to the same x position so the
+           number is also visible from below the runner / closer to the axis -->
+      <div class="run-eff-marker-label run-eff-marker-label--below" style="left:${playerPct.toFixed(2)}%">${val.toFixed(1)} m/shot</div>
     </div>
     <div class="run-eff-axis">
       <span class="run-eff-end run-eff-end--best">${stats.min.toFixed(1)} ← most efficient<br><em>${stats.best.name}</em></span>

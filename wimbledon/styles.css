@@ -1565,6 +1565,18 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   padding-bottom: 10px;
   line-height: 1.5;
 }
+/* Secondary stat in the headline — slightly smaller + softer colour so the
+ * primary m/shot value stays the main reading point. */
+.entropy-big--secondary {
+  font-size: 38px;
+  color: var(--ink-soft);
+}
+.entropy-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--paper-warm);
+  margin: 8px 0;
+}
 .entropy-track {
   height: 8px;
   background: var(--paper-warm);
@@ -1649,6 +1661,14 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   border-radius: 3px;
   white-space: nowrap;
   pointer-events: none;
+}
+/* Mirror label sitting BELOW the bar, also pinned to Rafa's x position.
+ * Gives a second read of the same number without forcing the eye up. */
+.run-eff-marker-label--below {
+  top: 124px;          /* sits just under the gradient bar (bar top = 110, height = 6) */
+  background: var(--paper-warm);
+  border-color: transparent;
+  color: var(--ink-soft);
 }
 .run-eff-axis {
   display: flex;

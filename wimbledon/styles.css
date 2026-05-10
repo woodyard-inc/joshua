@@ -597,7 +597,9 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 
 /* ── RALLY VIZ ───────────────────────────────────────────────── */
 .rally-viz { display: flex; flex-direction: column; gap: var(--s-6); }
-.rally-group { display: flex; flex-direction: column; gap: var(--s-3); }
+/* Larger row gap so the avg-marker stack (number + arrow) above each row
+ * has clearance from the balls of the row above. */
+.rally-group { display: flex; flex-direction: column; gap: 22px; }
 .rally-group-heading {
   font-family: var(--font-sans);
   font-size: var(--t-micro);
@@ -647,12 +649,11 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 /* Downward-arrow tournament-average marker — replaces the vertical line
  * so per-row positions are visually distinguishable across rally bands.
- * Sits closer to the top edge of the ball with the avg value printed
- * above it. Neutral grey so the colour doesn't compete with the balls
- * themselves. */
+ * Neutral grey + generous breathing room above the balls so the
+ * number+arrow stack doesn't crowd the row content. */
 .rally-avg-marker {
   position: absolute;
-  top: -16px;
+  top: -22px;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -667,7 +668,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin-bottom: 1px;
+  margin-bottom: 3px;
   color: var(--ink-soft);
 }
 .rally-avg-arrow {
@@ -1225,7 +1226,10 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   border-radius: 4px;
   opacity: 0.7;
 }
-.dist-fill { background: var(--cobalt); }
+/* Distance Run shares the forest-green palette of Match Duration above —
+ * both are physical-load metrics in the same section, so they should
+ * read as a colour family rather than competing palettes. */
+.dist-fill { background: var(--forest); }
 .dur-avg-tick {
   position: absolute;
   top: -4px;
@@ -1269,7 +1273,10 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   opacity: 0.5;
   border-radius: 3px;
 }
-.dur-row-fill.dist-fill { background: var(--cobalt); }
+.dur-row-fill/* Distance Run shares the forest-green palette of Match Duration above —
+ * both are physical-load metrics in the same section, so they should
+ * read as a colour family rather than competing palettes. */
+.dist-fill { background: var(--forest); }
 
 /* ── UTILITIES ───────────────────────────────────────────────── */
 .hidden { display: none !important; }
@@ -1649,30 +1656,22 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   pointer-events: none;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.22));
 }
-/* Floating value label sitting just above the runner, tied to the marker's x */
+/* Pinned value label above the runner — styled to match the avg-tick
+ * caption (italic serif, muted) so the two captions sit as a coherent
+ * pair rather than the marker label dominating the card. */
 .run-eff-marker-label {
   position: absolute;
-  top: -2px;
+  top: 8px;
   transform: translateX(-50%);
-  font-family: var(--font-sans);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  color: var(--ink);
-  background: var(--paper);
-  padding: 1px 6px;
-  border: 1px solid var(--paper-warm);
-  border-radius: 3px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-soft);
   white-space: nowrap;
   pointer-events: none;
-}
-/* Mirror label sitting BELOW the bar, also pinned to Rafa's x position.
- * Gives a second read of the same number without forcing the eye up. */
-.run-eff-marker-label--below {
-  top: 124px;          /* sits just under the gradient bar (bar top = 110, height = 6) */
-  background: var(--paper-warm);
-  border-color: transparent;
-  color: var(--ink-soft);
+  background: var(--paper);
+  padding: 0 4px;
+  border-radius: 2px;
 }
 .run-eff-axis {
   display: flex;
@@ -1845,38 +1844,70 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   color: var(--ink-muted);
 }
 
-/* Stacked-column BP Creation visualization (replaces enforcer card) */
+/* Clustered-column BP Creation visualization
+ * Two grouped metrics (per-game creation rate + conversion %), each
+ * shown as a clustered pair (player vs tour avg) with a centre divider
+ * separating the two metrics. */
 .bpc-headline-row {
   display: flex;
-  align-items: baseline;
-  gap: 24px;
-  margin-bottom: var(--s-3);
+  align-items: flex-end;
+  gap: 28px;
+  margin-bottom: var(--s-4);
 }
-.bpc-headline { display: flex; align-items: baseline; gap: 8px; }
+.bpc-headline { display: flex; align-items: flex-end; gap: 10px; }
 .bpc-headline-val {
+  /* Both call-outs use the SAME size + colour now (cobalt) — earlier the
+   * conversion stat was shrunk + greyed which made the card feel uneven. */
   font-family: var(--font-sans);
-  font-size: 38px;
+  font-size: 36px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--terracotta);
+  color: var(--cobalt);
   line-height: 1;
 }
-.bpc-headline-val--secondary { font-size: 28px; color: var(--ink-soft); }
 .bpc-headline-label {
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 11px;
   color: var(--ink-muted);
   line-height: 1.25;
+  padding-bottom: 4px;
 }
 
-.bpc-stack-wrap {
+/* The cluster container holds both metric groups with a vertical divider. */
+.bpc-cluster-wrap {
   display: flex;
-  gap: 12px;
+  align-items: stretch;
+  gap: 0;
   margin-bottom: var(--s-3);
-  height: 200px;
 }
-.bpc-stack-axis {
+.bpc-cluster-divider {
+  width: 1px;
+  background: var(--paper-warm);
+  margin: 0 16px;
+}
+.bpc-cluster-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.bpc-cluster-title {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+  text-align: center;
+}
+.bpc-cluster-row {
+  display: flex;
+  gap: 8px;
+  /* Total height = bar track (130px) + value (16px) + label (14px) */
+}
+.bpc-cluster-axis {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1884,74 +1915,55 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   font-style: italic;
   font-size: 10px;
   color: var(--ink-muted);
-  padding: 4px 0;
-  width: 26px;
+  padding: 2px 0 36px 0;     /* bottom padding lines up with the track baseline */
+  width: 32px;
   text-align: right;
+  height: 180px;
 }
-.bpc-cols {
+.bpc-cluster-bars {
   display: flex;
   align-items: stretch;
-  gap: 18px;
+  gap: 14px;
   flex: 1;
 }
-.bpc-col {
+.bpc-cluster-bar {
   display: flex;
   flex-direction: column;
   align-items: center;
   flex: 1;
-  min-width: 0;
 }
-.bpc-col-stack {
+.bpc-cluster-bar-track {
   width: 100%;
+  height: 130px;
+  background: transparent;       /* no neutral bone fill behind the bar */
   display: flex;
-  flex-direction: column;
-  background: var(--paper-warm);
-  border: 1px solid var(--paper-warm);
-  flex: 1;
-  min-height: 0;
-  position: relative;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--paper-warm);
 }
-.bpc-seg {
+.bpc-cluster-bar-fill {
   width: 100%;
   transition: height .4s ease;
+  border-radius: 2px 2px 0 0;
 }
-.bpc-seg--missed    { background: rgba(195, 99, 65, 0.30); }   /* terracotta @ 30% — created but missed */
-.bpc-seg--converted { background: var(--terracotta); }          /* solid — successfully converted */
-.bpc-col--avg .bpc-seg--converted { background: var(--ink-soft); opacity: 0.55; }
-.bpc-col--avg .bpc-seg--missed    { background: rgba(138, 133, 123, 0.20); }
-.bpc-col-total {
+.bpc-cluster-bar-fill--player { background: var(--cobalt); }
+.bpc-cluster-bar-fill--avg    { background: var(--ink-soft); opacity: 0.55; }
+.bpc-cluster-bar-val {
+  text-align: center;
   font-family: var(--font-sans);
-  font-size: 18px;
+  font-size: 12px;
   font-weight: 700;
-  margin-top: 6px;
   color: var(--ink);
+  margin-top: 6px;
 }
-.bpc-col--avg .bpc-col-total { color: var(--ink-muted); font-weight: 500; }
-.bpc-col-label {
+.bpc-cluster-bar--avg .bpc-cluster-bar-val { color: var(--ink-muted); font-weight: 500; }
+.bpc-cluster-bar-label {
+  text-align: center;
   font-family: var(--font-serif);
   font-style: italic;
-  font-size: 11px;
+  font-size: 10px;
   color: var(--ink-muted);
-  text-align: center;
   margin-top: 2px;
 }
-
-.bpc-legend {
-  display: flex;
-  gap: 16px;
-  font-size: 11px;
-  color: var(--ink-muted);
-  margin-bottom: var(--s-2);
-}
-.bpc-legend-item { display: inline-flex; align-items: center; gap: 5px; }
-.bpc-swatch {
-  display: inline-block;
-  width: 10px;
-  height: 10px;
-  border-radius: 1px;
-}
-.bpc-swatch--converted { background: var(--terracotta); }
-.bpc-swatch--missed    { background: rgba(195, 99, 65, 0.30); }
 
 /* ── SET TRANSITION (slider visualization) ───────────────────── */
 .set-trans-headline {
@@ -2001,7 +2013,6 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   transition: left .4s;
   z-index: 2;
 }
-.set-trans-marker--overall { border-color: var(--ink-muted); background: var(--paper-warm); }
 .set-trans-marker--opener  { border-color: var(--ink); background: var(--paper); }
 .set-trans-marker-label {
   position: absolute;
@@ -2016,7 +2027,34 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   white-space: nowrap;
   line-height: 1.2;
 }
-.set-trans-marker--overall .set-trans-marker-label { color: var(--ink-muted); top: 28px; bottom: auto; }
+
+/* Overall / tournament-average marker — rendered as a labelled downward
+ * arrow (same convention as the Rally Length card) instead of a diamond. */
+.set-trans-arrow {
+  position: absolute;
+  top: -22px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  color: var(--ink-muted);
+  pointer-events: auto;
+  cursor: help;
+  z-index: 2;
+}
+.set-trans-arrow-label {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 10px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  margin-bottom: 2px;
+}
+.set-trans-arrow-glyph {
+  font-size: 11px;
+  color: var(--ink-muted);
+}
 
 .set-trans-axis {
   display: flex;

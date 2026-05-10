@@ -1054,18 +1054,26 @@ const _gameCtrlStatsCache = {};
 function _gameCtrlStats(year) {
   if (_gameCtrlStatsCache[year]) return _gameCtrlStatsCache[year];
   const profs = state.profiles || {};
-  const streaks = [], srvClean = [];
-  const namedStreaks = [];   // [name, value] for surfacing exemplars
-  const namedClean   = [];
+  const streaks = [], srvClean = [], retClean = [];
+  const namedStreaks = [], namedSrvClean = [], namedRetClean = [];
   for (const [name, p] of Object.entries(profs)) {
-    const s = p?.streaks?.streaks_per_match;
-    const c = p?.clean_games?.srv_clean_pct;
-    if (s != null) { streaks.push(s);  namedStreaks.push([name, s]); }
-    if (c != null) { srvClean.push(c); namedClean.push([name, c]); }
+    const s  = p?.streaks?.streaks_per_match;
+    const sc = p?.clean_games?.srv_clean_pct;
+    const rc = p?.clean_games?.ret_clean_pct;
+    if (s  != null) { streaks.push(s);   namedStreaks.push([name, s]); }
+    if (sc != null) { srvClean.push(sc); namedSrvClean.push([name, sc]); }
+    if (rc != null) { retClean.push(rc); namedRetClean.push([name, rc]); }
   }
   if (streaks.length < 5) return null;
-  streaks.sort((a, b) => a - b);
-  srvClean.sort((a, b) => a - b);
+  const buildSorted = (arr, named) => {
+    if (!arr.length) return null;
+    arr.sort((a, b) => a - b);
+    named.sort((a, b) => b[1] - a[1]);
+    return arr;
+  };
+  buildSorted(streaks,  namedStreaks);
+  buildSorted(srvClean, namedSrvClean);
+  buildSorted(retClean, namedRetClean);
   const pctile = (sorted, v) => {
     let lo = 0, hi = sorted.length;
     while (lo < hi) {
@@ -1074,24 +1082,16 @@ function _gameCtrlStats(year) {
     }
     return Math.round(lo / sorted.length * 100);
   };
-  namedStreaks.sort((a, b) => b[1] - a[1]);
-  namedClean.sort((a, b) => b[1] - a[1]);
+  const buildSummary = (sorted, named) => sorted ? ({
+    median: sorted[Math.floor(sorted.length / 2)],
+    max:    sorted[sorted.length - 1],
+    top:    named[0],
+    pctile: v => pctile(sorted, v),
+  }) : null;
   const stats = {
-    streaks: {
-      median: streaks[Math.floor(streaks.length / 2)],
-      p90:    streaks[Math.floor(streaks.length * 0.9)],
-      p10:    streaks[Math.floor(streaks.length * 0.1)],
-      max:    streaks[streaks.length - 1],
-      top:    namedStreaks[0],
-      pctile: v => pctile(streaks, v),
-    },
-    srvClean: {
-      median: srvClean[Math.floor(srvClean.length / 2)],
-      p90:    srvClean[Math.floor(srvClean.length * 0.9)],
-      max:    srvClean[srvClean.length - 1],
-      top:    namedClean[0],
-      pctile: v => pctile(srvClean, v),
-    },
+    streaks:  buildSummary(streaks,  namedStreaks),
+    srvClean: buildSummary(srvClean, namedSrvClean),
+    retClean: buildSummary(retClean, namedRetClean),
   };
   _gameCtrlStatsCache[year] = stats;
   return stats;
@@ -1099,16 +1099,16 @@ function _gameCtrlStats(year) {
 
 function renderStreaks(p, t) {
   const container = document.getElementById("streaks-viz");
-  const streakVal = p?.streaks?.streaks_per_match;
-  const cleanVal  = p?.clean_games?.srv_clean_pct;
-  if (streakVal == null && cleanVal == null) {
+  const streakVal   = p?.streaks?.streaks_per_match;
+  const srvCleanVal = p?.clean_games?.srv_clean_pct;
+  const retCleanVal = p?.clean_games?.ret_clean_pct;
+  if (streakVal == null && srvCleanVal == null && retCleanVal == null) {
     container.innerHTML = naCard("Game Control", p?.year || "this year");
     return;
   }
 
   const stats = _gameCtrlStats(p.year);
   if (!stats) {
-    // Fall back to the old simple display if benchmarks unavailable.
     container.innerHTML = `
       <div class="streak-big-row">
         <div class="streak-num">${streakVal ?? "—"}</div>
@@ -1117,20 +1117,18 @@ function renderStreaks(p, t) {
     return;
   }
 
-  // Percentile and verdict
-  const streakP = streakVal != null ? stats.streaks.pctile(streakVal) : null;
-  const cleanP  = cleanVal  != null ? stats.srvClean.pctile(cleanVal) : null;
+  const streakP   = streakVal   != null && stats.streaks  ? stats.streaks .pctile(streakVal)   : null;
+  const srvCleanP = srvCleanVal != null && stats.srvClean ? stats.srvClean.pctile(srvCleanVal) : null;
+  const retCleanP = retCleanVal != null && stats.retClean ? stats.retClean.pctile(retCleanVal) : null;
 
-  // Verdict combines streakiness (does the player generate runs?)
-  // and cleanness (do they hold easily?). Four quadrants:
-  //   high streak + high clean → "Dominant runner"
-  //   high streak + low  clean → "Streaky finisher (volatile)"
-  //   low  streak + high clean → "Steady, methodical"
-  //   low  streak + low  clean → "Grinder"
+  // Verdict still combines streakiness vs serve-game cleanness — adding
+  // return-clean to the mix would over-complicate the interpretation, so
+  // we keep the four-quadrant taxonomy and surface return-clean as a
+  // standalone metric below.
   let verdict = "—", verdictColour = "var(--ink-muted)";
-  if (streakP != null && cleanP != null) {
-    const sHi = streakP >= 65, sLo = streakP <= 35;
-    const cHi = cleanP  >= 65, cLo = cleanP  <= 35;
+  if (streakP != null && srvCleanP != null) {
+    const sHi = streakP   >= 65, sLo = streakP   <= 35;
+    const cHi = srvCleanP >= 65, cLo = srvCleanP <= 35;
     if      (sHi && cHi) { verdict = "Dominant runner";        verdictColour = "var(--forest)"; }
     else if (sHi && cLo) { verdict = "Streaky finisher";       verdictColour = "var(--terracotta)"; }
     else if (sLo && cHi) { verdict = "Steady, methodical";     verdictColour = "var(--cobalt)"; }
@@ -1138,11 +1136,9 @@ function renderStreaks(p, t) {
     else                 { verdict = "Balanced";               verdictColour = "var(--ink-muted)"; }
   }
 
-  function metricRow(label, value, unit, pctileVal, axisMax, topInfo, helpText) {
+  function metricRow(label, value, unit, pctileVal, axisMax, summary, helpText, decimals) {
     const pos = Math.min(value / axisMax * 100, 100).toFixed(2);
-    const medianPos = (label === "Streaks/match"
-        ? (stats.streaks.median / axisMax * 100)
-        : (stats.srvClean.median / axisMax * 100)).toFixed(2);
+    const medianPos = (summary.median / axisMax * 100).toFixed(2);
     return `
       <div class="game-ctrl-row">
         <div class="game-ctrl-row-head">
@@ -1150,14 +1146,14 @@ function renderStreaks(p, t) {
           <span class="game-ctrl-pct">${pctileVal}<sup>th</sup> percentile</span>
         </div>
         <div class="game-ctrl-track">
-          <div class="game-ctrl-median" style="left:${medianPos}%" title="Field median: ${(label === 'Streaks/match' ? stats.streaks.median : stats.srvClean.median).toFixed(1)}${unit}"></div>
+          <div class="game-ctrl-median" style="left:${medianPos}%" title="Field median: ${summary.median.toFixed(1)}${unit}"></div>
           <div class="game-ctrl-marker" style="left:${pos}%" title="${value}${unit}">
-            <span class="game-ctrl-marker-val">${value.toFixed(label === 'Streaks/match' ? 1 : 0)}${unit}</span>
+            <span class="game-ctrl-marker-val">${value.toFixed(decimals)}${unit}</span>
           </div>
         </div>
         <div class="game-ctrl-axis">
           <span>0${unit}</span>
-          <span class="game-ctrl-top">top: ${topInfo[0].split(' ').pop()} · ${topInfo[1].toFixed(1)}${unit}</span>
+          <span class="game-ctrl-top">top: ${summary.top[0].split(' ').pop()} · ${summary.top[1].toFixed(1)}${unit}</span>
         </div>
         <p class="game-ctrl-help">${helpText}</p>
       </div>`;
@@ -1168,20 +1164,31 @@ function renderStreaks(p, t) {
     <div class="game-ctrl-sub">vs ${Object.keys(state.profiles).length} players in the ${p.year} draw</div>
   `;
 
-  if (streakVal != null) {
+  if (streakVal != null && stats.streaks) {
     html += metricRow(
       "Streaks/match", streakVal, "", streakP,
       Math.max(stats.streaks.max, 30) * 1.05,
-      stats.streaks.top,
-      "Runs of 3+ points within a single game · resets per game · higher = generates more dominant stretches"
+      stats.streaks,
+      "Runs of 3+ points within a single game · resets per game · higher = generates more dominant stretches",
+      1,
     );
   }
-  if (cleanVal != null) {
+  if (srvCleanVal != null && stats.srvClean) {
     html += metricRow(
-      "Clean service games", cleanVal, "%", cleanP,
+      "Clean service games", srvCleanVal, "%", srvCleanP,
       100,
-      stats.srvClean.top,
-      "Service games won without reaching deuce · higher = holds without trouble"
+      stats.srvClean,
+      "Service games won without reaching deuce · higher = holds without trouble",
+      0,
+    );
+  }
+  if (retCleanVal != null && stats.retClean) {
+    html += metricRow(
+      "Clean return games", retCleanVal, "%", retCleanP,
+      100,
+      stats.retClean,
+      "Return games won without reaching deuce · higher = breaks decisively when the chance comes",
+      0,
     );
   }
 
@@ -1625,40 +1632,51 @@ function renderBpCreation(f) {
 
   const stats = _bpcStats(f.year);
 
-  // Stacked-column model: total height = BPs created per return game,
-  // bottom segment = converted (forest green), top = missed (terracotta).
-  // Two columns side by side: this player vs tournament average.
-  const playerCreated   = bpPerGame;
-  const playerConverted = bpPerGame * conv;
-  const playerMissed    = playerCreated - playerConverted;
-
-  const tourCreated   = stats ? stats.avgPerGame              : null;
-  const tourConverted = stats ? stats.avgPerGame * stats.avgConv : null;
-  const tourMissed    = stats ? tourCreated - tourConverted   : null;
-
-  // Choose a y-axis max that comfortably fits both columns
-  const yMax = Math.max(playerCreated, tourCreated || 0, 0.5) * 1.15;
-
-  function column(label, total, converted, missed, isPlayer) {
-    if (total == null) {
-      return `<div class="bpc-col bpc-col--missing">
-        <div class="bpc-col-stack"></div>
-        <div class="bpc-col-total">—</div>
-        <div class="bpc-col-label">${label}</div>
+  // Two CLUSTERED metric groups, separated by a divider:
+  //   Group 1: BP created per return game  (player bar | tour avg bar)
+  //   Group 2: BP conversion %             (player bar | tour avg bar)
+  // No stacked segments — each bar shows a single value with a clear axis.
+  // Colour palette: cobalt (player) + ink-soft (tour avg) — matches the
+  // blue/black convention used elsewhere on the page.
+  function clusteredGroup(title, unit, playerVal, avgVal, max, fmtFn) {
+    const playerH = playerVal != null ? Math.min(playerVal / max * 100, 100) : 0;
+    const avgH    = avgVal    != null ? Math.min(avgVal    / max * 100, 100) : 0;
+    return `
+      <div class="bpc-cluster-group">
+        <div class="bpc-cluster-title">${title}</div>
+        <div class="bpc-cluster-row">
+          <div class="bpc-cluster-axis">
+            <span>${fmtFn(max)}</span>
+            <span>0${unit}</span>
+          </div>
+          <div class="bpc-cluster-bars">
+            <div class="bpc-cluster-bar bpc-cluster-bar--player">
+              <div class="bpc-cluster-bar-track">
+                <div class="bpc-cluster-bar-fill bpc-cluster-bar-fill--player"
+                     style="height:${playerH.toFixed(2)}%"></div>
+              </div>
+              <div class="bpc-cluster-bar-val">${fmtFn(playerVal)}</div>
+              <div class="bpc-cluster-bar-label">${f.player ? f.player.split(' ').pop() : "Player"}</div>
+            </div>
+            <div class="bpc-cluster-bar bpc-cluster-bar--avg">
+              <div class="bpc-cluster-bar-track">
+                <div class="bpc-cluster-bar-fill bpc-cluster-bar-fill--avg"
+                     style="height:${avgH.toFixed(2)}%"></div>
+              </div>
+              <div class="bpc-cluster-bar-val">${avgVal != null ? fmtFn(avgVal) : "—"}</div>
+              <div class="bpc-cluster-bar-label">Tour avg</div>
+            </div>
+          </div>
+        </div>
       </div>`;
-    }
-    const totalPct  = total     / yMax * 100;
-    const convPct   = converted / yMax * 100;
-    const missPct   = missed    / yMax * 100;
-    return `<div class="bpc-col ${isPlayer ? 'bpc-col--player' : 'bpc-col--avg'}">
-      <div class="bpc-col-stack" style="height:100%">
-        <div class="bpc-seg bpc-seg--missed"    style="height:${missPct.toFixed(2)}%" title="Created but not converted: ${missed.toFixed(2)} per return game"></div>
-        <div class="bpc-seg bpc-seg--converted" style="height:${convPct.toFixed(2)}%" title="Converted: ${converted.toFixed(2)} per return game"></div>
-      </div>
-      <div class="bpc-col-total">${total.toFixed(2)}</div>
-      <div class="bpc-col-label">${label}</div>
-    </div>`;
   }
+
+  // Per-game group axis fits both columns; conversion uses 0–100%.
+  const yMaxPerGame = Math.max(bpPerGame, stats?.avgPerGame || 0, 0.5) * 1.20;
+  const yMaxConv    = 1.00;
+
+  const fmtPerGame = v => v.toFixed(2);
+  const fmtConvPct = v => (v * 100).toFixed(0) + "%";
 
   container.innerHTML = `
     <div class="bpc-headline-row">
@@ -1667,25 +1685,15 @@ function renderBpCreation(f) {
         <div class="bpc-headline-label">BP created<br>per return game</div>
       </div>
       <div class="bpc-headline">
-        <div class="bpc-headline-val bpc-headline-val--secondary">${(conv * 100).toFixed(0)}%</div>
+        <div class="bpc-headline-val">${(conv * 100).toFixed(0)}%</div>
         <div class="bpc-headline-label">conversion<br>rate</div>
       </div>
     </div>
 
-    <div class="bpc-stack-wrap">
-      <div class="bpc-stack-axis">
-        <span>${yMax.toFixed(1)}</span>
-        <span>0</span>
-      </div>
-      <div class="bpc-cols">
-        ${column(f.player || "Player", playerCreated, playerConverted, playerMissed, true)}
-        ${column("Tour avg",          tourCreated,   tourConverted,   tourMissed,   false)}
-      </div>
-    </div>
-
-    <div class="bpc-legend">
-      <span class="bpc-legend-item"><span class="bpc-swatch bpc-swatch--converted"></span>converted</span>
-      <span class="bpc-legend-item"><span class="bpc-swatch bpc-swatch--missed"></span>created but missed</span>
+    <div class="bpc-cluster-wrap">
+      ${clusteredGroup("BPs per return game", "", bpPerGame,            stats?.avgPerGame, yMaxPerGame, fmtPerGame)}
+      <div class="bpc-cluster-divider"></div>
+      ${clusteredGroup("Conversion rate",     "", conv,                  stats?.avgConv,    yMaxConv,    fmtConvPct)}
     </div>
 
     <div class="bpc-footer">${created} BPs created · ${converted} converted${stats ? ` · tour avg conversion ${(stats.avgConv * 100).toFixed(0)}%` : ""}</div>`;
@@ -1973,21 +1981,23 @@ function renderSetTransitionDelta(f) {
         <div class="set-trans-delta-bar"
              style="left:${lo.toFixed(2)}%;width:${(hi - lo).toFixed(2)}%;background:${trackColour}"></div>
 
-        <!-- Overall win% marker (anchor) -->
-        <div class="set-trans-marker set-trans-marker--overall"
+        <!-- Overall win% (anchor / "tournament average for this player") —
+             rendered as a downward arrow with its label, no diamond marker -->
+        <div class="set-trans-arrow set-trans-arrow--overall"
              style="left:${overall.toFixed(2)}%"
              title="Overall win rate: ${overall.toFixed(1)}%">
-          <span class="set-trans-marker-label">overall<br>${overall.toFixed(1)}%</span>
+          <span class="set-trans-arrow-label">overall ${overall.toFixed(1)}%</span>
+          <span class="set-trans-arrow-glyph">▼</span>
         </div>
 
-        <!-- Set opener win% marker (variable) -->
+        <!-- Set opener win% marker (the variable being highlighted) -->
         <div class="set-trans-marker set-trans-marker--opener"
              style="left:${first.toFixed(2)}%"
              title="Set-opener win rate: ${first.toFixed(1)}%">
           <span class="set-trans-marker-label">set openers<br>${first.toFixed(1)}%</span>
         </div>
       </div>
-      <div class="set-trans-axis"><span>0%</span><span>50%</span><span>100%</span></div>
+      <div class="set-trans-axis"><span>0%</span><span>100%</span></div>
     </div>`;
 }
 
@@ -2148,11 +2158,8 @@ function renderRunEfficiency(f, p) {
       </div>
       <img class="run-eff-marker" src="rafa_marker.webp" alt="player marker"
            style="left:${playerPct.toFixed(2)}%" title="${f.player || ''}: ${val.toFixed(2)} m/shot">
-      <!-- Floating value label sitting just above Rafa (read-at-a-glance) -->
+      <!-- Single value label above Rafa, styled to match the avg tick label -->
       <div class="run-eff-marker-label" style="left:${playerPct.toFixed(2)}%">${val.toFixed(1)} m/shot</div>
-      <!-- Mirror label below the bar pinned to the same x position so the
-           number is also visible from below the runner / closer to the axis -->
-      <div class="run-eff-marker-label run-eff-marker-label--below" style="left:${playerPct.toFixed(2)}%">${val.toFixed(1)} m/shot</div>
     </div>
     <div class="run-eff-axis">
       <span class="run-eff-end run-eff-end--best">${stats.min.toFixed(1)} ← most efficient<br><em>${stats.best.name}</em></span>

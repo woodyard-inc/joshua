@@ -223,6 +223,7 @@ async function loadYear(year) {
   state.year           = year;
   // Invalidate any per-year stat caches when the year changes
   for (const k of Object.keys(_runEffStatsCache)) delete _runEffStatsCache[k];
+  for (const k of Object.keys(_bpcStatsCache))    delete _bpcStatsCache[k];
   populateDropdown();
   populateMuDropdowns();
   if (state.mode === "leaderboard") renderLeaderboard();
@@ -385,7 +386,9 @@ function renderProfile(name) {
   renderRally(p, t);
   renderPoints(p);
   renderResilience(p, t);
-  renderEnforcer(p, t);
+  // Enforcer card removed in v33 — Break Point Creation now absorbs both
+  // (creation rate + conversion) as a stacked-column visualization with
+  // tournament average benchmarks.
   renderAggression(p, t);
   renderCleanGames(p, t);
   renderStreaks(p, t);
@@ -1475,6 +1478,27 @@ function renderDfPressure(f) {
 }
 
 // ── Fingerprint: BP Creation ──────────────────────────────────────
+// Per-year tournament averages cache for BP creation (built lazily).
+const _bpcStatsCache = {};
+function _bpcStats(year) {
+  if (_bpcStatsCache[year]) return _bpcStatsCache[year];
+  const fps = state.fingerprints || {};
+  const perGame = [], conv = [];
+  for (const fp of Object.values(fps)) {
+    const b = fp?.tier2?.bp_creation_profile;
+    if (b?.bp_per_return_game != null) perGame.push(b.bp_per_return_game);
+    if (b?.bp_conversion       != null) conv.push(b.bp_conversion);
+  }
+  if (perGame.length < 5) return null;
+  const avg = arr => arr.reduce((s, x) => s + x, 0) / arr.length;
+  const stats = {
+    avgPerGame: avg(perGame),
+    avgConv:    avg(conv),
+  };
+  _bpcStatsCache[year] = stats;
+  return stats;
+}
+
 function renderBpCreation(f) {
   const container = document.getElementById("bp-creation-viz");
   const bpc = f?.tier2?.bp_creation_profile;
@@ -1488,26 +1512,77 @@ function renderBpCreation(f) {
   const conv      = bpc.bp_conversion;
   const created   = Math.round(bpc.bp_created   ?? 0);
   const converted = Math.round(bpc.bp_converted  ?? 0);
-  const MAX_BPG   = 1.5;
+  if (bpPerGame == null || conv == null) {
+    container.innerHTML = naCard("Break Point Creation", f?.year || "this year");
+    return;
+  }
+
+  const stats = _bpcStats(f.year);
+
+  // Stacked-column model: total height = BPs created per return game,
+  // bottom segment = converted (forest green), top = missed (terracotta).
+  // Two columns side by side: this player vs tournament average.
+  const playerCreated   = bpPerGame;
+  const playerConverted = bpPerGame * conv;
+  const playerMissed    = playerCreated - playerConverted;
+
+  const tourCreated   = stats ? stats.avgPerGame              : null;
+  const tourConverted = stats ? stats.avgPerGame * stats.avgConv : null;
+  const tourMissed    = stats ? tourCreated - tourConverted   : null;
+
+  // Choose a y-axis max that comfortably fits both columns
+  const yMax = Math.max(playerCreated, tourCreated || 0, 0.5) * 1.15;
+
+  function column(label, total, converted, missed, isPlayer) {
+    if (total == null) {
+      return `<div class="bpc-col bpc-col--missing">
+        <div class="bpc-col-stack"></div>
+        <div class="bpc-col-total">—</div>
+        <div class="bpc-col-label">${label}</div>
+      </div>`;
+    }
+    const totalPct  = total     / yMax * 100;
+    const convPct   = converted / yMax * 100;
+    const missPct   = missed    / yMax * 100;
+    return `<div class="bpc-col ${isPlayer ? 'bpc-col--player' : 'bpc-col--avg'}">
+      <div class="bpc-col-stack" style="height:100%">
+        <div class="bpc-seg bpc-seg--missed"    style="height:${missPct.toFixed(2)}%" title="Created but not converted: ${missed.toFixed(2)} per return game"></div>
+        <div class="bpc-seg bpc-seg--converted" style="height:${convPct.toFixed(2)}%" title="Converted: ${converted.toFixed(2)} per return game"></div>
+      </div>
+      <div class="bpc-col-total">${total.toFixed(2)}</div>
+      <div class="bpc-col-label">${label}</div>
+    </div>`;
+  }
 
   container.innerHTML = `
-    <div class="bpc-big-row">
-      <div>
-        <div class="bpc-big">${bpPerGame?.toFixed(2) ?? "—"}</div>
-        <div class="bpc-big-label">BP / return game</div>
-        <div class="bpc-track">
-          <div class="bpc-fill" style="width:${bpPerGame != null ? Math.min(bpPerGame/MAX_BPG*100,100).toFixed(1) : 0}%"></div>
-        </div>
-        <div class="bpc-scale-labels"><span>0</span><span>0.75</span><span>1.5+</span></div>
+    <div class="bpc-headline-row">
+      <div class="bpc-headline">
+        <div class="bpc-headline-val">${bpPerGame.toFixed(2)}</div>
+        <div class="bpc-headline-label">BP created<br>per return game</div>
       </div>
-      <div class="bpc-divider"></div>
-      <div>
-        <div class="bpc-big bpc-secondary">${conv != null ? (conv * 100).toFixed(0) + "%" : "—"}</div>
-        <div class="bpc-big-label">Conversion rate</div>
-        <div class="bpc-note">Stable skill vs<br>noisy conversion</div>
+      <div class="bpc-headline">
+        <div class="bpc-headline-val bpc-headline-val--secondary">${(conv * 100).toFixed(0)}%</div>
+        <div class="bpc-headline-label">conversion<br>rate</div>
       </div>
     </div>
-    <div class="bpc-footer">${created} BPs created · ${converted} converted</div>`;
+
+    <div class="bpc-stack-wrap">
+      <div class="bpc-stack-axis">
+        <span>${yMax.toFixed(1)}</span>
+        <span>0</span>
+      </div>
+      <div class="bpc-cols">
+        ${column(f.player || "Player", playerCreated, playerConverted, playerMissed, true)}
+        ${column("Tour avg",          tourCreated,   tourConverted,   tourMissed,   false)}
+      </div>
+    </div>
+
+    <div class="bpc-legend">
+      <span class="bpc-legend-item"><span class="bpc-swatch bpc-swatch--converted"></span>converted</span>
+      <span class="bpc-legend-item"><span class="bpc-swatch bpc-swatch--missed"></span>created but missed</span>
+    </div>
+
+    <div class="bpc-footer">${created} BPs created · ${converted} converted${stats ? ` · tour avg conversion ${(stats.avgConv * 100).toFixed(0)}%` : ""}</div>`;
 }
 
 // ── Fingerprint: Clutch Differential ─────────────────────────────
@@ -1760,35 +1835,53 @@ function renderTiebreakDifferential(f) {
 function renderSetTransitionDelta(f) {
   const container = document.getElementById("set-transition-viz");
   const st = f?.tier2?.set_transition_delta;
-  if (!st?.available) {
+  if (!st?.available || st.value == null) {
     container.innerHTML = naCard("Set Transition", f?.year || "this year");
     return;
   }
-  const val     = st.value;
+  const val     = st.value;             // pp delta (set-opener win% – overall)
   const pos     = val >= 0;
   const first   = st.first_games_win_pct;
   const overall = st.overall_win_pct;
 
+  // Slider visualization: a single horizontal axis from 0% to 100%.
+  // Two diamond markers — one for overall win%, one for set-opener win%.
+  // The connecting bar between them shows the magnitude of the delta;
+  // its colour indicates direction (forest = stronger opener, terracotta = weaker).
+  const lo = Math.min(overall, first);
+  const hi = Math.max(overall, first);
+  const trackColour = pos ? "var(--forest)" : "var(--terracotta)";
+
   container.innerHTML = `
-    <div class="clutch-big ${pos ? "clutch-pos" : "clutch-neg"}">${pos ? "+" : ""}${val.toFixed(1)}%</div>
-    <div class="clutch-sub">${pos ? "stronger" : "weaker"} in the first 2 games of each set</div>
-    <div class="clutch-bars">
-      <div class="clutch-row">
-        <span class="clutch-row-label">Overall win%</span>
-        <div class="clutch-track">
-          <div class="clutch-fill clutch-base-fill" style="width:${overall}%">
-            <span class="clutch-fill-label">${overall.toFixed(1)}%</span>
-          </div>
+    <div class="set-trans-headline ${pos ? "set-trans-pos" : "set-trans-neg"}">
+      ${pos ? "+" : ""}${val.toFixed(1)}pp
+    </div>
+    <div class="set-trans-sub">${pos
+        ? "stronger in the first 2 games of each set"
+        : "slower starter — gives away the early games"}</div>
+
+    <div class="set-trans-slider">
+      <!-- 0–100 scale axis -->
+      <div class="set-trans-track">
+        <!-- Magnitude bar between the two markers -->
+        <div class="set-trans-delta-bar"
+             style="left:${lo.toFixed(2)}%;width:${(hi - lo).toFixed(2)}%;background:${trackColour}"></div>
+
+        <!-- Overall win% marker (anchor) -->
+        <div class="set-trans-marker set-trans-marker--overall"
+             style="left:${overall.toFixed(2)}%"
+             title="Overall win rate: ${overall.toFixed(1)}%">
+          <span class="set-trans-marker-label">overall<br>${overall.toFixed(1)}%</span>
+        </div>
+
+        <!-- Set opener win% marker (variable) -->
+        <div class="set-trans-marker set-trans-marker--opener"
+             style="left:${first.toFixed(2)}%"
+             title="Set-opener win rate: ${first.toFixed(1)}%">
+          <span class="set-trans-marker-label">set openers<br>${first.toFixed(1)}%</span>
         </div>
       </div>
-      <div class="clutch-row">
-        <span class="clutch-row-label">Set openers</span>
-        <div class="clutch-track">
-          <div class="clutch-fill clutch-hl-fill" style="width:${first}%">
-            <span class="clutch-fill-label">${first.toFixed(1)}%</span>
-          </div>
-        </div>
-      </div>
+      <div class="set-trans-axis"><span>0%</span><span>50%</span><span>100%</span></div>
     </div>`;
 }
 

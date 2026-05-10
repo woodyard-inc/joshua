@@ -386,6 +386,48 @@ const PLAYER_PHOTOS = {
   "Stan Wawrinka":         "Stanislas_Wawrinka",
   "Stanislas Wawrinka":    "Stanislas_Wawrinka",
   "Viktor Troicki":        "Viktor_Troicki",
+
+  // 2017-2024 era additions
+  "Adam Pavlasek":          "Adam_Pavlasek",
+  "Alex De Minaur":         "Alex_De_Minaur",
+  "Alex de Minaur":         "Alex_De_Minaur",
+  "Alexander Bublik":       "Alexander_Bublik",
+  "Alexander Zverev":       "Alexander_Zverev",
+  "Andreas Seppi":          "Andreas_Seppi",
+  "Andrey Rublev":          "Andrey_Rublev",
+  "Bernard Tomic":          "Bernard_Tomic",
+  "Cameron Norrie":         "Cameron_Norrie",
+  "Casper Ruud":            "Casper_Ruud",
+  "Corentin Moutet":        "Corentin_Moutet",
+  "Christian Garin":        "Cristian_Garin",
+  "Cristian Garin":         "Cristian_Garin",
+  "Damir Dzumhur":          "Damir_Dzumhur",
+  "Daniil Medvedev":        "Daniil_Medvedev",
+  "David Goffin":           "David_Goffin",
+  "Diego Schwartzman":      "Diego_Schwartzman",
+  "Dustin Brown":           "Dustin_Brown",
+  "Fabio Fognini":          "Fabio_Fognini",
+  "Felix Auger Aliassime":  "Felix_Auger_Aliassime",
+  "Felix Auger-Aliassime":  "Felix_Auger_Aliassime",
+  "Frances Tiafoe":         "Frances_Tiafoe",
+  "Gael Monfils":           "Gael_Monfils",
+  "Gilles Muller":          "Gilles_Muller",
+  "Gilles Simon":           "Gilles_Simon",
+  "Grigor Dimitrov":        "Grigor_Dimitrov",
+  "Jan Lennard Struff":     "Jan_Lennard_Struff",
+  "Jan-Lennard Struff":     "Jan_Lennard_Struff",
+  "John Isner":             "John_Isner",
+  "Marcos Baghdatis":       "Marcos_Baghdatis",
+  "Marin Cilic":            "Marin_Cilic",
+  "Matteo Berrettini":      "Matteo_Berrettini",
+  "Nick Kyrgios":           "Nick_Kyrgios",
+  "Nikoloz Basilashvili":   "Nikoloz_Basilashvili",
+  "Pablo Cuevas":           "Pablo_Cuevas",
+  "Reilly Opelka":          "Reilly_Opelka",
+  "Roberto Bautista Agut":  "Roberto_Bautista_Agut",
+  "Sam Querrey":            "Sam_Querrey",
+  "Stefanos Tsitsipas":     "Stefanos_Tsitsipas",
+  "Taylor Fritz":           "Taylor_Fritz",
 };
 
 // ── Hero ──────────────────────────────────────────────────────────
@@ -2145,7 +2187,10 @@ function renderMatchupResult(r) {
   const winnerA = pA >= pB;
 
   function tryApplyPhoto(sideEl, name) {
-    const src = `players/${name.replace(/ /g, "_")}.webp`;
+    // Prefer the canonical lookup (handles aliases like Stan→Stanislas);
+    // fall back to a naive space→underscore for any unmapped name.
+    const photoFile = PLAYER_PHOTOS[name] || name.replace(/ /g, "_");
+    const src = `players/${photoFile}.webp`;
     const probe = new Image();
     probe.onload = () => {
       const wrap = sideEl.querySelector(".mu-prob-photo");

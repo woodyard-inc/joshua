@@ -312,8 +312,12 @@ def build_year_grass_profiles(year: int,
                           "opponent": str(row.get("winner_name",""))},
             })
 
-    # Elo for adding to profiles
-    mean_r = elo.mean_active_rating() if elo else None
+    # Elo for adding to profiles — year-aware so 2017 grass profiles
+    # carry the Elo snapshot captured just before Wimbledon 2017 starts.
+    if elo is not None:
+        mean_r = elo.mean_active_rating_at(year)
+    else:
+        mean_r = None
 
     # Build profile for every target player
     all_profiles: Dict[str, dict] = {}
@@ -333,9 +337,11 @@ def build_year_grass_profiles(year: int,
         if not profile:
             continue
 
-        # Attach Elo snapshot
+        # Attach year-aware Elo snapshot — falls back to all-time-final if
+        # no per-year snapshot exists for this year.
         if elo is not None:
-            snap = elo.get_snapshot_by_name(player_name)
+            snap = (elo.snapshot_at_by_name(player_name, year)
+                    or elo.get_snapshot_by_name(player_name))
             if snap:
                 profile["elo_snapshot"] = snap
                 r_a = snap.get("R_adjusted")

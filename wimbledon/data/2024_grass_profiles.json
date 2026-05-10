@@ -70,13 +70,13 @@
     ],
     "elo_snapshot": {
       "name": "Abedallah Shelbayh",
-      "n_overall": 2,
+      "n_overall": 14,
       "n_surface": 2,
-      "R_overall": 1395.3,
-      "R_surface": 1395.3,
-      "R_adjusted": 1395.3
+      "R_overall": 1537.4,
+      "R_surface": 1396.9,
+      "R_adjusted": 1453.1
     },
-    "elo_win_prob_vs_avg": 0.3145
+    "elo_win_prob_vs_avg": 0.3218
   },
   "Adrian Mannarino": {
     "player": "Adrian Mannarino",
@@ -213,13 +213,13 @@
     ],
     "elo_snapshot": {
       "name": "Adrian Mannarino",
-      "n_overall": 121,
-      "n_surface": 121,
-      "R_overall": 1638.9,
-      "R_surface": 1638.9,
-      "R_adjusted": 1638.9
+      "n_overall": 626,
+      "n_surface": 119,
+      "R_overall": 1836.0,
+      "R_surface": 1701.9,
+      "R_adjusted": 1755.5
     },
-    "elo_win_prob_vs_avg": 0.651
+    "elo_win_prob_vs_avg": 0.7301
   },
   "Alastair Gray": {
     "player": "Alastair Gray",
@@ -302,11 +302,11 @@
       "name": "Alastair Gray",
       "n_overall": 4,
       "n_surface": 4,
-      "R_overall": 1437.2,
-      "R_surface": 1437.2,
-      "R_adjusted": 1437.2
+      "R_overall": 1503.1,
+      "R_surface": 1445.6,
+      "R_adjusted": 1468.6
     },
-    "elo_win_prob_vs_avg": 0.3687
+    "elo_win_prob_vs_avg": 0.3416
   },
   "Albert Ramos": {
     "player": "Albert Ramos",
@@ -419,13 +419,13 @@
     ],
     "elo_snapshot": {
       "name": "Albert Ramos",
-      "n_overall": 25,
+      "n_overall": 611,
       "n_surface": 25,
-      "R_overall": 1352.4,
-      "R_surface": 1352.4,
-      "R_adjusted": 1352.4
+      "R_overall": 1678.6,
+      "R_surface": 1351.9,
+      "R_adjusted": 1482.6
     },
-    "elo_win_prob_vs_avg": 0.2639
+    "elo_win_prob_vs_avg": 0.3599
   },
   "Alejandro Davidovich Fokina": {
     "player": "Alejandro Davidovich Fokina",
@@ -562,13 +562,13 @@
     ],
     "elo_snapshot": {
       "name": "Alejandro Davidovich Fokina",
-      "n_overall": 16,
+      "n_overall": 216,
       "n_surface": 16,
-      "R_overall": 1454.4,
-      "R_surface": 1454.4,
-      "R_adjusted": 1454.4
+      "R_overall": 1856.1,
+      "R_surface": 1460.5,
+      "R_adjusted": 1618.7
     },
-    "elo_win_prob_vs_avg": 0.392
+    "elo_win_prob_vs_avg": 0.5518
   },
   "Alejandro Tabilo": {
     "player": "Alejandro Tabilo",
@@ -665,13 +665,13 @@
     ],
     "elo_snapshot": {
       "name": "Alejandro Tabilo",
-      "n_overall": 14,
-      "n_surface": 14,
-      "R_overall": 1668.3,
-      "R_surface": 1668.3,
-      "R_adjusted": 1668.3
+      "n_overall": 90,
+      "n_surface": 11,
+      "R_overall": 1958.2,
+      "R_surface": 1633.7,
+      "R_adjusted": 1763.5
     },
-    "elo_win_prob_vs_avg": 0.6884
+    "elo_win_prob_vs_avg": 0.7391
   },
   "Aleksandar Kovacevic": {
     "player": "Aleksandar Kovacevic",
@@ -736,13 +736,13 @@
     ],
     "elo_snapshot": {
       "name": "Aleksandar Kovacevic",
-      "n_overall": 5,
-      "n_surface": 5,
-      "R_overall": 1533.4,
-      "R_surface": 1533.4,
-      "R_adjusted": 1533.4
+      "n_overall": 33,
+      "n_surface": 1,
+      "R_overall": 1617.6,
+      "R_surface": 1467.3,
+      "R_adjusted": 1527.4
     },
-    "elo_win_prob_vs_avg": 0.504
+    "elo_win_prob_vs_avg": 0.4212
   },
   "Aleksandar Vukic": {
     "player": "Aleksandar Vukic",
@@ -847,13 +847,13 @@
     ],
     "elo_snapshot": {
       "name": "Aleksandar Vukic",
-      "n_overall": 18,
-      "n_surface": 18,
-      "R_overall": 1653.2,
-      "R_surface": 1653.2,
-      "R_adjusted": 1653.2
+      "n_overall": 74,
+      "n_surface": 13,
+      "R_overall": 1796.0,
+      "R_surface": 1636.5,
+      "R_adjusted": 1700.3
     },
-    "elo_win_prob_vs_avg": 0.6694
+    "elo_win_prob_vs_avg": 0.6632
   },
   "Alex Bolt": {
     "player": "Alex Bolt",
@@ -942,13 +942,13 @@
     ],
     "elo_snapshot": {
       "name": "Alex Bolt",
-      "n_overall": 13,
-      "n_surface": 13,
-      "R_overall": 1452.3,
-      "R_surface": 1452.3,
-      "R_adjusted": 1452.3
+      "n_overall": 44,
+      "n_surface": 9,
+      "R_overall": 1698.9,
+      "R_surface": 1354.4,
+      "R_adjusted": 1492.2
     },
-    "elo_win_prob_vs_avg": 0.3892
+    "elo_win_prob_vs_avg": 0.3728
   },
   "Alex De Minaur": {
     "player": "Alex De Minaur",
@@ -1085,13 +1085,13 @@
     ],
     "elo_snapshot": {
       "name": "Alex De Minaur",
-      "n_overall": 51,
-      "n_surface": 51,
-      "R_overall": 1839.9,
-      "R_surface": 1839.9,
-      "R_adjusted": 1839.9
+      "n_overall": 385,
+      "n_surface": 46,
+      "R_overall": 2101.9,
+      "R_surface": 1803.6,
+      "R_adjusted": 1922.9
     },
-    "elo_win_prob_vs_avg": 0.8557
+    "elo_win_prob_vs_avg": 0.8764
   },
   "Alex Michelsen": {
     "player": "Alex Michelsen",
@@ -1196,13 +1196,13 @@
     ],
     "elo_snapshot": {
       "name": "Alex Michelsen",
-      "n_overall": 16,
-      "n_surface": 16,
-      "R_overall": 1631.6,
-      "R_surface": 1631.6,
-      "R_adjusted": 1631.6
+      "n_overall": 45,
+      "n_surface": 11,
+      "R_overall": 1741.8,
+      "R_surface": 1612.4,
+      "R_adjusted": 1664.1
     },
-    "elo_win_prob_vs_avg": 0.6414
+    "elo_win_prob_vs_avg": 0.6152
   },
   "Alex Molcan": {
     "player": "Alex Molcan",
@@ -1315,13 +1315,13 @@
     ],
     "elo_snapshot": {
       "name": "Alex Molcan",
-      "n_overall": 7,
+      "n_overall": 95,
       "n_surface": 7,
-      "R_overall": 1513.1,
-      "R_surface": 1513.1,
-      "R_adjusted": 1513.1
+      "R_overall": 1839.2,
+      "R_surface": 1503.6,
+      "R_adjusted": 1637.8
     },
-    "elo_win_prob_vs_avg": 0.4748
+    "elo_win_prob_vs_avg": 0.5788
   },
   "Alexander Bublik": {
     "player": "Alexander Bublik",
@@ -1458,13 +1458,13 @@
     ],
     "elo_snapshot": {
       "name": "Alexander Bublik",
-      "n_overall": 52,
-      "n_surface": 52,
-      "R_overall": 1752.5,
-      "R_surface": 1752.5,
-      "R_adjusted": 1752.5
+      "n_overall": 288,
+      "n_surface": 49,
+      "R_overall": 1871.1,
+      "R_surface": 1752.2,
+      "R_adjusted": 1799.7
     },
-    "elo_win_prob_vs_avg": 0.782
+    "elo_win_prob_vs_avg": 0.7773
   },
   "Alexander Ritschard": {
     "player": "Alexander Ritschard",
@@ -1529,13 +1529,13 @@
     ],
     "elo_snapshot": {
       "name": "Alexander Ritschard",
-      "n_overall": 1,
+      "n_overall": 11,
       "n_surface": 1,
-      "R_overall": 1475.8,
-      "R_surface": 1475.8,
-      "R_adjusted": 1475.8
+      "R_overall": 1622.1,
+      "R_surface": 1475.4,
+      "R_adjusted": 1534.1
     },
-    "elo_win_prob_vs_avg": 0.4218
+    "elo_win_prob_vs_avg": 0.4307
   },
   "Alexander Shevchenko": {
     "player": "Alexander Shevchenko",
@@ -1600,13 +1600,13 @@
     ],
     "elo_snapshot": {
       "name": "Alexander Shevchenko",
-      "n_overall": 4,
-      "n_surface": 4,
-      "R_overall": 1441.6,
-      "R_surface": 1441.6,
-      "R_adjusted": 1441.6
+      "n_overall": 68,
+      "n_surface": 3,
+      "R_overall": 1829.0,
+      "R_surface": 1475.0,
+      "R_adjusted": 1616.6
     },
-    "elo_win_prob_vs_avg": 0.3746
+    "elo_win_prob_vs_avg": 0.5488
   },
   "Alexander Zverev": {
     "player": "Alexander Zverev",
@@ -1743,13 +1743,13 @@
     ],
     "elo_snapshot": {
       "name": "Alexander Zverev",
-      "n_overall": 59,
-      "n_surface": 59,
-      "R_overall": 1803.9,
-      "R_surface": 1803.9,
-      "R_adjusted": 1803.9
+      "n_overall": 621,
+      "n_surface": 55,
+      "R_overall": 2140.4,
+      "R_surface": 1801.2,
+      "R_adjusted": 1936.9
     },
-    "elo_win_prob_vs_avg": 0.8282
+    "elo_win_prob_vs_avg": 0.8849
   },
   "Alexandre Muller": {
     "player": "Alexandre Muller",
@@ -1822,13 +1822,13 @@
     ],
     "elo_snapshot": {
       "name": "Alexandre Muller",
-      "n_overall": 4,
-      "n_surface": 4,
-      "R_overall": 1582.9,
-      "R_surface": 1582.9,
-      "R_adjusted": 1582.9
+      "n_overall": 50,
+      "n_surface": 2,
+      "R_overall": 1764.4,
+      "R_surface": 1539.4,
+      "R_adjusted": 1629.4
     },
-    "elo_win_prob_vs_avg": 0.5747
+    "elo_win_prob_vs_avg": 0.5669
   },
   "Alexei Popyrin": {
     "player": "Alexei Popyrin",
@@ -1965,13 +1965,13 @@
     ],
     "elo_snapshot": {
       "name": "Alexei Popyrin",
-      "n_overall": 20,
-      "n_surface": 20,
-      "R_overall": 1496.2,
-      "R_surface": 1496.2,
-      "R_adjusted": 1496.2
+      "n_overall": 177,
+      "n_surface": 17,
+      "R_overall": 1800.6,
+      "R_surface": 1432.5,
+      "R_adjusted": 1579.8
     },
-    "elo_win_prob_vs_avg": 0.4506
+    "elo_win_prob_vs_avg": 0.496
   },
   "Aljaz Bedene": {
     "player": "Aljaz Bedene",
@@ -2084,13 +2084,13 @@
     ],
     "elo_snapshot": {
       "name": "Aljaz Bedene",
-      "n_overall": 35,
+      "n_overall": 299,
       "n_surface": 35,
-      "R_overall": 1492.5,
-      "R_surface": 1492.5,
-      "R_adjusted": 1492.5
+      "R_overall": 1730.6,
+      "R_surface": 1487.0,
+      "R_adjusted": 1584.4
     },
-    "elo_win_prob_vs_avg": 0.4454
+    "elo_win_prob_vs_avg": 0.5026
   },
   "Altug Celikbilek": {
     "player": "Altug Celikbilek",
@@ -2155,13 +2155,13 @@
     ],
     "elo_snapshot": {
       "name": "Altug Celikbilek",
-      "n_overall": 3,
+      "n_overall": 21,
       "n_surface": 3,
-      "R_overall": 1536.0,
-      "R_surface": 1536.0,
-      "R_adjusted": 1536.0
+      "R_overall": 1658.6,
+      "R_surface": 1521.9,
+      "R_adjusted": 1576.6
     },
-    "elo_win_prob_vs_avg": 0.5077
+    "elo_win_prob_vs_avg": 0.4914
   },
   "Andrea Vavassori": {
     "player": "Andrea Vavassori",
@@ -2234,13 +2234,13 @@
     ],
     "elo_snapshot": {
       "name": "Andrea Vavassori",
-      "n_overall": 2,
+      "n_overall": 19,
       "n_surface": 2,
-      "R_overall": 1433.0,
-      "R_surface": 1433.0,
-      "R_adjusted": 1433.0
+      "R_overall": 1707.3,
+      "R_surface": 1431.0,
+      "R_adjusted": 1541.5
     },
-    "elo_win_prob_vs_avg": 0.3631
+    "elo_win_prob_vs_avg": 0.4411
   },
   "Andreas Seppi": {
     "player": "Andreas Seppi",
@@ -2345,13 +2345,13 @@
     ],
     "elo_snapshot": {
       "name": "Andreas Seppi",
-      "n_overall": 112,
+      "n_overall": 810,
       "n_surface": 112,
-      "R_overall": 1626.9,
-      "R_surface": 1626.9,
-      "R_adjusted": 1626.9
+      "R_overall": 1717.4,
+      "R_surface": 1626.3,
+      "R_adjusted": 1662.8
     },
-    "elo_win_prob_vs_avg": 0.6351
+    "elo_win_prob_vs_avg": 0.6134
   },
   "Andrey Rublev": {
     "player": "Andrey Rublev",
@@ -2488,13 +2488,13 @@
     ],
     "elo_snapshot": {
       "name": "Andrey Rublev",
-      "n_overall": 29,
-      "n_surface": 29,
-      "R_overall": 1765.5,
-      "R_surface": 1765.5,
-      "R_adjusted": 1765.5
+      "n_overall": 485,
+      "n_surface": 28,
+      "R_overall": 2033.1,
+      "R_surface": 1824.1,
+      "R_adjusted": 1907.7
     },
-    "elo_win_prob_vs_avg": 0.7945
+    "elo_win_prob_vs_avg": 0.8666
   },
   "Andy Murray": {
     "player": "Andy Murray",
@@ -2631,13 +2631,13 @@
     ],
     "elo_snapshot": {
       "name": "Andy Murray",
-      "n_overall": 151,
+      "n_overall": 1017,
       "n_surface": 151,
-      "R_overall": 1861.5,
-      "R_surface": 1861.5,
-      "R_adjusted": 1861.5
+      "R_overall": 1838.6,
+      "R_surface": 1860.6,
+      "R_adjusted": 1851.8
     },
-    "elo_win_prob_vs_avg": 0.8704
+    "elo_win_prob_vs_avg": 0.8249
   },
   "Antoine Bellier": {
     "player": "Antoine Bellier",
@@ -2726,13 +2726,13 @@
     ],
     "elo_snapshot": {
       "name": "Antoine Bellier",
-      "n_overall": 4,
+      "n_overall": 13,
       "n_surface": 4,
-      "R_overall": 1626.2,
-      "R_surface": 1626.2,
-      "R_adjusted": 1626.2
+      "R_overall": 1645.8,
+      "R_surface": 1637.4,
+      "R_adjusted": 1640.7
     },
-    "elo_win_prob_vs_avg": 0.6342
+    "elo_win_prob_vs_avg": 0.5828
   },
   "Antoine Hoang": {
     "player": "Antoine Hoang",
@@ -2805,13 +2805,13 @@
     ],
     "elo_snapshot": {
       "name": "Antoine Hoang",
-      "n_overall": 2,
+      "n_overall": 19,
       "n_surface": 2,
-      "R_overall": 1533.3,
-      "R_surface": 1533.3,
-      "R_adjusted": 1533.3
+      "R_overall": 1610.6,
+      "R_surface": 1532.0,
+      "R_adjusted": 1563.4
     },
-    "elo_win_prob_vs_avg": 0.5039
+    "elo_win_prob_vs_avg": 0.4724
   },
   "Arthur Fery": {
     "player": "Arthur Fery",
@@ -2876,13 +2876,13 @@
     ],
     "elo_snapshot": {
       "name": "Arthur Fery",
-      "n_overall": 2,
-      "n_surface": 2,
-      "R_overall": 1406.6,
-      "R_surface": 1406.6,
-      "R_adjusted": 1406.6
+      "n_overall": 1,
+      "n_surface": 1,
+      "R_overall": 1497.5,
+      "R_surface": 1480.1,
+      "R_adjusted": 1487.0
     },
-    "elo_win_prob_vs_avg": 0.3287
+    "elo_win_prob_vs_avg": 0.3658
   },
   "Arthur Fils": {
     "player": "Arthur Fils",
@@ -2955,13 +2955,13 @@
     ],
     "elo_snapshot": {
       "name": "Arthur Fils",
-      "n_overall": 11,
-      "n_surface": 11,
-      "R_overall": 1674.7,
-      "R_surface": 1674.7,
-      "R_adjusted": 1674.7
+      "n_overall": 75,
+      "n_surface": 7,
+      "R_overall": 1813.2,
+      "R_surface": 1532.9,
+      "R_adjusted": 1645.0
     },
-    "elo_win_prob_vs_avg": 0.6962
+    "elo_win_prob_vs_avg": 0.5888
   },
   "Arthur Rinderknech": {
     "player": "Arthur Rinderknech",
@@ -3098,13 +3098,13 @@
     ],
     "elo_snapshot": {
       "name": "Arthur Rinderknech",
-      "n_overall": 19,
-      "n_surface": 19,
-      "R_overall": 1473.3,
-      "R_surface": 1473.3,
-      "R_adjusted": 1473.3
+      "n_overall": 131,
+      "n_surface": 15,
+      "R_overall": 1717.7,
+      "R_surface": 1436.5,
+      "R_adjusted": 1549.0
     },
-    "elo_win_prob_vs_avg": 0.4183
+    "elo_win_prob_vs_avg": 0.4518
   },
   "Aslan Karatsev": {
     "player": "Aslan Karatsev",
@@ -3241,13 +3241,13 @@
     ],
     "elo_snapshot": {
       "name": "Aslan Karatsev",
-      "n_overall": 12,
-      "n_surface": 12,
-      "R_overall": 1500.7,
-      "R_surface": 1500.7,
-      "R_adjusted": 1500.7
+      "n_overall": 160,
+      "n_surface": 11,
+      "R_overall": 1799.7,
+      "R_surface": 1520.3,
+      "R_adjusted": 1632.1
     },
-    "elo_win_prob_vs_avg": 0.4571
+    "elo_win_prob_vs_avg": 0.5708
   },
   "Attila Balazs": {
     "player": "Attila Balazs",
@@ -3312,13 +3312,13 @@
     ],
     "elo_snapshot": {
       "name": "Attila Balazs",
-      "n_overall": 1,
+      "n_overall": 56,
       "n_surface": 1,
-      "R_overall": 1484.4,
-      "R_surface": 1484.4,
-      "R_adjusted": 1484.4
+      "R_overall": 1637.6,
+      "R_surface": 1480.1,
+      "R_adjusted": 1543.1
     },
-    "elo_win_prob_vs_avg": 0.4339
+    "elo_win_prob_vs_avg": 0.4434
   },
   "Ben Shelton": {
     "player": "Ben Shelton",
@@ -3415,13 +3415,13 @@
     ],
     "elo_snapshot": {
       "name": "Ben Shelton",
-      "n_overall": 13,
-      "n_surface": 13,
-      "R_overall": 1557.7,
-      "R_surface": 1557.7,
-      "R_adjusted": 1557.7
+      "n_overall": 89,
+      "n_surface": 9,
+      "R_overall": 1866.5,
+      "R_surface": 1380.3,
+      "R_adjusted": 1574.7
     },
-    "elo_win_prob_vs_avg": 0.5389
+    "elo_win_prob_vs_avg": 0.4886
   },
   "Benjamin Bonzi": {
     "player": "Benjamin Bonzi",
@@ -3558,13 +3558,13 @@
     ],
     "elo_snapshot": {
       "name": "Benjamin Bonzi",
-      "n_overall": 18,
+      "n_overall": 101,
       "n_surface": 18,
-      "R_overall": 1560.2,
-      "R_surface": 1560.2,
-      "R_adjusted": 1560.2
+      "R_overall": 1640.0,
+      "R_surface": 1565.7,
+      "R_adjusted": 1595.4
     },
-    "elo_win_prob_vs_avg": 0.5425
+    "elo_win_prob_vs_avg": 0.5184
   },
   "Benoit Paire": {
     "player": "Benoit Paire",
@@ -3653,13 +3653,13 @@
     ],
     "elo_snapshot": {
       "name": "Benoit Paire",
-      "n_overall": 52,
-      "n_surface": 52,
-      "R_overall": 1591.4,
-      "R_surface": 1591.4,
-      "R_adjusted": 1591.4
+      "n_overall": 539,
+      "n_surface": 50,
+      "R_overall": 1595.4,
+      "R_surface": 1596.9,
+      "R_adjusted": 1596.3
     },
-    "elo_win_prob_vs_avg": 0.5866
+    "elo_win_prob_vs_avg": 0.5197
   },
   "Bernabe Zapata Miralles": {
     "player": "Bernabe Zapata Miralles",
@@ -3764,13 +3764,13 @@
     ],
     "elo_snapshot": {
       "name": "Bernabe Zapata Miralles",
-      "n_overall": 6,
+      "n_overall": 97,
       "n_surface": 6,
-      "R_overall": 1293.6,
-      "R_surface": 1293.6,
-      "R_adjusted": 1293.6
+      "R_overall": 1599.7,
+      "R_surface": 1295.9,
+      "R_adjusted": 1417.4
     },
-    "elo_win_prob_vs_avg": 0.2035
+    "elo_win_prob_vs_avg": 0.2787
   },
   "Borna Coric": {
     "player": "Borna Coric",
@@ -3851,13 +3851,13 @@
     ],
     "elo_snapshot": {
       "name": "Borna Coric",
-      "n_overall": 26,
-      "n_surface": 26,
-      "R_overall": 1572.3,
-      "R_surface": 1572.3,
-      "R_adjusted": 1572.3
+      "n_overall": 405,
+      "n_surface": 24,
+      "R_overall": 1831.2,
+      "R_surface": 1584.1,
+      "R_adjusted": 1683.0
     },
-    "elo_win_prob_vs_avg": 0.5597
+    "elo_win_prob_vs_avg": 0.6406
   },
   "Borna Gojo": {
     "player": "Borna Gojo",
@@ -3930,13 +3930,13 @@
     ],
     "elo_snapshot": {
       "name": "Borna Gojo",
-      "n_overall": 2,
+      "n_overall": 41,
       "n_surface": 2,
-      "R_overall": 1360.9,
-      "R_surface": 1360.9,
-      "R_adjusted": 1360.9
+      "R_overall": 1829.0,
+      "R_surface": 1363.5,
+      "R_adjusted": 1549.7
     },
-    "elo_win_prob_vs_avg": 0.2735
+    "elo_win_prob_vs_avg": 0.4528
   },
   "Botic Van De Zandschulp": {
     "player": "Botic Van De Zandschulp",
@@ -4073,13 +4073,13 @@
     ],
     "elo_snapshot": {
       "name": "Botic Van De Zandschulp",
-      "n_overall": 19,
-      "n_surface": 19,
-      "R_overall": 1542.4,
-      "R_surface": 1542.4,
-      "R_adjusted": 1542.4
+      "n_overall": 166,
+      "n_surface": 17,
+      "R_overall": 1758.4,
+      "R_surface": 1555.1,
+      "R_adjusted": 1636.4
     },
-    "elo_win_prob_vs_avg": 0.517
+    "elo_win_prob_vs_avg": 0.5768
   },
   "Brandon Nakashima": {
     "player": "Brandon Nakashima",
@@ -4216,13 +4216,13 @@
     ],
     "elo_snapshot": {
       "name": "Brandon Nakashima",
-      "n_overall": 26,
-      "n_surface": 26,
-      "R_overall": 1639.5,
-      "R_surface": 1639.5,
-      "R_adjusted": 1639.5
+      "n_overall": 144,
+      "n_surface": 21,
+      "R_overall": 1816.3,
+      "R_surface": 1658.3,
+      "R_adjusted": 1721.5
     },
-    "elo_win_prob_vs_avg": 0.6518
+    "elo_win_prob_vs_avg": 0.6899
   },
   "Brayden Schnur": {
     "player": "Brayden Schnur",
@@ -4287,13 +4287,13 @@
     ],
     "elo_snapshot": {
       "name": "Brayden Schnur",
-      "n_overall": 3,
+      "n_overall": 23,
       "n_surface": 3,
-      "R_overall": 1372.8,
-      "R_surface": 1372.8,
-      "R_adjusted": 1372.8
+      "R_overall": 1427.5,
+      "R_surface": 1368.6,
+      "R_adjusted": 1392.1
     },
-    "elo_win_prob_vs_avg": 0.2873
+    "elo_win_prob_vs_avg": 0.2504
   },
   "Cameron Norrie": {
     "player": "Cameron Norrie",
@@ -4430,13 +4430,13 @@
     ],
     "elo_snapshot": {
       "name": "Cameron Norrie",
-      "n_overall": 41,
-      "n_surface": 41,
-      "R_overall": 1706.6,
-      "R_surface": 1706.6,
-      "R_adjusted": 1706.6
+      "n_overall": 353,
+      "n_surface": 38,
+      "R_overall": 1828.6,
+      "R_surface": 1676.9,
+      "R_adjusted": 1737.6
     },
-    "elo_win_prob_vs_avg": 0.7336
+    "elo_win_prob_vs_avg": 0.7094
   },
   "Carlos Alcaraz": {
     "player": "Carlos Alcaraz",
@@ -4573,13 +4573,13 @@
     ],
     "elo_snapshot": {
       "name": "Carlos Alcaraz",
-      "n_overall": 27,
-      "n_surface": 27,
-      "R_overall": 2081.9,
-      "R_surface": 2081.9,
-      "R_adjusted": 2081.9
+      "n_overall": 230,
+      "n_surface": 20,
+      "R_overall": 2229.1,
+      "R_surface": 1967.7,
+      "R_adjusted": 2072.3
     },
-    "elo_win_prob_vs_avg": 0.9598
+    "elo_win_prob_vs_avg": 0.9437
   },
   "Carlos Taberner": {
     "player": "Carlos Taberner",
@@ -4644,13 +4644,13 @@
     ],
     "elo_snapshot": {
       "name": "Carlos Taberner",
-      "n_overall": 1,
+      "n_overall": 38,
       "n_surface": 1,
-      "R_overall": 1415.7,
-      "R_surface": 1415.7,
-      "R_adjusted": 1415.7
+      "R_overall": 1610.9,
+      "R_surface": 1413.8,
+      "R_adjusted": 1492.6
     },
-    "elo_win_prob_vs_avg": 0.3404
+    "elo_win_prob_vs_avg": 0.3733
   },
   "Casper Ruud": {
     "player": "Casper Ruud",
@@ -4779,13 +4779,13 @@
     ],
     "elo_snapshot": {
       "name": "Casper Ruud",
-      "n_overall": 12,
-      "n_surface": 12,
-      "R_overall": 1496.7,
-      "R_surface": 1496.7,
-      "R_adjusted": 1496.7
+      "n_overall": 369,
+      "n_surface": 10,
+      "R_overall": 2097.0,
+      "R_surface": 1495.5,
+      "R_adjusted": 1736.1
     },
-    "elo_win_prob_vs_avg": 0.4513
+    "elo_win_prob_vs_avg": 0.7076
   },
   "Cedrik Marcel Stebe": {
     "player": "Cedrik Marcel Stebe",
@@ -4850,13 +4850,13 @@
     ],
     "elo_snapshot": {
       "name": "Cedrik Marcel Stebe",
-      "n_overall": 9,
+      "n_overall": 82,
       "n_surface": 9,
-      "R_overall": 1412.9,
-      "R_surface": 1412.9,
-      "R_adjusted": 1412.9
+      "R_overall": 1685.2,
+      "R_surface": 1425.5,
+      "R_adjusted": 1529.4
     },
-    "elo_win_prob_vs_avg": 0.3368
+    "elo_win_prob_vs_avg": 0.424
   },
   "Christian Harrison": {
     "player": "Christian Harrison",
@@ -4929,13 +4929,13 @@
     ],
     "elo_snapshot": {
       "name": "Christian Harrison",
-      "n_overall": 5,
+      "n_overall": 15,
       "n_surface": 5,
-      "R_overall": 1508.8,
-      "R_surface": 1508.8,
-      "R_adjusted": 1508.8
+      "R_overall": 1663.7,
+      "R_surface": 1507.0,
+      "R_adjusted": 1569.7
     },
-    "elo_win_prob_vs_avg": 0.4686
+    "elo_win_prob_vs_avg": 0.4814
   },
   "Christopher Eubanks": {
     "player": "Christopher Eubanks",
@@ -5072,13 +5072,13 @@
     ],
     "elo_snapshot": {
       "name": "Christopher Eubanks",
-      "n_overall": 25,
-      "n_surface": 25,
-      "R_overall": 1650.9,
-      "R_surface": 1650.9,
-      "R_adjusted": 1650.9
+      "n_overall": 93,
+      "n_surface": 21,
+      "R_overall": 1693.0,
+      "R_surface": 1675.2,
+      "R_adjusted": 1682.3
     },
-    "elo_win_prob_vs_avg": 0.6665
+    "elo_win_prob_vs_avg": 0.6397
   },
   "Christopher Oconnell": {
     "player": "Christopher Oconnell",
@@ -5207,13 +5207,13 @@
     ],
     "elo_snapshot": {
       "name": "Christopher Oconnell",
-      "n_overall": 10,
-      "n_surface": 10,
-      "R_overall": 1567.3,
-      "R_surface": 1567.3,
-      "R_adjusted": 1567.3
+      "n_overall": 98,
+      "n_surface": 9,
+      "R_overall": 1774.5,
+      "R_surface": 1589.9,
+      "R_adjusted": 1663.7
     },
-    "elo_win_prob_vs_avg": 0.5526
+    "elo_win_prob_vs_avg": 0.6146
   },
   "Chun Hsin Tseng": {
     "player": "Chun Hsin Tseng",
@@ -5278,13 +5278,13 @@
     ],
     "elo_snapshot": {
       "name": "Chun Hsin Tseng",
-      "n_overall": 1,
+      "n_overall": 27,
       "n_surface": 1,
-      "R_overall": 1412.5,
-      "R_surface": 1412.5,
-      "R_adjusted": 1412.5
+      "R_overall": 1505.5,
+      "R_surface": 1411.2,
+      "R_adjusted": 1448.9
     },
-    "elo_win_prob_vs_avg": 0.3363
+    "elo_win_prob_vs_avg": 0.3166
   },
   "Constant Lestienne": {
     "player": "Constant Lestienne",
@@ -5373,13 +5373,13 @@
     ],
     "elo_snapshot": {
       "name": "Constant Lestienne",
-      "n_overall": 7,
-      "n_surface": 7,
-      "R_overall": 1315.6,
-      "R_surface": 1315.6,
-      "R_adjusted": 1315.6
+      "n_overall": 55,
+      "n_surface": 5,
+      "R_overall": 1566.9,
+      "R_surface": 1351.9,
+      "R_adjusted": 1437.9
     },
-    "elo_win_prob_vs_avg": 0.2248
+    "elo_win_prob_vs_avg": 0.303
   },
   "Corentin Moutet": {
     "player": "Corentin Moutet",
@@ -5516,13 +5516,13 @@
     ],
     "elo_snapshot": {
       "name": "Corentin Moutet",
-      "n_overall": 16,
+      "n_overall": 141,
       "n_surface": 16,
-      "R_overall": 1569.1,
-      "R_surface": 1569.1,
-      "R_adjusted": 1569.1
+      "R_overall": 1783.7,
+      "R_surface": 1563.9,
+      "R_adjusted": 1651.8
     },
-    "elo_win_prob_vs_avg": 0.5552
+    "elo_win_prob_vs_avg": 0.5983
   },
   "Cristian Garin": {
     "player": "Cristian Garin",
@@ -5659,13 +5659,13 @@
     ],
     "elo_snapshot": {
       "name": "Cristian Garin",
-      "n_overall": 19,
-      "n_surface": 19,
-      "R_overall": 1652.9,
-      "R_surface": 1652.9,
-      "R_adjusted": 1652.9
+      "n_overall": 245,
+      "n_surface": 18,
+      "R_overall": 1820.1,
+      "R_surface": 1686.1,
+      "R_adjusted": 1739.7
     },
-    "elo_win_prob_vs_avg": 0.6691
+    "elo_win_prob_vs_avg": 0.7118
   },
   "Daniel Altmaier": {
     "player": "Daniel Altmaier",
@@ -5794,13 +5794,13 @@
     ],
     "elo_snapshot": {
       "name": "Daniel Altmaier",
-      "n_overall": 14,
-      "n_surface": 14,
-      "R_overall": 1436.8,
-      "R_surface": 1436.8,
-      "R_adjusted": 1436.8
+      "n_overall": 115,
+      "n_surface": 12,
+      "R_overall": 1709.0,
+      "R_surface": 1394.9,
+      "R_adjusted": 1520.5
     },
-    "elo_win_prob_vs_avg": 0.3682
+    "elo_win_prob_vs_avg": 0.4116
   },
   "Daniel Elahi Galan": {
     "player": "Daniel Elahi Galan",
@@ -5937,13 +5937,13 @@
     ],
     "elo_snapshot": {
       "name": "Daniel Elahi Galan",
-      "n_overall": 11,
-      "n_surface": 11,
-      "R_overall": 1616.9,
-      "R_surface": 1616.9,
-      "R_adjusted": 1616.9
+      "n_overall": 119,
+      "n_surface": 10,
+      "R_overall": 1584.3,
+      "R_surface": 1636.2,
+      "R_adjusted": 1615.4
     },
-    "elo_win_prob_vs_avg": 0.6217
+    "elo_win_prob_vs_avg": 0.5471
   },
   "Daniel Evans": {
     "player": "Daniel Evans",
@@ -6080,13 +6080,13 @@
     ],
     "elo_snapshot": {
       "name": "Daniel Evans",
-      "n_overall": 40,
-      "n_surface": 40,
-      "R_overall": 1513.2,
-      "R_surface": 1513.2,
-      "R_adjusted": 1513.2
+      "n_overall": 322,
+      "n_surface": 39,
+      "R_overall": 1709.3,
+      "R_surface": 1529.8,
+      "R_adjusted": 1601.6
     },
-    "elo_win_prob_vs_avg": 0.475
+    "elo_win_prob_vs_avg": 0.5273
   },
   "Daniel Masur": {
     "player": "Daniel Masur",
@@ -6151,13 +6151,13 @@
     ],
     "elo_snapshot": {
       "name": "Daniel Masur",
-      "n_overall": 1,
+      "n_overall": 6,
       "n_surface": 1,
-      "R_overall": 1443.1,
-      "R_surface": 1443.1,
-      "R_adjusted": 1443.1
+      "R_overall": 1496.8,
+      "R_surface": 1428.5,
+      "R_adjusted": 1455.8
     },
-    "elo_win_prob_vs_avg": 0.3767
+    "elo_win_prob_vs_avg": 0.3252
   },
   "Daniil Medvedev": {
     "player": "Daniil Medvedev",
@@ -6294,13 +6294,13 @@
     ],
     "elo_snapshot": {
       "name": "Daniil Medvedev",
-      "n_overall": 68,
-      "n_surface": 68,
-      "R_overall": 1886.6,
-      "R_surface": 1886.6,
-      "R_adjusted": 1886.6
+      "n_overall": 506,
+      "n_surface": 62,
+      "R_overall": 2157.1,
+      "R_surface": 1817.0,
+      "R_adjusted": 1953.0
     },
-    "elo_win_prob_vs_avg": 0.8859
+    "elo_win_prob_vs_avg": 0.894
   },
   "David Goffin": {
     "player": "David Goffin",
@@ -6437,13 +6437,13 @@
     ],
     "elo_snapshot": {
       "name": "David Goffin",
-      "n_overall": 56,
-      "n_surface": 56,
-      "R_overall": 1678.7,
-      "R_surface": 1678.7,
-      "R_adjusted": 1678.7
+      "n_overall": 582,
+      "n_surface": 55,
+      "R_overall": 1727.5,
+      "R_surface": 1723.6,
+      "R_adjusted": 1725.2
     },
-    "elo_win_prob_vs_avg": 0.7011
+    "elo_win_prob_vs_avg": 0.6944
   },
   "Denis Kudla": {
     "player": "Denis Kudla",
@@ -6572,13 +6572,13 @@
     ],
     "elo_snapshot": {
       "name": "Denis Kudla",
-      "n_overall": 52,
+      "n_overall": 204,
       "n_surface": 52,
-      "R_overall": 1622.2,
-      "R_surface": 1622.2,
-      "R_adjusted": 1622.2
+      "R_overall": 1651.3,
+      "R_surface": 1612.0,
+      "R_adjusted": 1627.7
     },
-    "elo_win_prob_vs_avg": 0.6288
+    "elo_win_prob_vs_avg": 0.5645
   },
   "Denis Shapovalov": {
     "player": "Denis Shapovalov",
@@ -6715,13 +6715,13 @@
     ],
     "elo_snapshot": {
       "name": "Denis Shapovalov",
-      "n_overall": 41,
-      "n_surface": 41,
-      "R_overall": 1652.0,
-      "R_surface": 1652.0,
-      "R_adjusted": 1652.0
+      "n_overall": 357,
+      "n_surface": 38,
+      "R_overall": 1822.7,
+      "R_surface": 1650.1,
+      "R_adjusted": 1719.1
     },
-    "elo_win_prob_vs_avg": 0.6679
+    "elo_win_prob_vs_avg": 0.6869
   },
   "Dennis Novak": {
     "player": "Dennis Novak",
@@ -6810,13 +6810,13 @@
     ],
     "elo_snapshot": {
       "name": "Dennis Novak",
-      "n_overall": 8,
+      "n_overall": 80,
       "n_surface": 8,
-      "R_overall": 1481.0,
-      "R_surface": 1481.0,
-      "R_adjusted": 1481.0
+      "R_overall": 1552.0,
+      "R_surface": 1472.3,
+      "R_adjusted": 1504.2
     },
-    "elo_win_prob_vs_avg": 0.4291
+    "elo_win_prob_vs_avg": 0.389
   },
   "Diego Schwartzman": {
     "player": "Diego Schwartzman",
@@ -6953,13 +6953,13 @@
     ],
     "elo_snapshot": {
       "name": "Diego Schwartzman",
-      "n_overall": 26,
+      "n_overall": 475,
       "n_surface": 26,
-      "R_overall": 1558.9,
-      "R_surface": 1558.9,
-      "R_adjusted": 1558.9
+      "R_overall": 1702.5,
+      "R_surface": 1571.5,
+      "R_adjusted": 1623.9
     },
-    "elo_win_prob_vs_avg": 0.5406
+    "elo_win_prob_vs_avg": 0.5592
   },
   "Dominic Stricker": {
     "player": "Dominic Stricker",
@@ -7072,13 +7072,13 @@
     ],
     "elo_snapshot": {
       "name": "Dominic Stricker",
-      "n_overall": 8,
-      "n_surface": 8,
-      "R_overall": 1539.6,
-      "R_surface": 1539.6,
-      "R_adjusted": 1539.6
+      "n_overall": 39,
+      "n_surface": 7,
+      "R_overall": 1754.1,
+      "R_surface": 1585.7,
+      "R_adjusted": 1653.1
     },
-    "elo_win_prob_vs_avg": 0.5129
+    "elo_win_prob_vs_avg": 0.6001
   },
   "Dominic Thiem": {
     "player": "Dominic Thiem",
@@ -7159,13 +7159,13 @@
     ],
     "elo_snapshot": {
       "name": "Dominic Thiem",
-      "n_overall": 33,
+      "n_overall": 562,
       "n_surface": 33,
-      "R_overall": 1549.1,
-      "R_surface": 1549.1,
-      "R_adjusted": 1549.1
+      "R_overall": 1807.7,
+      "R_surface": 1550.4,
+      "R_adjusted": 1653.3
     },
-    "elo_win_prob_vs_avg": 0.5266
+    "elo_win_prob_vs_avg": 0.6004
   },
   "Dominik Koepfer": {
     "player": "Dominik Koepfer",
@@ -7294,13 +7294,13 @@
     ],
     "elo_snapshot": {
       "name": "Dominik Koepfer",
-      "n_overall": 15,
+      "n_overall": 127,
       "n_surface": 15,
-      "R_overall": 1451.9,
-      "R_surface": 1451.9,
-      "R_adjusted": 1451.9
+      "R_overall": 1817.3,
+      "R_surface": 1436.5,
+      "R_adjusted": 1588.8
     },
-    "elo_win_prob_vs_avg": 0.3886
+    "elo_win_prob_vs_avg": 0.5089
   },
   "Dusan Lajovic": {
     "player": "Dusan Lajovic",
@@ -7413,13 +7413,13 @@
     ],
     "elo_snapshot": {
       "name": "Dusan Lajovic",
-      "n_overall": 24,
-      "n_surface": 24,
-      "R_overall": 1408.1,
-      "R_surface": 1408.1,
-      "R_adjusted": 1408.1
+      "n_overall": 452,
+      "n_surface": 23,
+      "R_overall": 1824.9,
+      "R_surface": 1421.6,
+      "R_adjusted": 1582.9
     },
-    "elo_win_prob_vs_avg": 0.3306
+    "elo_win_prob_vs_avg": 0.5004
   },
   "Dustin Brown": {
     "player": "Dustin Brown",
@@ -7484,13 +7484,13 @@
     ],
     "elo_snapshot": {
       "name": "Dustin Brown",
-      "n_overall": 41,
+      "n_overall": 161,
       "n_surface": 41,
-      "R_overall": 1620.5,
-      "R_surface": 1620.5,
-      "R_adjusted": 1620.5
+      "R_overall": 1698.4,
+      "R_surface": 1619.9,
+      "R_adjusted": 1651.3
     },
-    "elo_win_prob_vs_avg": 0.6265
+    "elo_win_prob_vs_avg": 0.5976
   },
   "Egor Gerasimov": {
     "player": "Egor Gerasimov",
@@ -7579,13 +7579,13 @@
     ],
     "elo_snapshot": {
       "name": "Egor Gerasimov",
-      "n_overall": 4,
+      "n_overall": 118,
       "n_surface": 4,
-      "R_overall": 1559.3,
-      "R_surface": 1559.3,
-      "R_adjusted": 1559.3
+      "R_overall": 1743.4,
+      "R_surface": 1568.1,
+      "R_adjusted": 1638.2
     },
-    "elo_win_prob_vs_avg": 0.5412
+    "elo_win_prob_vs_avg": 0.5793
   },
   "Elias Ymer": {
     "player": "Elias Ymer",
@@ -7650,13 +7650,13 @@
     ],
     "elo_snapshot": {
       "name": "Elias Ymer",
-      "n_overall": 3,
-      "n_surface": 3,
-      "R_overall": 1419.9,
-      "R_surface": 1419.9,
-      "R_adjusted": 1419.9
+      "n_overall": 112,
+      "n_surface": 2,
+      "R_overall": 1661.7,
+      "R_surface": 1434.2,
+      "R_adjusted": 1525.2
     },
-    "elo_win_prob_vs_avg": 0.3459
+    "elo_win_prob_vs_avg": 0.4181
   },
   "Eliot Spizzirri": {
     "player": "Eliot Spizzirri",
@@ -7721,13 +7721,13 @@
     ],
     "elo_snapshot": {
       "name": "Eliot Spizzirri",
-      "n_overall": 3,
-      "n_surface": 3,
-      "R_overall": 1480.0,
-      "R_surface": 1480.0,
-      "R_adjusted": 1480.0
+      "n_overall": 1,
+      "n_surface": 1,
+      "R_overall": 1477.9,
+      "R_surface": 1444.4,
+      "R_adjusted": 1457.8
     },
-    "elo_win_prob_vs_avg": 0.4277
+    "elo_win_prob_vs_avg": 0.3277
   },
   "Emil Ruusuvuori": {
     "player": "Emil Ruusuvuori",
@@ -7864,13 +7864,13 @@
     ],
     "elo_snapshot": {
       "name": "Emil Ruusuvuori",
-      "n_overall": 23,
-      "n_surface": 23,
-      "R_overall": 1597.1,
-      "R_surface": 1597.1,
-      "R_adjusted": 1597.1
+      "n_overall": 209,
+      "n_surface": 20,
+      "R_overall": 1834.3,
+      "R_surface": 1555.4,
+      "R_adjusted": 1667.0
     },
-    "elo_win_prob_vs_avg": 0.5945
+    "elo_win_prob_vs_avg": 0.6191
   },
   "Enzo Couacaud": {
     "player": "Enzo Couacaud",
@@ -7943,13 +7943,13 @@
     ],
     "elo_snapshot": {
       "name": "Enzo Couacaud",
-      "n_overall": 2,
+      "n_overall": 10,
       "n_surface": 2,
-      "R_overall": 1425.6,
-      "R_surface": 1425.6,
-      "R_adjusted": 1425.6
+      "R_overall": 1548.9,
+      "R_surface": 1424.3,
+      "R_adjusted": 1474.1
     },
-    "elo_win_prob_vs_avg": 0.3533
+    "elo_win_prob_vs_avg": 0.3487
   },
   "Ethan Quinn": {
     "player": "Ethan Quinn",
@@ -8022,13 +8022,13 @@
     ],
     "elo_snapshot": {
       "name": "Ethan Quinn",
-      "n_overall": 4,
-      "n_surface": 4,
-      "R_overall": 1549.0,
-      "R_surface": 1549.0,
-      "R_adjusted": 1549.0
+      "n_overall": 6,
+      "n_surface": 2,
+      "R_overall": 1430.1,
+      "R_surface": 1527.5,
+      "R_adjusted": 1488.6
     },
-    "elo_win_prob_vs_avg": 0.5264
+    "elo_win_prob_vs_avg": 0.3679
   },
   "Evgeny Donskoy": {
     "player": "Evgeny Donskoy",
@@ -8093,13 +8093,13 @@
     ],
     "elo_snapshot": {
       "name": "Evgeny Donskoy",
-      "n_overall": 16,
+      "n_overall": 172,
       "n_surface": 16,
-      "R_overall": 1391.5,
-      "R_surface": 1391.5,
-      "R_adjusted": 1391.5
+      "R_overall": 1627.7,
+      "R_surface": 1375.8,
+      "R_adjusted": 1476.6
     },
-    "elo_win_prob_vs_avg": 0.3099
+    "elo_win_prob_vs_avg": 0.352
   },
   "Fabian Marozsan": {
     "player": "Fabian Marozsan",
@@ -8164,13 +8164,13 @@
     ],
     "elo_snapshot": {
       "name": "Fabian Marozsan",
-      "n_overall": 6,
-      "n_surface": 6,
-      "R_overall": 1430.6,
-      "R_surface": 1430.6,
-      "R_adjusted": 1430.6
+      "n_overall": 52,
+      "n_surface": 5,
+      "R_overall": 1816.3,
+      "R_surface": 1457.1,
+      "R_adjusted": 1600.8
     },
-    "elo_win_prob_vs_avg": 0.3599
+    "elo_win_prob_vs_avg": 0.5262
   },
   "Fabio Fognini": {
     "player": "Fabio Fognini",
@@ -8275,13 +8275,13 @@
     ],
     "elo_snapshot": {
       "name": "Fabio Fognini",
-      "n_overall": 48,
-      "n_surface": 48,
-      "R_overall": 1642.6,
-      "R_surface": 1642.6,
-      "R_adjusted": 1642.6
+      "n_overall": 804,
+      "n_surface": 45,
+      "R_overall": 1797.0,
+      "R_surface": 1628.8,
+      "R_adjusted": 1696.1
     },
-    "elo_win_prob_vs_avg": 0.6558
+    "elo_win_prob_vs_avg": 0.6578
   },
   "Facundo Bagnis": {
     "player": "Facundo Bagnis",
@@ -8354,13 +8354,13 @@
     ],
     "elo_snapshot": {
       "name": "Facundo Bagnis",
-      "n_overall": 5,
+      "n_overall": 131,
       "n_surface": 5,
-      "R_overall": 1319.7,
-      "R_surface": 1319.7,
-      "R_adjusted": 1319.7
+      "R_overall": 1675.7,
+      "R_surface": 1309.3,
+      "R_adjusted": 1455.8
     },
-    "elo_win_prob_vs_avg": 0.229
+    "elo_win_prob_vs_avg": 0.3252
   },
   "Federico Coria": {
     "player": "Federico Coria",
@@ -8441,13 +8441,13 @@
     ],
     "elo_snapshot": {
       "name": "Federico Coria",
-      "n_overall": 4,
-      "n_surface": 4,
-      "R_overall": 1338.8,
-      "R_surface": 1338.8,
-      "R_adjusted": 1338.8
+      "n_overall": 122,
+      "n_surface": 3,
+      "R_overall": 1716.4,
+      "R_surface": 1365.5,
+      "R_adjusted": 1505.8
     },
-    "elo_win_prob_vs_avg": 0.249
+    "elo_win_prob_vs_avg": 0.3912
   },
   "Federico Delbonis": {
     "player": "Federico Delbonis",
@@ -8528,13 +8528,13 @@
     ],
     "elo_snapshot": {
       "name": "Federico Delbonis",
-      "n_overall": 12,
+      "n_overall": 365,
       "n_surface": 12,
-      "R_overall": 1244.5,
-      "R_surface": 1244.5,
-      "R_adjusted": 1244.5
+      "R_overall": 1688.7,
+      "R_surface": 1238.8,
+      "R_adjusted": 1418.7
     },
-    "elo_win_prob_vs_avg": 0.1615
+    "elo_win_prob_vs_avg": 0.2802
   },
   "Feliciano Lopez": {
     "player": "Feliciano Lopez",
@@ -8671,13 +8671,13 @@
     ],
     "elo_snapshot": {
       "name": "Feliciano Lopez",
-      "n_overall": 142,
+      "n_overall": 1004,
       "n_surface": 142,
-      "R_overall": 1665.5,
-      "R_surface": 1665.5,
-      "R_adjusted": 1665.5
+      "R_overall": 1688.1,
+      "R_surface": 1672.0,
+      "R_adjusted": 1678.4
     },
-    "elo_win_prob_vs_avg": 0.6849
+    "elo_win_prob_vs_avg": 0.6345
   },
   "Felix Auger Aliassime": {
     "player": "Felix Auger Aliassime",
@@ -8814,13 +8814,13 @@
     ],
     "elo_snapshot": {
       "name": "Felix Auger Aliassime",
-      "n_overall": 36,
-      "n_surface": 36,
-      "R_overall": 1637.5,
-      "R_surface": 1637.5,
-      "R_adjusted": 1637.5
+      "n_overall": 341,
+      "n_surface": 35,
+      "R_overall": 1959.5,
+      "R_surface": 1680.3,
+      "R_adjusted": 1792.0
     },
-    "elo_win_prob_vs_avg": 0.6491
+    "elo_win_prob_vs_avg": 0.7695
   },
   "Fernando Verdasco": {
     "player": "Fernando Verdasco",
@@ -8893,13 +8893,13 @@
     ],
     "elo_snapshot": {
       "name": "Fernando Verdasco",
-      "n_overall": 95,
+      "n_overall": 1007,
       "n_surface": 95,
-      "R_overall": 1616.8,
-      "R_surface": 1616.8,
-      "R_adjusted": 1616.8
+      "R_overall": 1697.6,
+      "R_surface": 1614.2,
+      "R_adjusted": 1647.5
     },
-    "elo_win_prob_vs_avg": 0.6215
+    "elo_win_prob_vs_avg": 0.5923
   },
   "Filip Krajinovic": {
     "player": "Filip Krajinovic",
@@ -9020,13 +9020,13 @@
     ],
     "elo_snapshot": {
       "name": "Filip Krajinovic",
-      "n_overall": 11,
+      "n_overall": 257,
       "n_surface": 11,
-      "R_overall": 1615.6,
-      "R_surface": 1615.6,
-      "R_adjusted": 1615.6
+      "R_overall": 1751.0,
+      "R_surface": 1613.8,
+      "R_adjusted": 1668.7
     },
-    "elo_win_prob_vs_avg": 0.6199
+    "elo_win_prob_vs_avg": 0.6214
   },
   "Frances Tiafoe": {
     "player": "Frances Tiafoe",
@@ -9163,13 +9163,13 @@
     ],
     "elo_snapshot": {
       "name": "Frances Tiafoe",
-      "n_overall": 41,
-      "n_surface": 41,
-      "R_overall": 1690.1,
-      "R_surface": 1690.1,
-      "R_adjusted": 1690.1
+      "n_overall": 368,
+      "n_surface": 38,
+      "R_overall": 1825.1,
+      "R_surface": 1663.2,
+      "R_adjusted": 1727.9
     },
-    "elo_win_prob_vs_avg": 0.7146
+    "elo_win_prob_vs_avg": 0.6977
   },
   "Francisco Cerundolo": {
     "player": "Francisco Cerundolo",
@@ -9306,13 +9306,13 @@
     ],
     "elo_snapshot": {
       "name": "Francisco Cerundolo",
-      "n_overall": 15,
-      "n_surface": 15,
-      "R_overall": 1557.8,
-      "R_surface": 1557.8,
-      "R_adjusted": 1557.8
+      "n_overall": 158,
+      "n_surface": 14,
+      "R_overall": 1855.3,
+      "R_surface": 1591.8,
+      "R_adjusted": 1697.2
     },
-    "elo_win_prob_vs_avg": 0.539
+    "elo_win_prob_vs_avg": 0.6592
   },
   "Gabriel Diallo": {
     "player": "Gabriel Diallo",
@@ -9377,13 +9377,13 @@
     ],
     "elo_snapshot": {
       "name": "Gabriel Diallo",
-      "n_overall": 2,
-      "n_surface": 2,
-      "R_overall": 1432.4,
-      "R_surface": 1432.4,
-      "R_adjusted": 1432.4
+      "n_overall": 14,
+      "n_surface": 1,
+      "R_overall": 1625.7,
+      "R_surface": 1483.4,
+      "R_adjusted": 1540.3
     },
-    "elo_win_prob_vs_avg": 0.3623
+    "elo_win_prob_vs_avg": 0.4394
   },
   "Gael Monfils": {
     "player": "Gael Monfils",
@@ -9472,13 +9472,13 @@
     ],
     "elo_snapshot": {
       "name": "Gael Monfils",
-      "n_overall": 80,
-      "n_surface": 80,
-      "R_overall": 1672.3,
-      "R_surface": 1672.3,
-      "R_adjusted": 1672.3
+      "n_overall": 892,
+      "n_surface": 77,
+      "R_overall": 1924.8,
+      "R_surface": 1651.8,
+      "R_adjusted": 1761.0
     },
-    "elo_win_prob_vs_avg": 0.6933
+    "elo_win_prob_vs_avg": 0.7363
   },
   "George Loffhagen": {
     "player": "George Loffhagen",
@@ -9553,11 +9553,11 @@
       "name": "George Loffhagen",
       "n_overall": 2,
       "n_surface": 2,
-      "R_overall": 1386.4,
-      "R_surface": 1386.4,
-      "R_adjusted": 1386.4
+      "R_overall": 1451.8,
+      "R_surface": 1382.1,
+      "R_adjusted": 1410.0
     },
-    "elo_win_prob_vs_avg": 0.3036
+    "elo_win_prob_vs_avg": 0.2702
   },
   "Gianluca Mager": {
     "player": "Gianluca Mager",
@@ -9630,13 +9630,13 @@
     ],
     "elo_snapshot": {
       "name": "Gianluca Mager",
-      "n_overall": 2,
+      "n_overall": 59,
       "n_surface": 2,
-      "R_overall": 1534.8,
-      "R_surface": 1534.8,
-      "R_adjusted": 1534.8
+      "R_overall": 1672.5,
+      "R_surface": 1535.4,
+      "R_adjusted": 1590.2
     },
-    "elo_win_prob_vs_avg": 0.506
+    "elo_win_prob_vs_avg": 0.5109
   },
   "Gijs Brouwer": {
     "player": "Gijs Brouwer",
@@ -9725,13 +9725,13 @@
     ],
     "elo_snapshot": {
       "name": "Gijs Brouwer",
-      "n_overall": 8,
+      "n_overall": 27,
       "n_surface": 8,
-      "R_overall": 1538.4,
-      "R_surface": 1538.4,
-      "R_adjusted": 1538.4
+      "R_overall": 1739.6,
+      "R_surface": 1544.4,
+      "R_adjusted": 1622.4
     },
-    "elo_win_prob_vs_avg": 0.5112
+    "elo_win_prob_vs_avg": 0.557
   },
   "Gilles Simon": {
     "player": "Gilles Simon",
@@ -9836,13 +9836,13 @@
     ],
     "elo_snapshot": {
       "name": "Gilles Simon",
-      "n_overall": 96,
+      "n_overall": 904,
       "n_surface": 96,
-      "R_overall": 1596.2,
-      "R_surface": 1596.2,
-      "R_adjusted": 1596.2
+      "R_overall": 1778.0,
+      "R_surface": 1590.8,
+      "R_adjusted": 1665.7
     },
-    "elo_win_prob_vs_avg": 0.5933
+    "elo_win_prob_vs_avg": 0.6174
   },
   "Giovanni Mpetshi Perricard": {
     "player": "Giovanni Mpetshi Perricard",
@@ -9907,13 +9907,13 @@
     ],
     "elo_snapshot": {
       "name": "Giovanni Mpetshi Perricard",
-      "n_overall": 8,
-      "n_surface": 8,
-      "R_overall": 1608.2,
-      "R_surface": 1608.2,
-      "R_adjusted": 1608.2
+      "n_overall": 14,
+      "n_surface": 4,
+      "R_overall": 1768.4,
+      "R_surface": 1426.1,
+      "R_adjusted": 1563.0
     },
-    "elo_win_prob_vs_avg": 0.6098
+    "elo_win_prob_vs_avg": 0.4718
   },
   "Gregoire Barrere": {
     "player": "Gregoire Barrere",
@@ -10050,13 +10050,13 @@
     ],
     "elo_snapshot": {
       "name": "Gregoire Barrere",
-      "n_overall": 13,
+      "n_overall": 99,
       "n_surface": 13,
-      "R_overall": 1582.4,
-      "R_surface": 1582.4,
-      "R_adjusted": 1582.4
+      "R_overall": 1747.2,
+      "R_surface": 1587.1,
+      "R_adjusted": 1651.2
     },
-    "elo_win_prob_vs_avg": 0.574
+    "elo_win_prob_vs_avg": 0.5975
   },
   "Grigor Dimitrov": {
     "player": "Grigor Dimitrov",
@@ -10193,13 +10193,13 @@
     ],
     "elo_snapshot": {
       "name": "Grigor Dimitrov",
-      "n_overall": 80,
-      "n_surface": 80,
-      "R_overall": 1741.0,
-      "R_surface": 1741.0,
-      "R_adjusted": 1741.0
+      "n_overall": 731,
+      "n_surface": 76,
+      "R_overall": 2085.6,
+      "R_surface": 1714.2,
+      "R_adjusted": 1862.7
     },
-    "elo_win_prob_vs_avg": 0.7705
+    "elo_win_prob_vs_avg": 0.8337
   },
   "Guido Pella": {
     "player": "Guido Pella",
@@ -10328,13 +10328,13 @@
     ],
     "elo_snapshot": {
       "name": "Guido Pella",
-      "n_overall": 27,
+      "n_overall": 281,
       "n_surface": 27,
-      "R_overall": 1592.4,
-      "R_surface": 1592.4,
-      "R_adjusted": 1592.4
+      "R_overall": 1719.3,
+      "R_surface": 1587.8,
+      "R_adjusted": 1640.4
     },
-    "elo_win_prob_vs_avg": 0.588
+    "elo_win_prob_vs_avg": 0.5824
   },
   "Hamad Medjedovic": {
     "player": "Hamad Medjedovic",
@@ -10399,13 +10399,13 @@
     ],
     "elo_snapshot": {
       "name": "Hamad Medjedovic",
-      "n_overall": 3,
+      "n_overall": 30,
       "n_surface": 3,
-      "R_overall": 1490.4,
-      "R_surface": 1490.4,
-      "R_adjusted": 1490.4
+      "R_overall": 1881.5,
+      "R_surface": 1497.0,
+      "R_adjusted": 1650.8
     },
-    "elo_win_prob_vs_avg": 0.4424
+    "elo_win_prob_vs_avg": 0.5969
   },
   "Harold Mayot": {
     "player": "Harold Mayot",
@@ -10478,13 +10478,13 @@
     ],
     "elo_snapshot": {
       "name": "Harold Mayot",
-      "n_overall": 3,
-      "n_surface": 3,
-      "R_overall": 1459.8,
-      "R_surface": 1459.8,
-      "R_adjusted": 1459.8
+      "n_overall": 15,
+      "n_surface": 2,
+      "R_overall": 1664.6,
+      "R_surface": 1519.5,
+      "R_adjusted": 1577.5
     },
-    "elo_win_prob_vs_avg": 0.3995
+    "elo_win_prob_vs_avg": 0.4927
   },
   "Henri Laaksonen": {
     "player": "Henri Laaksonen",
@@ -10549,13 +10549,13 @@
     ],
     "elo_snapshot": {
       "name": "Henri Laaksonen",
-      "n_overall": 2,
+      "n_overall": 125,
       "n_surface": 2,
-      "R_overall": 1390.2,
-      "R_surface": 1390.2,
-      "R_adjusted": 1390.2
+      "R_overall": 1605.5,
+      "R_surface": 1393.0,
+      "R_adjusted": 1478.0
     },
-    "elo_win_prob_vs_avg": 0.3083
+    "elo_win_prob_vs_avg": 0.3539
   },
   "Henri Squire": {
     "player": "Henri Squire",
@@ -10620,13 +10620,13 @@
     ],
     "elo_snapshot": {
       "name": "Henri Squire",
-      "n_overall": 3,
+      "n_overall": 5,
       "n_surface": 3,
-      "R_overall": 1363.1,
-      "R_surface": 1363.1,
-      "R_adjusted": 1363.1
+      "R_overall": 1529.9,
+      "R_surface": 1367.1,
+      "R_adjusted": 1432.2
     },
-    "elo_win_prob_vs_avg": 0.276
+    "elo_win_prob_vs_avg": 0.2961
   },
   "Holger Rune": {
     "player": "Holger Rune",
@@ -10763,13 +10763,13 @@
     ],
     "elo_snapshot": {
       "name": "Holger Rune",
-      "n_overall": 17,
-      "n_surface": 17,
-      "R_overall": 1740.9,
-      "R_surface": 1740.9,
-      "R_adjusted": 1740.9
+      "n_overall": 195,
+      "n_surface": 13,
+      "R_overall": 1966.1,
+      "R_surface": 1653.9,
+      "R_adjusted": 1778.8
     },
-    "elo_win_prob_vs_avg": 0.7704
+    "elo_win_prob_vs_avg": 0.7557
   },
   "Hubert Hurkacz": {
     "player": "Hubert Hurkacz",
@@ -10906,13 +10906,13 @@
     ],
     "elo_snapshot": {
       "name": "Hubert Hurkacz",
-      "n_overall": 39,
-      "n_surface": 39,
-      "R_overall": 1793.0,
-      "R_surface": 1793.0,
-      "R_adjusted": 1793.0
+      "n_overall": 337,
+      "n_surface": 37,
+      "R_overall": 2072.5,
+      "R_surface": 1848.7,
+      "R_adjusted": 1938.3
     },
-    "elo_win_prob_vs_avg": 0.8191
+    "elo_win_prob_vs_avg": 0.8857
   },
   "Hugo Dellien": {
     "player": "Hugo Dellien",
@@ -10985,13 +10985,13 @@
     ],
     "elo_snapshot": {
       "name": "Hugo Dellien",
-      "n_overall": 3,
+      "n_overall": 96,
       "n_surface": 3,
-      "R_overall": 1367.0,
-      "R_surface": 1367.0,
-      "R_adjusted": 1367.0
+      "R_overall": 1578.3,
+      "R_surface": 1365.9,
+      "R_adjusted": 1450.8
     },
-    "elo_win_prob_vs_avg": 0.2805
+    "elo_win_prob_vs_avg": 0.3189
   },
   "Hugo Gaston": {
     "player": "Hugo Gaston",
@@ -11088,13 +11088,13 @@
     ],
     "elo_snapshot": {
       "name": "Hugo Gaston",
-      "n_overall": 6,
-      "n_surface": 6,
-      "R_overall": 1548.5,
-      "R_surface": 1548.5,
-      "R_adjusted": 1548.5
+      "n_overall": 78,
+      "n_surface": 5,
+      "R_overall": 1693.1,
+      "R_surface": 1610.4,
+      "R_adjusted": 1643.5
     },
-    "elo_win_prob_vs_avg": 0.5257
+    "elo_win_prob_vs_avg": 0.5868
   },
   "Hugo Grenier": {
     "player": "Hugo Grenier",
@@ -11167,13 +11167,13 @@
     ],
     "elo_snapshot": {
       "name": "Hugo Grenier",
-      "n_overall": 2,
+      "n_overall": 23,
       "n_surface": 2,
-      "R_overall": 1504.1,
-      "R_surface": 1504.1,
-      "R_adjusted": 1504.1
+      "R_overall": 1600.4,
+      "R_surface": 1508.4,
+      "R_adjusted": 1545.2
     },
-    "elo_win_prob_vs_avg": 0.4619
+    "elo_win_prob_vs_avg": 0.4464
   },
   "Illya Marchenko": {
     "player": "Illya Marchenko",
@@ -11246,13 +11246,13 @@
     ],
     "elo_snapshot": {
       "name": "Illya Marchenko",
-      "n_overall": 22,
+      "n_overall": 161,
       "n_surface": 22,
-      "R_overall": 1362.3,
-      "R_surface": 1362.3,
-      "R_adjusted": 1362.3
+      "R_overall": 1619.0,
+      "R_surface": 1370.1,
+      "R_adjusted": 1469.6
     },
-    "elo_win_prob_vs_avg": 0.2751
+    "elo_win_prob_vs_avg": 0.3429
   },
   "Ilya Ivashka": {
     "player": "Ilya Ivashka",
@@ -11389,13 +11389,13 @@
     ],
     "elo_snapshot": {
       "name": "Ilya Ivashka",
-      "n_overall": 23,
+      "n_overall": 178,
       "n_surface": 23,
-      "R_overall": 1564.9,
-      "R_surface": 1564.9,
-      "R_adjusted": 1564.9
+      "R_overall": 1757.0,
+      "R_surface": 1561.5,
+      "R_adjusted": 1639.7
     },
-    "elo_win_prob_vs_avg": 0.5492
+    "elo_win_prob_vs_avg": 0.5814
   },
   "Ivo Karlovic": {
     "player": "Ivo Karlovic",
@@ -11468,13 +11468,13 @@
     ],
     "elo_snapshot": {
       "name": "Ivo Karlovic",
-      "n_overall": 118,
+      "n_overall": 719,
       "n_surface": 118,
-      "R_overall": 1641.4,
-      "R_surface": 1641.4,
-      "R_adjusted": 1641.4
+      "R_overall": 1698.2,
+      "R_surface": 1639.5,
+      "R_adjusted": 1663.0
     },
-    "elo_win_prob_vs_avg": 0.6542
+    "elo_win_prob_vs_avg": 0.6137
   },
   "J J Wolf": {
     "player": "J J Wolf",
@@ -11579,13 +11579,13 @@
     ],
     "elo_snapshot": {
       "name": "J J Wolf",
-      "n_overall": 6,
+      "n_overall": 95,
       "n_surface": 6,
-      "R_overall": 1550.7,
-      "R_surface": 1550.7,
-      "R_adjusted": 1550.7
+      "R_overall": 1677.4,
+      "R_surface": 1545.5,
+      "R_adjusted": 1598.3
     },
-    "elo_win_prob_vs_avg": 0.5289
+    "elo_win_prob_vs_avg": 0.5226
   },
   "Jack Draper": {
     "player": "Jack Draper",
@@ -11722,13 +11722,13 @@
     ],
     "elo_snapshot": {
       "name": "Jack Draper",
-      "n_overall": 22,
-      "n_surface": 22,
-      "R_overall": 1773.4,
-      "R_surface": 1773.4,
-      "R_adjusted": 1773.4
+      "n_overall": 102,
+      "n_surface": 20,
+      "R_overall": 1976.6,
+      "R_surface": 1830.4,
+      "R_adjusted": 1888.9
     },
-    "elo_win_prob_vs_avg": 0.8018
+    "elo_win_prob_vs_avg": 0.8536
   },
   "Jack Sock": {
     "player": "Jack Sock",
@@ -11849,13 +11849,13 @@
     ],
     "elo_snapshot": {
       "name": "Jack Sock",
-      "n_overall": 31,
+      "n_overall": 336,
       "n_surface": 31,
-      "R_overall": 1618.9,
-      "R_surface": 1618.9,
-      "R_adjusted": 1618.9
+      "R_overall": 1753.9,
+      "R_surface": 1609.2,
+      "R_adjusted": 1667.1
     },
-    "elo_win_prob_vs_avg": 0.6244
+    "elo_win_prob_vs_avg": 0.6193
   },
   "James Duckworth": {
     "player": "James Duckworth",
@@ -11992,13 +11992,13 @@
     ],
     "elo_snapshot": {
       "name": "James Duckworth",
-      "n_overall": 29,
-      "n_surface": 29,
-      "R_overall": 1587.2,
-      "R_surface": 1587.2,
-      "R_adjusted": 1587.2
+      "n_overall": 163,
+      "n_surface": 28,
+      "R_overall": 1763.8,
+      "R_surface": 1599.2,
+      "R_adjusted": 1665.0
     },
-    "elo_win_prob_vs_avg": 0.5807
+    "elo_win_prob_vs_avg": 0.6164
   },
   "James Ward": {
     "player": "James Ward",
@@ -12063,13 +12063,13 @@
     ],
     "elo_snapshot": {
       "name": "James Ward",
-      "n_overall": 45,
+      "n_overall": 86,
       "n_surface": 45,
-      "R_overall": 1337.0,
-      "R_surface": 1337.0,
-      "R_adjusted": 1337.0
+      "R_overall": 1501.8,
+      "R_surface": 1335.1,
+      "R_adjusted": 1401.8
     },
-    "elo_win_prob_vs_avg": 0.247
+    "elo_win_prob_vs_avg": 0.261
   },
   "Jan Choinski": {
     "player": "Jan Choinski",
@@ -12158,13 +12158,13 @@
     ],
     "elo_snapshot": {
       "name": "Jan Choinski",
-      "n_overall": 6,
-      "n_surface": 6,
-      "R_overall": 1363.3,
-      "R_surface": 1363.3,
-      "R_adjusted": 1363.3
+      "n_overall": 8,
+      "n_surface": 5,
+      "R_overall": 1554.9,
+      "R_surface": 1412.4,
+      "R_adjusted": 1469.4
     },
-    "elo_win_prob_vs_avg": 0.2762
+    "elo_win_prob_vs_avg": 0.3426
   },
   "Jan Lennard Struff": {
     "player": "Jan Lennard Struff",
@@ -12301,13 +12301,13 @@
     ],
     "elo_snapshot": {
       "name": "Jan Lennard Struff",
-      "n_overall": 56,
-      "n_surface": 56,
-      "R_overall": 1689.1,
-      "R_surface": 1689.1,
-      "R_adjusted": 1689.1
+      "n_overall": 449,
+      "n_surface": 53,
+      "R_overall": 1952.8,
+      "R_surface": 1678.2,
+      "R_adjusted": 1788.0
     },
-    "elo_win_prob_vs_avg": 0.7135
+    "elo_win_prob_vs_avg": 0.7654
   },
   "Jannik Sinner": {
     "player": "Jannik Sinner",
@@ -12444,13 +12444,13 @@
     ],
     "elo_snapshot": {
       "name": "Jannik Sinner",
-      "n_overall": 30,
-      "n_surface": 30,
-      "R_overall": 1926.6,
-      "R_surface": 1926.6,
-      "R_adjusted": 1926.6
+      "n_overall": 314,
+      "n_surface": 25,
+      "R_overall": 2296.3,
+      "R_surface": 1896.8,
+      "R_adjusted": 2056.6
     },
-    "elo_win_prob_vs_avg": 0.9072
+    "elo_win_prob_vs_avg": 0.9387
   },
   "Jason Jung": {
     "player": "Jason Jung",
@@ -12531,13 +12531,13 @@
     ],
     "elo_snapshot": {
       "name": "Jason Jung",
-      "n_overall": 9,
+      "n_overall": 35,
       "n_surface": 9,
-      "R_overall": 1551.1,
-      "R_surface": 1551.1,
-      "R_adjusted": 1551.1
+      "R_overall": 1570.4,
+      "R_surface": 1553.8,
+      "R_adjusted": 1560.4
     },
-    "elo_win_prob_vs_avg": 0.5294
+    "elo_win_prob_vs_avg": 0.4681
   },
   "Jason Kubler": {
     "player": "Jason Kubler",
@@ -12674,13 +12674,13 @@
     ],
     "elo_snapshot": {
       "name": "Jason Kubler",
-      "n_overall": 13,
+      "n_overall": 62,
       "n_surface": 13,
-      "R_overall": 1582.8,
-      "R_surface": 1582.8,
-      "R_adjusted": 1582.8
+      "R_overall": 1698.1,
+      "R_surface": 1606.5,
+      "R_adjusted": 1643.2
     },
-    "elo_win_prob_vs_avg": 0.5745
+    "elo_win_prob_vs_avg": 0.5863
   },
   "Jaume Munar": {
     "player": "Jaume Munar",
@@ -12793,13 +12793,13 @@
     ],
     "elo_snapshot": {
       "name": "Jaume Munar",
-      "n_overall": 14,
-      "n_surface": 14,
-      "R_overall": 1424.5,
-      "R_surface": 1424.5,
-      "R_adjusted": 1424.5
+      "n_overall": 212,
+      "n_surface": 12,
+      "R_overall": 1723.2,
+      "R_surface": 1361.7,
+      "R_adjusted": 1506.3
     },
-    "elo_win_prob_vs_avg": 0.3519
+    "elo_win_prob_vs_avg": 0.3919
   },
   "Jay Clarke": {
     "player": "Jay Clarke",
@@ -12888,13 +12888,13 @@
     ],
     "elo_snapshot": {
       "name": "Jay Clarke",
-      "n_overall": 12,
+      "n_overall": 13,
       "n_surface": 12,
-      "R_overall": 1322.8,
-      "R_surface": 1322.8,
-      "R_adjusted": 1322.8
+      "R_overall": 1469.1,
+      "R_surface": 1324.0,
+      "R_adjusted": 1382.0
     },
-    "elo_win_prob_vs_avg": 0.2321
+    "elo_win_prob_vs_avg": 0.2396
   },
   "Jenson Brooksby": {
     "player": "Jenson Brooksby",
@@ -13031,13 +13031,13 @@
     ],
     "elo_snapshot": {
       "name": "Jenson Brooksby",
-      "n_overall": 12,
+      "n_overall": 79,
       "n_surface": 12,
-      "R_overall": 1599.6,
-      "R_surface": 1599.6,
-      "R_adjusted": 1599.6
+      "R_overall": 1894.1,
+      "R_surface": 1606.2,
+      "R_adjusted": 1721.4
     },
-    "elo_win_prob_vs_avg": 0.598
+    "elo_win_prob_vs_avg": 0.6898
   },
   "Jeremy Chardy": {
     "player": "Jeremy Chardy",
@@ -13134,13 +13134,13 @@
     ],
     "elo_snapshot": {
       "name": "Jeremy Chardy",
-      "n_overall": 63,
+      "n_overall": 607,
       "n_surface": 63,
-      "R_overall": 1556.2,
-      "R_surface": 1556.2,
-      "R_adjusted": 1556.2
+      "R_overall": 1842.1,
+      "R_surface": 1565.1,
+      "R_adjusted": 1675.9
     },
-    "elo_win_prob_vs_avg": 0.5368
+    "elo_win_prob_vs_avg": 0.6311
   },
   "Jesper De Jong": {
     "player": "Jesper De Jong",
@@ -13205,13 +13205,13 @@
     ],
     "elo_snapshot": {
       "name": "Jesper De Jong",
-      "n_overall": 1,
+      "n_overall": 8,
       "n_surface": 1,
-      "R_overall": 1456.1,
-      "R_surface": 1456.1,
-      "R_adjusted": 1456.1
+      "R_overall": 1605.9,
+      "R_surface": 1458.6,
+      "R_adjusted": 1517.5
     },
-    "elo_win_prob_vs_avg": 0.3944
+    "elo_win_prob_vs_avg": 0.4074
   },
   "Jiri Lehecka": {
     "player": "Jiri Lehecka",
@@ -13348,13 +13348,13 @@
     ],
     "elo_snapshot": {
       "name": "Jiri Lehecka",
-      "n_overall": 10,
+      "n_overall": 121,
       "n_surface": 10,
-      "R_overall": 1671.7,
-      "R_surface": 1671.7,
-      "R_adjusted": 1671.7
+      "R_overall": 1993.4,
+      "R_surface": 1667.1,
+      "R_adjusted": 1797.7
     },
-    "elo_win_prob_vs_avg": 0.6926
+    "elo_win_prob_vs_avg": 0.7753
   },
   "Jiri Vesely": {
     "player": "Jiri Vesely",
@@ -13491,13 +13491,13 @@
     ],
     "elo_snapshot": {
       "name": "Jiri Vesely",
-      "n_overall": 41,
+      "n_overall": 315,
       "n_surface": 41,
-      "R_overall": 1654.3,
-      "R_surface": 1654.3,
-      "R_adjusted": 1654.3
+      "R_overall": 1722.2,
+      "R_surface": 1655.9,
+      "R_adjusted": 1682.4
     },
-    "elo_win_prob_vs_avg": 0.6708
+    "elo_win_prob_vs_avg": 0.6398
   },
   "Jo-Wilfried Tsonga": {
     "player": "Jo-Wilfried Tsonga",
@@ -13570,13 +13570,13 @@
     ],
     "elo_snapshot": {
       "name": "Jo-Wilfried Tsonga",
-      "n_overall": 77,
+      "n_overall": 714,
       "n_surface": 77,
-      "R_overall": 1787.5,
-      "R_surface": 1787.5,
-      "R_adjusted": 1787.5
+      "R_overall": 1824.4,
+      "R_surface": 1784.5,
+      "R_adjusted": 1800.5
     },
-    "elo_win_prob_vs_avg": 0.8144
+    "elo_win_prob_vs_avg": 0.778
   },
   "Joao Sousa": {
     "player": "Joao Sousa",
@@ -13673,13 +13673,13 @@
     ],
     "elo_snapshot": {
       "name": "Joao Sousa",
-      "n_overall": 39,
+      "n_overall": 484,
       "n_surface": 39,
-      "R_overall": 1466.3,
-      "R_surface": 1466.3,
-      "R_adjusted": 1466.3
+      "R_overall": 1637.5,
+      "R_surface": 1462.5,
+      "R_adjusted": 1532.5
     },
-    "elo_win_prob_vs_avg": 0.4085
+    "elo_win_prob_vs_avg": 0.4284
   },
   "John Isner": {
     "player": "John Isner",
@@ -13816,13 +13816,13 @@
     ],
     "elo_snapshot": {
       "name": "John Isner",
-      "n_overall": 85,
+      "n_overall": 809,
       "n_surface": 85,
-      "R_overall": 1748.9,
-      "R_surface": 1748.9,
-      "R_adjusted": 1748.9
+      "R_overall": 1824.8,
+      "R_surface": 1750.7,
+      "R_adjusted": 1780.3
     },
-    "elo_win_prob_vs_avg": 0.7784
+    "elo_win_prob_vs_avg": 0.7573
   },
   "John Millman": {
     "player": "John Millman",
@@ -13943,13 +13943,13 @@
     ],
     "elo_snapshot": {
       "name": "John Millman",
-      "n_overall": 31,
+      "n_overall": 270,
       "n_surface": 31,
-      "R_overall": 1543.3,
-      "R_surface": 1543.3,
-      "R_adjusted": 1543.3
+      "R_overall": 1763.1,
+      "R_surface": 1535.8,
+      "R_adjusted": 1626.7
     },
-    "elo_win_prob_vs_avg": 0.5182
+    "elo_win_prob_vs_avg": 0.5631
   },
   "Jordan Thompson": {
     "player": "Jordan Thompson",
@@ -14086,13 +14086,13 @@
     ],
     "elo_snapshot": {
       "name": "Jordan Thompson",
-      "n_overall": 60,
-      "n_surface": 60,
-      "R_overall": 1718.1,
-      "R_surface": 1718.1,
-      "R_adjusted": 1718.1
+      "n_overall": 275,
+      "n_surface": 58,
+      "R_overall": 1837.0,
+      "R_surface": 1736.4,
+      "R_adjusted": 1776.6
     },
-    "elo_win_prob_vs_avg": 0.7464
+    "elo_win_prob_vs_avg": 0.7534
   },
   "Juan Ignacio Londero": {
     "player": "Juan Ignacio Londero",
@@ -14157,13 +14157,13 @@
     ],
     "elo_snapshot": {
       "name": "Juan Ignacio Londero",
-      "n_overall": 4,
+      "n_overall": 85,
       "n_surface": 4,
-      "R_overall": 1419.0,
-      "R_surface": 1419.0,
-      "R_adjusted": 1419.0
+      "R_overall": 1597.0,
+      "R_surface": 1412.4,
+      "R_adjusted": 1486.3
     },
-    "elo_win_prob_vs_avg": 0.3447
+    "elo_win_prob_vs_avg": 0.3649
   },
   "Juan Manuel Cerundolo": {
     "player": "Juan Manuel Cerundolo",
@@ -14228,13 +14228,13 @@
     ],
     "elo_snapshot": {
       "name": "Juan Manuel Cerundolo",
-      "n_overall": 1,
+      "n_overall": 41,
       "n_surface": 1,
-      "R_overall": 1470.0,
-      "R_surface": 1470.0,
-      "R_adjusted": 1470.0
+      "R_overall": 1691.5,
+      "R_surface": 1468.9,
+      "R_adjusted": 1557.9
     },
-    "elo_win_prob_vs_avg": 0.4136
+    "elo_win_prob_vs_avg": 0.4645
   },
   "Juan Pablo Varillas": {
     "player": "Juan Pablo Varillas",
@@ -14299,13 +14299,13 @@
     ],
     "elo_snapshot": {
       "name": "Juan Pablo Varillas",
-      "n_overall": 1,
+      "n_overall": 81,
       "n_surface": 1,
-      "R_overall": 1435.5,
-      "R_surface": 1435.5,
-      "R_adjusted": 1435.5
+      "R_overall": 1631.8,
+      "R_surface": 1438.6,
+      "R_adjusted": 1515.9
     },
-    "elo_win_prob_vs_avg": 0.3664
+    "elo_win_prob_vs_avg": 0.4052
   },
   "Jurij Rodionov": {
     "player": "Jurij Rodionov",
@@ -14418,13 +14418,13 @@
     ],
     "elo_snapshot": {
       "name": "Jurij Rodionov",
-      "n_overall": 8,
+      "n_overall": 43,
       "n_surface": 8,
-      "R_overall": 1483.7,
-      "R_surface": 1483.7,
-      "R_adjusted": 1483.7
+      "R_overall": 1675.5,
+      "R_surface": 1488.5,
+      "R_adjusted": 1563.3
     },
-    "elo_win_prob_vs_avg": 0.4329
+    "elo_win_prob_vs_avg": 0.4723
   },
   "Kamil Majchrzak": {
     "player": "Kamil Majchrzak",
@@ -14505,13 +14505,13 @@
     ],
     "elo_snapshot": {
       "name": "Kamil Majchrzak",
-      "n_overall": 7,
+      "n_overall": 70,
       "n_surface": 7,
-      "R_overall": 1482.6,
-      "R_surface": 1482.6,
-      "R_adjusted": 1482.6
+      "R_overall": 1763.1,
+      "R_surface": 1484.2,
+      "R_adjusted": 1595.7
     },
-    "elo_win_prob_vs_avg": 0.4313
+    "elo_win_prob_vs_avg": 0.5188
   },
   "Karen Khachanov": {
     "player": "Karen Khachanov",
@@ -14648,13 +14648,13 @@
     ],
     "elo_snapshot": {
       "name": "Karen Khachanov",
-      "n_overall": 39,
-      "n_surface": 39,
-      "R_overall": 1689.9,
-      "R_surface": 1689.9,
-      "R_adjusted": 1689.9
+      "n_overall": 454,
+      "n_surface": 37,
+      "R_overall": 1975.5,
+      "R_surface": 1699.9,
+      "R_adjusted": 1810.2
     },
-    "elo_win_prob_vs_avg": 0.7144
+    "elo_win_prob_vs_avg": 0.7875
   },
   "Kei Nishikori": {
     "player": "Kei Nishikori",
@@ -14743,13 +14743,13 @@
     ],
     "elo_snapshot": {
       "name": "Kei Nishikori",
-      "n_overall": 71,
-      "n_surface": 71,
-      "R_overall": 1740.6,
-      "R_surface": 1740.6,
-      "R_adjusted": 1740.6
+      "n_overall": 656,
+      "n_surface": 70,
+      "R_overall": 1969.3,
+      "R_surface": 1775.1,
+      "R_adjusted": 1852.8
     },
-    "elo_win_prob_vs_avg": 0.7701
+    "elo_win_prob_vs_avg": 0.8257
   },
   "Kevin Anderson": {
     "player": "Kevin Anderson",
@@ -14886,13 +14886,13 @@
     ],
     "elo_snapshot": {
       "name": "Kevin Anderson",
-      "n_overall": 76,
+      "n_overall": 614,
       "n_surface": 76,
-      "R_overall": 1841.0,
-      "R_surface": 1841.0,
-      "R_adjusted": 1841.0
+      "R_overall": 1852.2,
+      "R_surface": 1846.3,
+      "R_adjusted": 1848.7
     },
-    "elo_win_prob_vs_avg": 0.8565
+    "elo_win_prob_vs_avg": 0.8223
   },
   "Kimmer Coppejans": {
     "player": "Kimmer Coppejans",
@@ -14957,13 +14957,13 @@
     ],
     "elo_snapshot": {
       "name": "Kimmer Coppejans",
-      "n_overall": 2,
+      "n_overall": 21,
       "n_surface": 2,
-      "R_overall": 1452.8,
-      "R_surface": 1452.8,
-      "R_adjusted": 1452.8
+      "R_overall": 1525.7,
+      "R_surface": 1453.4,
+      "R_adjusted": 1482.3
     },
-    "elo_win_prob_vs_avg": 0.3898
+    "elo_win_prob_vs_avg": 0.3595
   },
   "Laslo Djere": {
     "player": "Laslo Djere",
@@ -15100,13 +15100,13 @@
     ],
     "elo_snapshot": {
       "name": "Laslo Djere",
-      "n_overall": 21,
-      "n_surface": 21,
-      "R_overall": 1496.4,
-      "R_surface": 1496.4,
-      "R_adjusted": 1496.4
+      "n_overall": 279,
+      "n_surface": 20,
+      "R_overall": 1744.2,
+      "R_surface": 1508.0,
+      "R_adjusted": 1602.5
     },
-    "elo_win_prob_vs_avg": 0.4509
+    "elo_win_prob_vs_avg": 0.5286
   },
   "Laurent Lokoli": {
     "player": "Laurent Lokoli",
@@ -15171,13 +15171,13 @@
     ],
     "elo_snapshot": {
       "name": "Laurent Lokoli",
-      "n_overall": 1,
+      "n_overall": 8,
       "n_surface": 1,
-      "R_overall": 1435.3,
-      "R_surface": 1435.3,
-      "R_adjusted": 1435.3
+      "R_overall": 1354.9,
+      "R_surface": 1434.8,
+      "R_adjusted": 1402.8
     },
-    "elo_win_prob_vs_avg": 0.3662
+    "elo_win_prob_vs_avg": 0.2621
   },
   "Li Tu": {
     "player": "Li Tu",
@@ -15258,13 +15258,13 @@
     ],
     "elo_snapshot": {
       "name": "Li Tu",
-      "n_overall": 4,
-      "n_surface": 4,
-      "R_overall": 1406.9,
-      "R_surface": 1406.9,
-      "R_adjusted": 1406.9
+      "n_overall": 7,
+      "n_surface": 3,
+      "R_overall": 1451.4,
+      "R_surface": 1468.7,
+      "R_adjusted": 1461.8
     },
-    "elo_win_prob_vs_avg": 0.3291
+    "elo_win_prob_vs_avg": 0.3328
   },
   "Liam Broady": {
     "player": "Liam Broady",
@@ -15401,13 +15401,13 @@
     ],
     "elo_snapshot": {
       "name": "Liam Broady",
-      "n_overall": 27,
-      "n_surface": 27,
-      "R_overall": 1444.2,
-      "R_surface": 1444.2,
-      "R_adjusted": 1444.2
+      "n_overall": 55,
+      "n_surface": 26,
+      "R_overall": 1712.4,
+      "R_surface": 1466.6,
+      "R_adjusted": 1564.9
     },
-    "elo_win_prob_vs_avg": 0.3781
+    "elo_win_prob_vs_avg": 0.4745
   },
   "Lloyd Harris": {
     "player": "Lloyd Harris",
@@ -15544,13 +15544,13 @@
     ],
     "elo_snapshot": {
       "name": "Lloyd Harris",
-      "n_overall": 18,
-      "n_surface": 18,
-      "R_overall": 1542.6,
-      "R_surface": 1542.6,
-      "R_adjusted": 1542.6
+      "n_overall": 156,
+      "n_surface": 16,
+      "R_overall": 1705.2,
+      "R_surface": 1538.8,
+      "R_adjusted": 1605.4
     },
-    "elo_win_prob_vs_avg": 0.5172
+    "elo_win_prob_vs_avg": 0.5328
   },
   "Lorenzo Musetti": {
     "player": "Lorenzo Musetti",
@@ -15687,13 +15687,13 @@
     ],
     "elo_snapshot": {
       "name": "Lorenzo Musetti",
-      "n_overall": 28,
-      "n_surface": 28,
-      "R_overall": 1840.7,
-      "R_surface": 1840.7,
-      "R_adjusted": 1840.7
+      "n_overall": 211,
+      "n_surface": 22,
+      "R_overall": 1892.6,
+      "R_surface": 1772.7,
+      "R_adjusted": 1820.7
     },
-    "elo_win_prob_vs_avg": 0.8563
+    "elo_win_prob_vs_avg": 0.7975
   },
   "Lorenzo Sonego": {
     "player": "Lorenzo Sonego",
@@ -15830,13 +15830,13 @@
     ],
     "elo_snapshot": {
       "name": "Lorenzo Sonego",
-      "n_overall": 38,
-      "n_surface": 38,
-      "R_overall": 1622.1,
-      "R_surface": 1622.1,
-      "R_adjusted": 1622.1
+      "n_overall": 276,
+      "n_surface": 36,
+      "R_overall": 1792.5,
+      "R_surface": 1624.7,
+      "R_adjusted": 1691.9
     },
-    "elo_win_prob_vs_avg": 0.6287
+    "elo_win_prob_vs_avg": 0.6523
   },
   "Louis Wessels": {
     "player": "Louis Wessels",
@@ -15901,13 +15901,13 @@
     ],
     "elo_snapshot": {
       "name": "Louis Wessels",
-      "n_overall": 1,
+      "n_overall": 3,
       "n_surface": 1,
-      "R_overall": 1424.6,
-      "R_surface": 1424.6,
-      "R_adjusted": 1424.6
+      "R_overall": 1516.1,
+      "R_surface": 1426.9,
+      "R_adjusted": 1462.6
     },
-    "elo_win_prob_vs_avg": 0.352
+    "elo_win_prob_vs_avg": 0.3339
   },
   "Luca Van Assche": {
     "player": "Luca Van Assche",
@@ -15988,13 +15988,13 @@
     ],
     "elo_snapshot": {
       "name": "Luca Van Assche",
-      "n_overall": 4,
-      "n_surface": 4,
-      "R_overall": 1406.6,
-      "R_surface": 1406.6,
-      "R_adjusted": 1406.6
+      "n_overall": 50,
+      "n_surface": 3,
+      "R_overall": 1725.5,
+      "R_surface": 1436.3,
+      "R_adjusted": 1552.0
     },
-    "elo_win_prob_vs_avg": 0.3287
+    "elo_win_prob_vs_avg": 0.4561
   },
   "Lucas Pouille": {
     "player": "Lucas Pouille",
@@ -16067,13 +16067,13 @@
     ],
     "elo_snapshot": {
       "name": "Lucas Pouille",
-      "n_overall": 36,
-      "n_surface": 36,
-      "R_overall": 1691.7,
-      "R_surface": 1691.7,
-      "R_adjusted": 1691.7
+      "n_overall": 274,
+      "n_surface": 33,
+      "R_overall": 1717.7,
+      "R_surface": 1668.7,
+      "R_adjusted": 1688.3
     },
-    "elo_win_prob_vs_avg": 0.7165
+    "elo_win_prob_vs_avg": 0.6476
   },
   "Lukas Klein": {
     "player": "Lukas Klein",
@@ -16154,13 +16154,13 @@
     ],
     "elo_snapshot": {
       "name": "Lukas Klein",
-      "n_overall": 3,
+      "n_overall": 20,
       "n_surface": 3,
-      "R_overall": 1434.5,
-      "R_surface": 1434.5,
-      "R_adjusted": 1434.5
+      "R_overall": 1695.8,
+      "R_surface": 1440.8,
+      "R_adjusted": 1542.8
     },
-    "elo_win_prob_vs_avg": 0.3651
+    "elo_win_prob_vs_avg": 0.443
   },
   "Lukas Lacko": {
     "player": "Lukas Lacko",
@@ -16233,13 +16233,13 @@
     ],
     "elo_snapshot": {
       "name": "Lukas Lacko",
-      "n_overall": 45,
+      "n_overall": 246,
       "n_surface": 45,
-      "R_overall": 1555.2,
-      "R_surface": 1555.2,
-      "R_adjusted": 1555.2
+      "R_overall": 1668.2,
+      "R_surface": 1557.2,
+      "R_adjusted": 1601.6
     },
-    "elo_win_prob_vs_avg": 0.5353
+    "elo_win_prob_vs_avg": 0.5273
   },
   "Lukas Rosol": {
     "player": "Lukas Rosol",
@@ -16304,13 +16304,13 @@
     ],
     "elo_snapshot": {
       "name": "Lukas Rosol",
-      "n_overall": 21,
+      "n_overall": 284,
       "n_surface": 21,
-      "R_overall": 1461.8,
-      "R_surface": 1461.8,
-      "R_adjusted": 1461.8
+      "R_overall": 1699.9,
+      "R_surface": 1458.3,
+      "R_adjusted": 1554.9
     },
-    "elo_win_prob_vs_avg": 0.4022
+    "elo_win_prob_vs_avg": 0.4602
   },
   "Mackenzie Mcdonald": {
     "player": "Mackenzie Mcdonald",
@@ -16447,13 +16447,13 @@
     ],
     "elo_snapshot": {
       "name": "Mackenzie Mcdonald",
-      "n_overall": 33,
-      "n_surface": 33,
-      "R_overall": 1598.4,
-      "R_surface": 1598.4,
-      "R_adjusted": 1598.4
+      "n_overall": 220,
+      "n_surface": 29,
+      "R_overall": 1771.3,
+      "R_surface": 1606.2,
+      "R_adjusted": 1672.2
     },
-    "elo_win_prob_vs_avg": 0.5963
+    "elo_win_prob_vs_avg": 0.6262
   },
   "Marc Andrea Huesler": {
     "player": "Marc Andrea Huesler",
@@ -16566,13 +16566,13 @@
     ],
     "elo_snapshot": {
       "name": "Marc Andrea Huesler",
-      "n_overall": 8,
+      "n_overall": 80,
       "n_surface": 8,
-      "R_overall": 1450.4,
-      "R_surface": 1450.4,
-      "R_adjusted": 1450.4
+      "R_overall": 1605.1,
+      "R_surface": 1445.3,
+      "R_adjusted": 1509.2
     },
-    "elo_win_prob_vs_avg": 0.3866
+    "elo_win_prob_vs_avg": 0.3959
   },
   "Marc Polmans": {
     "player": "Marc Polmans",
@@ -16645,13 +16645,13 @@
     ],
     "elo_snapshot": {
       "name": "Marc Polmans",
-      "n_overall": 3,
-      "n_surface": 3,
-      "R_overall": 1455.6,
-      "R_surface": 1455.6,
-      "R_adjusted": 1455.6
+      "n_overall": 22,
+      "n_surface": 2,
+      "R_overall": 1555.7,
+      "R_surface": 1522.2,
+      "R_adjusted": 1535.6
     },
-    "elo_win_prob_vs_avg": 0.3937
+    "elo_win_prob_vs_avg": 0.4328
   },
   "Marco Cecchinato": {
     "player": "Marco Cecchinato",
@@ -16732,13 +16732,13 @@
     ],
     "elo_snapshot": {
       "name": "Marco Cecchinato",
-      "n_overall": 11,
+      "n_overall": 207,
       "n_surface": 11,
-      "R_overall": 1330.2,
-      "R_surface": 1330.2,
-      "R_adjusted": 1330.2
+      "R_overall": 1687.2,
+      "R_surface": 1330.3,
+      "R_adjusted": 1473.0
     },
-    "elo_win_prob_vs_avg": 0.2398
+    "elo_win_prob_vs_avg": 0.3473
   },
   "Marco Trungelliti": {
     "player": "Marco Trungelliti",
@@ -16803,13 +16803,13 @@
     ],
     "elo_snapshot": {
       "name": "Marco Trungelliti",
-      "n_overall": 1,
+      "n_overall": 36,
       "n_surface": 1,
-      "R_overall": 1423.1,
-      "R_surface": 1423.1,
-      "R_adjusted": 1423.1
+      "R_overall": 1623.2,
+      "R_surface": 1421.6,
+      "R_adjusted": 1502.2
     },
-    "elo_win_prob_vs_avg": 0.35
+    "elo_win_prob_vs_avg": 0.3863
   },
   "Marcos Giron": {
     "player": "Marcos Giron",
@@ -16946,13 +16946,13 @@
     ],
     "elo_snapshot": {
       "name": "Marcos Giron",
-      "n_overall": 31,
-      "n_surface": 31,
-      "R_overall": 1718.6,
-      "R_surface": 1718.6,
-      "R_adjusted": 1718.6
+      "n_overall": 201,
+      "n_surface": 25,
+      "R_overall": 1817.6,
+      "R_surface": 1613.2,
+      "R_adjusted": 1695.0
     },
-    "elo_win_prob_vs_avg": 0.7469
+    "elo_win_prob_vs_avg": 0.6563
   },
   "Marin Cilic": {
     "player": "Marin Cilic",
@@ -17089,13 +17089,13 @@
     ],
     "elo_snapshot": {
       "name": "Marin Cilic",
-      "n_overall": 114,
+      "n_overall": 922,
       "n_surface": 114,
-      "R_overall": 1897.5,
-      "R_surface": 1897.5,
-      "R_adjusted": 1897.5
+      "R_overall": 1893.5,
+      "R_surface": 1899.6,
+      "R_adjusted": 1897.1
     },
-    "elo_win_prob_vs_avg": 0.8921
+    "elo_win_prob_vs_avg": 0.8594
   },
   "Marton Fucsovics": {
     "player": "Marton Fucsovics",
@@ -17232,13 +17232,13 @@
     ],
     "elo_snapshot": {
       "name": "Marton Fucsovics",
-      "n_overall": 34,
-      "n_surface": 34,
-      "R_overall": 1712.3,
-      "R_surface": 1712.3,
-      "R_adjusted": 1712.3
+      "n_overall": 316,
+      "n_surface": 33,
+      "R_overall": 1878.3,
+      "R_surface": 1725.0,
+      "R_adjusted": 1786.3
     },
-    "elo_win_prob_vs_avg": 0.74
+    "elo_win_prob_vs_avg": 0.7636
   },
   "Matteo Arnaldi": {
     "player": "Matteo Arnaldi",
@@ -17303,13 +17303,13 @@
     ],
     "elo_snapshot": {
       "name": "Matteo Arnaldi",
-      "n_overall": 4,
-      "n_surface": 4,
-      "R_overall": 1440.2,
-      "R_surface": 1440.2,
-      "R_adjusted": 1440.2
+      "n_overall": 72,
+      "n_surface": 3,
+      "R_overall": 1927.9,
+      "R_surface": 1468.4,
+      "R_adjusted": 1652.2
     },
-    "elo_win_prob_vs_avg": 0.3727
+    "elo_win_prob_vs_avg": 0.5988
   },
   "Matteo Berrettini": {
     "player": "Matteo Berrettini",
@@ -17446,13 +17446,13 @@
     ],
     "elo_snapshot": {
       "name": "Matteo Berrettini",
-      "n_overall": 53,
-      "n_surface": 53,
-      "R_overall": 1925.1,
-      "R_surface": 1925.1,
-      "R_adjusted": 1925.1
+      "n_overall": 259,
+      "n_surface": 51,
+      "R_overall": 1977.4,
+      "R_surface": 1951.9,
+      "R_adjusted": 1962.1
     },
-    "elo_win_prob_vs_avg": 0.9064
+    "elo_win_prob_vs_avg": 0.8989
   },
   "Matthew Ebden": {
     "player": "Matthew Ebden",
@@ -17517,13 +17517,13 @@
     ],
     "elo_snapshot": {
       "name": "Matthew Ebden",
-      "n_overall": 46,
+      "n_overall": 207,
       "n_surface": 46,
-      "R_overall": 1552.6,
-      "R_surface": 1552.6,
-      "R_adjusted": 1552.6
+      "R_overall": 1700.7,
+      "R_surface": 1553.8,
+      "R_adjusted": 1612.6
     },
-    "elo_win_prob_vs_avg": 0.5316
+    "elo_win_prob_vs_avg": 0.5431
   },
   "Max Purcell": {
     "player": "Max Purcell",
@@ -17660,13 +17660,13 @@
     ],
     "elo_snapshot": {
       "name": "Max Purcell",
-      "n_overall": 19,
-      "n_surface": 19,
-      "R_overall": 1566.6,
-      "R_surface": 1566.6,
-      "R_adjusted": 1566.6
+      "n_overall": 76,
+      "n_surface": 18,
+      "R_overall": 1728.0,
+      "R_surface": 1621.3,
+      "R_adjusted": 1664.0
     },
-    "elo_win_prob_vs_avg": 0.5516
+    "elo_win_prob_vs_avg": 0.615
   },
   "Maxime Cressy": {
     "player": "Maxime Cressy",
@@ -17803,13 +17803,13 @@
     ],
     "elo_snapshot": {
       "name": "Maxime Cressy",
-      "n_overall": 24,
-      "n_surface": 24,
-      "R_overall": 1561.1,
-      "R_surface": 1561.1,
-      "R_adjusted": 1561.1
+      "n_overall": 98,
+      "n_surface": 22,
+      "R_overall": 1629.9,
+      "R_surface": 1562.9,
+      "R_adjusted": 1589.7
     },
-    "elo_win_prob_vs_avg": 0.5438
+    "elo_win_prob_vs_avg": 0.5102
   },
   "Maximilian Marterer": {
     "player": "Maximilian Marterer",
@@ -17906,13 +17906,13 @@
     ],
     "elo_snapshot": {
       "name": "Maximilian Marterer",
-      "n_overall": 14,
-      "n_surface": 14,
-      "R_overall": 1461.8,
-      "R_surface": 1461.8,
-      "R_adjusted": 1461.8
+      "n_overall": 108,
+      "n_surface": 13,
+      "R_overall": 1599.4,
+      "R_surface": 1456.2,
+      "R_adjusted": 1513.5
     },
-    "elo_win_prob_vs_avg": 0.4022
+    "elo_win_prob_vs_avg": 0.4018
   },
   "Michael Mmoh": {
     "player": "Michael Mmoh",
@@ -17985,13 +17985,13 @@
     ],
     "elo_snapshot": {
       "name": "Michael Mmoh",
-      "n_overall": 4,
+      "n_overall": 70,
       "n_surface": 4,
-      "R_overall": 1462.7,
-      "R_surface": 1462.7,
-      "R_adjusted": 1462.7
+      "R_overall": 1824.1,
+      "R_surface": 1462.6,
+      "R_adjusted": 1607.2
     },
-    "elo_win_prob_vs_avg": 0.4035
+    "elo_win_prob_vs_avg": 0.5353
   },
   "Mikael Ymer": {
     "player": "Mikael Ymer",
@@ -18128,13 +18128,13 @@
     ],
     "elo_snapshot": {
       "name": "Mikael Ymer",
-      "n_overall": 13,
+      "n_overall": 152,
       "n_surface": 13,
-      "R_overall": 1598.7,
-      "R_surface": 1598.7,
-      "R_adjusted": 1598.7
+      "R_overall": 1814.1,
+      "R_surface": 1592.7,
+      "R_adjusted": 1681.3
     },
-    "elo_win_prob_vs_avg": 0.5967
+    "elo_win_prob_vs_avg": 0.6383
   },
   "Mikhail Kukushkin": {
     "player": "Mikhail Kukushkin",
@@ -18215,13 +18215,13 @@
     ],
     "elo_snapshot": {
       "name": "Mikhail Kukushkin",
-      "n_overall": 41,
+      "n_overall": 409,
       "n_surface": 41,
-      "R_overall": 1551.1,
-      "R_surface": 1551.1,
-      "R_adjusted": 1551.1
+      "R_overall": 1654.1,
+      "R_surface": 1553.8,
+      "R_adjusted": 1593.9
     },
-    "elo_win_prob_vs_avg": 0.5294
+    "elo_win_prob_vs_avg": 0.5163
   },
   "Milos Raonic": {
     "player": "Milos Raonic",
@@ -18310,13 +18310,13 @@
     ],
     "elo_snapshot": {
       "name": "Milos Raonic",
-      "n_overall": 81,
+      "n_overall": 583,
       "n_surface": 81,
-      "R_overall": 1810.8,
-      "R_surface": 1810.8,
-      "R_adjusted": 1810.8
+      "R_overall": 1959.3,
+      "R_surface": 1813.9,
+      "R_adjusted": 1872.0
     },
-    "elo_win_prob_vs_avg": 0.8338
+    "elo_win_prob_vs_avg": 0.841
   },
   "Miomir Kecmanovic": {
     "player": "Miomir Kecmanovic",
@@ -18453,13 +18453,13 @@
     ],
     "elo_snapshot": {
       "name": "Miomir Kecmanovic",
-      "n_overall": 32,
-      "n_surface": 32,
-      "R_overall": 1594.8,
-      "R_surface": 1594.8,
-      "R_adjusted": 1594.8
+      "n_overall": 271,
+      "n_surface": 29,
+      "R_overall": 1808.7,
+      "R_surface": 1537.0,
+      "R_adjusted": 1645.7
     },
-    "elo_win_prob_vs_avg": 0.5913
+    "elo_win_prob_vs_avg": 0.5898
   },
   "Mitchell Krueger": {
     "player": "Mitchell Krueger",
@@ -18540,13 +18540,13 @@
     ],
     "elo_snapshot": {
       "name": "Mitchell Krueger",
-      "n_overall": 5,
+      "n_overall": 27,
       "n_surface": 5,
-      "R_overall": 1433.6,
-      "R_surface": 1433.6,
-      "R_adjusted": 1433.6
+      "R_overall": 1642.7,
+      "R_surface": 1432.9,
+      "R_adjusted": 1516.8
     },
-    "elo_win_prob_vs_avg": 0.3639
+    "elo_win_prob_vs_avg": 0.4064
   },
   "Nick Kyrgios": {
     "player": "Nick Kyrgios",
@@ -18683,13 +18683,13 @@
     ],
     "elo_snapshot": {
       "name": "Nick Kyrgios",
-      "n_overall": 57,
+      "n_overall": 328,
       "n_surface": 57,
-      "R_overall": 1853.9,
-      "R_surface": 1853.9,
-      "R_adjusted": 1853.9
+      "R_overall": 2084.2,
+      "R_surface": 1844.0,
+      "R_adjusted": 1940.1
     },
-    "elo_win_prob_vs_avg": 0.8654
+    "elo_win_prob_vs_avg": 0.8867
   },
   "Nicola Kuhn": {
     "player": "Nicola Kuhn",
@@ -18762,13 +18762,13 @@
     ],
     "elo_snapshot": {
       "name": "Nicola Kuhn",
-      "n_overall": 2,
+      "n_overall": 12,
       "n_surface": 2,
-      "R_overall": 1433.2,
-      "R_surface": 1433.2,
-      "R_adjusted": 1433.2
+      "R_overall": 1556.8,
+      "R_surface": 1446.8,
+      "R_adjusted": 1490.8
     },
-    "elo_win_prob_vs_avg": 0.3634
+    "elo_win_prob_vs_avg": 0.3709
   },
   "Nicolas Jarry": {
     "player": "Nicolas Jarry",
@@ -18881,13 +18881,13 @@
     ],
     "elo_snapshot": {
       "name": "Nicolas Jarry",
-      "n_overall": 18,
-      "n_surface": 18,
-      "R_overall": 1583.7,
-      "R_surface": 1583.7,
-      "R_adjusted": 1583.7
+      "n_overall": 214,
+      "n_surface": 17,
+      "R_overall": 1888.7,
+      "R_surface": 1612.1,
+      "R_adjusted": 1722.7
     },
-    "elo_win_prob_vs_avg": 0.5758
+    "elo_win_prob_vs_avg": 0.6914
   },
   "Nikoloz Basilashvili": {
     "player": "Nikoloz Basilashvili",
@@ -19024,13 +19024,13 @@
     ],
     "elo_snapshot": {
       "name": "Nikoloz Basilashvili",
-      "n_overall": 33,
+      "n_overall": 318,
       "n_surface": 33,
-      "R_overall": 1640.4,
-      "R_surface": 1640.4,
-      "R_adjusted": 1640.4
+      "R_overall": 1688.1,
+      "R_surface": 1655.7,
+      "R_adjusted": 1668.7
     },
-    "elo_win_prob_vs_avg": 0.6529
+    "elo_win_prob_vs_avg": 0.6214
   },
   "Norbert Gombos": {
     "player": "Norbert Gombos",
@@ -19103,13 +19103,13 @@
     ],
     "elo_snapshot": {
       "name": "Norbert Gombos",
-      "n_overall": 5,
+      "n_overall": 84,
       "n_surface": 5,
-      "R_overall": 1366.5,
-      "R_surface": 1366.5,
-      "R_adjusted": 1366.5
+      "R_overall": 1628.3,
+      "R_surface": 1358.7,
+      "R_adjusted": 1466.5
     },
-    "elo_win_prob_vs_avg": 0.2799
+    "elo_win_prob_vs_avg": 0.3389
   },
   "Novak Djokovic": {
     "player": "Novak Djokovic",
@@ -19246,13 +19246,13 @@
     ],
     "elo_snapshot": {
       "name": "Novak Djokovic",
-      "n_overall": 140,
-      "n_surface": 140,
-      "R_overall": 2184.9,
-      "R_surface": 2184.9,
-      "R_adjusted": 2184.9
+      "n_overall": 1337,
+      "n_surface": 133,
+      "R_overall": 2286.6,
+      "R_surface": 2197.0,
+      "R_adjusted": 2232.8
     },
-    "elo_win_prob_vs_avg": 0.9774
+    "elo_win_prob_vs_avg": 0.9769
   },
   "Nuno Borges": {
     "player": "Nuno Borges",
@@ -19333,13 +19333,13 @@
     ],
     "elo_snapshot": {
       "name": "Nuno Borges",
-      "n_overall": 6,
-      "n_surface": 6,
-      "R_overall": 1311.3,
-      "R_surface": 1311.3,
-      "R_adjusted": 1311.3
+      "n_overall": 69,
+      "n_surface": 5,
+      "R_overall": 1752.8,
+      "R_surface": 1332.6,
+      "R_adjusted": 1500.7
     },
-    "elo_win_prob_vs_avg": 0.2205
+    "elo_win_prob_vs_avg": 0.3843
   },
   "Oscar Otte": {
     "player": "Oscar Otte",
@@ -19476,13 +19476,13 @@
     ],
     "elo_snapshot": {
       "name": "Oscar Otte",
-      "n_overall": 18,
+      "n_overall": 86,
       "n_surface": 18,
-      "R_overall": 1583.4,
-      "R_surface": 1583.4,
-      "R_adjusted": 1583.4
+      "R_overall": 1616.5,
+      "R_surface": 1579.6,
+      "R_adjusted": 1594.3
     },
-    "elo_win_prob_vs_avg": 0.5754
+    "elo_win_prob_vs_avg": 0.5168
   },
   "Pablo Andujar": {
     "player": "Pablo Andujar",
@@ -19571,13 +19571,13 @@
     ],
     "elo_snapshot": {
       "name": "Pablo Andujar",
-      "n_overall": 21,
+      "n_overall": 408,
       "n_surface": 21,
-      "R_overall": 1332.6,
-      "R_surface": 1332.6,
-      "R_adjusted": 1332.6
+      "R_overall": 1665.7,
+      "R_surface": 1332.4,
+      "R_adjusted": 1465.7
     },
-    "elo_win_prob_vs_avg": 0.2423
+    "elo_win_prob_vs_avg": 0.3378
   },
   "Pablo Carreno Busta": {
     "player": "Pablo Carreno Busta",
@@ -19706,13 +19706,13 @@
     ],
     "elo_snapshot": {
       "name": "Pablo Carreno Busta",
-      "n_overall": 20,
+      "n_overall": 484,
       "n_surface": 20,
-      "R_overall": 1463.5,
-      "R_surface": 1463.5,
-      "R_adjusted": 1463.5
+      "R_overall": 1893.0,
+      "R_surface": 1477.9,
+      "R_adjusted": 1644.0
     },
-    "elo_win_prob_vs_avg": 0.4046
+    "elo_win_prob_vs_avg": 0.5875
   },
   "Pablo Cuevas": {
     "player": "Pablo Cuevas",
@@ -19777,13 +19777,13 @@
     ],
     "elo_snapshot": {
       "name": "Pablo Cuevas",
-      "n_overall": 18,
+      "n_overall": 464,
       "n_surface": 18,
-      "R_overall": 1489.3,
-      "R_surface": 1489.3,
-      "R_adjusted": 1489.3
+      "R_overall": 1717.5,
+      "R_surface": 1485.8,
+      "R_adjusted": 1578.5
     },
-    "elo_win_prob_vs_avg": 0.4408
+    "elo_win_prob_vs_avg": 0.4941
   },
   "Paolo Lorenzi": {
     "player": "Paolo Lorenzi",
@@ -19848,13 +19848,13 @@
     ],
     "elo_snapshot": {
       "name": "Paolo Lorenzi",
-      "n_overall": 26,
+      "n_overall": 295,
       "n_surface": 26,
-      "R_overall": 1299.6,
-      "R_surface": 1299.6,
-      "R_adjusted": 1299.6
+      "R_overall": 1588.9,
+      "R_surface": 1300.3,
+      "R_adjusted": 1415.8
     },
-    "elo_win_prob_vs_avg": 0.2092
+    "elo_win_prob_vs_avg": 0.2768
   },
   "Paul Jubb": {
     "player": "Paul Jubb",
@@ -19927,13 +19927,13 @@
     ],
     "elo_snapshot": {
       "name": "Paul Jubb",
-      "n_overall": 9,
-      "n_surface": 9,
-      "R_overall": 1453.6,
-      "R_surface": 1453.6,
-      "R_adjusted": 1453.6
+      "n_overall": 8,
+      "n_surface": 8,
+      "R_overall": 1630.9,
+      "R_surface": 1485.3,
+      "R_adjusted": 1543.6
     },
-    "elo_win_prob_vs_avg": 0.3909
+    "elo_win_prob_vs_avg": 0.4441
   },
   "Pavel Kotov": {
     "player": "Pavel Kotov",
@@ -20014,13 +20014,13 @@
     ],
     "elo_snapshot": {
       "name": "Pavel Kotov",
-      "n_overall": 4,
-      "n_surface": 4,
-      "R_overall": 1513.7,
-      "R_surface": 1513.7,
-      "R_adjusted": 1513.7
+      "n_overall": 65,
+      "n_surface": 3,
+      "R_overall": 1881.9,
+      "R_surface": 1548.6,
+      "R_adjusted": 1681.9
     },
-    "elo_win_prob_vs_avg": 0.4757
+    "elo_win_prob_vs_avg": 0.6391
   },
   "Pedro Cachin": {
     "player": "Pedro Cachin",
@@ -20093,13 +20093,13 @@
     ],
     "elo_snapshot": {
       "name": "Pedro Cachin",
-      "n_overall": 2,
+      "n_overall": 71,
       "n_surface": 2,
-      "R_overall": 1451.4,
-      "R_surface": 1451.4,
-      "R_adjusted": 1451.4
+      "R_overall": 1616.2,
+      "R_surface": 1445.0,
+      "R_adjusted": 1513.5
     },
-    "elo_win_prob_vs_avg": 0.3879
+    "elo_win_prob_vs_avg": 0.4018
   },
   "Pedro Martinez": {
     "player": "Pedro Martinez",
@@ -20212,13 +20212,13 @@
     ],
     "elo_snapshot": {
       "name": "Pedro Martinez",
-      "n_overall": 10,
-      "n_surface": 10,
-      "R_overall": 1380.1,
-      "R_surface": 1380.1,
-      "R_adjusted": 1380.1
+      "n_overall": 138,
+      "n_surface": 9,
+      "R_overall": 1714.4,
+      "R_surface": 1399.5,
+      "R_adjusted": 1525.4
     },
-    "elo_win_prob_vs_avg": 0.296
+    "elo_win_prob_vs_avg": 0.4184
   },
   "Pedro Sousa": {
     "player": "Pedro Sousa",
@@ -20283,13 +20283,13 @@
     ],
     "elo_snapshot": {
       "name": "Pedro Sousa",
-      "n_overall": 1,
+      "n_overall": 49,
       "n_surface": 1,
-      "R_overall": 1460.6,
-      "R_surface": 1460.6,
-      "R_adjusted": 1460.6
+      "R_overall": 1510.2,
+      "R_surface": 1466.8,
+      "R_adjusted": 1484.2
     },
-    "elo_win_prob_vs_avg": 0.4006
+    "elo_win_prob_vs_avg": 0.3621
   },
   "Peter Gojowczyk": {
     "player": "Peter Gojowczyk",
@@ -20410,13 +20410,13 @@
     ],
     "elo_snapshot": {
       "name": "Peter Gojowczyk",
-      "n_overall": 26,
+      "n_overall": 175,
       "n_surface": 26,
-      "R_overall": 1579.9,
-      "R_surface": 1579.9,
-      "R_adjusted": 1579.9
+      "R_overall": 1691.6,
+      "R_surface": 1575.2,
+      "R_adjusted": 1621.7
     },
-    "elo_win_prob_vs_avg": 0.5705
+    "elo_win_prob_vs_avg": 0.556
   },
   "Philipp Kohlschreiber": {
     "player": "Philipp Kohlschreiber",
@@ -20505,13 +20505,13 @@
     ],
     "elo_snapshot": {
       "name": "Philipp Kohlschreiber",
-      "n_overall": 101,
+      "n_overall": 882,
       "n_surface": 101,
-      "R_overall": 1655.8,
-      "R_surface": 1655.8,
-      "R_adjusted": 1655.8
+      "R_overall": 1786.6,
+      "R_surface": 1664.8,
+      "R_adjusted": 1713.5
     },
-    "elo_win_prob_vs_avg": 0.6727
+    "elo_win_prob_vs_avg": 0.6799
   },
   "Pierre Hugues Herbert": {
     "player": "Pierre Hugues Herbert",
@@ -20576,13 +20576,13 @@
     ],
     "elo_snapshot": {
       "name": "Pierre Hugues Herbert",
-      "n_overall": 30,
+      "n_overall": 226,
       "n_surface": 30,
-      "R_overall": 1585.0,
-      "R_surface": 1585.0,
-      "R_adjusted": 1585.0
+      "R_overall": 1762.0,
+      "R_surface": 1586.8,
+      "R_adjusted": 1656.9
     },
-    "elo_win_prob_vs_avg": 0.5776
+    "elo_win_prob_vs_avg": 0.6053
   },
   "Quentin Halys": {
     "player": "Quentin Halys",
@@ -20703,13 +20703,13 @@
     ],
     "elo_snapshot": {
       "name": "Quentin Halys",
-      "n_overall": 11,
-      "n_surface": 11,
-      "R_overall": 1648.1,
-      "R_surface": 1648.1,
-      "R_adjusted": 1648.1
+      "n_overall": 81,
+      "n_surface": 8,
+      "R_overall": 1735.3,
+      "R_surface": 1576.6,
+      "R_adjusted": 1640.1
     },
-    "elo_win_prob_vs_avg": 0.6629
+    "elo_win_prob_vs_avg": 0.582
   },
   "Radu Albot": {
     "player": "Radu Albot",
@@ -20830,13 +20830,13 @@
     ],
     "elo_snapshot": {
       "name": "Radu Albot",
-      "n_overall": 24,
-      "n_surface": 24,
-      "R_overall": 1398.8,
-      "R_surface": 1398.8,
-      "R_adjusted": 1398.8
+      "n_overall": 250,
+      "n_surface": 22,
+      "R_overall": 1699.7,
+      "R_surface": 1433.7,
+      "R_adjusted": 1540.1
     },
-    "elo_win_prob_vs_avg": 0.3189
+    "elo_win_prob_vs_avg": 0.4391
   },
   "Rafael Nadal": {
     "player": "Rafael Nadal",
@@ -20941,13 +20941,13 @@
     ],
     "elo_snapshot": {
       "name": "Rafael Nadal",
-      "n_overall": 97,
+      "n_overall": 1317,
       "n_surface": 97,
-      "R_overall": 1965.8,
-      "R_surface": 1965.8,
-      "R_adjusted": 1965.8
+      "R_overall": 2175.4,
+      "R_surface": 1959.4,
+      "R_adjusted": 2045.8
     },
-    "elo_win_prob_vs_avg": 0.9245
+    "elo_win_prob_vs_avg": 0.935
   },
   "Reilly Opelka": {
     "player": "Reilly Opelka",
@@ -21052,13 +21052,13 @@
     ],
     "elo_snapshot": {
       "name": "Reilly Opelka",
-      "n_overall": 15,
-      "n_surface": 15,
-      "R_overall": 1547.7,
-      "R_surface": 1547.7,
-      "R_adjusted": 1547.7
+      "n_overall": 173,
+      "n_surface": 11,
+      "R_overall": 1872.0,
+      "R_surface": 1436.5,
+      "R_adjusted": 1610.7
     },
-    "elo_win_prob_vs_avg": 0.5246
+    "elo_win_prob_vs_avg": 0.5403
   },
   "Ricardas Berankis": {
     "player": "Ricardas Berankis",
@@ -21155,13 +21155,13 @@
     ],
     "elo_snapshot": {
       "name": "Ricardas Berankis",
-      "n_overall": 26,
+      "n_overall": 287,
       "n_surface": 26,
-      "R_overall": 1449.5,
-      "R_surface": 1449.5,
-      "R_adjusted": 1449.5
+      "R_overall": 1750.1,
+      "R_surface": 1450.7,
+      "R_adjusted": 1570.5
     },
-    "elo_win_prob_vs_avg": 0.3853
+    "elo_win_prob_vs_avg": 0.4826
   },
   "Richard Gasquet": {
     "player": "Richard Gasquet",
@@ -21298,13 +21298,13 @@
     ],
     "elo_snapshot": {
       "name": "Richard Gasquet",
-      "n_overall": 117,
+      "n_overall": 1017,
       "n_surface": 117,
-      "R_overall": 1658.8,
-      "R_surface": 1658.8,
-      "R_adjusted": 1658.8
+      "R_overall": 1736.8,
+      "R_surface": 1650.4,
+      "R_adjusted": 1684.9
     },
-    "elo_win_prob_vs_avg": 0.6765
+    "elo_win_prob_vs_avg": 0.6431
   },
   "Rinky Hijikata": {
     "player": "Rinky Hijikata",
@@ -21409,13 +21409,13 @@
     ],
     "elo_snapshot": {
       "name": "Rinky Hijikata",
-      "n_overall": 14,
-      "n_surface": 14,
-      "R_overall": 1493.0,
-      "R_surface": 1493.0,
-      "R_adjusted": 1493.0
+      "n_overall": 50,
+      "n_surface": 12,
+      "R_overall": 1741.3,
+      "R_surface": 1583.8,
+      "R_adjusted": 1646.8
     },
-    "elo_win_prob_vs_avg": 0.4461
+    "elo_win_prob_vs_avg": 0.5914
   },
   "Roberto Bautista Agut": {
     "player": "Roberto Bautista Agut",
@@ -21552,13 +21552,13 @@
     ],
     "elo_snapshot": {
       "name": "Roberto Bautista Agut",
-      "n_overall": 76,
-      "n_surface": 76,
-      "R_overall": 1771.0,
-      "R_surface": 1771.0,
-      "R_adjusted": 1771.0
+      "n_overall": 672,
+      "n_surface": 72,
+      "R_overall": 1838.1,
+      "R_surface": 1744.7,
+      "R_adjusted": 1782.0
     },
-    "elo_win_prob_vs_avg": 0.7996
+    "elo_win_prob_vs_avg": 0.7591
   },
   "Roberto Carballes Baena": {
     "player": "Roberto Carballes Baena",
@@ -21679,13 +21679,13 @@
     ],
     "elo_snapshot": {
       "name": "Roberto Carballes Baena",
-      "n_overall": 17,
-      "n_surface": 17,
-      "R_overall": 1430.9,
-      "R_surface": 1430.9,
-      "R_adjusted": 1430.9
+      "n_overall": 245,
+      "n_surface": 16,
+      "R_overall": 1806.3,
+      "R_surface": 1439.3,
+      "R_adjusted": 1586.1
     },
-    "elo_win_prob_vs_avg": 0.3603
+    "elo_win_prob_vs_avg": 0.505
   },
   "Robin Haase": {
     "player": "Robin Haase",
@@ -21750,13 +21750,13 @@
     ],
     "elo_snapshot": {
       "name": "Robin Haase",
-      "n_overall": 56,
+      "n_overall": 504,
       "n_surface": 56,
-      "R_overall": 1573.9,
-      "R_surface": 1573.9,
-      "R_adjusted": 1573.9
+      "R_overall": 1758.5,
+      "R_surface": 1583.7,
+      "R_adjusted": 1653.6
     },
-    "elo_win_prob_vs_avg": 0.562
+    "elo_win_prob_vs_avg": 0.6008
   },
   "Roger Federer": {
     "player": "Roger Federer",
@@ -21869,13 +21869,13 @@
     ],
     "elo_snapshot": {
       "name": "Roger Federer",
-      "n_overall": 223,
+      "n_overall": 1544,
       "n_surface": 223,
-      "R_overall": 2095.1,
-      "R_surface": 2095.1,
-      "R_adjusted": 2095.1
+      "R_overall": 2234.0,
+      "R_surface": 2089.0,
+      "R_adjusted": 2147.0
     },
-    "elo_win_prob_vs_avg": 0.9627
+    "elo_win_prob_vs_avg": 0.9626
   },
   "Roman Safiullin": {
     "player": "Roman Safiullin",
@@ -21996,13 +21996,13 @@
     ],
     "elo_snapshot": {
       "name": "Roman Safiullin",
-      "n_overall": 13,
-      "n_surface": 13,
-      "R_overall": 1626.2,
-      "R_surface": 1626.2,
-      "R_adjusted": 1626.2
+      "n_overall": 84,
+      "n_surface": 10,
+      "R_overall": 1749.8,
+      "R_surface": 1607.6,
+      "R_adjusted": 1664.5
     },
-    "elo_win_prob_vs_avg": 0.6342
+    "elo_win_prob_vs_avg": 0.6157
   },
   "Rudolf Molleker": {
     "player": "Rudolf Molleker",
@@ -22067,13 +22067,13 @@
     ],
     "elo_snapshot": {
       "name": "Rudolf Molleker",
-      "n_overall": 5,
+      "n_overall": 17,
       "n_surface": 5,
-      "R_overall": 1407.4,
-      "R_surface": 1407.4,
-      "R_adjusted": 1407.4
+      "R_overall": 1600.6,
+      "R_surface": 1403.1,
+      "R_adjusted": 1482.1
     },
-    "elo_win_prob_vs_avg": 0.3298
+    "elo_win_prob_vs_avg": 0.3593
   },
   "Ryan Peniston": {
     "player": "Ryan Peniston",
@@ -22210,13 +22210,13 @@
     ],
     "elo_snapshot": {
       "name": "Ryan Peniston",
-      "n_overall": 12,
+      "n_overall": 13,
       "n_surface": 12,
-      "R_overall": 1500.6,
-      "R_surface": 1500.6,
-      "R_adjusted": 1500.6
+      "R_overall": 1694.3,
+      "R_surface": 1515.3,
+      "R_adjusted": 1586.9
     },
-    "elo_win_prob_vs_avg": 0.4569
+    "elo_win_prob_vs_avg": 0.5062
   },
   "Salvatore Caruso": {
     "player": "Salvatore Caruso",
@@ -22289,13 +22289,13 @@
     ],
     "elo_snapshot": {
       "name": "Salvatore Caruso",
-      "n_overall": 4,
+      "n_overall": 63,
       "n_surface": 4,
-      "R_overall": 1381.7,
-      "R_surface": 1381.7,
-      "R_adjusted": 1381.7
+      "R_overall": 1535.0,
+      "R_surface": 1385.1,
+      "R_adjusted": 1445.0
     },
-    "elo_win_prob_vs_avg": 0.2979
+    "elo_win_prob_vs_avg": 0.3117
   },
   "Sam Querrey": {
     "player": "Sam Querrey",
@@ -22432,13 +22432,13 @@
     ],
     "elo_snapshot": {
       "name": "Sam Querrey",
-      "n_overall": 125,
+      "n_overall": 718,
       "n_surface": 125,
-      "R_overall": 1706.9,
-      "R_surface": 1706.9,
-      "R_adjusted": 1706.9
+      "R_overall": 1760.7,
+      "R_surface": 1708.4,
+      "R_adjusted": 1729.3
     },
-    "elo_win_prob_vs_avg": 0.734
+    "elo_win_prob_vs_avg": 0.6994
   },
   "Sasi Kumar Mukund": {
     "player": "Sasi Kumar Mukund",
@@ -22503,13 +22503,13 @@
     ],
     "elo_snapshot": {
       "name": "Sasi Kumar Mukund",
-      "n_overall": 1,
+      "n_overall": 4,
       "n_surface": 1,
-      "R_overall": 1427.8,
-      "R_surface": 1427.8,
-      "R_adjusted": 1427.8
+      "R_overall": 1338.7,
+      "R_surface": 1426.7,
+      "R_adjusted": 1391.5
     },
-    "elo_win_prob_vs_avg": 0.3562
+    "elo_win_prob_vs_avg": 0.2497
   },
   "Sebastian Baez": {
     "player": "Sebastian Baez",
@@ -22622,13 +22622,13 @@
     ],
     "elo_snapshot": {
       "name": "Sebastian Baez",
-      "n_overall": 10,
-      "n_surface": 10,
-      "R_overall": 1400.3,
-      "R_surface": 1400.3,
-      "R_adjusted": 1400.3
+      "n_overall": 158,
+      "n_surface": 9,
+      "R_overall": 1852.4,
+      "R_surface": 1424.2,
+      "R_adjusted": 1595.5
     },
-    "elo_win_prob_vs_avg": 0.3208
+    "elo_win_prob_vs_avg": 0.5186
   },
   "Sebastian Korda": {
     "player": "Sebastian Korda",
@@ -22765,13 +22765,13 @@
     ],
     "elo_snapshot": {
       "name": "Sebastian Korda",
-      "n_overall": 25,
-      "n_surface": 25,
-      "R_overall": 1744.4,
-      "R_surface": 1744.4,
-      "R_adjusted": 1744.4
+      "n_overall": 192,
+      "n_surface": 24,
+      "R_overall": 1993.3,
+      "R_surface": 1804.7,
+      "R_adjusted": 1880.1
     },
-    "elo_win_prob_vs_avg": 0.7739
+    "elo_win_prob_vs_avg": 0.8472
   },
   "Sebastian Ofner": {
     "player": "Sebastian Ofner",
@@ -22860,13 +22860,13 @@
     ],
     "elo_snapshot": {
       "name": "Sebastian Ofner",
-      "n_overall": 15,
-      "n_surface": 15,
-      "R_overall": 1572.1,
-      "R_surface": 1572.1,
-      "R_adjusted": 1572.1
+      "n_overall": 87,
+      "n_surface": 14,
+      "R_overall": 1796.4,
+      "R_surface": 1577.1,
+      "R_adjusted": 1664.8
     },
-    "elo_win_prob_vs_avg": 0.5594
+    "elo_win_prob_vs_avg": 0.6161
   },
   "Shintaro Mochizuki": {
     "player": "Shintaro Mochizuki",
@@ -22939,13 +22939,13 @@
     ],
     "elo_snapshot": {
       "name": "Shintaro Mochizuki",
-      "n_overall": 3,
-      "n_surface": 3,
-      "R_overall": 1352.9,
-      "R_surface": 1352.9,
-      "R_adjusted": 1352.9
+      "n_overall": 19,
+      "n_surface": 2,
+      "R_overall": 1454.1,
+      "R_surface": 1406.9,
+      "R_adjusted": 1425.8
     },
-    "elo_win_prob_vs_avg": 0.2644
+    "elo_win_prob_vs_avg": 0.2885
   },
   "Sho Shimabukuro": {
     "player": "Sho Shimabukuro",
@@ -23010,13 +23010,13 @@
     ],
     "elo_snapshot": {
       "name": "Sho Shimabukuro",
-      "n_overall": 1,
+      "n_overall": 12,
       "n_surface": 1,
-      "R_overall": 1465.6,
-      "R_surface": 1465.6,
-      "R_adjusted": 1465.6
+      "R_overall": 1547.9,
+      "R_surface": 1468.3,
+      "R_adjusted": 1500.2
     },
-    "elo_win_prob_vs_avg": 0.4075
+    "elo_win_prob_vs_avg": 0.3836
   },
   "Soon Woo Kwon": {
     "player": "Soon Woo Kwon",
@@ -23129,13 +23129,13 @@
     ],
     "elo_snapshot": {
       "name": "Soon Woo Kwon",
-      "n_overall": 12,
-      "n_surface": 12,
-      "R_overall": 1523.3,
-      "R_surface": 1523.3,
-      "R_adjusted": 1523.3
+      "n_overall": 132,
+      "n_surface": 11,
+      "R_overall": 1756.8,
+      "R_surface": 1549.1,
+      "R_adjusted": 1632.2
     },
-    "elo_win_prob_vs_avg": 0.4895
+    "elo_win_prob_vs_avg": 0.5709
   },
   "Stan Wawrinka": {
     "player": "Stan Wawrinka",
@@ -23240,13 +23240,13 @@
     ],
     "elo_snapshot": {
       "name": "Stan Wawrinka",
-      "n_overall": 70,
-      "n_surface": 70,
-      "R_overall": 1633.2,
-      "R_surface": 1633.2,
-      "R_adjusted": 1633.2
+      "n_overall": 932,
+      "n_surface": 68,
+      "R_overall": 1828.9,
+      "R_surface": 1644.2,
+      "R_adjusted": 1718.1
     },
-    "elo_win_prob_vs_avg": 0.6435
+    "elo_win_prob_vs_avg": 0.6857
   },
   "Stefan Kozlov": {
     "player": "Stefan Kozlov",
@@ -23319,13 +23319,13 @@
     ],
     "elo_snapshot": {
       "name": "Stefan Kozlov",
-      "n_overall": 13,
+      "n_overall": 35,
       "n_surface": 13,
-      "R_overall": 1487.4,
-      "R_surface": 1487.4,
-      "R_adjusted": 1487.4
+      "R_overall": 1594.6,
+      "R_surface": 1481.1,
+      "R_adjusted": 1526.5
     },
-    "elo_win_prob_vs_avg": 0.4381
+    "elo_win_prob_vs_avg": 0.42
   },
   "Stefano Travaglia": {
     "player": "Stefano Travaglia",
@@ -23414,13 +23414,13 @@
     ],
     "elo_snapshot": {
       "name": "Stefano Travaglia",
-      "n_overall": 6,
+      "n_overall": 85,
       "n_surface": 6,
-      "R_overall": 1431.7,
-      "R_surface": 1431.7,
-      "R_adjusted": 1431.7
+      "R_overall": 1616.6,
+      "R_surface": 1433.4,
+      "R_adjusted": 1506.6
     },
-    "elo_win_prob_vs_avg": 0.3614
+    "elo_win_prob_vs_avg": 0.3923
   },
   "Stefanos Tsitsipas": {
     "player": "Stefanos Tsitsipas",
@@ -23557,13 +23557,13 @@
     ],
     "elo_snapshot": {
       "name": "Stefanos Tsitsipas",
-      "n_overall": 39,
-      "n_surface": 39,
-      "R_overall": 1653.1,
-      "R_surface": 1653.1,
-      "R_adjusted": 1653.1
+      "n_overall": 485,
+      "n_surface": 37,
+      "R_overall": 2053.0,
+      "R_surface": 1685.8,
+      "R_adjusted": 1832.6
     },
-    "elo_win_prob_vs_avg": 0.6693
+    "elo_win_prob_vs_avg": 0.8083
   },
   "Steve Johnson": {
     "player": "Steve Johnson",
@@ -23700,13 +23700,13 @@
     ],
     "elo_snapshot": {
       "name": "Steve Johnson",
-      "n_overall": 68,
+      "n_overall": 405,
       "n_surface": 68,
-      "R_overall": 1651.3,
-      "R_surface": 1651.3,
-      "R_adjusted": 1651.3
+      "R_overall": 1723.4,
+      "R_surface": 1655.2,
+      "R_adjusted": 1682.5
     },
-    "elo_win_prob_vs_avg": 0.667
+    "elo_win_prob_vs_avg": 0.6399
   },
   "Tallon Griekspoor": {
     "player": "Tallon Griekspoor",
@@ -23843,13 +23843,13 @@
     ],
     "elo_snapshot": {
       "name": "Tallon Griekspoor",
-      "n_overall": 27,
-      "n_surface": 27,
-      "R_overall": 1689.2,
-      "R_surface": 1689.2,
-      "R_adjusted": 1689.2
+      "n_overall": 162,
+      "n_surface": 25,
+      "R_overall": 1945.9,
+      "R_surface": 1706.6,
+      "R_adjusted": 1802.3
     },
-    "elo_win_prob_vs_avg": 0.7136
+    "elo_win_prob_vs_avg": 0.7798
   },
   "Taro Daniel": {
     "player": "Taro Daniel",
@@ -23930,13 +23930,13 @@
     ],
     "elo_snapshot": {
       "name": "Taro Daniel",
-      "n_overall": 10,
-      "n_surface": 10,
-      "R_overall": 1251.7,
-      "R_surface": 1251.7,
-      "R_adjusted": 1251.7
+      "n_overall": 226,
+      "n_surface": 9,
+      "R_overall": 1709.1,
+      "R_surface": 1248.9,
+      "R_adjusted": 1433.0
     },
-    "elo_win_prob_vs_avg": 0.1672
+    "elo_win_prob_vs_avg": 0.2971
   },
   "Taylor Fritz": {
     "player": "Taylor Fritz",
@@ -24073,13 +24073,13 @@
     ],
     "elo_snapshot": {
       "name": "Taylor Fritz",
-      "n_overall": 56,
-      "n_surface": 56,
-      "R_overall": 1786.8,
-      "R_surface": 1786.8,
-      "R_adjusted": 1786.8
+      "n_overall": 443,
+      "n_surface": 51,
+      "R_overall": 2023.2,
+      "R_surface": 1732.4,
+      "R_adjusted": 1848.8
     },
-    "elo_win_prob_vs_avg": 0.8138
+    "elo_win_prob_vs_avg": 0.8224
   },
   "Tennys Sandgren": {
     "player": "Tennys Sandgren",
@@ -24184,13 +24184,13 @@
     ],
     "elo_snapshot": {
       "name": "Tennys Sandgren",
-      "n_overall": 16,
+      "n_overall": 123,
       "n_surface": 16,
-      "R_overall": 1589.0,
-      "R_surface": 1589.0,
-      "R_adjusted": 1589.0
+      "R_overall": 1657.0,
+      "R_surface": 1591.1,
+      "R_adjusted": 1617.5
     },
-    "elo_win_prob_vs_avg": 0.5832
+    "elo_win_prob_vs_avg": 0.5501
   },
   "Thanasi Kokkinakis": {
     "player": "Thanasi Kokkinakis",
@@ -24263,13 +24263,13 @@
     ],
     "elo_snapshot": {
       "name": "Thanasi Kokkinakis",
-      "n_overall": 13,
-      "n_surface": 13,
-      "R_overall": 1587.9,
-      "R_surface": 1587.9,
-      "R_adjusted": 1587.9
+      "n_overall": 159,
+      "n_surface": 11,
+      "R_overall": 1801.6,
+      "R_surface": 1562.8,
+      "R_adjusted": 1658.3
     },
-    "elo_win_prob_vs_avg": 0.5817
+    "elo_win_prob_vs_avg": 0.6072
   },
   "Thiago Monteiro": {
     "player": "Thiago Monteiro",
@@ -24366,13 +24366,13 @@
     ],
     "elo_snapshot": {
       "name": "Thiago Monteiro",
-      "n_overall": 9,
-      "n_surface": 9,
-      "R_overall": 1403.3,
-      "R_surface": 1403.3,
-      "R_adjusted": 1403.3
+      "n_overall": 208,
+      "n_surface": 8,
+      "R_overall": 1817.1,
+      "R_surface": 1443.2,
+      "R_adjusted": 1592.8
     },
-    "elo_win_prob_vs_avg": 0.3246
+    "elo_win_prob_vs_avg": 0.5147
   },
   "Tim Van Rijthoven": {
     "player": "Tim Van Rijthoven",
@@ -24509,13 +24509,13 @@
     ],
     "elo_snapshot": {
       "name": "Tim Van Rijthoven",
-      "n_overall": 11,
+      "n_overall": 22,
       "n_surface": 11,
-      "R_overall": 1700.6,
-      "R_surface": 1700.6,
-      "R_adjusted": 1700.6
+      "R_overall": 1720.9,
+      "R_surface": 1703.3,
+      "R_adjusted": 1710.3
     },
-    "elo_win_prob_vs_avg": 0.7268
+    "elo_win_prob_vs_avg": 0.6759
   },
   "Tomas Barrios Vera": {
     "player": "Tomas Barrios Vera",
@@ -24596,13 +24596,13 @@
     ],
     "elo_snapshot": {
       "name": "Tomas Barrios Vera",
-      "n_overall": 3,
+      "n_overall": 20,
       "n_surface": 3,
-      "R_overall": 1527.2,
-      "R_surface": 1527.2,
-      "R_adjusted": 1527.2
+      "R_overall": 1583.4,
+      "R_surface": 1523.4,
+      "R_adjusted": 1547.4
     },
-    "elo_win_prob_vs_avg": 0.4951
+    "elo_win_prob_vs_avg": 0.4495
   },
   "Tomas Machac": {
     "player": "Tomas Machac",
@@ -24667,13 +24667,13 @@
     ],
     "elo_snapshot": {
       "name": "Tomas Machac",
-      "n_overall": 4,
-      "n_surface": 4,
-      "R_overall": 1479.2,
-      "R_surface": 1479.2,
-      "R_adjusted": 1479.2
+      "n_overall": 62,
+      "n_surface": 2,
+      "R_overall": 1978.0,
+      "R_surface": 1407.9,
+      "R_adjusted": 1636.0
     },
-    "elo_win_prob_vs_avg": 0.4265
+    "elo_win_prob_vs_avg": 0.5762
   },
   "Tomas Martin Etcheverry": {
     "player": "Tomas Martin Etcheverry",
@@ -24762,13 +24762,13 @@
     ],
     "elo_snapshot": {
       "name": "Tomas Martin Etcheverry",
-      "n_overall": 8,
-      "n_surface": 8,
-      "R_overall": 1374.6,
-      "R_surface": 1374.6,
-      "R_adjusted": 1374.6
+      "n_overall": 111,
+      "n_surface": 6,
+      "R_overall": 1834.7,
+      "R_surface": 1349.3,
+      "R_adjusted": 1543.5
     },
-    "elo_win_prob_vs_avg": 0.2894
+    "elo_win_prob_vs_avg": 0.444
   },
   "Tommy Paul": {
     "player": "Tommy Paul",
@@ -24905,13 +24905,13 @@
     ],
     "elo_snapshot": {
       "name": "Tommy Paul",
-      "n_overall": 36,
-      "n_surface": 36,
-      "R_overall": 1845.1,
-      "R_surface": 1845.1,
-      "R_adjusted": 1845.1
+      "n_overall": 273,
+      "n_surface": 31,
+      "R_overall": 2028.1,
+      "R_surface": 1788.9,
+      "R_adjusted": 1884.6
     },
-    "elo_win_prob_vs_avg": 0.8594
+    "elo_win_prob_vs_avg": 0.8505
   },
   "Ugo Humbert": {
     "player": "Ugo Humbert",
@@ -25048,13 +25048,13 @@
     ],
     "elo_snapshot": {
       "name": "Ugo Humbert",
-      "n_overall": 45,
-      "n_surface": 45,
-      "R_overall": 1664.5,
-      "R_surface": 1664.5,
-      "R_adjusted": 1664.5
+      "n_overall": 242,
+      "n_surface": 41,
+      "R_overall": 1924.6,
+      "R_surface": 1596.0,
+      "R_adjusted": 1727.4
     },
-    "elo_win_prob_vs_avg": 0.6837
+    "elo_win_prob_vs_avg": 0.6971
   },
   "Vasek Pospisil": {
     "player": "Vasek Pospisil",
@@ -25167,13 +25167,13 @@
     ],
     "elo_snapshot": {
       "name": "Vasek Pospisil",
-      "n_overall": 48,
+      "n_overall": 312,
       "n_surface": 48,
-      "R_overall": 1511.0,
-      "R_surface": 1511.0,
-      "R_adjusted": 1511.0
+      "R_overall": 1795.2,
+      "R_surface": 1504.8,
+      "R_adjusted": 1621.0
     },
-    "elo_win_prob_vs_avg": 0.4718
+    "elo_win_prob_vs_avg": 0.555
   },
   "Viktor Troicki": {
     "player": "Viktor Troicki",
@@ -25246,13 +25246,13 @@
     ],
     "elo_snapshot": {
       "name": "Viktor Troicki",
-      "n_overall": 64,
+      "n_overall": 571,
       "n_surface": 64,
-      "R_overall": 1585.8,
-      "R_surface": 1585.8,
-      "R_adjusted": 1585.8
+      "R_overall": 1716.6,
+      "R_surface": 1581.9,
+      "R_adjusted": 1635.7
     },
-    "elo_win_prob_vs_avg": 0.5788
+    "elo_win_prob_vs_avg": 0.5758
   },
   "William Blumberg": {
     "player": "William Blumberg",
@@ -25319,11 +25319,11 @@
       "name": "William Blumberg",
       "n_overall": 1,
       "n_surface": 1,
-      "R_overall": 1456.1,
-      "R_surface": 1456.1,
-      "R_adjusted": 1456.1
+      "R_overall": 1483.9,
+      "R_surface": 1456.3,
+      "R_adjusted": 1467.3
     },
-    "elo_win_prob_vs_avg": 0.3944
+    "elo_win_prob_vs_avg": 0.3399
   },
   "Yannick Hanfmann": {
     "player": "Yannick Hanfmann",
@@ -25460,13 +25460,13 @@
     ],
     "elo_snapshot": {
       "name": "Yannick Hanfmann",
-      "n_overall": 17,
-      "n_surface": 17,
-      "R_overall": 1527.7,
-      "R_surface": 1527.7,
-      "R_adjusted": 1527.7
+      "n_overall": 140,
+      "n_surface": 16,
+      "R_overall": 1725.4,
+      "R_surface": 1529.6,
+      "R_adjusted": 1607.9
     },
-    "elo_win_prob_vs_avg": 0.4958
+    "elo_win_prob_vs_avg": 0.5363
   },
   "Yasutaka Uchiyama": {
     "player": "Yasutaka Uchiyama",
@@ -25539,13 +25539,13 @@
     ],
     "elo_snapshot": {
       "name": "Yasutaka Uchiyama",
-      "n_overall": 3,
+      "n_overall": 38,
       "n_surface": 3,
-      "R_overall": 1346.7,
-      "R_surface": 1346.7,
-      "R_adjusted": 1346.7
+      "R_overall": 1536.7,
+      "R_surface": 1348.8,
+      "R_adjusted": 1424.0
     },
-    "elo_win_prob_vs_avg": 0.2576
+    "elo_win_prob_vs_avg": 0.2864
   },
   "Yen Hsun Lu": {
     "player": "Yen Hsun Lu",
@@ -25618,13 +25618,13 @@
     ],
     "elo_snapshot": {
       "name": "Yen Hsun Lu",
-      "n_overall": 66,
+      "n_overall": 398,
       "n_surface": 66,
-      "R_overall": 1570.0,
-      "R_surface": 1570.0,
-      "R_adjusted": 1570.0
+      "R_overall": 1679.7,
+      "R_surface": 1567.9,
+      "R_adjusted": 1612.6
     },
-    "elo_win_prob_vs_avg": 0.5564
+    "elo_win_prob_vs_avg": 0.5431
   },
   "Yibing Wu": {
     "player": "Yibing Wu",
@@ -25721,13 +25721,13 @@
     ],
     "elo_snapshot": {
       "name": "Yibing Wu",
-      "n_overall": 5,
+      "n_overall": 44,
       "n_surface": 5,
-      "R_overall": 1465.8,
-      "R_surface": 1465.8,
-      "R_adjusted": 1465.8
+      "R_overall": 1758.1,
+      "R_surface": 1473.4,
+      "R_adjusted": 1587.3
     },
-    "elo_win_prob_vs_avg": 0.4078
+    "elo_win_prob_vs_avg": 0.5068
   },
   "Yoshihito Nishioka": {
     "player": "Yoshihito Nishioka",
@@ -25832,13 +25832,13 @@
     ],
     "elo_snapshot": {
       "name": "Yoshihito Nishioka",
-      "n_overall": 15,
-      "n_surface": 15,
-      "R_overall": 1435.7,
-      "R_surface": 1435.7,
-      "R_adjusted": 1435.7
+      "n_overall": 267,
+      "n_surface": 13,
+      "R_overall": 1796.0,
+      "R_surface": 1443.0,
+      "R_adjusted": 1584.2
     },
-    "elo_win_prob_vs_avg": 0.3667
+    "elo_win_prob_vs_avg": 0.5023
   },
   "Yosuke Watanuki": {
     "player": "Yosuke Watanuki",
@@ -25927,13 +25927,13 @@
     ],
     "elo_snapshot": {
       "name": "Yosuke Watanuki",
-      "n_overall": 5,
+      "n_overall": 36,
       "n_surface": 5,
-      "R_overall": 1632.6,
-      "R_surface": 1632.6,
-      "R_adjusted": 1632.6
+      "R_overall": 1679.9,
+      "R_surface": 1634.7,
+      "R_adjusted": 1652.8
     },
-    "elo_win_prob_vs_avg": 0.6427
+    "elo_win_prob_vs_avg": 0.5997
   },
   "Yuichi Sugita": {
     "player": "Yuichi Sugita",
@@ -26014,13 +26014,13 @@
     ],
     "elo_snapshot": {
       "name": "Yuichi Sugita",
-      "n_overall": 31,
+      "n_overall": 146,
       "n_surface": 31,
-      "R_overall": 1576.1,
-      "R_surface": 1576.1,
-      "R_adjusted": 1576.1
+      "R_overall": 1645.6,
+      "R_surface": 1578.1,
+      "R_adjusted": 1605.1
     },
-    "elo_win_prob_vs_avg": 0.5651
+    "elo_win_prob_vs_avg": 0.5323
   },
   "Yunseong Chung": {
     "player": "Yunseong Chung",
@@ -26085,13 +26085,13 @@
     ],
     "elo_snapshot": {
       "name": "Yunseong Chung",
-      "n_overall": 1,
+      "n_overall": 2,
       "n_surface": 1,
-      "R_overall": 1459.0,
-      "R_surface": 1459.0,
-      "R_adjusted": 1459.0
+      "R_overall": 1454.7,
+      "R_surface": 1464.2,
+      "R_adjusted": 1460.4
     },
-    "elo_win_prob_vs_avg": 0.3984
+    "elo_win_prob_vs_avg": 0.331
   },
   "Zdenek Kolar": {
     "player": "Zdenek Kolar",
@@ -26156,13 +26156,13 @@
     ],
     "elo_snapshot": {
       "name": "Zdenek Kolar",
-      "n_overall": 1,
+      "n_overall": 4,
       "n_surface": 1,
-      "R_overall": 1457.4,
-      "R_surface": 1457.4,
-      "R_adjusted": 1457.4
+      "R_overall": 1563.7,
+      "R_surface": 1448.7,
+      "R_adjusted": 1494.7
     },
-    "elo_win_prob_vs_avg": 0.3962
+    "elo_win_prob_vs_avg": 0.3761
   },
   "Zhizhen Zhang": {
     "player": "Zhizhen Zhang",
@@ -26267,13 +26267,13 @@
     ],
     "elo_snapshot": {
       "name": "Zhizhen Zhang",
-      "n_overall": 14,
-      "n_surface": 14,
-      "R_overall": 1563.2,
-      "R_surface": 1563.2,
-      "R_adjusted": 1563.2
+      "n_overall": 95,
+      "n_surface": 12,
+      "R_overall": 1856.9,
+      "R_surface": 1562.8,
+      "R_adjusted": 1680.5
     },
-    "elo_win_prob_vs_avg": 0.5468
+    "elo_win_prob_vs_avg": 0.6373
   },
   "Zizou Bergs": {
     "player": "Zizou Bergs",
@@ -26338,12 +26338,12 @@
     ],
     "elo_snapshot": {
       "name": "Zizou Bergs",
-      "n_overall": 4,
-      "n_surface": 4,
-      "R_overall": 1468.7,
-      "R_surface": 1468.7,
-      "R_adjusted": 1468.7
+      "n_overall": 38,
+      "n_surface": 3,
+      "R_overall": 1702.2,
+      "R_surface": 1540.3,
+      "R_adjusted": 1605.1
     },
-    "elo_win_prob_vs_avg": 0.4118
+    "elo_win_prob_vs_avg": 0.5323
   }
 }

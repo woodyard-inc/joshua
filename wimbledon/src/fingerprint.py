@@ -1294,8 +1294,20 @@ def build_year_fingerprints(year: int,
 
     pts_cur, men_ids_cur, _, player_info_cur, _ = year_index[year]
 
-    # ── Elo setup ──────────────────────────────────────────────────────────
-    mean_r = elo.mean_active_rating() if elo else None
+    # ── Elo setup (year-aware) ─────────────────────────────────────────────
+    # Use the snapshot captured just before THIS year's Wimbledon so opponent
+    # quality weights don't peek forward.  Falls back to the all-time mean
+    # if no per-year snapshot is available (e.g. for years outside the
+    # SNAPSHOT_DATES table).
+    if elo is not None:
+        mean_r = elo.mean_active_rating_at(year)
+        # Sanity-log so it's obvious in the build output whether the
+        # year-snapshot is present.
+        has_year_snap = year in elo._year_snapshots
+        if not has_year_snap:
+            print(f"  Note: no year-snapshot for {year} — falling back to all-time Elo")
+    else:
+        mean_r = None
 
     # ── Round → approximate day offset within a tournament ─────────────────
     RND_ORDER = {"R128": 1, "R64": 2, "R32": 3, "R16": 4, "QF": 5, "SF": 6, "F": 7}
@@ -1347,11 +1359,15 @@ def build_year_fingerprints(year: int,
 
             # No temporal weighting — all matches in the window treated equally.
             # Opponent quality weight still applied so finals/QF matches count more.
+            # The opponent's Elo is looked up AS-OF the year that match was
+            # played (rec["year"]), not the prediction year.  This avoids
+            # weighting a 2014 Hurkacz match by his 2024 form.
             w_t = 1.0
             if elo is not None:
-                w_q     = elo.quality_weight_by_name(rec["opp_name"], mean_active=mean_r)
-                r_at    = elo.adjusted_rating_by_name(rec["opp_name"])
-                opp_elo = round(r_at, 1) if r_at is not None else None
+                match_year = rec["year"]
+                w_q     = elo.quality_weight_at_by_name(rec["opp_name"], match_year)
+                snap    = elo.snapshot_at_by_name(rec["opp_name"], match_year)
+                opp_elo = snap["R_adjusted"] if snap else None
             else:
                 w_q     = 1.0
                 opp_elo = None
@@ -1379,9 +1395,14 @@ def build_year_fingerprints(year: int,
             weights_raw,
         )
 
-        # Attach Elo snapshot (display only)
+        # Attach Elo snapshot (display only) — use the year-aware snapshot
+        # so 2017 fingerprints show a player's pre-Wimbledon-2017 rating
+        # rather than the all-time-final value.
         if elo is not None:
-            fingerprint["elo_snapshot"] = elo.get_snapshot_by_name(player_name)
+            fingerprint["elo_snapshot"] = (
+                elo.snapshot_at_by_name(player_name, year)
+                or elo.get_snapshot_by_name(player_name)
+            )
 
         # Record which years contributed data
         years_used = sorted({rec["year"] for rec in selected[:len(match_features_list)]})

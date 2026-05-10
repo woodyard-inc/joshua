@@ -10,15 +10,26 @@ Both an overall Elo (all surfaces) and a surface-specific Elo are maintained
 per player. When a match is played on the target surface (default: grass) the
 surface Elo is also updated; otherwise only the overall Elo moves.
 
-Input:   data/processed/all_grass_matches.csv   (from data_prep.py)
-         data/processed/wimbledon_matches.csv    (same, Wimbledon-only)
-Output:  data/processed/elo_ratings.json        (id → rating snapshot)
-         data/processed/elo_history.json         (match-by-match log)
+PER-YEAR SNAPSHOTS:
+  process_matches() can capture each player's rating state immediately
+  before a list of cutoff dates (typically the start of each year's
+  Wimbledon edition).  This avoids the look-ahead leakage that would
+  otherwise occur if a fingerprint built for predicting Wimbledon Y
+  used a player's all-time-final Elo to weight prior-year matches.
+
+Input:   data/processed/all_atp_matches.csv     (full ATP feed; from data_prep.py)
+                                                 — required so R_overall properly
+                                                   reflects all-surface form
+                                                   (R_surface only updates on grass).
+         data/processed/all_grass_matches.csv   (legacy fallback; produces
+                                                 R_overall == R_surface.)
+Output:  data/processed/elo_ratings.json        (id → latest snapshot
+                                                 + per-year snapshots block)
 
 Usage:
     python src/elo.py
     python src/elo.py --out data/processed/elo_ratings.json
-    python src/elo.py --all_grass data/processed/all_grass_matches.csv
+    python src/elo.py --all_atp data/processed/all_atp_matches.csv
 """
 
 from __future__ import annotations
@@ -112,6 +123,10 @@ class GrassElo:
         self._name_to_id:  Dict[str, int]          = {}
         # chronological match log for audit / replay
         self._history:     List[dict]              = []
+        # Snapshots taken just before each "cutoff date" passed to
+        # process_matches (typically the start of each year's Wimbledon).
+        # Structure: {year_or_label: {player_id: snapshot_dict}}
+        self._year_snapshots: Dict = {}
 
     # ── internals ──────────────────────────────────────────────────────────
 
@@ -144,18 +159,42 @@ class GrassElo:
     # ── public API ─────────────────────────────────────────────────────────
 
     def process_matches(self, df: pd.DataFrame,
-                        target_surface: str = "grass") -> None:
+                        target_surface: str = "grass",
+                        snapshot_dates: Optional[Dict] = None) -> None:
         """
         Feed all matches in chronological order.
 
         Required columns:
             winner_id, winner_name, loser_id, loser_name,
             tourney_date, surface
+
+        snapshot_dates: optional {label: date_string_or_Timestamp}.
+            For each label, capture every player's current rating just
+            BEFORE we process any match on or after that date.  Labels
+            are typically year ints (e.g., {2017: "2017-07-03"} for the
+            start of Wimbledon 2017).
         """
         df = df.sort_values("tourney_date").reset_index(drop=True)
         surf_lower = target_surface.lower()
 
+        # Pre-sort cutoffs by date so we can pop them as we cross them.
+        # Each entry: (cutoff_ts, label).
+        cutoffs: List = []
+        if snapshot_dates:
+            for label, dt in snapshot_dates.items():
+                cutoffs.append((pd.Timestamp(dt), label))
+            cutoffs.sort(key=lambda x: x[0])
+
         for _, row in df.iterrows():
+            match_dt = pd.Timestamp(row["tourney_date"])
+
+            # Capture snapshots for any cutoff that this match has reached.
+            while cutoffs and match_dt >= cutoffs[0][0]:
+                _, label = cutoffs.pop(0)
+                self._year_snapshots[label] = {
+                    pid: rec.snapshot() for pid, rec in self._players.items()
+                }
+
             wid  = int(row["winner_id"])
             lid  = int(row["loser_id"])
             surf = str(row.get("surface", "")).lower()
@@ -180,6 +219,12 @@ class GrassElo:
                 "w_pre_adj":    w_pre,
                 "l_pre_adj":    l_pre,
             })
+
+        # Capture any cutoffs that fell after the last match (defensive).
+        for _, label in cutoffs:
+            self._year_snapshots[label] = {
+                pid: rec.snapshot() for pid, rec in self._players.items()
+            }
 
     # ── rating lookups ─────────────────────────────────────────────────────
 
@@ -248,23 +293,78 @@ class GrassElo:
         return {str(pid): rec.snapshot(alpha)
                 for pid, rec in self._players.items()}
 
+    # ── year-specific snapshot lookups (look-ahead-safe) ──────────────────
+
+    def snapshot_at(self, player_id: int, year, alpha: float = ALPHA_GRASS) -> Optional[dict]:
+        """Return the snapshot captured just before `year`'s cutoff date.
+        Falls back to the latest snapshot if no per-year snapshot exists."""
+        year_snap = self._year_snapshots.get(year)
+        if year_snap is None:
+            return self.get_snapshot(player_id, alpha)
+        return year_snap.get(player_id)
+
+    def snapshot_at_by_name(self, name: str, year,
+                            alpha: float = ALPHA_GRASS) -> Optional[dict]:
+        pid = self._name_to_id.get(name)
+        return self.snapshot_at(pid, year, alpha) if pid is not None else None
+
+    def adjusted_rating_at_by_name(self, name: str, year,
+                                   alpha: float = ALPHA_GRASS) -> Optional[float]:
+        snap = self.snapshot_at_by_name(name, year, alpha)
+        return snap["R_adjusted"] if snap else None
+
+    def mean_active_rating_at(self, year,
+                              min_matches: int = MIN_ACTIVE_MATCHES,
+                              alpha: float = ALPHA_GRASS) -> float:
+        """Mean adjusted Elo of active players AS OF the given year cutoff."""
+        year_snap = self._year_snapshots.get(year)
+        if year_snap is None:
+            return self.mean_active_rating(min_matches, alpha)
+        ratings = [s["R_adjusted"] for s in year_snap.values()
+                   if s["n_surface"] >= min_matches]
+        return sum(ratings) / len(ratings) if ratings else DEFAULT_RATING
+
+    def quality_weight_at_by_name(self, name: str, year,
+                                  mean_active: Optional[float] = None,
+                                  alpha: float = ALPHA_GRASS) -> float:
+        """Year-aware quality weight — opponent's adjusted Elo as of the
+        season cutoff, divided by the mean active rating of that season."""
+        if mean_active is None:
+            mean_active = self.mean_active_rating_at(year, alpha=alpha)
+        r_adj = self.adjusted_rating_at_by_name(name, year, alpha)
+        if r_adj is None or mean_active == 0:
+            return 1.0
+        raw = r_adj / mean_active
+        lo, hi = QUALITY_CLAMP
+        return max(lo, min(hi, raw))
+
     # ── persistence ────────────────────────────────────────────────────────
 
     def save(self, path: Path, save_history: bool = False) -> None:
         path = Path(path)
         path.parent.mkdir(parents=True, exist_ok=True)
+
+        # Per-year snapshots: {year_label: {player_id_str: snapshot}}
+        year_snaps_serialised = {
+            str(label): {str(pid): snap for pid, snap in snap_dict.items()}
+            for label, snap_dict in self._year_snapshots.items()
+        }
+
         data = {
-            "ratings": self.all_snapshots(),
+            "ratings":         self.all_snapshots(),
+            "year_snapshots":  year_snaps_serialised,
             "meta": {
-                "total_players": len(self._players),
-                "total_matches": len(self._history),
-                "alpha_grass":   ALPHA_GRASS,
+                "total_players":   len(self._players),
+                "total_matches":   len(self._history),
+                "year_snap_count": len(self._year_snapshots),
+                "alpha_grass":     ALPHA_GRASS,
             },
         }
         with open(path, "w") as f:
             json.dump(data, f, indent=2)
         print(f"Elo ratings saved → {path}  "
-              f"({len(self._players):,} players, {len(self._history):,} matches)")
+              f"({len(self._players):,} players, {len(self._history):,} matches, "
+              f"{len(self._year_snapshots)} year-snapshots)")
 
         if save_history:
             hist_path = path.parent / (path.stem + "_history.json")
@@ -290,28 +390,48 @@ class GrassElo:
             elo._players[pid]           = rec
             elo._id_to_name[pid]        = snap["name"]
             elo._name_to_id[snap["name"]] = pid
-        print(f"Elo ratings loaded ← {path}  ({len(elo._players):,} players)")
+
+        # Year-snapshots: keys come back as strings from JSON; coerce ints
+        # for year labels and player IDs.
+        for label_str, snap_dict in (data.get("year_snapshots") or {}).items():
+            try:
+                label = int(label_str)
+            except ValueError:
+                label = label_str
+            elo._year_snapshots[label] = {
+                int(pid): snap for pid, snap in snap_dict.items()
+            }
+
+        print(f"Elo ratings loaded ← {path}  ({len(elo._players):,} players, "
+              f"{len(elo._year_snapshots)} year-snapshots)")
         return elo
 
 
 # ── CLI ────────────────────────────────────────────────────────────────────
 
-def build_from_csv(all_grass_csv: Path,
+def build_from_csv(matches_csv: Path,
                    wimbledon_csv: Optional[Path] = None,
-                   target_surface: str = "grass") -> GrassElo:
+                   target_surface: str = "grass",
+                   snapshot_dates: Optional[Dict] = None) -> GrassElo:
     """
-    Build Elo from the all_grass_matches.csv produced by data_prep.py.
-    If wimbledon_csv is also provided, Wimbledon matches are already in
-    all_grass so this is a no-op duplicate check — they're included.
+    Build Elo from a match-feed CSV produced by data_prep.py.
+
+    Recommended input: data/processed/all_atp_matches.csv (full ATP feed
+    across every surface).  This is required for R_overall to actually
+    differ from R_surface — when fed grass-only data, both ratings
+    update on every match and end up identical.
+
+    snapshot_dates: optional {label: date} for capturing per-year
+    snapshots (see GrassElo.process_matches docstring).
     """
-    if not all_grass_csv.exists():
+    if not matches_csv.exists():
         raise FileNotFoundError(
-            f"Grass matches CSV not found: {all_grass_csv}\n"
+            f"Match CSV not found: {matches_csv}\n"
             "Run:  python src/data_prep.py --download"
         )
 
-    print(f"Loading grass matches from {all_grass_csv}…")
-    df = pd.read_csv(all_grass_csv, low_memory=False,
+    print(f"Loading matches from {matches_csv}…")
+    df = pd.read_csv(matches_csv, low_memory=False,
                      parse_dates=["tourney_date"])
 
     required = {"winner_id", "winner_name", "loser_id", "loser_name",
@@ -321,11 +441,14 @@ def build_from_csv(all_grass_csv: Path,
         raise ValueError(f"Missing columns in CSV: {missing}")
 
     df = df.dropna(subset=["winner_id", "loser_id", "tourney_date"])
-    print(f"Processing {len(df):,} grass matches across "
-          f"{df['tourney_date'].dt.year.nunique()} seasons…")
+    surf_mix = df["surface"].astype(str).str.lower().value_counts().to_dict()
+    print(f"Processing {len(df):,} matches across "
+          f"{df['tourney_date'].dt.year.nunique()} seasons "
+          f"(surface mix: {surf_mix})…")
 
     elo = GrassElo()
-    elo.process_matches(df, target_surface=target_surface)
+    elo.process_matches(df, target_surface=target_surface,
+                        snapshot_dates=snapshot_dates)
     return elo
 
 
@@ -334,9 +457,15 @@ def main():
         description="Build surface-specific Elo ratings from Sackmann ATP data"
     )
     parser.add_argument(
+        "--all_atp",
+        default="data/processed/all_atp_matches.csv",
+        help="Full ATP match feed (every surface) — required for R_overall vs R_surface to differ"
+    )
+    parser.add_argument(
         "--all_grass",
-        default="data/processed/all_grass_matches.csv",
-        help="Path to all_grass_matches.csv"
+        default=None,
+        help="DEPRECATED — pass an all-grass CSV here only if you want the legacy "
+             "behaviour where R_overall == R_surface."
     )
     parser.add_argument(
         "--out",
@@ -349,7 +478,22 @@ def main():
     )
     args = parser.parse_args()
 
-    elo = build_from_csv(Path(args.all_grass))
+    # Per-year Wimbledon start dates → Elo snapshots captured just before
+    # each year's main draw begins, so opponent-quality lookups don't peek
+    # forward. Hard-coded here so the Elo module stays self-contained.
+    SNAPSHOT_DATES = {
+        2011: "2011-06-27", 2012: "2012-06-25", 2013: "2013-06-24",
+        2014: "2014-06-23", 2015: "2015-06-29", 2016: "2016-06-27",
+        2017: "2017-07-03", 2018: "2018-07-02", 2019: "2019-07-01",
+        2021: "2021-06-28", 2022: "2022-06-27", 2023: "2023-07-03",
+        2024: "2024-07-01", 2025: "2025-06-30",
+    }
+
+    csv_path = Path(args.all_grass) if args.all_grass else Path(args.all_atp)
+    if args.all_grass:
+        print("WARNING: using grass-only CSV — R_overall and R_surface will be identical.")
+
+    elo = build_from_csv(csv_path, snapshot_dates=SNAPSHOT_DATES)
     elo.save(Path(args.out), save_history=args.history)
 
     # Print a few top-rated players as a sanity check

@@ -15,36 +15,36 @@
         "year": 2011,
         "round": "R16",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1965.8,
+        "opponent_elo": 2182.9,
         "w_t": 1.0,
-        "w_q": 1.2843
+        "w_q": 1.3846
       },
       {
         "match_id": "2011-wimbledon-1302",
         "year": 2011,
         "round": "R32",
         "opponent": "Gilles Simon",
-        "opponent_elo": 1596.2,
+        "opponent_elo": 1779.6,
         "w_t": 1.0,
-        "w_q": 1.0428
+        "w_q": 1.1288
       },
       {
         "match_id": "2011-wimbledon-1203",
         "year": 2011,
         "round": "R64",
         "opponent": "Olivier Rochus",
-        "opponent_elo": 1581.8,
+        "opponent_elo": 1714.5,
         "w_t": 1.0,
-        "w_q": 1.0334
+        "w_q": 1.0875
       },
       {
         "match_id": "2011-wimbledon-1105",
         "year": 2011,
         "round": "R128",
         "opponent": "Flavio Cipolla",
-        "opponent_elo": 1340.8,
+        "opponent_elo": 1460.4,
         "w_t": 1.0,
-        "w_q": 0.876
+        "w_q": 0.9263
       }
     ],
     "tier1": {
@@ -64,7 +64,7 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 37.4,
+        "value": 37.3,
         "ci_90_lo": 30.7,
         "ci_90_hi": 45.0
       },
@@ -84,9 +84,9 @@
         "ci_90_hi": 96.7
       },
       "rgw_pct": {
-        "value": 20.0,
-        "ci_90_lo": 11.9,
-        "ci_90_hi": 41.2
+        "value": 19.8,
+        "ci_90_lo": 11.8,
+        "ci_90_hi": 41.0
       }
     },
     "tier2": {
@@ -98,8 +98,8 @@
       "clutch_differential": {
         "available": true,
         "value": 2.1,
-        "high_lev_win_pct": 56.9,
-        "baseline_win_pct": 54.8,
+        "high_lev_win_pct": 56.8,
+        "baseline_win_pct": 54.7,
         "n_eff": 26,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
@@ -118,8 +118,8 @@
       "serve_speed_courage": {
         "available": true,
         "value": -1.3,
-        "bp_speed_kmh": 182.2,
-        "overall_speed_kmh": 183.5,
+        "bp_speed_kmh": 182.1,
+        "overall_speed_kmh": 183.4,
         "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
@@ -135,13 +135,13 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 4.44,
-        "streak_survival_rate": 0.475,
+        "streak_survival_rate": 0.474,
         "streak_recovery_rate": 0.45
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.448,
-        "bp_conversion": 0.417,
-        "bp_created": 8.4,
+        "bp_per_return_game": 0.445,
+        "bp_conversion": 0.416,
+        "bp_created": 8.3,
         "bp_converted": 3.5
       },
       "rluep": null,
@@ -189,9 +189,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -0.7,
-        "first_games_win_pct": 54.1,
-        "overall_win_pct": 54.8,
+        "value": -0.8,
+        "first_games_win_pct": 53.9,
+        "overall_win_pct": 54.7,
         "n_eff": 39,
         "confidence": "LOW"
       },
@@ -205,9 +205,9 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.7,
+        "value": -0.6,
         "tb_win_pct": 54.1,
-        "baseline_win_pct": 54.8,
+        "baseline_win_pct": 54.7,
         "n_eff": 223,
         "confidence": "RELIABLE"
       },
@@ -426,11 +426,11 @@
     },
     "elo_snapshot": {
       "name": "Flavio Cipolla",
-      "n_overall": 8,
-      "n_surface": 8,
-      "R_overall": 1340.8,
-      "R_surface": 1340.8,
-      "R_adjusted": 1340.8
+      "n_overall": 42,
+      "n_surface": 3,
+      "R_overall": 1566.6,
+      "R_surface": 1389.6,
+      "R_adjusted": 1460.4
     },
     "career_editions_used": [
       2011
@@ -453,9 +453,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Fernando Verdasco",
-        "opponent_elo": 1616.8,
+        "opponent_elo": 1807.5,
         "w_t": 1.0,
-        "w_q": 1.0563
+        "w_q": 1.1465
       }
     ],
     "tier1": {
@@ -633,11 +633,11 @@
     },
     "elo_snapshot": {
       "name": "Radek Stepanek",
-      "n_overall": 73,
-      "n_surface": 73,
-      "R_overall": 1716.5,
-      "R_surface": 1716.5,
-      "R_adjusted": 1716.5
+      "n_overall": 503,
+      "n_surface": 48,
+      "R_overall": 1915.7,
+      "R_surface": 1717.9,
+      "R_adjusted": 1797.0
     },
     "career_editions_used": [
       2011
@@ -649,7 +649,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 2,
-    "n_points": 308,
+    "n_points": 309,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -660,18 +660,18 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Robin Haase",
-        "opponent_elo": 1573.9,
+        "opponent_elo": 1633.8,
         "w_t": 1.0,
-        "w_q": 1.0283
+        "w_q": 1.0363
       },
       {
         "match_id": "2011-wimbledon-1112",
         "year": 2011,
         "round": "R128",
         "opponent": "Radek Stepanek",
-        "opponent_elo": 1716.5,
+        "opponent_elo": 1797.0,
         "w_t": 1.0,
-        "w_q": 1.1214
+        "w_q": 1.1398
       }
     ],
     "tier1": {
@@ -712,7 +712,7 @@
       },
       "rgw_pct": {
         "value": 14.7,
-        "ci_90_lo": 8.9,
+        "ci_90_lo": 9.0,
         "ci_90_hi": 33.0
       }
     },
@@ -756,18 +756,18 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 44.8,
-        "ad_win_pct": 50.7,
-        "asymmetry": 5.9,
+        "ad_win_pct": 50.8,
+        "asymmetry": 6.0,
         "stronger_side": "ad"
       },
       "momentum_profile": {
         "streak_initiation_rate": 8.07,
         "streak_survival_rate": 0.41,
-        "streak_recovery_rate": 0.506
+        "streak_recovery_rate": 0.507
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.226,
-        "bp_conversion": 0.556,
+        "bp_conversion": 0.557,
         "bp_created": 5.5,
         "bp_converted": 3.0
       },
@@ -835,7 +835,7 @@
         "value": 1.7,
         "tb_win_pct": 49.6,
         "baseline_win_pct": 47.9,
-        "n_eff": 297,
+        "n_eff": 298,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -849,11 +849,11 @@
     },
     "elo_snapshot": {
       "name": "Fernando Verdasco",
-      "n_overall": 95,
-      "n_surface": 95,
-      "R_overall": 1616.8,
-      "R_surface": 1616.8,
-      "R_adjusted": 1616.8
+      "n_overall": 509,
+      "n_surface": 47,
+      "R_overall": 1943.6,
+      "R_surface": 1716.8,
+      "R_adjusted": 1807.5
     },
     "career_editions_used": [
       2011
@@ -866,7 +866,7 @@
     "year": 2011,
     "n_matches": 6,
     "n_points": 196,
-    "n_eff_matches": 6.0,
+    "n_eff_matches": 5.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": true,
@@ -876,45 +876,45 @@
         "year": 2011,
         "round": "SF",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1965.8,
+        "opponent_elo": 2182.9,
         "w_t": 1.0,
-        "w_q": 1.2843
+        "w_q": 1.3846
       },
       {
         "match_id": "2011-wimbledon-1502",
         "year": 2011,
         "round": "QF",
         "opponent": "Feliciano Lopez",
-        "opponent_elo": 1665.5,
+        "opponent_elo": 1844.2,
         "w_t": 1.0,
-        "w_q": 1.0881
+        "w_q": 1.1697
       },
       {
         "match_id": "2011-wimbledon-1403",
         "year": 2011,
         "round": "R16",
         "opponent": "Richard Gasquet",
-        "opponent_elo": 1658.8,
+        "opponent_elo": 1919.1,
         "w_t": 1.0,
-        "w_q": 1.0837
+        "w_q": 1.2172
       },
       {
         "match_id": "2011-wimbledon-1305",
         "year": 2011,
         "round": "R32",
         "opponent": "Ivan Ljubicic",
-        "opponent_elo": 1623.0,
+        "opponent_elo": 1743.1,
         "w_t": 1.0,
-        "w_q": 1.0604
+        "w_q": 1.1056
       },
       {
         "match_id": "2011-wimbledon-1209",
         "year": 2011,
         "round": "R64",
         "opponent": "Tobias Kamke",
-        "opponent_elo": 1557.3,
+        "opponent_elo": 1586.1,
         "w_t": 1.0,
-        "w_q": 1.0174
+        "w_q": 1.006
       },
       {
         "match_id": "2011-wimbledon-1117",
@@ -930,7 +930,7 @@
       "fsp_pct": {
         "value": 0.0,
         "ci_90_lo": 0.4,
-        "ci_90_hi": 4.7
+        "ci_90_hi": 4.6
       },
       "fspw_pct": {
         "value": null,
@@ -943,9 +943,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 37.7,
-        "ci_90_lo": 30.5,
-        "ci_90_hi": 46.1
+        "value": 37.5,
+        "ci_90_lo": 30.3,
+        "ci_90_hi": 46.0
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -958,14 +958,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 89.9,
+        "value": 89.8,
         "ci_90_lo": 66.5,
         "ci_90_hi": 93.7
       },
       "rgw_pct": {
-        "value": 27.5,
-        "ci_90_lo": 16.5,
-        "ci_90_hi": 49.0
+        "value": 27.2,
+        "ci_90_lo": 16.3,
+        "ci_90_hi": 48.8
       }
     },
     "tier2": {
@@ -976,13 +976,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 3.6,
-        "high_lev_win_pct": 57.3,
-        "baseline_win_pct": 53.7,
+        "value": 3.8,
+        "high_lev_win_pct": 57.4,
+        "baseline_win_pct": 53.6,
         "n_eff": 25,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.036
+        "modifier_delta": 0.038
       },
       "df_pressure_delta": {
         "available": true,
@@ -996,42 +996,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 5.2,
-        "bp_speed_kmh": 180.5,
+        "value": 4.9,
+        "bp_speed_kmh": 180.2,
         "overall_speed_kmh": 175.3,
         "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.052,
+        "modifier_delta": 0.049,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 54.4,
+        "deuce_win_pct": 54.3,
         "ad_win_pct": 52.3,
-        "asymmetry": 2.1,
+        "asymmetry": 2.0,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
         "streak_initiation_rate": 2.28,
-        "streak_survival_rate": 0.351,
-        "streak_recovery_rate": 0.425
+        "streak_survival_rate": 0.348,
+        "streak_recovery_rate": 0.426
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.513,
-        "bp_conversion": 0.422,
-        "bp_created": 8.8,
-        "bp_converted": 3.7
+        "bp_per_return_game": 0.506,
+        "bp_conversion": 0.421,
+        "bp_created": 8.7,
+        "bp_converted": 3.6
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0359,
+        "value": 0.0354,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0297,
+            "delta_frac": 0.028,
             "weight": 0.3,
-            "contribution": 0.0089
+            "contribution": 0.0084
           },
           "df_rate_delta": {
             "delta_frac": 0.1351,
@@ -1043,7 +1043,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.0359,
+        "modifier_delta": 0.0354,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -1068,9 +1068,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -4.2,
-        "first_games_win_pct": 49.5,
-        "overall_win_pct": 53.7,
+        "value": -4.4,
+        "first_games_win_pct": 49.2,
+        "overall_win_pct": 53.6,
         "n_eff": 42,
         "confidence": "LOW"
       },
@@ -1085,8 +1085,8 @@
       "tiebreak_differential": {
         "available": true,
         "value": -1.3,
-        "tb_win_pct": 52.4,
-        "baseline_win_pct": 53.7,
+        "tb_win_pct": 52.3,
+        "baseline_win_pct": 53.6,
         "n_eff": 192,
         "confidence": "RELIABLE"
       },
@@ -1101,11 +1101,11 @@
     },
     "elo_snapshot": {
       "name": "Andy Murray",
-      "n_overall": 151,
-      "n_surface": 151,
-      "R_overall": 1861.5,
-      "R_surface": 1861.5,
-      "R_adjusted": 1861.5
+      "n_overall": 400,
+      "n_surface": 63,
+      "R_overall": 2177.3,
+      "R_surface": 2039.3,
+      "R_adjusted": 2094.5
     },
     "career_editions_used": [
       2011
@@ -1128,9 +1128,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Andy Murray",
-        "opponent_elo": 1861.5,
+        "opponent_elo": 2094.5,
         "w_t": 1.0,
-        "w_q": 1.2162
+        "w_q": 1.3285
       }
     ],
     "tier1": {
@@ -1321,7 +1321,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 2,
-    "n_points": 236,
+    "n_points": 237,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -1332,18 +1332,18 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Andy Murray",
-        "opponent_elo": 1861.5,
+        "opponent_elo": 2094.5,
         "w_t": 1.0,
-        "w_q": 1.2162
+        "w_q": 1.3285
       },
       {
         "match_id": "2011-wimbledon-1120",
         "year": 2011,
         "round": "R128",
         "opponent": "Marin Cilic",
-        "opponent_elo": 1897.5,
+        "opponent_elo": 1777.4,
         "w_t": 1.0,
-        "w_q": 1.2397
+        "w_q": 1.1274
       }
     ],
     "tier1": {
@@ -1364,8 +1364,8 @@
       },
       "rpw_pct": {
         "value": 34.1,
-        "ci_90_lo": 27.6,
-        "ci_90_hi": 41.9
+        "ci_90_lo": 27.7,
+        "ci_90_hi": 42.0
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -1378,14 +1378,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 77.6,
-        "ci_90_lo": 57.3,
-        "ci_90_hi": 86.4
+        "value": 76.9,
+        "ci_90_lo": 56.7,
+        "ci_90_hi": 86.0
       },
       "rgw_pct": {
-        "value": 19.6,
-        "ci_90_lo": 11.8,
-        "ci_90_hi": 39.7
+        "value": 19.2,
+        "ci_90_lo": 11.5,
+        "ci_90_hi": 39.3
       }
     },
     "tier2": {
@@ -1396,13 +1396,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 3.4,
-        "high_lev_win_pct": 53.1,
-        "baseline_win_pct": 49.7,
-        "n_eff": 25,
+        "value": 3.0,
+        "high_lev_win_pct": 52.5,
+        "baseline_win_pct": 49.5,
+        "n_eff": 24,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.034
+        "modifier_delta": 0.03
       },
       "df_pressure_delta": {
         "available": true,
@@ -1416,42 +1416,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -6.3,
-        "bp_speed_kmh": 172.7,
-        "overall_speed_kmh": 179.0,
+        "value": -5.6,
+        "bp_speed_kmh": 174.1,
+        "overall_speed_kmh": 179.7,
         "n_eff": 11,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.063,
+        "modifier_delta": -0.056,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 51.4,
+        "deuce_win_pct": 51.1,
         "ad_win_pct": 47.3,
-        "asymmetry": 4.1,
+        "asymmetry": 3.8,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 8.26,
-        "streak_survival_rate": 0.486,
-        "streak_recovery_rate": 0.545
+        "streak_initiation_rate": 8.19,
+        "streak_survival_rate": 0.478,
+        "streak_recovery_rate": 0.55
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.293,
-        "bp_conversion": 0.584,
+        "bp_conversion": 0.577,
         "bp_created": 6.0,
         "bp_converted": 3.5
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.4534,
+        "value": 0.4547,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0352,
+            "delta_frac": -0.0312,
             "weight": 0.3,
-            "contribution": -0.0106
+            "contribution": -0.0093
           },
           "df_rate_delta": {
             "delta_frac": 2.32,
@@ -1463,7 +1463,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.4534,
+        "modifier_delta": 0.4547,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -1488,10 +1488,10 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 1.7,
+        "value": 1.9,
         "first_games_win_pct": 51.4,
-        "overall_win_pct": 49.7,
-        "n_eff": 53,
+        "overall_win_pct": 49.5,
+        "n_eff": 52,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
@@ -1504,10 +1504,10 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.2,
-        "tb_win_pct": 49.5,
-        "baseline_win_pct": 49.7,
-        "n_eff": 231,
+        "value": -0.1,
+        "tb_win_pct": 49.4,
+        "baseline_win_pct": 49.5,
+        "n_eff": 232,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -1521,11 +1521,11 @@
     },
     "elo_snapshot": {
       "name": "Ivan Ljubicic",
-      "n_overall": 50,
+      "n_overall": 705,
       "n_surface": 50,
-      "R_overall": 1623.0,
-      "R_surface": 1623.0,
-      "R_adjusted": 1623.0
+      "R_overall": 1929.3,
+      "R_surface": 1619.1,
+      "R_adjusted": 1743.1
     },
     "career_editions_used": [
       2011
@@ -1548,9 +1548,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Ivan Ljubicic",
-        "opponent_elo": 1623.0,
+        "opponent_elo": 1743.1,
         "w_t": 1.0,
-        "w_q": 1.0604
+        "w_q": 1.1056
       }
     ],
     "tier1": {
@@ -1724,11 +1724,11 @@
     },
     "elo_snapshot": {
       "name": "Marin Cilic",
-      "n_overall": 114,
-      "n_surface": 114,
-      "R_overall": 1897.5,
-      "R_surface": 1897.5,
-      "R_adjusted": 1897.5
+      "n_overall": 274,
+      "n_surface": 29,
+      "R_overall": 1947.7,
+      "R_surface": 1663.8,
+      "R_adjusted": 1777.4
     },
     "career_editions_used": [
       2011
@@ -1751,9 +1751,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Janko Tipsarevic",
-        "opponent_elo": 1577.8,
+        "opponent_elo": 1782.8,
         "w_t": 1.0,
-        "w_q": 1.0308
+        "w_q": 1.1308
       }
     ],
     "tier1": {
@@ -1893,11 +1893,11 @@
     },
     "elo_snapshot": {
       "name": "Ivo Karlovic",
-      "n_overall": 118,
-      "n_surface": 118,
-      "R_overall": 1641.4,
-      "R_surface": 1641.4,
-      "R_adjusted": 1641.4
+      "n_overall": 365,
+      "n_surface": 57,
+      "R_overall": 1838.1,
+      "R_surface": 1797.0,
+      "R_adjusted": 1813.4
     },
     "career_editions_used": [
       2011
@@ -1920,9 +1920,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Ivo Karlovic",
-        "opponent_elo": 1641.4,
+        "opponent_elo": 1813.4,
         "w_t": 1.0,
-        "w_q": 1.0724
+        "w_q": 1.1502
       }
     ],
     "tier1": {
@@ -2095,11 +2095,11 @@
     },
     "elo_snapshot": {
       "name": "Janko Tipsarevic",
-      "n_overall": 72,
-      "n_surface": 72,
-      "R_overall": 1577.8,
-      "R_surface": 1577.8,
-      "R_adjusted": 1577.8
+      "n_overall": 317,
+      "n_surface": 50,
+      "R_overall": 1904.4,
+      "R_surface": 1701.6,
+      "R_adjusted": 1782.8
     },
     "career_editions_used": [
       2011
@@ -2122,9 +2122,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Andy Roddick",
-        "opponent_elo": 1924.3,
+        "opponent_elo": 1993.1,
         "w_t": 1.0,
-        "w_q": 1.2572
+        "w_q": 1.2642
       }
     ],
     "tier1": {
@@ -2302,11 +2302,11 @@
     },
     "elo_snapshot": {
       "name": "Andreas Beck",
-      "n_overall": 14,
+      "n_overall": 91,
       "n_surface": 14,
-      "R_overall": 1589.0,
-      "R_surface": 1589.0,
-      "R_adjusted": 1589.0
+      "R_overall": 1664.5,
+      "R_surface": 1584.0,
+      "R_adjusted": 1616.2
     },
     "career_editions_used": [
       2011
@@ -2329,27 +2329,27 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Feliciano Lopez",
-        "opponent_elo": 1665.5,
+        "opponent_elo": 1844.2,
         "w_t": 1.0,
-        "w_q": 1.0881
+        "w_q": 1.1697
       },
       {
         "match_id": "2011-wimbledon-1216",
         "year": 2011,
         "round": "R64",
         "opponent": "Victor Hanescu",
-        "opponent_elo": 1458.3,
+        "opponent_elo": 1640.8,
         "w_t": 1.0,
-        "w_q": 0.9528
+        "w_q": 1.0407
       },
       {
         "match_id": "2011-wimbledon-1132",
         "year": 2011,
         "round": "R128",
         "opponent": "Andreas Beck",
-        "opponent_elo": 1589.0,
+        "opponent_elo": 1616.2,
         "w_t": 1.0,
-        "w_q": 1.0381
+        "w_q": 1.0251
       }
     ],
     "tier1": {
@@ -2369,9 +2369,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 35.1,
-        "ci_90_lo": 28.3,
-        "ci_90_hi": 43.4
+        "value": 35.0,
+        "ci_90_lo": 28.2,
+        "ci_90_hi": 43.3
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -2384,14 +2384,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 93.1,
-        "ci_90_lo": 69.2,
+        "value": 93.0,
+        "ci_90_lo": 69.0,
         "ci_90_hi": 95.2
       },
       "rgw_pct": {
-        "value": 19.3,
-        "ci_90_lo": 11.4,
-        "ci_90_hi": 41.6
+        "value": 19.2,
+        "ci_90_lo": 11.3,
+        "ci_90_hi": 41.5
       }
     },
     "tier2": {
@@ -2402,13 +2402,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 1.0,
-        "high_lev_win_pct": 54.1,
+        "value": 1.2,
+        "high_lev_win_pct": 54.3,
         "baseline_win_pct": 53.1,
         "n_eff": 22,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.01
+        "modifier_delta": 0.012
       },
       "df_pressure_delta": {
         "available": true,
@@ -2422,42 +2422,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -1.2,
-        "bp_speed_kmh": 190.5,
+        "value": -1.4,
+        "bp_speed_kmh": 190.3,
         "overall_speed_kmh": 191.7,
         "n_eff": 3,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.012,
+        "modifier_delta": -0.014,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 53.7,
-        "ad_win_pct": 51.9,
-        "asymmetry": 1.8,
+        "deuce_win_pct": 53.8,
+        "ad_win_pct": 51.7,
+        "asymmetry": 2.1,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 4.55,
-        "streak_survival_rate": 0.556,
-        "streak_recovery_rate": 0.33
+        "streak_initiation_rate": 4.56,
+        "streak_survival_rate": 0.555,
+        "streak_recovery_rate": 0.324
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.402,
-        "bp_conversion": 0.379,
+        "bp_per_return_game": 0.403,
+        "bp_conversion": 0.378,
         "bp_created": 6.9,
         "bp_converted": 2.6
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2019,
+        "value": -0.2022,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0063,
+            "delta_frac": -0.0073,
             "weight": 0.3,
-            "contribution": -0.0019
+            "contribution": -0.0022
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -2469,7 +2469,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.2019,
+        "modifier_delta": -0.2022,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -2494,8 +2494,8 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 2.3,
-        "first_games_win_pct": 55.4,
+        "value": 2.5,
+        "first_games_win_pct": 55.6,
         "overall_win_pct": 53.1,
         "n_eff": 35,
         "confidence": "LOW"
@@ -2527,11 +2527,11 @@
     },
     "elo_snapshot": {
       "name": "Andy Roddick",
-      "n_overall": 109,
-      "n_surface": 109,
-      "R_overall": 1924.3,
-      "R_surface": 1924.3,
-      "R_adjusted": 1924.3
+      "n_overall": 767,
+      "n_surface": 98,
+      "R_overall": 2056.2,
+      "R_surface": 1951.0,
+      "R_adjusted": 1993.1
     },
     "career_editions_used": [
       2011
@@ -2543,8 +2543,8 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 4,
-    "n_points": 209,
-    "n_eff_matches": 4.0,
+    "n_points": 210,
+    "n_eff_matches": 3.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
@@ -2554,43 +2554,43 @@
         "year": 2011,
         "round": "R16",
         "opponent": "Jo-Wilfried Tsonga",
-        "opponent_elo": 1787.5,
+        "opponent_elo": 1980.3,
         "w_t": 1.0,
-        "w_q": 1.1678
+        "w_q": 1.2561
       },
       {
         "match_id": "2011-wimbledon-1309",
         "year": 2011,
         "round": "R32",
         "opponent": "Karol Beck",
-        "opponent_elo": 1472.2,
+        "opponent_elo": 1575.7,
         "w_t": 1.0,
-        "w_q": 0.9618
+        "w_q": 0.9994
       },
       {
         "match_id": "2011-wimbledon-1217",
         "year": 2011,
         "round": "R64",
         "opponent": "Ryan Harrison",
-        "opponent_elo": 1414.7,
+        "opponent_elo": 1577.8,
         "w_t": 1.0,
-        "w_q": 0.9243
+        "w_q": 1.0008
       },
       {
         "match_id": "2011-wimbledon-1133",
         "year": 2011,
         "round": "R128",
         "opponent": "Benoit Paire",
-        "opponent_elo": 1591.4,
+        "opponent_elo": 1486.8,
         "w_t": 1.0,
-        "w_q": 1.0397
+        "w_q": 0.943
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 0.0,
         "ci_90_lo": 0.3,
-        "ci_90_hi": 4.6
+        "ci_90_hi": 4.5
       },
       "fspw_pct": {
         "value": null,
@@ -2603,9 +2603,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 39.2,
-        "ci_90_lo": 32.1,
-        "ci_90_hi": 47.2
+        "value": 38.9,
+        "ci_90_lo": 31.9,
+        "ci_90_hi": 46.9
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -2618,14 +2618,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 84.7,
+        "value": 84.6,
         "ci_90_lo": 61.6,
         "ci_90_hi": 90.9
       },
       "rgw_pct": {
-        "value": 28.4,
-        "ci_90_lo": 17.2,
-        "ci_90_hi": 49.5
+        "value": 28.2,
+        "ci_90_lo": 17.0,
+        "ci_90_hi": 49.2
       }
     },
     "tier2": {
@@ -2636,62 +2636,62 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": -0.5,
-        "high_lev_win_pct": 52.7,
-        "baseline_win_pct": 53.2,
+        "value": -0.7,
+        "high_lev_win_pct": 52.4,
+        "baseline_win_pct": 53.1,
         "n_eff": 34,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": -0.005
+        "modifier_delta": -0.007
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -3.4,
+        "value": -3.3,
         "bp_df_rate": 0.0,
-        "baseline_df_rate": 3.4,
+        "baseline_df_rate": 3.3,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.034
+        "modifier_delta": -0.033
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -7.6,
-        "bp_speed_kmh": 159.7,
-        "overall_speed_kmh": 167.3,
+        "value": -8.0,
+        "bp_speed_kmh": 159.9,
+        "overall_speed_kmh": 167.9,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.076,
+        "modifier_delta": -0.08,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 51.3,
-        "ad_win_pct": 54.8,
-        "asymmetry": 3.5,
+        "deuce_win_pct": 51.2,
+        "ad_win_pct": 54.6,
+        "asymmetry": 3.4,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.38,
-        "streak_survival_rate": 0.534,
-        "streak_recovery_rate": 0.623
+        "streak_initiation_rate": 3.4,
+        "streak_survival_rate": 0.531,
+        "streak_recovery_rate": 0.625
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.615,
-        "bp_conversion": 0.392,
-        "bp_created": 10.8,
-        "bp_converted": 4.3
+        "bp_per_return_game": 0.618,
+        "bp_conversion": 0.385,
+        "bp_created": 11.0,
+        "bp_converted": 4.2
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2136,
+        "value": -0.2143,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0454,
+            "delta_frac": -0.0476,
             "weight": 0.3,
-            "contribution": -0.0136
+            "contribution": -0.0143
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -2703,7 +2703,7 @@
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "MARGINAL",
-        "modifier_delta": -0.2136,
+        "modifier_delta": -0.2143,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -2728,9 +2728,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 0.3,
+        "value": 0.4,
         "first_games_win_pct": 53.5,
-        "overall_win_pct": 53.2,
+        "overall_win_pct": 53.1,
         "n_eff": 45,
         "confidence": "LOW"
       },
@@ -2745,9 +2745,9 @@
       "tiebreak_differential": {
         "available": true,
         "value": -1.9,
-        "tb_win_pct": 51.3,
-        "baseline_win_pct": 53.2,
-        "n_eff": 203,
+        "tb_win_pct": 51.2,
+        "baseline_win_pct": 53.1,
+        "n_eff": 204,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -2761,11 +2761,11 @@
     },
     "elo_snapshot": {
       "name": "David Ferrer",
-      "n_overall": 70,
-      "n_surface": 70,
-      "R_overall": 1654.8,
-      "R_surface": 1654.8,
-      "R_adjusted": 1654.8
+      "n_overall": 611,
+      "n_surface": 35,
+      "R_overall": 2093.5,
+      "R_surface": 1759.5,
+      "R_adjusted": 1893.1
     },
     "career_editions_used": [
       2011
@@ -2788,9 +2788,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "David Ferrer",
-        "opponent_elo": 1654.8,
+        "opponent_elo": 1893.1,
         "w_t": 1.0,
-        "w_q": 1.0811
+        "w_q": 1.2008
       }
     ],
     "tier1": {
@@ -2972,11 +2972,11 @@
     },
     "elo_snapshot": {
       "name": "Benoit Paire",
-      "n_overall": 52,
-      "n_surface": 52,
-      "R_overall": 1591.4,
-      "R_surface": 1591.4,
-      "R_adjusted": 1591.4
+      "n_overall": 16,
+      "n_surface": 2,
+      "R_overall": 1557.7,
+      "R_surface": 1439.5,
+      "R_adjusted": 1486.8
     },
     "career_editions_used": [
       2011
@@ -2988,7 +2988,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 2,
-    "n_points": 240,
+    "n_points": 242,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -2999,18 +2999,18 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Nicolas Almagro",
-        "opponent_elo": 1605.7,
+        "opponent_elo": 1695.5,
         "w_t": 1.0,
-        "w_q": 1.0491
+        "w_q": 1.0754
       },
       {
         "match_id": "2011-wimbledon-1142",
         "year": 2011,
         "round": "R128",
         "opponent": "Nicolas Mahut",
-        "opponent_elo": 1712.2,
+        "opponent_elo": 1619.7,
         "w_t": 1.0,
-        "w_q": 1.1186
+        "w_q": 1.0273
       }
     ],
     "tier1": {
@@ -3030,9 +3030,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 26.8,
-        "ci_90_lo": 21.2,
-        "ci_90_hi": 34.3
+        "value": 26.5,
+        "ci_90_lo": 21.0,
+        "ci_90_hi": 33.9
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -3047,12 +3047,12 @@
       "sgw_pct": {
         "value": 92.5,
         "ci_90_lo": 72.3,
-        "ci_90_hi": 95.2
+        "ci_90_hi": 95.1
       },
       "rgw_pct": {
-        "value": 12.2,
-        "ci_90_lo": 7.4,
-        "ci_90_hi": 32.1
+        "value": 11.7,
+        "ci_90_lo": 7.1,
+        "ci_90_hi": 31.5
       }
     },
     "tier2": {
@@ -3063,13 +3063,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 16.5,
-        "high_lev_win_pct": 66.7,
-        "baseline_win_pct": 50.2,
-        "n_eff": 13,
+        "value": 16.6,
+        "high_lev_win_pct": 66.6,
+        "baseline_win_pct": 50.0,
+        "n_eff": 14,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.165
+        "modifier_delta": 0.166
       },
       "df_pressure_delta": {
         "available": true,
@@ -3083,42 +3083,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -2.4,
-        "bp_speed_kmh": 182.1,
-        "overall_speed_kmh": 184.5,
+        "value": -2.0,
+        "bp_speed_kmh": 183.1,
+        "overall_speed_kmh": 185.1,
         "n_eff": 3,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.024,
+        "modifier_delta": -0.02,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 50.7,
+        "deuce_win_pct": 50.5,
         "ad_win_pct": 49.1,
-        "asymmetry": 1.6,
+        "asymmetry": 1.4,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 7.73,
+        "streak_initiation_rate": 7.77,
         "streak_survival_rate": 0.484,
-        "streak_recovery_rate": 0.623
+        "streak_recovery_rate": 0.626
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.124,
+        "bp_per_return_game": 0.116,
         "bp_conversion": 0.6,
-        "bp_created": 2.6,
+        "bp_created": 2.4,
         "bp_converted": 1.5
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2039,
+        "value": -0.2032,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.013,
+            "delta_frac": -0.0108,
             "weight": 0.3,
-            "contribution": -0.0039
+            "contribution": -0.0032
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -3130,7 +3130,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.2039,
+        "modifier_delta": -0.2032,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -3156,9 +3156,9 @@
       "set_transition_delta": {
         "available": true,
         "value": -5.8,
-        "first_games_win_pct": 44.4,
-        "overall_win_pct": 50.2,
-        "n_eff": 39,
+        "first_games_win_pct": 44.2,
+        "overall_win_pct": 50.0,
+        "n_eff": 40,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
@@ -3172,9 +3172,9 @@
       "tiebreak_differential": {
         "available": true,
         "value": -0.3,
-        "tb_win_pct": 49.9,
-        "baseline_win_pct": 50.2,
-        "n_eff": 239,
+        "tb_win_pct": 49.7,
+        "baseline_win_pct": 50.0,
+        "n_eff": 241,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -3188,11 +3188,11 @@
     },
     "elo_snapshot": {
       "name": "John Isner",
-      "n_overall": 85,
-      "n_surface": 85,
-      "R_overall": 1748.9,
-      "R_surface": 1748.9,
-      "R_adjusted": 1748.9
+      "n_overall": 175,
+      "n_surface": 10,
+      "R_overall": 1810.9,
+      "R_surface": 1435.5,
+      "R_adjusted": 1585.7
     },
     "career_editions_used": [
       2011
@@ -3215,9 +3215,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "John Isner",
-        "opponent_elo": 1748.9,
+        "opponent_elo": 1585.7,
         "w_t": 1.0,
-        "w_q": 1.1426
+        "w_q": 1.0058
       }
     ],
     "tier1": {
@@ -3395,11 +3395,11 @@
     },
     "elo_snapshot": {
       "name": "Nicolas Mahut",
-      "n_overall": 108,
-      "n_surface": 108,
-      "R_overall": 1712.2,
-      "R_surface": 1712.2,
-      "R_adjusted": 1712.2
+      "n_overall": 178,
+      "n_surface": 49,
+      "R_overall": 1700.3,
+      "R_surface": 1565.9,
+      "R_adjusted": 1619.7
     },
     "career_editions_used": [
       2011
@@ -3422,9 +3422,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Roger Federer",
-        "opponent_elo": 2095.1,
+        "opponent_elo": 2209.6,
         "w_t": 1.0,
-        "w_q": 1.3688
+        "w_q": 1.4015
       }
     ],
     "tier1": {
@@ -3602,11 +3602,11 @@
     },
     "elo_snapshot": {
       "name": "Mikhail Kukushkin",
-      "n_overall": 41,
-      "n_surface": 41,
-      "R_overall": 1551.1,
-      "R_surface": 1551.1,
-      "R_adjusted": 1551.1
+      "n_overall": 67,
+      "n_surface": 4,
+      "R_overall": 1742.9,
+      "R_surface": 1491.2,
+      "R_adjusted": 1591.9
     },
     "career_editions_used": [
       2011
@@ -3618,7 +3618,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 5,
-    "n_points": 205,
+    "n_points": 207,
     "n_eff_matches": 5.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -3629,45 +3629,45 @@
         "year": 2011,
         "round": "QF",
         "opponent": "Jo-Wilfried Tsonga",
-        "opponent_elo": 1787.5,
+        "opponent_elo": 1980.3,
         "w_t": 1.0,
-        "w_q": 1.1678
+        "w_q": 1.2561
       },
       {
         "match_id": "2011-wimbledon-1406",
         "year": 2011,
         "round": "R16",
         "opponent": "Mikhail Youzhny",
-        "opponent_elo": 1602.2,
+        "opponent_elo": 1792.8,
         "w_t": 1.0,
-        "w_q": 1.0468
+        "w_q": 1.1371
       },
       {
         "match_id": "2011-wimbledon-1312",
         "year": 2011,
         "round": "R32",
         "opponent": "David Nalbandian",
-        "opponent_elo": 1755.7,
+        "opponent_elo": 1876.9,
         "w_t": 1.0,
-        "w_q": 1.1471
+        "w_q": 1.1905
       },
       {
         "match_id": "2011-wimbledon-1224",
         "year": 2011,
         "round": "R64",
         "opponent": "Adrian Mannarino",
-        "opponent_elo": 1638.9,
+        "opponent_elo": 1662.0,
         "w_t": 1.0,
-        "w_q": 1.0707
+        "w_q": 1.0542
       },
       {
         "match_id": "2011-wimbledon-1148",
         "year": 2011,
         "round": "R128",
         "opponent": "Mikhail Kukushkin",
-        "opponent_elo": 1551.1,
+        "opponent_elo": 1591.9,
         "w_t": 1.0,
-        "w_q": 1.0134
+        "w_q": 1.0097
       }
     ],
     "tier1": {
@@ -3687,9 +3687,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 38.3,
-        "ci_90_lo": 31.3,
-        "ci_90_hi": 46.3
+        "value": 38.2,
+        "ci_90_lo": 31.2,
+        "ci_90_hi": 46.2
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -3702,14 +3702,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 92.8,
-        "ci_90_lo": 70.4,
-        "ci_90_hi": 95.2
+        "value": 92.6,
+        "ci_90_lo": 70.3,
+        "ci_90_hi": 95.1
       },
       "rgw_pct": {
-        "value": 27.1,
-        "ci_90_lo": 16.4,
-        "ci_90_hi": 48.0
+        "value": 26.9,
+        "ci_90_lo": 16.3,
+        "ci_90_hi": 47.7
       }
     },
     "tier2": {
@@ -3721,8 +3721,8 @@
       "clutch_differential": {
         "available": true,
         "value": 3.4,
-        "high_lev_win_pct": 59.8,
-        "baseline_win_pct": 56.4,
+        "high_lev_win_pct": 59.7,
+        "baseline_win_pct": 56.3,
         "n_eff": 25,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
@@ -3740,29 +3740,29 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -1.7,
-        "bp_speed_kmh": 176.5,
+        "value": -1.6,
+        "bp_speed_kmh": 176.6,
         "overall_speed_kmh": 178.2,
         "n_eff": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.017,
+        "modifier_delta": -0.016,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 55.8,
-        "ad_win_pct": 56.3,
+        "deuce_win_pct": 55.7,
+        "ad_win_pct": 56.2,
         "asymmetry": 0.5,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.29,
-        "streak_survival_rate": 0.608,
-        "streak_recovery_rate": 0.449
+        "streak_initiation_rate": 3.31,
+        "streak_survival_rate": 0.604,
+        "streak_recovery_rate": 0.452
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.418,
+        "bp_per_return_game": 0.413,
         "bp_conversion": 0.518,
         "bp_created": 7.6,
         "bp_converted": 4.0
@@ -3770,12 +3770,12 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2029,
+        "value": -0.2027,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0095,
+            "delta_frac": -0.009,
             "weight": 0.3,
-            "contribution": -0.0029
+            "contribution": -0.0027
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -3787,7 +3787,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.2029,
+        "modifier_delta": -0.2027,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -3812,9 +3812,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 1.6,
-        "first_games_win_pct": 58.0,
-        "overall_win_pct": 56.4,
+        "value": 1.5,
+        "first_games_win_pct": 57.8,
+        "overall_win_pct": 56.3,
         "n_eff": 41,
         "confidence": "LOW"
       },
@@ -3829,9 +3829,9 @@
       "tiebreak_differential": {
         "available": true,
         "value": 0.9,
-        "tb_win_pct": 57.3,
-        "baseline_win_pct": 56.4,
-        "n_eff": 202,
+        "tb_win_pct": 57.2,
+        "baseline_win_pct": 56.3,
+        "n_eff": 204,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -3845,11 +3845,11 @@
     },
     "elo_snapshot": {
       "name": "Roger Federer",
-      "n_overall": 223,
-      "n_surface": 223,
-      "R_overall": 2095.1,
-      "R_surface": 2095.1,
-      "R_adjusted": 2095.1
+      "n_overall": 970,
+      "n_surface": 116,
+      "R_overall": 2273.5,
+      "R_surface": 2167.0,
+      "R_adjusted": 2209.6
     },
     "career_editions_used": [
       2011
@@ -3861,7 +3861,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 3,
-    "n_points": 267,
+    "n_points": 266,
     "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -3872,27 +3872,27 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Bernard Tomic",
-        "opponent_elo": 1663.3,
+        "opponent_elo": 1772.6,
         "w_t": 1.0,
-        "w_q": 1.0867
+        "w_q": 1.1243
       },
       {
         "match_id": "2011-wimbledon-1225",
         "year": 2011,
         "round": "R64",
         "opponent": "Lleyton Hewitt",
-        "opponent_elo": 1796.3,
+        "opponent_elo": 1900.3,
         "w_t": 1.0,
-        "w_q": 1.1736
+        "w_q": 1.2053
       },
       {
         "match_id": "2011-wimbledon-1149",
         "year": 2011,
         "round": "R128",
         "opponent": "Philipp Petzschner",
-        "opponent_elo": 1678.5,
+        "opponent_elo": 1802.5,
         "w_t": 1.0,
-        "w_q": 1.0966
+        "w_q": 1.1433
       }
     ],
     "tier1": {
@@ -3927,12 +3927,12 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 80.3,
-        "ci_90_lo": 60.0,
+        "value": 80.2,
+        "ci_90_lo": 59.9,
         "ci_90_hi": 88.1
       },
       "rgw_pct": {
-        "value": 17.2,
+        "value": 17.3,
         "ci_90_lo": 10.4,
         "ci_90_hi": 36.9
       }
@@ -3982,13 +3982,13 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 4.39,
+        "streak_initiation_rate": 4.38,
         "streak_survival_rate": 0.46,
         "streak_recovery_rate": 0.374
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.34,
-        "bp_conversion": 0.415,
+        "bp_per_return_game": 0.341,
+        "bp_conversion": 0.414,
         "bp_created": 7.3,
         "bp_converted": 3.0
       },
@@ -4048,7 +4048,7 @@
         "value": 0.0,
         "fsp_at_pressure": 0.0,
         "fsp_overall": 0.0,
-        "n_eff": 20,
+        "n_eff": 21,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
@@ -4070,11 +4070,11 @@
     },
     "elo_snapshot": {
       "name": "Robin Soderling",
-      "n_overall": 43,
+      "n_overall": 478,
       "n_surface": 43,
-      "R_overall": 1832.4,
-      "R_surface": 1832.4,
-      "R_adjusted": 1832.4
+      "R_overall": 2137.8,
+      "R_surface": 1824.3,
+      "R_adjusted": 1949.7
     },
     "career_editions_used": [
       2011
@@ -4097,9 +4097,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Robin Soderling",
-        "opponent_elo": 1832.4,
+        "opponent_elo": 1949.7,
         "w_t": 1.0,
-        "w_q": 1.1972
+        "w_q": 1.2367
       }
     ],
     "tier1": {
@@ -4281,11 +4281,11 @@
     },
     "elo_snapshot": {
       "name": "Philipp Petzschner",
-      "n_overall": 40,
-      "n_surface": 40,
-      "R_overall": 1678.5,
-      "R_surface": 1678.5,
-      "R_adjusted": 1678.5
+      "n_overall": 142,
+      "n_surface": 29,
+      "R_overall": 1900.8,
+      "R_surface": 1737.0,
+      "R_adjusted": 1802.5
     },
     "career_editions_used": [
       2011
@@ -4308,9 +4308,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Lleyton Hewitt",
-        "opponent_elo": 1796.3,
+        "opponent_elo": 1900.3,
         "w_t": 1.0,
-        "w_q": 1.1736
+        "w_q": 1.2053
       }
     ],
     "tier1": {
@@ -4492,11 +4492,11 @@
     },
     "elo_snapshot": {
       "name": "Kei Nishikori",
-      "n_overall": 71,
-      "n_surface": 71,
-      "R_overall": 1740.6,
-      "R_surface": 1740.6,
-      "R_adjusted": 1740.6
+      "n_overall": 92,
+      "n_surface": 16,
+      "R_overall": 1793.7,
+      "R_surface": 1580.9,
+      "R_adjusted": 1666.0
     },
     "career_editions_used": [
       2011
@@ -4508,7 +4508,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 2,
-    "n_points": 297,
+    "n_points": 298,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -4519,18 +4519,18 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Robin Soderling",
-        "opponent_elo": 1832.4,
+        "opponent_elo": 1949.7,
         "w_t": 1.0,
-        "w_q": 1.1972
+        "w_q": 1.2367
       },
       {
         "match_id": "2011-wimbledon-1150",
         "year": 2011,
         "round": "R128",
         "opponent": "Kei Nishikori",
-        "opponent_elo": 1740.6,
+        "opponent_elo": 1666.0,
         "w_t": 1.0,
-        "w_q": 1.1372
+        "w_q": 1.0567
       }
     ],
     "tier1": {
@@ -4550,9 +4550,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 35.2,
-        "ci_90_lo": 29.2,
-        "ci_90_hi": 42.2
+        "value": 35.0,
+        "ci_90_lo": 29.0,
+        "ci_90_hi": 41.9
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -4565,14 +4565,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 87.4,
-        "ci_90_lo": 69.2,
-        "ci_90_hi": 92.4
+        "value": 87.3,
+        "ci_90_lo": 69.1,
+        "ci_90_hi": 92.3
       },
       "rgw_pct": {
-        "value": 18.5,
-        "ci_90_lo": 11.3,
-        "ci_90_hi": 36.9
+        "value": 18.1,
+        "ci_90_lo": 11.1,
+        "ci_90_hi": 36.4
       }
     },
     "tier2": {
@@ -4583,62 +4583,62 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 4.4,
-        "high_lev_win_pct": 55.9,
-        "baseline_win_pct": 51.5,
+        "value": 4.0,
+        "high_lev_win_pct": 55.4,
+        "baseline_win_pct": 51.4,
         "n_eff": 36,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.044
+        "modifier_delta": 0.04
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -2.6,
+        "value": -2.4,
         "bp_df_rate": 0.0,
-        "baseline_df_rate": 2.6,
+        "baseline_df_rate": 2.4,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.026
+        "modifier_delta": -0.024
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 1.5,
-        "bp_speed_kmh": 164.1,
+        "value": 1.4,
+        "bp_speed_kmh": 164.0,
         "overall_speed_kmh": 162.6,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.015,
+        "modifier_delta": 0.014,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 53.6,
-        "ad_win_pct": 48.7,
-        "asymmetry": 4.9,
+        "ad_win_pct": 48.6,
+        "asymmetry": 5.0,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 9.76,
-        "streak_survival_rate": 0.385,
-        "streak_recovery_rate": 0.578
+        "streak_initiation_rate": 9.77,
+        "streak_survival_rate": 0.386,
+        "streak_recovery_rate": 0.568
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.351,
-        "bp_conversion": 0.467,
-        "bp_created": 8.5,
-        "bp_converted": 3.9
+        "bp_per_return_game": 0.346,
+        "bp_conversion": 0.458,
+        "bp_created": 8.4,
+        "bp_converted": 3.8
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1972,
+        "value": -0.1974,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0092,
+            "delta_frac": 0.0086,
             "weight": 0.3,
-            "contribution": 0.0028
+            "contribution": 0.0026
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -4650,7 +4650,7 @@
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "MARGINAL",
-        "modifier_delta": -0.1972,
+        "modifier_delta": -0.1974,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -4675,9 +4675,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 0.7,
-        "first_games_win_pct": 52.2,
-        "overall_win_pct": 51.5,
+        "value": 0.6,
+        "first_games_win_pct": 52.0,
+        "overall_win_pct": 51.4,
         "n_eff": 56,
         "confidence": "LOW"
       },
@@ -4692,9 +4692,9 @@
       "tiebreak_differential": {
         "available": true,
         "value": 0.5,
-        "tb_win_pct": 52.0,
-        "baseline_win_pct": 51.5,
-        "n_eff": 294,
+        "tb_win_pct": 51.9,
+        "baseline_win_pct": 51.4,
+        "n_eff": 295,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -4708,11 +4708,11 @@
     },
     "elo_snapshot": {
       "name": "Lleyton Hewitt",
-      "n_overall": 171,
-      "n_surface": 171,
-      "R_overall": 1796.3,
-      "R_surface": 1796.3,
-      "R_adjusted": 1796.3
+      "n_overall": 754,
+      "n_surface": 132,
+      "R_overall": 1925.8,
+      "R_surface": 1883.4,
+      "R_adjusted": 1900.3
     },
     "career_editions_used": [
       2011
@@ -4735,9 +4735,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Dmitry Tursunov",
-        "opponent_elo": 1529.7,
+        "opponent_elo": 1773.6,
         "w_t": 1.0,
-        "w_q": 0.9994
+        "w_q": 1.125
       }
     ],
     "tier1": {
@@ -4915,11 +4915,11 @@
     },
     "elo_snapshot": {
       "name": "Ernests Gulbis",
-      "n_overall": 39,
-      "n_surface": 39,
-      "R_overall": 1562.9,
-      "R_surface": 1562.9,
-      "R_adjusted": 1562.9
+      "n_overall": 197,
+      "n_surface": 13,
+      "R_overall": 1793.5,
+      "R_surface": 1465.0,
+      "R_adjusted": 1596.4
     },
     "career_editions_used": [
       2011
@@ -4942,18 +4942,18 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Jurgen Melzer",
-        "opponent_elo": 1668.4,
+        "opponent_elo": 1816.2,
         "w_t": 1.0,
-        "w_q": 1.09
+        "w_q": 1.152
       },
       {
         "match_id": "2011-wimbledon-1155",
         "year": 2011,
         "round": "R128",
         "opponent": "Ernests Gulbis",
-        "opponent_elo": 1562.9,
+        "opponent_elo": 1596.4,
         "w_t": 1.0,
-        "w_q": 1.0211
+        "w_q": 1.0126
       }
     ],
     "tier1": {
@@ -4973,9 +4973,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 33.2,
-        "ci_90_lo": 27.3,
-        "ci_90_hi": 40.3
+        "value": 33.4,
+        "ci_90_lo": 27.5,
+        "ci_90_hi": 40.4
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -4988,14 +4988,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 80.6,
-        "ci_90_lo": 60.8,
-        "ci_90_hi": 88.3
+        "value": 80.3,
+        "ci_90_lo": 60.5,
+        "ci_90_hi": 88.1
       },
       "rgw_pct": {
-        "value": 22.4,
-        "ci_90_lo": 13.8,
-        "ci_90_hi": 41.4
+        "value": 22.5,
+        "ci_90_lo": 13.9,
+        "ci_90_hi": 41.6
       }
     },
     "tier2": {
@@ -5026,42 +5026,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -6.2,
-        "bp_speed_kmh": 173.6,
-        "overall_speed_kmh": 179.8,
+        "value": -6.0,
+        "bp_speed_kmh": 173.9,
+        "overall_speed_kmh": 179.9,
         "n_eff": 11,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.062,
+        "modifier_delta": -0.06,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 50.6,
+        "deuce_win_pct": 50.5,
         "ad_win_pct": 47.9,
-        "asymmetry": 2.7,
+        "asymmetry": 2.6,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 9.43,
-        "streak_survival_rate": 0.338,
-        "streak_recovery_rate": 0.624
+        "streak_initiation_rate": 9.37,
+        "streak_survival_rate": 0.335,
+        "streak_recovery_rate": 0.623
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.403,
-        "bp_conversion": 0.391,
+        "bp_per_return_game": 0.406,
+        "bp_conversion": 0.394,
         "bp_created": 9.1,
-        "bp_converted": 3.5
+        "bp_converted": 3.6
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.1205,
+        "value": 0.1208,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0345,
+            "delta_frac": -0.0334,
             "weight": 0.3,
-            "contribution": -0.0103
+            "contribution": -0.01
           },
           "df_rate_delta": {
             "delta_frac": 0.6538,
@@ -5073,7 +5073,7 @@
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.1205,
+        "modifier_delta": 0.1208,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -5114,8 +5114,8 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -1.1,
-        "tb_win_pct": 48.4,
+        "value": -1.2,
+        "tb_win_pct": 48.3,
         "baseline_win_pct": 49.5,
         "n_eff": 274,
         "confidence": "RELIABLE"
@@ -5131,11 +5131,11 @@
     },
     "elo_snapshot": {
       "name": "Dmitry Tursunov",
-      "n_overall": 67,
-      "n_surface": 67,
-      "R_overall": 1529.7,
-      "R_surface": 1529.7,
-      "R_adjusted": 1529.7
+      "n_overall": 322,
+      "n_surface": 55,
+      "R_overall": 1848.8,
+      "R_surface": 1723.4,
+      "R_adjusted": 1773.6
     },
     "career_editions_used": [
       2011
@@ -5158,9 +5158,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Michael Llodra",
-        "opponent_elo": 1682.8,
+        "opponent_elo": 1840.0,
         "w_t": 1.0,
-        "w_q": 1.0994
+        "w_q": 1.1671
       }
     ],
     "tier1": {
@@ -5338,11 +5338,11 @@
     },
     "elo_snapshot": {
       "name": "James Ward",
-      "n_overall": 45,
-      "n_surface": 45,
-      "R_overall": 1337.0,
-      "R_surface": 1337.0,
-      "R_adjusted": 1337.0
+      "n_overall": 27,
+      "n_surface": 19,
+      "R_overall": 1753.8,
+      "R_surface": 1654.1,
+      "R_adjusted": 1694.0
     },
     "career_editions_used": [
       2011
@@ -5354,8 +5354,8 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 2,
-    "n_points": 173,
-    "n_eff_matches": 1.9,
+    "n_points": 176,
+    "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
@@ -5365,25 +5365,25 @@
         "year": 2011,
         "round": "R16",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2184.9,
+        "opponent_elo": 2143.9,
         "w_t": 1.0,
-        "w_q": 1.4275
+        "w_q": 1.3598
       },
       {
         "match_id": "2011-wimbledon-1160",
         "year": 2011,
         "round": "R128",
         "opponent": "James Ward",
-        "opponent_elo": 1337.0,
+        "opponent_elo": 1694.0,
         "w_t": 1.0,
-        "w_q": 0.8735
+        "w_q": 1.0745
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 0.0,
         "ci_90_lo": 0.4,
-        "ci_90_hi": 5.0
+        "ci_90_hi": 4.9
       },
       "fspw_pct": {
         "value": null,
@@ -5396,9 +5396,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 27.3,
-        "ci_90_lo": 20.7,
-        "ci_90_hi": 36.6
+        "value": 28.4,
+        "ci_90_lo": 21.7,
+        "ci_90_hi": 37.6
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -5411,14 +5411,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 82.0,
-        "ci_90_lo": 56.7,
-        "ci_90_hi": 89.5
+        "value": 83.9,
+        "ci_90_lo": 58.6,
+        "ci_90_hi": 90.6
       },
       "rgw_pct": {
-        "value": 10.3,
-        "ci_90_lo": 6.4,
-        "ci_90_hi": 34.9
+        "value": 11.9,
+        "ci_90_lo": 7.2,
+        "ci_90_hi": 36.4
       }
     },
     "tier2": {
@@ -5429,74 +5429,74 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 14.9,
+        "value": 13.9,
         "high_lev_win_pct": 61.8,
-        "baseline_win_pct": 46.9,
-        "n_eff": 22,
+        "baseline_win_pct": 47.9,
+        "n_eff": 23,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.149
+        "modifier_delta": 0.139
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 0.6,
-        "bp_df_rate": 7.1,
-        "baseline_df_rate": 6.5,
-        "n_eff": 9,
+        "value": 0.5,
+        "bp_df_rate": 6.7,
+        "baseline_df_rate": 6.2,
+        "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.006
+        "modifier_delta": 0.005
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 4.0,
-        "bp_speed_kmh": 184.9,
+        "value": 4.2,
+        "bp_speed_kmh": 185.1,
         "overall_speed_kmh": 180.9,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.04,
+        "modifier_delta": 0.042,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 45.3,
-        "ad_win_pct": 48.1,
-        "asymmetry": 2.8,
+        "deuce_win_pct": 45.9,
+        "ad_win_pct": 49.4,
+        "asymmetry": 3.5,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.83,
-        "streak_survival_rate": 0.453,
-        "streak_recovery_rate": 0.685
+        "streak_initiation_rate": 6.04,
+        "streak_survival_rate": 0.467,
+        "streak_recovery_rate": 0.675
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.129,
+        "bp_per_return_game": 0.148,
         "bp_conversion": 0.4,
-        "bp_created": 1.9,
-        "bp_converted": 0.8
+        "bp_created": 2.2,
+        "bp_converted": 0.9
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0251,
+        "value": 0.0231,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0221,
+            "delta_frac": 0.0232,
             "weight": 0.3,
-            "contribution": 0.0066
+            "contribution": 0.007
           },
           "df_rate_delta": {
-            "delta_frac": 0.0923,
+            "delta_frac": 0.0806,
             "weight": 0.2,
-            "contribution": 0.0185
+            "contribution": 0.0161
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.0251,
+        "modifier_delta": 0.0231,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -5521,9 +5521,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -4.4,
-        "first_games_win_pct": 42.5,
-        "overall_win_pct": 46.9,
+        "value": -4.1,
+        "first_games_win_pct": 43.8,
+        "overall_win_pct": 47.9,
         "n_eff": 35,
         "confidence": "LOW"
       },
@@ -5537,10 +5537,10 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.4,
-        "tb_win_pct": 46.5,
-        "baseline_win_pct": 46.9,
-        "n_eff": 169,
+        "value": -0.3,
+        "tb_win_pct": 47.6,
+        "baseline_win_pct": 47.9,
+        "n_eff": 172,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -5554,11 +5554,11 @@
     },
     "elo_snapshot": {
       "name": "Michael Llodra",
-      "n_overall": 74,
-      "n_surface": 74,
-      "R_overall": 1682.8,
-      "R_surface": 1682.8,
-      "R_adjusted": 1682.8
+      "n_overall": 333,
+      "n_surface": 66,
+      "R_overall": 1901.6,
+      "R_surface": 1798.9,
+      "R_adjusted": 1840.0
     },
     "career_editions_used": [
       2011
@@ -5571,7 +5571,7 @@
     "year": 2011,
     "n_matches": 3,
     "n_points": 262,
-    "n_eff_matches": 2.9,
+    "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
@@ -5581,27 +5581,27 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2184.9,
+        "opponent_elo": 2143.9,
         "w_t": 1.0,
-        "w_q": 1.4275
+        "w_q": 1.3598
       },
       {
         "match_id": "2011-wimbledon-1231",
         "year": 2011,
         "round": "R64",
         "opponent": "Andreas Seppi",
-        "opponent_elo": 1626.9,
+        "opponent_elo": 1754.4,
         "w_t": 1.0,
-        "w_q": 1.0629
+        "w_q": 1.1128
       },
       {
         "match_id": "2011-wimbledon-1161",
         "year": 2011,
         "round": "R128",
         "opponent": "James Blake",
-        "opponent_elo": 1543.3,
+        "opponent_elo": 1690.7,
         "w_t": 1.0,
-        "w_q": 1.0083
+        "w_q": 1.0724
       }
     ],
     "tier1": {
@@ -5621,9 +5621,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 35.6,
-        "ci_90_lo": 29.4,
-        "ci_90_hi": 42.9
+        "value": 35.8,
+        "ci_90_lo": 29.6,
+        "ci_90_hi": 43.1
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -5637,13 +5637,13 @@
       },
       "sgw_pct": {
         "value": 85.1,
-        "ci_90_lo": 64.7,
+        "ci_90_lo": 64.8,
         "ci_90_hi": 91.1
       },
       "rgw_pct": {
-        "value": 18.7,
-        "ci_90_lo": 11.3,
-        "ci_90_hi": 38.6
+        "value": 19.3,
+        "ci_90_lo": 11.6,
+        "ci_90_hi": 39.0
       }
     },
     "tier2": {
@@ -5654,13 +5654,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 4.5,
-        "high_lev_win_pct": 55.5,
-        "baseline_win_pct": 51.0,
+        "value": 4.9,
+        "high_lev_win_pct": 56.0,
+        "baseline_win_pct": 51.1,
         "n_eff": 41,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.045
+        "modifier_delta": 0.049
       },
       "df_pressure_delta": {
         "available": true,
@@ -5674,42 +5674,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 6.0,
-        "bp_speed_kmh": 178.1,
+        "value": 6.1,
+        "bp_speed_kmh": 178.2,
         "overall_speed_kmh": 172.1,
         "n_eff": 9,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.06,
+        "modifier_delta": 0.061,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 49.9,
-        "ad_win_pct": 51.8,
-        "asymmetry": 1.9,
+        "deuce_win_pct": 50.0,
+        "ad_win_pct": 52.0,
+        "asymmetry": 2.0,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.32,
-        "streak_survival_rate": 0.398,
-        "streak_recovery_rate": 0.494
+        "streak_initiation_rate": 5.4,
+        "streak_survival_rate": 0.399,
+        "streak_recovery_rate": 0.508
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.405,
-        "bp_conversion": 0.428,
-        "bp_created": 8.6,
-        "bp_converted": 3.7
+        "bp_per_return_game": 0.411,
+        "bp_conversion": 0.433,
+        "bp_created": 8.7,
+        "bp_converted": 3.8
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1895,
+        "value": -0.1894,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0349,
+            "delta_frac": 0.0354,
             "weight": 0.3,
-            "contribution": 0.0105
+            "contribution": 0.0106
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -5721,7 +5721,7 @@
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "MARGINAL",
-        "modifier_delta": -0.1895,
+        "modifier_delta": -0.1894,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -5746,9 +5746,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -1.4,
+        "value": -1.5,
         "first_games_win_pct": 49.6,
-        "overall_win_pct": 51.0,
+        "overall_win_pct": 51.1,
         "n_eff": 59,
         "confidence": "LOW"
       },
@@ -5757,14 +5757,14 @@
         "value": 0.0,
         "fsp_at_pressure": 0.0,
         "fsp_overall": 0.0,
-        "n_eff": 19,
+        "n_eff": 18,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
         "value": -1.9,
-        "tb_win_pct": 49.1,
-        "baseline_win_pct": 51.0,
+        "tb_win_pct": 49.2,
+        "baseline_win_pct": 51.1,
         "n_eff": 254,
         "confidence": "RELIABLE"
       },
@@ -5779,11 +5779,11 @@
     },
     "elo_snapshot": {
       "name": "Marcos Baghdatis",
-      "n_overall": 95,
-      "n_surface": 95,
-      "R_overall": 1636.6,
-      "R_surface": 1636.6,
-      "R_adjusted": 1636.6
+      "n_overall": 319,
+      "n_surface": 44,
+      "R_overall": 1855.5,
+      "R_surface": 1709.9,
+      "R_adjusted": 1768.2
     },
     "career_editions_used": [
       2011
@@ -5806,9 +5806,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Marcos Baghdatis",
-        "opponent_elo": 1636.6,
+        "opponent_elo": 1768.2,
         "w_t": 1.0,
-        "w_q": 1.0692
+        "w_q": 1.1215
       }
     ],
     "tier1": {
@@ -5986,11 +5986,11 @@
     },
     "elo_snapshot": {
       "name": "James Blake",
-      "n_overall": 62,
-      "n_surface": 62,
-      "R_overall": 1543.3,
-      "R_surface": 1543.3,
-      "R_adjusted": 1543.3
+      "n_overall": 560,
+      "n_surface": 57,
+      "R_overall": 1808.4,
+      "R_surface": 1612.2,
+      "R_adjusted": 1690.7
     },
     "career_editions_used": [
       2011
@@ -6013,9 +6013,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2184.9,
+        "opponent_elo": 2143.9,
         "w_t": 1.0,
-        "w_q": 1.4275
+        "w_q": 1.3598
       }
     ],
     "tier1": {
@@ -6197,11 +6197,11 @@
     },
     "elo_snapshot": {
       "name": "Jeremy Chardy",
-      "n_overall": 63,
-      "n_surface": 63,
-      "R_overall": 1556.2,
-      "R_surface": 1556.2,
-      "R_adjusted": 1556.2
+      "n_overall": 161,
+      "n_surface": 14,
+      "R_overall": 1740.5,
+      "R_surface": 1474.2,
+      "R_adjusted": 1580.7
     },
     "career_editions_used": [
       2011
@@ -6213,8 +6213,8 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 7,
-    "n_points": 198,
-    "n_eff_matches": 7.0,
+    "n_points": 199,
+    "n_eff_matches": 6.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": true,
@@ -6224,63 +6224,63 @@
         "year": 2011,
         "round": "F",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1965.8,
+        "opponent_elo": 2182.9,
         "w_t": 1.0,
-        "w_q": 1.2843
+        "w_q": 1.3846
       },
       {
         "match_id": "2011-wimbledon-1602",
         "year": 2011,
         "round": "SF",
         "opponent": "Jo-Wilfried Tsonga",
-        "opponent_elo": 1787.5,
+        "opponent_elo": 1980.3,
         "w_t": 1.0,
-        "w_q": 1.1678
+        "w_q": 1.2561
       },
       {
         "match_id": "2011-wimbledon-1504",
         "year": 2011,
         "round": "QF",
         "opponent": "Bernard Tomic",
-        "opponent_elo": 1663.3,
+        "opponent_elo": 1772.6,
         "w_t": 1.0,
-        "w_q": 1.0867
+        "w_q": 1.1243
       },
       {
         "match_id": "2011-wimbledon-1408",
         "year": 2011,
         "round": "R16",
         "opponent": "Michael Llodra",
-        "opponent_elo": 1682.8,
+        "opponent_elo": 1840.0,
         "w_t": 1.0,
-        "w_q": 1.0994
+        "w_q": 1.1671
       },
       {
         "match_id": "2011-wimbledon-1316",
         "year": 2011,
         "round": "R32",
         "opponent": "Marcos Baghdatis",
-        "opponent_elo": 1636.6,
+        "opponent_elo": 1768.2,
         "w_t": 1.0,
-        "w_q": 1.0692
+        "w_q": 1.1215
       },
       {
         "match_id": "2011-wimbledon-1232",
         "year": 2011,
         "round": "R64",
         "opponent": "Kevin Anderson",
-        "opponent_elo": 1841.0,
+        "opponent_elo": 1645.2,
         "w_t": 1.0,
-        "w_q": 1.2028
+        "w_q": 1.0435
       },
       {
         "match_id": "2011-wimbledon-1164",
         "year": 2011,
         "round": "R128",
         "opponent": "Jeremy Chardy",
-        "opponent_elo": 1556.2,
+        "opponent_elo": 1580.7,
         "w_t": 1.0,
-        "w_q": 1.0167
+        "w_q": 1.0026
       }
     ],
     "tier1": {
@@ -6300,9 +6300,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 41.0,
-        "ci_90_lo": 33.6,
-        "ci_90_hi": 49.3
+        "value": 40.9,
+        "ci_90_lo": 33.5,
+        "ci_90_hi": 49.1
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -6315,14 +6315,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 90.9,
+        "value": 90.8,
         "ci_90_lo": 67.6,
-        "ci_90_hi": 94.2
+        "ci_90_hi": 94.1
       },
       "rgw_pct": {
-        "value": 33.1,
-        "ci_90_lo": 20.2,
-        "ci_90_hi": 54.0
+        "value": 32.8,
+        "ci_90_lo": 20.0,
+        "ci_90_hi": 53.6
       }
     },
     "tier2": {
@@ -6333,74 +6333,74 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 1.4,
+        "value": 1.5,
         "high_lev_win_pct": 57.1,
-        "baseline_win_pct": 55.7,
+        "baseline_win_pct": 55.6,
         "n_eff": 29,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.014
+        "modifier_delta": 0.015
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 8.2,
-        "bp_df_rate": 10.6,
-        "baseline_df_rate": 2.4,
+        "value": 8.7,
+        "bp_df_rate": 11.0,
+        "baseline_df_rate": 2.3,
         "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.082
+        "modifier_delta": 0.087
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 5.7,
-        "bp_speed_kmh": 181.8,
+        "value": 5.3,
+        "bp_speed_kmh": 181.4,
         "overall_speed_kmh": 176.1,
-        "n_eff": 4,
+        "n_eff": 3,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.057,
+        "modifier_delta": 0.053,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 55.1,
-        "ad_win_pct": 55.8,
+        "deuce_win_pct": 55.0,
+        "ad_win_pct": 55.7,
         "asymmetry": 0.7,
         "stronger_side": "ad"
       },
       "momentum_profile": {
         "streak_initiation_rate": 2.31,
-        "streak_survival_rate": 0.526,
-        "streak_recovery_rate": 0.364
+        "streak_survival_rate": 0.527,
+        "streak_recovery_rate": 0.36
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.618,
-        "bp_conversion": 0.479,
+        "bp_per_return_game": 0.615,
+        "bp_conversion": 0.477,
         "bp_created": 10.5,
         "bp_converted": 5.0
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.693,
+        "value": 0.7655,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0324,
+            "delta_frac": 0.0301,
             "weight": 0.3,
-            "contribution": 0.0097
+            "contribution": 0.009
           },
           "df_rate_delta": {
-            "delta_frac": 3.4167,
+            "delta_frac": 3.7826,
             "weight": 0.2,
-            "contribution": 0.6833
+            "contribution": 0.7565
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.693,
+        "modifier_delta": 0.7655,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -6425,10 +6425,10 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 1.9,
-        "first_games_win_pct": 57.6,
-        "overall_win_pct": 55.7,
-        "n_eff": 44,
+        "value": 1.7,
+        "first_games_win_pct": 57.3,
+        "overall_win_pct": 55.6,
+        "n_eff": 45,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
@@ -6442,9 +6442,9 @@
       "tiebreak_differential": {
         "available": true,
         "value": 1.2,
-        "tb_win_pct": 56.9,
-        "baseline_win_pct": 55.7,
-        "n_eff": 194,
+        "tb_win_pct": 56.8,
+        "baseline_win_pct": 55.6,
+        "n_eff": 195,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -6458,11 +6458,11 @@
     },
     "elo_snapshot": {
       "name": "Novak Djokovic",
-      "n_overall": 140,
-      "n_surface": 140,
-      "R_overall": 2184.9,
-      "R_surface": 2184.9,
-      "R_adjusted": 2184.9
+      "n_overall": 481,
+      "n_surface": 49,
+      "R_overall": 2380.1,
+      "R_surface": 1986.4,
+      "R_adjusted": 2143.9
     },
     "career_editions_used": [
       2011
@@ -6474,7 +6474,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 6,
-    "n_points": 208,
+    "n_points": 209,
     "n_eff_matches": 5.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -6485,27 +6485,27 @@
         "year": 2011,
         "round": "F",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2184.9,
+        "opponent_elo": 2143.9,
         "w_t": 1.0,
-        "w_q": 1.4275
+        "w_q": 1.3598
       },
       {
         "match_id": "2011-wimbledon-1601",
         "year": 2011,
         "round": "SF",
         "opponent": "Andy Murray",
-        "opponent_elo": 1861.5,
+        "opponent_elo": 2094.5,
         "w_t": 1.0,
-        "w_q": 1.2162
+        "w_q": 1.3285
       },
       {
         "match_id": "2011-wimbledon-1501",
         "year": 2011,
         "round": "QF",
         "opponent": "Mardy Fish",
-        "opponent_elo": 1850.0,
+        "opponent_elo": 1917.5,
         "w_t": 1.0,
-        "w_q": 1.2087
+        "w_q": 1.2162
       },
       {
         "match_id": "2011-wimbledon-1401",
@@ -6521,18 +6521,18 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Gilles Muller",
-        "opponent_elo": 1768.8,
+        "opponent_elo": 1595.8,
         "w_t": 1.0,
-        "w_q": 1.1556
+        "w_q": 1.0122
       },
       {
         "match_id": "2011-wimbledon-1201",
         "year": 2011,
         "round": "R64",
         "opponent": "Ryan Sweeting",
-        "opponent_elo": 1472.9,
+        "opponent_elo": 1583.8,
         "w_t": 1.0,
-        "w_q": 0.9623
+        "w_q": 1.0046
       }
     ],
     "tier1": {
@@ -6552,9 +6552,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 36.2,
-        "ci_90_lo": 29.4,
-        "ci_90_hi": 44.2
+        "value": 36.4,
+        "ci_90_lo": 29.6,
+        "ci_90_hi": 44.4
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -6567,14 +6567,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 88.7,
-        "ci_90_lo": 66.6,
+        "value": 88.8,
+        "ci_90_lo": 66.7,
         "ci_90_hi": 93.1
       },
       "rgw_pct": {
-        "value": 23.7,
-        "ci_90_lo": 14.2,
-        "ci_90_hi": 45.0
+        "value": 23.9,
+        "ci_90_lo": 14.3,
+        "ci_90_hi": 45.1
       }
     },
     "tier2": {
@@ -6585,13 +6585,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 2.8,
-        "high_lev_win_pct": 55.6,
-        "baseline_win_pct": 52.8,
+        "value": 2.5,
+        "high_lev_win_pct": 55.4,
+        "baseline_win_pct": 52.9,
         "n_eff": 21,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.028
+        "modifier_delta": 0.025
       },
       "df_pressure_delta": {
         "available": true,
@@ -6605,42 +6605,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 3.2,
-        "bp_speed_kmh": 176.8,
+        "value": 3.1,
+        "bp_speed_kmh": 176.7,
         "overall_speed_kmh": 173.6,
         "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.032,
+        "modifier_delta": 0.031,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 52.7,
-        "ad_win_pct": 52.5,
-        "asymmetry": 0.2,
+        "ad_win_pct": 52.7,
+        "asymmetry": 0.0,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 2.35,
-        "streak_survival_rate": 0.466,
-        "streak_recovery_rate": 0.408
+        "streak_initiation_rate": 2.38,
+        "streak_survival_rate": 0.461,
+        "streak_recovery_rate": 0.403
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.46,
-        "bp_conversion": 0.462,
-        "bp_created": 8.4,
+        "bp_per_return_game": 0.465,
+        "bp_conversion": 0.463,
+        "bp_created": 8.5,
         "bp_converted": 3.9
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1945,
+        "value": -0.1946,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0184,
+            "delta_frac": 0.0179,
             "weight": 0.3,
-            "contribution": 0.0055
+            "contribution": 0.0054
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -6652,7 +6652,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.1945,
+        "modifier_delta": -0.1946,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -6677,9 +6677,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 0.6,
-        "first_games_win_pct": 53.4,
-        "overall_win_pct": 52.8,
+        "value": 0.8,
+        "first_games_win_pct": 53.7,
+        "overall_win_pct": 52.9,
         "n_eff": 44,
         "confidence": "LOW"
       },
@@ -6690,8 +6690,8 @@
       "tiebreak_differential": {
         "available": true,
         "value": -1.1,
-        "tb_win_pct": 51.7,
-        "baseline_win_pct": 52.8,
+        "tb_win_pct": 51.8,
+        "baseline_win_pct": 52.9,
         "n_eff": 206,
         "confidence": "RELIABLE"
       },
@@ -6706,11 +6706,11 @@
     },
     "elo_snapshot": {
       "name": "Rafael Nadal",
-      "n_overall": 97,
-      "n_surface": 97,
-      "R_overall": 1965.8,
-      "R_surface": 1965.8,
-      "R_adjusted": 1965.8
+      "n_overall": 638,
+      "n_surface": 58,
+      "R_overall": 2327.6,
+      "R_surface": 2086.5,
+      "R_adjusted": 2182.9
     },
     "career_editions_used": [
       2011
@@ -6733,9 +6733,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1965.8,
+        "opponent_elo": 2182.9,
         "w_t": 1.0,
-        "w_q": 1.2843
+        "w_q": 1.3846
       }
     ],
     "tier1": {
@@ -6917,11 +6917,11 @@
     },
     "elo_snapshot": {
       "name": "Ryan Sweeting",
-      "n_overall": 10,
-      "n_surface": 10,
-      "R_overall": 1472.9,
-      "R_surface": 1472.9,
-      "R_adjusted": 1472.9
+      "n_overall": 59,
+      "n_surface": 5,
+      "R_overall": 1801.8,
+      "R_surface": 1438.4,
+      "R_adjusted": 1583.8
     },
     "career_editions_used": [
       2011
@@ -6933,7 +6933,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 2,
-    "n_points": 112,
+    "n_points": 120,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -6944,25 +6944,25 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1965.8,
+        "opponent_elo": 2182.9,
         "w_t": 1.0,
-        "w_q": 1.2843
+        "w_q": 1.3846
       },
       {
         "match_id": "2011-wimbledon-1202",
         "year": 2011,
         "round": "R64",
         "opponent": "Milos Raonic",
-        "opponent_elo": 1810.8,
+        "opponent_elo": 1675.1,
         "w_t": 1.0,
-        "w_q": 1.1831
+        "w_q": 1.0625
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 0.0,
         "ci_90_lo": 0.6,
-        "ci_90_hi": 7.6
+        "ci_90_hi": 7.2
       },
       "fspw_pct": {
         "value": null,
@@ -6975,9 +6975,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 23.2,
-        "ci_90_lo": 16.4,
-        "ci_90_hi": 34.7
+        "value": 23.0,
+        "ci_90_lo": 16.3,
+        "ci_90_hi": 34.0
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -6990,14 +6990,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 70.8,
-        "ci_90_lo": 41.7,
+        "value": 71.2,
+        "ci_90_lo": 42.8,
         "ci_90_hi": 84.2
       },
       "rgw_pct": {
-        "value": 9.7,
-        "ci_90_lo": 6.5,
-        "ci_90_hi": 40.3
+        "value": 9.2,
+        "ci_90_lo": 6.1,
+        "ci_90_hi": 38.7
       }
     },
     "tier2": {
@@ -7008,74 +7008,74 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": -16.1,
-        "high_lev_win_pct": 31.1,
-        "baseline_win_pct": 47.2,
+        "value": -15.2,
+        "high_lev_win_pct": 31.9,
+        "baseline_win_pct": 47.1,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.161
+        "modifier_delta": -0.152
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 5.9,
-        "bp_df_rate": 11.4,
-        "baseline_df_rate": 5.5,
+        "value": 6.4,
+        "bp_df_rate": 12.0,
+        "baseline_df_rate": 5.6,
         "n_eff": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.059
+        "modifier_delta": 0.064
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -6.4,
-        "bp_speed_kmh": 176.8,
+        "value": -6.8,
+        "bp_speed_kmh": 176.4,
         "overall_speed_kmh": 183.2,
         "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.064,
+        "modifier_delta": -0.068,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 41.1,
-        "ad_win_pct": 52.9,
-        "asymmetry": 11.8,
+        "deuce_win_pct": 40.8,
+        "ad_win_pct": 53.0,
+        "asymmetry": 12.2,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.08,
-        "streak_survival_rate": 0.584,
+        "streak_initiation_rate": 3.26,
+        "streak_survival_rate": 0.587,
         "streak_recovery_rate": 0.5
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.148,
+        "bp_per_return_game": 0.143,
         "bp_conversion": 0.0,
-        "bp_created": 1.5,
+        "bp_created": 1.6,
         "bp_converted": 0.0
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.204,
+        "value": 0.2175,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0349,
+            "delta_frac": -0.0371,
             "weight": 0.3,
-            "contribution": -0.0105
+            "contribution": -0.0111
           },
           "df_rate_delta": {
-            "delta_frac": 1.0727,
+            "delta_frac": 1.1429,
             "weight": 0.2,
-            "contribution": 0.2145
+            "contribution": 0.2286
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.204,
+        "modifier_delta": 0.2175,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -7101,9 +7101,9 @@
       "set_transition_delta": {
         "available": true,
         "value": -0.5,
-        "first_games_win_pct": 46.7,
-        "overall_win_pct": 47.2,
-        "n_eff": 24,
+        "first_games_win_pct": 46.6,
+        "overall_win_pct": 47.1,
+        "n_eff": 25,
         "confidence": "UNRELIABLE"
       },
       "first_serve_pressure": {
@@ -7113,9 +7113,9 @@
       "tiebreak_differential": {
         "available": true,
         "value": 0.5,
-        "tb_win_pct": 47.7,
-        "baseline_win_pct": 47.2,
-        "n_eff": 111,
+        "tb_win_pct": 47.6,
+        "baseline_win_pct": 47.1,
+        "n_eff": 118,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -7129,11 +7129,11 @@
     },
     "elo_snapshot": {
       "name": "Gilles Muller",
-      "n_overall": 81,
-      "n_surface": 81,
-      "R_overall": 1768.8,
-      "R_surface": 1768.8,
-      "R_adjusted": 1768.8
+      "n_overall": 162,
+      "n_surface": 23,
+      "R_overall": 1741.6,
+      "R_surface": 1498.5,
+      "R_adjusted": 1595.8
     },
     "career_editions_used": [
       2011
@@ -7156,9 +7156,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Gilles Muller",
-        "opponent_elo": 1768.8,
+        "opponent_elo": 1595.8,
         "w_t": 1.0,
-        "w_q": 1.1556
+        "w_q": 1.0122
       }
     ],
     "tier1": {
@@ -7327,11 +7327,11 @@
     },
     "elo_snapshot": {
       "name": "Milos Raonic",
-      "n_overall": 81,
-      "n_surface": 81,
-      "R_overall": 1810.8,
-      "R_surface": 1810.8,
-      "R_adjusted": 1810.8
+      "n_overall": 51,
+      "n_surface": 5,
+      "R_overall": 1870.9,
+      "R_surface": 1544.7,
+      "R_adjusted": 1675.1
     },
     "career_editions_used": [
       2011
@@ -7538,11 +7538,11 @@
     },
     "elo_snapshot": {
       "name": "Olivier Rochus",
-      "n_overall": 81,
-      "n_surface": 81,
-      "R_overall": 1581.8,
-      "R_surface": 1581.8,
-      "R_adjusted": 1581.8
+      "n_overall": 461,
+      "n_surface": 68,
+      "R_overall": 1773.1,
+      "R_surface": 1675.5,
+      "R_adjusted": 1714.5
     },
     "career_editions_used": [
       2011
@@ -7565,27 +7565,27 @@
         "year": 2011,
         "round": "QF",
         "opponent": "Rafael Nadal",
-        "opponent_elo": 1965.8,
+        "opponent_elo": 2182.9,
         "w_t": 1.0,
-        "w_q": 1.2843
+        "w_q": 1.3846
       },
       {
         "match_id": "2011-wimbledon-1402",
         "year": 2011,
         "round": "R16",
         "opponent": "Tomas Berdych",
-        "opponent_elo": 1826.1,
+        "opponent_elo": 1928.8,
         "w_t": 1.0,
-        "w_q": 1.193
+        "w_q": 1.2234
       },
       {
         "match_id": "2011-wimbledon-1205",
         "year": 2011,
         "round": "R64",
         "opponent": "Denis Istomin",
-        "opponent_elo": 1603.1,
+        "opponent_elo": 1683.2,
         "w_t": 1.0,
-        "w_q": 1.0474
+        "w_q": 1.0676
       }
     ],
     "tier1": {
@@ -7605,9 +7605,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 32.5,
-        "ci_90_lo": 26.0,
-        "ci_90_hi": 40.6
+        "value": 32.4,
+        "ci_90_lo": 25.9,
+        "ci_90_hi": 40.5
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -7620,14 +7620,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 87.6,
-        "ci_90_lo": 65.1,
-        "ci_90_hi": 92.5
+        "value": 87.3,
+        "ci_90_lo": 64.8,
+        "ci_90_hi": 92.4
       },
       "rgw_pct": {
-        "value": 17.9,
+        "value": 17.8,
         "ci_90_lo": 10.6,
-        "ci_90_hi": 39.3
+        "ci_90_hi": 39.2
       }
     },
     "tier2": {
@@ -7639,8 +7639,8 @@
       "clutch_differential": {
         "available": true,
         "value": 2.8,
-        "high_lev_win_pct": 52.9,
-        "baseline_win_pct": 50.1,
+        "high_lev_win_pct": 52.8,
+        "baseline_win_pct": 50.0,
         "n_eff": 25,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
@@ -7658,42 +7658,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -5.0,
-        "bp_speed_kmh": 167.2,
-        "overall_speed_kmh": 172.2,
+        "value": -5.2,
+        "bp_speed_kmh": 166.9,
+        "overall_speed_kmh": 172.1,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.05,
+        "modifier_delta": -0.052,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 49.8,
-        "ad_win_pct": 50.0,
-        "asymmetry": 0.2,
+        "deuce_win_pct": 49.7,
+        "ad_win_pct": 49.8,
+        "asymmetry": 0.1,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 4.47,
-        "streak_survival_rate": 0.388,
-        "streak_recovery_rate": 0.279
+        "streak_initiation_rate": 4.44,
+        "streak_survival_rate": 0.387,
+        "streak_recovery_rate": 0.281
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.363,
-        "bp_conversion": 0.397,
+        "bp_conversion": 0.398,
         "bp_created": 6.7,
         "bp_converted": 2.7
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2087,
+        "value": -0.2091,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.029,
+            "delta_frac": -0.0302,
             "weight": 0.3,
-            "contribution": -0.0087
+            "contribution": -0.0091
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -7705,7 +7705,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.2087,
+        "modifier_delta": -0.2091,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -7730,10 +7730,10 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -1.2,
-        "first_games_win_pct": 48.9,
-        "overall_win_pct": 50.1,
-        "n_eff": 40,
+        "value": -1.3,
+        "first_games_win_pct": 48.7,
+        "overall_win_pct": 50.0,
+        "n_eff": 41,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
@@ -7741,15 +7741,15 @@
         "value": 0.0,
         "fsp_at_pressure": 0.0,
         "fsp_overall": 0.0,
-        "n_eff": 9,
+        "n_eff": 10,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.7,
+        "value": -0.6,
         "tb_win_pct": 49.4,
-        "baseline_win_pct": 50.1,
-        "n_eff": 209,
+        "baseline_win_pct": 50.0,
+        "n_eff": 210,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -7763,11 +7763,11 @@
     },
     "elo_snapshot": {
       "name": "Mardy Fish",
-      "n_overall": 72,
-      "n_surface": 72,
-      "R_overall": 1850.0,
-      "R_surface": 1850.0,
-      "R_adjusted": 1850.0
+      "n_overall": 444,
+      "n_surface": 68,
+      "R_overall": 2014.4,
+      "R_surface": 1853.0,
+      "R_adjusted": 1917.5
     },
     "career_editions_used": [
       2011
@@ -7790,9 +7790,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Mardy Fish",
-        "opponent_elo": 1850.0,
+        "opponent_elo": 1917.5,
         "w_t": 1.0,
-        "w_q": 1.2087
+        "w_q": 1.2162
       }
     ],
     "tier1": {
@@ -7970,11 +7970,11 @@
     },
     "elo_snapshot": {
       "name": "Denis Istomin",
-      "n_overall": 76,
-      "n_surface": 76,
-      "R_overall": 1603.1,
-      "R_surface": 1603.1,
-      "R_adjusted": 1603.1
+      "n_overall": 136,
+      "n_surface": 23,
+      "R_overall": 1717.0,
+      "R_surface": 1660.7,
+      "R_adjusted": 1683.2
     },
     "career_editions_used": [
       2011
@@ -7997,9 +7997,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Fernando Verdasco",
-        "opponent_elo": 1616.8,
+        "opponent_elo": 1807.5,
         "w_t": 1.0,
-        "w_q": 1.0563
+        "w_q": 1.1465
       }
     ],
     "tier1": {
@@ -8177,11 +8177,11 @@
     },
     "elo_snapshot": {
       "name": "Robin Haase",
-      "n_overall": 56,
-      "n_surface": 56,
-      "R_overall": 1573.9,
-      "R_surface": 1573.9,
-      "R_adjusted": 1573.9
+      "n_overall": 107,
+      "n_surface": 15,
+      "R_overall": 1777.6,
+      "R_surface": 1538.0,
+      "R_adjusted": 1633.8
     },
     "career_editions_used": [
       2011
@@ -8204,9 +8204,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Tomas Berdych",
-        "opponent_elo": 1826.1,
+        "opponent_elo": 1928.8,
         "w_t": 1.0,
-        "w_q": 1.193
+        "w_q": 1.2234
       }
     ],
     "tier1": {
@@ -8388,11 +8388,11 @@
     },
     "elo_snapshot": {
       "name": "Julien Benneteau",
-      "n_overall": 76,
-      "n_surface": 76,
-      "R_overall": 1624.4,
-      "R_surface": 1624.4,
-      "R_adjusted": 1624.4
+      "n_overall": 323,
+      "n_surface": 44,
+      "R_overall": 1816.1,
+      "R_surface": 1652.1,
+      "R_adjusted": 1717.7
     },
     "career_editions_used": [
       2011
@@ -8415,9 +8415,9 @@
         "year": 2011,
         "round": "R16",
         "opponent": "Mardy Fish",
-        "opponent_elo": 1850.0,
+        "opponent_elo": 1917.5,
         "w_t": 1.0,
-        "w_q": 1.2087
+        "w_q": 1.2162
       },
       {
         "match_id": "2011-wimbledon-1304",
@@ -8433,9 +8433,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Julien Benneteau",
-        "opponent_elo": 1624.4,
+        "opponent_elo": 1717.7,
         "w_t": 1.0,
-        "w_q": 1.0613
+        "w_q": 1.0895
       }
     ],
     "tier1": {
@@ -8455,8 +8455,8 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 37.8,
-        "ci_90_lo": 30.0,
+        "value": 37.9,
+        "ci_90_lo": 30.1,
         "ci_90_hi": 47.0
       },
       "rpw_vs_1st_pct": {
@@ -8471,13 +8471,13 @@
       },
       "sgw_pct": {
         "value": 92.3,
-        "ci_90_lo": 66.6,
+        "ci_90_lo": 66.5,
         "ci_90_hi": 94.7
       },
       "rgw_pct": {
-        "value": 25.7,
-        "ci_90_lo": 15.0,
-        "ci_90_hi": 49.1
+        "value": 25.9,
+        "ci_90_lo": 15.1,
+        "ci_90_hi": 49.3
       }
     },
     "tier2": {
@@ -8488,13 +8488,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": -0.2,
-        "high_lev_win_pct": 54.8,
+        "value": -0.1,
+        "high_lev_win_pct": 54.9,
         "baseline_win_pct": 55.0,
         "n_eff": 22,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.002
+        "modifier_delta": -0.001
       },
       "df_pressure_delta": {
         "available": true,
@@ -8508,42 +8508,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -0.5,
-        "bp_speed_kmh": 180.0,
+        "value": -0.6,
+        "bp_speed_kmh": 179.9,
         "overall_speed_kmh": 180.5,
         "n_eff": 3,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.005,
+        "modifier_delta": -0.006,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 50.5,
-        "ad_win_pct": 59.3,
+        "deuce_win_pct": 50.6,
+        "ad_win_pct": 59.4,
         "asymmetry": 8.8,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.94,
-        "streak_survival_rate": 0.725,
-        "streak_recovery_rate": 0.434
+        "streak_initiation_rate": 3.93,
+        "streak_survival_rate": 0.726,
+        "streak_recovery_rate": 0.433
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.412,
-        "bp_conversion": 0.571,
+        "bp_per_return_game": 0.413,
+        "bp_conversion": 0.573,
         "bp_created": 6.1,
         "bp_converted": 3.5
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2008,
+        "value": -0.201,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0028,
+            "delta_frac": -0.0033,
             "weight": 0.3,
-            "contribution": -0.0008
+            "contribution": -0.001
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -8555,7 +8555,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.2008,
+        "modifier_delta": -0.201,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -8596,10 +8596,10 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": 1.1,
-        "tb_win_pct": 56.1,
+        "value": 1.2,
+        "tb_win_pct": 56.2,
         "baseline_win_pct": 55.0,
-        "n_eff": 164,
+        "n_eff": 163,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -8613,11 +8613,11 @@
     },
     "elo_snapshot": {
       "name": "Tomas Berdych",
-      "n_overall": 99,
-      "n_surface": 99,
-      "R_overall": 1826.1,
-      "R_surface": 1826.1,
-      "R_adjusted": 1826.1
+      "n_overall": 478,
+      "n_surface": 52,
+      "R_overall": 1974.3,
+      "R_surface": 1898.4,
+      "R_adjusted": 1928.8
     },
     "career_editions_used": [
       2011
@@ -8640,9 +8640,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Andy Murray",
-        "opponent_elo": 1861.5,
+        "opponent_elo": 2094.5,
         "w_t": 1.0,
-        "w_q": 1.2162
+        "w_q": 1.3285
       }
     ],
     "tier1": {
@@ -8820,11 +8820,11 @@
     },
     "elo_snapshot": {
       "name": "Tobias Kamke",
-      "n_overall": 24,
-      "n_surface": 24,
-      "R_overall": 1557.3,
-      "R_surface": 1557.3,
-      "R_adjusted": 1557.3
+      "n_overall": 34,
+      "n_surface": 9,
+      "R_overall": 1660.0,
+      "R_surface": 1536.8,
+      "R_adjusted": 1586.1
     },
     "career_editions_used": [
       2011
@@ -8847,18 +8847,18 @@
         "year": 2011,
         "round": "R16",
         "opponent": "Andy Murray",
-        "opponent_elo": 1861.5,
+        "opponent_elo": 2094.5,
         "w_t": 1.0,
-        "w_q": 1.2162
+        "w_q": 1.3285
       },
       {
         "match_id": "2011-wimbledon-1211",
         "year": 2011,
         "round": "R64",
         "opponent": "Igor Kunitsyn",
-        "opponent_elo": 1433.4,
+        "opponent_elo": 1630.9,
         "w_t": 1.0,
-        "w_q": 0.9365
+        "w_q": 1.0344
       }
     ],
     "tier1": {
@@ -8878,8 +8878,8 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 34.9,
-        "ci_90_lo": 27.5,
+        "value": 35.0,
+        "ci_90_lo": 27.6,
         "ci_90_hi": 44.1
       },
       "rpw_vs_1st_pct": {
@@ -8893,14 +8893,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 76.9,
+        "value": 77.0,
         "ci_90_lo": 52.1,
         "ci_90_hi": 86.7
       },
       "rgw_pct": {
-        "value": 23.9,
-        "ci_90_lo": 13.9,
-        "ci_90_hi": 47.2
+        "value": 24.0,
+        "ci_90_lo": 14.0,
+        "ci_90_hi": 47.3
       }
     },
     "tier2": {
@@ -8911,13 +8911,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": -6.2,
-        "high_lev_win_pct": 44.3,
+        "value": -6.1,
+        "high_lev_win_pct": 44.4,
         "baseline_win_pct": 50.5,
         "n_eff": 18,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.062
+        "modifier_delta": -0.061
       },
       "df_pressure_delta": {
         "available": true,
@@ -8948,13 +8948,13 @@
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.65,
+        "streak_initiation_rate": 5.66,
         "streak_survival_rate": 0.696,
         "streak_recovery_rate": 0.307
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.305,
-        "bp_conversion": 0.566,
+        "bp_per_return_game": 0.306,
+        "bp_conversion": 0.568,
         "bp_created": 4.6,
         "bp_converted": 2.6
       },
@@ -9006,7 +9006,7 @@
         "value": 3.1,
         "first_games_win_pct": 53.6,
         "overall_win_pct": 50.5,
-        "n_eff": 37,
+        "n_eff": 36,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
@@ -9036,11 +9036,11 @@
     },
     "elo_snapshot": {
       "name": "Richard Gasquet",
-      "n_overall": 117,
-      "n_surface": 117,
-      "R_overall": 1658.8,
-      "R_surface": 1658.8,
-      "R_adjusted": 1658.8
+      "n_overall": 410,
+      "n_surface": 50,
+      "R_overall": 2007.8,
+      "R_surface": 1859.9,
+      "R_adjusted": 1919.1
     },
     "career_editions_used": [
       2011
@@ -9063,9 +9063,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Richard Gasquet",
-        "opponent_elo": 1658.8,
+        "opponent_elo": 1919.1,
         "w_t": 1.0,
-        "w_q": 1.0837
+        "w_q": 1.2172
       }
     ],
     "tier1": {
@@ -9247,11 +9247,11 @@
     },
     "elo_snapshot": {
       "name": "Igor Kunitsyn",
-      "n_overall": 37,
-      "n_surface": 37,
-      "R_overall": 1433.4,
-      "R_surface": 1433.4,
-      "R_adjusted": 1433.4
+      "n_overall": 195,
+      "n_surface": 32,
+      "R_overall": 1736.8,
+      "R_surface": 1560.2,
+      "R_adjusted": 1630.9
     },
     "career_editions_used": [
       2011
@@ -9449,11 +9449,11 @@
     },
     "elo_snapshot": {
       "name": "Simone Bolelli",
-      "n_overall": 32,
-      "n_surface": 32,
-      "R_overall": 1642.6,
-      "R_surface": 1642.6,
-      "R_adjusted": 1642.6
+      "n_overall": 154,
+      "n_surface": 14,
+      "R_overall": 1729.0,
+      "R_surface": 1634.7,
+      "R_adjusted": 1672.4
     },
     "career_editions_used": [
       2011
@@ -9476,9 +9476,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Simone Bolelli",
-        "opponent_elo": 1642.6,
+        "opponent_elo": 1672.4,
         "w_t": 1.0,
-        "w_q": 1.0732
+        "w_q": 1.0608
       }
     ],
     "tier1": {
@@ -9676,9 +9676,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Andy Roddick",
-        "opponent_elo": 1924.3,
+        "opponent_elo": 1993.1,
         "w_t": 1.0,
-        "w_q": 1.2572
+        "w_q": 1.2642
       }
     ],
     "tier1": {
@@ -9856,11 +9856,11 @@
     },
     "elo_snapshot": {
       "name": "Victor Hanescu",
-      "n_overall": 32,
-      "n_surface": 32,
-      "R_overall": 1458.3,
-      "R_surface": 1458.3,
-      "R_adjusted": 1458.3
+      "n_overall": 345,
+      "n_surface": 27,
+      "R_overall": 1772.8,
+      "R_surface": 1552.8,
+      "R_adjusted": 1640.8
     },
     "career_editions_used": [
       2011
@@ -9883,9 +9883,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "David Ferrer",
-        "opponent_elo": 1654.8,
+        "opponent_elo": 1893.1,
         "w_t": 1.0,
-        "w_q": 1.0811
+        "w_q": 1.2008
       }
     ],
     "tier1": {
@@ -10067,11 +10067,11 @@
     },
     "elo_snapshot": {
       "name": "Ryan Harrison",
-      "n_overall": 37,
-      "n_surface": 37,
-      "R_overall": 1414.7,
-      "R_surface": 1414.7,
-      "R_adjusted": 1414.7
+      "n_overall": 28,
+      "n_surface": 7,
+      "R_overall": 1687.5,
+      "R_surface": 1504.7,
+      "R_adjusted": 1577.8
     },
     "career_editions_used": [
       2011
@@ -10094,9 +10094,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Jo-Wilfried Tsonga",
-        "opponent_elo": 1787.5,
+        "opponent_elo": 1980.3,
         "w_t": 1.0,
-        "w_q": 1.1678
+        "w_q": 1.2561
       }
     ],
     "tier1": {
@@ -10274,11 +10274,11 @@
     },
     "elo_snapshot": {
       "name": "Grigor Dimitrov",
-      "n_overall": 80,
-      "n_surface": 80,
-      "R_overall": 1741.0,
-      "R_surface": 1741.0,
-      "R_adjusted": 1741.0
+      "n_overall": 36,
+      "n_surface": 12,
+      "R_overall": 1667.7,
+      "R_surface": 1513.6,
+      "R_adjusted": 1575.2
     },
     "career_editions_used": [
       2011
@@ -10290,7 +10290,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 5,
-    "n_points": 243,
+    "n_points": 239,
     "n_eff_matches": 4.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -10301,45 +10301,45 @@
         "year": 2011,
         "round": "SF",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2184.9,
+        "opponent_elo": 2143.9,
         "w_t": 1.0,
-        "w_q": 1.4275
+        "w_q": 1.3598
       },
       {
         "match_id": "2011-wimbledon-1503",
         "year": 2011,
         "round": "QF",
         "opponent": "Roger Federer",
-        "opponent_elo": 2095.1,
+        "opponent_elo": 2209.6,
         "w_t": 1.0,
-        "w_q": 1.3688
+        "w_q": 1.4015
       },
       {
         "match_id": "2011-wimbledon-1405",
         "year": 2011,
         "round": "R16",
         "opponent": "David Ferrer",
-        "opponent_elo": 1654.8,
+        "opponent_elo": 1893.1,
         "w_t": 1.0,
-        "w_q": 1.0811
+        "w_q": 1.2008
       },
       {
         "match_id": "2011-wimbledon-1310",
         "year": 2011,
         "round": "R32",
         "opponent": "Fernando Gonzalez",
-        "opponent_elo": 1728.7,
+        "opponent_elo": 1813.5,
         "w_t": 1.0,
-        "w_q": 1.1294
+        "w_q": 1.1503
       },
       {
         "match_id": "2011-wimbledon-1220",
         "year": 2011,
         "round": "R64",
         "opponent": "Grigor Dimitrov",
-        "opponent_elo": 1741.0,
+        "opponent_elo": 1575.2,
         "w_t": 1.0,
-        "w_q": 1.1375
+        "w_q": 0.9991
       }
     ],
     "tier1": {
@@ -10359,9 +10359,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 31.3,
-        "ci_90_lo": 25.3,
-        "ci_90_hi": 38.9
+        "value": 31.1,
+        "ci_90_lo": 25.1,
+        "ci_90_hi": 38.8
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -10374,13 +10374,13 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 88.0,
-        "ci_90_lo": 67.5,
-        "ci_90_hi": 92.7
+        "value": 88.5,
+        "ci_90_lo": 67.9,
+        "ci_90_hi": 93.0
       },
       "rgw_pct": {
-        "value": 18.8,
-        "ci_90_lo": 11.3,
+        "value": 18.6,
+        "ci_90_lo": 11.2,
         "ci_90_hi": 38.7
       }
     },
@@ -10392,74 +10392,74 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 4.4,
-        "high_lev_win_pct": 54.5,
-        "baseline_win_pct": 50.1,
-        "n_eff": 30,
-        "confidence": "LOW",
-        "verdict": "PASS",
-        "modifier_delta": 0.044
+        "value": 4.1,
+        "high_lev_win_pct": 54.3,
+        "baseline_win_pct": 50.2,
+        "n_eff": 29,
+        "confidence": "UNRELIABLE",
+        "verdict": "UNRELIABLE",
+        "modifier_delta": 0.041
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -0.9,
-        "bp_df_rate": 2.7,
+        "value": -1.1,
+        "bp_df_rate": 2.5,
         "baseline_df_rate": 3.6,
-        "n_eff": 7,
+        "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.009
+        "modifier_delta": -0.011
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -0.9,
+        "value": -1.1,
         "bp_speed_kmh": 180.0,
-        "overall_speed_kmh": 180.9,
-        "n_eff": 7,
+        "overall_speed_kmh": 181.1,
+        "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.009,
+        "modifier_delta": -0.011,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 48.1,
-        "ad_win_pct": 51.9,
+        "deuce_win_pct": 48.2,
+        "ad_win_pct": 52.0,
         "asymmetry": 3.8,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.31,
-        "streak_survival_rate": 0.52,
-        "streak_recovery_rate": 0.443
+        "streak_initiation_rate": 3.29,
+        "streak_survival_rate": 0.531,
+        "streak_recovery_rate": 0.435
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.404,
-        "bp_conversion": 0.399,
+        "bp_per_return_game": 0.405,
+        "bp_conversion": 0.398,
         "bp_created": 8.4,
         "bp_converted": 3.4
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.0515,
+        "value": -0.0629,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.005,
+            "delta_frac": -0.0061,
             "weight": 0.3,
-            "contribution": -0.0015
+            "contribution": -0.0018
           },
           "df_rate_delta": {
-            "delta_frac": -0.25,
+            "delta_frac": -0.3056,
             "weight": 0.2,
-            "contribution": -0.05
+            "contribution": -0.0611
           }
         },
         "components_used": 2,
         "components_total": 5,
-        "confidence": "LOW",
-        "verdict": "PASS",
-        "modifier_delta": -0.0515,
+        "confidence": "UNRELIABLE",
+        "verdict": "UNRELIABLE",
+        "modifier_delta": -0.0629,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -10484,10 +10484,10 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -5.0,
-        "first_games_win_pct": 45.1,
-        "overall_win_pct": 50.1,
-        "n_eff": 46,
+        "value": -4.9,
+        "first_games_win_pct": 45.3,
+        "overall_win_pct": 50.2,
+        "n_eff": 45,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
@@ -10495,15 +10495,15 @@
         "value": 0.0,
         "fsp_at_pressure": 0.0,
         "fsp_overall": 0.0,
-        "n_eff": 12,
+        "n_eff": 11,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": 0.4,
+        "value": 0.3,
         "tb_win_pct": 50.5,
-        "baseline_win_pct": 50.1,
-        "n_eff": 237,
+        "baseline_win_pct": 50.2,
+        "n_eff": 234,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -10517,11 +10517,11 @@
     },
     "elo_snapshot": {
       "name": "Jo-Wilfried Tsonga",
-      "n_overall": 77,
-      "n_surface": 77,
-      "R_overall": 1787.5,
-      "R_surface": 1787.5,
-      "R_adjusted": 1787.5
+      "n_overall": 242,
+      "n_surface": 30,
+      "R_overall": 2049.4,
+      "R_surface": 1934.2,
+      "R_adjusted": 1980.3
     },
     "career_editions_used": [
       2011
@@ -10533,7 +10533,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 2,
-    "n_points": 267,
+    "n_points": 265,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -10544,18 +10544,18 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Mikhail Youzhny",
-        "opponent_elo": 1602.2,
+        "opponent_elo": 1792.8,
         "w_t": 1.0,
-        "w_q": 1.0468
+        "w_q": 1.1371
       },
       {
         "match_id": "2011-wimbledon-1221",
         "year": 2011,
         "round": "R64",
         "opponent": "John Isner",
-        "opponent_elo": 1748.9,
+        "opponent_elo": 1585.7,
         "w_t": 1.0,
-        "w_q": 1.1426
+        "w_q": 1.0058
       }
     ],
     "tier1": {
@@ -10575,9 +10575,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 25.6,
-        "ci_90_lo": 20.4,
-        "ci_90_hi": 32.6
+        "value": 25.5,
+        "ci_90_lo": 20.3,
+        "ci_90_hi": 32.5
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -10590,14 +10590,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 93.5,
-        "ci_90_lo": 74.7,
-        "ci_90_hi": 95.7
+        "value": 92.7,
+        "ci_90_lo": 73.7,
+        "ci_90_hi": 95.3
       },
       "rgw_pct": {
-        "value": 6.7,
-        "ci_90_lo": 4.4,
-        "ci_90_hi": 25.3
+        "value": 6.6,
+        "ci_90_lo": 4.3,
+        "ci_90_hi": 25.2
       }
     },
     "tier2": {
@@ -10608,62 +10608,62 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": -6.0,
-        "high_lev_win_pct": 43.0,
-        "baseline_win_pct": 49.0,
-        "n_eff": 25,
+        "value": -5.4,
+        "high_lev_win_pct": 43.3,
+        "baseline_win_pct": 48.7,
+        "n_eff": 26,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.06
+        "modifier_delta": -0.054
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -2.2,
+        "value": -2.3,
         "bp_df_rate": 0.0,
-        "baseline_df_rate": 2.2,
-        "n_eff": 3,
+        "baseline_df_rate": 2.3,
+        "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.022
+        "modifier_delta": -0.023
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 2.1,
+        "value": 2.2,
         "bp_speed_kmh": 178.6,
-        "overall_speed_kmh": 176.5,
-        "n_eff": 3,
+        "overall_speed_kmh": 176.4,
+        "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.021,
+        "modifier_delta": 0.022,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 50.5,
-        "ad_win_pct": 47.0,
-        "asymmetry": 3.5,
+        "deuce_win_pct": 50.2,
+        "ad_win_pct": 46.6,
+        "asymmetry": 3.6,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 8.78,
-        "streak_survival_rate": 0.46,
-        "streak_recovery_rate": 0.253
+        "streak_initiation_rate": 8.7,
+        "streak_survival_rate": 0.453,
+        "streak_recovery_rate": 0.246
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.326,
-        "bp_conversion": 0.136,
-        "bp_created": 7.3,
+        "bp_per_return_game": 0.344,
+        "bp_conversion": 0.13,
+        "bp_created": 7.7,
         "bp_converted": 1.0
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1964,
+        "value": -0.1963,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0119,
+            "delta_frac": 0.0125,
             "weight": 0.3,
-            "contribution": 0.0036
+            "contribution": 0.0037
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -10675,7 +10675,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.1964,
+        "modifier_delta": -0.1963,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -10700,9 +10700,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 1.2,
-        "first_games_win_pct": 50.2,
-        "overall_win_pct": 49.0,
+        "value": 1.0,
+        "first_games_win_pct": 49.7,
+        "overall_win_pct": 48.7,
         "n_eff": 45,
         "confidence": "LOW"
       },
@@ -10716,10 +10716,10 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -1.4,
-        "tb_win_pct": 47.6,
-        "baseline_win_pct": 49.0,
-        "n_eff": 261,
+        "value": -1.6,
+        "tb_win_pct": 47.1,
+        "baseline_win_pct": 48.7,
+        "n_eff": 259,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -10733,11 +10733,11 @@
     },
     "elo_snapshot": {
       "name": "Nicolas Almagro",
-      "n_overall": 30,
-      "n_surface": 30,
-      "R_overall": 1605.7,
-      "R_surface": 1605.7,
-      "R_adjusted": 1605.7
+      "n_overall": 376,
+      "n_surface": 16,
+      "R_overall": 1973.7,
+      "R_surface": 1510.0,
+      "R_adjusted": 1695.5
     },
     "career_editions_used": [
       2011
@@ -10750,7 +10750,7 @@
     "year": 2011,
     "n_matches": 2,
     "n_points": 204,
-    "n_eff_matches": 2.0,
+    "n_eff_matches": 1.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
@@ -10760,9 +10760,9 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Roger Federer",
-        "opponent_elo": 2095.1,
+        "opponent_elo": 2209.6,
         "w_t": 1.0,
-        "w_q": 1.3688
+        "w_q": 1.4015
       },
       {
         "match_id": "2011-wimbledon-1223",
@@ -10806,14 +10806,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 76.0,
-        "ci_90_lo": 52.9,
-        "ci_90_hi": 85.9
+        "value": 75.8,
+        "ci_90_lo": 52.8,
+        "ci_90_hi": 85.8
       },
       "rgw_pct": {
         "value": 17.0,
         "ci_90_lo": 10.0,
-        "ci_90_hi": 39.8
+        "ci_90_hi": 39.7
       }
     },
     "tier2": {
@@ -10824,23 +10824,23 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 1.1,
-        "high_lev_win_pct": 48.9,
+        "value": 1.0,
+        "high_lev_win_pct": 48.8,
         "baseline_win_pct": 47.8,
-        "n_eff": 40,
+        "n_eff": 39,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.011
+        "modifier_delta": 0.01
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 0.1,
-        "bp_df_rate": 5.7,
+        "value": 0.0,
+        "bp_df_rate": 5.6,
         "baseline_df_rate": 5.6,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.001
+        "modifier_delta": 0.0
       },
       "serve_speed_courage": {
         "available": true,
@@ -10856,25 +10856,25 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 43.7,
-        "ad_win_pct": 51.8,
-        "asymmetry": 8.1,
+        "ad_win_pct": 51.7,
+        "asymmetry": 8.0,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.77,
-        "streak_survival_rate": 0.443,
-        "streak_recovery_rate": 0.255
+        "streak_initiation_rate": 5.75,
+        "streak_survival_rate": 0.442,
+        "streak_recovery_rate": 0.259
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.559,
+        "bp_per_return_game": 0.555,
         "bp_conversion": 0.243,
-        "bp_created": 9.3,
-        "bp_converted": 2.3
+        "bp_created": 9.2,
+        "bp_converted": 2.2
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0048,
+        "value": 0.0012,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.004,
@@ -10882,16 +10882,16 @@
             "contribution": 0.0012
           },
           "df_rate_delta": {
-            "delta_frac": 0.0179,
+            "delta_frac": 0.0,
             "weight": 0.2,
-            "contribution": 0.0036
+            "contribution": 0.0
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.0048,
+        "modifier_delta": 0.0012,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -10927,7 +10927,7 @@
         "value": 0.0,
         "fsp_at_pressure": 0.0,
         "fsp_overall": 0.0,
-        "n_eff": 13,
+        "n_eff": 12,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
@@ -10949,11 +10949,11 @@
     },
     "elo_snapshot": {
       "name": "David Nalbandian",
-      "n_overall": 45,
-      "n_surface": 45,
-      "R_overall": 1755.7,
-      "R_surface": 1755.7,
-      "R_adjusted": 1755.7
+      "n_overall": 514,
+      "n_surface": 37,
+      "R_overall": 2021.2,
+      "R_surface": 1780.7,
+      "R_adjusted": 1876.9
     },
     "career_editions_used": [
       2011
@@ -10976,9 +10976,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "David Nalbandian",
-        "opponent_elo": 1755.7,
+        "opponent_elo": 1876.9,
         "w_t": 1.0,
-        "w_q": 1.1471
+        "w_q": 1.1905
       }
     ],
     "tier1": {
@@ -11176,9 +11176,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Roger Federer",
-        "opponent_elo": 2095.1,
+        "opponent_elo": 2209.6,
         "w_t": 1.0,
-        "w_q": 1.3688
+        "w_q": 1.4015
       }
     ],
     "tier1": {
@@ -11356,11 +11356,11 @@
     },
     "elo_snapshot": {
       "name": "Adrian Mannarino",
-      "n_overall": 121,
-      "n_surface": 121,
-      "R_overall": 1638.9,
-      "R_surface": 1638.9,
-      "R_adjusted": 1638.9
+      "n_overall": 46,
+      "n_surface": 8,
+      "R_overall": 1747.4,
+      "R_surface": 1605.1,
+      "R_adjusted": 1662.0
     },
     "career_editions_used": [
       2011
@@ -11383,9 +11383,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Bernard Tomic",
-        "opponent_elo": 1663.3,
+        "opponent_elo": 1772.6,
         "w_t": 1.0,
-        "w_q": 1.0867
+        "w_q": 1.1243
       }
     ],
     "tier1": {
@@ -11567,11 +11567,11 @@
     },
     "elo_snapshot": {
       "name": "Igor Andreev",
-      "n_overall": 33,
-      "n_surface": 33,
-      "R_overall": 1520.6,
-      "R_surface": 1520.6,
-      "R_adjusted": 1520.6
+      "n_overall": 424,
+      "n_surface": 30,
+      "R_overall": 1737.5,
+      "R_surface": 1554.0,
+      "R_adjusted": 1627.4
     },
     "career_editions_used": [
       2011
@@ -11584,7 +11584,7 @@
     "year": 2011,
     "n_matches": 4,
     "n_points": 220,
-    "n_eff_matches": 3.9,
+    "n_eff_matches": 4.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
@@ -11594,36 +11594,36 @@
         "year": 2011,
         "round": "QF",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2184.9,
+        "opponent_elo": 2143.9,
         "w_t": 1.0,
-        "w_q": 1.4275
+        "w_q": 1.3598
       },
       {
         "match_id": "2011-wimbledon-1407",
         "year": 2011,
         "round": "R16",
         "opponent": "Xavier Malisse",
-        "opponent_elo": 1790.7,
+        "opponent_elo": 1795.8,
         "w_t": 1.0,
-        "w_q": 1.1699
+        "w_q": 1.139
       },
       {
         "match_id": "2011-wimbledon-1313",
         "year": 2011,
         "round": "R32",
         "opponent": "Robin Soderling",
-        "opponent_elo": 1832.4,
+        "opponent_elo": 1949.7,
         "w_t": 1.0,
-        "w_q": 1.1972
+        "w_q": 1.2367
       },
       {
         "match_id": "2011-wimbledon-1226",
         "year": 2011,
         "round": "R64",
         "opponent": "Igor Andreev",
-        "opponent_elo": 1520.6,
+        "opponent_elo": 1627.4,
         "w_t": 1.0,
-        "w_q": 0.9935
+        "w_q": 1.0322
       }
     ],
     "tier1": {
@@ -11643,9 +11643,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 37.4,
-        "ci_90_lo": 30.2,
-        "ci_90_hi": 45.7
+        "value": 37.5,
+        "ci_90_lo": 30.3,
+        "ci_90_hi": 45.8
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -11658,14 +11658,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 87.6,
-        "ci_90_lo": 65.1,
-        "ci_90_hi": 92.5
+        "value": 87.9,
+        "ci_90_lo": 65.3,
+        "ci_90_hi": 92.7
       },
       "rgw_pct": {
-        "value": 26.0,
-        "ci_90_lo": 15.7,
-        "ci_90_hi": 46.8
+        "value": 26.2,
+        "ci_90_lo": 15.8,
+        "ci_90_hi": 46.9
       }
     },
     "tier2": {
@@ -11676,74 +11676,74 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 0.6,
-        "high_lev_win_pct": 53.4,
-        "baseline_win_pct": 52.8,
+        "value": 0.7,
+        "high_lev_win_pct": 53.6,
+        "baseline_win_pct": 52.9,
         "n_eff": 36,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.006
+        "modifier_delta": 0.007
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 2.7,
-        "bp_df_rate": 3.6,
+        "value": 2.6,
+        "bp_df_rate": 3.5,
         "baseline_df_rate": 0.9,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.027
+        "modifier_delta": 0.026
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 2.1,
-        "bp_speed_kmh": 174.6,
+        "value": 2.3,
+        "bp_speed_kmh": 174.8,
         "overall_speed_kmh": 172.5,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.021,
+        "modifier_delta": 0.023,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 54.0,
+        "deuce_win_pct": 54.1,
         "ad_win_pct": 51.1,
-        "asymmetry": 2.9,
+        "asymmetry": 3.0,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
         "streak_initiation_rate": 3.58,
-        "streak_survival_rate": 0.444,
-        "streak_recovery_rate": 0.246
+        "streak_survival_rate": 0.446,
+        "streak_recovery_rate": 0.24
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.409,
-        "bp_conversion": 0.543,
+        "bp_conversion": 0.546,
         "bp_created": 7.6,
         "bp_converted": 4.1
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.6037,
+        "value": 0.5818,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0122,
+            "delta_frac": 0.0133,
             "weight": 0.3,
-            "contribution": 0.0037
+            "contribution": 0.004
           },
           "df_rate_delta": {
-            "delta_frac": 3.0,
+            "delta_frac": 2.8889,
             "weight": 0.2,
-            "contribution": 0.6
+            "contribution": 0.5778
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.6037,
+        "modifier_delta": 0.5818,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -11768,9 +11768,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -2.8,
+        "value": -2.9,
         "first_games_win_pct": 50.0,
-        "overall_win_pct": 52.8,
+        "overall_win_pct": 52.9,
         "n_eff": 48,
         "confidence": "LOW"
       },
@@ -11784,10 +11784,10 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.8,
-        "tb_win_pct": 52.0,
-        "baseline_win_pct": 52.8,
-        "n_eff": 214,
+        "value": -0.7,
+        "tb_win_pct": 52.2,
+        "baseline_win_pct": 52.9,
+        "n_eff": 215,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -11801,11 +11801,11 @@
     },
     "elo_snapshot": {
       "name": "Bernard Tomic",
-      "n_overall": 70,
-      "n_surface": 70,
-      "R_overall": 1663.3,
-      "R_surface": 1663.3,
-      "R_adjusted": 1663.3
+      "n_overall": 28,
+      "n_surface": 8,
+      "R_overall": 1811.0,
+      "R_surface": 1747.1,
+      "R_adjusted": 1772.6
     },
     "career_editions_used": [
       2011
@@ -11817,7 +11817,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 2,
-    "n_points": 224,
+    "n_points": 228,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -11828,25 +11828,25 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Xavier Malisse",
-        "opponent_elo": 1790.7,
+        "opponent_elo": 1795.8,
         "w_t": 1.0,
-        "w_q": 1.1699
+        "w_q": 1.139
       },
       {
         "match_id": "2011-wimbledon-1228",
         "year": 2011,
         "round": "R64",
         "opponent": "Dmitry Tursunov",
-        "opponent_elo": 1529.7,
+        "opponent_elo": 1773.6,
         "w_t": 1.0,
-        "w_q": 0.9994
+        "w_q": 1.125
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 0.0,
         "ci_90_lo": 0.3,
-        "ci_90_hi": 4.1
+        "ci_90_hi": 4.0
       },
       "fspw_pct": {
         "value": null,
@@ -11859,9 +11859,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 36.5,
-        "ci_90_lo": 29.7,
-        "ci_90_hi": 44.4
+        "value": 36.9,
+        "ci_90_lo": 30.2,
+        "ci_90_hi": 44.8
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -11874,14 +11874,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 67.8,
-        "ci_90_lo": 47.0,
-        "ci_90_hi": 80.4
+        "value": 68.5,
+        "ci_90_lo": 47.7,
+        "ci_90_hi": 80.8
       },
       "rgw_pct": {
-        "value": 18.7,
-        "ci_90_lo": 11.1,
-        "ci_90_hi": 40.6
+        "value": 19.4,
+        "ci_90_lo": 11.5,
+        "ci_90_hi": 41.1
       }
     },
     "tier2": {
@@ -11893,73 +11893,73 @@
       "clutch_differential": {
         "available": true,
         "value": -6.7,
-        "high_lev_win_pct": 41.3,
-        "baseline_win_pct": 48.0,
-        "n_eff": 35,
+        "high_lev_win_pct": 41.6,
+        "baseline_win_pct": 48.3,
+        "n_eff": 36,
         "confidence": "LOW",
         "verdict": "MARGINAL",
         "modifier_delta": -0.067
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 4.4,
-        "bp_df_rate": 6.1,
-        "baseline_df_rate": 1.7,
+        "value": 3.8,
+        "bp_df_rate": 5.6,
+        "baseline_df_rate": 1.8,
         "n_eff": 9,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.044
+        "modifier_delta": 0.038
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -1.5,
-        "bp_speed_kmh": 170.0,
-        "overall_speed_kmh": 171.5,
+        "value": -0.9,
+        "bp_speed_kmh": 170.8,
+        "overall_speed_kmh": 171.7,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.015,
+        "modifier_delta": -0.009,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 47.7,
-        "ad_win_pct": 48.0,
-        "asymmetry": 0.3,
+        "deuce_win_pct": 47.9,
+        "ad_win_pct": 48.4,
+        "asymmetry": 0.5,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.26,
-        "streak_survival_rate": 0.277,
+        "streak_initiation_rate": 5.48,
+        "streak_survival_rate": 0.273,
         "streak_recovery_rate": 0.571
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.548,
-        "bp_conversion": 0.294,
-        "bp_created": 9.7,
-        "bp_converted": 2.8
+        "bp_per_return_game": 0.555,
+        "bp_conversion": 0.3,
+        "bp_created": 10.0,
+        "bp_converted": 3.0
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.515,
+        "value": 0.4206,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0087,
+            "delta_frac": -0.0052,
             "weight": 0.3,
-            "contribution": -0.0026
+            "contribution": -0.0016
           },
           "df_rate_delta": {
-            "delta_frac": 2.5882,
+            "delta_frac": 2.1111,
             "weight": 0.2,
-            "contribution": 0.5176
+            "contribution": 0.4222
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.515,
+        "modifier_delta": 0.4206,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -11984,10 +11984,10 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -7.2,
+        "value": -7.5,
         "first_games_win_pct": 40.8,
-        "overall_win_pct": 48.0,
-        "n_eff": 48,
+        "overall_win_pct": 48.3,
+        "n_eff": 49,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
@@ -11995,22 +11995,22 @@
         "value": 0.0,
         "fsp_at_pressure": 0.0,
         "fsp_overall": 0.0,
-        "n_eff": 13,
+        "n_eff": 14,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": 1.9,
-        "tb_win_pct": 49.9,
-        "baseline_win_pct": 48.0,
-        "n_eff": 215,
+        "value": 2.0,
+        "tb_win_pct": 50.3,
+        "baseline_win_pct": 48.3,
+        "n_eff": 219,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
         "available": true,
-        "value": -9.4,
-        "habr_pct": 58.4,
-        "sgw_pct": 67.8,
+        "value": -8.6,
+        "habr_pct": 59.9,
+        "sgw_pct": 68.5,
         "n_eff": 5,
         "confidence": "UNRELIABLE"
       }
@@ -12021,11 +12021,11 @@
     },
     "elo_snapshot": {
       "name": "Jurgen Melzer",
-      "n_overall": 74,
-      "n_surface": 74,
-      "R_overall": 1668.4,
-      "R_surface": 1668.4,
-      "R_adjusted": 1668.4
+      "n_overall": 505,
+      "n_surface": 55,
+      "R_overall": 1939.9,
+      "R_surface": 1733.8,
+      "R_adjusted": 1816.2
     },
     "career_editions_used": [
       2011
@@ -12228,11 +12228,11 @@
     },
     "elo_snapshot": {
       "name": "Viktor Troicki",
-      "n_overall": 64,
-      "n_surface": 64,
-      "R_overall": 1585.8,
-      "R_surface": 1585.8,
-      "R_adjusted": 1585.8
+      "n_overall": 228,
+      "n_surface": 21,
+      "R_overall": 1961.1,
+      "R_surface": 1614.1,
+      "R_adjusted": 1752.9
     },
     "career_editions_used": [
       2011
@@ -12255,9 +12255,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Viktor Troicki",
-        "opponent_elo": 1585.8,
+        "opponent_elo": 1752.9,
         "w_t": 1.0,
-        "w_q": 1.0361
+        "w_q": 1.1118
       }
     ],
     "tier1": {
@@ -12455,9 +12455,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Marcos Baghdatis",
-        "opponent_elo": 1636.6,
+        "opponent_elo": 1768.2,
         "w_t": 1.0,
-        "w_q": 1.0692
+        "w_q": 1.1215
       }
     ],
     "tier1": {
@@ -12635,11 +12635,11 @@
     },
     "elo_snapshot": {
       "name": "Andreas Seppi",
-      "n_overall": 112,
-      "n_surface": 112,
-      "R_overall": 1626.9,
-      "R_surface": 1626.9,
-      "R_adjusted": 1626.9
+      "n_overall": 343,
+      "n_surface": 43,
+      "R_overall": 1823.8,
+      "R_surface": 1708.1,
+      "R_adjusted": 1754.4
     },
     "career_editions_used": [
       2011
@@ -12662,9 +12662,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Novak Djokovic",
-        "opponent_elo": 2184.9,
+        "opponent_elo": 2143.9,
         "w_t": 1.0,
-        "w_q": 1.4275
+        "w_q": 1.3598
       }
     ],
     "tier1": {
@@ -12842,11 +12842,11 @@
     },
     "elo_snapshot": {
       "name": "Kevin Anderson",
-      "n_overall": 76,
-      "n_surface": 76,
-      "R_overall": 1841.0,
-      "R_surface": 1841.0,
-      "R_adjusted": 1841.0
+      "n_overall": 103,
+      "n_surface": 17,
+      "R_overall": 1841.3,
+      "R_surface": 1514.4,
+      "R_adjusted": 1645.2
     },
     "career_editions_used": [
       2011
@@ -13044,11 +13044,11 @@
     },
     "elo_snapshot": {
       "name": "Gilles Simon",
-      "n_overall": 96,
-      "n_surface": 96,
-      "R_overall": 1596.2,
-      "R_surface": 1596.2,
-      "R_adjusted": 1596.2
+      "n_overall": 358,
+      "n_surface": 32,
+      "R_overall": 1948.4,
+      "R_surface": 1667.0,
+      "R_adjusted": 1779.6
     },
     "career_editions_used": [
       2011
@@ -13071,9 +13071,9 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Tomas Berdych",
-        "opponent_elo": 1826.1,
+        "opponent_elo": 1928.8,
         "w_t": 1.0,
-        "w_q": 1.193
+        "w_q": 1.2234
       }
     ],
     "tier1": {
@@ -13271,9 +13271,9 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Lukasz Kubot",
-        "opponent_elo": 1625.1,
+        "opponent_elo": 1688.6,
         "w_t": 1.0,
-        "w_q": 1.0617
+        "w_q": 1.071
       }
     ],
     "tier1": {
@@ -13455,11 +13455,11 @@
     },
     "elo_snapshot": {
       "name": "Gael Monfils",
-      "n_overall": 80,
-      "n_surface": 80,
-      "R_overall": 1672.3,
-      "R_surface": 1672.3,
-      "R_adjusted": 1672.3
+      "n_overall": 334,
+      "n_surface": 33,
+      "R_overall": 2036.3,
+      "R_surface": 1684.4,
+      "R_adjusted": 1825.1
     },
     "career_editions_used": [
       2011
@@ -13471,7 +13471,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 2,
-    "n_points": 292,
+    "n_points": 293,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -13482,18 +13482,18 @@
         "year": 2011,
         "round": "R16",
         "opponent": "Feliciano Lopez",
-        "opponent_elo": 1665.5,
+        "opponent_elo": 1844.2,
         "w_t": 1.0,
-        "w_q": 1.0881
+        "w_q": 1.1697
       },
       {
         "match_id": "2011-wimbledon-1307",
         "year": 2011,
         "round": "R32",
         "opponent": "Gael Monfils",
-        "opponent_elo": 1672.3,
+        "opponent_elo": 1825.1,
         "w_t": 1.0,
-        "w_q": 1.0926
+        "w_q": 1.1576
       }
     ],
     "tier1": {
@@ -13529,13 +13529,13 @@
       },
       "sgw_pct": {
         "value": 83.0,
-        "ci_90_lo": 64.3,
-        "ci_90_hi": 89.7
+        "ci_90_lo": 64.4,
+        "ci_90_hi": 89.6
       },
       "rgw_pct": {
         "value": 22.9,
-        "ci_90_lo": 14.3,
-        "ci_90_hi": 41.3
+        "ci_90_lo": 14.2,
+        "ci_90_hi": 41.2
       }
     },
     "tier2": {
@@ -13559,7 +13559,7 @@
         "value": -4.6,
         "bp_df_rate": 0.0,
         "baseline_df_rate": 4.6,
-        "n_eff": 9,
+        "n_eff": 10,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
         "modifier_delta": -0.046
@@ -13569,7 +13569,7 @@
         "value": 0.6,
         "bp_speed_kmh": 183.9,
         "overall_speed_kmh": 183.3,
-        "n_eff": 9,
+        "n_eff": 10,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
         "modifier_delta": 0.006,
@@ -13578,18 +13578,18 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 50.2,
-        "ad_win_pct": 49.7,
-        "asymmetry": 0.5,
+        "ad_win_pct": 49.6,
+        "asymmetry": 0.6,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 7.75,
-        "streak_survival_rate": 0.451,
-        "streak_recovery_rate": 0.666
+        "streak_initiation_rate": 7.76,
+        "streak_survival_rate": 0.452,
+        "streak_recovery_rate": 0.667
       },
       "bp_creation_profile": {
         "bp_per_return_game": 0.354,
-        "bp_conversion": 0.53,
+        "bp_conversion": 0.529,
         "bp_created": 8.5,
         "bp_converted": 4.5
       },
@@ -13657,7 +13657,7 @@
         "value": -0.4,
         "tb_win_pct": 49.7,
         "baseline_win_pct": 50.1,
-        "n_eff": 286,
+        "n_eff": 287,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -13671,11 +13671,11 @@
     },
     "elo_snapshot": {
       "name": "Lukasz Kubot",
-      "n_overall": 25,
-      "n_surface": 25,
-      "R_overall": 1625.1,
-      "R_surface": 1625.1,
-      "R_adjusted": 1625.1
+      "n_overall": 116,
+      "n_surface": 8,
+      "R_overall": 1785.4,
+      "R_surface": 1624.2,
+      "R_adjusted": 1688.6
     },
     "career_editions_used": [
       2011
@@ -13687,7 +13687,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 3,
-    "n_points": 247,
+    "n_points": 246,
     "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -13698,27 +13698,27 @@
         "year": 2011,
         "round": "QF",
         "opponent": "Andy Murray",
-        "opponent_elo": 1861.5,
+        "opponent_elo": 2094.5,
         "w_t": 1.0,
-        "w_q": 1.2162
+        "w_q": 1.3285
       },
       {
         "match_id": "2011-wimbledon-1404",
         "year": 2011,
         "round": "R16",
         "opponent": "Lukasz Kubot",
-        "opponent_elo": 1625.1,
+        "opponent_elo": 1688.6,
         "w_t": 1.0,
-        "w_q": 1.0617
+        "w_q": 1.071
       },
       {
         "match_id": "2011-wimbledon-1308",
         "year": 2011,
         "round": "R32",
         "opponent": "Andy Roddick",
-        "opponent_elo": 1924.3,
+        "opponent_elo": 1993.1,
         "w_t": 1.0,
-        "w_q": 1.2572
+        "w_q": 1.2642
       }
     ],
     "tier1": {
@@ -13738,9 +13738,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 31.6,
-        "ci_90_lo": 25.6,
-        "ci_90_hi": 39.1
+        "value": 31.5,
+        "ci_90_lo": 25.4,
+        "ci_90_hi": 39.0
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -13753,14 +13753,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 87.0,
-        "ci_90_lo": 66.5,
-        "ci_90_hi": 92.2
+        "value": 86.8,
+        "ci_90_lo": 66.2,
+        "ci_90_hi": 92.1
       },
       "rgw_pct": {
-        "value": 12.5,
-        "ci_90_lo": 7.5,
-        "ci_90_hi": 32.6
+        "value": 12.2,
+        "ci_90_lo": 7.4,
+        "ci_90_hi": 32.4
       }
     },
     "tier2": {
@@ -13771,13 +13771,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 0.8,
-        "high_lev_win_pct": 49.8,
-        "baseline_win_pct": 49.0,
+        "value": 0.7,
+        "high_lev_win_pct": 49.6,
+        "baseline_win_pct": 48.9,
         "n_eff": 27,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.008
+        "modifier_delta": 0.007
       },
       "df_pressure_delta": {
         "available": true,
@@ -13802,20 +13802,20 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 45.4,
-        "ad_win_pct": 52.7,
-        "asymmetry": 7.3,
+        "deuce_win_pct": 45.2,
+        "ad_win_pct": 52.6,
+        "asymmetry": 7.4,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.12,
+        "streak_initiation_rate": 5.05,
         "streak_survival_rate": 0.356,
         "streak_recovery_rate": 0.217
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.283,
-        "bp_conversion": 0.328,
-        "bp_created": 5.8,
+        "bp_per_return_game": 0.28,
+        "bp_conversion": 0.325,
+        "bp_created": 5.7,
         "bp_converted": 1.9
       },
       "rluep": null,
@@ -13863,9 +13863,9 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -3.9,
+        "value": -3.8,
         "first_games_win_pct": 45.1,
-        "overall_win_pct": 49.0,
+        "overall_win_pct": 48.9,
         "n_eff": 43,
         "confidence": "LOW"
       },
@@ -13880,9 +13880,9 @@
       "tiebreak_differential": {
         "available": true,
         "value": 0.7,
-        "tb_win_pct": 49.7,
-        "baseline_win_pct": 49.0,
-        "n_eff": 242,
+        "tb_win_pct": 49.6,
+        "baseline_win_pct": 48.9,
+        "n_eff": 240,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -13896,11 +13896,11 @@
     },
     "elo_snapshot": {
       "name": "Feliciano Lopez",
-      "n_overall": 142,
-      "n_surface": 142,
-      "R_overall": 1665.5,
-      "R_surface": 1665.5,
-      "R_adjusted": 1665.5
+      "n_overall": 511,
+      "n_surface": 56,
+      "R_overall": 1939.3,
+      "R_surface": 1780.8,
+      "R_adjusted": 1844.2
     },
     "career_editions_used": [
       2011
@@ -13923,9 +13923,9 @@
         "year": 2011,
         "round": "R32",
         "opponent": "David Ferrer",
-        "opponent_elo": 1654.8,
+        "opponent_elo": 1893.1,
         "w_t": 1.0,
-        "w_q": 1.0811
+        "w_q": 1.2008
       }
     ],
     "tier1": {
@@ -14103,11 +14103,11 @@
     },
     "elo_snapshot": {
       "name": "Karol Beck",
-      "n_overall": 32,
-      "n_surface": 32,
-      "R_overall": 1472.2,
-      "R_surface": 1472.2,
-      "R_adjusted": 1472.2
+      "n_overall": 165,
+      "n_surface": 30,
+      "R_overall": 1631.5,
+      "R_surface": 1538.5,
+      "R_adjusted": 1575.7
     },
     "career_editions_used": [
       2011
@@ -14130,9 +14130,9 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Jo-Wilfried Tsonga",
-        "opponent_elo": 1787.5,
+        "opponent_elo": 1980.3,
         "w_t": 1.0,
-        "w_q": 1.1678
+        "w_q": 1.2561
       }
     ],
     "tier1": {
@@ -14305,11 +14305,11 @@
     },
     "elo_snapshot": {
       "name": "Fernando Gonzalez",
-      "n_overall": 37,
+      "n_overall": 566,
       "n_surface": 37,
-      "R_overall": 1728.7,
-      "R_surface": 1728.7,
-      "R_adjusted": 1728.7
+      "R_overall": 1939.7,
+      "R_surface": 1729.3,
+      "R_adjusted": 1813.5
     },
     "career_editions_used": [
       2011
@@ -14332,18 +14332,18 @@
         "year": 2011,
         "round": "R16",
         "opponent": "Roger Federer",
-        "opponent_elo": 2095.1,
+        "opponent_elo": 2209.6,
         "w_t": 1.0,
-        "w_q": 1.3688
+        "w_q": 1.4015
       },
       {
         "match_id": "2011-wimbledon-1311",
         "year": 2011,
         "round": "R32",
         "opponent": "Nicolas Almagro",
-        "opponent_elo": 1605.7,
+        "opponent_elo": 1695.5,
         "w_t": 1.0,
-        "w_q": 1.0491
+        "w_q": 1.0754
       }
     ],
     "tier1": {
@@ -14378,7 +14378,7 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 80.8,
+        "value": 80.9,
         "ci_90_lo": 60.4,
         "ci_90_hi": 88.5
       },
@@ -14521,11 +14521,11 @@
     },
     "elo_snapshot": {
       "name": "Mikhail Youzhny",
-      "n_overall": 108,
-      "n_surface": 108,
-      "R_overall": 1602.2,
-      "R_surface": 1602.2,
-      "R_adjusted": 1602.2
+      "n_overall": 613,
+      "n_surface": 66,
+      "R_overall": 1927.2,
+      "R_surface": 1703.1,
+      "R_adjusted": 1792.8
     },
     "career_editions_used": [
       2011
@@ -14548,18 +14548,18 @@
         "year": 2011,
         "round": "R16",
         "opponent": "Bernard Tomic",
-        "opponent_elo": 1663.3,
+        "opponent_elo": 1772.6,
         "w_t": 1.0,
-        "w_q": 1.0867
+        "w_q": 1.1243
       },
       {
         "match_id": "2011-wimbledon-1314",
         "year": 2011,
         "round": "R32",
         "opponent": "Jurgen Melzer",
-        "opponent_elo": 1668.4,
+        "opponent_elo": 1816.2,
         "w_t": 1.0,
-        "w_q": 1.09
+        "w_q": 1.152
       }
     ],
     "tier1": {
@@ -14579,9 +14579,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 34.1,
-        "ci_90_lo": 26.8,
-        "ci_90_hi": 43.3
+        "value": 34.3,
+        "ci_90_lo": 26.9,
+        "ci_90_hi": 43.4
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -14594,14 +14594,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 85.2,
-        "ci_90_lo": 59.4,
-        "ci_90_hi": 91.3
+        "value": 85.4,
+        "ci_90_lo": 59.6,
+        "ci_90_hi": 91.4
       },
       "rgw_pct": {
-        "value": 20.0,
-        "ci_90_lo": 11.7,
-        "ci_90_hi": 43.9
+        "value": 20.2,
+        "ci_90_lo": 11.8,
+        "ci_90_hi": 44.1
       }
     },
     "tier2": {
@@ -14612,29 +14612,29 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 14.0,
-        "high_lev_win_pct": 63.9,
+        "value": 14.1,
+        "high_lev_win_pct": 64.0,
         "baseline_win_pct": 49.9,
         "n_eff": 18,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.14
+        "modifier_delta": 0.141
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -3.8,
+        "value": -3.7,
         "bp_df_rate": 0.0,
-        "baseline_df_rate": 3.8,
+        "baseline_df_rate": 3.7,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.038
+        "modifier_delta": -0.037
       },
       "serve_speed_courage": {
         "available": true,
         "value": 6.9,
-        "bp_speed_kmh": 173.8,
-        "overall_speed_kmh": 166.9,
+        "bp_speed_kmh": 173.9,
+        "overall_speed_kmh": 167.0,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
@@ -14643,19 +14643,19 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 45.7,
+        "deuce_win_pct": 45.8,
         "ad_win_pct": 53.9,
-        "asymmetry": 8.2,
+        "asymmetry": 8.1,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 5.75,
-        "streak_survival_rate": 0.522,
+        "streak_initiation_rate": 5.77,
+        "streak_survival_rate": 0.521,
         "streak_recovery_rate": 0.333
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.3,
-        "bp_conversion": 0.667,
+        "bp_per_return_game": 0.302,
+        "bp_conversion": 0.67,
         "bp_created": 4.5,
         "bp_converted": 3.0
       },
@@ -14704,8 +14704,8 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -0.6,
-        "first_games_win_pct": 49.3,
+        "value": -0.5,
+        "first_games_win_pct": 49.4,
         "overall_win_pct": 49.9,
         "n_eff": 37,
         "confidence": "LOW"
@@ -14720,8 +14720,8 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.4,
-        "tb_win_pct": 49.5,
+        "value": -0.3,
+        "tb_win_pct": 49.6,
         "baseline_win_pct": 49.9,
         "n_eff": 161,
         "confidence": "RELIABLE"
@@ -14737,11 +14737,11 @@
     },
     "elo_snapshot": {
       "name": "Xavier Malisse",
-      "n_overall": 80,
-      "n_surface": 80,
-      "R_overall": 1790.7,
-      "R_surface": 1790.7,
-      "R_adjusted": 1790.7
+      "n_overall": 477,
+      "n_surface": 61,
+      "R_overall": 1844.4,
+      "R_surface": 1763.4,
+      "R_adjusted": 1795.8
     },
     "career_editions_used": [
       2011

@@ -81,6 +81,19 @@ def filter_grass(df: pd.DataFrame) -> pd.DataFrame:
     return df[mask_surface & mask_round].copy()
 
 
+def filter_main_draw_all_surfaces(df: pd.DataFrame) -> pd.DataFrame:
+    """All ATP main-draw singles regardless of surface — used by the Elo
+    builder so R_overall reflects all-surface form while R_surface
+    only updates on grass matches.
+
+    Keeping qualifying out keeps the Elo updating on competitive matches
+    only (avoids inflating tour ratings from low-stakes results)."""
+    mask_round = ~df["round"].isin(["Q1", "Q2", "Q3", "BR"])
+    mask_surface = df["surface"].astype(str).str.lower().isin(
+        ["hard", "clay", "grass", "carpet"])
+    return df[mask_round & mask_surface].copy()
+
+
 def clean(df: pd.DataFrame) -> pd.DataFrame:
     present = [c for c in MATCH_COLS_KEEP if c in df.columns]
     df = df[present].copy()
@@ -108,6 +121,8 @@ def main():
     parser.add_argument("--raw_dir",      default="data/raw")
     parser.add_argument("--out_wimbledon", default="data/processed/wimbledon_matches.csv")
     parser.add_argument("--out_grass",     default="data/processed/all_grass_matches.csv")
+    parser.add_argument("--out_atp",       default="data/processed/all_atp_matches.csv",
+                        help="Full main-draw ATP match feed for the Elo builder")
     parser.add_argument("--download", action="store_true",
                         help="Download raw files from GitHub before processing")
     args = parser.parse_args()
@@ -122,6 +137,16 @@ def main():
     print("Loading raw match files…")
     raw = load_raw_matches(raw_dir)
     print(f"Total matches loaded: {len(raw):,}")
+
+    # Full ATP main-draw feed (every surface) — used by the Elo builder
+    # so R_overall properly reflects cross-surface form while R_surface
+    # only updates on grass matches.
+    atp = filter_main_draw_all_surfaces(raw)
+    atp = clean(atp)
+    print(f"All ATP main-draw matches: {len(atp):,}")
+    print(f"  surface mix: {atp['surface'].value_counts().to_dict()}")
+    atp.to_csv(args.out_atp, index=False)
+    print(f"Saved → {args.out_atp}")
 
     # All grass matches (for player-season indices and rolling history)
     grass = filter_grass(raw)

@@ -14,11 +14,11 @@
       "label": "Steady Return Specialist (1st-serve neutralizer)",
       "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
       "centroid": {
-        "serve_lean": -0.858,
-        "1st_reliance": 0.223,
-        "return_aggro": 0.233,
-        "rally_skew": 0.084,
-        "serve_consist": -1.321
+        "serve_lean": -1.708,
+        "1st_reliance": 0.176,
+        "return_aggro": -0.343,
+        "rally_skew": -0.258,
+        "serve_consist": -0.48
       }
     },
     {
@@ -26,23 +26,23 @@
       "label": "Power Server",
       "blurb": "Big serve, weaker on return. Lives or dies by the first delivery.",
       "centroid": {
-        "serve_lean": 1.508,
-        "1st_reliance": 0.122,
-        "return_aggro": -0.395,
-        "rally_skew": -0.132,
-        "serve_consist": -0.763
+        "serve_lean": 1.434,
+        "1st_reliance": 0.176,
+        "return_aggro": -0.638,
+        "rally_skew": -0.15,
+        "serve_consist": -0.39
       }
     },
     {
       "id": 2,
-      "label": "Adaptive All-Courter",
-      "blurb": "Mixes patterns more than the steady version. Balanced game across serve, return, and rally length. The complete game.",
+      "label": "Pure Return Specialist (1st-serve neutralizer)",
+      "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
       "centroid": {
-        "serve_lean": -0.193,
-        "1st_reliance": -1.025,
-        "return_aggro": 0.142,
-        "rally_skew": 0.279,
-        "serve_consist": 0.597
+        "serve_lean": -1.934,
+        "1st_reliance": 2.523,
+        "return_aggro": -0.115,
+        "rally_skew": 0.0,
+        "serve_consist": 0.616
       }
     },
     {
@@ -50,23 +50,23 @@
       "label": "Steady All-Courter",
       "blurb": "Higher serve consistency than the adaptive version. Balanced game across serve, return, and rally length. The complete game.",
       "centroid": {
-        "serve_lean": 0.177,
-        "1st_reliance": 0.591,
-        "return_aggro": -0.144,
-        "rally_skew": 0.182,
-        "serve_consist": 0.736
+        "serve_lean": -0.221,
+        "1st_reliance": -0.463,
+        "return_aggro": 0.104,
+        "rally_skew": 0.15,
+        "serve_consist": 0.992
       }
     },
     {
       "id": 4,
-      "label": "Pure Return Specialist (1st-serve neutralizer)",
-      "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+      "label": "Adaptive All-Courter",
+      "blurb": "Mixes patterns more than the steady version. Balanced game across serve, return, and rally length. The complete game.",
       "centroid": {
-        "serve_lean": -1.933,
-        "1st_reliance": 0.059,
-        "return_aggro": -0.201,
-        "rally_skew": -0.298,
-        "serve_consist": 0.306
+        "serve_lean": -0.249,
+        "1st_reliance": -0.182,
+        "return_aggro": 0.526,
+        "rally_skew": 0.321,
+        "serve_consist": -1.083
       }
     }
   ]

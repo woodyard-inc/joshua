@@ -1,0 +1,73 @@
+{
+  "anchor_year": 2024,
+  "k": 5,
+  "feature_names": [
+    "serve_lean",
+    "1st_reliance",
+    "return_aggro",
+    "rally_skew",
+    "serve_consist"
+  ],
+  "archetypes": [
+    {
+      "id": 0,
+      "label": "Steady Return Specialist (1st-serve neutralizer)",
+      "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+      "centroid": {
+        "serve_lean": -0.858,
+        "1st_reliance": 0.223,
+        "return_aggro": 0.233,
+        "rally_skew": 0.084,
+        "serve_consist": -1.321
+      }
+    },
+    {
+      "id": 1,
+      "label": "Power Server",
+      "blurb": "Big serve, weaker on return. Lives or dies by the first delivery.",
+      "centroid": {
+        "serve_lean": 1.508,
+        "1st_reliance": 0.122,
+        "return_aggro": -0.395,
+        "rally_skew": -0.132,
+        "serve_consist": -0.763
+      }
+    },
+    {
+      "id": 2,
+      "label": "Adaptive All-Courter",
+      "blurb": "Mixes patterns more than the steady version. Balanced game across serve, return, and rally length. The complete game.",
+      "centroid": {
+        "serve_lean": -0.193,
+        "1st_reliance": -1.025,
+        "return_aggro": 0.142,
+        "rally_skew": 0.279,
+        "serve_consist": 0.597
+      }
+    },
+    {
+      "id": 3,
+      "label": "Steady All-Courter",
+      "blurb": "Higher serve consistency than the adaptive version. Balanced game across serve, return, and rally length. The complete game.",
+      "centroid": {
+        "serve_lean": 0.177,
+        "1st_reliance": 0.591,
+        "return_aggro": -0.144,
+        "rally_skew": 0.182,
+        "serve_consist": 0.736
+      }
+    },
+    {
+      "id": 4,
+      "label": "Pure Return Specialist (1st-serve neutralizer)",
+      "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+      "centroid": {
+        "serve_lean": -1.933,
+        "1st_reliance": 0.059,
+        "return_aggro": -0.201,
+        "rally_skew": -0.298,
+        "serve_consist": 0.306
+      }
+    }
+  ]
+}

@@ -328,6 +328,34 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   color: var(--ink-muted);
 }
 
+/* Archetype label inline in player meta — surfaces playing-style cluster
+ * derived from the fingerprint. Tooltip explains the cluster's profile. */
+.archetype-tag {
+  display: inline-block;
+  padding: 1px 6px;
+  margin-left: 2px;
+  background: rgba(195, 99, 65, 0.12);  /* terracotta @ 12% */
+  color: var(--terracotta);
+  border: 1px solid rgba(195, 99, 65, 0.25);
+  border-radius: 3px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  cursor: help;
+}
+/* Matchup compare view variant — sits above the serve-win line in the prob header */
+.mu-arch-tag {
+  display: inline-block;
+  margin: 4px 0 2px 0;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* Headline stats */
 .headline-stats {
   display: flex;

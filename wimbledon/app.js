@@ -148,16 +148,20 @@ async function loadFingerprintsOnly(year) {
 async function loadYear(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
   const nc   = { cache: "no-store" };
-  const [profiles, tourn, fingerprints, grassProfiles] = await Promise.all([
+  const [profiles, tourn, fingerprints, grassProfiles, archetypes, archetypesMeta] = await Promise.all([
     fetch(`${base}/data/${year}_men_profiles.json`, nc).then(r => r.json()),
     fetch(`${base}/data/${year}_men_tournament.json`, nc).then(r => r.json()),
     fetch(`${base}/data/${year}_fingerprints.json`, nc).then(r => r.json()).catch(() => ({})),
     fetch(`${base}/data/${year}_grass_profiles.json`, nc).then(r => r.json()).catch(() => ({})),
+    fetch(`${base}/data/${year}_archetypes.json`, nc).then(r => r.json()).catch(() => ({})),
+    fetch(`${base}/data/archetypes_meta.json`, nc).then(r => r.json()).catch(() => null),
   ]);
-  state.profiles     = profiles;
-  state.tournament   = tourn;
-  state.fingerprints = mergeGrassProfiles(fingerprints, grassProfiles);
-  state.year         = year;
+  state.profiles      = profiles;
+  state.tournament    = tourn;
+  state.fingerprints  = mergeGrassProfiles(fingerprints, grassProfiles);
+  state.archetypes    = archetypes;       // {playerName: {id, label, blurb, raw, z_scores}}
+  state.archetypesMeta = archetypesMeta;  // {anchor_year, k, archetypes:[...]}
+  state.year          = year;
   populateDropdown();
   populateMuDropdowns();
   if (state.mode === "leaderboard") renderLeaderboard();
@@ -175,7 +179,9 @@ async function loadYear(year) {
  */
 function mergeGrassProfiles(fingerprints, grassProfiles) {
   const WIMBLEDON_RELEVANCE = 1.5;
-  const T1_KEYS = ["fsp_pct", "fspw_pct", "sspw_pct", "rpw_pct", "sgw_pct", "rgw_pct"];
+  const T1_KEYS = ["fsp_pct", "fspw_pct", "sspw_pct", "rpw_pct",
+                   "rpw_vs_1st_pct", "rpw_vs_2nd_pct",
+                   "sgw_pct", "rgw_pct"];
   const merged = { ...fingerprints };
 
   for (const [name, grass] of Object.entries(grassProfiles)) {
@@ -414,8 +420,16 @@ function renderHero(p, t) {
 
   document.getElementById("player-name").textContent =
     p.player;
-  document.getElementById("player-meta").textContent =
-    `${p.year} Wimbledon · ${p.matches_played} match${p.matches_played !== 1 ? "es" : ""}`;
+
+  // Append archetype label to the player meta line if available
+  const archetype = state.archetypes ? state.archetypes[p.player] : null;
+  let archHtml = "";
+  if (archetype) {
+    const blurb = archetype.blurb ? archetype.blurb.replace(/"/g, "&quot;") : "";
+    archHtml = ` · <span class="archetype-tag" title="${blurb}">${archetype.label}</span>`;
+  }
+  document.getElementById("player-meta").innerHTML =
+    `${p.year} Wimbledon · ${p.matches_played} match${p.matches_played !== 1 ? "es" : ""}${archHtml}`;
   document.getElementById("srv-pts-badge").textContent =
     `${p.serve.total_pts} serve pts`;
 
@@ -1068,12 +1082,17 @@ function renderTier1(f) {
   const t1    = f.tier1;
   const COLOR = { cobalt:"var(--cobalt)", forest:"var(--forest)", terracotta:"var(--terracotta)" };
   const stats = [
-    { key:"fsp_pct",  label:"1st Serve %",      col:"cobalt"     },
-    { key:"fspw_pct", label:"1st Srv Won %",     col:"cobalt"     },
-    { key:"sspw_pct", label:"2nd Srv Won %",     col:"forest"     },
-    { key:"rpw_pct",  label:"Return Pts Won %",  col:"terracotta" },
-    { key:"sgw_pct",  label:"Srv Games Won %",   col:"cobalt"     },
-    { key:"rgw_pct",  label:"Ret Games Won %",   col:"terracotta" },
+    // Row 1 — Serve quality
+    { key:"fsp_pct",         label:"1st Serve %",         col:"cobalt"     },
+    { key:"fspw_pct",        label:"1st Srv Won %",       col:"cobalt"     },
+    { key:"sspw_pct",        label:"2nd Srv Won %",       col:"forest"     },
+    // Row 2 — Return quality (with serve-type splits)
+    { key:"rpw_pct",         label:"Return Pts Won %",    col:"terracotta" },
+    { key:"rpw_vs_1st_pct",  label:"RPW vs 1st Srv %",    col:"terracotta" },
+    { key:"rpw_vs_2nd_pct",  label:"RPW vs 2nd Srv %",    col:"terracotta" },
+    // Row 3 — Game-level outcomes
+    { key:"sgw_pct",         label:"Srv Games Won %",     col:"cobalt"     },
+    { key:"rgw_pct",         label:"Ret Games Won %",     col:"terracotta" },
   ];
 
   let grid = `<div class="tier1-grid">`;
@@ -1738,8 +1757,10 @@ const LEADERBOARD_METRICS = [
   { id:"fspw_pct",  label:"1st Srv Won %",    section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.fspw_pct?.value },
   { id:"fsp_pct",   label:"1st Serve In %",   section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.fsp_pct?.value  },
   { id:"sspw_pct",  label:"2nd Srv Won %",     section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.sspw_pct?.value },
-  { id:"rpw_pct",   label:"Return Pts Won",    section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.rpw_pct?.value  },
-  { id:"sgw_pct",   label:"Srv Games Won",     section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.sgw_pct?.value  },
+  { id:"rpw_pct",         label:"Return Pts Won",       section:"Core Stats", fmt:"pct", dir:"desc", extract:f=>f?.tier1?.rpw_pct?.value         },
+  { id:"rpw_vs_1st_pct",  label:"RPW vs 1st Srv",       section:"Core Stats", fmt:"pct", dir:"desc", extract:f=>f?.tier1?.rpw_vs_1st_pct?.value  },
+  { id:"rpw_vs_2nd_pct",  label:"RPW vs 2nd Srv",       section:"Core Stats", fmt:"pct", dir:"desc", extract:f=>f?.tier1?.rpw_vs_2nd_pct?.value  },
+  { id:"sgw_pct",         label:"Srv Games Won",        section:"Core Stats", fmt:"pct", dir:"desc", extract:f=>f?.tier1?.sgw_pct?.value         },
   { id:"rgw_pct",   label:"Ret Games Won",     section:"Core Stats",         fmt:"pct",   dir:"desc", extract:f=>f?.tier1?.rgw_pct?.value  },
   { id:"elo",       label:"Grass Elo",         section:"Core Stats",         fmt:"elo",   dir:"desc", extract:f=>f?.elo_snapshot?.R_adjusted },
   // Serve
@@ -2146,6 +2167,12 @@ function renderMatchupResult(r) {
     probe.src = src;  // onerror = do nothing, stays text-only
   }
 
+  // Archetype tags (if available for both players)
+  const archA = state.archetypes ? state.archetypes[r.nameA] : null;
+  const archB = state.archetypes ? state.archetypes[r.nameB] : null;
+  const archTagA = archA ? `<span class="archetype-tag mu-arch-tag" title="${(archA.blurb||'').replace(/"/g,'&quot;')}">${archA.label}</span>` : "";
+  const archTagB = archB ? `<span class="archetype-tag mu-arch-tag" title="${(archB.blurb||'').replace(/"/g,'&quot;')}">${archB.label}</span>` : "";
+
   el.innerHTML = `
     <div class="mu-result-inner">
 
@@ -2156,6 +2183,7 @@ function renderMatchupResult(r) {
             <span class="mu-prob-pct">${pA}%</span>
             ${ciA}
             <span class="mu-prob-name">${r.nameA}</span>
+            ${archTagA}
             <span class="mu-prob-serve">Srv win ${Math.round(r.pServeA * 100)}%</span>
             ${probLabelA}
           </div>
@@ -2167,6 +2195,7 @@ function renderMatchupResult(r) {
             <span class="mu-prob-pct">${pB}%</span>
             ${ciA ? `<span class="mu-prob-ci">${Math.round((1-r.ciHigh) * 100)}–${Math.round((1-r.ciLow) * 100)}% range</span>` : ""}
             <span class="mu-prob-name">${r.nameB}</span>
+            ${archTagB}
             <span class="mu-prob-serve">Srv win ${Math.round(r.pServeB * 100)}%</span>
             ${probLabelB}
           </div>

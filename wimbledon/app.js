@@ -1445,14 +1445,13 @@ function renderEloSnapshot(f) {
     return;
   }
 
-  // Until the Elo pipeline is split (see TODO below), R_overall and
-  // R_surface are derived from the same grass-only input and end up
-  // identical for every player, so showing both as separate stats is
-  // misleading.  Surface only the grass rating + match count.
-  // TODO: rebuild Elo on full ATP match feed and add per-year snapshots
-  //       so the breakdown becomes meaningful again.
-  const adj = snap.R_adjusted;
-  const n   = snap.n_surface;
+  // Phase A rebuild made R_overall (full ATP form) and R_surface (grass-
+  // only form) genuinely distinct, and snapshots are now year-aware.
+  // Surface all three values plus the player's grass match count.
+  const adj  = snap.R_adjusted;
+  const surf = snap.R_surface;
+  const over = snap.R_overall;
+  const n    = snap.n_surface;
   // Symmetric axis around the 1500 default so the centre tick is always
   // at 50% of the bar regardless of the player's rating. Range ±700.
   const CENTRE = 1500;
@@ -1486,10 +1485,18 @@ function renderEloSnapshot(f) {
         <span>${MAX}+</span>
       </div>
     </div>
-    <div class="elo-breakdown elo-breakdown--single">
+    <div class="elo-breakdown">
+      <div class="elo-b-item">
+        <span class="elo-b-val">${surf}</span>
+        <span class="elo-b-label">Grass Elo</span>
+      </div>
+      <div class="elo-b-item">
+        <span class="elo-b-val">${over}</span>
+        <span class="elo-b-label">Overall Elo</span>
+      </div>
       <div class="elo-b-item">
         <span class="elo-b-val">${n}</span>
-        <span class="elo-b-label">grass matches in dataset</span>
+        <span class="elo-b-label">Grass Matches</span>
       </div>
     </div>`;
 }
@@ -1538,7 +1545,7 @@ function renderServeSpeedCourage(f) {
   const MAX       = Math.max(bpMph, ovMph, 60) * 1.08;
 
   container.innerHTML = `
-    <div class="courage-delta ${pos ? "courage-pos" : "courage-neg"}">${pos ? "+" : ""}${delta_mph.toFixed(1)} mph</div>
+    <div class="courage-delta">${pos ? "+" : ""}${delta_mph.toFixed(1)} mph</div>
     <div class="courage-sub">${pos ? "faster" : "slower"} under break-point pressure</div>
     <div class="courage-bars">
       <div class="courage-row">
@@ -1757,11 +1764,13 @@ function renderRallyCurve(f) {
   }
 
   const LABELS = { "1_3":"1–3 shots", "4_6":"4–6 shots", "7_9":"7–9 shots", "10+":"10+ shots" };
-  const COLORS = ["var(--cobalt)", "#0044c8", "var(--forest)", "var(--forest-mid)"];
-  const keys   = ["1_3", "4_6", "7_9", "10+"];
+  // Uniform brand-green bars — the metric is "win % per rally length",
+  // not a categorical comparison, so a single colour reads more cleanly.
+  const FILL = "var(--forest)";
+  const keys = ["1_3", "4_6", "7_9", "10+"];
 
   let html = `<div class="rwc-grid">`;
-  keys.forEach((k, i) => {
+  keys.forEach((k) => {
     const band = rw[k];
     const pct  = band?.win_pct;
     const n    = band?.n ?? 0;
@@ -1770,7 +1779,7 @@ function renderRallyCurve(f) {
         <span class="rwc-label">${LABELS[k]}</span>
         <div class="rwc-bar-wrap">
           <div class="rwc-track">
-            <div class="rwc-fill" style="width:${pct ?? 0}%;background:${COLORS[i]}"></div>
+            <div class="rwc-fill" style="width:${pct ?? 0}%;background:${FILL}"></div>
           </div>
           <span class="rwc-val">${pct != null ? pct + "%" : "—"}</span>
         </div>
@@ -1865,29 +1874,31 @@ function renderServeSpeedDifferential(f) {
     container.innerHTML = naCard("Speed Differential", f?.year || "this year");
     return;
   }
-  const gap    = sd.value;
-  const first  = sd.first_avg_kmh;
-  const second = sd.second_avg_kmh;
-  const MAX    = Math.max(first, second, 100) * 1.1;
-  const tight  = gap < 30;
+  // Convert km/h fields to MPH for consistency with the other Serve cards.
+  const gap_kmh    = sd.value;
+  const gap_mph    = gap_kmh * KMH_TO_MPH;
+  const first_mph  = sd.first_avg_kmh  * KMH_TO_MPH;
+  const second_mph = sd.second_avg_kmh * KMH_TO_MPH;
+  const MAX        = Math.max(first_mph, second_mph, 60) * 1.1;
+  const tight      = gap_kmh < 30;
 
   container.innerHTML = `
-    <div class="courage-delta ${tight ? "courage-pos" : "courage-neg"}">${gap.toFixed(0)} km/h gap</div>
+    <div class="courage-delta">${gap_mph.toFixed(0)} mph gap</div>
     <div class="courage-sub">${tight ? "tight differential — consistent delivery" : "large gap — 2nd serve attackable"}</div>
     <div class="courage-bars">
       <div class="courage-row">
         <span class="courage-row-label">1st Serve</span>
         <div class="courage-track">
-          <div class="courage-fill courage-overall" style="width:${(first / MAX * 100).toFixed(1)}%">
-            <span class="courage-fill-label">${first.toFixed(0)} km/h</span>
+          <div class="courage-fill courage-overall" style="width:${(first_mph / MAX * 100).toFixed(1)}%">
+            <span class="courage-fill-label">${first_mph.toFixed(0)} mph</span>
           </div>
         </div>
       </div>
       <div class="courage-row">
         <span class="courage-row-label">2nd Serve</span>
         <div class="courage-track">
-          <div class="courage-fill courage-bp" style="width:${(second / MAX * 100).toFixed(1)}%">
-            <span class="courage-fill-label">${second.toFixed(0)} km/h</span>
+          <div class="courage-fill courage-bp" style="width:${(second_mph / MAX * 100).toFixed(1)}%">
+            <span class="courage-fill-label">${second_mph.toFixed(0)} mph</span>
           </div>
         </div>
       </div>
@@ -1965,38 +1976,38 @@ function renderSetTransitionDelta(f) {
   const val     = st.value;             // pp delta (set-opener win% – overall)
   const pos     = val >= 0;
   const first   = st.first_games_win_pct;
-  const overall = st.overall_win_pct;
+  const overall = st.overall_win_pct;     // this PLAYER's overall win% (per-player benchmark, not tour average)
 
   // Slider visualization: a single horizontal axis from 0% to 100%.
-  // Two diamond markers — one for overall win%, one for set-opener win%.
-  // The connecting bar between them shows the magnitude of the delta;
-  // its colour indicates direction (forest = stronger opener, terracotta = weaker).
+  // The connecting bar magnitude/direction matches the delta:
+  //   cobalt (blue) when set-opener > overall — standard "positive" colour
+  //   terracotta when set-opener < overall — standard "negative" colour
   const lo = Math.min(overall, first);
   const hi = Math.max(overall, first);
-  const trackColour = pos ? "var(--forest)" : "var(--terracotta)";
+  const trackColour = pos ? "var(--cobalt)" : "var(--terracotta)";
 
   container.innerHTML = `
     <div class="set-trans-headline ${pos ? "set-trans-pos" : "set-trans-neg"}">
-      ${pos ? "+" : ""}${val.toFixed(1)}pp
+      ${pos ? "+" : ""}${val.toFixed(1)}%
     </div>
     <div class="set-trans-sub">${pos
         ? "stronger in the first 2 games of each set"
         : "slower starter — gives away the early games"}</div>
 
     <div class="set-trans-slider">
-      <!-- 0–100 scale axis -->
       <div class="set-trans-track">
         <!-- Magnitude bar between the two markers -->
         <div class="set-trans-delta-bar"
              style="left:${lo.toFixed(2)}%;width:${(hi - lo).toFixed(2)}%;background:${trackColour}"></div>
 
-        <!-- Overall win% (anchor / "tournament average for this player") —
-             rendered as a downward arrow with its label, no diamond marker -->
-        <div class="set-trans-arrow set-trans-arrow--overall"
+        <!-- Overall win% (this player's own season-wide baseline) — sits
+             BELOW the line as an upward arrow ▲ so it doesn't overlap with
+             the set-opener marker on the line itself. -->
+        <div class="set-trans-arrow set-trans-arrow--overall set-trans-arrow--below"
              style="left:${overall.toFixed(2)}%"
-             title="Overall win rate: ${overall.toFixed(1)}%">
+             title="${f.player ? f.player + ' overall win rate' : 'Player overall win rate'}: ${overall.toFixed(1)}% (own season baseline)">
+          <span class="set-trans-arrow-glyph">▲</span>
           <span class="set-trans-arrow-label">overall ${overall.toFixed(1)}%</span>
-          <span class="set-trans-arrow-glyph">▼</span>
         </div>
 
         <!-- Set opener win% marker (the variable being highlighted) -->

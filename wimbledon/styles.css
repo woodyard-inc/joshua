@@ -598,8 +598,9 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 /* ── RALLY VIZ ───────────────────────────────────────────────── */
 .rally-viz { display: flex; flex-direction: column; gap: var(--s-6); }
 /* Larger row gap so the avg-marker stack (number + arrow) above each row
- * has clearance from the balls of the row above. */
-.rally-group { display: flex; flex-direction: column; gap: 22px; }
+ * has clearance from the balls of the row above AND from the
+ * Serving / Returning section heading directly above the first row. */
+.rally-group { display: flex; flex-direction: column; gap: 30px; padding-top: 4px; }
 .rally-group-heading {
   font-family: var(--font-sans);
   font-size: var(--t-micro);
@@ -653,7 +654,8 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
  * number+arrow stack doesn't crowd the row content. */
 .rally-avg-marker {
   position: absolute;
-  top: -22px;
+  /* More clearance from the balls of the row directly below */
+  top: -28px;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
@@ -668,12 +670,14 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin-bottom: 3px;
+  margin-bottom: 4px;
   color: var(--ink-soft);
 }
 .rally-avg-arrow {
   font-size: 10px;
   line-height: 1;
+  /* Sit a couple pixels clear of the balls below */
+  margin-bottom: 4px;
 }
 /* Italic note shown when some rally categories are missing data */
 .rally-partial-note {
@@ -1713,13 +1717,18 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 
 /* ── SERVE COURAGE ───────────────────────────────────────────── */
 .courage-delta {
+  /* Black + size carries the emphasis; we don't need a pos/neg colour
+   * modifier when the value already speaks for itself. */
   font-family: var(--font-sans);
   font-size: 48px;
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
+  color: var(--ink);
 }
+/* Kept for backward compat (Attrition Slope still references these),
+ * but no longer used by Speed Courage / Speed Differential headlines. */
 .courage-pos { color: var(--cobalt); }
 .courage-neg { color: var(--terracotta); }
 .courage-sub {
@@ -1868,13 +1877,14 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 .bpc-headline { display: flex; align-items: flex-end; gap: 10px; }
 .bpc-headline-val {
-  /* Both call-outs use the SAME size + colour now (cobalt) — earlier the
-   * conversion stat was shrunk + greyed which made the card feel uneven. */
+  /* Same size + black for both — emphasis comes from typography, not colour.
+   * The terracotta tour-avg bars below the headlines carry the comparison
+   * cue, so the headline numbers themselves stay neutral. */
   font-family: var(--font-sans);
   font-size: 36px;
   font-weight: 700;
   letter-spacing: -0.02em;
-  color: var(--cobalt);
+  color: var(--ink);
   line-height: 1;
 }
 .bpc-headline-label {
@@ -1967,7 +1977,10 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   color: var(--ink);
   margin-top: 6px;
 }
-.bpc-cluster-bar--avg .bpc-cluster-bar-val { color: var(--ink-muted); font-weight: 500; }
+/* Tour-avg bar uses the SAME font style as the player bar — only the
+ * colour differs, so the comparison reads cleanly without the avg
+ * looking like a less-important sibling. */
+.bpc-cluster-bar--avg .bpc-cluster-bar-val { color: var(--ink-muted); }
 .bpc-cluster-bar-label {
   text-align: center;
   font-family: var(--font-serif);
@@ -1986,8 +1999,8 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   line-height: 1;
   margin-bottom: 4px;
 }
-.set-trans-pos { color: var(--forest); }
-.set-trans-neg { color: var(--terracotta); }
+.set-trans-pos { color: var(--cobalt); }      /* blue = positive (standard convention) */
+.set-trans-neg { color: var(--terracotta); }  /* terracotta = negative */
 .set-trans-sub {
   font-family: var(--font-serif);
   font-style: italic;
@@ -2004,7 +2017,9 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   height: 8px;
   background: var(--paper-warm);
   border-radius: 4px;
-  margin: 50px 8px 32px 8px;
+  /* Top room for the player's set-opener marker + label, bottom room
+   * for the below-line "overall" arrow + caption (avoids overlap). */
+  margin: 50px 8px 56px 8px;
 }
 .set-trans-delta-bar {
   position: absolute;
@@ -2066,6 +2081,17 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 .set-trans-arrow-glyph {
   font-size: 11px;
   color: var(--ink-muted);
+}
+/* Below-line variant — overall marker sits UNDER the slider track so it
+ * doesn't overlap with the player's set-opener marker on the line.
+ * Glyph-then-label order so the arrow points up at the track. */
+.set-trans-arrow--below {
+  top: 16px;            /* below the 8px-tall track */
+  bottom: auto;
+}
+.set-trans-arrow--below .set-trans-arrow-label {
+  margin-bottom: 0;
+  margin-top: 2px;
 }
 
 .set-trans-axis {

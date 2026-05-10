@@ -646,17 +646,33 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   pointer-events: none;
 }
 /* Downward-arrow tournament-average marker — replaces the vertical line
- * so per-row positions are visually distinguishable across rally bands. */
+ * so per-row positions are visually distinguishable across rally bands.
+ * Sits closer to the top edge of the ball with the avg value printed
+ * above it. Neutral grey so the colour doesn't compete with the balls
+ * themselves. */
 .rally-avg-marker {
   position: absolute;
-  top: -14px;
+  top: -16px;
   transform: translateX(-50%);
-  font-size: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   line-height: 1;
-  color: var(--terracotta);
-  opacity: 0.85;
-  pointer-events: none;
+  color: var(--ink-muted);
+  pointer-events: auto;
   cursor: help;
+}
+.rally-avg-num {
+  font-family: var(--font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 1px;
+  color: var(--ink-soft);
+}
+.rally-avg-arrow {
+  font-size: 10px;
+  line-height: 1;
 }
 /* Italic note shown when some rally categories are missing data */
 .rally-partial-note {

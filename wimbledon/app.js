@@ -840,12 +840,17 @@ function renderRally(p, t) {
     for (let i = 1; i <= shown; i++) balls += ballSVG(i <= count);
 
     // Use the FLOAT avg for marker positioning so 2.6 vs 3.4 don't both
-    // collapse to the same position (3) after rounding.  Use a downward
-    // arrow (▼) instead of a vertical line for cleaner visual separation.
+    // collapse to the same position (3) after rounding.  A downward arrow
+    // sits just above the ball with the avg value printed above it so
+    // each row's tour-avg reading is legible at a glance.
     let avgLine = "";
     if (avg != null) {
       const pos = Math.min(avg / shown, 1) * 100;
-      avgLine = `<div class="rally-avg-marker" style="left:${pos.toFixed(2)}%" title="Tournament avg: ${avg.toFixed(1)} shots">▼</div>`;
+      avgLine = `
+        <div class="rally-avg-marker" style="left:${pos.toFixed(2)}%" title="Tournament avg: ${avg.toFixed(1)} shots">
+          <span class="rally-avg-num">${avg.toFixed(1)}</span>
+          <span class="rally-avg-arrow">▼</span>
+        </div>`;
     }
     return `
       <div class="rally-row">

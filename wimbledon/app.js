@@ -145,6 +145,65 @@ async function loadFingerprintsOnly(year) {
   return mergeGrassProfiles(fps, gps);
 }
 
+/**
+ * Player name aliases — multiple data sources spell the same player
+ * different ways across years.  This map resolves every known variant
+ * back to the canonical form used in the rest of the dataset, so a
+ * lookup like state.archetypes["Stanislas Wawrinka"] works even though
+ * the archetype file is keyed by "Stan Wawrinka".
+ *
+ * Bidirectional: applyNameAliases() copies records under both spellings.
+ */
+const NAME_ALIASES = {
+  // Wawrinka — fingerprints/men_profiles use "Stanislas" for 2011-2013,
+  // "Stan" everywhere else
+  "Stanislas Wawrinka":      "Stan Wawrinka",
+  // Garin — both spellings appear across years
+  "Christian Garin":         "Cristian Garin",
+  // De Minaur — case variation across data sources
+  "Alex de Minaur":          "Alex De Minaur",
+  // Auger-Aliassime — hyphenated and unhyphenated both appear
+  "Felix Auger-Aliassime":   "Felix Auger Aliassime",
+  // Tsonga — hyphen variation
+  "Jo Wilfried Tsonga":      "Jo-Wilfried Tsonga",
+  // Del Potro — case variation
+  "Juan Martin del Potro":   "Juan Martin Del Potro",
+  // Struff — hyphen variation
+  "Jan Lennard Struff":      "Jan-Lennard Struff",
+  // Herbert — hyphen variation
+  "Pierre Hugues Herbert":   "Pierre-Hugues Herbert",
+  // Other compound surnames with hyphen variation
+  "Yen Hsun Lu":             "Yen-Hsun Lu",
+  "Paul Henri Mathieu":      "Paul-Henri Mathieu",
+  "Botic van De Zandschulp": "Botic Van De Zandschulp",
+};
+
+// Reverse alias map for canonical → alias lookups (avoids O(n) scans)
+const _CANONICAL_TO_ALIASES = (() => {
+  const m = {};
+  for (const [alias, canonical] of Object.entries(NAME_ALIASES)) {
+    (m[canonical] ||= []).push(alias);
+  }
+  return m;
+})();
+
+/**
+ * Look up a record by player name, trying both the literal name and its
+ * registered alias. Non-destructive — never mutates the records dict.
+ * Use this for any state.X[playerName] lookup that might cross a data
+ * source boundary (profiles vs fingerprints vs archetypes).
+ */
+function lookupName(records, name) {
+  if (!records || !name) return null;
+  if (records[name]) return records[name];
+  const canonical = NAME_ALIASES[name];
+  if (canonical && records[canonical]) return records[canonical];
+  for (const alias of (_CANONICAL_TO_ALIASES[name] || [])) {
+    if (records[alias]) return records[alias];
+  }
+  return null;
+}
+
 async function loadYear(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
   const nc   = { cache: "no-store" };
@@ -156,12 +215,12 @@ async function loadYear(year) {
     fetch(`${base}/data/${year}_archetypes.json`, nc).then(r => r.json()).catch(() => ({})),
     fetch(`${base}/data/archetypes_meta.json`, nc).then(r => r.json()).catch(() => null),
   ]);
-  state.profiles      = profiles;
-  state.tournament    = tourn;
-  state.fingerprints  = mergeGrassProfiles(fingerprints, grassProfiles);
-  state.archetypes    = archetypes;       // {playerName: {id, label, blurb, raw, z_scores}}
-  state.archetypesMeta = archetypesMeta;  // {anchor_year, k, archetypes:[...]}
-  state.year          = year;
+  state.profiles       = profiles;
+  state.tournament     = tourn;
+  state.fingerprints   = mergeGrassProfiles(fingerprints, grassProfiles);
+  state.archetypes     = archetypes;
+  state.archetypesMeta = archetypesMeta;
+  state.year           = year;
   populateDropdown();
   populateMuDropdowns();
   if (state.mode === "leaderboard") renderLeaderboard();
@@ -438,7 +497,8 @@ function renderHero(p, t) {
     : p.player.slice(0, 2).toUpperCase();
 
   const visualEl  = document.getElementById("hero-visual");
-  const photoFile = PLAYER_PHOTOS[p.player];
+  // Try the name as-is first, then its alias canonical form.
+  const photoFile = PLAYER_PHOTOS[p.player] || PLAYER_PHOTOS[NAME_ALIASES[p.player]];
   const base      = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
 
   function showInitials() {
@@ -461,8 +521,11 @@ function renderHero(p, t) {
   document.getElementById("player-name").textContent =
     p.player;
 
-  // Append archetype label to the player meta line if available
-  const archetype = state.archetypes ? state.archetypes[p.player] : null;
+  // Append archetype label to the player meta line if available.
+  // Use lookupName so multi-spelling players (Stan/Stanislas Wawrinka,
+  // Cristian/Christian Garin, etc.) resolve correctly even when the
+  // profile JSON and archetype JSON disagree on spelling.
+  const archetype = lookupName(state.archetypes, p.player);
   let archHtml = "";
   if (archetype) {
     const blurb = archetype.blurb ? archetype.blurb.replace(/"/g, "&quot;") : "";
@@ -2187,9 +2250,11 @@ function renderMatchupResult(r) {
   const winnerA = pA >= pB;
 
   function tryApplyPhoto(sideEl, name) {
-    // Prefer the canonical lookup (handles aliases like Stan→Stanislas);
-    // fall back to a naive space→underscore for any unmapped name.
-    const photoFile = PLAYER_PHOTOS[name] || name.replace(/ /g, "_");
+    // Try direct PLAYER_PHOTOS lookup, then alias-resolved lookup,
+    // then naive space→underscore as a last resort.
+    const photoFile = PLAYER_PHOTOS[name]
+                   || PLAYER_PHOTOS[NAME_ALIASES[name]]
+                   || name.replace(/ /g, "_");
     const src = `players/${photoFile}.webp`;
     const probe = new Image();
     probe.onload = () => {
@@ -2204,9 +2269,10 @@ function renderMatchupResult(r) {
     probe.src = src;  // onerror = do nothing, stays text-only
   }
 
-  // Archetype tags (if available for both players)
-  const archA = state.archetypes ? state.archetypes[r.nameA] : null;
-  const archB = state.archetypes ? state.archetypes[r.nameB] : null;
+  // Archetype tags (if available for both players).
+  // lookupName handles name-spelling variants across data sources.
+  const archA = lookupName(state.archetypes, r.nameA);
+  const archB = lookupName(state.archetypes, r.nameB);
   const archTagA = archA ? `<span class="archetype-tag mu-arch-tag" title="${(archA.blurb||'').replace(/"/g,'&quot;')}">${archA.label}</span>` : "";
   const archTagB = archB ? `<span class="archetype-tag mu-arch-tag" title="${(archB.blurb||'').replace(/"/g,'&quot;')}">${archB.label}</span>` : "";
 

@@ -2136,6 +2136,8 @@ function renderRunEfficiency(f) {
       </div>
       <img class="run-eff-marker" src="rafa_marker.webp" alt="player marker"
            style="left:${playerPct.toFixed(2)}%" title="${f.player || ''}: ${val.toFixed(2)} m/shot">
+      <!-- Pinned value label rounded to one decimal so it's easy to read at a glance -->
+      <div class="run-eff-marker-label" style="left:${playerPct.toFixed(2)}%">${val.toFixed(1)} m/shot</div>
     </div>
     <div class="run-eff-axis">
       <span class="run-eff-end run-eff-end--best">${stats.min.toFixed(1)} ← most efficient<br><em>${stats.best.name}</em></span>

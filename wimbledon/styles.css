@@ -548,17 +548,37 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   transition: width .4s ease;
 }
 .speed-sd-range {
+  /* ±2σ "typical range" halo — visually distinct from the solid mean fill */
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 3px;
-  background: rgba(255,255,255,.35);
+  top: 0;
+  bottom: 0;
+  background: rgba(31, 81, 155, 0.18);   /* cobalt @ 18% */
+  border-radius: 2px;
+  pointer-events: auto;
+  cursor: help;
+}
+.speed-avg-tick {
+  position: absolute;
+  top: -3px;
+  bottom: -3px;
+  width: 1px;
+  background: var(--ink);
+  opacity: 0.55;
+  transform: translateX(-50%);
+  pointer-events: auto;
+  cursor: help;
 }
 .speed-sd-label {
   font-family: var(--font-sans);
   font-size: var(--t-micro);
   color: var(--ink-muted);
   white-space: nowrap;
+}
+.speed-avg-line {
+  font-size: 11px;
+  color: var(--ink-muted);
+  margin-top: 3px;
+  font-style: italic;
 }
 .speed-row.first  .speed-fill { background: var(--cobalt); }
 .speed-row.second .speed-fill { background: var(--forest); }
@@ -624,6 +644,26 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   opacity: 0.4;
   border-radius: 1px;
   pointer-events: none;
+}
+/* Downward-arrow tournament-average marker — replaces the vertical line
+ * so per-row positions are visually distinguishable across rally bands. */
+.rally-avg-marker {
+  position: absolute;
+  top: -14px;
+  transform: translateX(-50%);
+  font-size: 11px;
+  line-height: 1;
+  color: var(--terracotta);
+  opacity: 0.85;
+  pointer-events: none;
+  cursor: help;
+}
+/* Italic note shown when some rally categories are missing data */
+.rally-partial-note {
+  margin-top: var(--s-2);
+  font-size: var(--t-micro);
+  color: var(--ink-muted);
+  font-style: italic;
 }
 .rally-shot-count {
   font-family: var(--font-serif);
@@ -1305,6 +1345,31 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 
 /* ── TIER 1 STATS ────────────────────────────────────────────── */
+/* Grouped layout: each conceptual group (Serve / Return / Game outcomes)
+ * gets its own subheading and grid sized to its stat count. */
+.t1-group {
+  margin-bottom: var(--s-3);
+}
+.t1-group-heading {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--paper-warm);
+}
+.t1-grid {
+  display: grid;
+  gap: 1px;
+  background: var(--paper-warm);
+  border: 1px solid var(--paper-warm);
+}
+.t1-grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.t1-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.t1-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+/* Legacy: keep .tier1-grid alias in case any other code path uses it */
 .tier1-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1404,10 +1469,13 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   margin-bottom: 5px;
 }
 .elo-fill {
+  position: absolute;
   height: 100%;
   background: var(--cobalt);
-  transition: width .4s;
+  transition: left .4s, width .4s;
 }
+.elo-fill--above { background: var(--forest); }
+.elo-fill--below { background: var(--terracotta); }
 .elo-tick {
   position: absolute;
   top: -4px;
@@ -1416,6 +1484,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   background: var(--ink-muted);
   transform: translateX(-50%);
 }
+.elo-tick--centre { background: var(--ink); opacity: 0.65; height: 18px; top: -5px; }
 .elo-track-labels {
   display: flex;
   justify-content: space-between;
@@ -1500,6 +1569,73 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   color: var(--ink-muted);
   margin-bottom: var(--s-3);
 }
+/* Run Efficiency — benchmarked axis with Rafa marker */
+.run-eff-track {
+  position: relative;
+  height: 90px;
+  margin: 18px 0 6px 0;
+}
+.run-eff-bar {
+  position: absolute;
+  top: 60px;
+  left: 0; right: 0;
+  height: 6px;
+  background: linear-gradient(to right,
+    rgba(74, 124, 89, 0.55),    /* forest = best/efficient end */
+    rgba(74, 124, 89, 0.20) 40%,
+    rgba(195, 99, 65, 0.20) 60%,
+    rgba(195, 99, 65, 0.55));   /* terracotta = worst/heavy end */
+  border-radius: 3px;
+}
+.run-eff-tick {
+  position: absolute;
+  top: 50px;
+  width: 1px;
+  height: 26px;
+  background: var(--ink-muted);
+  opacity: 0.55;
+  transform: translateX(-50%);
+}
+.run-eff-tick--avg { background: var(--ink); opacity: 0.75; }
+.run-eff-tick-label {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 10px;
+  color: var(--ink-muted);
+  white-space: nowrap;
+}
+.run-eff-marker {
+  position: absolute;
+  top: 0;
+  height: 60px;
+  width: auto;
+  transform: translateX(-50%);
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18));
+}
+.run-eff-axis {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--ink-muted);
+  margin-bottom: var(--s-3);
+  gap: 8px;
+}
+.run-eff-end em {
+  font-style: normal;
+  color: var(--ink);
+  font-weight: 500;
+}
+.run-eff-end--best  { text-align: left; }
+.run-eff-end--worst { text-align: right; }
+
 .entropy-detail {
   font-family: var(--font-sans);
   font-size: 11px;
@@ -1883,6 +2019,7 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 /* ── RESPONSIVE: fingerprint cards ──────────────────────────── */
 @media (max-width: 900px) {
   .tier1-grid  { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .t1-grid--4, .t1-grid--3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .mom-stats   { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .bpc-big-row { grid-template-columns: 1fr; }
   .bpc-divider { display: none; }

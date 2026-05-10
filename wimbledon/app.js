@@ -221,6 +221,8 @@ async function loadYear(year) {
   state.archetypes     = archetypes;
   state.archetypesMeta = archetypesMeta;
   state.year           = year;
+  // Invalidate any per-year stat caches when the year changes
+  for (const k of Object.keys(_runEffStatsCache)) delete _runEffStatsCache[k];
   populateDropdown();
   populateMuDropdowns();
   if (state.mode === "leaderboard") renderLeaderboard();
@@ -595,10 +597,13 @@ function renderServeWaterfall(p, t) {
 }
 
 // ── Serve Speed ───────────────────────────────────────────────────
+const KMH_TO_MPH = 0.621371;
+const _kmh2mph = v => v == null ? null : v * KMH_TO_MPH;
+
 function renderServeSpeed(p, t) {
   const sp  = p.serve_speed;
   const ta  = t.serve_speed;
-  const MAX = 230;
+  const MAX_MPH = 145;   // axis cap — fastest recorded ATP serve ~163mph; 145 keeps reasonable headroom
   const container = document.getElementById("speed-viz");
   container.innerHTML = "";
 
@@ -607,28 +612,53 @@ function renderServeSpeed(p, t) {
     return;
   }
 
+  // Convert everything to MPH for display consistency. The dataset already
+  // stores first_avg_mph / second_avg_mph; std-dev needs conversion.
   const rows = [
-    { cls:"first",  label:"1st Serve", mean:sp.first_avg_kmh,  sd:sp.first_sd_kmh,  mph:sp.first_avg_mph,  avg:ta.first_avg_kmh  },
-    { cls:"second", label:"2nd Serve", mean:sp.second_avg_kmh, sd:sp.second_sd_kmh, mph:sp.second_avg_mph, avg:ta.second_avg_kmh },
+    {
+      cls:    "first",
+      label:  "1st Serve",
+      meanMph: sp.first_avg_mph,
+      sdMph:   _kmh2mph(sp.first_sd_kmh),
+      avgMph:  _kmh2mph(ta?.first_avg_kmh),
+    },
+    {
+      cls:    "second",
+      label:  "2nd Serve",
+      meanMph: sp.second_avg_mph,
+      sdMph:   _kmh2mph(sp.second_sd_kmh),
+      avgMph:  _kmh2mph(ta?.second_avg_kmh),
+    },
   ];
 
   for (const r of rows) {
-    if (!r.mean) continue;
-    const fillPct  = (r.mean / MAX * 100).toFixed(1);
-    const sdLoPct  = ((r.mean - (r.sd || 0)) / MAX * 100).toFixed(1);
-    const sdWidPct = (((r.sd || 0) * 2)      / MAX * 100).toFixed(1);
+    if (r.meanMph == null) continue;
+
+    // Range estimate: mean ± 2σ (covers ~95% of serves). True min/max
+    // isn't tracked in the per-match aggregates so this is the best
+    // proxy — disclosed in the label.
+    const sd  = r.sdMph || 0;
+    const lo  = r.meanMph - 2 * sd;
+    const hi  = r.meanMph + 2 * sd;
+    const meanPct = (r.meanMph / MAX_MPH * 100).toFixed(1);
+    const loPct   = (Math.max(0, lo) / MAX_MPH * 100).toFixed(1);
+    const widPct  = (Math.min(MAX_MPH, hi - Math.max(0, lo)) / MAX_MPH * 100).toFixed(1);
+    const avgPct  = r.avgMph != null ? (r.avgMph / MAX_MPH * 100).toFixed(1) : null;
+
     const div = document.createElement("div");
     div.className = `speed-row ${r.cls}`;
     div.innerHTML = `
       <div class="speed-label">${r.label}</div>
       <div class="speed-bar-wrap">
         <div class="speed-track" style="flex:1">
-          <div class="speed-fill" style="width:${fillPct}%">${r.mean} km/h</div>
-          ${r.sd ? `<div class="speed-sd-range" style="left:${sdLoPct}%;width:${sdWidPct}%"></div>` : ""}
+          <!-- ±2σ band shown as a soft halo around the mean -->
+          ${sd ? `<div class="speed-sd-range" style="left:${loPct}%;width:${widPct}%" title="≈95% of serves: ${lo.toFixed(0)}–${hi.toFixed(0)} mph"></div>` : ""}
+          <div class="speed-fill" style="width:${meanPct}%">${r.meanMph.toFixed(0)} mph</div>
+          ${avgPct ? `<div class="speed-avg-tick" style="left:${avgPct}%" title="Tournament avg: ${r.avgMph.toFixed(0)} mph"></div>` : ""}
         </div>
-        <span class="speed-sd-label">${r.mph} mph${r.sd ? ` ±${r.sd}` : ""}</span>
+        <span class="speed-sd-label">${sd ? `±${(2*sd).toFixed(0)} mph (95% range)` : ""}</span>
       </div>
-      ${r.avg ? `<div style="font-size:11px;color:var(--ink-muted);margin-top:3px">Tournament avg: ${r.avg} km/h</div>` : ""}`;
+      ${avgPct ? `<div class="speed-avg-line">Tournament avg: ${r.avgMph.toFixed(0)} mph · typical range ${lo.toFixed(0)}–${hi.toFixed(0)} mph</div>` : ""}`;
     container.appendChild(div);
   }
 
@@ -638,7 +668,7 @@ function renderServeSpeed(p, t) {
   if (omitted > 0) {
     const note = document.createElement("p");
     note.className = "card-note speed-omit-note";
-    note.textContent = `${omitted} serve${omitted === 1 ? "" : "s"} omitted (0 km/h — radar not captured · double faults excluded)`;
+    note.textContent = `${omitted} serve${omitted === 1 ? "" : "s"} omitted (0 mph — radar not captured · double faults excluded)`;
     container.appendChild(note);
   }
 }
@@ -674,9 +704,11 @@ function renderServeDirection(p, t) {
     { key:"wide",   label:"Wide", color:C.wide   },
   ];
 
-  const W = 440, H = 232;
+  // Bring the two service boxes together so they share a centre seam —
+  // the T zones now visually meet in the middle (matches a real court).
   const BOX_W = 200, ZONE_W = BOX_W / 3;
-  const GAP = W - 2 * BOX_W;                // 40px between boxes
+  const GAP = 0;                            // boxes touch
+  const W = 2 * BOX_W + GAP, H = 232;
   const LX = 0, RX = BOX_W + GAP;           // box x origins
 
   // Y layout
@@ -798,13 +830,18 @@ function renderRally(p, t) {
   function renderRow(label, val, avg) {
     if (val == null) return "";
     const count    = Math.round(val);
-    const avgCount = avg != null ? Math.round(avg) : null;
-    const shown    = Math.min(Math.max(count, avgCount ?? 0, MAX_BALLS), MAX_BALLS);
+    const shown    = Math.min(Math.max(count, Math.round(avg ?? 0), MAX_BALLS), MAX_BALLS);
     let balls = "";
     for (let i = 1; i <= shown; i++) balls += ballSVG(i <= count);
-    const avgLine = avgCount != null
-      ? `<div class="rally-avg-line" style="left:${Math.min(avgCount, shown) / shown * 100}%" title="Tournament avg: ${avg} shots"></div>`
-      : "";
+
+    // Use the FLOAT avg for marker positioning so 2.6 vs 3.4 don't both
+    // collapse to the same position (3) after rounding.  Use a downward
+    // arrow (▼) instead of a vertical line for cleaner visual separation.
+    let avgLine = "";
+    if (avg != null) {
+      const pos = Math.min(avg / shown, 1) * 100;
+      avgLine = `<div class="rally-avg-marker" style="left:${pos.toFixed(2)}%" title="Tournament avg: ${avg.toFixed(1)} shots">▼</div>`;
+    }
     return `
       <div class="rally-row">
         <span class="rally-label">${label}</span>
@@ -815,11 +852,19 @@ function renderRally(p, t) {
       </div>`;
   }
 
+  // Detect partial-data conditions and surface a small note so the user
+  // knows when some rows are missing rather than wondering what's wrong.
+  const totalRows   = groups.reduce((s, g) => s + g.rows.length, 0);
+  const presentRows = groups.reduce((s, g) => s + g.rows.filter(r => r.val != null).length, 0);
+  const missingNote = presentRows < totalRows
+    ? `<p class="rally-partial-note"><em>Some rally categories have no data for ${p.year}; only available rows are shown.</em></p>`
+    : "";
+
   container.innerHTML = groups.map(g => `
     <div class="rally-group">
       <div class="rally-group-heading">${g.heading}</div>
       ${g.rows.map(r => renderRow(r.label, r.val, r.avg)).join("")}
-    </div>`).join("");
+    </div>`).join("") + missingNote;
 }
 
 // ── Points Won ────────────────────────────────────────────────────
@@ -1183,43 +1228,82 @@ function renderTier1(f) {
   if (badge) badge.textContent = f.confidence === "high" ? "High confidence" : "Low confidence";
 
   const t1    = f.tier1;
-  const COLOR = { cobalt:"var(--cobalt)", forest:"var(--forest)", terracotta:"var(--terracotta)" };
-  const stats = [
-    // Row 1 — Serve quality
-    { key:"fsp_pct",         label:"1st Serve %",         col:"cobalt"     },
-    { key:"fspw_pct",        label:"1st Srv Won %",       col:"cobalt"     },
-    { key:"sspw_pct",        label:"2nd Srv Won %",       col:"forest"     },
-    // Row 2 — Return quality (with serve-type splits)
-    { key:"rpw_pct",         label:"Return Pts Won %",    col:"terracotta" },
-    { key:"rpw_vs_1st_pct",  label:"RPW vs 1st Srv %",    col:"terracotta" },
-    { key:"rpw_vs_2nd_pct",  label:"RPW vs 2nd Srv %",    col:"terracotta" },
-    // Row 3 — Game-level outcomes
-    { key:"sgw_pct",         label:"Srv Games Won %",     col:"cobalt"     },
-    { key:"rgw_pct",         label:"Ret Games Won %",     col:"terracotta" },
+  const COLOR = {
+    serve:  "var(--cobalt)",       // ALL serve stats — consistent cobalt
+    return: "var(--terracotta)",   // ALL return stats — consistent terracotta
+  };
+
+  // Double Fault % is in the Tier 2 fingerprint (`baseline_df_rate` is %
+  // of all service points that are DFs — typically 2-5%). Surface it
+  // alongside the 2nd-serve metrics where it conceptually belongs.
+  const dfRate = f?.tier2?.df_pressure_delta?.baseline_df_rate;
+
+  // Build a synthetic stat object for DF since it's structured differently
+  // from the Tier 1 entries (no CI bands).
+  const dfStat = (dfRate != null)
+    ? { value: +dfRate.toFixed(1), ci_90_lo: null, ci_90_hi: null }
+    : null;
+
+  // Each group has: heading | colour bucket | array of stat configs.
+  const groups = [
+    {
+      heading: "Serve",
+      colour:  COLOR.serve,
+      stats: [
+        { label: "1st Serve %",      data: t1.fsp_pct        },
+        { label: "1st Serve Won %",  data: t1.fspw_pct       },
+        { label: "2nd Serve Won %",  data: t1.sspw_pct       },
+        { label: "Double Fault %",   data: dfStat            },
+      ],
+    },
+    {
+      heading: "Return",
+      colour:  COLOR.return,
+      stats: [
+        { label: "Return Pts Won %",  data: t1.rpw_pct         },
+        { label: "RPW vs 1st Srv %",  data: t1.rpw_vs_1st_pct  },
+        { label: "RPW vs 2nd Srv %",  data: t1.rpw_vs_2nd_pct  },
+      ],
+    },
+    {
+      heading: "Game outcomes",
+      stats: [
+        { label: "Srv Games Won %",   data: t1.sgw_pct, colour: COLOR.serve  },
+        { label: "Ret Games Won %",   data: t1.rgw_pct, colour: COLOR.return },
+      ],
+    },
   ];
 
-  let grid = `<div class="tier1-grid">`;
-  for (const s of stats) {
-    const m   = t1[s.key] || {};
+  function statCell(s, groupColour) {
+    const m   = s.data || {};
     const val = m.value;
     const lo  = m.ci_90_lo;
     const hi  = m.ci_90_hi;
-    const c   = COLOR[s.col];
-    grid += `
+    const c   = s.colour || groupColour;
+    return `
       <div class="t1-stat">
         <div class="t1-label">${s.label}</div>
         <div class="t1-value" style="color:${c}">${val != null ? val + "%" : "—"}</div>
         ${val != null ? `
           <div class="t1-bar-track">
-            <div class="t1-bar-ci"  style="left:${lo}%;width:${hi - lo}%;background:${c}"></div>
+            ${(lo != null && hi != null) ? `<div class="t1-bar-ci"  style="left:${lo}%;width:${hi - lo}%;background:${c}"></div>` : ""}
             <div class="t1-bar-val" style="left:${val}%;background:${c}"></div>
           </div>
-          <div class="t1-ci-range">${lo}% – ${hi}%</div>` : `<div class="t1-ci-range">no data</div>`}
+          <div class="t1-ci-range">${(lo != null && hi != null) ? `${lo}% – ${hi}%` : "&nbsp;"}</div>` : `<div class="t1-ci-range">no data</div>`}
       </div>`;
   }
-  grid += `</div>`;
-  grid += `<div class="t1-footer">${f.n_matches} match${f.n_matches !== 1 ? "es" : ""} · Elo-quality weighted · Beta(2,2) prior · 90% CI</div>`;
-  container.innerHTML = grid;
+
+  let html = "";
+  for (const g of groups) {
+    html += `<div class="t1-group">
+      <div class="t1-group-heading" style="color:${g.colour || 'var(--ink-muted)'}">${g.heading}</div>
+      <div class="t1-grid t1-grid--${g.stats.length}">
+        ${g.stats.map(s => statCell(s, g.colour)).join("")}
+      </div>
+    </div>`;
+  }
+  html += `<div class="t1-footer">${f.n_matches} match${f.n_matches !== 1 ? "es" : ""} · Elo-quality weighted · Beta(2,2) prior · 90% CI</div>`;
+  container.innerHTML = html;
 }
 
 // ── Fingerprint: Grass Elo ────────────────────────────────────────
@@ -1236,8 +1320,19 @@ function renderEloSnapshot(f) {
   const surf = snap.R_surface;
   const over = snap.R_overall;
   const n    = snap.n_surface;
-  const MIN  = 1400, MAX = 2300;
-  const pct  = v => Math.max(0, Math.min(100, (v - MIN) / (MAX - MIN) * 100)).toFixed(1);
+  // Symmetric axis around the 1500 default so the centre tick is always
+  // at 50% of the bar regardless of the player's rating. Range ±700.
+  const CENTRE = 1500;
+  const HALF   = 700;
+  const MIN    = CENTRE - HALF;   // 800
+  const MAX    = CENTRE + HALF;   // 2200
+  const pct    = v => Math.max(0, Math.min(100, (v - MIN) / (MAX - MIN) * 100));
+
+  // Fill bar grows from the centre outward in the direction of deviation
+  const playerPct = pct(adj);
+  const above1500 = adj >= CENTRE;
+  const fillLeft  = above1500 ? 50              : playerPct;
+  const fillWidth = above1500 ? playerPct - 50  : 50 - playerPct;
 
   container.innerHTML = `
     <div class="elo-big-row">
@@ -1246,10 +1341,17 @@ function renderEloSnapshot(f) {
     </div>
     <div class="elo-track-wrap">
       <div class="elo-track">
-        <div class="elo-fill" style="width:${pct(adj)}%"></div>
-        <div class="elo-tick" style="left:${pct(1500)}%" title="Default 1500"></div>
+        <!-- Fill grows from the centre outward; colour = above (forest) / below (terracotta) -->
+        <div class="elo-fill ${above1500 ? "elo-fill--above" : "elo-fill--below"}"
+             style="left:${fillLeft.toFixed(2)}%;width:${fillWidth.toFixed(2)}%"></div>
+        <!-- Centre tick is always exactly at 50% -->
+        <div class="elo-tick elo-tick--centre" style="left:50%" title="Default 1500"></div>
       </div>
-      <div class="elo-track-labels"><span>1400</span><span>↑ 1500 default</span><span>2300+</span></div>
+      <div class="elo-track-labels">
+        <span>${MIN}</span>
+        <span>↑ 1500 default</span>
+        <span>${MAX}+</span>
+      </div>
     </div>
     <div class="elo-breakdown">
       <div class="elo-b-item">
@@ -1302,29 +1404,31 @@ function renderServeSpeedCourage(f) {
     return;
   }
 
-  const delta = sc.value;
-  const pos   = delta >= 0;
-  const bpSpd = sc.bp_speed_kmh;
-  const ovSpd = sc.overall_speed_kmh;
-  const MAX   = Math.max(bpSpd, ovSpd, 100) * 1.08;
+  // Convert km/h fields to MPH for display consistency with Serve Speed card.
+  const delta_kmh = sc.value;
+  const delta_mph = delta_kmh * KMH_TO_MPH;
+  const pos       = delta_kmh >= 0;
+  const bpMph     = sc.bp_speed_kmh      * KMH_TO_MPH;
+  const ovMph     = sc.overall_speed_kmh * KMH_TO_MPH;
+  const MAX       = Math.max(bpMph, ovMph, 60) * 1.08;
 
   container.innerHTML = `
-    <div class="courage-delta ${pos ? "courage-pos" : "courage-neg"}">${pos ? "+" : ""}${delta} km/h</div>
+    <div class="courage-delta ${pos ? "courage-pos" : "courage-neg"}">${pos ? "+" : ""}${delta_mph.toFixed(1)} mph</div>
     <div class="courage-sub">${pos ? "faster" : "slower"} under break-point pressure</div>
     <div class="courage-bars">
       <div class="courage-row">
         <span class="courage-row-label">Overall</span>
         <div class="courage-track">
-          <div class="courage-fill courage-overall" style="width:${(ovSpd/MAX*100).toFixed(1)}%">
-            <span class="courage-fill-label">${ovSpd} km/h</span>
+          <div class="courage-fill courage-overall" style="width:${(ovMph/MAX*100).toFixed(1)}%">
+            <span class="courage-fill-label">${ovMph.toFixed(0)} mph</span>
           </div>
         </div>
       </div>
       <div class="courage-row">
         <span class="courage-row-label">On Break Pt</span>
         <div class="courage-track">
-          <div class="courage-fill courage-bp" style="width:${(bpSpd/MAX*100).toFixed(1)}%">
-            <span class="courage-fill-label">${bpSpd} km/h</span>
+          <div class="courage-fill courage-bp" style="width:${(bpMph/MAX*100).toFixed(1)}%">
+            <span class="courage-fill-label">${bpMph.toFixed(0)} mph</span>
           </div>
         </div>
       </div>
@@ -1751,61 +1855,129 @@ function renderRallyVolatility(f) {
 }
 
 // ── Fingerprint: Run Efficiency ───────────────────────────────────
+// Cache per-year tour statistics for Run Efficiency so we recompute
+// at most once per year switch.
+const _runEffStatsCache = {};
+function _runEffStats(year) {
+  if (_runEffStatsCache[year]) return _runEffStatsCache[year];
+  const fps = state.fingerprints || {};
+  const vals = [];
+  let best = null, worst = null;
+  for (const [name, fp] of Object.entries(fps)) {
+    const v = fp?.tier2?.distance_run_efficiency;
+    if (v?.available && v.value != null && v.value > 0) {
+      vals.push(v.value);
+      if (best  == null || v.value < best.v)  best  = { name, v: v.value };
+      if (worst == null || v.value > worst.v) worst = { name, v: v.value };
+    }
+  }
+  if (vals.length < 5) return null;   // not enough sample for benchmarks
+  const sorted = [...vals].sort((a, b) => a - b);
+  const mean   = vals.reduce((s, x) => s + x, 0) / vals.length;
+  const median = sorted[Math.floor(sorted.length / 2)];
+  const stats  = { min: sorted[0], max: sorted[sorted.length - 1], mean, median, best, worst };
+  _runEffStatsCache[year] = stats;
+  return stats;
+}
+
 function renderRunEfficiency(f) {
   const container = document.getElementById("run-efficiency-viz");
   const dre = f?.tier2?.distance_run_efficiency;
-  if (!dre?.available) {
+  // Hard NA gate — bail if the underlying field is missing or zero.
+  if (!dre?.available || dre.value == null || dre.value <= 0) {
     container.innerHTML = naCard("Run Efficiency", f?.year || "this year");
     return;
   }
-  const val = dre.value;
-  // Range roughly 1–7 m/shot; invert so a low (efficient) value fills the bar more
-  const effPct = Math.max(0, Math.min(100, (1 - (val - 1) / 6) * 100)).toFixed(1);
+  const val   = dre.value;
+  const stats = _runEffStats(f.year);
+
+  // Without benchmarks, fall back to a simpler bar.
+  if (!stats) {
+    const effPct = Math.max(0, Math.min(100, (1 - (val - 1) / 6) * 100)).toFixed(1);
+    container.innerHTML = `
+      <div class="entropy-big-row">
+        <div class="entropy-big">${val.toFixed(2)}</div>
+        <div class="entropy-label">m per<br>shot</div>
+      </div>
+      <div class="entropy-track">
+        <div class="entropy-fill" style="width:${effPct}%"></div>
+      </div>
+      <div class="entropy-axis"><span>← Efficient</span><span>Heavy runner →</span></div>
+      <div class="entropy-detail">Metres covered per rally-length unit (Elo-weighted)</div>`;
+    return;
+  }
+
+  // Map a value onto the [min, max] axis as a 0–100% position.
+  const axisLo = Math.min(stats.min, val);
+  const axisHi = Math.max(stats.max, val);
+  const pos    = v => Math.max(0, Math.min(100, (v - axisLo) / (axisHi - axisLo) * 100));
+  const playerPct = pos(val);
 
   container.innerHTML = `
     <div class="entropy-big-row">
       <div class="entropy-big">${val.toFixed(2)}</div>
       <div class="entropy-label">m per<br>shot</div>
     </div>
-    <div class="entropy-track">
-      <div class="entropy-fill" style="width:${effPct}%"></div>
+    <div class="run-eff-track">
+      <!-- left = best (most efficient), right = worst (heaviest runner) -->
+      <div class="run-eff-bar"></div>
+      <div class="run-eff-tick run-eff-tick--avg" style="left:${pos(stats.mean).toFixed(2)}%" title="Tour average: ${stats.mean.toFixed(2)} m/shot">
+        <div class="run-eff-tick-label">avg ${stats.mean.toFixed(1)}</div>
+      </div>
+      <img class="run-eff-marker" src="rafa_marker.webp" alt="player marker"
+           style="left:${playerPct.toFixed(2)}%" title="${f.player || ''}: ${val.toFixed(2)} m/shot">
     </div>
-    <div class="entropy-axis"><span>← Efficient</span><span>Heavy runner →</span></div>
-    <div class="entropy-detail">Metres covered per rally-length unit (Elo-weighted)</div>`;
+    <div class="run-eff-axis">
+      <span class="run-eff-end run-eff-end--best">${stats.min.toFixed(1)} ← most efficient<br><em>${stats.best.name}</em></span>
+      <span class="run-eff-end run-eff-end--worst">heaviest runner → ${stats.max.toFixed(1)}<br><em>${stats.worst.name}</em></span>
+    </div>
+    <div class="entropy-detail">Metres covered per rally-length unit (Elo-weighted) · benchmarks from ${f.year} draw</div>`;
 }
 
 // ── Fingerprint: Attrition Slope ─────────────────────────────────
 function renderAttritionSlope(f) {
   const container = document.getElementById("attrition-viz");
   const at = f?.tier2?.attrition_slope;
-  if (!at?.available) {
+  // Hard NA gate — also bail if the underlying per-set data is missing or
+  // every set looks suspiciously identical (which usually means the per-point
+  // distance feed wasn't tracked for this player/year).
+  if (!at?.available || at.value == null || !at.set_avgs_m) {
     container.innerHTML = naCard("Attrition Slope", f?.year || "this year");
     return;
   }
-  const slope  = at.value;
-  const neg    = slope < 0;
-  const avgs   = at.set_avgs_m || {};
-  const setNums = Object.keys(avgs).sort((a, b) => +a - +b);
-  const vals   = setNums.map(k => avgs[k]);
-  const MAX_V  = Math.max(...vals, 1) * 1.15;
+  const setAvgs = at.set_avgs_m;
+  const setNums = Object.keys(setAvgs).sort((a, b) => +a - +b);
+  const vals    = setNums.map(k => setAvgs[k]).filter(v => v != null);
+  if (vals.length < 2) {
+    container.innerHTML = naCard("Attrition Slope", f?.year || "this year");
+    return;
+  }
 
+  const slope = at.value;          // metres per point gained per additional set
+  const neg   = slope < 0;
+  const MAX_V = Math.max(...vals) * 1.15;
+
+  // set_avgs_m is the player's mean DistanceRun per POINT within each set
+  // (not total set distance). A typical value is ~15 m/point. Multiplied by
+  // ~110 points per set gives ~1.6 km/set, matching realistic match totals.
   const barsHtml = setNums.map(k => {
-    const v   = avgs[k];
+    const v = setAvgs[k];
+    if (v == null) return "";
     const pct = (v / MAX_V * 100).toFixed(1);
     return `
       <div class="courage-row">
         <span class="courage-row-label">Set ${k}</span>
         <div class="courage-track">
           <div class="courage-fill ${neg ? "courage-overall" : "courage-bp"}" style="width:${pct}%">
-            <span class="courage-fill-label">${(v / 1000).toFixed(2)} km</span>
+            <span class="courage-fill-label">${v.toFixed(1)} m/pt</span>
           </div>
         </div>
       </div>`;
   }).join("");
 
   container.innerHTML = `
-    <div class="courage-delta ${neg ? "courage-pos" : "courage-neg"}">${neg ? "" : "+"}${slope.toFixed(1)} m/set</div>
-    <div class="courage-sub">${neg ? "fresher in later sets" : "heavier load in later sets"}</div>
+    <div class="courage-delta ${neg ? "courage-pos" : "courage-neg"}">${neg ? "" : "+"}${slope.toFixed(1)} m/pt per extra set</div>
+    <div class="courage-sub">${neg ? "covers less ground per point in later sets (fresher)" : "covers more ground per point in later sets (heavier load)"}</div>
     <div class="courage-bars">${barsHtml}</div>`;
 }
 

@@ -874,7 +874,9 @@ def compare(fp_a: dict, fp_b: dict,
 # each observation carries more weight than a Queen's / Halle match.
 WIMBLEDON_RELEVANCE = 1.5
 
-_TIER1_KEYS = ["fsp_pct", "fspw_pct", "sspw_pct", "rpw_pct", "sgw_pct", "rgw_pct"]
+_TIER1_KEYS = ["fsp_pct", "fspw_pct", "sspw_pct", "rpw_pct",
+               "rpw_vs_1st_pct", "rpw_vs_2nd_pct",
+               "sgw_pct", "rgw_pct"]
 
 
 def _load_grass_profiles(year: int, data_dir: Path = DATA_DIR) -> Dict[str, dict]:

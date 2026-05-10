@@ -25,7 +25,17 @@ from typing import Dict, Optional, Tuple
 # ── constants ──────────────────────────────────────────────────────────────
 PLATT_A = 0.35   # re-fit on phased model raw outputs (915-match sweep)
 
-GRASS_RPW_AVG     = 35.0
+GRASS_RPW_AVG     = 35.0  # blended; used as fallback / display
+
+# Grass-court tour averages for return-points-won by serve type.
+# Measured on the 2024 fingerprint+grass-profile dataset (273 players):
+#   1st serve regime: median 24.8% RPW (returner under maximum pressure)
+#   2nd serve regime: median 40.3% RPW (returner attacks; tends to win rallies)
+# These are the matchup baselines for the phased simulation — a returner
+# above his/her serve-type average shifts the server's effective probability
+# down for that phase only.
+GRASS_RPW_VS_1ST_AVG = 25.0
+GRASS_RPW_VS_2ND_AVG = 40.0
 GRASS_AVG_DF_RATE = 0.035
 GRASS_AVG_FSP     = 0.63
 GRASS_AVG_FSPW    = 0.72
@@ -128,8 +138,19 @@ def _conf_weight(conf: Optional[str]) -> float:
 
 
 def _platt(p: float) -> float:
-    if p <= 1e-9 or p >= 1 - 1e-9:
-        return p
+    """Temperature-scaled probability calibration.
+
+    Old behaviour bypassed calibration entirely when p_raw was 0.0 or 1.0,
+    letting through literal 100% / 0% predictions and ruining log-loss on
+    misses.  The fix is to clamp the input to a small interior bracket so
+    PLATT always runs.  With PLATT_A=0.35:
+       p_raw=1.000 → clamped to 1-1e-6 → logit≈13.8 → calibrated ≈ 99.2%
+       p_raw=0.000 → clamped to    1e-6 → logit≈-13.8 → calibrated ≈ 0.8%
+    so we never emit literal 0%/100% but high-confidence predictions stay
+    appropriately decisive.
+    """
+    EPS = 1e-6
+    p = max(EPS, min(1 - EPS, p))
     logit = math.log(p / (1 - p))
     return 1.0 / (1.0 + math.exp(-PLATT_A * logit))
 
@@ -178,10 +199,12 @@ def extract_modifiers(fp: dict) -> dict:
             csa_deuce = csa_ad = None
 
     return {
-        "fsp":  (_t1(fp, "fsp_pct",  GRASS_AVG_FSP * 100)) / 100,
-        "fspw": (_t1(fp, "fspw_pct", GRASS_AVG_FSPW * 100)) / 100,
-        "sspw": (_t1(fp, "sspw_pct", GRASS_AVG_SSPW * 100)) / 100,
-        "rpw":  _t1(fp, "rpw_pct",  GRASS_RPW_AVG),
+        "fsp":       (_t1(fp, "fsp_pct",  GRASS_AVG_FSP * 100)) / 100,
+        "fspw":      (_t1(fp, "fspw_pct", GRASS_AVG_FSPW * 100)) / 100,
+        "sspw":      (_t1(fp, "sspw_pct", GRASS_AVG_SSPW * 100)) / 100,
+        "rpw":        _t1(fp, "rpw_pct",        GRASS_RPW_AVG),         # fallback/blend
+        "rpwVs1st":   _t1(fp, "rpw_vs_1st_pct", GRASS_RPW_VS_1ST_AVG),  # matchup adj for 1st serve points
+        "rpwVs2nd":   _t1(fp, "rpw_vs_2nd_pct", GRASS_RPW_VS_2ND_AVG),  # matchup adj for 2nd serve points
         "baseDFRate":         base_df,
         "dfPressureDelta":    df_node if isinstance(df_node, dict) else None,
         "firstServePressure": t2.get("first_serve_pressure"),
@@ -308,8 +331,17 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
     rd = state["rallyDist2"] if is_second else state["rallyDist1"]
     band = _sample_band(rd, rng)
 
-    p = srv["sspw"] if is_second else srv["fspw"]
-    p -= (ret["rpw"] - GRASS_RPW_AVG) / 100
+    # Serve-type-specific baseline + serve-type-specific matchup adjustment.
+    # Each serve regime has its own tour average (1st: ~28%, 2nd: ~52%) so a
+    # great 1st-serve returner moves the 1st-serve point baseline more than
+    # he/she moves a 2nd-serve point baseline (and vice versa).  This is the
+    # phased-return upgrade that aligns Tier 1 with the phased simulation.
+    if is_second:
+        p = srv["sspw"]
+        p -= (ret["rpwVs2nd"] - GRASS_RPW_VS_2ND_AVG) / 100
+    else:
+        p = srv["fspw"]
+        p -= (ret["rpwVs1st"] - GRASS_RPW_VS_1ST_AVG) / 100
 
     if "rallyCurve" not in _ABLATED:
         src = srv["rallyCurve"]

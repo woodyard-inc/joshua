@@ -122,6 +122,16 @@
         "ci_90_lo": 32.8,
         "ci_90_hi": 48.1
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 88.3,
         "ci_90_lo": 65.3,
@@ -356,6 +366,16 @@
         "ci_90_lo": 25.8,
         "ci_90_hi": 40.1
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 81.8,
         "ci_90_lo": 60.2,
@@ -580,6 +600,16 @@
         "value": 28.6,
         "ci_90_lo": 22.5,
         "ci_90_hi": 36.5
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 79.5,
@@ -807,6 +837,16 @@
         "ci_90_lo": 19.2,
         "ci_90_hi": 34.3
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 70.1,
         "ci_90_lo": 47.6,
@@ -1032,6 +1072,16 @@
         "value": 28.4,
         "ci_90_lo": 21.9,
         "ci_90_hi": 37.2
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 77.5,
@@ -1277,6 +1327,16 @@
         "ci_90_lo": 25.5,
         "ci_90_hi": 39.0
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 87.9,
         "ci_90_lo": 67.1,
@@ -1493,6 +1553,16 @@
         "value": 30.8,
         "ci_90_lo": 24.9,
         "ci_90_hi": 38.3
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 80.8,
@@ -1718,6 +1788,16 @@
         "value": 36.3,
         "ci_90_lo": 29.2,
         "ci_90_hi": 44.7
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 85.7,
@@ -1979,6 +2059,16 @@
         "ci_90_lo": 29.3,
         "ci_90_hi": 44.3
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 83.5,
         "ci_90_lo": 61.4,
@@ -2177,6 +2267,16 @@
         "value": 32.6,
         "ci_90_lo": 26.5,
         "ci_90_hi": 39.9
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 77.3,
@@ -2451,6 +2551,16 @@
         "ci_90_lo": 26.6,
         "ci_90_hi": 40.7
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 86.2,
         "ci_90_lo": 65.5,
@@ -2668,6 +2778,16 @@
         "ci_90_lo": 24.8,
         "ci_90_hi": 36.0
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 89.0,
         "ci_90_lo": 73.5,
@@ -2865,6 +2985,16 @@
         "value": 22.0,
         "ci_90_lo": 16.2,
         "ci_90_hi": 31.1
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 78.6,
@@ -3134,6 +3264,16 @@
         "value": 35.2,
         "ci_90_lo": 28.4,
         "ci_90_hi": 43.5
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 88.3,
@@ -3415,6 +3555,16 @@
         "ci_90_lo": 29.7,
         "ci_90_hi": 43.6
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 87.8,
         "ci_90_lo": 67.0,
@@ -3612,6 +3762,16 @@
         "value": 28.0,
         "ci_90_lo": 21.8,
         "ci_90_hi": 36.3
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 66.7,
@@ -3841,6 +4001,16 @@
         "ci_90_lo": 23.8,
         "ci_90_hi": 39.4
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 89.4,
         "ci_90_lo": 64.3,
@@ -4039,6 +4209,16 @@
         "value": 19.4,
         "ci_90_lo": 13.9,
         "ci_90_hi": 29.1
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 71.4,
@@ -4254,6 +4434,16 @@
         "value": 34.3,
         "ci_90_lo": 27.8,
         "ci_90_hi": 42.2
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 86.1,
@@ -4478,6 +4668,16 @@
         "value": 31.3,
         "ci_90_lo": 25.1,
         "ci_90_hi": 39.1
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 90.3,
@@ -4713,6 +4913,16 @@
         "ci_90_lo": 28.0,
         "ci_90_hi": 41.4
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 89.1,
         "ci_90_lo": 68.7,
@@ -4921,6 +5131,16 @@
         "ci_90_lo": 19.8,
         "ci_90_hi": 35.8
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 72.7,
         "ci_90_lo": 49.5,
@@ -5127,6 +5347,16 @@
         "value": 27.7,
         "ci_90_lo": 20.5,
         "ci_90_hi": 38.1
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 36.5,
@@ -5411,6 +5641,16 @@
         "ci_90_lo": 29.0,
         "ci_90_hi": 43.9
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 90.5,
         "ci_90_lo": 68.3,
@@ -5674,6 +5914,16 @@
         "ci_90_lo": 28.9,
         "ci_90_hi": 43.4
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 86.2,
         "ci_90_lo": 64.5,
@@ -5872,6 +6122,16 @@
         "value": 38.7,
         "ci_90_lo": 31.9,
         "ci_90_hi": 46.3
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 88.9,
@@ -6106,6 +6366,16 @@
         "ci_90_lo": 28.2,
         "ci_90_hi": 42.0
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 83.6,
         "ci_90_lo": 62.8,
@@ -6322,6 +6592,16 @@
         "value": 36.4,
         "ci_90_lo": 30.1,
         "ci_90_hi": 43.7
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 73.1,
@@ -6569,6 +6849,16 @@
         "ci_90_lo": 23.5,
         "ci_90_hi": 37.3
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 89.9,
         "ci_90_lo": 68.8,
@@ -6768,6 +7058,16 @@
         "ci_90_lo": 9.2,
         "ci_90_hi": 21.6
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 83.3,
         "ci_90_lo": 61.6,
@@ -6964,6 +7264,16 @@
         "value": 25.0,
         "ci_90_lo": 18.6,
         "ci_90_hi": 34.6
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 61.5,
@@ -7220,6 +7530,16 @@
         "ci_90_lo": 28.1,
         "ci_90_hi": 42.6
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 90.8,
         "ci_90_lo": 69.0,
@@ -7426,6 +7746,16 @@
         "value": 29.7,
         "ci_90_lo": 23.1,
         "ci_90_hi": 38.6
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 56.9,
@@ -7674,6 +8004,16 @@
         "ci_90_lo": 30.3,
         "ci_90_hi": 44.0
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 78.6,
         "ci_90_lo": 58.8,
@@ -7872,6 +8212,16 @@
         "value": 11.1,
         "ci_90_lo": 6.8,
         "ci_90_hi": 28.0
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 57.1,
@@ -8081,6 +8431,16 @@
         "ci_90_lo": 24.1,
         "ci_90_hi": 40.0
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 82.5,
         "ci_90_lo": 58.0,
@@ -8287,6 +8647,16 @@
         "value": 13.1,
         "ci_90_lo": 8.7,
         "ci_90_hi": 23.3
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 63.3,
@@ -8566,6 +8936,16 @@
         "value": 39.1,
         "ci_90_lo": 32.3,
         "ci_90_hi": 46.8
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 91.3,
@@ -8847,6 +9227,16 @@
         "ci_90_lo": 24.7,
         "ci_90_hi": 39.1
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 88.9,
         "ci_90_lo": 67.9,
@@ -9063,6 +9453,16 @@
         "value": 27.3,
         "ci_90_lo": 21.3,
         "ci_90_hi": 35.4
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 84.7,
@@ -9307,6 +9707,16 @@
         "ci_90_lo": 28.3,
         "ci_90_hi": 42.9
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 80.3,
         "ci_90_lo": 58.0,
@@ -9532,6 +9942,16 @@
         "value": 32.6,
         "ci_90_lo": 26.8,
         "ci_90_hi": 39.7
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 84.1,
@@ -9768,6 +10188,16 @@
         "ci_90_lo": 25.1,
         "ci_90_hi": 40.5
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 87.1,
         "ci_90_lo": 63.2,
@@ -10003,6 +10433,16 @@
         "ci_90_lo": 25.7,
         "ci_90_hi": 41.4
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 77.3,
         "ci_90_lo": 53.6,
@@ -10219,6 +10659,16 @@
         "value": 34.3,
         "ci_90_lo": 27.9,
         "ci_90_hi": 41.9
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 84.3,
@@ -10500,6 +10950,16 @@
         "ci_90_lo": 28.1,
         "ci_90_hi": 42.5
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 81.7,
         "ci_90_lo": 60.5,
@@ -10716,6 +11176,16 @@
         "value": 31.0,
         "ci_90_lo": 25.4,
         "ci_90_hi": 37.9
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 82.8,
@@ -10943,6 +11413,16 @@
         "ci_90_lo": 24.7,
         "ci_90_hi": 38.6
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 84.5,
         "ci_90_lo": 62.8,
@@ -11143,6 +11623,16 @@
         "value": 37.4,
         "ci_90_lo": 30.6,
         "ci_90_hi": 45.4
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 72.7,
@@ -11423,6 +11913,16 @@
         "ci_90_lo": 33.0,
         "ci_90_hi": 47.4
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 87.9,
         "ci_90_lo": 66.4,
@@ -11621,6 +12121,16 @@
         "ci_90_lo": 11.5,
         "ci_90_hi": 25.8
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 71.4,
         "ci_90_lo": 47.8,
@@ -11817,6 +12327,16 @@
         "value": 17.6,
         "ci_90_lo": 12.4,
         "ci_90_hi": 27.0
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 71.4,
@@ -12023,6 +12543,16 @@
         "value": 33.1,
         "ci_90_lo": 26.4,
         "ci_90_hi": 41.4
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 62.3,
@@ -12244,6 +12774,16 @@
         "ci_90_lo": 25.0,
         "ci_90_hi": 38.6
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 70.1,
         "ci_90_lo": 50.4,
@@ -12443,6 +12983,16 @@
         "ci_90_lo": 13.3,
         "ci_90_hi": 27.5
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 73.3,
         "ci_90_lo": 50.2,
@@ -12640,6 +13190,16 @@
         "ci_90_lo": 28.2,
         "ci_90_hi": 41.7
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 76.2,
         "ci_90_lo": 56.5,
@@ -12836,6 +13396,16 @@
         "value": 21.1,
         "ci_90_lo": 15.3,
         "ci_90_hi": 30.5
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 73.3,
@@ -13043,6 +13613,16 @@
         "ci_90_lo": 29.6,
         "ci_90_hi": 43.6
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 77.1,
         "ci_90_lo": 56.9,
@@ -13248,6 +13828,16 @@
         "value": 29.1,
         "ci_90_lo": 22.0,
         "ci_90_hi": 39.0
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 76.3,
@@ -13460,6 +14050,16 @@
         "ci_90_lo": 29.8,
         "ci_90_hi": 44.3
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 76.0,
         "ci_90_lo": 53.9,
@@ -13658,6 +14258,16 @@
         "value": 34.0,
         "ci_90_lo": 27.3,
         "ci_90_hi": 42.1
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 66.7,
@@ -13883,6 +14493,16 @@
         "ci_90_lo": 23.3,
         "ci_90_hi": 35.8
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 86.7,
         "ci_90_lo": 67.7,
@@ -14080,6 +14700,16 @@
         "value": 27.9,
         "ci_90_lo": 21.3,
         "ci_90_hi": 37.0
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 66.7,
@@ -14309,6 +14939,16 @@
         "ci_90_lo": 20.1,
         "ci_90_hi": 34.1
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 91.5,
         "ci_90_lo": 69.2,
@@ -14517,6 +15157,16 @@
         "ci_90_lo": 10.3,
         "ci_90_hi": 30.2
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 61.0,
         "ci_90_lo": 32.7,
@@ -14719,6 +15369,16 @@
         "value": 32.8,
         "ci_90_lo": 26.5,
         "ci_90_hi": 40.6
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 89.2,
@@ -14926,6 +15586,16 @@
         "value": 23.6,
         "ci_90_lo": 18.2,
         "ci_90_hi": 31.5
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 75.6,
@@ -15152,6 +15822,16 @@
         "ci_90_lo": 26.1,
         "ci_90_hi": 42.2
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 74.3,
         "ci_90_lo": 50.6,
@@ -15377,6 +16057,16 @@
         "value": 29.4,
         "ci_90_lo": 23.2,
         "ci_90_hi": 37.6
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 86.0,
@@ -15640,6 +16330,16 @@
         "ci_90_lo": 27.4,
         "ci_90_hi": 41.1
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 86.1,
         "ci_90_lo": 65.8,
@@ -15865,6 +16565,16 @@
         "value": 27.9,
         "ci_90_lo": 22.0,
         "ci_90_hi": 35.7
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 75.6,
@@ -16092,6 +16802,16 @@
         "ci_90_lo": 29.3,
         "ci_90_hi": 43.7
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 82.8,
         "ci_90_lo": 60.7,
@@ -16290,6 +17010,16 @@
         "ci_90_lo": 18.0,
         "ci_90_hi": 31.6
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 73.7,
         "ci_90_lo": 53.2,
@@ -16486,6 +17216,16 @@
         "value": 29.4,
         "ci_90_lo": 24.3,
         "ci_90_hi": 35.9
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 85.2,
@@ -16693,6 +17433,16 @@
         "ci_90_lo": 21.0,
         "ci_90_hi": 36.5
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 83.2,
         "ci_90_lo": 59.5,
@@ -16898,6 +17648,16 @@
         "value": 23.0,
         "ci_90_lo": 17.4,
         "ci_90_hi": 31.2
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 75.7,
@@ -17114,6 +17874,16 @@
         "value": 32.0,
         "ci_90_lo": 25.9,
         "ci_90_hi": 39.5
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 77.6,
@@ -17341,6 +18111,16 @@
         "ci_90_lo": 29.1,
         "ci_90_hi": 43.5
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 84.1,
         "ci_90_lo": 63.1,
@@ -17556,6 +18336,16 @@
         "value": 31.8,
         "ci_90_lo": 25.0,
         "ci_90_hi": 40.5
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 62.2,
@@ -17778,6 +18568,16 @@
         "ci_90_lo": 21.8,
         "ci_90_hi": 37.0
       },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
       "sgw_pct": {
         "value": 81.1,
         "ci_90_lo": 57.9,
@@ -17984,6 +18784,16 @@
         "value": 30.6,
         "ci_90_lo": 24.3,
         "ci_90_hi": 38.7
+      },
+      "rpw_vs_1st_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
+      },
+      "rpw_vs_2nd_pct": {
+        "value": null,
+        "ci_90_lo": null,
+        "ci_90_hi": null
       },
       "sgw_pct": {
         "value": 75.6,

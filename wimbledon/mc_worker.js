@@ -47,7 +47,14 @@ function deepClone(obj) { return JSON.parse(JSON.stringify(obj)); }
 
 // ── Constants ─────────────────────────────────────────────────────────────
 
-const GRASS_RPW_AVG      = 35.0;   // tour average return points won on grass
+const GRASS_RPW_AVG      = 35.0;   // blended; used as fallback / display
+// Phased return baselines — grass-court tour averages by serve type.
+// Measured on the 2024 fingerprint+grass-profile dataset (273 players):
+//   ~25% RPW vs 1st serve (returner under maximum pressure)
+//   ~40% RPW vs 2nd serve (returner attacks; tends to win rallies)
+// The matchup adjustment uses the right baseline for each serve regime.
+const GRASS_RPW_VS_1ST_AVG = 25.0;
+const GRASS_RPW_VS_2ND_AVG = 40.0;
 const GRASS_AVG_DF_RATE  = 0.035;  // ~3.5% of service points are DFs
 const GRASS_AVG_FSP      = 0.63;
 const GRASS_AVG_FSPW     = 0.72;
@@ -79,7 +86,14 @@ const SECOND_SERVE_RALLY_WEIGHTS = { "1_3": 0.85, "4_6": 1.05, "7_9": 1.15, "10+
 const PLATT_A = 0.35;
 
 function plattCalibrate(p) {
-  if (p <= 1e-9 || p >= 1 - 1e-9) return p;
+  // Old behaviour bypassed calibration when p_raw hit 0.0 or 1.0 — letting
+  // literal 100%/0% predictions through to wreck log-loss on misses.
+  // Fix: clamp the input so PLATT always runs.  With PLATT_A=0.35:
+  //   p_raw=1.000 → clamped to 1-1e-6 → calibrated ≈ 99.2%
+  //   p_raw=0.000 → clamped to    1e-6 → calibrated ≈  0.8%
+  // High-confidence predictions stay decisive but no longer undefined.
+  const EPS = 1e-6;
+  p = Math.max(EPS, Math.min(1 - EPS, p));
   const logit = Math.log(p / (1 - p));
   return 1 / (1 + Math.exp(-PLATT_A * logit));
 }
@@ -102,9 +116,11 @@ function extractModifiers(fp) {
   return {
     // Tier 1 serve / return stats — backbone of the model
     fsp:  (t1.fsp_pct?.value  != null) ? t1.fsp_pct.value  / 100 : GRASS_AVG_FSP,
-    fspw: (t1.fspw_pct?.value != null) ? t1.fspw_pct.value / 100 : GRASS_AVG_FSPW,
-    sspw: (t1.sspw_pct?.value != null) ? t1.sspw_pct.value / 100 : GRASS_AVG_SSPW,
-    rpw:  (t1.rpw_pct?.value  != null) ? t1.rpw_pct.value         : GRASS_RPW_AVG,
+    fspw:     (t1.fspw_pct?.value != null) ? t1.fspw_pct.value / 100 : GRASS_AVG_FSPW,
+    sspw:     (t1.sspw_pct?.value != null) ? t1.sspw_pct.value / 100 : GRASS_AVG_SSPW,
+    rpw:      (t1.rpw_pct?.value          != null) ? t1.rpw_pct.value         : GRASS_RPW_AVG,
+    rpwVs1st: (t1.rpw_vs_1st_pct?.value  != null) ? t1.rpw_vs_1st_pct.value  : GRASS_RPW_VS_1ST_AVG,
+    rpwVs2nd: (t1.rpw_vs_2nd_pct?.value  != null) ? t1.rpw_vs_2nd_pct.value  : GRASS_RPW_VS_2ND_AVG,
 
     // Phase 1: serve
     baseDFRate,
@@ -256,10 +272,19 @@ function simulatePoint(srvMods, retMods, state) {
   // 2b. Serve-type-specific baseline
   //     1st serve in → fspw_pct as baseline (big serve = advantage)
   //     2nd serve    → sspw_pct as baseline (returner is more engaged)
-  let p = isSecondServe ? srvMods.sspw : srvMods.fspw;
-
-  // 2c. Matchup adjustment: shift for returner quality vs tour average
-  const adj = (retMods.rpw - GRASS_RPW_AVG) / 100;
+  // 2b. Serve-type-specific baseline + serve-type-specific matchup adjustment.
+  //     The returner's RPW vs 1st serves and vs 2nd serves are very different
+  //     regimes on grass (~28% vs ~52%).  Using the right split per phase
+  //     captures whether the returner is good at neutralising big serves
+  //     or at attacking second serves — those are different skills.
+  let p, adj;
+  if (isSecondServe) {
+    p   = srvMods.sspw;
+    adj = (retMods.rpwVs2nd - GRASS_RPW_VS_2ND_AVG) / 100;
+  } else {
+    p   = srvMods.fspw;
+    adj = (retMods.rpwVs1st - GRASS_RPW_VS_1ST_AVG) / 100;
+  }
   p -= adj;
 
   // rallyCurve differential, courtSideRally, courtSideServe modifiers were

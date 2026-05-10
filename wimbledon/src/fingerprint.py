@@ -271,6 +271,18 @@ def compute_match_features(player_name: str, player_num: int,
     ret_total   = len(returning)
     ret_won     = int((returning["PointWinner"] == pn).sum())
 
+    # Return splits by serve type — captures returner quality vs 1st vs 2nd serves.
+    # On grass these regimes are very different (~28% vs 1st, ~52% vs 2nd) so
+    # collapsing them into a single rpw_pct loses signal.  Used by phased MC.
+    if "ServeNumber" in returning.columns:
+        ret_sn = returning["ServeNumber"]
+    else:
+        ret_sn = pd.Series(0, index=returning.index)
+    ret_vs_1st_total = int((ret_sn == 1).sum())
+    ret_vs_1st_won   = int(((ret_sn == 1) & (returning["PointWinner"] == pn)).sum())
+    ret_vs_2nd_total = int((ret_sn == 2).sum())
+    ret_vs_2nd_won   = int(((ret_sn == 2) & (returning["PointWinner"] == pn)).sum())
+
     # Service / return games
     srv_games = ret_games = srv_games_won = ret_games_won = 0
     for (_, _), gpts in match_pts.groupby(["SetNo", "GameNo"]):
@@ -599,6 +611,8 @@ def compute_match_features(player_name: str, player_num: int,
         "aces": aces, "dfs": dfs,
         # Tier 1 return / games
         "ret_total": ret_total, "ret_won": ret_won,
+        "ret_vs_1st_total": ret_vs_1st_total, "ret_vs_1st_won": ret_vs_1st_won,
+        "ret_vs_2nd_total": ret_vs_2nd_total, "ret_vs_2nd_won": ret_vs_2nd_won,
         "srv_games": srv_games, "srv_games_won": srv_games_won,
         "ret_games": ret_games, "ret_games_won": ret_games_won,
         # Tier 2 serve direction entropy
@@ -704,6 +718,13 @@ def build_fingerprint(player_name: str, year: int,
 
     # RPW%
     rpw = pct_metric(ws("ret_won"), ws("ret_total"))
+
+    # Return splits — RPW vs 1st serve and vs 2nd serve.
+    # On grass these are typically ~28% vs 1st (returner under heavy pressure)
+    # and ~52% vs 2nd (returner attacks, often dictates the rally).
+    # Used by the phased Monte Carlo for serve-type-aware matchup adjustment.
+    rpw_vs_1st = pct_metric(ws("ret_vs_1st_won"), ws("ret_vs_1st_total"))
+    rpw_vs_2nd = pct_metric(ws("ret_vs_2nd_won"), ws("ret_vs_2nd_total"))
 
     # SGW%
     sgw = pct_metric(ws("srv_games_won"), ws("srv_games"))
@@ -1171,12 +1192,14 @@ def build_fingerprint(player_name: str, year: int,
         "tier2_wide_intervals": tier2_wide,   # True when n < FULL_MATCHES (informational only)
         "training_matches": match_meta,
         "tier1": {
-            "fsp_pct":  fsp,
-            "fspw_pct": fspw,
-            "sspw_pct": sspw,
-            "rpw_pct":  rpw,
-            "sgw_pct":  sgw,
-            "rgw_pct":  rgw,
+            "fsp_pct":         fsp,
+            "fspw_pct":        fspw,
+            "sspw_pct":        sspw,
+            "rpw_pct":         rpw,
+            "rpw_vs_1st_pct":  rpw_vs_1st,
+            "rpw_vs_2nd_pct":  rpw_vs_2nd,
+            "sgw_pct":         sgw,
+            "rgw_pct":         rgw,
         },
         "tier2": {
             # Existing

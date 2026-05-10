@@ -102,6 +102,8 @@ def build_player_profile(player_name: str,
     aces = dfs = 0.0
     srv_games = bp_faced = bp_saved = 0.0
     ret_pts = ret_won = ret_games = ret_games_won = 0.0
+    ret_vs_1st_total = ret_vs_1st_won = 0.0
+    ret_vs_2nd_total = ret_vs_2nd_won = 0.0
 
     for m in matches:
         srv_pts    += m.get("srv_pts",    0) or 0
@@ -117,6 +119,10 @@ def build_player_profile(player_name: str,
         ret_won    += m.get("ret_won",    0) or 0
         ret_games  += m.get("ret_games",  0) or 0
         ret_games_won += m.get("ret_games_won", 0) or 0
+        ret_vs_1st_total += m.get("ret_vs_1st_total", 0) or 0
+        ret_vs_1st_won   += m.get("ret_vs_1st_won",   0) or 0
+        ret_vs_2nd_total += m.get("ret_vs_2nd_total", 0) or 0
+        ret_vs_2nd_won   += m.get("ret_vs_2nd_won",   0) or 0
 
     # Tier 1 percentages
     srv_2nd_in = max(0, srv_pts - srv_1st_in)
@@ -127,6 +133,8 @@ def build_player_profile(player_name: str,
     fspw = _safe_pct(srv_1st_won, srv_1st_in)
     sspw = _safe_pct(srv_2nd_won, srv_2nd_in)
     rpw  = _safe_pct(ret_won, ret_pts)
+    rpw_vs_1st = _safe_pct(ret_vs_1st_won, ret_vs_1st_total)
+    rpw_vs_2nd = _safe_pct(ret_vs_2nd_won, ret_vs_2nd_total)
     sgw  = _safe_pct(srv_games_won, srv_games)
     rgw  = _safe_pct(ret_games_won, ret_games)
 
@@ -148,12 +156,14 @@ def build_player_profile(player_name: str,
         "confidence":      conf,
         "tier2_available": False,
         "tier1": {
-            "fsp_pct":  _t1(fsp,  srv_pts),
-            "fspw_pct": _t1(fspw, srv_1st_in),
-            "sspw_pct": _t1(sspw, srv_2nd_in),
-            "rpw_pct":  _t1(rpw,  ret_pts),
-            "sgw_pct":  _t1(sgw,  srv_games),
-            "rgw_pct":  _t1(rgw,  ret_games),
+            "fsp_pct":         _t1(fsp,  srv_pts),
+            "fspw_pct":        _t1(fspw, srv_1st_in),
+            "sspw_pct":        _t1(sspw, srv_2nd_in),
+            "rpw_pct":         _t1(rpw,  ret_pts),
+            "rpw_vs_1st_pct":  _t1(rpw_vs_1st, ret_vs_1st_total),
+            "rpw_vs_2nd_pct":  _t1(rpw_vs_2nd, ret_vs_2nd_total),
+            "sgw_pct":         _t1(sgw,  srv_games),
+            "rgw_pct":         _t1(rgw,  ret_games),
         },
         "training_matches": [m.get("_meta", {}) for m in matches],
     }
@@ -243,11 +253,22 @@ def build_year_grass_profiles(year: int,
                 "srv_games":    _f(row, "w_SvGms"),
                 "bp_faced":     _f(row, "w_bpFaced"),
                 "bp_saved":     _f(row, "w_bpSaved"),
-                # Return: opponent serve stats
+                # Return: opponent (loser) serve stats
                 "ret_pts":      _f(row, "l_svpt"),
                 "ret_won":      max(0, (_f(row,"l_svpt") or 0)
                                     - (_f(row,"l_1stWon") or 0)
                                     - (_f(row,"l_2ndWon") or 0)),
+                # Return splits — opponent's 1stIn pts that opponent did NOT win = winner's wins on 1st-serve returns
+                "ret_vs_1st_total": _f(row, "l_1stIn"),
+                "ret_vs_1st_won":   max(0, (_f(row,"l_1stIn") or 0) - (_f(row,"l_1stWon") or 0)),
+                # 2nd serves that went in = svpt - 1stIn - df
+                "ret_vs_2nd_total": max(0, (_f(row,"l_svpt") or 0)
+                                          - (_f(row,"l_1stIn") or 0)
+                                          - (_f(row,"l_df")    or 0)),
+                "ret_vs_2nd_won":   max(0, (_f(row,"l_svpt") or 0)
+                                          - (_f(row,"l_1stIn") or 0)
+                                          - (_f(row,"l_df")    or 0)
+                                          - (_f(row,"l_2ndWon") or 0)),
                 "ret_games":    _f(row, "l_SvGms"),
                 "ret_games_won": max(0, (_f(row,"l_bpFaced") or 0)
                                       - (_f(row,"l_bpSaved") or 0)),
@@ -275,6 +296,15 @@ def build_year_grass_profiles(year: int,
                 "ret_won":      max(0, (_f(row,"w_svpt") or 0)
                                     - (_f(row,"w_1stWon") or 0)
                                     - (_f(row,"w_2ndWon") or 0)),
+                "ret_vs_1st_total": _f(row, "w_1stIn"),
+                "ret_vs_1st_won":   max(0, (_f(row,"w_1stIn") or 0) - (_f(row,"w_1stWon") or 0)),
+                "ret_vs_2nd_total": max(0, (_f(row,"w_svpt") or 0)
+                                          - (_f(row,"w_1stIn") or 0)
+                                          - (_f(row,"w_df")    or 0)),
+                "ret_vs_2nd_won":   max(0, (_f(row,"w_svpt") or 0)
+                                          - (_f(row,"w_1stIn") or 0)
+                                          - (_f(row,"w_df")    or 0)
+                                          - (_f(row,"w_2ndWon") or 0)),
                 "ret_games":    _f(row, "w_SvGms"),
                 "ret_games_won": max(0, (_f(row,"w_bpFaced") or 0)
                                       - (_f(row,"w_bpSaved") or 0)),

@@ -1353,17 +1353,6 @@ function renderTier1(f) {
     return: "var(--terracotta)",   // ALL return stats — consistent terracotta
   };
 
-  // Double Fault % is in the Tier 2 fingerprint (`baseline_df_rate` is %
-  // of all service points that are DFs — typically 2-5%). Surface it
-  // alongside the 2nd-serve metrics where it conceptually belongs.
-  const dfRate = f?.tier2?.df_pressure_delta?.baseline_df_rate;
-
-  // Build a synthetic stat object for DF since it's structured differently
-  // from the Tier 1 entries (no CI bands).
-  const dfStat = (dfRate != null)
-    ? { value: +dfRate.toFixed(1), ci_90_lo: null, ci_90_hi: null }
-    : null;
-
   // Each group has: heading | colour bucket | array of stat configs.
   const groups = [
     {
@@ -1373,7 +1362,6 @@ function renderTier1(f) {
         { label: "1st Serve %",      data: t1.fsp_pct        },
         { label: "1st Serve Won %",  data: t1.fspw_pct       },
         { label: "2nd Serve Won %",  data: t1.sspw_pct       },
-        { label: "Double Fault %",   data: dfStat            },
       ],
     },
     {

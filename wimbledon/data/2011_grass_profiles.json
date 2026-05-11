@@ -1158,7 +1158,7 @@
         "year": 2010,
         "date": "2010-06-13",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -1594,7 +1594,7 @@
         "year": 2009,
         "date": "2009-06-08",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       }
     ],
     "elo_snapshot": {
@@ -2022,7 +2022,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -2213,7 +2213,7 @@
         "year": 2009,
         "date": "2009-06-22",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "s Hertogenbosch",
@@ -3488,7 +3488,7 @@
         "year": 2008,
         "date": "2008-06-09",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Queen's Club",
@@ -3670,7 +3670,7 @@
         "year": 2009,
         "date": "2009-06-14",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -7251,7 +7251,7 @@
         "year": 2008,
         "date": "2008-06-23",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -7330,7 +7330,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -7560,7 +7560,7 @@
         "year": 2009,
         "date": "2009-06-22",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Queen's Club",
@@ -8954,7 +8954,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Eastbourne",
@@ -12614,8 +12614,8 @@
     },
     "elo_win_prob_vs_avg": 0.5095
   },
-  "Juan Martin del Potro": {
-    "player": "Juan Martin del Potro",
+  "Juan Martin Del Potro": {
+    "player": "Juan Martin Del Potro",
     "surface": "grass",
     "year": 2011,
     "source": "grass_atp",
@@ -12732,7 +12732,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Juan Martin del Potro",
+      "name": "Juan Martin Del Potro",
       "n_overall": 260,
       "n_surface": 22,
       "R_overall": 2157.9,
@@ -13259,7 +13259,7 @@
         "year": 2010,
         "date": "2010-06-13",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Queen's Club",
@@ -14164,7 +14164,7 @@
         "year": 2009,
         "date": "2009-06-22",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       }
     ],
     "elo_snapshot": {
@@ -14742,7 +14742,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Eastbourne",
@@ -15584,7 +15584,7 @@
         "year": 2008,
         "date": "2008-06-23",
         "result": "W",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       }
     ],
     "elo_snapshot": {
@@ -16834,7 +16834,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -17008,7 +17008,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Wimbledon",
@@ -17770,7 +17770,7 @@
         "year": 2010,
         "date": "2010-06-07",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Newport",
@@ -18166,7 +18166,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -18555,7 +18555,7 @@
         "year": 2008,
         "date": "2008-06-23",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       }
     ],
     "elo_snapshot": {
@@ -18916,8 +18916,8 @@
     },
     "elo_win_prob_vs_avg": 0.3468
   },
-  "Paul Henri Mathieu": {
-    "player": "Paul Henri Mathieu",
+  "Paul-Henri Mathieu": {
+    "player": "Paul-Henri Mathieu",
     "surface": "grass",
     "year": 2011,
     "source": "grass_atp",
@@ -19050,7 +19050,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Paul Henri Mathieu",
+      "name": "Paul-Henri Mathieu",
       "n_overall": 433,
       "n_surface": 38,
       "R_overall": 1747.0,
@@ -19117,7 +19117,7 @@
         "year": 2008,
         "date": "2008-06-23",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       }
     ],
     "elo_snapshot": {
@@ -20140,7 +20140,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "W",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Wimbledon",
@@ -24007,7 +24007,7 @@
         "year": 2008,
         "date": "2008-06-23",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -24894,7 +24894,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Wimbledon",
@@ -25449,7 +25449,7 @@
         "year": 2009,
         "date": "2009-06-22",
         "result": "W",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Wimbledon",
@@ -26557,8 +26557,8 @@
     },
     "elo_win_prob_vs_avg": 0.7794
   },
-  "Yen Hsun Lu": {
-    "player": "Yen Hsun Lu",
+  "Yen-Hsun Lu": {
+    "player": "Yen-Hsun Lu",
     "surface": "grass",
     "year": 2011,
     "source": "grass_atp",
@@ -26691,7 +26691,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Yen Hsun Lu",
+      "name": "Yen-Hsun Lu",
       "n_overall": 185,
       "n_surface": 36,
       "R_overall": 1704.1,

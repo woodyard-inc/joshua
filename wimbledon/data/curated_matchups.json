@@ -16,20 +16,20 @@
     "p_win_a": 0.52
   },
   {
-    "label": "2015 Final",
-    "year": 2015,
-    "fingerprint_year": 2014,
-    "player_a": "Novak Djokovic",
-    "player_b": "Roger Federer",
-    "p_win_a": 0.54
+    "label": "2016 Round 4",
+    "year": 2016,
+    "fingerprint_year": 2015,
+    "player_a": "Stan Wawrinka",
+    "player_b": "Taylor Fritz",
+    "p_win_a": 0.80
   },
   {
-    "label": "2014 R4",
-    "year": 2014,
-    "fingerprint_year": null,
-    "player_a": "Nick Kyrgios",
-    "player_b": "Rafael Nadal",
-    "p_win_a": 0.28
+    "label": "2017 Semi-Final",
+    "year": 2017,
+    "fingerprint_year": 2016,
+    "player_a": "Marin Cilic",
+    "player_b": "Sam Querrey",
+    "p_win_a": 0.55
   },
   {
     "label": "2015 R2",

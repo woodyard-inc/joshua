@@ -1187,9 +1187,9 @@
         "year": 2017,
         "round": "R64",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1966.0,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2463
       },
       {
         "match_id": "2017-wimbledon-1162",
@@ -1203,52 +1203,52 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 61.6,
+        "value": 61.5,
         "ci_90_lo": 53.8,
         "ci_90_hi": 68.3
       },
       "fspw_pct": {
-        "value": 74.6,
-        "ci_90_lo": 64.7,
-        "ci_90_hi": 81.2
+        "value": 74.8,
+        "ci_90_lo": 64.8,
+        "ci_90_hi": 81.4
       },
       "sspw_pct": {
-        "value": 58.6,
-        "ci_90_lo": 45.4,
-        "ci_90_hi": 69.9
+        "value": 58.8,
+        "ci_90_lo": 45.5,
+        "ci_90_hi": 70.0
       },
       "rpw_pct": {
         "value": 33.0,
         "ci_90_lo": 26.6,
-        "ci_90_hi": 40.9
+        "ci_90_hi": 41.0
       },
       "rpw_vs_1st_pct": {
-        "value": 25.2,
-        "ci_90_lo": 18.5,
-        "ci_90_hi": 35.4
+        "value": 25.4,
+        "ci_90_lo": 18.7,
+        "ci_90_hi": 35.5
       },
       "rpw_vs_2nd_pct": {
-        "value": 39.0,
-        "ci_90_lo": 28.0,
-        "ci_90_hi": 52.6
+        "value": 39.1,
+        "ci_90_lo": 28.1,
+        "ci_90_hi": 52.7
       },
       "sgw_pct": {
-        "value": 82.3,
-        "ci_90_lo": 60.9,
-        "ci_90_hi": 89.5
+        "value": 82.6,
+        "ci_90_lo": 61.1,
+        "ci_90_hi": 89.7
       },
       "rgw_pct": {
-        "value": 18.4,
+        "value": 18.5,
         "ci_90_lo": 11.0,
-        "ci_90_hi": 39.4
+        "ci_90_hi": 39.5
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.1674,
+        "value": 1.1755,
         "max_bits": 1.585,
-        "pct_of_max": 73.7
+        "pct_of_max": 74.2
       },
       "rally_win_curve": {
         "1_3": {
@@ -1256,27 +1256,27 @@
           "n": 153
         },
         "4_6": {
-          "win_pct": 50.3,
-          "n": 39
+          "win_pct": 50.7,
+          "n": 40
         },
         "7_9": {
-          "win_pct": 45.1,
+          "win_pct": 45.3,
           "n": 17
         },
         "10+": {
-          "win_pct": 44.8,
+          "win_pct": 44.9,
           "n": 10
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 2.9,
-        "high_lev_win_pct": 52.5,
-        "baseline_win_pct": 49.6,
+        "value": 2.7,
+        "high_lev_win_pct": 52.4,
+        "baseline_win_pct": 49.7,
         "n_eff": 32,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.029
+        "modifier_delta": 0.027
       },
       "df_pressure_delta": {
         "available": true,
@@ -1290,42 +1290,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 4.8,
-        "bp_speed_kmh": 194.0,
+        "value": 4.6,
+        "bp_speed_kmh": 193.8,
         "overall_speed_kmh": 189.2,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.048,
+        "modifier_delta": 0.046,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 48.9,
-        "ad_win_pct": 49.7,
-        "asymmetry": 0.8,
+        "ad_win_pct": 49.8,
+        "asymmetry": 0.9,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 1.87,
-        "streak_survival_rate": 0.476,
-        "streak_recovery_rate": 0.421
+        "streak_initiation_rate": 1.86,
+        "streak_survival_rate": 0.474,
+        "streak_recovery_rate": 0.422
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.392,
-        "bp_conversion": 0.407,
-        "bp_created": 7.5,
+        "bp_per_return_game": 0.397,
+        "bp_conversion": 0.403,
+        "bp_created": 7.6,
         "bp_converted": 3.0
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.086,
+        "value": 0.0857,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0254,
+            "delta_frac": 0.0243,
             "weight": 0.3,
-            "contribution": 0.0076
+            "contribution": 0.0073
           },
           "df_rate_delta": {
             "delta_frac": 0.3922,
@@ -1337,74 +1337,74 @@
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.086,
+        "modifier_delta": 0.0857,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
         "available": true,
-        "value": 3.03,
+        "value": 3.02,
         "mean_rc_won": 3.04,
         "n_eff": 114,
         "confidence": "RELIABLE"
       },
       "serve_speed_differential": {
         "available": true,
-        "value": 28.7,
-        "first_avg_kmh": 199.1,
-        "second_avg_kmh": 170.4,
+        "value": 28.9,
+        "first_avg_kmh": 199.2,
+        "second_avg_kmh": 170.3,
         "n_eff": 32,
         "confidence": "LOW"
       },
       "serve_depth_entropy": {
         "available": true,
-        "value": 0.9709,
-        "pct_of_max": 97.1,
-        "pct_deep": 40.0,
+        "value": 0.9703,
+        "pct_of_max": 97.0,
+        "pct_deep": 39.9,
         "n_eff": 96,
         "confidence": "RELIABLE"
       },
       "distance_run_efficiency": {
         "available": true,
-        "value": 2.6864,
-        "n_eff": 183,
+        "value": 2.6713,
+        "n_eff": 184,
         "confidence": "RELIABLE"
       },
       "attrition_slope": {
         "available": true,
-        "value": 0.6739,
+        "value": 0.683,
         "n_sets": 5,
-        "n_eff": 17,
+        "n_eff": 16,
         "confidence": "UNRELIABLE",
         "set_avgs_m": {
-          "1": 8.61,
-          "2": 9.273,
-          "3": 9.911,
+          "1": 8.595,
+          "2": 9.212,
+          "3": 9.755,
           "4": 9.527,
           "5": 11.852
         }
       },
       "set_transition_delta": {
         "available": true,
-        "value": -6.9,
+        "value": -7.0,
         "first_games_win_pct": 42.7,
-        "overall_win_pct": 49.6,
+        "overall_win_pct": 49.7,
         "n_eff": 47,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -2.0,
-        "fsp_at_pressure": 59.6,
-        "fsp_overall": 61.6,
+        "value": -2.1,
+        "fsp_at_pressure": 59.4,
+        "fsp_overall": 61.5,
         "n_eff": 15,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.4,
-        "tb_win_pct": 49.2,
-        "baseline_win_pct": 49.6,
-        "n_eff": 225,
+        "value": -0.3,
+        "tb_win_pct": 49.4,
+        "baseline_win_pct": 49.7,
+        "n_eff": 224,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -1414,7 +1414,7 @@
     },
     "distance": {
       "available": true,
-      "avg_km_per_match": 1.83
+      "avg_km_per_match": 1.82
     },
     "elo_snapshot": {
       "name": "Ernests Gulbis",
@@ -13967,8 +13967,8 @@
     "surface": "grass",
     "year": 2019,
     "n_matches": 5,
-    "n_points": 181,
-    "n_eff_matches": 5.0,
+    "n_points": 179,
+    "n_eff_matches": 4.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": true,
@@ -13996,9 +13996,9 @@
         "year": 2018,
         "round": "R64",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1958.6,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2412
       },
       {
         "match_id": "2018-wimbledon-1150",
@@ -14021,207 +14021,207 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 57.4,
-        "ci_90_lo": 48.8,
-        "ci_90_hi": 65.2
+        "value": 57.1,
+        "ci_90_lo": 48.5,
+        "ci_90_hi": 64.9
       },
       "fspw_pct": {
-        "value": 76.7,
-        "ci_90_lo": 65.1,
-        "ci_90_hi": 83.7
+        "value": 76.3,
+        "ci_90_lo": 64.6,
+        "ci_90_hi": 83.4
       },
       "sspw_pct": {
-        "value": 52.5,
-        "ci_90_lo": 39.2,
-        "ci_90_hi": 65.1
+        "value": 52.1,
+        "ci_90_lo": 38.9,
+        "ci_90_hi": 64.8
       },
       "rpw_pct": {
-        "value": 31.4,
-        "ci_90_lo": 24.4,
-        "ci_90_hi": 40.4
+        "value": 30.8,
+        "ci_90_lo": 23.8,
+        "ci_90_hi": 39.9
       },
       "rpw_vs_1st_pct": {
-        "value": 24.4,
-        "ci_90_lo": 17.3,
-        "ci_90_hi": 35.9
+        "value": 23.9,
+        "ci_90_lo": 16.8,
+        "ci_90_hi": 35.5
       },
       "rpw_vs_2nd_pct": {
-        "value": 36.4,
-        "ci_90_lo": 24.7,
-        "ci_90_hi": 52.3
+        "value": 35.7,
+        "ci_90_lo": 24.1,
+        "ci_90_hi": 51.8
       },
       "sgw_pct": {
-        "value": 75.9,
-        "ci_90_lo": 52.8,
-        "ci_90_hi": 85.9
+        "value": 75.0,
+        "ci_90_lo": 51.9,
+        "ci_90_hi": 85.4
       },
       "rgw_pct": {
-        "value": 19.5,
-        "ci_90_lo": 11.4,
-        "ci_90_hi": 42.6
+        "value": 19.1,
+        "ci_90_lo": 11.2,
+        "ci_90_hi": 42.3
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.6366,
+        "value": 0.6779,
         "max_bits": 1.585,
-        "pct_of_max": 40.2
+        "pct_of_max": 42.8
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 50.2,
-          "n": 142
+          "win_pct": 49.8,
+          "n": 140
         },
         "4_6": {
-          "win_pct": 38.4,
-          "n": 19
+          "win_pct": 38.3,
+          "n": 20
         },
         "7_9": {
-          "win_pct": 51.7,
+          "win_pct": 51.9,
           "n": 6
         },
         "10+": {
-          "win_pct": 35.9,
+          "win_pct": 34.2,
           "n": 6
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 0.2,
-        "high_lev_win_pct": 48.4,
-        "baseline_win_pct": 48.2,
+        "value": 1.2,
+        "high_lev_win_pct": 48.9,
+        "baseline_win_pct": 47.7,
         "n_eff": 23,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.002
+        "modifier_delta": 0.012
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 0.6,
-        "bp_df_rate": 5.7,
+        "value": 0.8,
+        "bp_df_rate": 5.9,
         "baseline_df_rate": 5.1,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.006
+        "modifier_delta": 0.008
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 0.9,
-        "bp_speed_kmh": 189.0,
+        "value": 1.4,
+        "bp_speed_kmh": 189.5,
         "overall_speed_kmh": 188.1,
         "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.009,
+        "modifier_delta": 0.014,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 47.2,
-        "ad_win_pct": 48.2,
+        "deuce_win_pct": 46.8,
+        "ad_win_pct": 47.8,
         "asymmetry": 1.0,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 2.22,
-        "streak_survival_rate": 0.541,
-        "streak_recovery_rate": 0.154
+        "streak_initiation_rate": 2.17,
+        "streak_survival_rate": 0.538,
+        "streak_recovery_rate": 0.16
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.407,
+        "bp_per_return_game": 0.392,
         "bp_conversion": 0.39,
-        "bp_created": 6.5,
-        "bp_converted": 2.5
+        "bp_created": 6.2,
+        "bp_converted": 2.4
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0249,
+        "value": 0.0336,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0048,
+            "delta_frac": 0.0074,
             "weight": 0.3,
-            "contribution": 0.0014
+            "contribution": 0.0022
           },
           "df_rate_delta": {
-            "delta_frac": 0.1176,
+            "delta_frac": 0.1569,
             "weight": 0.2,
-            "contribution": 0.0235
+            "contribution": 0.0314
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.0249,
+        "modifier_delta": 0.0336,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
         "available": true,
-        "value": 2.17,
-        "mean_rc_won": 2.44,
-        "n_eff": 87,
+        "value": 2.19,
+        "mean_rc_won": 2.46,
+        "n_eff": 86,
         "confidence": "RELIABLE"
       },
       "serve_speed_differential": {
         "available": true,
-        "value": 26.0,
-        "first_avg_kmh": 197.9,
-        "second_avg_kmh": 171.9,
+        "value": 25.9,
+        "first_avg_kmh": 198.0,
+        "second_avg_kmh": 172.1,
         "n_eff": 17,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
         "available": true,
-        "value": 0.9507,
-        "pct_of_max": 95.1,
-        "pct_deep": 37.0,
-        "n_eff": 46,
+        "value": 0.9528,
+        "pct_of_max": 95.3,
+        "pct_deep": 37.3,
+        "n_eff": 47,
         "confidence": "LOW"
       },
       "distance_run_efficiency": {
         "available": true,
-        "value": 2.8001,
-        "n_eff": 79,
+        "value": 2.798,
+        "n_eff": 81,
         "confidence": "RELIABLE"
       },
       "attrition_slope": {
         "available": true,
-        "value": 0.3613,
+        "value": 0.3729,
         "n_sets": 4,
-        "n_eff": 15,
+        "n_eff": 14,
         "confidence": "UNRELIABLE",
         "set_avgs_m": {
-          "1": 9.89,
-          "2": 9.401,
-          "3": 11.835,
+          "1": 9.884,
+          "2": 9.353,
+          "3": 11.884,
           "4": 10.283
         }
       },
       "set_transition_delta": {
         "available": true,
-        "value": 0.6,
-        "first_games_win_pct": 48.8,
-        "overall_win_pct": 48.2,
+        "value": 0.7,
+        "first_games_win_pct": 48.4,
+        "overall_win_pct": 47.7,
         "n_eff": 46,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -3.9,
-        "fsp_at_pressure": 53.5,
-        "fsp_overall": 57.4,
-        "n_eff": 11,
+        "value": -3.1,
+        "fsp_at_pressure": 54.0,
+        "fsp_overall": 57.1,
+        "n_eff": 12,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": 0.6,
-        "tb_win_pct": 48.8,
-        "baseline_win_pct": 48.2,
-        "n_eff": 179,
+        "value": 0.7,
+        "tb_win_pct": 48.4,
+        "baseline_win_pct": 47.7,
+        "n_eff": 177,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -14231,7 +14231,7 @@
     },
     "distance": {
       "available": true,
-      "avg_km_per_match": 0.86
+      "avg_km_per_match": 0.89
     },
     "elo_snapshot": {
       "name": "Feliciano Lopez",
@@ -14797,7 +14797,7 @@
     "surface": "grass",
     "year": 2019,
     "n_matches": 4,
-    "n_points": 200,
+    "n_points": 198,
     "n_eff_matches": 4.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -14817,9 +14817,9 @@
         "year": 2018,
         "round": "R128",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1958.6,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2412
       },
       {
         "match_id": "2017-wimbledon-1214",
@@ -14848,55 +14848,55 @@
       },
       "fspw_pct": {
         "value": 69.2,
-        "ci_90_lo": 57.5,
-        "ci_90_hi": 77.6
+        "ci_90_lo": 57.4,
+        "ci_90_hi": 77.5
       },
       "sspw_pct": {
-        "value": 47.5,
-        "ci_90_lo": 36.1,
-        "ci_90_hi": 59.5
+        "value": 47.7,
+        "ci_90_lo": 36.2,
+        "ci_90_hi": 59.7
       },
       "rpw_pct": {
-        "value": 33.1,
-        "ci_90_lo": 26.3,
-        "ci_90_hi": 41.6
+        "value": 32.8,
+        "ci_90_lo": 25.9,
+        "ci_90_hi": 41.3
       },
       "rpw_vs_1st_pct": {
-        "value": 26.6,
-        "ci_90_lo": 19.5,
-        "ci_90_hi": 37.2
+        "value": 26.2,
+        "ci_90_lo": 19.1,
+        "ci_90_hi": 36.8
       },
       "rpw_vs_2nd_pct": {
-        "value": 40.8,
-        "ci_90_lo": 28.5,
+        "value": 40.7,
+        "ci_90_lo": 28.4,
         "ci_90_hi": 55.7
       },
       "sgw_pct": {
-        "value": 65.9,
-        "ci_90_lo": 44.1,
-        "ci_90_hi": 79.6
+        "value": 66.2,
+        "ci_90_lo": 44.3,
+        "ci_90_hi": 79.8
       },
       "rgw_pct": {
-        "value": 15.9,
-        "ci_90_lo": 9.4,
-        "ci_90_hi": 39.5
+        "value": 15.2,
+        "ci_90_lo": 8.9,
+        "ci_90_hi": 38.9
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.3593,
+        "value": 0.4226,
         "max_bits": 1.585,
-        "pct_of_max": 22.7
+        "pct_of_max": 26.7
       },
       "rally_win_curve": {
         "1_3": {
           "win_pct": 46.1,
-          "n": 175
+          "n": 172
         },
         "4_6": {
-          "win_pct": 35.6,
-          "n": 13
+          "win_pct": 35.9,
+          "n": 14
         },
         "7_9": {
           "win_pct": 61.5,
@@ -14909,23 +14909,23 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 6.0,
-        "high_lev_win_pct": 51.3,
-        "baseline_win_pct": 45.3,
-        "n_eff": 38,
+        "value": 5.9,
+        "high_lev_win_pct": 51.1,
+        "baseline_win_pct": 45.2,
+        "n_eff": 37,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.06
+        "modifier_delta": 0.059
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 1.1,
-        "bp_df_rate": 5.0,
+        "value": 1.2,
+        "bp_df_rate": 5.1,
         "baseline_df_rate": 3.9,
         "n_eff": 15,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.011
+        "modifier_delta": 0.012
       },
       "serve_speed_courage": {
         "available": true,
@@ -14941,25 +14941,25 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 42.2,
-        "ad_win_pct": 48.0,
-        "asymmetry": 5.8,
+        "ad_win_pct": 47.8,
+        "asymmetry": 5.6,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 2.52,
-        "streak_survival_rate": 0.388,
-        "streak_recovery_rate": 0.327
+        "streak_initiation_rate": 2.44,
+        "streak_survival_rate": 0.396,
+        "streak_recovery_rate": 0.344
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.504,
-        "bp_conversion": 0.286,
-        "bp_created": 7.9,
-        "bp_converted": 2.3
+        "bp_per_return_game": 0.494,
+        "bp_conversion": 0.279,
+        "bp_created": 7.7,
+        "bp_converted": 2.1
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.054,
+        "value": 0.0591,
         "components": {
           "serve_speed_delta": {
             "delta_frac": -0.0079,
@@ -14967,22 +14967,22 @@
             "contribution": -0.0024
           },
           "df_rate_delta": {
-            "delta_frac": 0.2821,
+            "delta_frac": 0.3077,
             "weight": 0.2,
-            "contribution": 0.0564
+            "contribution": 0.0615
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.054,
+        "modifier_delta": 0.0591,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
         "available": true,
-        "value": 1.51,
-        "mean_rc_won": 2.2,
+        "value": 1.6,
+        "mean_rc_won": 2.25,
         "n_eff": 90,
         "confidence": "RELIABLE"
       },
@@ -14991,7 +14991,7 @@
         "value": 38.0,
         "first_avg_kmh": 182.5,
         "second_avg_kmh": 144.5,
-        "n_eff": 9,
+        "n_eff": 11,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
@@ -14999,20 +14999,20 @@
         "value": 0.9252,
         "pct_of_max": 92.5,
         "pct_deep": 34.0,
-        "n_eff": 22,
+        "n_eff": 25,
         "confidence": "UNRELIABLE"
       },
       "distance_run_efficiency": {
         "available": true,
         "value": 2.4749,
-        "n_eff": 38,
+        "n_eff": 45,
         "confidence": "LOW"
       },
       "attrition_slope": {
         "available": true,
         "value": -0.3143,
         "n_sets": 3,
-        "n_eff": 13,
+        "n_eff": 15,
         "confidence": "UNRELIABLE",
         "set_avgs_m": {
           "1": 9.142,
@@ -15022,26 +15022,26 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 2.7,
+        "value": 2.8,
         "first_games_win_pct": 48.0,
-        "overall_win_pct": 45.3,
+        "overall_win_pct": 45.2,
         "n_eff": 48,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": 1.6,
-        "fsp_at_pressure": 54.2,
+        "value": 1.7,
+        "fsp_at_pressure": 54.3,
         "fsp_overall": 52.6,
         "n_eff": 18,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -1.4,
+        "value": -1.3,
         "tb_win_pct": 43.9,
-        "baseline_win_pct": 45.3,
-        "n_eff": 195,
+        "baseline_win_pct": 45.2,
+        "n_eff": 193,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -15051,7 +15051,7 @@
     },
     "distance": {
       "available": true,
-      "avg_km_per_match": 0.34
+      "avg_km_per_match": 0.39
     },
     "elo_snapshot": {
       "name": "Peter Gojowczyk",
@@ -15450,9 +15450,9 @@
         "year": 2018,
         "round": "R32",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1958.6,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2412
       },
       {
         "match_id": "2018-wimbledon-1226",
@@ -15502,9 +15502,9 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 56.2,
-        "ci_90_lo": 48.4,
-        "ci_90_hi": 63.5
+        "value": 56.1,
+        "ci_90_lo": 48.3,
+        "ci_90_hi": 63.4
       },
       "fspw_pct": {
         "value": 76.4,
@@ -15512,197 +15512,197 @@
         "ci_90_hi": 83.0
       },
       "sspw_pct": {
-        "value": 58.8,
-        "ci_90_lo": 45.8,
-        "ci_90_hi": 69.7
+        "value": 58.5,
+        "ci_90_lo": 45.6,
+        "ci_90_hi": 69.5
       },
       "rpw_pct": {
         "value": 34.5,
-        "ci_90_lo": 27.7,
+        "ci_90_lo": 27.6,
         "ci_90_hi": 42.8
       },
       "rpw_vs_1st_pct": {
-        "value": 27.5,
-        "ci_90_lo": 20.3,
-        "ci_90_hi": 37.8
+        "value": 27.3,
+        "ci_90_lo": 20.2,
+        "ci_90_hi": 37.7
       },
       "rpw_vs_2nd_pct": {
-        "value": 41.2,
-        "ci_90_lo": 29.0,
-        "ci_90_hi": 55.9
+        "value": 41.3,
+        "ci_90_lo": 29.1,
+        "ci_90_hi": 56.0
       },
       "sgw_pct": {
-        "value": 83.1,
-        "ci_90_lo": 60.2,
-        "ci_90_hi": 90.0
+        "value": 82.6,
+        "ci_90_lo": 59.7,
+        "ci_90_hi": 89.8
       },
       "rgw_pct": {
         "value": 20.9,
-        "ci_90_lo": 12.3,
+        "ci_90_lo": 12.4,
         "ci_90_hi": 42.9
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.1692,
+        "value": 1.1775,
         "max_bits": 1.585,
-        "pct_of_max": 73.8
+        "pct_of_max": 74.3
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 51.8,
-          "n": 156
+          "win_pct": 51.7,
+          "n": 155
         },
         "4_6": {
           "win_pct": 51.9,
           "n": 32
         },
         "7_9": {
-          "win_pct": 42.4,
+          "win_pct": 42.6,
           "n": 10
         },
         "10+": {
-          "win_pct": 42.2,
-          "n": 5
+          "win_pct": 42.3,
+          "n": 6
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 1.2,
+        "value": 1.3,
         "high_lev_win_pct": 51.4,
-        "baseline_win_pct": 50.2,
+        "baseline_win_pct": 50.1,
         "n_eff": 35,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.012
+        "modifier_delta": 0.013
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -5.5,
-        "bp_df_rate": 1.3,
+        "value": -5.6,
+        "bp_df_rate": 1.2,
         "baseline_df_rate": 6.8,
         "n_eff": 9,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.055
+        "modifier_delta": -0.056
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -7.5,
-        "bp_speed_kmh": 165.5,
-        "overall_speed_kmh": 173.0,
+        "value": -7.2,
+        "bp_speed_kmh": 165.7,
+        "overall_speed_kmh": 172.9,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.075,
+        "modifier_delta": -0.072,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 49.8,
-        "ad_win_pct": 49.8,
-        "asymmetry": 0.0,
+        "ad_win_pct": 49.7,
+        "asymmetry": 0.1,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 1.34,
+        "streak_initiation_rate": 1.33,
         "streak_survival_rate": 0.394,
-        "streak_recovery_rate": 0.345
+        "streak_recovery_rate": 0.337
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.452,
-        "bp_conversion": 0.351,
+        "bp_per_return_game": 0.45,
+        "bp_conversion": 0.354,
         "bp_created": 7.8,
         "bp_converted": 2.8
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1748,
+        "value": -0.1772,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0434,
+            "delta_frac": -0.0416,
             "weight": 0.3,
-            "contribution": -0.013
+            "contribution": -0.0125
           },
           "df_rate_delta": {
-            "delta_frac": -0.8088,
+            "delta_frac": -0.8235,
             "weight": 0.2,
-            "contribution": -0.1618
+            "contribution": -0.1647
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "MARGINAL",
-        "modifier_delta": -0.1748,
+        "modifier_delta": -0.1772,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
         "available": true,
-        "value": 2.33,
-        "mean_rc_won": 2.71,
-        "n_eff": 108,
+        "value": 2.37,
+        "mean_rc_won": 2.73,
+        "n_eff": 107,
         "confidence": "RELIABLE"
       },
       "serve_speed_differential": {
         "available": true,
-        "value": 35.6,
+        "value": 35.8,
         "first_avg_kmh": 187.4,
-        "second_avg_kmh": 151.8,
+        "second_avg_kmh": 151.6,
         "n_eff": 27,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
         "available": true,
-        "value": 0.993,
-        "pct_of_max": 99.3,
-        "pct_deep": 45.1,
+        "value": 0.9923,
+        "pct_of_max": 99.2,
+        "pct_deep": 44.8,
         "n_eff": 89,
         "confidence": "RELIABLE"
       },
       "distance_run_efficiency": {
         "available": true,
-        "value": 3.4179,
+        "value": 3.4082,
         "n_eff": 166,
         "confidence": "RELIABLE"
       },
       "attrition_slope": {
         "available": true,
-        "value": -0.5894,
+        "value": -0.5975,
         "n_sets": 4,
         "n_eff": 21,
         "confidence": "UNRELIABLE",
         "set_avgs_m": {
-          "1": 10.136,
-          "2": 10.712,
-          "3": 9.11,
+          "1": 10.183,
+          "2": 10.713,
+          "3": 9.171,
           "4": 8.705
         }
       },
       "set_transition_delta": {
         "available": true,
-        "value": -5.0,
-        "first_games_win_pct": 45.2,
-        "overall_win_pct": 50.2,
+        "value": -5.1,
+        "first_games_win_pct": 45.0,
+        "overall_win_pct": 50.1,
         "n_eff": 43,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -6.4,
+        "value": -6.3,
         "fsp_at_pressure": 49.8,
-        "fsp_overall": 56.2,
-        "n_eff": 19,
+        "fsp_overall": 56.1,
+        "n_eff": 18,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.9,
+        "value": -0.8,
         "tb_win_pct": 49.3,
-        "baseline_win_pct": 50.2,
-        "n_eff": 209,
+        "baseline_win_pct": 50.1,
+        "n_eff": 208,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -15712,7 +15712,7 @@
     },
     "distance": {
       "available": true,
-      "avg_km_per_match": 1.74
+      "avg_km_per_match": 1.75
     },
     "elo_snapshot": {
       "name": "Benoit Paire",
@@ -18230,9 +18230,9 @@
     "player": "Cristian Garin",
     "surface": "grass",
     "year": 2019,
-    "n_matches": 1,
-    "n_points": 289,
-    "n_eff_matches": 1.0,
+    "n_matches": 3,
+    "n_points": 242,
+    "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
@@ -18245,48 +18245,66 @@
         "opponent_elo": 1679.7,
         "w_t": 1.0,
         "w_q": 1.0635
+      },
+      {
+        "match_id": "2018-wimbledon-1105",
+        "year": 2018,
+        "round": "R128",
+        "opponent": "Adrian Mannarino",
+        "opponent_elo": 1784.4,
+        "w_t": 1.0,
+        "w_q": 1.1308
+      },
+      {
+        "match_id": "2017-wimbledon-1137",
+        "year": 2017,
+        "round": "R128",
+        "opponent": "Jack Sock",
+        "opponent_elo": 1819.1,
+        "w_t": 1.0,
+        "w_q": 1.1532
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 58.5,
-        "ci_90_lo": 52.1,
-        "ci_90_hi": 64.3
+        "value": 58.6,
+        "ci_90_lo": 51.3,
+        "ci_90_hi": 65.3
       },
       "fspw_pct": {
-        "value": 64.0,
-        "ci_90_lo": 55.6,
-        "ci_90_hi": 71.0
+        "value": 67.7,
+        "ci_90_lo": 57.9,
+        "ci_90_hi": 75.2
       },
       "sspw_pct": {
-        "value": 45.5,
-        "ci_90_lo": 36.1,
-        "ci_90_hi": 55.5
+        "value": 53.0,
+        "ci_90_lo": 41.5,
+        "ci_90_hi": 64.0
       },
       "rpw_pct": {
-        "value": 32.2,
-        "ci_90_lo": 26.0,
-        "ci_90_hi": 39.9
+        "value": 30.5,
+        "ci_90_lo": 24.4,
+        "ci_90_hi": 38.4
       },
       "rpw_vs_1st_pct": {
-        "value": 23.6,
-        "ci_90_lo": 17.3,
-        "ci_90_hi": 33.5
+        "value": 23.4,
+        "ci_90_lo": 16.8,
+        "ci_90_hi": 34.0
       },
       "rpw_vs_2nd_pct": {
-        "value": 40.5,
-        "ci_90_lo": 29.7,
-        "ci_90_hi": 53.3
+        "value": 34.4,
+        "ci_90_lo": 24.9,
+        "ci_90_hi": 47.1
       },
       "sgw_pct": {
-        "value": 70.0,
-        "ci_90_lo": 50.4,
-        "ci_90_hi": 81.4
+        "value": 74.3,
+        "ci_90_lo": 53.9,
+        "ci_90_hi": 84.3
       },
       "rgw_pct": {
-        "value": 22.7,
-        "ci_90_lo": 13.9,
-        "ci_90_hi": 42.0
+        "value": 17.6,
+        "ci_90_lo": 10.6,
+        "ci_90_hi": 37.7
       }
     },
     "tier2": {
@@ -18297,11 +18315,11 @@
       "rally_win_curve": {
         "1_3": {
           "win_pct": 46.2,
-          "n": 264
+          "n": 228
         },
         "4_6": {
           "win_pct": 37.5,
-          "n": 16
+          "n": 5
         },
         "7_9": {
           "win_pct": null,
@@ -18314,23 +18332,23 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 11.9,
-        "high_lev_win_pct": 57.6,
-        "baseline_win_pct": 45.7,
-        "n_eff": 66,
-        "confidence": "RELIABLE",
+        "value": 9.1,
+        "high_lev_win_pct": 55.1,
+        "baseline_win_pct": 46.0,
+        "n_eff": 31,
+        "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.119
+        "modifier_delta": 0.091
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -2.9,
-        "bp_df_rate": 0.0,
-        "baseline_df_rate": 2.9,
-        "n_eff": 26,
+        "value": -1.1,
+        "bp_df_rate": 2.8,
+        "baseline_df_rate": 3.9,
+        "n_eff": 12,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.029
+        "modifier_delta": -0.011
       },
       "serve_speed_courage": {
         "available": false,
@@ -18338,45 +18356,45 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 46.7,
-        "ad_win_pct": 44.0,
-        "asymmetry": 2.7,
+        "deuce_win_pct": 46.6,
+        "ad_win_pct": 44.5,
+        "asymmetry": 2.1,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 16.0,
-        "streak_survival_rate": 0.125,
-        "streak_recovery_rate": 0.286
+        "streak_initiation_rate": 4.2,
+        "streak_survival_rate": 0.159,
+        "streak_recovery_rate": 0.212
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.409,
-        "bp_conversion": 0.444,
-        "bp_created": 9.0,
-        "bp_converted": 4.0
+        "bp_per_return_game": 0.385,
+        "bp_conversion": 0.416,
+        "bp_created": 8.0,
+        "bp_converted": 3.3
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2,
+        "value": -0.0564,
         "components": {
           "df_rate_delta": {
-            "delta_frac": -1.0,
+            "delta_frac": -0.2821,
             "weight": 0.2,
-            "contribution": -0.2
+            "contribution": -0.0564
           }
         },
         "components_used": 1,
         "components_total": 5,
-        "confidence": "RELIABLE",
-        "verdict": "FAIL",
-        "modifier_delta": -0.2,
+        "confidence": "LOW",
+        "verdict": "PASS",
+        "modifier_delta": -0.0564,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
         "available": true,
-        "value": 1.01,
-        "mean_rc_won": 2.06,
-        "n_eff": 132,
+        "value": 0.9,
+        "mean_rc_won": 1.82,
+        "n_eff": 111,
         "confidence": "RELIABLE"
       },
       "serve_speed_differential": {
@@ -18397,35 +18415,31 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 5.1,
-        "first_games_win_pct": 50.8,
-        "overall_win_pct": 45.7,
-        "n_eff": 59,
+        "value": 1.5,
+        "first_games_win_pct": 47.5,
+        "overall_win_pct": 46.0,
+        "n_eff": 55,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -2.5,
-        "fsp_at_pressure": 56.0,
-        "fsp_overall": 58.5,
-        "n_eff": 50,
-        "confidence": "LOW"
+        "value": -5.3,
+        "fsp_at_pressure": 53.3,
+        "fsp_overall": 58.6,
+        "n_eff": 19,
+        "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -4.2,
-        "tb_win_pct": 41.5,
-        "baseline_win_pct": 45.7,
-        "n_eff": 272,
+        "value": -1.6,
+        "tb_win_pct": 44.4,
+        "baseline_win_pct": 46.0,
+        "n_eff": 237,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
-        "available": true,
-        "value": -3.3,
-        "habr_pct": 66.7,
-        "sgw_pct": 70.0,
-        "n_eff": 6,
-        "confidence": "UNRELIABLE"
+        "available": false,
+        "value": null
       }
     },
     "distance": {
@@ -18441,9 +18455,11 @@
       "R_adjusted": 1690.3
     },
     "career_editions_used": [
+      2017,
+      2018,
       2019
     ],
-    "n_matches_career": 1
+    "n_matches_career": 3
   },
   "Andrey Rublev": {
     "player": "Andrey Rublev",
@@ -19711,8 +19727,8 @@
     "surface": "grass",
     "year": 2019,
     "n_matches": 8,
-    "n_points": 248,
-    "n_eff_matches": 8.0,
+    "n_points": 251,
+    "n_eff_matches": 7.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
@@ -19740,9 +19756,9 @@
         "year": 2018,
         "round": "R16",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1958.6,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2412
       },
       {
         "match_id": "2018-wimbledon-1314",
@@ -19792,208 +19808,208 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 59.8,
+        "value": 59.7,
         "ci_90_lo": 52.4,
-        "ci_90_hi": 66.5
+        "ci_90_hi": 66.3
       },
       "fspw_pct": {
-        "value": 73.4,
-        "ci_90_lo": 63.7,
-        "ci_90_hi": 80.1
+        "value": 73.5,
+        "ci_90_lo": 63.9,
+        "ci_90_hi": 80.2
       },
       "sspw_pct": {
-        "value": 53.7,
-        "ci_90_lo": 42.0,
-        "ci_90_hi": 64.7
+        "value": 53.1,
+        "ci_90_lo": 41.5,
+        "ci_90_hi": 64.0
       },
       "rpw_pct": {
-        "value": 40.5,
-        "ci_90_lo": 33.7,
-        "ci_90_hi": 48.1
+        "value": 40.3,
+        "ci_90_lo": 33.5,
+        "ci_90_hi": 47.9
       },
       "rpw_vs_1st_pct": {
-        "value": 30.6,
-        "ci_90_lo": 23.3,
-        "ci_90_hi": 40.5
+        "value": 30.4,
+        "ci_90_lo": 23.1,
+        "ci_90_hi": 40.2
       },
       "rpw_vs_2nd_pct": {
-        "value": 51.5,
+        "value": 51.4,
         "ci_90_lo": 39.3,
-        "ci_90_hi": 63.3
+        "ci_90_hi": 63.2
       },
       "sgw_pct": {
-        "value": 81.4,
-        "ci_90_lo": 59.8,
-        "ci_90_hi": 89.0
+        "value": 81.2,
+        "ci_90_lo": 59.7,
+        "ci_90_hi": 88.8
       },
       "rgw_pct": {
-        "value": 30.4,
-        "ci_90_lo": 18.8,
-        "ci_90_hi": 50.2
+        "value": 30.1,
+        "ci_90_lo": 18.6,
+        "ci_90_hi": 49.8
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7783,
+        "value": 0.7994,
         "max_bits": 1.585,
-        "pct_of_max": 49.1
+        "pct_of_max": 50.4
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 52.8,
+          "win_pct": 52.7,
           "n": 182
         },
         "4_6": {
-          "win_pct": 49.3,
-          "n": 34
+          "win_pct": 48.9,
+          "n": 36
         },
         "7_9": {
-          "win_pct": 52.4,
+          "win_pct": 52.6,
           "n": 13
         },
         "10+": {
-          "win_pct": 55.2,
-          "n": 11
+          "win_pct": 55.5,
+          "n": 12
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 1.3,
+        "value": 1.5,
         "high_lev_win_pct": 53.9,
-        "baseline_win_pct": 52.6,
-        "n_eff": 46,
+        "baseline_win_pct": 52.4,
+        "n_eff": 47,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.013
+        "modifier_delta": 0.015
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 0.5,
-        "bp_df_rate": 3.1,
+        "value": 0.4,
+        "bp_df_rate": 3.0,
         "baseline_df_rate": 2.6,
-        "n_eff": 11,
+        "n_eff": 12,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.005
+        "modifier_delta": 0.004
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 3.1,
-        "bp_speed_kmh": 164.2,
-        "overall_speed_kmh": 161.1,
-        "n_eff": 6,
+        "value": 2.7,
+        "bp_speed_kmh": 163.6,
+        "overall_speed_kmh": 160.9,
+        "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.031,
+        "modifier_delta": 0.027,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 51.5,
-        "ad_win_pct": 53.0,
-        "asymmetry": 1.5,
+        "deuce_win_pct": 51.2,
+        "ad_win_pct": 52.9,
+        "asymmetry": 1.7,
         "stronger_side": "ad"
       },
       "momentum_profile": {
         "streak_initiation_rate": 2.08,
-        "streak_survival_rate": 0.399,
-        "streak_recovery_rate": 0.341
+        "streak_survival_rate": 0.402,
+        "streak_recovery_rate": 0.347
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.554,
-        "bp_conversion": 0.466,
-        "bp_created": 10.8,
+        "bp_per_return_game": 0.555,
+        "bp_conversion": 0.461,
+        "bp_created": 11.0,
         "bp_converted": 5.0
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0443,
+        "value": 0.0358,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0192,
+            "delta_frac": 0.0168,
             "weight": 0.3,
-            "contribution": 0.0058
+            "contribution": 0.005
           },
           "df_rate_delta": {
-            "delta_frac": 0.1923,
+            "delta_frac": 0.1538,
             "weight": 0.2,
-            "contribution": 0.0385
+            "contribution": 0.0308
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.0443,
+        "modifier_delta": 0.0358,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
         "available": true,
-        "value": 2.99,
-        "mean_rc_won": 3.04,
-        "n_eff": 130,
+        "value": 3.1,
+        "mean_rc_won": 3.12,
+        "n_eff": 132,
         "confidence": "RELIABLE"
       },
       "serve_speed_differential": {
         "available": true,
         "value": 38.5,
-        "first_avg_kmh": 175.3,
-        "second_avg_kmh": 136.8,
-        "n_eff": 23,
+        "first_avg_kmh": 175.2,
+        "second_avg_kmh": 136.7,
+        "n_eff": 25,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
         "available": true,
-        "value": 0.9393,
-        "pct_of_max": 93.9,
-        "pct_deep": 35.6,
-        "n_eff": 82,
+        "value": 0.9411,
+        "pct_of_max": 94.1,
+        "pct_deep": 35.8,
+        "n_eff": 85,
         "confidence": "RELIABLE"
       },
       "distance_run_efficiency": {
         "available": true,
-        "value": 4.0686,
-        "n_eff": 151,
+        "value": 3.9955,
+        "n_eff": 157,
         "confidence": "RELIABLE"
       },
       "attrition_slope": {
         "available": true,
-        "value": 1.5579,
+        "value": 1.5212,
         "n_sets": 5,
-        "n_eff": 11,
+        "n_eff": 10,
         "confidence": "UNRELIABLE",
         "set_avgs_m": {
-          "1": 14.22,
-          "2": 13.367,
-          "3": 12.643,
-          "4": 12.671,
+          "1": 14.435,
+          "2": 13.413,
+          "3": 12.779,
+          "4": 12.779,
           "5": 22.357
         }
       },
       "set_transition_delta": {
         "available": true,
-        "value": -2.3,
-        "first_games_win_pct": 50.3,
-        "overall_win_pct": 52.6,
+        "value": -2.0,
+        "first_games_win_pct": 50.4,
+        "overall_win_pct": 52.4,
         "n_eff": 47,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": 4.0,
-        "fsp_at_pressure": 63.8,
-        "fsp_overall": 59.8,
-        "n_eff": 22,
+        "value": 4.2,
+        "fsp_at_pressure": 63.9,
+        "fsp_overall": 59.7,
+        "n_eff": 23,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.4,
+        "value": -0.2,
         "tb_win_pct": 52.2,
-        "baseline_win_pct": 52.6,
-        "n_eff": 241,
+        "baseline_win_pct": 52.4,
+        "n_eff": 244,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -20003,7 +20019,7 @@
     },
     "distance": {
       "available": true,
-      "avg_km_per_match": 2.16
+      "avg_km_per_match": 2.26
     },
     "elo_snapshot": {
       "name": "Gilles Simon",
@@ -22256,7 +22272,7 @@
     "year": 2019,
     "n_matches": 9,
     "n_points": 242,
-    "n_eff_matches": 8.9,
+    "n_eff_matches": 8.8,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
@@ -22301,10 +22317,10 @@
         "match_id": "2018-wimbledon-1105",
         "year": 2018,
         "round": "R128",
-        "opponent": "Christian Garin",
-        "opponent_elo": null,
+        "opponent": "Cristian Garin",
+        "opponent_elo": 1492.8,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 0.946
       },
       {
         "match_id": "2017-wimbledon-1408",
@@ -22345,9 +22361,9 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 64.9,
-        "ci_90_lo": 57.3,
-        "ci_90_hi": 71.3
+        "value": 65.0,
+        "ci_90_lo": 57.4,
+        "ci_90_hi": 71.4
       },
       "fspw_pct": {
         "value": 68.0,
@@ -22357,10 +22373,10 @@
       "sspw_pct": {
         "value": 58.4,
         "ci_90_lo": 45.3,
-        "ci_90_hi": 69.6
+        "ci_90_hi": 69.5
       },
       "rpw_pct": {
-        "value": 37.5,
+        "value": 37.4,
         "ci_90_lo": 30.8,
         "ci_90_hi": 45.1
       },
@@ -22388,18 +22404,18 @@
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.916,
+        "value": 0.9207,
         "max_bits": 1.585,
-        "pct_of_max": 57.8
+        "pct_of_max": 58.1
       },
       "rally_win_curve": {
         "1_3": {
           "win_pct": 50.8,
-          "n": 169
+          "n": 168
         },
         "4_6": {
           "win_pct": 44.4,
-          "n": 35
+          "n": 36
         },
         "7_9": {
           "win_pct": 48.8,
@@ -22422,13 +22438,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -1.2,
+        "value": -1.1,
         "bp_df_rate": 0.9,
-        "baseline_df_rate": 2.1,
+        "baseline_df_rate": 2.0,
         "n_eff": 10,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.012
+        "modifier_delta": -0.011
       },
       "serve_speed_courage": {
         "available": true,
@@ -22450,19 +22466,19 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 1.75,
-        "streak_survival_rate": 0.419,
-        "streak_recovery_rate": 0.408
+        "streak_survival_rate": 0.417,
+        "streak_recovery_rate": 0.407
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.49,
-        "bp_conversion": 0.433,
+        "bp_per_return_game": 0.491,
+        "bp_conversion": 0.432,
         "bp_created": 9.7,
         "bp_converted": 4.2
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1139,
+        "value": -0.1096,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0012,
@@ -22470,22 +22486,22 @@
             "contribution": 0.0004
           },
           "df_rate_delta": {
-            "delta_frac": -0.5714,
+            "delta_frac": -0.55,
             "weight": 0.2,
-            "contribution": -0.1143
+            "contribution": -0.11
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "MARGINAL",
-        "modifier_delta": -0.1139,
+        "modifier_delta": -0.1096,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
         "available": true,
-        "value": 3.99,
-        "mean_rc_won": 3.5,
+        "value": 4.0,
+        "mean_rc_won": 3.51,
         "n_eff": 122,
         "confidence": "RELIABLE"
       },
@@ -22494,7 +22510,7 @@
         "value": 32.8,
         "first_avg_kmh": 177.2,
         "second_avg_kmh": 144.4,
-        "n_eff": 22,
+        "n_eff": 23,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
@@ -22508,7 +22524,7 @@
       "distance_run_efficiency": {
         "available": true,
         "value": 2.8184,
-        "n_eff": 139,
+        "n_eff": 140,
         "confidence": "RELIABLE"
       },
       "attrition_slope": {
@@ -22535,9 +22551,9 @@
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -8.6,
+        "value": -8.7,
         "fsp_at_pressure": 56.3,
-        "fsp_overall": 64.9,
+        "fsp_overall": 65.0,
         "n_eff": 17,
         "confidence": "UNRELIABLE"
       },
@@ -22556,7 +22572,7 @@
     },
     "distance": {
       "available": true,
-      "avg_km_per_match": 1.8
+      "avg_km_per_match": 1.81
     },
     "elo_snapshot": {
       "name": "Adrian Mannarino",
@@ -24457,7 +24473,7 @@
     "surface": "grass",
     "year": 2019,
     "n_matches": 4,
-    "n_points": 240,
+    "n_points": 237,
     "n_eff_matches": 4.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -24467,10 +24483,10 @@
         "match_id": "2019-wimbledon-1223",
         "year": 2019,
         "round": "R64",
-        "opponent": "Jo Wilfried Tsonga",
-        "opponent_elo": null,
+        "opponent": "Jo-Wilfried Tsonga",
+        "opponent_elo": 1905.4,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2064
       },
       {
         "match_id": "2019-wimbledon-1145",
@@ -24502,14 +24518,14 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 62.4,
-        "ci_90_lo": 54.8,
-        "ci_90_hi": 68.9
+        "value": 62.0,
+        "ci_90_lo": 54.4,
+        "ci_90_hi": 68.6
       },
       "fspw_pct": {
-        "value": 66.3,
+        "value": 66.4,
         "ci_90_lo": 56.7,
-        "ci_90_hi": 73.9
+        "ci_90_hi": 74.1
       },
       "sspw_pct": {
         "value": 67.0,
@@ -24517,45 +24533,45 @@
         "ci_90_hi": 76.6
       },
       "rpw_pct": {
-        "value": 33.6,
-        "ci_90_lo": 27.2,
-        "ci_90_hi": 41.4
+        "value": 33.2,
+        "ci_90_lo": 26.8,
+        "ci_90_hi": 41.1
       },
       "rpw_vs_1st_pct": {
-        "value": 26.2,
-        "ci_90_lo": 19.3,
-        "ci_90_hi": 36.6
+        "value": 25.8,
+        "ci_90_lo": 18.9,
+        "ci_90_hi": 36.1
       },
       "rpw_vs_2nd_pct": {
-        "value": 38.5,
-        "ci_90_lo": 28.2,
+        "value": 38.4,
+        "ci_90_lo": 28.1,
         "ci_90_hi": 51.1
       },
       "sgw_pct": {
-        "value": 76.0,
-        "ci_90_lo": 55.1,
-        "ci_90_hi": 85.5
+        "value": 75.6,
+        "ci_90_lo": 54.7,
+        "ci_90_hi": 85.3
       },
       "rgw_pct": {
-        "value": 21.7,
-        "ci_90_lo": 13.1,
-        "ci_90_hi": 42.1
+        "value": 21.3,
+        "ci_90_lo": 12.8,
+        "ci_90_hi": 41.9
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7766,
+        "value": 0.8144,
         "max_bits": 1.585,
-        "pct_of_max": 49.0
+        "pct_of_max": 51.4
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 49.7,
-          "n": 225
+          "win_pct": 49.5,
+          "n": 222
         },
         "4_6": {
-          "win_pct": 39.0,
+          "win_pct": 40.2,
           "n": 6
         },
         "7_9": {
@@ -24570,9 +24586,9 @@
       "clutch_differential": {
         "available": true,
         "value": 1.2,
-        "high_lev_win_pct": 50.4,
-        "baseline_win_pct": 49.2,
-        "n_eff": 38,
+        "high_lev_win_pct": 50.3,
+        "baseline_win_pct": 49.1,
+        "n_eff": 36,
         "confidence": "LOW",
         "verdict": "PASS",
         "modifier_delta": 0.012
@@ -24593,21 +24609,21 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 48.5,
+        "deuce_win_pct": 48.2,
         "ad_win_pct": 49.3,
-        "asymmetry": 0.8,
+        "asymmetry": 1.1,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 4.07,
-        "streak_survival_rate": 0.399,
-        "streak_recovery_rate": 0.424
+        "streak_initiation_rate": 4.03,
+        "streak_survival_rate": 0.402,
+        "streak_recovery_rate": 0.431
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.433,
-        "bp_conversion": 0.384,
-        "bp_created": 8.6,
-        "bp_converted": 3.3
+        "bp_per_return_game": 0.426,
+        "bp_conversion": 0.381,
+        "bp_created": 8.3,
+        "bp_converted": 3.2
       },
       "rluep": null,
       "spci": {
@@ -24631,7 +24647,7 @@
         "available": true,
         "value": 0.9,
         "mean_rc_won": 2.01,
-        "n_eff": 118,
+        "n_eff": 116,
         "confidence": "RELIABLE"
       },
       "serve_speed_differential": {
@@ -24640,52 +24656,52 @@
       },
       "serve_depth_entropy": {
         "available": true,
-        "value": 0.9801,
-        "pct_of_max": 98.0,
-        "pct_deep": 41.7,
-        "n_eff": 48,
+        "value": 0.9815,
+        "pct_of_max": 98.1,
+        "pct_deep": 42.0,
+        "n_eff": 50,
         "confidence": "LOW"
       },
       "distance_run_efficiency": {
         "available": true,
-        "value": 4.3506,
-        "n_eff": 88,
+        "value": 4.3774,
+        "n_eff": 92,
         "confidence": "RELIABLE"
       },
       "attrition_slope": {
         "available": true,
-        "value": -0.6015,
+        "value": -0.6913,
         "n_sets": 3,
-        "n_eff": 24,
+        "n_eff": 25,
         "confidence": "UNRELIABLE",
         "set_avgs_m": {
-          "1": 9.991,
-          "2": 9.379,
-          "3": 8.788
+          "1": 10.153,
+          "2": 9.394,
+          "3": 8.77
         }
       },
       "set_transition_delta": {
         "available": true,
-        "value": -3.7,
-        "first_games_win_pct": 45.5,
-        "overall_win_pct": 49.2,
-        "n_eff": 48,
+        "value": -3.4,
+        "first_games_win_pct": 45.7,
+        "overall_win_pct": 49.1,
+        "n_eff": 47,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
         "value": -1.1,
-        "fsp_at_pressure": 61.3,
-        "fsp_overall": 62.4,
-        "n_eff": 20,
+        "fsp_at_pressure": 60.9,
+        "fsp_overall": 62.0,
+        "n_eff": 19,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": 0.0,
-        "tb_win_pct": 49.2,
-        "baseline_win_pct": 49.2,
-        "n_eff": 235,
+        "value": -0.1,
+        "tb_win_pct": 49.0,
+        "baseline_win_pct": 49.1,
+        "n_eff": 232,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -24695,7 +24711,7 @@
     },
     "distance": {
       "available": true,
-      "avg_km_per_match": 0.87
+      "avg_km_per_match": 0.91
     },
     "elo_snapshot": {
       "name": "Ricardas Berankis",
@@ -24717,7 +24733,7 @@
     "surface": "grass",
     "year": 2019,
     "n_matches": 4,
-    "n_points": 197,
+    "n_points": 193,
     "n_eff_matches": 4.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -24727,10 +24743,10 @@
         "match_id": "2019-wimbledon-1146",
         "year": 2019,
         "round": "R128",
-        "opponent": "Jo Wilfried Tsonga",
-        "opponent_elo": null,
+        "opponent": "Jo-Wilfried Tsonga",
+        "opponent_elo": 1905.4,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2064
       },
       {
         "match_id": "2018-wimbledon-1222",
@@ -24762,64 +24778,64 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 69.4,
+        "value": 69.5,
         "ci_90_lo": 61.2,
-        "ci_90_hi": 75.8
+        "ci_90_hi": 75.9
       },
       "fspw_pct": {
-        "value": 68.9,
-        "ci_90_lo": 58.9,
-        "ci_90_hi": 76.4
+        "value": 68.5,
+        "ci_90_lo": 58.5,
+        "ci_90_hi": 76.1
       },
       "sspw_pct": {
-        "value": 58.1,
-        "ci_90_lo": 43.0,
+        "value": 58.0,
+        "ci_90_lo": 42.8,
         "ci_90_hi": 70.8
       },
       "rpw_pct": {
-        "value": 28.2,
-        "ci_90_lo": 21.8,
-        "ci_90_hi": 36.9
+        "value": 27.8,
+        "ci_90_lo": 21.4,
+        "ci_90_hi": 36.7
       },
       "rpw_vs_1st_pct": {
-        "value": 19.9,
-        "ci_90_lo": 13.9,
+        "value": 19.7,
+        "ci_90_lo": 13.7,
         "ci_90_hi": 30.6
       },
       "rpw_vs_2nd_pct": {
-        "value": 38.1,
-        "ci_90_lo": 26.1,
-        "ci_90_hi": 53.8
+        "value": 37.5,
+        "ci_90_lo": 25.5,
+        "ci_90_hi": 53.4
       },
       "sgw_pct": {
-        "value": 77.3,
-        "ci_90_lo": 54.2,
-        "ci_90_hi": 86.7
+        "value": 76.3,
+        "ci_90_lo": 53.2,
+        "ci_90_hi": 86.1
       },
       "rgw_pct": {
-        "value": 13.6,
-        "ci_90_lo": 8.1,
-        "ci_90_hi": 36.7
+        "value": 13.4,
+        "ci_90_lo": 8.0,
+        "ci_90_hi": 36.6
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 0.7594,
+        "value": 0.7918,
         "max_bits": 1.585,
-        "pct_of_max": 47.9
+        "pct_of_max": 50.0
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 48.8,
-          "n": 155
+          "win_pct": 48.4,
+          "n": 152
         },
         "4_6": {
           "win_pct": 41.6,
           "n": 24
         },
         "7_9": {
-          "win_pct": 37.9,
+          "win_pct": 37.4,
           "n": 6
         },
         "10+": {
@@ -24829,13 +24845,13 @@
       },
       "clutch_differential": {
         "available": true,
-        "value": 0.8,
+        "value": 1.1,
         "high_lev_win_pct": 48.1,
-        "baseline_win_pct": 47.3,
-        "n_eff": 29,
+        "baseline_win_pct": 47.0,
+        "n_eff": 28,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.008
+        "modifier_delta": 0.011
       },
       "df_pressure_delta": {
         "available": true,
@@ -24849,42 +24865,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 7.9,
-        "bp_speed_kmh": 181.5,
-        "overall_speed_kmh": 173.6,
+        "value": 7.8,
+        "bp_speed_kmh": 181.2,
+        "overall_speed_kmh": 173.4,
         "n_eff": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.079,
+        "modifier_delta": 0.078,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 49.6,
-        "ad_win_pct": 44.0,
-        "asymmetry": 5.6,
+        "deuce_win_pct": 49.4,
+        "ad_win_pct": 43.5,
+        "asymmetry": 5.9,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 2.59,
-        "streak_survival_rate": 0.509,
-        "streak_recovery_rate": 0.505
+        "streak_initiation_rate": 2.55,
+        "streak_survival_rate": 0.516,
+        "streak_recovery_rate": 0.491
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.284,
+        "bp_per_return_game": 0.273,
         "bp_conversion": 0.325,
-        "bp_created": 4.7,
-        "bp_converted": 1.5
+        "bp_created": 4.4,
+        "bp_converted": 1.4
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1863,
+        "value": -0.1865,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0455,
+            "delta_frac": 0.045,
             "weight": 0.3,
-            "contribution": 0.0137
+            "contribution": 0.0135
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -24896,73 +24912,73 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.1863,
+        "modifier_delta": -0.1865,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
         "available": true,
         "value": 2.35,
-        "mean_rc_won": 2.46,
-        "n_eff": 93,
+        "mean_rc_won": 2.47,
+        "n_eff": 91,
         "confidence": "RELIABLE"
       },
       "serve_speed_differential": {
         "available": true,
-        "value": 29.5,
-        "first_avg_kmh": 183.0,
-        "second_avg_kmh": 153.5,
+        "value": 28.8,
+        "first_avg_kmh": 182.5,
+        "second_avg_kmh": 153.7,
         "n_eff": 18,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
         "available": true,
-        "value": 0.9852,
-        "pct_of_max": 98.5,
-        "pct_deep": 42.9,
+        "value": 0.9858,
+        "pct_of_max": 98.6,
+        "pct_deep": 43.0,
         "n_eff": 57,
         "confidence": "LOW"
       },
       "distance_run_efficiency": {
         "available": true,
-        "value": 2.5378,
+        "value": 2.5396,
         "n_eff": 105,
         "confidence": "RELIABLE"
       },
       "attrition_slope": {
         "available": true,
-        "value": -0.0886,
+        "value": -0.079,
         "n_sets": 4,
-        "n_eff": 22,
+        "n_eff": 21,
         "confidence": "UNRELIABLE",
         "set_avgs_m": {
-          "1": 9.234,
-          "2": 8.853,
-          "3": 9.986,
+          "1": 9.187,
+          "2": 8.777,
+          "3": 9.863,
           "4": 8.561
         }
       },
       "set_transition_delta": {
         "available": true,
-        "value": -1.2,
-        "first_games_win_pct": 46.1,
-        "overall_win_pct": 47.3,
+        "value": -1.0,
+        "first_games_win_pct": 46.0,
+        "overall_win_pct": 47.0,
         "n_eff": 43,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
         "value": -1.1,
-        "fsp_at_pressure": 68.3,
-        "fsp_overall": 69.4,
-        "n_eff": 17,
+        "fsp_at_pressure": 68.4,
+        "fsp_overall": 69.5,
+        "n_eff": 16,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
         "value": -1.4,
-        "tb_win_pct": 45.9,
-        "baseline_win_pct": 47.3,
-        "n_eff": 193,
+        "tb_win_pct": 45.6,
+        "baseline_win_pct": 47.0,
+        "n_eff": 190,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -24972,7 +24988,7 @@
     },
     "distance": {
       "available": true,
-      "avg_km_per_match": 0.99
+      "avg_km_per_match": 1.0
     },
     "elo_snapshot": {
       "name": "Bernard Tomic",
@@ -24989,8 +25005,8 @@
     ],
     "n_matches_career": 4
   },
-  "Jo Wilfried Tsonga": {
-    "player": "Jo Wilfried Tsonga",
+  "Jo-Wilfried Tsonga": {
+    "player": "Jo-Wilfried Tsonga",
     "surface": "grass",
     "year": 2019,
     "n_matches": 6,
@@ -25270,7 +25286,14 @@
       "available": true,
       "avg_km_per_match": 1.69
     },
-    "elo_snapshot": null,
+    "elo_snapshot": {
+      "name": "Jo-Wilfried Tsonga",
+      "n_overall": 672,
+      "n_surface": 72,
+      "R_overall": 1963.3,
+      "R_surface": 1866.9,
+      "R_adjusted": 1905.4
+    },
     "career_editions_used": [
       2017,
       2019
@@ -26123,8 +26146,8 @@
     "surface": "grass",
     "year": 2019,
     "n_matches": 10,
-    "n_points": 221,
-    "n_eff_matches": 9.8,
+    "n_points": 222,
+    "n_eff_matches": 9.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
@@ -26160,10 +26183,10 @@
         "match_id": "2019-wimbledon-1312",
         "year": 2019,
         "round": "R32",
-        "opponent": "Jo Wilfried Tsonga",
-        "opponent_elo": null,
+        "opponent": "Jo-Wilfried Tsonga",
+        "opponent_elo": 1905.4,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2064
       },
       {
         "match_id": "2019-wimbledon-1224",
@@ -26197,9 +26220,9 @@
         "year": 2018,
         "round": "QF",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1958.6,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2412
       },
       {
         "match_id": "2018-wimbledon-1408",
@@ -26222,19 +26245,19 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 65.4,
-        "ci_90_lo": 57.4,
-        "ci_90_hi": 72.0
+        "value": 65.6,
+        "ci_90_lo": 57.6,
+        "ci_90_hi": 72.2
       },
       "fspw_pct": {
-        "value": 75.6,
-        "ci_90_lo": 65.7,
-        "ci_90_hi": 82.1
+        "value": 75.7,
+        "ci_90_lo": 65.9,
+        "ci_90_hi": 82.2
       },
       "sspw_pct": {
-        "value": 65.6,
-        "ci_90_lo": 51.2,
-        "ci_90_hi": 76.0
+        "value": 65.8,
+        "ci_90_lo": 51.4,
+        "ci_90_hi": 76.2
       },
       "rpw_pct": {
         "value": 37.4,
@@ -26242,14 +26265,14 @@
         "ci_90_hi": 45.4
       },
       "rpw_vs_1st_pct": {
-        "value": 29.6,
-        "ci_90_lo": 22.3,
-        "ci_90_hi": 39.6
+        "value": 29.4,
+        "ci_90_lo": 22.2,
+        "ci_90_hi": 39.3
       },
       "rpw_vs_2nd_pct": {
-        "value": 48.1,
-        "ci_90_lo": 35.3,
-        "ci_90_hi": 61.4
+        "value": 48.3,
+        "ci_90_lo": 35.6,
+        "ci_90_hi": 61.5
       },
       "sgw_pct": {
         "value": 91.9,
@@ -26257,45 +26280,45 @@
         "ci_90_hi": 94.8
       },
       "rgw_pct": {
-        "value": 27.4,
+        "value": 27.3,
         "ci_90_lo": 16.6,
-        "ci_90_hi": 48.1
+        "ci_90_hi": 48.0
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.5151,
+        "value": 1.5126,
         "max_bits": 1.585,
-        "pct_of_max": 95.6
+        "pct_of_max": 95.4
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 51.2,
+          "win_pct": 51.0,
           "n": 125
         },
         "4_6": {
-          "win_pct": 58.2,
+          "win_pct": 58.5,
           "n": 48
         },
         "7_9": {
-          "win_pct": 58.2,
-          "n": 22
+          "win_pct": 58.1,
+          "n": 23
         },
         "10+": {
-          "win_pct": 57.1,
+          "win_pct": 57.6,
           "n": 20
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 1.4,
-        "high_lev_win_pct": 55.4,
+        "value": 1.2,
+        "high_lev_win_pct": 55.2,
         "baseline_win_pct": 54.0,
         "n_eff": 36,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.014
+        "modifier_delta": 0.012
       },
       "df_pressure_delta": {
         "available": true,
@@ -26309,42 +26332,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 1.2,
-        "bp_speed_kmh": 176.6,
-        "overall_speed_kmh": 175.4,
+        "value": 1.1,
+        "bp_speed_kmh": 176.4,
+        "overall_speed_kmh": 175.3,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.012,
+        "modifier_delta": 0.011,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 51.5,
+        "deuce_win_pct": 51.6,
         "ad_win_pct": 55.7,
-        "asymmetry": 4.2,
+        "asymmetry": 4.1,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 1.64,
-        "streak_survival_rate": 0.491,
-        "streak_recovery_rate": 0.374
+        "streak_initiation_rate": 1.65,
+        "streak_survival_rate": 0.494,
+        "streak_recovery_rate": 0.383
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.557,
-        "bp_conversion": 0.424,
+        "bp_per_return_game": 0.554,
+        "bp_conversion": 0.425,
         "bp_created": 10.3,
         "bp_converted": 4.4
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1979,
+        "value": -0.1981,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0068,
+            "delta_frac": 0.0063,
             "weight": 0.3,
-            "contribution": 0.0021
+            "contribution": 0.0019
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -26356,74 +26379,74 @@
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "MARGINAL",
-        "modifier_delta": -0.1979,
+        "modifier_delta": -0.1981,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
         "available": true,
         "value": 3.88,
-        "mean_rc_won": 4.15,
-        "n_eff": 119,
+        "mean_rc_won": 4.16,
+        "n_eff": 120,
         "confidence": "RELIABLE"
       },
       "serve_speed_differential": {
         "available": true,
         "value": 29.5,
-        "first_avg_kmh": 185.1,
-        "second_avg_kmh": 155.6,
-        "n_eff": 36,
+        "first_avg_kmh": 185.0,
+        "second_avg_kmh": 155.5,
+        "n_eff": 35,
         "confidence": "LOW"
       },
       "serve_depth_entropy": {
         "available": true,
-        "value": 0.951,
-        "pct_of_max": 95.1,
-        "pct_deep": 37.0,
-        "n_eff": 109,
+        "value": 0.9495,
+        "pct_of_max": 94.9,
+        "pct_deep": 36.8,
+        "n_eff": 110,
         "confidence": "RELIABLE"
       },
       "distance_run_efficiency": {
         "available": true,
-        "value": 3.2606,
-        "n_eff": 214,
+        "value": 3.2671,
+        "n_eff": 215,
         "confidence": "RELIABLE"
       },
       "attrition_slope": {
         "available": true,
-        "value": 0.8881,
+        "value": 0.8981,
         "n_sets": 5,
-        "n_eff": 21,
+        "n_eff": 22,
         "confidence": "UNRELIABLE",
         "set_avgs_m": {
-          "1": 12.306,
-          "2": 13.416,
-          "3": 13.949,
-          "4": 13.029,
-          "5": 16.94
+          "1": 12.383,
+          "2": 13.377,
+          "3": 13.967,
+          "4": 12.988,
+          "5": 17.068
         }
       },
       "set_transition_delta": {
         "available": true,
-        "value": -3.6,
-        "first_games_win_pct": 50.4,
+        "value": -3.7,
+        "first_games_win_pct": 50.3,
         "overall_win_pct": 54.0,
         "n_eff": 43,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": 7.1,
-        "fsp_at_pressure": 72.5,
-        "fsp_overall": 65.4,
+        "value": 7.5,
+        "fsp_at_pressure": 73.1,
+        "fsp_overall": 65.6,
         "n_eff": 14,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": 0.6,
-        "tb_win_pct": 54.6,
+        "value": 0.7,
+        "tb_win_pct": 54.7,
         "baseline_win_pct": 54.0,
-        "n_eff": 216,
+        "n_eff": 217,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -26433,7 +26456,7 @@
     },
     "distance": {
       "available": true,
-      "avg_km_per_match": 2.97
+      "avg_km_per_match": 3.0
     },
     "elo_snapshot": {
       "name": "Rafael Nadal",
@@ -27318,7 +27341,7 @@
     "surface": "grass",
     "year": 2019,
     "n_matches": 4,
-    "n_points": 194,
+    "n_points": 192,
     "n_eff_matches": 4.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -27355,214 +27378,214 @@
         "match_id": "2017-wimbledon-1109",
         "year": 2017,
         "round": "R128",
-        "opponent": "Jo Wilfried Tsonga",
-        "opponent_elo": null,
+        "opponent": "Jo-Wilfried Tsonga",
+        "opponent_elo": 1964.8,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2455
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 61.6,
-        "ci_90_lo": 53.3,
-        "ci_90_hi": 68.8
+        "value": 61.7,
+        "ci_90_lo": 53.4,
+        "ci_90_hi": 68.9
       },
       "fspw_pct": {
-        "value": 67.8,
-        "ci_90_lo": 57.0,
-        "ci_90_hi": 75.8
+        "value": 67.0,
+        "ci_90_lo": 56.2,
+        "ci_90_hi": 75.2
       },
       "sspw_pct": {
-        "value": 51.5,
-        "ci_90_lo": 38.2,
-        "ci_90_hi": 64.4
+        "value": 51.7,
+        "ci_90_lo": 38.3,
+        "ci_90_hi": 64.6
       },
       "rpw_pct": {
-        "value": 31.4,
-        "ci_90_lo": 24.6,
-        "ci_90_hi": 40.2
+        "value": 31.1,
+        "ci_90_lo": 24.3,
+        "ci_90_hi": 40.0
       },
       "rpw_vs_1st_pct": {
-        "value": 26.1,
-        "ci_90_lo": 18.8,
-        "ci_90_hi": 37.3
+        "value": 25.8,
+        "ci_90_lo": 18.5,
+        "ci_90_hi": 37.1
       },
       "rpw_vs_2nd_pct": {
-        "value": 34.3,
-        "ci_90_lo": 23.4,
-        "ci_90_hi": 49.8
+        "value": 34.0,
+        "ci_90_lo": 23.1,
+        "ci_90_hi": 49.6
       },
       "sgw_pct": {
-        "value": 69.5,
-        "ci_90_lo": 46.9,
-        "ci_90_hi": 82.0
+        "value": 68.7,
+        "ci_90_lo": 46.1,
+        "ci_90_hi": 81.5
       },
       "rgw_pct": {
-        "value": 20.2,
-        "ci_90_lo": 11.8,
-        "ci_90_hi": 43.0
+        "value": 19.6,
+        "ci_90_lo": 11.5,
+        "ci_90_hi": 42.7
       }
     },
     "tier2": {
       "serve_entropy": {
         "available": true,
-        "value": 1.1453,
+        "value": 1.1657,
         "max_bits": 1.585,
-        "pct_of_max": 72.3
+        "pct_of_max": 73.5
       },
       "rally_win_curve": {
         "1_3": {
-          "win_pct": 48.1,
-          "n": 151
+          "win_pct": 47.8,
+          "n": 147
         },
         "4_6": {
           "win_pct": 40.7,
-          "n": 25
+          "n": 26
         },
         "7_9": {
-          "win_pct": 42.7,
+          "win_pct": 42.9,
           "n": 7
         },
         "10+": {
-          "win_pct": 14.8,
+          "win_pct": 14.2,
           "n": 4
         }
       },
       "clutch_differential": {
         "available": true,
-        "value": 4.0,
+        "value": 4.3,
         "high_lev_win_pct": 50.0,
-        "baseline_win_pct": 46.0,
-        "n_eff": 29,
+        "baseline_win_pct": 45.7,
+        "n_eff": 28,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.04
+        "modifier_delta": 0.043
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 2.8,
-        "bp_df_rate": 7.3,
+        "value": 2.9,
+        "bp_df_rate": 7.4,
         "baseline_df_rate": 4.5,
         "n_eff": 10,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.028
+        "modifier_delta": 0.029
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 5.3,
-        "bp_speed_kmh": 172.4,
+        "value": 5.4,
+        "bp_speed_kmh": 172.5,
         "overall_speed_kmh": 167.1,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.053,
+        "modifier_delta": 0.054,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 44.2,
-        "ad_win_pct": 47.1,
-        "asymmetry": 2.9,
+        "deuce_win_pct": 43.8,
+        "ad_win_pct": 47.0,
+        "asymmetry": 3.2,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 2.71,
-        "streak_survival_rate": 0.364,
+        "streak_initiation_rate": 2.63,
+        "streak_survival_rate": 0.36,
         "streak_recovery_rate": 0.663
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.397,
+        "bp_per_return_game": 0.38,
         "bp_conversion": 0.391,
-        "bp_created": 6.5,
-        "bp_converted": 2.5
+        "bp_created": 6.1,
+        "bp_converted": 2.4
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.1339,
+        "value": 0.1386,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0317,
+            "delta_frac": 0.0323,
             "weight": 0.3,
-            "contribution": 0.0095
+            "contribution": 0.0097
           },
           "df_rate_delta": {
-            "delta_frac": 0.6222,
+            "delta_frac": 0.6444,
             "weight": 0.2,
-            "contribution": 0.1244
+            "contribution": 0.1289
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.1339,
+        "modifier_delta": 0.1386,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
         "available": true,
-        "value": 1.73,
-        "mean_rc_won": 2.44,
-        "n_eff": 89,
+        "value": 1.74,
+        "mean_rc_won": 2.46,
+        "n_eff": 88,
         "confidence": "RELIABLE"
       },
       "serve_speed_differential": {
         "available": true,
-        "value": 25.9,
+        "value": 25.7,
         "first_avg_kmh": 175.4,
-        "second_avg_kmh": 149.5,
-        "n_eff": 13,
+        "second_avg_kmh": 149.7,
+        "n_eff": 14,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
         "available": true,
-        "value": 0.963,
-        "pct_of_max": 96.3,
-        "pct_deep": 38.7,
-        "n_eff": 66,
+        "value": 0.958,
+        "pct_of_max": 95.8,
+        "pct_deep": 38.0,
+        "n_eff": 67,
         "confidence": "RELIABLE"
       },
       "distance_run_efficiency": {
         "available": true,
-        "value": 4.3578,
-        "n_eff": 122,
+        "value": 4.2467,
+        "n_eff": 123,
         "confidence": "RELIABLE"
       },
       "attrition_slope": {
         "available": true,
-        "value": -0.6676,
+        "value": -0.6431,
         "n_sets": 3,
         "n_eff": 36,
         "confidence": "LOW",
         "set_avgs_m": {
-          "1": 12.433,
-          "2": 13.661,
-          "3": 11.098
+          "1": 12.169,
+          "2": 13.406,
+          "3": 10.883
         }
       },
       "set_transition_delta": {
         "available": true,
-        "value": 1.9,
+        "value": 2.2,
         "first_games_win_pct": 47.9,
-        "overall_win_pct": 46.0,
+        "overall_win_pct": 45.7,
         "n_eff": 42,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": 3.8,
-        "fsp_at_pressure": 65.4,
-        "fsp_overall": 61.6,
+        "value": 4.3,
+        "fsp_at_pressure": 66.0,
+        "fsp_overall": 61.7,
         "n_eff": 14,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": 1.3,
-        "tb_win_pct": 47.3,
-        "baseline_win_pct": 46.0,
-        "n_eff": 189,
+        "value": 1.4,
+        "tb_win_pct": 47.1,
+        "baseline_win_pct": 45.7,
+        "n_eff": 187,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -27572,7 +27595,7 @@
     },
     "distance": {
       "available": true,
-      "avg_km_per_match": 1.59
+      "avg_km_per_match": 1.58
     },
     "elo_snapshot": {
       "name": "Cameron Norrie",

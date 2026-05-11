@@ -26,8 +26,17 @@ Usage:
 
 import argparse, json, math
 from pathlib import Path
+import sys
 import numpy as np
 import pandas as pd
+
+sys.path.insert(0, str(Path(__file__).parent))
+# Phase B: canonical name normalisation — applied when reading PBP player names
+# so player_profiles keys match the canonical form used by all other outputs.
+try:
+    from canonical_names import normalize_name
+except ImportError:
+    def normalize_name(n): return n  # graceful fallback during testing
 
 
 _ROUND_LABELS = {11: "R128", 12: "R64", 13: "R32", 14: "R16", 15: "QF", 16: "SF", 17: "F"}
@@ -100,8 +109,10 @@ def player_list(mat: pd.DataFrame, men_ids: set) -> dict:
     players = {}
     for _, row in rows.iterrows():
         for side, num in [("player1", 1), ("player2", 2)]:
-            name = row[side]
-            if pd.isna(name): continue
+            raw = row[side]
+            if pd.isna(raw): continue
+            # Phase B: normalise PBP player name to the canonical spelling.
+            name = normalize_name(str(raw))
             if name not in players:
                 players[name] = {"matches": [], "side_in_match": {}}
             players[name]["matches"].append(row["match_id"])

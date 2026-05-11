@@ -4,19 +4,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.2,
-      "fsp": 58.4,
-      "sspw": 48.3,
-      "rpw_vs_1st": 21.3,
-      "rpw_vs_2nd": 44.7,
-      "rally_skew": 17.1
+      "fspw": 68.2,
+      "fsp": 58.1,
+      "sspw": 49.6,
+      "rpw_vs_1st": 21.4,
+      "rpw_vs_2nd": 44.3,
+      "rally_skew": 14.8
     },
     "z_scores": {
-      "serve_lean": -0.712,
-      "1st_reliance": 0.277,
-      "return_aggro": 1.2,
-      "rally_skew": 2.137,
-      "serve_consist": -1.15
+      "serve_lean": -0.825,
+      "1st_reliance": -0.181,
+      "return_aggro": 1.123,
+      "rally_skew": 1.85,
+      "serve_consist": -1.225
     }
   },
   "Hugo Grenier": {
@@ -44,59 +44,39 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.9,
-      "fsp": 56.0,
-      "sspw": 53.2,
+      "fspw": 66.8,
+      "fsp": 60.6,
+      "sspw": 55.6,
       "rpw_vs_1st": 27.4,
-      "rpw_vs_2nd": 46.0,
+      "rpw_vs_2nd": 43.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.356,
-      "1st_reliance": -0.383,
-      "return_aggro": 0.462,
+      "serve_lean": -1.12,
+      "1st_reliance": -0.968,
+      "return_aggro": 0.077,
       "rally_skew": 0.0,
-      "serve_consist": -1.75
+      "serve_consist": -0.6
     }
   },
-  "Salvatore Caruso": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+  "Tristan Schoolkate": {
+    "id": 4,
+    "label": "Big-Serve Power Server",
+    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 59.0,
-      "fsp": 53.3,
-      "sspw": 55.4,
-      "rpw_vs_1st": 21.6,
-      "rpw_vs_2nd": 46.5,
+      "fspw": 88.9,
+      "fsp": 55.4,
+      "sspw": 48.3,
+      "rpw_vs_1st": 16.3,
+      "rpw_vs_2nd": 15.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.354,
-      "1st_reliance": -1.777,
-      "return_aggro": 1.431,
+      "serve_lean": 4.822,
+      "1st_reliance": 2.16,
+      "return_aggro": -2.477,
       "rally_skew": 0.0,
-      "serve_consist": -2.425
-    }
-  },
-  "Mackenzie McDonald": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 72.5,
-      "fsp": 67.1,
-      "sspw": 59.7,
-      "rpw_vs_1st": 23.0,
-      "rpw_vs_2nd": 41.1,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 0.703,
-      "1st_reliance": -0.798,
-      "return_aggro": 0.385,
-      "rally_skew": 0.0,
-      "serve_consist": 1.025
+      "serve_consist": -1.9
     }
   },
   "Aslan Karatsev": {
@@ -104,19 +84,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 72.1,
-      "fsp": 59.1,
-      "sspw": 54.7,
-      "rpw_vs_1st": 26.2,
-      "rpw_vs_2nd": 37.2,
-      "rally_skew": 10.6
+      "fspw": 73.8,
+      "fsp": 58.2,
+      "sspw": 50.1,
+      "rpw_vs_1st": 25.6,
+      "rpw_vs_2nd": 36.4,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.143,
-      "1st_reliance": -0.309,
-      "return_aggro": -0.708,
-      "rally_skew": 1.325,
-      "serve_consist": -0.975
+      "serve_lean": 0.012,
+      "1st_reliance": 0.362,
+      "return_aggro": -0.738,
+      "rally_skew": 0.0,
+      "serve_consist": -1.2
     }
   },
   "Francisco Comesana": {
@@ -125,18 +105,18 @@
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
       "fspw": 71.7,
-      "fsp": 64.3,
-      "sspw": 59.0,
-      "rpw_vs_1st": 27.7,
+      "fsp": 64.1,
+      "sspw": 58.0,
+      "rpw_vs_1st": 27.8,
       "rpw_vs_2nd": 38.8,
       "rally_skew": 21.8
     },
     "z_scores": {
-      "serve_lean": 0.144,
-      "1st_reliance": -0.809,
-      "return_aggro": -0.692,
+      "serve_lean": 0.03,
+      "1st_reliance": -0.702,
+      "return_aggro": -0.708,
       "rally_skew": 2.725,
-      "serve_consist": 0.325
+      "serve_consist": 0.275
     }
   },
   "Carlos Taberner": {
@@ -164,19 +144,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 73.4,
-      "fsp": 65.1,
-      "sspw": 60.7,
-      "rpw_vs_1st": 30.2,
-      "rpw_vs_2nd": 45.2,
+      "fspw": 74.9,
+      "fsp": 65.0,
+      "sspw": 59.0,
+      "rpw_vs_1st": 30.0,
+      "rpw_vs_2nd": 45.5,
       "rally_skew": 2.9
     },
     "z_scores": {
-      "serve_lean": -0.599,
-      "1st_reliance": -0.809,
-      "return_aggro": -0.092,
+      "serve_lean": -0.638,
+      "1st_reliance": -0.468,
+      "return_aggro": -0.015,
       "rally_skew": 0.363,
-      "serve_consist": 0.525
+      "serve_consist": 0.5
     }
   },
   "Kimmer Coppejans": {
@@ -204,19 +184,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.4,
-      "fsp": 63.6,
-      "sspw": 59.0,
-      "rpw_vs_1st": 27.6,
-      "rpw_vs_2nd": 41.7,
+      "fspw": 68.4,
+      "fsp": 68.1,
+      "sspw": 63.0,
+      "rpw_vs_1st": 27.7,
+      "rpw_vs_2nd": 42.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.191,
-      "1st_reliance": -0.84,
-      "return_aggro": -0.231,
+      "serve_lean": -0.211,
+      "1st_reliance": -1.585,
+      "return_aggro": -0.062,
       "rally_skew": 0.0,
-      "serve_consist": 0.15
+      "serve_consist": 1.275
     }
   },
   "Felix Auger Aliassime": {
@@ -224,39 +204,39 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 81.0,
-      "fsp": 63.3,
-      "sspw": 55.9,
-      "rpw_vs_1st": 24.0,
-      "rpw_vs_2nd": 36.3,
-      "rally_skew": 4.8
+      "fspw": 80.5,
+      "fsp": 63.2,
+      "sspw": 55.0,
+      "rpw_vs_1st": 22.4,
+      "rpw_vs_2nd": 40.3,
+      "rally_skew": 6.6
     },
     "z_scores": {
-      "serve_lean": 1.486,
-      "1st_reliance": 0.511,
-      "return_aggro": -0.508,
-      "rally_skew": 0.6,
-      "serve_consist": 0.075
+      "serve_lean": 1.135,
+      "1st_reliance": 0.553,
+      "return_aggro": 0.354,
+      "rally_skew": 0.825,
+      "serve_consist": 0.05
     }
   },
   "David Goffin": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 72.3,
-      "fsp": 60.2,
-      "sspw": 54.9,
-      "rpw_vs_1st": 33.0,
-      "rpw_vs_2nd": 45.9,
-      "rally_skew": 7.8
+      "fspw": 70.8,
+      "fsp": 59.5,
+      "sspw": 52.2,
+      "rpw_vs_1st": 35.4,
+      "rpw_vs_2nd": 45.1,
+      "rally_skew": 1.5
     },
     "z_scores": {
-      "serve_lean": -1.757,
-      "1st_reliance": -0.309,
-      "return_aggro": -0.415,
-      "rally_skew": 0.975,
-      "serve_consist": -0.7
+      "serve_lean": -2.417,
+      "1st_reliance": -0.181,
+      "return_aggro": -0.908,
+      "rally_skew": 0.188,
+      "serve_consist": -0.875
     }
   },
   "Yoshihito Nishioka": {
@@ -264,39 +244,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 61.4,
-      "fsp": 69.0,
-      "sspw": 51.9,
-      "rpw_vs_1st": 19.9,
-      "rpw_vs_2nd": 40.3,
+      "fspw": 65.8,
+      "fsp": 66.4,
+      "sspw": 55.1,
+      "rpw_vs_1st": 21.1,
+      "rpw_vs_2nd": 41.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.554,
-      "1st_reliance": -1.149,
-      "return_aggro": 0.738,
+      "serve_lean": -0.184,
+      "1st_reliance": -1.021,
+      "return_aggro": 0.8,
       "rally_skew": 0.0,
-      "serve_consist": 1.5
-    }
-  },
-  "Egor Gerasimov": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 72.3,
-      "fsp": 68.5,
-      "sspw": 42.6,
-      "rpw_vs_1st": 23.9,
-      "rpw_vs_2nd": 39.1,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -0.932,
-      "1st_reliance": 1.0,
-      "return_aggro": -0.062,
-      "rally_skew": 0.0,
-      "serve_consist": 1.375
+      "serve_consist": 0.85
     }
   },
   "Arthur Cazaux": {
@@ -304,19 +264,19 @@
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 81.3,
-      "fsp": 55.0,
-      "sspw": 56.5,
-      "rpw_vs_1st": 13.5,
-      "rpw_vs_2nd": 36.2,
+      "fspw": 81.0,
+      "fsp": 54.6,
+      "sspw": 53.6,
+      "rpw_vs_1st": 14.1,
+      "rpw_vs_2nd": 36.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 3.085,
-      "1st_reliance": 0.479,
-      "return_aggro": 1.092,
+      "serve_lean": 2.693,
+      "1st_reliance": 0.755,
+      "return_aggro": 0.985,
       "rally_skew": 0.0,
-      "serve_consist": -2.0
+      "serve_consist": -2.1
     }
   },
   "Constant Lestienne": {
@@ -324,19 +284,39 @@
     "label": "Pure Return Specialist (1st-serve neutralizer)",
     "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 61.5,
-      "fsp": 62.5,
-      "sspw": 39.4,
-      "rpw_vs_1st": 30.9,
-      "rpw_vs_2nd": 45.3,
+      "fspw": 65.5,
+      "fsp": 61.0,
+      "sspw": 40.2,
+      "rpw_vs_1st": 26.1,
+      "rpw_vs_2nd": 48.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -3.922,
-      "1st_reliance": 0.191,
-      "return_aggro": -0.185,
+      "serve_lean": -3.193,
+      "1st_reliance": 0.532,
+      "return_aggro": 1.108,
       "rally_skew": 0.0,
-      "serve_consist": -0.125
+      "serve_consist": -0.5
+    }
+  },
+  "Stefano Napolitano": {
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 68.2,
+      "fsp": 68.8,
+      "sspw": 46.7,
+      "rpw_vs_1st": 32.3,
+      "rpw_vs_2nd": 52.3,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -3.561,
+      "1st_reliance": 0.128,
+      "return_aggro": 0.677,
+      "rally_skew": 0.0,
+      "serve_consist": 1.45
     }
   },
   "Mariano Navone": {
@@ -344,79 +324,79 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 66.7,
-      "fsp": 64.3,
-      "sspw": 48.7,
-      "rpw_vs_1st": 23.9,
-      "rpw_vs_2nd": 27.3,
+      "fspw": 66.2,
+      "fsp": 63.1,
+      "sspw": 47.2,
+      "rpw_vs_1st": 22.4,
+      "rpw_vs_2nd": 26.6,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.48,
-      "1st_reliance": -0.245,
-      "return_aggro": -1.877,
+      "serve_lean": 0.577,
+      "1st_reliance": -0.138,
+      "return_aggro": -1.754,
       "rally_skew": 0.0,
-      "serve_consist": 0.325
+      "serve_consist": 0.025
     }
   },
   "Brandon Nakashima": {
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 74.6,
+      "fsp": 67.3,
+      "sspw": 58.8,
+      "rpw_vs_1st": 28.0,
+      "rpw_vs_2nd": 41.6,
+      "rally_skew": 4.5
+    },
+    "z_scores": {
+      "serve_lean": 0.034,
+      "1st_reliance": -0.479,
+      "return_aggro": -0.308,
+      "rally_skew": 0.562,
+      "serve_consist": 1.075
+    }
+  },
+  "Andrey Rublev": {
     "id": 1,
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 77.9,
-      "fsp": 63.8,
-      "sspw": 58.8,
-      "rpw_vs_1st": 27.8,
-      "rpw_vs_2nd": 39.2,
-      "rally_skew": 0.9
-    },
-    "z_scores": {
-      "serve_lean": 0.629,
-      "1st_reliance": -0.128,
-      "return_aggro": -0.646,
-      "rally_skew": 0.112,
-      "serve_consist": 0.2
-    }
-  },
-  "Andrey Rublev": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 77.6,
-      "fsp": 62.0,
-      "sspw": 53.4,
-      "rpw_vs_1st": 27.0,
-      "rpw_vs_2nd": 41.9,
+      "fspw": 77.0,
+      "fsp": 62.7,
+      "sspw": 53.5,
+      "rpw_vs_1st": 26.2,
+      "rpw_vs_2nd": 41.2,
       "rally_skew": 1.2
     },
     "z_scores": {
-      "serve_lean": -0.124,
-      "1st_reliance": 0.415,
-      "return_aggro": -0.108,
+      "serve_lean": 0.024,
+      "1st_reliance": 0.34,
+      "return_aggro": -0.092,
       "rally_skew": 0.15,
-      "serve_consist": -0.25
+      "serve_consist": -0.075
     }
   },
   "Nikoloz Basilashvili": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 4,
+    "label": "Big-Serve Power Server",
+    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 73.9,
-      "fsp": 58.1,
-      "sspw": 49.8,
-      "rpw_vs_1st": 19.9,
-      "rpw_vs_2nd": 45.2,
+      "fspw": 74.8,
+      "fsp": 58.4,
+      "sspw": 53.5,
+      "rpw_vs_1st": 17.0,
+      "rpw_vs_2nd": 45.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.172,
-      "1st_reliance": 0.404,
-      "return_aggro": 1.492,
+      "serve_lean": 0.627,
+      "1st_reliance": 0.106,
+      "return_aggro": 2.031,
       "rally_skew": 0.0,
-      "serve_consist": -1.225
+      "serve_consist": -1.15
     }
   },
   "Maxime Janvier": {
@@ -439,84 +419,44 @@
       "serve_consist": 2.65
     }
   },
-  "Philipp Kohlschreiber": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 78.6,
-      "fsp": 61.5,
-      "sspw": 56.3,
-      "rpw_vs_1st": 24.6,
-      "rpw_vs_2nd": 36.3,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 1.222,
-      "1st_reliance": 0.213,
-      "return_aggro": -0.6,
-      "rally_skew": 0.0,
-      "serve_consist": -0.375
-    }
-  },
-  "Tennys Sandgren": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 75.9,
-      "fsp": 60.0,
-      "sspw": 50.3,
-      "rpw_vs_1st": 22.8,
-      "rpw_vs_2nd": 38.8,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 0.356,
-      "1st_reliance": 0.564,
-      "return_aggro": 0.062,
-      "rally_skew": 0.0,
-      "serve_consist": -0.75
-    }
-  },
   "Dominic Thiem": {
     "id": 4,
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 72.8,
-      "fsp": 59.0,
-      "sspw": 61.9,
-      "rpw_vs_1st": 18.2,
-      "rpw_vs_2nd": 29.1,
+      "fspw": 70.5,
+      "fsp": 59.5,
+      "sspw": 66.1,
+      "rpw_vs_1st": 15.6,
+      "rpw_vs_2nd": 27.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 2.969,
-      "1st_reliance": -1.0,
-      "return_aggro": -0.723,
+      "serve_lean": 3.696,
+      "1st_reliance": -1.691,
+      "return_aggro": -0.523,
       "rally_skew": 0.0,
-      "serve_consist": -1.0
+      "serve_consist": -0.875
     }
   },
-  "Pedro Sousa": {
-    "id": 3,
-    "label": "Pure Return Specialist (1st-serve neutralizer)",
-    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+  "Coleman Wong": {
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 60.3,
-      "fsp": 60.6,
-      "sspw": 31.7,
-      "rpw_vs_1st": 22.4,
-      "rpw_vs_2nd": 34.8,
+      "fspw": 75.0,
+      "fsp": 37.7,
+      "sspw": 30.3,
+      "rpw_vs_1st": 21.4,
+      "rpw_vs_2nd": 42.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -2.42,
-      "1st_reliance": 0.883,
-      "return_aggro": -0.492,
+      "serve_lean": -1.981,
+      "1st_reliance": 2.596,
+      "return_aggro": 0.908,
       "rally_skew": 0.0,
-      "serve_consist": -0.6
+      "serve_consist": -6.325
     }
   },
   "Stefan Kozlov": {
@@ -544,39 +484,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 74.6,
-      "fsp": 63.4,
-      "sspw": 55.5,
-      "rpw_vs_1st": 28.0,
-      "rpw_vs_2nd": 46.2,
-      "rally_skew": -7.2
+      "fspw": 72.7,
+      "fsp": 67.0,
+      "sspw": 58.4,
+      "rpw_vs_1st": 31.0,
+      "rpw_vs_2nd": 46.6,
+      "rally_skew": -8.3
     },
     "z_scores": {
-      "serve_lean": -0.807,
-      "1st_reliance": -0.128,
-      "return_aggro": 0.4,
-      "rally_skew": -0.9,
-      "serve_consist": 0.1
-    }
-  },
-  "Vasek Pospisil": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 77.5,
-      "fsp": 60.1,
-      "sspw": 47.5,
-      "rpw_vs_1st": 23.3,
-      "rpw_vs_2nd": 46.5,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -0.705,
-      "1st_reliance": 1.032,
-      "return_aggro": 1.169,
-      "rally_skew": 0.0,
-      "serve_consist": -0.725
+      "serve_lean": -1.163,
+      "1st_reliance": -0.638,
+      "return_aggro": 0.0,
+      "rally_skew": -1.037,
+      "serve_consist": 1.0
     }
   },
   "Nicolas Jarry": {
@@ -584,19 +504,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 75.7,
-      "fsp": 69.1,
-      "sspw": 50.7,
-      "rpw_vs_1st": 26.1,
-      "rpw_vs_2nd": 41.4,
+      "fspw": 75.2,
+      "fsp": 68.4,
+      "sspw": 50.6,
+      "rpw_vs_1st": 25.6,
+      "rpw_vs_2nd": 40.3,
       "rally_skew": 15.9
     },
     "z_scores": {
-      "serve_lean": -0.382,
-      "1st_reliance": 0.5,
-      "return_aggro": -0.046,
+      "serve_lean": -0.244,
+      "1st_reliance": 0.457,
+      "return_aggro": -0.138,
       "rally_skew": 1.988,
-      "serve_consist": 1.525
+      "serve_consist": 1.35
     }
   },
   "Alejandro Moro Canas": {
@@ -606,57 +526,57 @@
     "raw": {
       "fspw": 71.4,
       "fsp": 70.5,
-      "sspw": 51.4,
+      "sspw": 50.0,
       "rpw_vs_1st": 14.9,
       "rpw_vs_2nd": 33.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.797,
-      "1st_reliance": -0.032,
+      "serve_lean": 1.657,
+      "1st_reliance": 0.117,
       "return_aggro": 0.431,
       "rally_skew": 0.0,
       "serve_consist": 1.875
     }
   },
-  "Cedrik Marcel Stebe": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+  "Joao Fonseca": {
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 83.3,
-      "fsp": 56.2,
-      "sspw": 14.3,
-      "rpw_vs_1st": 10.0,
-      "rpw_vs_2nd": 47.1,
+      "fspw": 68.6,
+      "fsp": 60.0,
+      "sspw": 44.1,
+      "rpw_vs_1st": 28.6,
+      "rpw_vs_2nd": 20.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.665,
-      "1st_reliance": 5.181,
-      "return_aggro": 3.308,
+      "serve_lean": 0.244,
+      "1st_reliance": 0.447,
+      "return_aggro": -3.6,
       "rally_skew": 0.0,
-      "serve_consist": -1.7
+      "serve_consist": -0.75
     }
   },
   "Taylor Fritz": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 76.4,
-      "fsp": 63.1,
-      "sspw": 57.0,
-      "rpw_vs_1st": 27.8,
-      "rpw_vs_2nd": 46.4,
-      "rally_skew": 8.4
+      "fspw": 82.6,
+      "fsp": 65.6,
+      "sspw": 65.0,
+      "rpw_vs_1st": 23.9,
+      "rpw_vs_2nd": 45.5,
+      "rally_skew": 9.3
     },
     "z_scores": {
-      "serve_lean": -0.487,
-      "1st_reliance": -0.096,
-      "return_aggro": 0.462,
-      "rally_skew": 1.05,
-      "serve_consist": 0.025
+      "serve_lean": 1.534,
+      "1st_reliance": -0.287,
+      "return_aggro": 0.923,
+      "rally_skew": 1.163,
+      "serve_consist": 0.65
     }
   },
   "Marton Fucsovics": {
@@ -664,19 +584,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 73.2,
-      "fsp": 58.9,
-      "sspw": 54.9,
-      "rpw_vs_1st": 25.7,
-      "rpw_vs_2nd": 47.9,
+      "fspw": 72.5,
+      "fsp": 59.1,
+      "sspw": 54.7,
+      "rpw_vs_1st": 26.2,
+      "rpw_vs_2nd": 47.7,
       "rally_skew": 5.1
     },
     "z_scores": {
-      "serve_lean": -0.855,
-      "1st_reliance": -0.213,
-      "return_aggro": 1.015,
+      "serve_lean": -0.988,
+      "1st_reliance": -0.266,
+      "return_aggro": 0.908,
       "rally_skew": 0.638,
-      "serve_consist": -1.025
+      "serve_consist": -0.975
     }
   },
   "Adam Walton": {
@@ -684,19 +604,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 70.0,
-      "fsp": 68.0,
-      "sspw": 69.1,
-      "rpw_vs_1st": 31.7,
-      "rpw_vs_2nd": 40.5,
+      "fspw": 70.1,
+      "fsp": 66.3,
+      "sspw": 66.5,
+      "rpw_vs_1st": 31.2,
+      "rpw_vs_2nd": 40.7,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.24,
-      "1st_reliance": -2.064,
-      "return_aggro": -1.046,
+      "serve_lean": 0.038,
+      "1st_reliance": -1.777,
+      "return_aggro": -0.938,
       "rally_skew": 0.0,
-      "serve_consist": 1.25
+      "serve_consist": 0.825
     }
   },
   "Enzo Couacaud": {
@@ -724,19 +644,19 @@
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 71.0,
-      "fsp": 59.2,
-      "sspw": 64.2,
-      "rpw_vs_1st": 15.2,
-      "rpw_vs_2nd": 35.3,
+      "fspw": 74.2,
+      "fsp": 60.4,
+      "sspw": 59.2,
+      "rpw_vs_1st": 15.0,
+      "rpw_vs_2nd": 35.2,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 2.775,
-      "1st_reliance": -1.436,
-      "return_aggro": 0.692,
+      "serve_lean": 2.606,
+      "1st_reliance": -0.564,
+      "return_aggro": 0.708,
       "rally_skew": 0.0,
-      "serve_consist": -0.95
+      "serve_consist": -0.65
     }
   },
   "Aleksandar Kovacevic": {
@@ -744,19 +664,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 68.0,
-      "fsp": 62.9,
-      "sspw": 40.1,
-      "rpw_vs_1st": 21.0,
-      "rpw_vs_2nd": 29.5,
+      "fspw": 70.4,
+      "fsp": 62.5,
+      "sspw": 43.8,
+      "rpw_vs_1st": 24.0,
+      "rpw_vs_2nd": 28.8,
       "rally_skew": -1.7
     },
     "z_scores": {
-      "serve_lean": -0.092,
-      "1st_reliance": 0.809,
-      "return_aggro": -1.092,
+      "serve_lean": 0.146,
+      "1st_reliance": 0.67,
+      "return_aggro": -1.662,
       "rally_skew": -0.213,
-      "serve_consist": -0.025
+      "serve_consist": -0.125
     }
   },
   "Vit Kopriva": {
@@ -766,37 +686,17 @@
     "raw": {
       "fspw": 54.7,
       "fsp": 55.2,
-      "sspw": 44.7,
+      "sspw": 43.9,
       "rpw_vs_1st": 10.3,
       "rpw_vs_2nd": 23.5,
       "rally_skew": -22.4
     },
     "z_scores": {
-      "serve_lean": 1.355,
-      "1st_reliance": -1.096,
+      "serve_lean": 1.275,
+      "1st_reliance": -1.011,
       "return_aggro": -0.369,
       "rally_skew": -2.8,
       "serve_consist": -1.95
-    }
-  },
-  "Daniel Elahi Galan": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 71.7,
-      "fsp": 62.6,
-      "sspw": 49.8,
-      "rpw_vs_1st": 27.0,
-      "rpw_vs_2nd": 39.9,
-      "rally_skew": 7.4
-    },
-    "z_scores": {
-      "serve_lean": -0.798,
-      "1st_reliance": 0.17,
-      "return_aggro": -0.415,
-      "rally_skew": 0.925,
-      "serve_consist": -0.1
     }
   },
   "Alexandre Muller": {
@@ -804,19 +704,39 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 61.8,
-      "fsp": 67.3,
-      "sspw": 58.4,
-      "rpw_vs_1st": 27.6,
-      "rpw_vs_2nd": 39.9,
+      "fspw": 63.2,
+      "fsp": 67.6,
+      "sspw": 56.8,
+      "rpw_vs_1st": 28.1,
+      "rpw_vs_2nd": 40.5,
       "rally_skew": 2.1
     },
     "z_scores": {
-      "serve_lean": -0.924,
-      "1st_reliance": -1.798,
-      "return_aggro": -0.508,
+      "serve_lean": -1.094,
+      "1st_reliance": -1.479,
+      "return_aggro": -0.492,
       "rally_skew": 0.263,
-      "serve_consist": 1.075
+      "serve_consist": 1.15
+    }
+  },
+  "Daniel Elahi Galan": {
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 72.1,
+      "fsp": 61.7,
+      "sspw": 49.4,
+      "rpw_vs_1st": 26.3,
+      "rpw_vs_2nd": 36.5,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -0.324,
+      "1st_reliance": 0.255,
+      "return_aggro": -0.831,
+      "rally_skew": 0.0,
+      "serve_consist": -0.325
     }
   },
   "Emil Ruusuvuori": {
@@ -825,38 +745,18 @@
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
       "fspw": 72.2,
-      "fsp": 64.0,
-      "sspw": 56.4,
-      "rpw_vs_1st": 25.7,
-      "rpw_vs_2nd": 41.1,
-      "rally_skew": -6.9
+      "fsp": 64.2,
+      "sspw": 55.9,
+      "rpw_vs_1st": 21.9,
+      "rpw_vs_2nd": 40.7,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.04,
-      "1st_reliance": -0.479,
-      "return_aggro": -0.031,
-      "rally_skew": -0.862,
-      "serve_consist": 0.25
-    }
-  },
-  "Juncheng Shang": {
-    "id": 4,
-    "label": "Big-Serve Power Server",
-    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 79.3,
-      "fsp": 62.1,
-      "sspw": 63.2,
-      "rpw_vs_1st": 15.4,
-      "rpw_vs_2nd": 42.1,
-      "rally_skew": -15.1
-    },
-    "z_scores": {
-      "serve_lean": 2.646,
-      "1st_reliance": -0.447,
-      "return_aggro": 1.708,
-      "rally_skew": -1.888,
-      "serve_consist": -0.225
+      "serve_lean": 0.497,
+      "1st_reliance": -0.426,
+      "return_aggro": 0.492,
+      "rally_skew": 0.0,
+      "serve_consist": 0.3
     }
   },
   "Ethan Quinn": {
@@ -864,19 +764,39 @@
     "label": "Pure Return Specialist (1st-serve neutralizer)",
     "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 68.6,
-      "fsp": 62.5,
-      "sspw": 42.9,
-      "rpw_vs_1st": 30.8,
-      "rpw_vs_2nd": 55.1,
+      "fspw": 69.2,
+      "fsp": 63.1,
+      "sspw": 47.4,
+      "rpw_vs_1st": 31.9,
+      "rpw_vs_2nd": 46.6,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -4.001,
-      "1st_reliance": 0.574,
-      "return_aggro": 1.338,
+      "serve_lean": -2.71,
+      "1st_reliance": 0.16,
+      "return_aggro": -0.138,
       "rally_skew": 0.0,
-      "serve_consist": -0.125
+      "serve_consist": 0.025
+    }
+  },
+  "Juncheng Shang": {
+    "id": 4,
+    "label": "Big-Serve Power Server",
+    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "raw": {
+      "fspw": 76.2,
+      "fsp": 64.7,
+      "sspw": 58.9,
+      "rpw_vs_1st": 16.0,
+      "rpw_vs_2nd": 41.8,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": 1.882,
+      "1st_reliance": -0.319,
+      "return_aggro": 1.569,
+      "rally_skew": 0.0,
+      "serve_consist": 0.425
     }
   },
   "Sasi Kumar Mukund": {
@@ -899,84 +819,104 @@
       "serve_consist": -1.55
     }
   },
-  "Matteo Arnaldi": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 65.9,
-      "fsp": 59.6,
-      "sspw": 61.1,
-      "rpw_vs_1st": 22.4,
-      "rpw_vs_2nd": 42.8,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 0.14,
-      "1st_reliance": -1.649,
-      "return_aggro": 0.738,
-      "rally_skew": 0.0,
-      "serve_consist": -0.85
-    }
-  },
   "Alex De Minaur": {
     "id": 2,
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 74.2,
-      "fsp": 56.5,
-      "sspw": 59.9,
-      "rpw_vs_1st": 33.6,
-      "rpw_vs_2nd": 48.0,
-      "rally_skew": 0.0
+      "fspw": 76.0,
+      "fsp": 54.3,
+      "sspw": 54.9,
+      "rpw_vs_1st": 34.8,
+      "rpw_vs_2nd": 53.3,
+      "rally_skew": -4.3
     },
     "z_scores": {
-      "serve_lean": -1.403,
-      "1st_reliance": -0.638,
-      "return_aggro": -0.185,
-      "rally_skew": 0.0,
-      "serve_consist": -1.625
+      "serve_lean": -2.5,
+      "1st_reliance": 0.085,
+      "return_aggro": 0.446,
+      "rally_skew": -0.538,
+      "serve_consist": -2.175
     }
   },
-  "Jannik Sinner": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 80.3,
-      "fsp": 58.2,
-      "sspw": 60.3,
-      "rpw_vs_1st": 30.2,
-      "rpw_vs_2nd": 47.6,
-      "rally_skew": 1.7
-    },
-    "z_scores": {
-      "serve_lean": -0.279,
-      "1st_reliance": -0.032,
-      "return_aggro": 0.277,
-      "rally_skew": 0.213,
-      "serve_consist": -1.2
-    }
-  },
-  "Eliot Spizzirri": {
+  "Matteo Arnaldi": {
     "id": 0,
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 52.8,
-      "fsp": 65.4,
-      "sspw": 46.4,
-      "rpw_vs_1st": 20.0,
-      "rpw_vs_2nd": 37.0,
+      "fspw": 66.3,
+      "fsp": 60.0,
+      "sspw": 59.7,
+      "rpw_vs_1st": 23.1,
+      "rpw_vs_2nd": 43.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.534,
-      "1st_reliance": -1.479,
-      "return_aggro": 0.215,
+      "serve_lean": -0.119,
+      "1st_reliance": -1.457,
+      "return_aggro": 0.708,
       "rally_skew": 0.0,
-      "serve_consist": 0.6
+      "serve_consist": -0.75
+    }
+  },
+  "Giles Hussey": {
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 77.8,
+      "fsp": 65.3,
+      "sspw": 48.8,
+      "rpw_vs_1st": 27.0,
+      "rpw_vs_2nd": 49.0,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -1.354,
+      "1st_reliance": 0.926,
+      "return_aggro": 0.985,
+      "rally_skew": 0.0,
+      "serve_consist": 0.575
+    }
+  },
+  "Jannik Sinner": {
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 81.0,
+      "fsp": 64.7,
+      "sspw": 60.3,
+      "rpw_vs_1st": 27.3,
+      "rpw_vs_2nd": 50.8,
+      "rally_skew": 0.9
+    },
+    "z_scores": {
+      "serve_lean": -0.156,
+      "1st_reliance": 0.043,
+      "return_aggro": 1.215,
+      "rally_skew": 0.112,
+      "serve_consist": 0.425
+    }
+  },
+  "Eliot Spizzirri": {
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 65.7,
+      "fsp": 63.5,
+      "sspw": 46.8,
+      "rpw_vs_1st": 28.7,
+      "rpw_vs_2nd": 40.6,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -1.964,
+      "1st_reliance": -0.149,
+      "return_aggro": -0.569,
+      "rally_skew": 0.0,
+      "serve_consist": 0.125
     }
   },
   "Jaume Munar": {
@@ -984,19 +924,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 67.5,
-      "fsp": 61.0,
-      "sspw": 55.3,
-      "rpw_vs_1st": 28.8,
-      "rpw_vs_2nd": 42.4,
-      "rally_skew": -3.3
+      "fspw": 69.2,
+      "fsp": 60.9,
+      "sspw": 52.4,
+      "rpw_vs_1st": 28.5,
+      "rpw_vs_2nd": 44.8,
+      "rally_skew": 15.9
     },
     "z_scores": {
-      "serve_lean": -1.165,
-      "1st_reliance": -0.862,
-      "return_aggro": -0.308,
-      "rally_skew": -0.412,
-      "serve_consist": -0.5
+      "serve_lean": -1.524,
+      "1st_reliance": -0.372,
+      "return_aggro": 0.108,
+      "rally_skew": 1.987,
+      "serve_consist": -0.525
     }
   },
   "Christopher Eubanks": {
@@ -1004,39 +944,39 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 78.4,
-      "fsp": 71.6,
-      "sspw": 55.6,
-      "rpw_vs_1st": 22.0,
-      "rpw_vs_2nd": 37.2,
+      "fspw": 74.1,
+      "fsp": 69.3,
+      "sspw": 56.9,
+      "rpw_vs_1st": 21.9,
+      "rpw_vs_2nd": 39.1,
       "rally_skew": -3.2
     },
     "z_scores": {
-      "serve_lean": 1.406,
-      "1st_reliance": 0.266,
-      "return_aggro": -0.062,
+      "serve_lean": 0.948,
+      "1st_reliance": -0.33,
+      "return_aggro": 0.246,
       "rally_skew": -0.4,
-      "serve_consist": 2.15
+      "serve_consist": 1.575
     }
   },
   "Henry Searle": {
-    "id": 4,
-    "label": "Big-Serve Power Server",
-    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 75.7,
-      "fsp": 57.4,
-      "sspw": 53.2,
-      "rpw_vs_1st": 17.8,
-      "rpw_vs_2nd": 47.5,
+      "fspw": 74.6,
+      "fsp": 57.8,
+      "sspw": 51.6,
+      "rpw_vs_1st": 17.7,
+      "rpw_vs_2nd": 47.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.376,
-      "1st_reliance": 0.234,
-      "return_aggro": 2.169,
+      "serve_lean": 0.152,
+      "1st_reliance": 0.287,
+      "return_aggro": 2.154,
       "rally_skew": 0.0,
-      "serve_consist": -1.4
+      "serve_consist": -1.3
     }
   },
   "Liam Broady": {
@@ -1044,59 +984,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 68.4,
-      "fsp": 58.8,
-      "sspw": 52.7,
-      "rpw_vs_1st": 32.3,
-      "rpw_vs_2nd": 41.2,
-      "rally_skew": 3.7
-    },
-    "z_scores": {
-      "serve_lean": -1.709,
-      "1st_reliance": -0.489,
-      "return_aggro": -1.031,
-      "rally_skew": 0.462,
-      "serve_consist": -1.05
-    }
-  },
-  "Soonwoo Kwon": {
-    "id": 4,
-    "label": "Big-Serve Power Server",
-    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 71.3,
-      "fsp": 59.9,
-      "sspw": 49.5,
-      "rpw_vs_1st": 11.0,
-      "rpw_vs_2nd": 43.7,
-      "rally_skew": -8.5
-    },
-    "z_scores": {
-      "serve_lean": 0.999,
-      "1st_reliance": 0.16,
-      "return_aggro": 2.631,
-      "rally_skew": -1.062,
-      "serve_consist": -0.775
-    }
-  },
-  "Jason Jung": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 75.2,
-      "fsp": 60.5,
-      "sspw": 45.7,
-      "rpw_vs_1st": 28.4,
-      "rpw_vs_2nd": 40.0,
+      "fspw": 69.4,
+      "fsp": 54.6,
+      "sspw": 48.7,
+      "rpw_vs_1st": 31.3,
+      "rpw_vs_2nd": 41.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.101,
-      "1st_reliance": 0.979,
-      "return_aggro": -0.615,
+      "serve_lean": -1.953,
+      "1st_reliance": 0.043,
+      "return_aggro": -0.769,
       "rally_skew": 0.0,
-      "serve_consist": -0.625
+      "serve_consist": -2.1
     }
   },
   "William Blumberg": {
@@ -1120,43 +1020,43 @@
     }
   },
   "Otto Virtanen": {
-    "id": 4,
-    "label": "Big-Serve Power Server",
-    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 74.0,
-      "fsp": 59.3,
-      "sspw": 65.5,
-      "rpw_vs_1st": 23.8,
-      "rpw_vs_2nd": 47.2,
-      "rally_skew": 16.4
+      "fspw": 74.3,
+      "fsp": 59.6,
+      "sspw": 59.8,
+      "rpw_vs_1st": 24.0,
+      "rpw_vs_2nd": 47.8,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.627,
-      "1st_reliance": -1.255,
-      "return_aggro": 1.2,
-      "rally_skew": 2.05,
-      "serve_consist": -0.925
+      "serve_lean": -0.011,
+      "1st_reliance": -0.617,
+      "return_aggro": 1.262,
+      "rally_skew": 0.0,
+      "serve_consist": -0.85
     }
   },
   "Alexei Popyrin": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 73.2,
-      "fsp": 62.5,
-      "sspw": 51.5,
-      "rpw_vs_1st": 22.6,
-      "rpw_vs_2nd": 40.5,
+      "fspw": 77.1,
+      "fsp": 68.5,
+      "sspw": 50.3,
+      "rpw_vs_1st": 21.9,
+      "rpw_vs_2nd": 38.0,
       "rally_skew": 18.1
     },
     "z_scores": {
-      "serve_lean": 0.07,
-      "1st_reliance": 0.149,
-      "return_aggro": 0.354,
+      "serve_lean": 0.683,
+      "1st_reliance": 0.691,
+      "return_aggro": 0.077,
       "rally_skew": 2.263,
-      "serve_consist": -0.125
+      "serve_consist": 1.375
     }
   },
   "Mitchell Krueger": {
@@ -1164,19 +1064,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 67.6,
-      "fsp": 67.3,
-      "sspw": 43.9,
-      "rpw_vs_1st": 23.5,
-      "rpw_vs_2nd": 29.9,
+      "fspw": 69.4,
+      "fsp": 68.4,
+      "sspw": 48.0,
+      "rpw_vs_1st": 27.6,
+      "rpw_vs_2nd": 30.6,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.149,
-      "1st_reliance": 0.362,
-      "return_aggro": -1.415,
+      "serve_lean": -0.239,
+      "1st_reliance": 0.117,
+      "return_aggro": -1.938,
       "rally_skew": 0.0,
-      "serve_consist": 1.075
+      "serve_consist": 1.35
     }
   },
   "Ugo Humbert": {
@@ -1184,19 +1084,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.5,
-      "fsp": 60.0,
-      "sspw": 53.5,
-      "rpw_vs_1st": 29.9,
-      "rpw_vs_2nd": 42.8,
-      "rally_skew": -16.1
+      "fspw": 75.1,
+      "fsp": 62.6,
+      "sspw": 56.3,
+      "rpw_vs_1st": 30.9,
+      "rpw_vs_2nd": 44.1,
+      "rally_skew": -10.6
     },
     "z_scores": {
-      "serve_lean": -1.183,
-      "1st_reliance": -0.245,
-      "return_aggro": -0.415,
-      "rally_skew": -2.013,
-      "serve_consist": -0.75
+      "serve_lean": -0.863,
+      "1st_reliance": -0.16,
+      "return_aggro": -0.369,
+      "rally_skew": -1.325,
+      "serve_consist": -0.1
     }
   },
   "Dennis Novak": {
@@ -1204,19 +1104,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 74.5,
-      "fsp": 62.3,
-      "sspw": 49.7,
-      "rpw_vs_1st": 20.9,
-      "rpw_vs_2nd": 40.8,
+      "fspw": 75.0,
+      "fsp": 61.7,
+      "sspw": 52.4,
+      "rpw_vs_1st": 21.6,
+      "rpw_vs_2nd": 41.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.218,
-      "1st_reliance": 0.479,
-      "return_aggro": 0.662,
+      "serve_lean": 0.378,
+      "1st_reliance": 0.245,
+      "return_aggro": 0.631,
       "rally_skew": 0.0,
-      "serve_consist": -0.175
+      "serve_consist": -0.325
     }
   },
   "Jesper De Jong": {
@@ -1239,44 +1139,24 @@
       "serve_consist": 0.2
     }
   },
-  "Gianluca Mager": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 72.9,
-      "fsp": 59.1,
-      "sspw": 56.7,
-      "rpw_vs_1st": 25.0,
-      "rpw_vs_2nd": 43.1,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -0.069,
-      "1st_reliance": -0.436,
-      "return_aggro": 0.385,
-      "rally_skew": 0.0,
-      "serve_consist": -0.975
-    }
-  },
   "Jay Clarke": {
     "id": 2,
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 63.9,
-      "fsp": 56.0,
-      "sspw": 53.5,
-      "rpw_vs_1st": 24.5,
-      "rpw_vs_2nd": 42.2,
+      "fspw": 60.6,
+      "fsp": 58.9,
+      "sspw": 51.3,
+      "rpw_vs_1st": 26.2,
+      "rpw_vs_2nd": 34.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.035,
-      "1st_reliance": -1.053,
-      "return_aggro": 0.323,
+      "serve_lean": -0.976,
+      "1st_reliance": -1.17,
+      "return_aggro": -1.077,
       "rally_skew": 0.0,
-      "serve_consist": -1.75
+      "serve_consist": -1.025
     }
   },
   "Adrian Mannarino": {
@@ -1284,19 +1164,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.1,
-      "fsp": 61.8,
-      "sspw": 56.9,
-      "rpw_vs_1st": 30.7,
-      "rpw_vs_2nd": 49.5,
-      "rally_skew": -11.8
+      "fspw": 67.1,
+      "fsp": 61.6,
+      "sspw": 58.1,
+      "rpw_vs_1st": 26.5,
+      "rpw_vs_2nd": 48.9,
+      "rally_skew": -12.7
     },
     "z_scores": {
-      "serve_lean": -1.919,
-      "1st_reliance": -0.862,
-      "return_aggro": 0.492,
-      "rally_skew": -1.475,
-      "serve_consist": -0.3
+      "serve_lean": -1.315,
+      "1st_reliance": -1.202,
+      "return_aggro": 1.046,
+      "rally_skew": -1.587,
+      "serve_consist": -0.35
     }
   },
   "Jason Kubler": {
@@ -1320,23 +1200,23 @@
     }
   },
   "Casper Ruud": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 73.9,
-      "fsp": 63.6,
-      "sspw": 53.4,
-      "rpw_vs_1st": 29.3,
-      "rpw_vs_2nd": 40.7,
-      "rally_skew": 6.1
+      "fspw": 73.8,
+      "fsp": 62.5,
+      "sspw": 50.5,
+      "rpw_vs_1st": 30.5,
+      "rpw_vs_2nd": 40.3,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.655,
-      "1st_reliance": 0.021,
-      "return_aggro": -0.646,
-      "rally_skew": 0.763,
-      "serve_consist": 0.15
+      "serve_lean": -1.081,
+      "1st_reliance": 0.319,
+      "return_aggro": -0.892,
+      "rally_skew": 0.0,
+      "serve_consist": -0.125
     }
   },
   "Shintaro Mochizuki": {
@@ -1344,79 +1224,59 @@
     "label": "Pure Return Specialist (1st-serve neutralizer)",
     "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 61.7,
-      "fsp": 69.1,
-      "sspw": 33.3,
-      "rpw_vs_1st": 23.5,
-      "rpw_vs_2nd": 33.3,
+      "fspw": 63.6,
+      "fsp": 64.7,
+      "sspw": 39.2,
+      "rpw_vs_1st": 22.8,
+      "rpw_vs_2nd": 36.7,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -2.124,
-      "1st_reliance": 0.862,
-      "return_aggro": -0.892,
+      "serve_lean": -1.639,
+      "1st_reliance": 0.436,
+      "return_aggro": -0.262,
       "rally_skew": 0.0,
-      "serve_consist": 1.525
-    }
-  },
-  "Juan Ignacio Londero": {
-    "id": 3,
-    "label": "Pure Return Specialist (1st-serve neutralizer)",
-    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 70.3,
-      "fsp": 61.2,
-      "sspw": 38.3,
-      "rpw_vs_1st": 26.3,
-      "rpw_vs_2nd": 45.1,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -2.553,
-      "1st_reliance": 1.245,
-      "return_aggro": 0.492,
-      "rally_skew": 0.0,
-      "serve_consist": -0.45
+      "serve_consist": 0.425
     }
   },
   "Alexander Bublik": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 85.1,
-      "fsp": 61.7,
-      "sspw": 56.0,
-      "rpw_vs_1st": 27.4,
-      "rpw_vs_2nd": 45.5,
-      "rally_skew": 3.8
+      "fspw": 83.9,
+      "fsp": 64.7,
+      "sspw": 53.7,
+      "rpw_vs_1st": 24.8,
+      "rpw_vs_2nd": 42.8,
+      "rally_skew": -2.4
     },
     "z_scores": {
-      "serve_lean": 0.361,
-      "1st_reliance": 0.936,
-      "return_aggro": 0.385,
-      "rally_skew": 0.475,
-      "serve_consist": -0.325
+      "serve_lean": 0.693,
+      "1st_reliance": 1.053,
+      "return_aggro": 0.369,
+      "rally_skew": -0.3,
+      "serve_consist": 0.425
     }
   },
   "Aljaz Bedene": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 4,
+    "label": "Big-Serve Power Server",
+    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
       "fspw": 77.1,
-      "fsp": 57.5,
-      "sspw": 51.3,
-      "rpw_vs_1st": 27.6,
-      "rpw_vs_2nd": 39.2,
+      "fsp": 53.2,
+      "sspw": 49.0,
+      "rpw_vs_1st": 20.7,
+      "rpw_vs_2nd": 38.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.165,
-      "1st_reliance": 0.585,
-      "return_aggro": -0.615,
+      "serve_lean": 0.635,
+      "1st_reliance": 0.83,
+      "return_aggro": 0.385,
       "rally_skew": 0.0,
-      "serve_consist": -1.375
+      "serve_consist": -2.45
     }
   },
   "Gael Monfils": {
@@ -1424,19 +1284,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 76.7,
-      "fsp": 61.9,
-      "sspw": 54.2,
-      "rpw_vs_1st": 26.4,
-      "rpw_vs_2nd": 32.7,
+      "fspw": 80.1,
+      "fsp": 60.5,
+      "sspw": 56.3,
+      "rpw_vs_1st": 26.8,
+      "rpw_vs_2nd": 31.0,
       "rally_skew": 7.2
     },
     "z_scores": {
-      "serve_lean": 0.982,
-      "1st_reliance": 0.234,
-      "return_aggro": -1.431,
+      "serve_lean": 1.633,
+      "1st_reliance": 0.372,
+      "return_aggro": -1.754,
       "rally_skew": 0.9,
-      "serve_consist": -0.275
+      "serve_consist": -0.625
     }
   },
   "Zizou Bergs": {
@@ -1444,19 +1304,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 76.6,
-      "fsp": 66.9,
-      "sspw": 57.7,
-      "rpw_vs_1st": 19.8,
-      "rpw_vs_2nd": 38.1,
-      "rally_skew": 15.1
+      "fspw": 80.2,
+      "fsp": 66.6,
+      "sspw": 57.9,
+      "rpw_vs_1st": 18.9,
+      "rpw_vs_2nd": 40.9,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.666,
-      "1st_reliance": -0.149,
-      "return_aggro": 0.415,
-      "rally_skew": 1.888,
-      "serve_consist": 0.975
+      "serve_lean": 1.831,
+      "1st_reliance": 0.213,
+      "return_aggro": 0.985,
+      "rally_skew": 0.0,
+      "serve_consist": 0.9
     }
   },
   "Yibing Wu": {
@@ -1484,19 +1344,19 @@
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 73.3,
-      "fsp": 54.6,
-      "sspw": 57.8,
-      "rpw_vs_1st": 23.3,
-      "rpw_vs_2nd": 33.9,
-      "rally_skew": 12.0
+      "fspw": 72.6,
+      "fsp": 50.4,
+      "sspw": 57.3,
+      "rpw_vs_1st": 21.1,
+      "rpw_vs_2nd": 34.7,
+      "rally_skew": 10.3
     },
     "z_scores": {
-      "serve_lean": 1.343,
-      "1st_reliance": -0.511,
-      "return_aggro": -0.769,
-      "rally_skew": 1.5,
-      "serve_consist": -2.1
+      "serve_lean": 1.455,
+      "1st_reliance": -0.532,
+      "return_aggro": -0.308,
+      "rally_skew": 1.288,
+      "serve_consist": -3.15
     }
   },
   "Pavel Kotov": {
@@ -1504,19 +1364,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 69.9,
-      "fsp": 65.3,
-      "sspw": 60.7,
-      "rpw_vs_1st": 20.8,
-      "rpw_vs_2nd": 38.6,
+      "fspw": 72.0,
+      "fsp": 63.6,
+      "sspw": 51.0,
+      "rpw_vs_1st": 22.8,
+      "rpw_vs_2nd": 35.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.159,
-      "1st_reliance": -1.181,
-      "return_aggro": 0.338,
+      "serve_lean": 0.483,
+      "1st_reliance": 0.074,
+      "return_aggro": -0.508,
       "rally_skew": 0.0,
-      "serve_consist": 0.575
+      "serve_consist": 0.15
     }
   },
   "Borna Gojo": {
@@ -1544,19 +1404,19 @@
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 77.2,
-      "fsp": 54.5,
-      "sspw": 53.3,
-      "rpw_vs_1st": 24.6,
-      "rpw_vs_2nd": 39.1,
-      "rally_skew": 7.3
+      "fspw": 77.5,
+      "fsp": 55.5,
+      "sspw": 52.6,
+      "rpw_vs_1st": 25.7,
+      "rpw_vs_2nd": 38.1,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.484,
-      "1st_reliance": 0.383,
-      "return_aggro": -0.169,
-      "rally_skew": 0.913,
-      "serve_consist": -2.125
+      "serve_lean": 0.395,
+      "1st_reliance": 0.489,
+      "return_aggro": -0.492,
+      "rally_skew": 0.0,
+      "serve_consist": -1.875
     }
   },
   "Mattia Bellucci": {
@@ -1566,14 +1426,14 @@
     "raw": {
       "fspw": 78.9,
       "fsp": 51.7,
-      "sspw": 61.5,
+      "sspw": 60.8,
       "rpw_vs_1st": 25.9,
       "rpw_vs_2nd": 38.9,
       "rally_skew": -20.5
     },
     "z_scores": {
-      "serve_lean": 1.295,
-      "1st_reliance": -0.309,
+      "serve_lean": 1.225,
+      "1st_reliance": -0.234,
       "return_aggro": -0.4,
       "rally_skew": -2.562,
       "serve_consist": -2.825
@@ -1584,19 +1444,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 65.2,
-      "fsp": 61.1,
-      "sspw": 52.2,
-      "rpw_vs_1st": 16.5,
-      "rpw_vs_2nd": 28.0,
+      "fspw": 67.6,
+      "fsp": 61.3,
+      "sspw": 52.1,
+      "rpw_vs_1st": 17.9,
+      "rpw_vs_2nd": 31.9,
       "rally_skew": 2.1
     },
     "z_scores": {
-      "serve_lean": 1.673,
-      "1st_reliance": -0.777,
-      "return_aggro": -0.631,
+      "serve_lean": 1.248,
+      "1st_reliance": -0.511,
+      "return_aggro": -0.246,
       "rally_skew": 0.263,
-      "serve_consist": -0.475
+      "serve_consist": -0.425
     }
   },
   "Lloyd Harris": {
@@ -1604,39 +1464,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 75.6,
+      "fspw": 77.5,
       "fsp": 67.3,
-      "sspw": 53.6,
-      "rpw_vs_1st": 25.9,
-      "rpw_vs_2nd": 39.6,
+      "sspw": 54.3,
+      "rpw_vs_1st": 25.7,
+      "rpw_vs_2nd": 39.5,
       "rally_skew": -17.6
     },
     "z_scores": {
-      "serve_lean": 0.127,
-      "1st_reliance": 0.181,
-      "return_aggro": -0.292,
+      "serve_lean": 0.41,
+      "1st_reliance": 0.309,
+      "return_aggro": -0.277,
       "rally_skew": -2.2,
       "serve_consist": 1.075
-    }
-  },
-  "Zhizhen Zhang": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 73.3,
-      "fsp": 65.6,
-      "sspw": 46.0,
-      "rpw_vs_1st": 27.2,
-      "rpw_vs_2nd": 36.0,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -0.628,
-      "1st_reliance": 0.745,
-      "return_aggro": -1.046,
-      "rally_skew": 0.0,
-      "serve_consist": 0.65
     }
   },
   "Alex Bolt": {
@@ -1644,59 +1484,79 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 67.3,
-      "fsp": 63.4,
-      "sspw": 56.0,
-      "rpw_vs_1st": 20.7,
-      "rpw_vs_2nd": 36.6,
+      "fspw": 67.8,
+      "fsp": 62.2,
+      "sspw": 58.2,
+      "rpw_vs_1st": 19.5,
+      "rpw_vs_2nd": 36.3,
       "rally_skew": -2.8
     },
     "z_scores": {
-      "serve_lean": 0.689,
-      "1st_reliance": -0.957,
-      "return_aggro": 0.046,
+      "serve_lean": 1.159,
+      "1st_reliance": -1.138,
+      "return_aggro": 0.185,
       "rally_skew": -0.35,
-      "serve_consist": 0.1
+      "serve_consist": -0.2
+    }
+  },
+  "Zhizhen Zhang": {
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "raw": {
+      "fspw": 75.0,
+      "fsp": 66.2,
+      "sspw": 49.6,
+      "rpw_vs_1st": 25.8,
+      "rpw_vs_2nd": 37.2,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -0.046,
+      "1st_reliance": 0.543,
+      "return_aggro": -0.646,
+      "rally_skew": 0.0,
+      "serve_consist": 0.8
     }
   },
   "Karen Khachanov": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 77.3,
-      "fsp": 65.4,
+      "fspw": 79.4,
+      "fsp": 66.2,
       "sspw": 57.3,
-      "rpw_vs_1st": 24.0,
-      "rpw_vs_2nd": 46.4,
+      "rpw_vs_1st": 20.9,
+      "rpw_vs_2nd": 46.2,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.168,
-      "1st_reliance": -0.032,
-      "return_aggro": 1.046,
+      "serve_lean": 0.824,
+      "1st_reliance": 0.191,
+      "return_aggro": 1.492,
       "rally_skew": 0.0,
-      "serve_consist": 0.6
+      "serve_consist": 0.8
     }
   },
   "Pablo Andujar": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 62.6,
-      "fsp": 65.2,
-      "sspw": 48.6,
-      "rpw_vs_1st": 22.5,
-      "rpw_vs_2nd": 44.4,
+      "fspw": 63.2,
+      "fsp": 66.0,
+      "sspw": 37.1,
+      "rpw_vs_1st": 22.9,
+      "rpw_vs_2nd": 29.6,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.602,
-      "1st_reliance": -0.67,
-      "return_aggro": 0.969,
+      "serve_lean": -1.11,
+      "1st_reliance": 0.617,
+      "return_aggro": -1.369,
       "rally_skew": 0.0,
-      "serve_consist": 0.55
+      "serve_consist": 0.75
     }
   },
   "Elias Ymer": {
@@ -1705,18 +1565,18 @@
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
       "fspw": 65.5,
-      "fsp": 53.9,
-      "sspw": 49.8,
-      "rpw_vs_1st": 23.3,
-      "rpw_vs_2nd": 42.2,
-      "rally_skew": 1.4
+      "fsp": 54.5,
+      "sspw": 44.0,
+      "rpw_vs_1st": 23.5,
+      "rpw_vs_2nd": 42.3,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.088,
-      "1st_reliance": -0.489,
-      "return_aggro": 0.508,
-      "rally_skew": 0.175,
-      "serve_consist": -2.275
+      "serve_lean": -1.708,
+      "1st_reliance": 0.128,
+      "return_aggro": 0.492,
+      "rally_skew": 0.0,
+      "serve_consist": -2.125
     }
   },
   "Alastair Gray": {
@@ -1724,39 +1584,39 @@
     "label": "Pure Return Specialist (1st-serve neutralizer)",
     "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.4,
-      "fsp": 61.1,
-      "sspw": 43.0,
-      "rpw_vs_1st": 31.5,
-      "rpw_vs_2nd": 38.2,
+      "fspw": 74.6,
+      "fsp": 63.4,
+      "sspw": 45.3,
+      "rpw_vs_1st": 28.1,
+      "rpw_vs_2nd": 44.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.959,
-      "1st_reliance": 0.862,
-      "return_aggro": -1.369,
+      "serve_lean": -1.608,
+      "1st_reliance": 0.957,
+      "return_aggro": 0.062,
       "rally_skew": 0.0,
-      "serve_consist": -0.475
+      "serve_consist": 0.1
     }
   },
-  "Norbert Gombos": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
+  "Gabriel Diallo": {
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 72.8,
-      "fsp": 60.4,
-      "sspw": 48.8,
-      "rpw_vs_1st": 17.9,
-      "rpw_vs_2nd": 24.2,
+      "fspw": 68.9,
+      "fsp": 52.6,
+      "sspw": 42.0,
+      "rpw_vs_1st": 23.8,
+      "rpw_vs_2nd": 34.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 2.247,
-      "1st_reliance": 0.394,
-      "return_aggro": -1.431,
+      "serve_lean": -0.82,
+      "1st_reliance": 0.702,
+      "return_aggro": -0.692,
       "rally_skew": 0.0,
-      "serve_consist": -0.65
+      "serve_consist": -2.6
     }
   },
   "Charles Broom": {
@@ -1764,19 +1624,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 62.9,
-      "fsp": 66.7,
-      "sspw": 58.6,
-      "rpw_vs_1st": 23.2,
-      "rpw_vs_2nd": 46.3,
-      "rally_skew": -13.3
+      "fspw": 61.4,
+      "fsp": 69.4,
+      "sspw": 48.2,
+      "rpw_vs_1st": 26.7,
+      "rpw_vs_2nd": 46.6,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.886,
-      "1st_reliance": -1.702,
-      "return_aggro": 1.154,
-      "rally_skew": -1.662,
-      "serve_consist": 0.925
+      "serve_lean": -2.596,
+      "1st_reliance": -0.755,
+      "return_aggro": 0.662,
+      "rally_skew": 0.0,
+      "serve_consist": 1.6
     }
   },
   "Daniil Medvedev": {
@@ -1784,39 +1644,39 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 75.9,
-      "fsp": 67.3,
-      "sspw": 53.9,
-      "rpw_vs_1st": 28.9,
-      "rpw_vs_2nd": 46.8,
-      "rally_skew": -7.0
+      "fspw": 75.0,
+      "fsp": 65.9,
+      "sspw": 56.0,
+      "rpw_vs_1st": 27.7,
+      "rpw_vs_2nd": 46.4,
+      "rally_skew": -6.6
     },
     "z_scores": {
-      "serve_lean": -1.044,
-      "1st_reliance": 0.181,
-      "return_aggro": 0.354,
-      "rally_skew": -0.875,
-      "serve_consist": 1.075
+      "serve_lean": -0.7,
+      "1st_reliance": -0.138,
+      "return_aggro": 0.477,
+      "rally_skew": -0.825,
+      "serve_consist": 0.725
     }
   },
   "Harold Mayot": {
-    "id": 3,
-    "label": "Pure Return Specialist (1st-serve neutralizer)",
-    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 76.6,
-      "fsp": 66.5,
-      "sspw": 50.7,
-      "rpw_vs_1st": 32.9,
-      "rpw_vs_2nd": 43.5,
+      "fspw": 75.1,
+      "fsp": 64.4,
+      "sspw": 53.0,
+      "rpw_vs_1st": 29.2,
+      "rpw_vs_2nd": 38.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.505,
-      "1st_reliance": 0.596,
-      "return_aggro": -0.769,
+      "serve_lean": -0.361,
+      "1st_reliance": 0.191,
+      "return_aggro": -0.923,
       "rally_skew": 0.0,
-      "serve_consist": 0.875
+      "serve_consist": 0.35
     }
   },
   "Felipe Meligeni Alves": {
@@ -1826,37 +1686,37 @@
     "raw": {
       "fspw": 75.4,
       "fsp": 64.8,
-      "sspw": 46.4,
+      "sspw": 41.9,
       "rpw_vs_1st": 19.4,
       "rpw_vs_2nd": 33.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.018,
-      "1st_reliance": 0.926,
+      "serve_lean": 0.568,
+      "1st_reliance": 1.404,
       "return_aggro": -0.262,
       "rally_skew": 0.0,
       "serve_consist": 0.45
     }
   },
   "Mikhail Kukushkin": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 55.6,
-      "fsp": 64.6,
-      "sspw": 40.6,
-      "rpw_vs_1st": 20.5,
-      "rpw_vs_2nd": 35.6,
+      "fspw": 54.2,
+      "fsp": 64.9,
+      "sspw": 38.5,
+      "rpw_vs_1st": 28.8,
+      "rpw_vs_2nd": 39.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.775,
-      "1st_reliance": -0.564,
-      "return_aggro": -0.077,
+      "serve_lean": -3.709,
+      "1st_reliance": -0.489,
+      "return_aggro": -0.785,
       "rally_skew": 0.0,
-      "serve_consist": 0.4
+      "serve_consist": 0.475
     }
   },
   "Bernabe Zapata Miralles": {
@@ -1864,19 +1724,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 66.5,
-      "fsp": 62.9,
-      "sspw": 54.3,
-      "rpw_vs_1st": 21.0,
-      "rpw_vs_2nd": 39.2,
+      "fspw": 67.0,
+      "fsp": 66.1,
+      "sspw": 51.4,
+      "rpw_vs_1st": 22.2,
+      "rpw_vs_2nd": 37.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.114,
-      "1st_reliance": -0.862,
-      "return_aggro": 0.4,
+      "serve_lean": -0.091,
+      "1st_reliance": -0.5,
+      "return_aggro": -0.077,
       "rally_skew": 0.0,
-      "serve_consist": -0.025
+      "serve_consist": 0.775
     }
   },
   "Jenson Brooksby": {
@@ -1884,19 +1744,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 67.0,
-      "fsp": 68.3,
-      "sspw": 55.7,
-      "rpw_vs_1st": 29.7,
-      "rpw_vs_2nd": 47.8,
+      "fspw": 63.7,
+      "fsp": 68.2,
+      "sspw": 56.5,
+      "rpw_vs_1st": 32.8,
+      "rpw_vs_2nd": 45.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.899,
-      "1st_reliance": -0.957,
-      "return_aggro": 0.385,
+      "serve_lean": -2.25,
+      "1st_reliance": -1.394,
+      "return_aggro": -0.523,
       "rally_skew": 0.0,
-      "serve_consist": 1.325
+      "serve_consist": 1.3
     }
   },
   "Billy Harris": {
@@ -1904,39 +1764,39 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 69.4,
-      "fsp": 66.7,
-      "sspw": 47.8,
-      "rpw_vs_1st": 14.9,
-      "rpw_vs_2nd": 34.4,
+      "fspw": 72.0,
+      "fsp": 65.2,
+      "sspw": 51.5,
+      "rpw_vs_1st": 20.3,
+      "rpw_vs_2nd": 34.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.133,
-      "1st_reliance": 0.138,
-      "return_aggro": 0.6,
+      "serve_lean": 0.957,
+      "1st_reliance": 0.021,
+      "return_aggro": -0.215,
       "rally_skew": 0.0,
-      "serve_consist": 0.925
+      "serve_consist": 0.55
     }
   },
   "Lorenzo Sonego": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 71.8,
-      "fsp": 70.8,
-      "sspw": 56.9,
-      "rpw_vs_1st": 27.3,
-      "rpw_vs_2nd": 41.0,
-      "rally_skew": -5.0
+      "fspw": 74.5,
+      "fsp": 71.7,
+      "sspw": 60.2,
+      "rpw_vs_1st": 23.9,
+      "rpw_vs_2nd": 41.7,
+      "rally_skew": -4.5
     },
     "z_scores": {
-      "serve_lean": -0.244,
-      "1st_reliance": -0.574,
-      "return_aggro": -0.292,
-      "rally_skew": -0.625,
-      "serve_consist": 1.95
+      "serve_lean": 0.74,
+      "1st_reliance": -0.638,
+      "return_aggro": 0.338,
+      "rally_skew": -0.562,
+      "serve_consist": 2.175
     }
   },
   "Hubert Hurkacz": {
@@ -1944,19 +1804,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 80.1,
-      "fsp": 66.2,
-      "sspw": 56.6,
-      "rpw_vs_1st": 25.8,
-      "rpw_vs_2nd": 36.8,
-      "rally_skew": 13.2
+      "fspw": 80.6,
+      "fsp": 68.5,
+      "sspw": 55.7,
+      "rpw_vs_1st": 22.7,
+      "rpw_vs_2nd": 40.3,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.162,
-      "1st_reliance": 0.34,
-      "return_aggro": -0.708,
-      "rally_skew": 1.65,
-      "serve_consist": 0.8
+      "serve_lean": 1.171,
+      "1st_reliance": 0.489,
+      "return_aggro": 0.308,
+      "rally_skew": 0.0,
+      "serve_consist": 1.375
     }
   },
   "Jiri Vesely": {
@@ -1964,19 +1824,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 78.1,
-      "fsp": 65.1,
-      "sspw": 49.3,
-      "rpw_vs_1st": 27.6,
-      "rpw_vs_2nd": 39.5,
+      "fspw": 78.5,
+      "fsp": 63.8,
+      "sspw": 48.0,
+      "rpw_vs_1st": 27.1,
+      "rpw_vs_2nd": 38.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.307,
-      "1st_reliance": 0.904,
-      "return_aggro": -0.569,
+      "serve_lean": -0.263,
+      "1st_reliance": 1.085,
+      "return_aggro": -0.585,
       "rally_skew": 0.0,
-      "serve_consist": 0.525
+      "serve_consist": 0.2
     }
   },
   "Flavio Cobolli": {
@@ -1984,19 +1844,19 @@
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 77.1,
-      "fsp": 49.0,
-      "sspw": 65.8,
-      "rpw_vs_1st": 23.8,
-      "rpw_vs_2nd": 44.7,
+      "fspw": 76.7,
+      "fsp": 51.1,
+      "sspw": 62.4,
+      "rpw_vs_1st": 22.7,
+      "rpw_vs_2nd": 43.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.217,
-      "1st_reliance": -0.957,
-      "return_aggro": 0.815,
+      "serve_lean": 1.131,
+      "1st_reliance": -0.638,
+      "return_aggro": 0.8,
       "rally_skew": 0.0,
-      "serve_consist": -3.5
+      "serve_consist": -2.975
     }
   },
   "Grigor Dimitrov": {
@@ -2004,19 +1864,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 81.7,
-      "fsp": 61.1,
-      "sspw": 56.2,
-      "rpw_vs_1st": 29.6,
-      "rpw_vs_2nd": 46.0,
-      "rally_skew": -1.4
+      "fspw": 85.3,
+      "fsp": 58.7,
+      "sspw": 58.9,
+      "rpw_vs_1st": 28.8,
+      "rpw_vs_2nd": 45.6,
+      "rally_skew": 3.6
     },
     "z_scores": {
-      "serve_lean": -0.298,
-      "1st_reliance": 0.553,
-      "return_aggro": 0.123,
-      "rally_skew": -0.175,
-      "serve_consist": -0.475
+      "serve_lean": 0.458,
+      "1st_reliance": 0.649,
+      "return_aggro": 0.185,
+      "rally_skew": 0.45,
+      "serve_consist": -1.075
     }
   },
   "Reilly Opelka": {
@@ -2024,19 +1884,39 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 77.7,
-      "fsp": 64.9,
-      "sspw": 54.6,
-      "rpw_vs_1st": 16.8,
-      "rpw_vs_2nd": 33.0,
+      "fspw": 79.3,
+      "fsp": 62.8,
+      "sspw": 52.9,
+      "rpw_vs_1st": 18.3,
+      "rpw_vs_2nd": 32.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 2.451,
-      "1st_reliance": 0.298,
-      "return_aggro": 0.092,
+      "serve_lean": 2.268,
+      "1st_reliance": 0.649,
+      "return_aggro": -0.215,
       "rally_skew": 0.0,
-      "serve_consist": 0.475
+      "serve_consist": -0.05
+    }
+  },
+  "Matteo Martineau": {
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "raw": {
+      "fspw": 72.0,
+      "fsp": 70.4,
+      "sspw": 61.9,
+      "rpw_vs_1st": 20.3,
+      "rpw_vs_2nd": 40.7,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": 1.308,
+      "1st_reliance": -1.085,
+      "return_aggro": 0.738,
+      "rally_skew": 0.0,
+      "serve_consist": 1.85
     }
   },
   "Kamil Majchrzak": {
@@ -2084,19 +1964,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 81.4,
-      "fsp": 65.6,
-      "sspw": 47.4,
-      "rpw_vs_1st": 22.6,
-      "rpw_vs_2nd": 40.3,
+      "fspw": 82.8,
+      "fsp": 65.1,
+      "sspw": 51.0,
+      "rpw_vs_1st": 24.2,
+      "rpw_vs_2nd": 40.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.428,
-      "1st_reliance": 1.457,
-      "return_aggro": 0.323,
+      "serve_lean": 0.72,
+      "1st_reliance": 1.223,
+      "return_aggro": 0.031,
       "rally_skew": 0.0,
-      "serve_consist": 0.65
+      "serve_consist": 0.525
     }
   },
   "Alexander Shevchenko": {
@@ -2104,19 +1984,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 61.4,
-      "fsp": 61.5,
-      "sspw": 57.6,
-      "rpw_vs_1st": 22.1,
-      "rpw_vs_2nd": 38.4,
+      "fspw": 63.9,
+      "fsp": 61.2,
+      "sspw": 55.0,
+      "rpw_vs_1st": 22.3,
+      "rpw_vs_2nd": 39.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.088,
-      "1st_reliance": -1.755,
-      "return_aggro": 0.108,
+      "serve_lean": -0.271,
+      "1st_reliance": -1.213,
+      "return_aggro": 0.246,
       "rally_skew": 0.0,
-      "serve_consist": -0.375
+      "serve_consist": -0.45
     }
   },
   "Rinky Hijikata": {
@@ -2124,19 +2004,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 74.3,
-      "fsp": 57.6,
-      "sspw": 51.8,
+      "fspw": 72.8,
+      "fsp": 58.6,
+      "sspw": 48.2,
       "rpw_vs_1st": 27.2,
-      "rpw_vs_2nd": 37.8,
+      "rpw_vs_2nd": 40.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.157,
-      "1st_reliance": 0.234,
-      "return_aggro": -0.769,
+      "serve_lean": -0.909,
+      "1st_reliance": 0.457,
+      "return_aggro": -0.415,
       "rally_skew": 0.0,
-      "serve_consist": -1.35
+      "serve_consist": -1.1
     }
   },
   "Pedro Cachin": {
@@ -2164,39 +2044,39 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 77.0,
-      "fsp": 60.9,
-      "sspw": 51.0,
-      "rpw_vs_1st": 25.7,
-      "rpw_vs_2nd": 38.0,
-      "rally_skew": -5.6
-    },
-    "z_scores": {
-      "serve_lean": 0.201,
-      "1st_reliance": 0.606,
-      "return_aggro": -0.508,
-      "rally_skew": -0.7,
-      "serve_consist": -0.525
-    }
-  },
-  "Hugo Gaston": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 65.8,
-      "fsp": 55.1,
-      "sspw": 53.2,
-      "rpw_vs_1st": 33.8,
-      "rpw_vs_2nd": 41.6,
+      "fspw": 78.7,
+      "fsp": 61.6,
+      "sspw": 46.7,
+      "rpw_vs_1st": 25.3,
+      "rpw_vs_2nd": 39.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -2.155,
-      "1st_reliance": -0.819,
-      "return_aggro": -1.2,
+      "serve_lean": -0.14,
+      "1st_reliance": 1.245,
+      "return_aggro": -0.277,
       "rally_skew": 0.0,
-      "serve_consist": -1.975
+      "serve_consist": -0.35
+    }
+  },
+  "Hugo Gaston": {
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 64.8,
+      "fsp": 55.6,
+      "sspw": 48.9,
+      "rpw_vs_1st": 35.8,
+      "rpw_vs_2nd": 42.5,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -3.061,
+      "1st_reliance": -0.468,
+      "return_aggro": -1.369,
+      "rally_skew": 0.0,
+      "serve_consist": -1.85
     }
   },
   "Marc Polmans": {
@@ -2204,19 +2084,19 @@
     "label": "Pure Return Specialist (1st-serve neutralizer)",
     "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.7,
-      "fsp": 65.4,
-      "sspw": 48.9,
-      "rpw_vs_1st": 36.5,
-      "rpw_vs_2nd": 44.7,
+      "fspw": 65.1,
+      "fsp": 64.9,
+      "sspw": 38.2,
+      "rpw_vs_1st": 32.2,
+      "rpw_vs_2nd": 45.2,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -2.778,
-      "1st_reliance": 0.266,
-      "return_aggro": -1.138,
+      "serve_lean": -3.89,
+      "1st_reliance": 0.702,
+      "return_aggro": -0.4,
       "rally_skew": 0.0,
-      "serve_consist": 0.6
+      "serve_consist": 0.475
     }
   },
   "Marin Cilic": {
@@ -2224,19 +2104,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 80.3,
-      "fsp": 60.0,
-      "sspw": 47.6,
-      "rpw_vs_1st": 30.4,
-      "rpw_vs_2nd": 45.2,
+      "fspw": 83.5,
+      "fsp": 57.2,
+      "sspw": 50.8,
+      "rpw_vs_1st": 29.2,
+      "rpw_vs_2nd": 40.4,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.311,
+      "serve_lean": 0.005,
       "1st_reliance": 1.319,
-      "return_aggro": -0.123,
+      "return_aggro": -0.677,
       "rally_skew": 0.0,
-      "serve_consist": -0.75
+      "serve_consist": -1.45
     }
   },
   "Mark Lajal": {
@@ -2246,37 +2126,37 @@
     "raw": {
       "fspw": 58.0,
       "fsp": 67.6,
-      "sspw": 61.3,
+      "sspw": 57.6,
       "rpw_vs_1st": 16.1,
       "rpw_vs_2nd": 37.9,
-      "rally_skew": 5.6
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.886,
-      "1st_reliance": -2.511,
+      "serve_lean": 0.516,
+      "1st_reliance": -2.117,
       "return_aggro": 0.954,
-      "rally_skew": 0.7,
+      "rally_skew": 0.0,
       "serve_consist": 1.15
     }
   },
   "Jurij Rodionov": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 68.9,
-      "fsp": 64.8,
-      "sspw": 49.7,
-      "rpw_vs_1st": 21.1,
-      "rpw_vs_2nd": 36.5,
+      "fspw": 67.3,
+      "fsp": 71.0,
+      "sspw": 42.5,
+      "rpw_vs_1st": 19.2,
+      "rpw_vs_2nd": 21.2,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.158,
-      "1st_reliance": -0.117,
-      "return_aggro": -0.031,
+      "serve_lean": 1.264,
+      "1st_reliance": 0.479,
+      "return_aggro": -2.092,
       "rally_skew": 0.0,
-      "serve_consist": 0.45
+      "serve_consist": 2.0
     }
   },
   "Tomas Barrios Vera": {
@@ -2284,59 +2164,39 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 67.0,
-      "fsp": 68.5,
-      "sspw": 58.8,
-      "rpw_vs_1st": 25.0,
-      "rpw_vs_2nd": 45.3,
+      "fspw": 62.2,
+      "fsp": 65.8,
+      "sspw": 57.3,
+      "rpw_vs_1st": 31.1,
+      "rpw_vs_2nd": 44.6,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.639,
-      "1st_reliance": -1.287,
-      "return_aggro": 0.723,
+      "serve_lean": -2.019,
+      "1st_reliance": -1.638,
+      "return_aggro": -0.323,
       "rally_skew": 0.0,
-      "serve_consist": 1.375
+      "serve_consist": 0.7
     }
   },
   "Maxime Cressy": {
-    "id": 4,
-    "label": "Big-Serve Power Server",
-    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 81.3,
-      "fsp": 57.8,
-      "sspw": 51.8,
-      "rpw_vs_1st": 26.5,
-      "rpw_vs_2nd": 35.2,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 0.869,
-      "1st_reliance": 0.979,
-      "return_aggro": -1.062,
-      "rally_skew": 0.0,
-      "serve_consist": -1.3
-    }
-  },
-  "Illya Marchenko": {
-    "id": 4,
-    "label": "Big-Serve Power Server",
-    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 73.3,
-      "fsp": 54.5,
-      "sspw": 56.0,
-      "rpw_vs_1st": 14.3,
+      "fspw": 81.0,
+      "fsp": 57.0,
+      "sspw": 48.2,
+      "rpw_vs_1st": 27.9,
       "rpw_vs_2nd": 34.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 2.437,
-      "1st_reliance": -0.319,
-      "return_aggro": 0.631,
+      "serve_lean": 0.415,
+      "1st_reliance": 1.33,
+      "return_aggro": -1.462,
       "rally_skew": 0.0,
-      "serve_consist": -2.125
+      "serve_consist": -1.5
     }
   },
   "Sebastian Baez": {
@@ -2344,99 +2204,59 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 66.5,
-      "fsp": 72.7,
-      "sspw": 55.1,
+      "fspw": 64.8,
+      "fsp": 73.0,
+      "sspw": 56.0,
       "rpw_vs_1st": 26.2,
-      "rpw_vs_2nd": 39.6,
+      "rpw_vs_2nd": 36.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.593,
-      "1st_reliance": -0.947,
-      "return_aggro": -0.338,
+      "serve_lean": -0.313,
+      "1st_reliance": -1.223,
+      "return_aggro": -0.815,
       "rally_skew": 0.0,
-      "serve_consist": 2.425
+      "serve_consist": 2.5
     }
   },
   "Sebastian Korda": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 77.1,
-      "fsp": 63.9,
-      "sspw": 58.5,
-      "rpw_vs_1st": 26.0,
-      "rpw_vs_2nd": 37.1,
+      "fspw": 79.6,
+      "fsp": 62.2,
+      "sspw": 54.5,
+      "rpw_vs_1st": 24.0,
+      "rpw_vs_2nd": 49.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.017,
-      "1st_reliance": -0.181,
-      "return_aggro": -0.692,
+      "serve_lean": -0.192,
+      "1st_reliance": 0.511,
+      "return_aggro": 1.446,
       "rally_skew": 0.0,
-      "serve_consist": 0.225
+      "serve_consist": -0.2
     }
   },
   "Daniel Altmaier": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 72.8,
-      "fsp": 60.9,
-      "sspw": 51.5,
-      "rpw_vs_1st": 24.4,
-      "rpw_vs_2nd": 34.0,
+      "fspw": 76.1,
+      "fsp": 59.2,
+      "sspw": 51.1,
+      "rpw_vs_1st": 26.3,
+      "rpw_vs_2nd": 35.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.499,
-      "1st_reliance": 0.106,
+      "serve_lean": 0.277,
+      "1st_reliance": 0.5,
       "return_aggro": -0.923,
       "rally_skew": 0.0,
-      "serve_consist": -0.525
-    }
-  },
-  "Soon Woo Kwon": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 70.5,
-      "fsp": 64.0,
-      "sspw": 48.4,
-      "rpw_vs_1st": 26.0,
-      "rpw_vs_2nd": 41.8,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -1.115,
-      "1st_reliance": 0.191,
-      "return_aggro": 0.031,
-      "rally_skew": 0.0,
-      "serve_consist": 0.25
-    }
-  },
-  "Lukas Lacko": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 71.7,
-      "fsp": 62.0,
-      "sspw": 64.6,
-      "rpw_vs_1st": 25.2,
-      "rpw_vs_2nd": 42.6,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 0.639,
-      "1st_reliance": -1.404,
-      "return_aggro": 0.277,
-      "rally_skew": 0.0,
-      "serve_consist": -0.25
+      "serve_consist": -0.95
     }
   },
   "John Isner": {
@@ -2500,23 +2320,23 @@
     }
   },
   "Paul Jubb": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.6,
-      "fsp": 60.9,
-      "sspw": 59.2,
-      "rpw_vs_1st": 27.9,
-      "rpw_vs_2nd": 37.1,
-      "rally_skew": -7.5
+      "fspw": 73.5,
+      "fsp": 59.8,
+      "sspw": 50.7,
+      "rpw_vs_1st": 31.8,
+      "rpw_vs_2nd": 41.8,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.134,
-      "1st_reliance": -1.053,
-      "return_aggro": -0.985,
-      "rally_skew": -0.938,
-      "serve_consist": -0.525
+      "serve_lean": -1.441,
+      "1st_reliance": 0.266,
+      "return_aggro": -0.862,
+      "rally_skew": 0.0,
+      "serve_consist": -0.8
     }
   },
   "Cristian Garin": {
@@ -2524,19 +2344,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 70.8,
-      "fsp": 60.6,
-      "sspw": 52.6,
-      "rpw_vs_1st": 32.2,
-      "rpw_vs_2nd": 44.4,
-      "rally_skew": -13.3
+      "fspw": 73.7,
+      "fsp": 61.8,
+      "sspw": 49.2,
+      "rpw_vs_1st": 24.5,
+      "rpw_vs_2nd": 40.3,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.843,
-      "1st_reliance": -0.223,
-      "return_aggro": -0.523,
-      "rally_skew": -1.663,
-      "serve_consist": -0.6
+      "serve_lean": -0.363,
+      "1st_reliance": 0.447,
+      "return_aggro": 0.031,
+      "rally_skew": 0.0,
+      "serve_consist": -0.3
     }
   },
   "Alexander Zverev": {
@@ -2544,19 +2364,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 82.3,
-      "fsp": 70.0,
-      "sspw": 59.8,
-      "rpw_vs_1st": 24.5,
-      "rpw_vs_2nd": 41.3,
+      "fspw": 83.7,
+      "fsp": 72.8,
+      "sspw": 62.5,
+      "rpw_vs_1st": 23.9,
+      "rpw_vs_2nd": 42.4,
       "rally_skew": 3.9
     },
     "z_scores": {
-      "serve_lean": 1.367,
-      "1st_reliance": 0.234,
-      "return_aggro": 0.185,
+      "serve_lean": 1.728,
+      "1st_reliance": 0.096,
+      "return_aggro": 0.446,
       "rally_skew": 0.487,
-      "serve_consist": 1.75
+      "serve_consist": 2.45
     }
   },
   "Gregoire Barrere": {
@@ -2564,19 +2384,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.2,
-      "fsp": 62.9,
-      "sspw": 53.7,
-      "rpw_vs_1st": 26.3,
-      "rpw_vs_2nd": 39.7,
+      "fspw": 69.8,
+      "fsp": 62.5,
+      "sspw": 54.8,
+      "rpw_vs_1st": 26.8,
+      "rpw_vs_2nd": 40.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.513,
-      "1st_reliance": -0.511,
-      "return_aggro": -0.338,
+      "serve_lean": -0.509,
+      "1st_reliance": -0.564,
+      "return_aggro": -0.292,
       "rally_skew": 0.0,
-      "serve_consist": -0.025
+      "serve_consist": -0.125
     }
   },
   "Fabio Fognini": {
@@ -2584,19 +2404,39 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 75.2,
-      "fsp": 58.7,
-      "sspw": 50.5,
-      "rpw_vs_1st": 28.3,
-      "rpw_vs_2nd": 43.5,
+      "fspw": 76.6,
+      "fsp": 57.4,
+      "sspw": 48.4,
+      "rpw_vs_1st": 30.6,
+      "rpw_vs_2nd": 44.1,
       "rally_skew": 0.6
     },
     "z_scores": {
-      "serve_lean": -0.995,
-      "1st_reliance": 0.468,
-      "return_aggro": -0.062,
+      "serve_lean": -1.473,
+      "1st_reliance": 0.84,
+      "return_aggro": -0.323,
       "rally_skew": 0.075,
-      "serve_consist": -1.075
+      "serve_consist": -1.4
+    }
+  },
+  "Taro Daniel": {
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 68.5,
+      "fsp": 58.0,
+      "sspw": 48.9,
+      "rpw_vs_1st": 23.1,
+      "rpw_vs_2nd": 37.9,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -0.399,
+      "1st_reliance": -0.074,
+      "return_aggro": -0.123,
+      "rally_skew": 0.0,
+      "serve_consist": -1.25
     }
   },
   "Guido Pella": {
@@ -2604,19 +2444,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 64.4,
-      "fsp": 71.3,
-      "sspw": 47.6,
-      "rpw_vs_1st": 23.8,
-      "rpw_vs_2nd": 43.0,
+      "fspw": 64.0,
+      "fsp": 73.8,
+      "sspw": 51.3,
+      "rpw_vs_1st": 24.3,
+      "rpw_vs_2nd": 47.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.569,
-      "1st_reliance": -0.372,
-      "return_aggro": 0.554,
+      "serve_lean": -1.84,
+      "1st_reliance": -0.809,
+      "return_aggro": 1.215,
       "rally_skew": 0.0,
-      "serve_consist": 2.075
+      "serve_consist": 2.7
     }
   },
   "Lucas Pouille": {
@@ -2624,59 +2464,59 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 72.1,
-      "fsp": 58.9,
-      "sspw": 55.7,
-      "rpw_vs_1st": 26.0,
-      "rpw_vs_2nd": 45.6,
+      "fspw": 71.6,
+      "fsp": 62.4,
+      "sspw": 51.7,
+      "rpw_vs_1st": 26.1,
+      "rpw_vs_2nd": 47.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.662,
-      "1st_reliance": -0.415,
-      "return_aggro": 0.615,
+      "serve_lean": -1.288,
+      "1st_reliance": -0.043,
+      "return_aggro": 0.831,
       "rally_skew": 0.0,
-      "serve_consist": -1.025
+      "serve_consist": -0.15
     }
   },
   "Max Purcell": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 71.1,
-      "fsp": 61.8,
-      "sspw": 46.3,
-      "rpw_vs_1st": 25.1,
-      "rpw_vs_2nd": 43.8,
-      "rally_skew": -25.0
-    },
-    "z_scores": {
-      "serve_lean": -1.364,
-      "1st_reliance": 0.479,
-      "return_aggro": 0.477,
-      "rally_skew": -3.125,
-      "serve_consist": -0.3
-    }
-  },
-  "Daniel Masur": {
     "id": 0,
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.2,
-      "fsp": 66.1,
-      "sspw": 48.8,
-      "rpw_vs_1st": 19.0,
-      "rpw_vs_2nd": 43.9,
+      "fspw": 72.7,
+      "fsp": 64.3,
+      "sspw": 50.8,
+      "rpw_vs_1st": 23.9,
+      "rpw_vs_2nd": 45.2,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.245,
-      "1st_reliance": 0.223,
-      "return_aggro": 1.431,
+      "serve_lean": -0.753,
+      "1st_reliance": 0.17,
+      "return_aggro": 0.877,
       "rally_skew": 0.0,
-      "serve_consist": 0.775
+      "serve_consist": 0.325
+    }
+  },
+  "James Mccabe": {
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 70.0,
+      "fsp": 78.1,
+      "sspw": 28.6,
+      "rpw_vs_1st": 31.4,
+      "rpw_vs_2nd": 45.5,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -4.323,
+      "1st_reliance": 2.245,
+      "return_aggro": -0.231,
+      "rally_skew": 0.0,
+      "serve_consist": 3.775
     }
   },
   "Andy Murray": {
@@ -2684,19 +2524,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 76.7,
-      "fsp": 60.7,
-      "sspw": 54.8,
-      "rpw_vs_1st": 28.3,
-      "rpw_vs_2nd": 52.0,
+      "fspw": 74.1,
+      "fsp": 61.6,
+      "sspw": 56.1,
+      "rpw_vs_1st": 25.1,
+      "rpw_vs_2nd": 50.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.373,
-      "1st_reliance": 0.17,
-      "return_aggro": 1.246,
+      "serve_lean": -0.8,
+      "1st_reliance": -0.245,
+      "return_aggro": 1.431,
       "rally_skew": 0.0,
-      "serve_consist": -0.575
+      "serve_consist": -0.35
     }
   },
   "John Millman": {
@@ -2704,19 +2544,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 68.3,
-      "fsp": 60.9,
-      "sspw": 49.8,
+      "fspw": 68.7,
+      "fsp": 60.6,
+      "sspw": 55.2,
       "rpw_vs_1st": 26.2,
-      "rpw_vs_2nd": 42.3,
+      "rpw_vs_2nd": 44.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.259,
-      "1st_reliance": -0.191,
-      "return_aggro": 0.077,
+      "serve_lean": -0.972,
+      "1st_reliance": -0.723,
+      "return_aggro": 0.477,
       "rally_skew": 0.0,
-      "serve_consist": -0.525
+      "serve_consist": -0.6
     }
   },
   "Albert Ramos": {
@@ -2724,59 +2564,39 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 65.7,
-      "fsp": 65.7,
-      "sspw": 49.3,
-      "rpw_vs_1st": 21.4,
-      "rpw_vs_2nd": 40.5,
+      "fspw": 66.0,
+      "fsp": 70.1,
+      "sspw": 46.2,
+      "rpw_vs_1st": 19.7,
+      "rpw_vs_2nd": 40.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.66,
-      "1st_reliance": -0.415,
-      "return_aggro": 0.538,
+      "serve_lean": -0.744,
+      "1st_reliance": -0.053,
+      "return_aggro": 0.862,
       "rally_skew": 0.0,
-      "serve_consist": 0.675
+      "serve_consist": 1.775
     }
   },
-  "Brayden Schnur": {
+  "Fernando Verdasco": {
     "id": 2,
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.8,
-      "fsp": 58.9,
-      "sspw": 48.3,
-      "rpw_vs_1st": 25.3,
-      "rpw_vs_2nd": 45.5,
+      "fspw": 55.8,
+      "fsp": 57.8,
+      "sspw": 50.0,
+      "rpw_vs_1st": 25.0,
+      "rpw_vs_2nd": 27.6,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.5,
-      "1st_reliance": 0.128,
-      "return_aggro": 0.708,
+      "serve_lean": -0.571,
+      "1st_reliance": -1.543,
+      "return_aggro": -2.0,
       "rally_skew": 0.0,
-      "serve_consist": -1.025
-    }
-  },
-  "Fernando Verdasco": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 66.1,
-      "fsp": 60.5,
-      "sspw": 50.6,
-      "rpw_vs_1st": 20.7,
-      "rpw_vs_2nd": 33.3,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 0.406,
-      "1st_reliance": -0.511,
-      "return_aggro": -0.462,
-      "rally_skew": 0.0,
-      "serve_consist": -0.625
+      "serve_consist": -1.3
     }
   },
   "Christopher Oconnell": {
@@ -2784,39 +2604,39 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 73.3,
-      "fsp": 66.3,
-      "sspw": 51.4,
-      "rpw_vs_1st": 21.7,
-      "rpw_vs_2nd": 44.0,
+      "fspw": 72.6,
+      "fsp": 66.4,
+      "sspw": 49.8,
+      "rpw_vs_1st": 19.8,
+      "rpw_vs_2nd": 43.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.191,
-      "1st_reliance": 0.17,
-      "return_aggro": 1.031,
+      "serve_lean": -0.032,
+      "1st_reliance": 0.266,
+      "return_aggro": 1.169,
       "rally_skew": 0.0,
-      "serve_consist": 0.825
+      "serve_consist": 0.85
     }
   },
   "Benoit Paire": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.8,
-      "fsp": 55.1,
-      "sspw": 36.4,
-      "rpw_vs_1st": 25.4,
-      "rpw_vs_2nd": 34.1,
+      "fspw": 73.9,
+      "fsp": 56.2,
+      "sspw": 37.9,
+      "rpw_vs_1st": 27.6,
+      "rpw_vs_2nd": 44.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.438,
-      "1st_reliance": 1.394,
-      "return_aggro": -1.062,
+      "serve_lean": -2.418,
+      "1st_reliance": 1.67,
+      "return_aggro": 0.246,
       "rally_skew": 0.0,
-      "serve_consist": -1.975
+      "serve_consist": -1.7
     }
   },
   "Jacob Fearnley": {
@@ -2824,19 +2644,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 77.9,
-      "fsp": 64.5,
-      "sspw": 62.4,
-      "rpw_vs_1st": 23.4,
-      "rpw_vs_2nd": 43.2,
+      "fspw": 77.7,
+      "fsp": 63.5,
+      "sspw": 61.4,
+      "rpw_vs_1st": 23.0,
+      "rpw_vs_2nd": 43.1,
       "rally_skew": 2.8
     },
     "z_scores": {
-      "serve_lean": 1.173,
-      "1st_reliance": -0.511,
-      "return_aggro": 0.646,
+      "serve_lean": 1.123,
+      "1st_reliance": -0.426,
+      "return_aggro": 0.692,
       "rally_skew": 0.35,
-      "serve_consist": 0.375
+      "serve_consist": 0.125
     }
   },
   "J J Wolf": {
@@ -2864,19 +2684,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 80.2,
-      "fsp": 63.8,
-      "sspw": 56.6,
-      "rpw_vs_1st": 26.9,
-      "rpw_vs_2nd": 36.8,
+      "fspw": 79.2,
+      "fsp": 64.3,
+      "sspw": 54.8,
+      "rpw_vs_1st": 27.6,
+      "rpw_vs_2nd": 37.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.014,
-      "1st_reliance": 0.351,
-      "return_aggro": -0.877,
+      "serve_lean": 0.609,
+      "1st_reliance": 0.436,
+      "return_aggro": -0.938,
       "rally_skew": 0.0,
-      "serve_consist": 0.2
+      "serve_consist": 0.325
     }
   },
   "Facundo Diaz Acosta": {
@@ -2886,37 +2706,37 @@
     "raw": {
       "fspw": 54.3,
       "fsp": 64.8,
-      "sspw": 54.8,
+      "sspw": 44.7,
       "rpw_vs_1st": 24.1,
       "rpw_vs_2nd": 33.3,
-      "rally_skew": 13.2
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.732,
-      "1st_reliance": -2.213,
+      "serve_lean": -1.742,
+      "1st_reliance": -1.138,
       "return_aggro": -0.985,
-      "rally_skew": 1.65,
+      "rally_skew": 0.0,
       "serve_consist": 0.45
     }
   },
   "Jeremy Chardy": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.2,
-      "fsp": 62.6,
-      "sspw": 51.2,
-      "rpw_vs_1st": 18.7,
-      "rpw_vs_2nd": 40.3,
+      "fspw": 57.4,
+      "fsp": 64.9,
+      "sspw": 30.3,
+      "rpw_vs_1st": 15.6,
+      "rpw_vs_2nd": 34.6,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.438,
-      "1st_reliance": -0.032,
-      "return_aggro": 0.923,
+      "serve_lean": -1.83,
+      "1st_reliance": 0.723,
+      "return_aggro": 0.523,
       "rally_skew": 0.0,
-      "serve_consist": -0.1
+      "serve_consist": 0.475
     }
   },
   "Carlos Alcaraz": {
@@ -2924,39 +2744,39 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 75.1,
-      "fsp": 64.3,
-      "sspw": 59.1,
-      "rpw_vs_1st": 34.3,
-      "rpw_vs_2nd": 47.0,
-      "rally_skew": -1.3
+      "fspw": 73.7,
+      "fsp": 62.2,
+      "sspw": 59.3,
+      "rpw_vs_1st": 35.6,
+      "rpw_vs_2nd": 45.3,
+      "rally_skew": -1.0
     },
     "z_scores": {
-      "serve_lean": -1.391,
-      "1st_reliance": -0.457,
-      "return_aggro": -0.446,
-      "rally_skew": -0.162,
-      "serve_consist": 0.325
+      "serve_lean": -1.495,
+      "1st_reliance": -0.628,
+      "return_aggro": -0.908,
+      "rally_skew": -0.125,
+      "serve_consist": -0.2
     }
   },
   "Jordan Thompson": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 72.8,
-      "fsp": 62.3,
-      "sspw": 55.0,
-      "rpw_vs_1st": 28.1,
-      "rpw_vs_2nd": 40.5,
-      "rally_skew": 9.8
+      "fspw": 74.5,
+      "fsp": 60.4,
+      "sspw": 53.5,
+      "rpw_vs_1st": 26.5,
+      "rpw_vs_2nd": 39.5,
+      "rally_skew": 20.0
     },
     "z_scores": {
-      "serve_lean": -0.402,
-      "1st_reliance": -0.266,
-      "return_aggro": -0.492,
-      "rally_skew": 1.225,
-      "serve_consist": -0.175
+      "serve_lean": -0.057,
+      "1st_reliance": 0.074,
+      "return_aggro": -0.4,
+      "rally_skew": 2.5,
+      "serve_consist": -0.65
     }
   },
   "Peter Gojowczyk": {
@@ -2964,19 +2784,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 77.5,
-      "fsp": 49.6,
-      "sspw": 43.5,
-      "rpw_vs_1st": 23.5,
-      "rpw_vs_2nd": 46.1,
+      "fspw": 71.8,
+      "fsp": 46.4,
+      "sspw": 45.4,
+      "rpw_vs_1st": 20.6,
+      "rpw_vs_2nd": 40.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.089,
-      "1st_reliance": 1.457,
-      "return_aggro": 1.077,
+      "serve_lean": -0.381,
+      "1st_reliance": 0.649,
+      "return_aggro": 0.662,
       "rally_skew": 0.0,
-      "serve_consist": -3.35
+      "serve_consist": -4.15
     }
   },
   "Henri Laaksonen": {
@@ -3004,39 +2824,39 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 78.8,
-      "fsp": 65.6,
-      "sspw": 54.3,
-      "rpw_vs_1st": 25.8,
-      "rpw_vs_2nd": 38.9,
+      "fspw": 78.3,
+      "fsp": 68.0,
+      "sspw": 55.5,
+      "rpw_vs_1st": 24.5,
+      "rpw_vs_2nd": 39.8,
       "rally_skew": 2.4
     },
     "z_scores": {
-      "serve_lean": 0.58,
-      "1st_reliance": 0.447,
-      "return_aggro": -0.385,
+      "serve_lean": 0.74,
+      "1st_reliance": 0.266,
+      "return_aggro": -0.046,
       "rally_skew": 0.3,
-      "serve_consist": 0.65
+      "serve_consist": 1.25
     }
   },
   "Pierre Hugues Herbert": {
-    "id": 3,
-    "label": "Pure Return Specialist (1st-serve neutralizer)",
-    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 79.6,
-      "fsp": 51.4,
-      "sspw": 39.3,
-      "rpw_vs_1st": 38.6,
-      "rpw_vs_2nd": 44.6,
+      "fspw": 88.4,
+      "fsp": 68.3,
+      "sspw": 30.0,
+      "rpw_vs_1st": 11.6,
+      "rpw_vs_2nd": 36.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -3.309,
-      "1st_reliance": 2.128,
-      "return_aggro": -1.477,
+      "serve_lean": 1.285,
+      "1st_reliance": 4.053,
+      "return_aggro": 1.477,
       "rally_skew": 0.0,
-      "serve_consist": -2.9
+      "serve_consist": 1.325
     }
   },
   "Dusan Lajovic": {
@@ -3044,19 +2864,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 65.3,
-      "fsp": 65.4,
-      "sspw": 55.0,
-      "rpw_vs_1st": 25.5,
-      "rpw_vs_2nd": 35.8,
+      "fspw": 65.4,
+      "fsp": 67.0,
+      "sspw": 50.4,
+      "rpw_vs_1st": 23.2,
+      "rpw_vs_2nd": 36.5,
       "rally_skew": -0.6
     },
     "z_scores": {
-      "serve_lean": -0.19,
-      "1st_reliance": -1.064,
-      "return_aggro": -0.815,
+      "serve_lean": -0.39,
+      "1st_reliance": -0.564,
+      "return_aggro": -0.354,
       "rally_skew": -0.075,
-      "serve_consist": 0.6
+      "serve_consist": 1.0
     }
   },
   "Luca Nardi": {
@@ -3064,19 +2884,19 @@
     "label": "Pure Return Specialist (1st-serve neutralizer)",
     "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 70.5,
-      "fsp": 64.7,
-      "sspw": 28.6,
-      "rpw_vs_1st": 14.6,
-      "rpw_vs_2nd": 36.8,
+      "fspw": 67.9,
+      "fsp": 64.4,
+      "sspw": 32.9,
+      "rpw_vs_1st": 19.0,
+      "rpw_vs_2nd": 40.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.911,
-      "1st_reliance": 2.298,
-      "return_aggro": 1.015,
+      "serve_lean": -1.79,
+      "1st_reliance": 1.564,
+      "return_aggro": 0.954,
       "rally_skew": 0.0,
-      "serve_consist": 0.425
+      "serve_consist": 0.35
     }
   },
   "Michael Mmoh": {
@@ -3104,19 +2924,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 75.7,
-      "fsp": 66.3,
-      "sspw": 51.6,
-      "rpw_vs_1st": 25.1,
-      "rpw_vs_2nd": 33.1,
+      "fspw": 77.6,
+      "fsp": 63.8,
+      "sspw": 52.6,
+      "rpw_vs_1st": 32.2,
+      "rpw_vs_2nd": 34.2,
       "rally_skew": -15.9
     },
     "z_scores": {
-      "serve_lean": 0.773,
-      "1st_reliance": 0.404,
-      "return_aggro": -1.169,
+      "serve_lean": -0.091,
+      "1st_reliance": 0.5,
+      "return_aggro": -2.092,
       "rally_skew": -1.987,
-      "serve_consist": 0.825
+      "serve_consist": 0.2
     }
   },
   "Yosuke Watanuki": {
@@ -3139,26 +2959,6 @@
       "serve_consist": -0.95
     }
   },
-  "Roger Federer": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 73.5,
-      "fsp": 65.4,
-      "sspw": 56.1,
-      "rpw_vs_1st": 27.4,
-      "rpw_vs_2nd": 43.2,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -0.428,
-      "1st_reliance": -0.309,
-      "return_aggro": 0.031,
-      "rally_skew": 0.0,
-      "serve_consist": 0.6
-    }
-  },
   "Rafael Nadal": {
     "id": 3,
     "label": "Pure Return Specialist (1st-serve neutralizer)",
@@ -3179,64 +2979,24 @@
       "serve_consist": 0.8
     }
   },
-  "Antoine Hoang": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 67.0,
-      "fsp": 73.2,
-      "sspw": 47.6,
-      "rpw_vs_1st": 27.9,
-      "rpw_vs_2nd": 47.7,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -2.44,
-      "1st_reliance": -0.096,
-      "return_aggro": 0.646,
-      "rally_skew": 0.0,
-      "serve_consist": 2.55
-    }
-  },
   "George Loffhagen": {
-    "id": 3,
-    "label": "Pure Return Specialist (1st-serve neutralizer)",
-    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 70.2,
-      "fsp": 59.0,
-      "sspw": 40.7,
-      "rpw_vs_1st": 33.1,
-      "rpw_vs_2nd": 37.1,
-      "rally_skew": 0.0
+      "fspw": 74.0,
+      "fsp": 61.9,
+      "sspw": 44.1,
+      "rpw_vs_1st": 23.4,
+      "rpw_vs_2nd": 28.1,
+      "rally_skew": -13.0
     },
     "z_scores": {
-      "serve_lean": -2.405,
-      "1st_reliance": 0.979,
-      "return_aggro": -1.785,
-      "rally_skew": 0.0,
-      "serve_consist": -1.0
-    }
-  },
-  "Yen-Hsun Lu": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 58.7,
-      "fsp": 63.0,
-      "sspw": 57.8,
-      "rpw_vs_1st": 26.1,
-      "rpw_vs_2nd": 33.3,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -0.318,
-      "1st_reliance": -2.064,
-      "return_aggro": -1.292,
-      "rally_skew": 0.0,
-      "serve_consist": 0.0
+      "serve_lean": 0.667,
+      "1st_reliance": 1.021,
+      "return_aggro": -1.677,
+      "rally_skew": -1.625,
+      "serve_consist": -0.275
     }
   },
   "Jan Choinski": {
@@ -3246,37 +3006,37 @@
     "raw": {
       "fspw": 64.2,
       "fsp": 70.2,
-      "sspw": 56.9,
-      "rpw_vs_1st": 25.0,
-      "rpw_vs_2nd": 40.4,
-      "rally_skew": 10.6
+      "sspw": 52.2,
+      "rpw_vs_1st": 23.9,
+      "rpw_vs_2nd": 40.1,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.54,
-      "1st_reliance": -1.383,
-      "return_aggro": -0.031,
-      "rally_skew": 1.325,
+      "serve_lean": -0.819,
+      "1st_reliance": -0.883,
+      "return_aggro": 0.092,
+      "rally_skew": 0.0,
       "serve_consist": 1.8
     }
   },
   "Luciano Darderi": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 72.3,
-      "fsp": 63.7,
-      "sspw": 54.6,
-      "rpw_vs_1st": 27.0,
-      "rpw_vs_2nd": 41.3,
+      "fspw": 73.3,
+      "fsp": 61.0,
+      "sspw": 52.3,
+      "rpw_vs_1st": 26.3,
+      "rpw_vs_2nd": 40.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.419,
-      "1st_reliance": -0.277,
-      "return_aggro": -0.2,
+      "serve_lean": -0.369,
+      "1st_reliance": 0.074,
+      "return_aggro": -0.215,
       "rally_skew": 0.0,
-      "serve_consist": 0.175
+      "serve_consist": -0.5
     }
   },
   "Diego Schwartzman": {
@@ -3284,39 +3044,39 @@
     "label": "Pure Return Specialist (1st-serve neutralizer)",
     "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 64.0,
-      "fsp": 66.0,
-      "sspw": 47.2,
-      "rpw_vs_1st": 32.8,
-      "rpw_vs_2nd": 49.7,
+      "fspw": 62.7,
+      "fsp": 67.8,
+      "sspw": 47.5,
+      "rpw_vs_1st": 31.9,
+      "rpw_vs_2nd": 50.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -3.675,
-      "1st_reliance": -0.372,
-      "return_aggro": 0.2,
+      "serve_lean": -3.668,
+      "1st_reliance": -0.543,
+      "return_aggro": 0.385,
       "rally_skew": 0.0,
-      "serve_consist": 0.75
+      "serve_consist": 1.2
     }
   },
   "Tommy Paul": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 73.7,
-      "fsp": 61.5,
-      "sspw": 56.4,
-      "rpw_vs_1st": 30.7,
-      "rpw_vs_2nd": 43.6,
-      "rally_skew": -5.6
+      "fspw": 74.8,
+      "fsp": 63.6,
+      "sspw": 59.0,
+      "rpw_vs_1st": 32.5,
+      "rpw_vs_2nd": 43.4,
+      "rally_skew": -4.1
     },
     "z_scores": {
-      "serve_lean": -0.896,
-      "1st_reliance": -0.319,
-      "return_aggro": -0.415,
-      "rally_skew": -0.7,
-      "serve_consist": -0.375
+      "serve_lean": -0.771,
+      "1st_reliance": -0.479,
+      "return_aggro": -0.723,
+      "rally_skew": -0.513,
+      "serve_consist": 0.15
     }
   },
   "Pedro Martinez": {
@@ -3324,19 +3084,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 63.0,
-      "fsp": 63.7,
-      "sspw": 58.0,
-      "rpw_vs_1st": 28.7,
-      "rpw_vs_2nd": 42.3,
+      "fspw": 63.3,
+      "fsp": 66.0,
+      "sspw": 47.4,
+      "rpw_vs_1st": 25.2,
+      "rpw_vs_2nd": 42.7,
       "rally_skew": -22.0
     },
     "z_scores": {
-      "serve_lean": -1.278,
-      "1st_reliance": -1.628,
-      "return_aggro": -0.308,
+      "serve_lean": -1.855,
+      "1st_reliance": -0.468,
+      "return_aggro": 0.292,
       "rally_skew": -2.75,
-      "serve_consist": 0.175
+      "serve_consist": 0.75
     }
   },
   "Aleksandar Vukic": {
@@ -3344,19 +3104,39 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 73.1,
-      "fsp": 62.3,
-      "sspw": 52.2,
-      "rpw_vs_1st": 23.1,
-      "rpw_vs_2nd": 39.7,
+      "fspw": 73.6,
+      "fsp": 62.2,
+      "sspw": 51.7,
+      "rpw_vs_1st": 22.1,
+      "rpw_vs_2nd": 42.9,
       "rally_skew": 10.1
     },
     "z_scores": {
-      "serve_lean": 0.149,
-      "1st_reliance": 0.064,
-      "return_aggro": 0.154,
+      "serve_lean": -0.068,
+      "1st_reliance": 0.17,
+      "return_aggro": 0.8,
       "rally_skew": 1.263,
-      "serve_consist": -0.175
+      "serve_consist": -0.2
+    }
+  },
+  "Radu Albot": {
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 67.0,
+      "fsp": 61.9,
+      "sspw": 47.8,
+      "rpw_vs_1st": 22.5,
+      "rpw_vs_2nd": 43.7,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -1.204,
+      "1st_reliance": -0.117,
+      "return_aggro": 0.862,
+      "rally_skew": 0.0,
+      "serve_consist": -0.275
     }
   },
   "Zdenek Kolar": {
@@ -3384,19 +3164,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 73.8,
-      "fsp": 60.2,
-      "sspw": 56.8,
-      "rpw_vs_1st": 25.0,
-      "rpw_vs_2nd": 40.7,
+      "fspw": 72.7,
+      "fsp": 60.6,
+      "sspw": 55.8,
+      "rpw_vs_1st": 23.9,
+      "rpw_vs_2nd": 41.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.29,
-      "1st_reliance": -0.351,
-      "return_aggro": 0.015,
+      "serve_lean": 0.18,
+      "1st_reliance": -0.362,
+      "return_aggro": 0.277,
       "rally_skew": 0.0,
-      "serve_consist": -0.7
+      "serve_consist": -0.6
     }
   },
   "Richard Gasquet": {
@@ -3404,19 +3184,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.8,
-      "fsp": 60.6,
-      "sspw": 52.6,
-      "rpw_vs_1st": 23.4,
-      "rpw_vs_2nd": 41.6,
+      "fspw": 70.3,
+      "fsp": 60.4,
+      "sspw": 52.1,
+      "rpw_vs_1st": 24.1,
+      "rpw_vs_2nd": 41.7,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.365,
-      "1st_reliance": -0.33,
-      "return_aggro": 0.4,
+      "serve_lean": -0.481,
+      "1st_reliance": -0.223,
+      "return_aggro": 0.308,
       "rally_skew": 0.0,
-      "serve_consist": -0.6
+      "serve_consist": -0.65
     }
   },
   "Christian Harrison": {
@@ -3464,79 +3244,59 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 63.9,
-      "fsp": 65.2,
-      "sspw": 45.1,
-      "rpw_vs_1st": 16.8,
+      "fspw": 72.0,
+      "fsp": 64.4,
+      "sspw": 50.3,
+      "rpw_vs_1st": 14.8,
       "rpw_vs_2nd": 44.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.986,
-      "1st_reliance": -0.16,
-      "return_aggro": 1.8,
+      "serve_lean": 0.556,
+      "1st_reliance": 0.149,
+      "return_aggro": 2.108,
       "rally_skew": 0.0,
-      "serve_consist": 0.55
+      "serve_consist": 0.35
     }
   },
   "Marco Cecchinato": {
+    "id": 4,
+    "label": "Big-Serve Power Server",
+    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "raw": {
+      "fspw": 62.0,
+      "fsp": 62.6,
+      "sspw": 46.8,
+      "rpw_vs_1st": 11.4,
+      "rpw_vs_2nd": 34.7,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": 0.827,
+      "1st_reliance": -0.543,
+      "return_aggro": 1.185,
+      "rally_skew": 0.0,
+      "serve_consist": -0.1
+    }
+  },
+  "Jiri Lehecka": {
     "id": 0,
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 60.9,
-      "fsp": 62.4,
-      "sspw": 45.7,
-      "rpw_vs_1st": 17.8,
-      "rpw_vs_2nd": 37.1,
-      "rally_skew": 0.0
+      "fspw": 75.9,
+      "fsp": 66.2,
+      "sspw": 58.5,
+      "rpw_vs_1st": 28.1,
+      "rpw_vs_2nd": 41.3,
+      "rally_skew": 17.2
     },
     "z_scores": {
-      "serve_lean": -0.564,
-      "1st_reliance": -0.543,
-      "return_aggro": 0.569,
-      "rally_skew": 0.0,
-      "serve_consist": -0.15
-    }
-  },
-  "Jo-Wilfried Tsonga": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 70.9,
-      "fsp": 61.6,
-      "sspw": 49.5,
-      "rpw_vs_1st": 24.2,
-      "rpw_vs_2nd": 35.3,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 0.011,
-      "1st_reliance": 0.117,
-      "return_aggro": -0.692,
-      "rally_skew": 0.0,
-      "serve_consist": -0.35
-    }
-  },
-  "Jiri Lehecka": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 76.0,
-      "fsp": 66.0,
-      "sspw": 54.2,
-      "rpw_vs_1st": 27.4,
-      "rpw_vs_2nd": 40.3,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -0.069,
-      "1st_reliance": 0.16,
-      "return_aggro": -0.415,
-      "rally_skew": 0.0,
-      "serve_consist": 0.75
+      "serve_lean": 0.141,
+      "1st_reliance": -0.309,
+      "return_aggro": -0.369,
+      "rally_skew": 2.15,
+      "serve_consist": 0.8
     }
   },
   "Federico Coria": {
@@ -3544,19 +3304,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 64.3,
-      "fsp": 65.3,
-      "sspw": 51.7,
-      "rpw_vs_1st": 20.9,
-      "rpw_vs_2nd": 29.1,
+      "fspw": 62.8,
+      "fsp": 66.8,
+      "sspw": 49.5,
+      "rpw_vs_1st": 20.3,
+      "rpw_vs_2nd": 25.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.791,
-      "1st_reliance": -0.819,
-      "return_aggro": -1.138,
+      "serve_lean": 0.887,
+      "1st_reliance": -0.745,
+      "return_aggro": -1.554,
       "rally_skew": 0.0,
-      "serve_consist": 0.575
+      "serve_consist": 0.95
     }
   },
   "Chun Hsin Tseng": {
@@ -3604,19 +3364,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 78.6,
-      "fsp": 56.0,
-      "sspw": 46.2,
-      "rpw_vs_1st": 22.2,
-      "rpw_vs_2nd": 41.0,
+      "fspw": 78.4,
+      "fsp": 55.8,
+      "sspw": 45.8,
+      "rpw_vs_1st": 22.9,
+      "rpw_vs_2nd": 41.2,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.033,
-      "1st_reliance": 1.287,
-      "return_aggro": 0.492,
+      "serve_lean": -0.147,
+      "1st_reliance": 1.309,
+      "return_aggro": 0.415,
       "rally_skew": 0.0,
-      "serve_consist": -1.75
+      "serve_consist": -1.8
     }
   },
   "Sumit Nagal": {
@@ -3626,37 +3386,17 @@
     "raw": {
       "fspw": 65.8,
       "fsp": 65.3,
-      "sspw": 39.5,
+      "sspw": 35.7,
       "rpw_vs_1st": 31.7,
       "rpw_vs_2nd": 37.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -2.769,
-      "1st_reliance": 0.638,
+      "serve_lean": -3.149,
+      "1st_reliance": 1.043,
       "return_aggro": -1.508,
       "rally_skew": 0.0,
       "serve_consist": 0.575
-    }
-  },
-  "Viktor Troicki": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 77.6,
-      "fsp": 65.5,
-      "sspw": 65.0,
-      "rpw_vs_1st": 20.5,
-      "rpw_vs_2nd": 46.3,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 1.476,
-      "1st_reliance": -0.819,
-      "return_aggro": 1.569,
-      "rally_skew": 0.0,
-      "serve_consist": 0.625
     }
   },
   "Gilles Simon": {
@@ -3664,19 +3404,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 70.5,
-      "fsp": 67.3,
-      "sspw": 50.3,
-      "rpw_vs_1st": 27.7,
-      "rpw_vs_2nd": 42.6,
+      "fspw": 69.9,
+      "fsp": 66.9,
+      "sspw": 60.8,
+      "rpw_vs_1st": 24.4,
+      "rpw_vs_2nd": 44.4,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.257,
-      "1st_reliance": -0.011,
-      "return_aggro": -0.108,
+      "serve_lean": 0.01,
+      "1st_reliance": -1.191,
+      "return_aggro": 0.677,
       "rally_skew": 0.0,
-      "serve_consist": 1.075
+      "serve_consist": 0.975
     }
   },
   "Marcos Giron": {
@@ -3684,79 +3424,59 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 74.0,
-      "fsp": 60.4,
-      "sspw": 53.8,
-      "rpw_vs_1st": 25.2,
-      "rpw_vs_2nd": 43.0,
-      "rally_skew": 17.4
+      "fspw": 75.9,
+      "fsp": 61.5,
+      "sspw": 50.0,
+      "rpw_vs_1st": 24.2,
+      "rpw_vs_2nd": 43.3,
+      "rally_skew": 16.8
     },
     "z_scores": {
-      "serve_lean": -0.276,
-      "1st_reliance": -0.011,
-      "return_aggro": 0.338,
-      "rally_skew": 2.175,
-      "serve_consist": -0.65
+      "serve_lean": -0.374,
+      "1st_reliance": 0.596,
+      "return_aggro": 0.538,
+      "rally_skew": 2.1,
+      "serve_consist": -0.375
     }
   },
   "Nicola Kuhn": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.8,
-      "fsp": 59.9,
-      "sspw": 46.5,
-      "rpw_vs_1st": 20.9,
-      "rpw_vs_2nd": 32.8,
+      "fspw": 68.0,
+      "fsp": 64.1,
+      "sspw": 50.0,
+      "rpw_vs_1st": 23.4,
+      "rpw_vs_2nd": 37.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.36,
-      "1st_reliance": 0.319,
-      "return_aggro": -0.569,
+      "serve_lean": -0.333,
+      "1st_reliance": -0.245,
+      "return_aggro": -0.231,
       "rally_skew": 0.0,
-      "serve_consist": -0.775
-    }
-  },
-  "Yuichi Sugita": {
-    "id": 3,
-    "label": "Pure Return Specialist (1st-serve neutralizer)",
-    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 67.9,
-      "fsp": 62.2,
-      "sspw": 43.5,
-      "rpw_vs_1st": 27.8,
-      "rpw_vs_2nd": 32.6,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -1.076,
-      "1st_reliance": 0.436,
-      "return_aggro": -1.662,
-      "rally_skew": 0.0,
-      "serve_consist": -0.2
+      "serve_consist": 0.275
     }
   },
   "Mackenzie Mcdonald": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.2,
-      "fsp": 60.3,
-      "sspw": 49.5,
-      "rpw_vs_1st": 27.3,
-      "rpw_vs_2nd": 46.6,
+      "fspw": 69.7,
+      "fsp": 64.8,
+      "sspw": 49.8,
+      "rpw_vs_1st": 27.1,
+      "rpw_vs_2nd": 45.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.842,
-      "1st_reliance": -0.064,
-      "return_aggro": 0.569,
+      "serve_lean": -1.561,
+      "1st_reliance": -0.043,
+      "return_aggro": 0.354,
       "rally_skew": 0.0,
-      "serve_consist": -0.675
+      "serve_consist": 0.45
     }
   },
   "Marc Andrea Huesler": {
@@ -3764,19 +3484,19 @@
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 78.8,
-      "fsp": 56.2,
-      "sspw": 55.7,
-      "rpw_vs_1st": 22.7,
-      "rpw_vs_2nd": 40.1,
+      "fspw": 78.9,
+      "fsp": 56.6,
+      "sspw": 54.2,
+      "rpw_vs_1st": 22.9,
+      "rpw_vs_2nd": 39.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.03,
-      "1st_reliance": 0.298,
-      "return_aggro": 0.277,
+      "serve_lean": 0.971,
+      "1st_reliance": 0.468,
+      "return_aggro": 0.092,
       "rally_skew": 0.0,
-      "serve_consist": -1.7
+      "serve_consist": -1.6
     }
   },
   "Corentin Moutet": {
@@ -3784,19 +3504,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.0,
-      "fsp": 62.6,
-      "sspw": 50.3,
-      "rpw_vs_1st": 28.7,
-      "rpw_vs_2nd": 38.6,
+      "fspw": 67.9,
+      "fsp": 63.1,
+      "sspw": 52.9,
+      "rpw_vs_1st": 30.2,
+      "rpw_vs_2nd": 44.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.092,
-      "1st_reliance": -0.17,
-      "return_aggro": -0.877,
+      "serve_lean": -1.802,
+      "1st_reliance": -0.564,
+      "return_aggro": -0.2,
       "rally_skew": 0.0,
-      "serve_consist": -0.1
+      "serve_consist": 0.025
     }
   },
   "Pablo Carreno Busta": {
@@ -3804,19 +3524,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 70.3,
-      "fsp": 68.4,
-      "sspw": 58.5,
-      "rpw_vs_1st": 23.1,
-      "rpw_vs_2nd": 41.4,
+      "fspw": 69.0,
+      "fsp": 68.6,
+      "sspw": 57.1,
+      "rpw_vs_1st": 23.8,
+      "rpw_vs_2nd": 43.7,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.335,
-      "1st_reliance": -0.904,
-      "return_aggro": 0.415,
+      "serve_lean": -0.278,
+      "1st_reliance": -0.894,
+      "return_aggro": 0.662,
       "rally_skew": 0.0,
-      "serve_consist": 1.35
+      "serve_consist": 1.4
     }
   },
   "Antoine Bellier": {
@@ -3839,64 +3559,64 @@
       "serve_consist": 0.775
     }
   },
-  "Yasutaka Uchiyama": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 68.2,
-      "fsp": 54.7,
-      "sspw": 44.9,
-      "rpw_vs_1st": 29.4,
-      "rpw_vs_2nd": 39.3,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -1.882,
-      "1st_reliance": 0.319,
-      "return_aggro": -0.877,
-      "rally_skew": 0.0,
-      "serve_consist": -2.075
-    }
-  },
   "Kei Nishikori": {
     "id": 1,
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 63.2,
-      "fsp": 69.6,
-      "sspw": 65.6,
-      "rpw_vs_1st": 25.7,
-      "rpw_vs_2nd": 34.6,
+      "fspw": 61.3,
+      "fsp": 70.9,
+      "sspw": 60.8,
+      "rpw_vs_1st": 24.7,
+      "rpw_vs_2nd": 31.7,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.784,
-      "1st_reliance": -2.415,
-      "return_aggro": -1.031,
+      "serve_lean": 0.596,
+      "1st_reliance": -2.106,
+      "return_aggro": -1.323,
       "rally_skew": 0.0,
-      "serve_consist": 1.65
+      "serve_consist": 1.975
     }
   },
   "Denis Shapovalov": {
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 78.1,
+      "fsp": 60.5,
+      "sspw": 57.1,
+      "rpw_vs_1st": 27.6,
+      "rpw_vs_2nd": 41.2,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": 0.284,
+      "1st_reliance": 0.074,
+      "return_aggro": -0.308,
+      "rally_skew": 0.0,
+      "serve_consist": -0.625
+    }
+  },
+  "Dominic Stricker": {
     "id": 4,
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 78.7,
-      "fsp": 56.5,
-      "sspw": 60.4,
-      "rpw_vs_1st": 26.7,
-      "rpw_vs_2nd": 43.0,
-      "rally_skew": -0.5
+      "fspw": 79.6,
+      "fsp": 58.1,
+      "sspw": 47.3,
+      "rpw_vs_1st": 17.7,
+      "rpw_vs_2nd": 45.9,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.597,
-      "1st_reliance": -0.213,
-      "return_aggro": 0.108,
-      "rally_skew": -0.062,
-      "serve_consist": -1.625
+      "serve_lean": 0.332,
+      "1st_reliance": 1.277,
+      "return_aggro": 1.938,
+      "rally_skew": 0.0,
+      "serve_consist": -1.225
     }
   },
   "Quentin Halys": {
@@ -3904,19 +3624,19 @@
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 81.8,
-      "fsp": 58.7,
+      "fspw": 83.1,
+      "fsp": 60.1,
       "sspw": 57.4,
-      "rpw_vs_1st": 24.5,
-      "rpw_vs_2nd": 38.5,
+      "rpw_vs_1st": 25.6,
+      "rpw_vs_2nd": 36.5,
       "rally_skew": 1.9
     },
     "z_scores": {
-      "serve_lean": 1.393,
-      "1st_reliance": 0.436,
-      "return_aggro": -0.246,
+      "serve_lean": 1.576,
+      "1st_reliance": 0.574,
+      "return_aggro": -0.723,
       "rally_skew": 0.237,
-      "serve_consist": -1.075
+      "serve_consist": -0.725
     }
   },
   "Gijs Brouwer": {
@@ -3924,19 +3644,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 73.4,
-      "fsp": 67.1,
-      "sspw": 50.9,
-      "rpw_vs_1st": 26.6,
-      "rpw_vs_2nd": 40.4,
+      "fspw": 71.4,
+      "fsp": 70.9,
+      "sspw": 49.5,
+      "rpw_vs_1st": 27.1,
+      "rpw_vs_2nd": 41.6,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.532,
-      "1st_reliance": 0.234,
-      "return_aggro": -0.277,
+      "serve_lean": -1.058,
+      "1st_reliance": 0.17,
+      "return_aggro": -0.169,
       "rally_skew": 0.0,
-      "serve_consist": 1.025
+      "serve_consist": 1.975
     }
   },
   "Holger Rune": {
@@ -3944,39 +3664,39 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 76.6,
-      "fsp": 62.8,
-      "sspw": 56.9,
-      "rpw_vs_1st": 26.1,
-      "rpw_vs_2nd": 37.9,
-      "rally_skew": -2.9
+      "fspw": 78.1,
+      "fsp": 61.8,
+      "sspw": 59.2,
+      "rpw_vs_1st": 26.0,
+      "rpw_vs_2nd": 39.2,
+      "rally_skew": -3.0
     },
     "z_scores": {
-      "serve_lean": 0.708,
-      "1st_reliance": -0.064,
-      "return_aggro": -0.585,
-      "rally_skew": -0.363,
-      "serve_consist": -0.05
+      "serve_lean": 0.945,
+      "1st_reliance": -0.149,
+      "return_aggro": -0.369,
+      "rally_skew": -0.375,
+      "serve_consist": -0.3
     }
   },
   "Dominik Koepfer": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 67.9,
-      "fsp": 62.3,
-      "sspw": 49.6,
-      "rpw_vs_1st": 25.2,
-      "rpw_vs_2nd": 44.7,
+      "fspw": 67.4,
+      "fsp": 63.8,
+      "sspw": 56.8,
+      "rpw_vs_1st": 20.8,
+      "rpw_vs_2nd": 41.7,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.439,
-      "1st_reliance": -0.213,
-      "return_aggro": 0.6,
+      "serve_lean": 0.197,
+      "1st_reliance": -1.032,
+      "return_aggro": 0.815,
       "rally_skew": 0.0,
-      "serve_consist": -0.175
+      "serve_consist": 0.2
     }
   },
   "Sebastian Ofner": {
@@ -3984,19 +3704,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 74.9,
-      "fsp": 58.4,
-      "sspw": 54.9,
-      "rpw_vs_1st": 25.0,
-      "rpw_vs_2nd": 39.6,
+      "fspw": 76.3,
+      "fsp": 56.9,
+      "sspw": 54.0,
+      "rpw_vs_1st": 26.2,
+      "rpw_vs_2nd": 41.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.322,
-      "1st_reliance": -0.032,
-      "return_aggro": -0.154,
+      "serve_lean": 0.021,
+      "1st_reliance": 0.213,
+      "return_aggro": -0.108,
       "rally_skew": 0.0,
-      "serve_consist": -1.15
+      "serve_consist": -1.525
     }
   },
   "Juan Manuel Cerundolo": {
@@ -4020,23 +3740,23 @@
     }
   },
   "Jakub Mensik": {
-    "id": 4,
-    "label": "Big-Serve Power Server",
-    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.3,
-      "fsp": 57.4,
-      "sspw": 52.8,
-      "rpw_vs_1st": 16.8,
-      "rpw_vs_2nd": 43.6,
+      "fspw": 72.6,
+      "fsp": 57.1,
+      "sspw": 50.6,
+      "rpw_vs_1st": 20.0,
+      "rpw_vs_2nd": 43.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.512,
-      "1st_reliance": -0.191,
-      "return_aggro": 1.723,
+      "serve_lean": -0.069,
+      "1st_reliance": 0.181,
+      "return_aggro": 1.262,
       "rally_skew": 0.0,
-      "serve_consist": -1.4
+      "serve_consist": -1.475
     }
   },
   "Alex Molcan": {
@@ -4064,19 +3784,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 75.3,
-      "fsp": 62.8,
-      "sspw": 56.1,
-      "rpw_vs_1st": 25.1,
-      "rpw_vs_2nd": 38.1,
-      "rally_skew": -20.4
+      "fspw": 74.4,
+      "fsp": 60.0,
+      "sspw": 56.3,
+      "rpw_vs_1st": 24.7,
+      "rpw_vs_2nd": 35.6,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.631,
-      "1st_reliance": -0.117,
-      "return_aggro": -0.4,
-      "rally_skew": -2.55,
-      "serve_consist": -0.05
+      "serve_lean": 0.904,
+      "1st_reliance": -0.234,
+      "return_aggro": -0.723,
+      "rally_skew": 0.0,
+      "serve_consist": -0.75
     }
   },
   "Stefanos Tsitsipas": {
@@ -4084,19 +3804,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 79.6,
-      "fsp": 64.6,
-      "sspw": 59.4,
-      "rpw_vs_1st": 24.5,
-      "rpw_vs_2nd": 38.7,
-      "rally_skew": 1.5
+      "fspw": 80.0,
+      "fsp": 66.8,
+      "sspw": 61.3,
+      "rpw_vs_1st": 23.6,
+      "rpw_vs_2nd": 35.6,
+      "rally_skew": 6.0
     },
     "z_scores": {
-      "serve_lean": 1.371,
-      "1st_reliance": -0.011,
-      "return_aggro": -0.215,
-      "rally_skew": 0.188,
-      "serve_consist": 0.4
+      "serve_lean": 2.07,
+      "1st_reliance": -0.17,
+      "return_aggro": -0.554,
+      "rally_skew": 0.75,
+      "serve_consist": 0.95
     }
   },
   "Alejandro Davidovich Fokina": {
@@ -4104,19 +3824,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 68.9,
-      "fsp": 66.3,
-      "sspw": 58.7,
+      "fspw": 69.3,
+      "fsp": 67.0,
+      "sspw": 59.9,
       "rpw_vs_1st": 26.2,
-      "rpw_vs_2nd": 45.5,
-      "rally_skew": 0.0
+      "rpw_vs_2nd": 44.9,
+      "rally_skew": 2.0
     },
     "z_scores": {
-      "serve_lean": -0.67,
-      "1st_reliance": -1.074,
-      "return_aggro": 0.569,
-      "rally_skew": 0.0,
-      "serve_consist": 0.825
+      "serve_lean": -0.447,
+      "1st_reliance": -1.16,
+      "return_aggro": 0.477,
+      "rally_skew": 0.25,
+      "serve_consist": 1.0
     }
   },
   "Jack Sock": {
@@ -4124,19 +3844,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.5,
-      "fsp": 64.9,
-      "sspw": 49.4,
-      "rpw_vs_1st": 29.0,
-      "rpw_vs_2nd": 41.9,
+      "fspw": 70.3,
+      "fsp": 66.7,
+      "sspw": 55.1,
+      "rpw_vs_1st": 28.7,
+      "rpw_vs_2nd": 39.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.364,
-      "1st_reliance": 0.191,
-      "return_aggro": -0.415,
+      "serve_lean": -0.627,
+      "1st_reliance": -0.543,
+      "return_aggro": -0.692,
       "rally_skew": 0.0,
-      "serve_consist": 0.475
+      "serve_consist": 0.925
     }
   },
   "Matthew Ebden": {
@@ -4160,63 +3880,63 @@
     }
   },
   "Federico Delbonis": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 64.9,
-      "fsp": 61.5,
-      "sspw": 45.7,
-      "rpw_vs_1st": 17.0,
-      "rpw_vs_2nd": 41.0,
+      "fspw": 65.3,
+      "fsp": 63.5,
+      "sspw": 46.6,
+      "rpw_vs_1st": 13.8,
+      "rpw_vs_2nd": 39.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.52,
-      "1st_reliance": -0.117,
-      "return_aggro": 1.292,
+      "serve_lean": 0.275,
+      "1st_reliance": -0.17,
+      "return_aggro": 1.492,
       "rally_skew": 0.0,
-      "serve_consist": -0.375
+      "serve_consist": 0.125
     }
   },
   "Facundo Bagnis": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.8,
-      "fsp": 59.9,
-      "sspw": 47.8,
-      "rpw_vs_1st": 22.1,
-      "rpw_vs_2nd": 36.5,
+      "fspw": 67.0,
+      "fsp": 62.3,
+      "sspw": 47.4,
+      "rpw_vs_1st": 23.1,
+      "rpw_vs_2nd": 34.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.093,
-      "1st_reliance": 0.181,
-      "return_aggro": -0.185,
+      "serve_lean": -0.286,
+      "1st_reliance": -0.074,
+      "return_aggro": -0.677,
       "rally_skew": 0.0,
-      "serve_consist": -0.775
+      "serve_consist": -0.175
     }
   },
   "Francisco Cerundolo": {
-    "id": 3,
-    "label": "Pure Return Specialist (1st-serve neutralizer)",
-    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 67.8,
-      "fsp": 64.2,
-      "sspw": 49.1,
-      "rpw_vs_1st": 30.6,
-      "rpw_vs_2nd": 45.9,
-      "rally_skew": 0.7
+      "fspw": 69.6,
+      "fsp": 63.5,
+      "sspw": 51.3,
+      "rpw_vs_1st": 27.5,
+      "rpw_vs_2nd": 41.6,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -2.403,
-      "1st_reliance": -0.17,
-      "return_aggro": -0.046,
-      "rally_skew": 0.088,
-      "serve_consist": 0.3
+      "serve_lean": -1.099,
+      "1st_reliance": -0.213,
+      "return_aggro": -0.231,
+      "rally_skew": 0.0,
+      "serve_consist": 0.125
     }
   },
   "Giovanni Mpetshi Perricard": {
@@ -4224,19 +3944,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 81.1,
-      "fsp": 67.6,
-      "sspw": 64.7,
-      "rpw_vs_1st": 23.8,
-      "rpw_vs_2nd": 35.4,
+      "fspw": 81.3,
+      "fsp": 68.7,
+      "sspw": 60.1,
+      "rpw_vs_1st": 23.4,
+      "rpw_vs_2nd": 35.2,
       "rally_skew": 11.7
     },
     "z_scores": {
-      "serve_lean": 2.504,
-      "1st_reliance": -0.415,
-      "return_aggro": -0.615,
+      "serve_lean": 2.141,
+      "1st_reliance": 0.096,
+      "return_aggro": -0.585,
       "rally_skew": 1.463,
-      "serve_consist": 1.15
+      "serve_consist": 1.425
     }
   },
   "Louis Wessels": {
@@ -4259,24 +3979,24 @@
       "serve_consist": 1.0
     }
   },
-  "Dustin Brown": {
-    "id": 3,
-    "label": "Pure Return Specialist (1st-serve neutralizer)",
-    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+  "Jack Draper": {
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 82.2,
-      "fsp": 67.2,
-      "sspw": 27.3,
-      "rpw_vs_1st": 29.1,
-      "rpw_vs_2nd": 30.3,
-      "rally_skew": 0.0
+      "fspw": 81.9,
+      "fsp": 61.8,
+      "sspw": 48.3,
+      "rpw_vs_1st": 28.4,
+      "rpw_vs_2nd": 45.2,
+      "rally_skew": 7.9
     },
     "z_scores": {
-      "serve_lean": -1.327,
-      "1st_reliance": 3.681,
-      "return_aggro": -2.215,
-      "rally_skew": 0.0,
-      "serve_consist": 1.05
+      "serve_lean": -0.809,
+      "1st_reliance": 1.415,
+      "return_aggro": 0.185,
+      "rally_skew": 0.987,
+      "serve_consist": -0.3
     }
   },
   "Roberto Bautista Agut": {
@@ -4284,39 +4004,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 72.7,
-      "fsp": 69.3,
-      "sspw": 58.8,
-      "rpw_vs_1st": 28.8,
-      "rpw_vs_2nd": 50.1,
+      "fspw": 68.1,
+      "fsp": 69.4,
+      "sspw": 57.8,
+      "rpw_vs_1st": 25.1,
+      "rpw_vs_2nd": 47.4,
       "rally_skew": 20.1
     },
     "z_scores": {
-      "serve_lean": -1.197,
-      "1st_reliance": -0.681,
-      "return_aggro": 0.877,
+      "serve_lean": -0.887,
+      "1st_reliance": -1.064,
+      "return_aggro": 1.031,
       "rally_skew": 2.513,
-      "serve_consist": 1.575
-    }
-  },
-  "Jack Draper": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 75.7,
-      "fsp": 59.3,
-      "sspw": 49.8,
-      "rpw_vs_1st": 27.2,
-      "rpw_vs_2nd": 41.0,
-      "rally_skew": 5.2
-    },
-    "z_scores": {
-      "serve_lean": -0.585,
-      "1st_reliance": 0.596,
-      "return_aggro": -0.277,
-      "rally_skew": 0.65,
-      "serve_consist": -0.925
+      "serve_consist": 1.6
     }
   },
   "Botic Van De Zandschulp": {
@@ -4324,19 +4024,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 75.2,
-      "fsp": 62.3,
-      "sspw": 53.9,
-      "rpw_vs_1st": 28.1,
-      "rpw_vs_2nd": 44.5,
-      "rally_skew": -6.0
+      "fspw": 73.9,
+      "fsp": 60.6,
+      "sspw": 49.0,
+      "rpw_vs_1st": 28.6,
+      "rpw_vs_2nd": 45.0,
+      "rally_skew": -16.4
     },
     "z_scores": {
-      "serve_lean": -0.738,
-      "1st_reliance": 0.106,
+      "serve_lean": -1.473,
+      "1st_reliance": 0.489,
       "return_aggro": 0.123,
-      "rally_skew": -0.75,
-      "serve_consist": -0.175
+      "rally_skew": -2.05,
+      "serve_consist": -0.6
     }
   },
   "Lukas Rosol": {
@@ -4360,23 +4060,23 @@
     }
   },
   "Hamad Medjedovic": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 0,
+    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 70.3,
-      "fsp": 63.2,
-      "sspw": 48.8,
-      "rpw_vs_1st": 26.1,
-      "rpw_vs_2nd": 47.5,
+      "fspw": 72.1,
+      "fsp": 65.2,
+      "sspw": 57.4,
+      "rpw_vs_1st": 25.1,
+      "rpw_vs_2nd": 46.8,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.741,
-      "1st_reliance": 0.128,
-      "return_aggro": 0.892,
+      "serve_lean": -0.497,
+      "1st_reliance": -0.596,
+      "return_aggro": 0.938,
       "rally_skew": 0.0,
-      "serve_consist": 0.05
+      "serve_consist": 0.55
     }
   },
   "Alejandro Tabilo": {
@@ -4384,19 +4084,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 75.9,
-      "fsp": 63.1,
-      "sspw": 52.7,
-      "rpw_vs_1st": 23.2,
-      "rpw_vs_2nd": 35.7,
-      "rally_skew": -14.6
+      "fspw": 78.3,
+      "fsp": 65.0,
+      "sspw": 49.1,
+      "rpw_vs_1st": 23.1,
+      "rpw_vs_2nd": 40.7,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.883,
-      "1st_reliance": 0.309,
-      "return_aggro": -0.477,
-      "rally_skew": -1.825,
-      "serve_consist": 0.025
+      "serve_lean": 0.2,
+      "1st_reliance": 0.947,
+      "return_aggro": 0.308,
+      "rally_skew": 0.0,
+      "serve_consist": 0.5
     }
   },
   "Feliciano Lopez": {
@@ -4404,19 +4104,19 @@
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 77.0,
-      "fsp": 55.7,
-      "sspw": 50.2,
-      "rpw_vs_1st": 20.8,
-      "rpw_vs_2nd": 34.4,
+      "fspw": 76.3,
+      "fsp": 54.2,
+      "sspw": 49.2,
+      "rpw_vs_1st": 22.0,
+      "rpw_vs_2nd": 32.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.221,
-      "1st_reliance": 0.691,
-      "return_aggro": -0.308,
+      "serve_lean": 1.152,
+      "1st_reliance": 0.723,
+      "return_aggro": -0.862,
       "rally_skew": 0.0,
-      "serve_consist": -1.825
+      "serve_consist": -2.2
     }
   },
   "Ilya Ivashka": {
@@ -4464,19 +4164,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 77.3,
-      "fsp": 67.0,
-      "sspw": 57.3,
-      "rpw_vs_1st": 24.8,
+      "fspw": 75.9,
+      "fsp": 69.5,
+      "sspw": 56.4,
+      "rpw_vs_1st": 24.0,
       "rpw_vs_2nd": 40.8,
       "rally_skew": 12.3
     },
     "z_scores": {
-      "serve_lean": 0.676,
-      "1st_reliance": -0.032,
-      "return_aggro": 0.062,
+      "serve_lean": 0.573,
+      "1st_reliance": -0.085,
+      "return_aggro": 0.185,
       "rally_skew": 1.537,
-      "serve_consist": 1.0
+      "serve_consist": 1.625
     }
   },
   "Tomas Martin Etcheverry": {
@@ -4484,39 +4184,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.8,
-      "fsp": 67.4,
-      "sspw": 53.3,
-      "rpw_vs_1st": 24.1,
-      "rpw_vs_2nd": 42.4,
+      "fspw": 72.6,
+      "fsp": 67.7,
+      "sspw": 52.6,
+      "rpw_vs_1st": 24.3,
+      "rpw_vs_2nd": 43.2,
       "rally_skew": 6.1
     },
     "z_scores": {
-      "serve_lean": -0.484,
-      "1st_reliance": -0.404,
-      "return_aggro": 0.415,
+      "serve_lean": -0.417,
+      "1st_reliance": -0.032,
+      "return_aggro": 0.508,
       "rally_skew": 0.763,
-      "serve_consist": 1.1
-    }
-  },
-  "Evgeny Donskoy": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 76.3,
-      "fsp": 54.3,
-      "sspw": 34.4,
-      "rpw_vs_1st": 17.5,
-      "rpw_vs_2nd": 38.9,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -0.451,
-      "1st_reliance": 2.298,
-      "return_aggro": 0.892,
-      "rally_skew": 0.0,
-      "serve_consist": -2.175
+      "serve_consist": 1.175
     }
   },
   "Andrea Vavassori": {
@@ -4544,19 +4224,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 72.3,
-      "fsp": 70.1,
-      "sspw": 53.2,
-      "rpw_vs_1st": 17.9,
-      "rpw_vs_2nd": 51.6,
+      "fspw": 72.1,
+      "fsp": 73.2,
+      "sspw": 52.5,
+      "rpw_vs_1st": 17.6,
+      "rpw_vs_2nd": 52.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.403,
-      "1st_reliance": -0.128,
-      "return_aggro": 2.785,
+      "serve_lean": -0.526,
+      "1st_reliance": -0.074,
+      "return_aggro": 2.938,
       "rally_skew": 0.0,
-      "serve_consist": 1.775
+      "serve_consist": 2.55
     }
   },
   "Juan Pablo Varillas": {
@@ -4600,23 +4280,23 @@
     }
   },
   "Kevin Anderson": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 81.5,
-      "fsp": 61.6,
-      "sspw": 50.3,
-      "rpw_vs_1st": 24.8,
-      "rpw_vs_2nd": 42.0,
+      "fspw": 77.4,
+      "fsp": 65.6,
+      "sspw": 44.6,
+      "rpw_vs_1st": 28.7,
+      "rpw_vs_2nd": 48.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.224,
-      "1st_reliance": 1.16,
-      "return_aggro": 0.246,
+      "serve_lean": -1.954,
+      "1st_reliance": 1.33,
+      "return_aggro": 0.585,
       "rally_skew": 0.0,
-      "serve_consist": -0.35
+      "serve_consist": 0.65
     }
   },
   "Yannick Hanfmann": {
@@ -4624,19 +4304,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.1,
-      "fsp": 67.4,
-      "sspw": 60.3,
-      "rpw_vs_1st": 26.2,
-      "rpw_vs_2nd": 42.9,
-      "rally_skew": -11.2
+      "fspw": 70.2,
+      "fsp": 70.5,
+      "sspw": 56.8,
+      "rpw_vs_1st": 27.0,
+      "rpw_vs_2nd": 46.9,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.021,
-      "1st_reliance": -1.011,
-      "return_aggro": 0.169,
-      "rally_skew": -1.4,
-      "serve_consist": 1.1
+      "serve_lean": -1.012,
+      "1st_reliance": -0.734,
+      "return_aggro": 0.662,
+      "rally_skew": 0.0,
+      "serve_consist": 1.875
     }
   },
   "Laurent Lokoli": {
@@ -4659,44 +4339,24 @@
       "serve_consist": 0.5
     }
   },
-  "Stefano Travaglia": {
-    "id": 2,
-    "label": "Steady Return Specialist (1st-serve neutralizer)",
-    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 74.9,
-      "fsp": 56.5,
-      "sspw": 41.7,
-      "rpw_vs_1st": 28.1,
-      "rpw_vs_2nd": 42.0,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -1.707,
-      "1st_reliance": 1.372,
-      "return_aggro": -0.262,
-      "rally_skew": 0.0,
-      "serve_consist": -1.625
-    }
-  },
   "Filip Krajinovic": {
     "id": 0,
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 66.8,
-      "fsp": 65.3,
-      "sspw": 54.4,
-      "rpw_vs_1st": 24.3,
-      "rpw_vs_2nd": 44.0,
+      "fspw": 66.9,
+      "fsp": 65.5,
+      "sspw": 54.5,
+      "rpw_vs_1st": 24.6,
+      "rpw_vs_2nd": 43.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.853,
+      "serve_lean": -0.866,
       "1st_reliance": -0.84,
-      "return_aggro": 0.631,
+      "return_aggro": 0.569,
       "rally_skew": 0.0,
-      "serve_consist": 0.575
+      "serve_consist": 0.625
     }
   },
   "Miomir Kecmanovic": {
@@ -4704,19 +4364,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 67.6,
-      "fsp": 65.4,
-      "sspw": 50.2,
-      "rpw_vs_1st": 25.9,
-      "rpw_vs_2nd": 44.6,
-      "rally_skew": 0.9
+      "fspw": 73.0,
+      "fsp": 63.0,
+      "sspw": 50.4,
+      "rpw_vs_1st": 27.2,
+      "rpw_vs_2nd": 44.8,
+      "rally_skew": 13.0
     },
     "z_scores": {
-      "serve_lean": -1.496,
-      "1st_reliance": -0.309,
-      "return_aggro": 0.477,
-      "rally_skew": 0.113,
-      "serve_consist": 0.6
+      "serve_lean": -1.193,
+      "1st_reliance": 0.245,
+      "return_aggro": 0.308,
+      "rally_skew": 1.625,
+      "serve_consist": 0.0
     }
   },
   "Jan Lennard Struff": {
@@ -4725,18 +4385,18 @@
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
       "fspw": 79.8,
-      "fsp": 56.8,
-      "sspw": 56.6,
-      "rpw_vs_1st": 23.9,
-      "rpw_vs_2nd": 42.1,
-      "rally_skew": 8.9
+      "fsp": 58.2,
+      "sspw": 59.5,
+      "rpw_vs_1st": 21.5,
+      "rpw_vs_2nd": 45.2,
+      "rally_skew": 14.4
     },
     "z_scores": {
-      "serve_lean": 0.817,
-      "1st_reliance": 0.309,
-      "return_aggro": 0.4,
-      "rally_skew": 1.113,
-      "serve_consist": -1.55
+      "serve_lean": 1.105,
+      "1st_reliance": -0.0,
+      "return_aggro": 1.246,
+      "rally_skew": 1.8,
+      "serve_consist": -1.2
     }
   },
   "Laslo Djere": {
@@ -4744,19 +4404,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 77.0,
-      "fsp": 62.5,
-      "sspw": 55.5,
-      "rpw_vs_1st": 21.9,
-      "rpw_vs_2nd": 37.6,
-      "rally_skew": -5.3
+      "fspw": 75.4,
+      "fsp": 62.7,
+      "sspw": 55.8,
+      "rpw_vs_1st": 22.3,
+      "rpw_vs_2nd": 38.8,
+      "rally_skew": -5.1
     },
     "z_scores": {
-      "serve_lean": 1.238,
-      "1st_reliance": 0.128,
-      "return_aggro": 0.015,
-      "rally_skew": -0.662,
-      "serve_consist": -0.125
+      "serve_lean": 0.932,
+      "1st_reliance": -0.074,
+      "return_aggro": 0.138,
+      "rally_skew": -0.638,
+      "serve_consist": -0.075
     }
   },
   "Arthur Fils": {
@@ -4764,19 +4424,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 70.6,
-      "fsp": 60.8,
-      "sspw": 54.1,
-      "rpw_vs_1st": 28.4,
-      "rpw_vs_2nd": 37.3,
-      "rally_skew": -11.5
+      "fspw": 74.0,
+      "fsp": 60.9,
+      "sspw": 50.1,
+      "rpw_vs_1st": 27.2,
+      "rpw_vs_2nd": 40.0,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.379,
-      "1st_reliance": -0.404,
-      "return_aggro": -1.031,
-      "rally_skew": -1.438,
-      "serve_consist": -0.55
+      "serve_lean": -0.598,
+      "1st_reliance": 0.383,
+      "return_aggro": -0.431,
+      "rally_skew": 0.0,
+      "serve_consist": -0.525
     }
   },
   "Maximilian Marterer": {
@@ -4784,19 +4444,19 @@
     "label": "Aggressive Power Server",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 76.0,
-      "fsp": 62.2,
-      "sspw": 53.4,
-      "rpw_vs_1st": 19.3,
-      "rpw_vs_2nd": 37.4,
-      "rally_skew": 12.9
+      "fspw": 72.8,
+      "fsp": 62.3,
+      "sspw": 49.8,
+      "rpw_vs_1st": 19.6,
+      "rpw_vs_2nd": 37.2,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 1.331,
-      "1st_reliance": 0.245,
-      "return_aggro": 0.385,
-      "rally_skew": 1.612,
-      "serve_consist": -0.2
+      "serve_lean": 0.659,
+      "1st_reliance": 0.287,
+      "return_aggro": 0.308,
+      "rally_skew": 0.0,
+      "serve_consist": -0.175
     }
   },
   "Steve Johnson": {
@@ -4804,19 +4464,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 74.2,
-      "fsp": 57.3,
-      "sspw": 52.7,
-      "rpw_vs_1st": 26.4,
-      "rpw_vs_2nd": 39.8,
+      "fspw": 75.3,
+      "fsp": 58.8,
+      "sspw": 53.7,
+      "rpw_vs_1st": 25.9,
+      "rpw_vs_2nd": 40.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.184,
-      "1st_reliance": 0.128,
-      "return_aggro": -0.338,
+      "serve_lean": 0.065,
+      "1st_reliance": 0.138,
+      "return_aggro": -0.231,
       "rally_skew": 0.0,
-      "serve_consist": -1.425
+      "serve_consist": -1.05
     }
   },
   "Joao Sousa": {
@@ -4824,39 +4484,39 @@
     "label": "Pure Return Specialist (1st-serve neutralizer)",
     "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 66.1,
-      "fsp": 63.4,
-      "sspw": 50.5,
-      "rpw_vs_1st": 30.2,
-      "rpw_vs_2nd": 41.9,
+      "fspw": 71.4,
+      "fsp": 61.9,
+      "sspw": 46.5,
+      "rpw_vs_1st": 29.5,
+      "rpw_vs_2nd": 42.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -1.916,
-      "1st_reliance": -0.5,
-      "return_aggro": -0.6,
+      "serve_lean": -1.757,
+      "1st_reliance": 0.489,
+      "return_aggro": -0.462,
       "rally_skew": 0.0,
-      "serve_consist": 0.1
+      "serve_consist": -0.275
     }
   },
   "Andreas Seppi": {
-    "id": 3,
-    "label": "Pure Return Specialist (1st-serve neutralizer)",
-    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 68.1,
-      "fsp": 59.4,
-      "sspw": 49.3,
-      "rpw_vs_1st": 34.0,
-      "rpw_vs_2nd": 47.9,
+      "fspw": 73.1,
+      "fsp": 65.0,
+      "sspw": 47.6,
+      "rpw_vs_1st": 13.0,
+      "rpw_vs_2nd": 35.0,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -3.064,
-      "1st_reliance": -0.16,
-      "return_aggro": -0.262,
+      "serve_lean": 1.654,
+      "1st_reliance": 0.553,
+      "return_aggro": 0.985,
       "rally_skew": 0.0,
-      "serve_consist": -0.9
+      "serve_consist": 0.5
     }
   },
   "Li Tu": {
@@ -4864,19 +4524,19 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 77.4,
-      "fsp": 55.5,
-      "sspw": 52.9,
-      "rpw_vs_1st": 25.2,
-      "rpw_vs_2nd": 45.2,
+      "fspw": 71.7,
+      "fsp": 57.6,
+      "sspw": 51.8,
+      "rpw_vs_1st": 23.9,
+      "rpw_vs_2nd": 44.2,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.301,
-      "1st_reliance": 0.447,
-      "return_aggro": 0.677,
+      "serve_lean": -0.633,
+      "1st_reliance": -0.043,
+      "return_aggro": 0.723,
       "rally_skew": 0.0,
-      "serve_consist": -1.875
+      "serve_consist": -1.35
     }
   },
   "Yunseong Chung": {
@@ -4900,103 +4560,43 @@
     }
   },
   "Roberto Carballes Baena": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 64.6,
-      "fsp": 60.8,
-      "sspw": 57.4,
-      "rpw_vs_1st": 22.5,
-      "rpw_vs_2nd": 39.7,
-      "rally_skew": 16.3
-    },
-    "z_scores": {
-      "serve_lean": -0.018,
-      "1st_reliance": -1.394,
-      "return_aggro": 0.246,
-      "rally_skew": 2.038,
-      "serve_consist": -0.55
-    }
-  },
-  "Luca Van Assche": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
-    "raw": {
-      "fspw": 61.2,
-      "fsp": 59.9,
-      "sspw": 58.4,
-      "rpw_vs_1st": 27.0,
-      "rpw_vs_2nd": 38.2,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": -0.704,
-      "1st_reliance": -1.862,
-      "return_aggro": -0.677,
-      "rally_skew": 0.0,
-      "serve_consist": -0.775
-    }
-  },
-  "Ivo Karlovic": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 82.6,
-      "fsp": 61.6,
-      "sspw": 52.9,
-      "rpw_vs_1st": 27.3,
-      "rpw_vs_2nd": 22.2,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 2.427,
-      "1st_reliance": 1.0,
-      "return_aggro": -3.185,
-      "rally_skew": 0.0,
-      "serve_consist": -0.35
-    }
-  },
-  "Pablo Cuevas": {
-    "id": 1,
-    "label": "Aggressive Power Server",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 81.0,
-      "fsp": 73.1,
-      "sspw": 44.8,
-      "rpw_vs_1st": 19.5,
-      "rpw_vs_2nd": 40.0,
-      "rally_skew": 0.0
-    },
-    "z_scores": {
-      "serve_lean": 0.608,
-      "1st_reliance": 1.691,
-      "return_aggro": 0.754,
-      "rally_skew": 0.0,
-      "serve_consist": 2.525
-    }
-  },
-  "Marco Trungelliti": {
     "id": 2,
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 77.8,
-      "fsp": 59.5,
-      "sspw": 42.9,
-      "rpw_vs_1st": 27.3,
-      "rpw_vs_2nd": 38.1,
+      "fspw": 65.4,
+      "fsp": 58.5,
+      "sspw": 58.1,
+      "rpw_vs_1st": 22.5,
+      "rpw_vs_2nd": 38.8,
+      "rally_skew": 16.0
+    },
+    "z_scores": {
+      "serve_lean": 0.225,
+      "1st_reliance": -1.383,
+      "return_aggro": 0.108,
+      "rally_skew": 2.0,
+      "serve_consist": -1.125
+    }
+  },
+  "Luca Van Assche": {
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 62.4,
+      "fsp": 59.1,
+      "sspw": 46.7,
+      "rpw_vs_1st": 28.1,
+      "rpw_vs_2nd": 38.9,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.776,
-      "1st_reliance": 1.553,
+      "serve_lean": -1.999,
+      "1st_reliance": -0.489,
       "return_aggro": -0.738,
       "rally_skew": 0.0,
-      "serve_consist": -0.875
+      "serve_consist": -0.975
     }
   },
   "Nuno Borges": {
@@ -5004,39 +4604,59 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 69.6,
-      "fsp": 66.2,
-      "sspw": 51.8,
-      "rpw_vs_1st": 24.0,
-      "rpw_vs_2nd": 40.8,
+      "fspw": 71.7,
+      "fsp": 65.9,
+      "sspw": 48.1,
+      "rpw_vs_1st": 24.7,
+      "rpw_vs_2nd": 41.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.46,
-      "1st_reliance": -0.266,
-      "return_aggro": 0.185,
+      "serve_lean": -0.773,
+      "1st_reliance": 0.351,
+      "return_aggro": 0.123,
       "rally_skew": 0.0,
-      "serve_consist": 0.8
+      "serve_consist": 0.725
+    }
+  },
+  "Zachary Svajda": {
+    "id": 3,
+    "label": "Pure Return Specialist (1st-serve neutralizer)",
+    "blurb": "Clearest expression of this archetype in the dataset. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 69.2,
+      "fsp": 67.7,
+      "sspw": 38.7,
+      "rpw_vs_1st": 23.6,
+      "rpw_vs_2nd": 46.7,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -2.405,
+      "1st_reliance": 1.085,
+      "return_aggro": 1.154,
+      "rally_skew": 0.0,
+      "serve_consist": 1.175
     }
   },
   "Ricardas Berankis": {
-    "id": 0,
-    "label": "Aggressive Return Specialist (1st-serve neutralizer)",
-    "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 70.7,
-      "fsp": 62.9,
-      "sspw": 51.4,
-      "rpw_vs_1st": 25.9,
-      "rpw_vs_2nd": 36.7,
+      "fspw": 72.7,
+      "fsp": 63.1,
+      "sspw": 51.5,
+      "rpw_vs_1st": 26.5,
+      "rpw_vs_2nd": 32.1,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.216,
-      "1st_reliance": -0.106,
-      "return_aggro": -0.738,
+      "serve_lean": 0.401,
+      "1st_reliance": 0.096,
+      "return_aggro": -1.538,
       "rally_skew": 0.0,
-      "serve_consist": -0.025
+      "serve_consist": 0.025
     }
   },
   "Cameron Norrie": {
@@ -5044,19 +4664,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 71.7,
-      "fsp": 64.6,
-      "sspw": 51.8,
-      "rpw_vs_1st": 30.5,
-      "rpw_vs_2nd": 44.9,
-      "rally_skew": 0.2
+      "fspw": 74.6,
+      "fsp": 67.3,
+      "sspw": 52.3,
+      "rpw_vs_1st": 27.2,
+      "rpw_vs_2nd": 44.0,
+      "rally_skew": -2.8
     },
     "z_scores": {
-      "serve_lean": -1.653,
-      "1st_reliance": -0.043,
-      "return_aggro": -0.185,
-      "rally_skew": 0.025,
-      "serve_consist": 0.4
+      "serve_lean": -0.768,
+      "1st_reliance": 0.213,
+      "return_aggro": 0.185,
+      "rally_skew": -0.35,
+      "serve_consist": 1.075
     }
   },
   "Borna Coric": {
@@ -5064,39 +4684,39 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 72.4,
-      "fsp": 65.9,
-      "sspw": 53.3,
-      "rpw_vs_1st": 25.8,
-      "rpw_vs_2nd": 44.3,
-      "rally_skew": 7.8
-    },
-    "z_scores": {
-      "serve_lean": -0.702,
-      "1st_reliance": -0.128,
-      "return_aggro": 0.446,
-      "rally_skew": 0.975,
-      "serve_consist": 0.725
-    }
-  },
-  "Henri Squire": {
-    "id": 4,
-    "label": "Big-Serve Power Server",
-    "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
-    "raw": {
-      "fspw": 90.9,
-      "fsp": 55.0,
-      "sspw": 44.4,
-      "rpw_vs_1st": 20.0,
-      "rpw_vs_2nd": 33.3,
+      "fspw": 72.2,
+      "fsp": 63.8,
+      "sspw": 48.4,
+      "rpw_vs_1st": 24.5,
+      "rpw_vs_2nd": 41.5,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 2.141,
-      "1st_reliance": 2.787,
-      "return_aggro": -0.354,
+      "serve_lean": -0.713,
+      "1st_reliance": 0.372,
+      "return_aggro": 0.215,
       "rally_skew": 0.0,
-      "serve_consist": -2.0
+      "serve_consist": 0.2
+    }
+  },
+  "Henri Squire": {
+    "id": 1,
+    "label": "Aggressive Power Server",
+    "blurb": "More variable serve than the steady version, often takes bigger swings. Big serve, weaker on return. Lives or dies by the first delivery.",
+    "raw": {
+      "fspw": 81.4,
+      "fsp": 66.0,
+      "sspw": 44.0,
+      "rpw_vs_1st": 17.7,
+      "rpw_vs_2nd": 18.9,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": 3.166,
+      "1st_reliance": 1.819,
+      "return_aggro": -2.215,
+      "rally_skew": 0.0,
+      "serve_consist": 0.75
     }
   },
   "Frances Tiafoe": {
@@ -5104,19 +4724,39 @@
     "label": "Steady Return Specialist (1st-serve neutralizer)",
     "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 78.9,
-      "fsp": 59.3,
-      "sspw": 56.1,
-      "rpw_vs_1st": 25.1,
-      "rpw_vs_2nd": 46.3,
-      "rally_skew": -4.1
+      "fspw": 76.1,
+      "fsp": 60.0,
+      "sspw": 51.5,
+      "rpw_vs_1st": 28.0,
+      "rpw_vs_2nd": 43.0,
+      "rally_skew": -3.7
     },
     "z_scores": {
-      "serve_lean": 0.047,
-      "1st_reliance": 0.266,
-      "return_aggro": 0.862,
-      "rally_skew": -0.513,
-      "serve_consist": -0.925
+      "serve_lean": -0.715,
+      "1st_reliance": 0.457,
+      "return_aggro": -0.092,
+      "rally_skew": -0.463,
+      "serve_consist": -0.75
+    }
+  },
+  "Emilio Nava": {
+    "id": 2,
+    "label": "Steady Return Specialist (1st-serve neutralizer)",
+    "blurb": "Higher serve consistency than the adaptive version. Elite at neutralising big first serves. Forces returners into rallies.",
+    "raw": {
+      "fspw": 61.1,
+      "fsp": 60.0,
+      "sspw": 45.8,
+      "rpw_vs_1st": 16.7,
+      "rpw_vs_2nd": 35.0,
+      "rally_skew": 0.0
+    },
+    "z_scores": {
+      "serve_lean": -0.146,
+      "1st_reliance": -0.532,
+      "return_aggro": 0.415,
+      "rally_skew": 0.0,
+      "serve_consist": -0.75
     }
   },
   "Novak Djokovic": {
@@ -5124,19 +4764,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 78.0,
-      "fsp": 64.1,
-      "sspw": 61.2,
-      "rpw_vs_1st": 28.0,
-      "rpw_vs_2nd": 47.4,
-      "rally_skew": -1.1
+      "fspw": 75.1,
+      "fsp": 65.8,
+      "sspw": 58.4,
+      "rpw_vs_1st": 29.1,
+      "rpw_vs_2nd": 46.8,
+      "rally_skew": -3.0
     },
     "z_scores": {
-      "serve_lean": -0.061,
-      "1st_reliance": -0.372,
-      "return_aggro": 0.585,
-      "rally_skew": -0.138,
-      "serve_consist": 0.275
+      "serve_lean": -0.695,
+      "1st_reliance": -0.383,
+      "return_aggro": 0.323,
+      "rally_skew": -0.375,
+      "serve_consist": 0.7
     }
   },
   "Arthur Fery": {
@@ -5145,18 +4785,18 @@
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
       "fspw": 59.5,
-      "fsp": 62.3,
-      "sspw": 53.9,
-      "rpw_vs_1st": 21.1,
-      "rpw_vs_2nd": 52.0,
+      "fsp": 62.6,
+      "sspw": 54.2,
+      "rpw_vs_1st": 21.0,
+      "rpw_vs_2nd": 52.5,
       "rally_skew": 17.1
     },
     "z_scores": {
-      "serve_lean": -1.999,
-      "1st_reliance": -1.564,
-      "return_aggro": 2.354,
+      "serve_lean": -2.01,
+      "1st_reliance": -1.596,
+      "return_aggro": 2.446,
       "rally_skew": 2.138,
-      "serve_consist": -0.175
+      "serve_consist": -0.1
     }
   },
   "Thiago Seyboth Wild": {
@@ -5164,19 +4804,19 @@
     "label": "Aggressive Return Specialist (1st-serve neutralizer)",
     "blurb": "More variable serve than the steady version, often takes bigger swings. Elite at neutralising big first serves. Forces returners into rallies.",
     "raw": {
-      "fspw": 67.6,
-      "fsp": 62.7,
-      "sspw": 57.2,
-      "rpw_vs_1st": 26.5,
-      "rpw_vs_2nd": 37.9,
-      "rally_skew": 14.9
+      "fspw": 68.2,
+      "fsp": 63.2,
+      "sspw": 52.7,
+      "rpw_vs_1st": 23.7,
+      "rpw_vs_2nd": 40.2,
+      "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": -0.137,
-      "1st_reliance": -1.053,
-      "return_aggro": -0.646,
-      "rally_skew": 1.863,
-      "serve_consist": -0.075
+      "serve_lean": -0.388,
+      "1st_reliance": -0.511,
+      "return_aggro": 0.138,
+      "rally_skew": 0.0,
+      "serve_consist": 0.05
     }
   },
   "Sam Querrey": {
@@ -5184,19 +4824,19 @@
     "label": "Big-Serve Power Server",
     "blurb": "Most serve-dominant of this archetype. Big serve, weaker on return. Lives or dies by the first delivery.",
     "raw": {
-      "fspw": 80.8,
-      "fsp": 57.3,
-      "sspw": 48.8,
-      "rpw_vs_1st": 21.9,
-      "rpw_vs_2nd": 38.1,
+      "fspw": 80.7,
+      "fsp": 58.6,
+      "sspw": 49.4,
+      "rpw_vs_1st": 22.4,
+      "rpw_vs_2nd": 38.3,
       "rally_skew": 0.0
     },
     "z_scores": {
-      "serve_lean": 0.858,
-      "1st_reliance": 1.245,
-      "return_aggro": 0.092,
+      "serve_lean": 0.815,
+      "1st_reliance": 1.17,
+      "return_aggro": 0.046,
       "rally_skew": 0.0,
-      "serve_consist": -1.425
+      "serve_consist": -1.1
     }
   }
 }

@@ -89,7 +89,7 @@
         "year": 2011,
         "date": "2011-06-06",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Queen's Club",
@@ -4272,7 +4272,7 @@
         "year": 2012,
         "date": "2012-06-25",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -6857,7 +6857,7 @@
         "year": 2011,
         "date": "2011-06-20",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       }
     ],
     "elo_snapshot": {
@@ -7127,7 +7127,7 @@
         "year": 2011,
         "date": "2011-06-06",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -7706,7 +7706,7 @@
         "year": 2012,
         "date": "2012-06-25",
         "result": "W",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Queen's Club",
@@ -7730,7 +7730,7 @@
         "year": 2011,
         "date": "2011-06-20",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -7920,7 +7920,7 @@
         "year": 2012,
         "date": "2012-06-25",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -8744,7 +8744,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Eastbourne",
@@ -8974,7 +8974,7 @@
         "year": 2012,
         "date": "2012-06-11",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Newport",
@@ -9902,7 +9902,7 @@
         "year": 2012,
         "date": "2012-06-11",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Queen's Club",
@@ -10734,7 +10734,7 @@
         "year": 2012,
         "date": "2012-06-11",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -10901,7 +10901,7 @@
         "year": 2011,
         "date": "2011-06-06",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -11170,7 +11170,7 @@
         "year": 2012,
         "date": "2012-06-18",
         "result": "W",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Wimbledon",
@@ -12229,8 +12229,8 @@
     },
     "elo_win_prob_vs_avg": 0.4048
   },
-  "Juan Martin del Potro": {
-    "player": "Juan Martin del Potro",
+  "Juan Martin Del Potro": {
+    "player": "Juan Martin Del Potro",
     "surface": "grass",
     "year": 2013,
     "source": "grass_atp",
@@ -12363,7 +12363,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Juan Martin del Potro",
+      "name": "Juan Martin Del Potro",
       "n_overall": 392,
       "n_surface": 34,
       "R_overall": 2148.8,
@@ -12652,7 +12652,7 @@
         "year": 2012,
         "date": "2012-06-18",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Queen's Club",
@@ -13049,7 +13049,7 @@
         "year": 2010,
         "date": "2010-06-13",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Queen's Club",
@@ -13160,7 +13160,7 @@
         "year": 2012,
         "date": "2012-06-25",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -14642,7 +14642,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Eastbourne",
@@ -15412,7 +15412,7 @@
         "year": 2012,
         "date": "2012-06-11",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Queen's Club",
@@ -16592,7 +16592,7 @@
         "year": 2011,
         "date": "2011-06-20",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -16941,7 +16941,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -17052,7 +17052,7 @@
         "year": 2011,
         "date": "2011-06-12",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Eastbourne",
@@ -18936,8 +18936,8 @@
     },
     "elo_win_prob_vs_avg": 0.3138
   },
-  "Paul Henri Mathieu": {
-    "player": "Paul Henri Mathieu",
+  "Paul-Henri Mathieu": {
+    "player": "Paul-Henri Mathieu",
     "surface": "grass",
     "year": 2013,
     "source": "grass_atp",
@@ -19038,7 +19038,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Paul Henri Mathieu",
+      "name": "Paul-Henri Mathieu",
       "n_overall": 478,
       "n_surface": 42,
       "R_overall": 1694.0,
@@ -19970,7 +19970,7 @@
         "year": 2011,
         "date": "2011-06-20",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -21245,7 +21245,7 @@
         "year": 2012,
         "date": "2012-06-25",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "s Hertogenbosch",
@@ -22078,7 +22078,7 @@
         "year": 2012,
         "date": "2012-06-25",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Eastbourne",
@@ -22086,7 +22086,7 @@
         "year": 2012,
         "date": "2012-06-18",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Eastbourne",
@@ -24115,7 +24115,7 @@
         "year": 2010,
         "date": "2010-06-21",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Wimbledon",
@@ -24861,7 +24861,7 @@
         "year": 2011,
         "date": "2011-06-20",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -25218,7 +25218,7 @@
         "year": 2011,
         "date": "2011-06-20",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -25461,8 +25461,8 @@
     },
     "elo_win_prob_vs_avg": 0.7877
   },
-  "Yen Hsun Lu": {
-    "player": "Yen Hsun Lu",
+  "Yen-Hsun Lu": {
+    "player": "Yen-Hsun Lu",
     "surface": "grass",
     "year": 2013,
     "source": "grass_atp",
@@ -25595,7 +25595,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Yen Hsun Lu",
+      "name": "Yen-Hsun Lu",
       "n_overall": 245,
       "n_surface": 46,
       "R_overall": 1754.2,

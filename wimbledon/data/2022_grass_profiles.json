@@ -6157,7 +6157,7 @@
         "year": 2021,
         "date": "2021-06-14",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -10681,8 +10681,8 @@
     },
     "elo_win_prob_vs_avg": 0.3663
   },
-  "Juan Martin del Potro": {
-    "player": "Juan Martin del Potro",
+  "Juan Martin Del Potro": {
+    "player": "Juan Martin Del Potro",
     "surface": "grass",
     "year": 2022,
     "source": "grass_atp",
@@ -10751,7 +10751,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Juan Martin del Potro",
+      "name": "Juan Martin Del Potro",
       "n_overall": 620,
       "n_surface": 57,
       "R_overall": 2108.1,
@@ -12736,7 +12736,7 @@
         "year": 2021,
         "date": "2021-06-28",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -20918,8 +20918,8 @@
     },
     "elo_win_prob_vs_avg": 0.2894
   },
-  "Yen Hsun Lu": {
-    "player": "Yen Hsun Lu",
+  "Yen-Hsun Lu": {
+    "player": "Yen-Hsun Lu",
     "surface": "grass",
     "year": 2022,
     "source": "grass_atp",
@@ -20988,7 +20988,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Yen Hsun Lu",
+      "name": "Yen-Hsun Lu",
       "n_overall": 398,
       "n_surface": 66,
       "R_overall": 1679.7,

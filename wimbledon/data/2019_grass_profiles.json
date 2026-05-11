@@ -1054,7 +1054,7 @@
         "year": 2016,
         "date": "2016-06-27",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -2267,7 +2267,7 @@
         "year": 2016,
         "date": "2016-06-27",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -2631,7 +2631,7 @@
         "year": 2018,
         "date": "2018-07-02",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -4343,7 +4343,7 @@
         "year": 2016,
         "date": "2016-06-13",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       }
     ],
     "elo_snapshot": {
@@ -6580,7 +6580,7 @@
         "year": 2017,
         "date": "2017-07-03",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -7182,7 +7182,7 @@
         "year": 2018,
         "date": "2018-07-02",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -8467,7 +8467,7 @@
         "year": 2018,
         "date": "2018-07-02",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -12286,8 +12286,8 @@
     },
     "elo_win_prob_vs_avg": 0.7023
   },
-  "Juan Martin del Potro": {
-    "player": "Juan Martin del Potro",
+  "Juan Martin Del Potro": {
+    "player": "Juan Martin Del Potro",
     "surface": "grass",
     "year": 2019,
     "source": "grass_atp",
@@ -12420,7 +12420,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Juan Martin del Potro",
+      "name": "Juan Martin Del Potro",
       "n_overall": 619,
       "n_surface": 57,
       "R_overall": 2125.4,
@@ -18619,8 +18619,8 @@
     },
     "elo_win_prob_vs_avg": 0.3109
   },
-  "Paul Henri Mathieu": {
-    "player": "Paul Henri Mathieu",
+  "Paul-Henri Mathieu": {
+    "player": "Paul-Henri Mathieu",
     "surface": "grass",
     "year": 2019,
     "source": "grass_atp",
@@ -18713,7 +18713,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Paul Henri Mathieu",
+      "name": "Paul-Henri Mathieu",
       "n_overall": 584,
       "n_surface": 54,
       "R_overall": 1641.7,
@@ -18780,7 +18780,7 @@
         "year": 2018,
         "date": "2018-07-02",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Newport",
@@ -19605,7 +19605,7 @@
         "year": 2018,
         "date": "2018-07-02",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -19772,7 +19772,7 @@
         "year": 2016,
         "date": "2016-06-06",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       }
     ],
     "elo_snapshot": {
@@ -21976,7 +21976,7 @@
         "year": 2017,
         "date": "2017-07-03",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -22103,7 +22103,7 @@
         "year": 2016,
         "date": "2016-06-27",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -22579,7 +22579,7 @@
         "year": 2016,
         "date": "2016-06-27",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Nottingham",
@@ -23561,7 +23561,7 @@
         "year": 2017,
         "date": "2017-07-03",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Queen's Club",
@@ -25064,8 +25064,8 @@
     },
     "elo_win_prob_vs_avg": 0.4663
   },
-  "Yen Hsun Lu": {
-    "player": "Yen Hsun Lu",
+  "Yen-Hsun Lu": {
+    "player": "Yen-Hsun Lu",
     "surface": "grass",
     "year": 2019,
     "source": "grass_atp",
@@ -25142,7 +25142,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Yen Hsun Lu",
+      "name": "Yen-Hsun Lu",
       "n_overall": 388,
       "n_surface": 64,
       "R_overall": 1743.1,

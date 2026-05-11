@@ -15,9 +15,13 @@ import pandas as pd
 import requests
 from tqdm import tqdm
 
+# Phase B: canonical name normalisation applied during clean()
+# so all downstream CSVs use a single, consistent spelling per player.
+from canonical_names import normalize_series
+
 
 SACKMANN_BASE = "https://raw.githubusercontent.com/JeffSackmann/tennis_atp/master"
-MATCH_FILE_YEARS = range(1991, 2024)
+MATCH_FILE_YEARS = range(1991, 2026)
 
 MATCH_COLS_KEEP = [
     "tourney_id", "tourney_name", "surface", "tourney_date",
@@ -113,6 +117,14 @@ def clean(df: pd.DataFrame) -> pd.DataFrame:
     # Drop rows without a decisive result (walkovers, retirements kept — handled downstream)
     df = df.dropna(subset=["winner_id", "loser_id", "tourney_date"])
     df = df.sort_values("tourney_date").reset_index(drop=True)
+
+    # Phase B: normalise player name spellings so all downstream files
+    # (all_grass_matches.csv, wimbledon_matches.csv, all_atp_matches.csv)
+    # use a single canonical form per player.
+    for col in ("winner_name", "loser_name"):
+        if col in df.columns:
+            df[col] = normalize_series(df[col])
+
     return df
 
 

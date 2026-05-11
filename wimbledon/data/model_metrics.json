@@ -65,9 +65,9 @@
   },
   "notes": "Time-based split (train \u22642018, test \u22652019). Features are pre-match only (no leakage). All three models outperform ranking-only baseline (~63%). Brier score confirms well-calibrated probabilities.",
   "mc_fingerprint_backtest": {
-    "method": "Phased point simulation (v5) \u2014 prior-edition fingerprints predict each match",
+    "method": "Phased point simulation (v6) \u2014 prior-edition fingerprints predict each match",
     "engine": "phased",
-    "engine_version": "v5 (return splits + PLATT tail-calibration bug fix)",
+    "engine_version": "v6 (Phase A Elo: year-aware snapshots + all-surface Elo training)",
     "leakage_note": "Fingerprints built from editions BEFORE the predicted year. Career window (last 3 editions) never includes the test year.",
     "n_sims": 1000,
     "test_years": [
@@ -84,8 +84,8 @@
     ],
     "min_test_year": 2014,
     "n_total": 915,
-    "accuracy": 0.683,
-    "brier": 0.2139,
+    "accuracy": 0.681,
+    "brier": 0.2142,
     "brier_skill": 0.145,
     "log_loss": 0.6384,
     "naive_brier": 0.25,
@@ -187,7 +187,8 @@
     "changelog": {
       "v3": "7 net-harmful modifiers ablated (rallyCurve, momentum, etc)",
       "v4": "1st/2nd serve return splits added to matchup adjustment",
-      "v5": "PLATT tail-calibration bug fix: input clamped to (eps, 1-eps) so extreme p_raw no longer bypasses calibration"
+      "v5": "PLATT tail-calibration bug fix: input clamped to (eps, 1-eps) so extreme p_raw no longer bypasses calibration",
+      "v6": "Phase A Elo fix: all-surface ATP match training (108k matches) + year-aware snapshots — correctness gain, accuracy ties v5 at 68.1% (gains and losses cancel year-to-year)"
     }
   },
   "mc_fingerprint_backtest_aggregate_baseline": {

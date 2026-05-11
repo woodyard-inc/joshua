@@ -52,6 +52,9 @@ from build_player_profiles import (
     classify_serve_width, parse_elapsed_mins, match_round,
     col_available, pct, safe,
 )
+# Phase B: canonical name normalisation — applied to PBP-derived player names
+# so fingerprint keys match the same canonical form as the match-level data.
+from canonical_names import normalize_name
 
 
 # ── constants ──────────────────────────────────────────────────────────────
@@ -59,7 +62,7 @@ from build_player_profiles import (
 DATA_DIR        = Path(__file__).parent.parent / "data" / "raw"
 PROC_DIR        = Path(__file__).parent.parent / "data" / "processed"
 OUT_DIR         = Path(__file__).parent.parent / "data"
-SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024]
+SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
 
 # Career-window fingerprint settings
 CAREER_WINDOW   = 10   # max matches per fingerprint (across all eligible years)
@@ -81,6 +84,7 @@ WIMBLEDON_STARTS: Dict[int, pd.Timestamp] = {
     2022: pd.Timestamp("2022-06-27"),
     2023: pd.Timestamp("2023-07-03"),
     2024: pd.Timestamp("2024-07-01"),
+    2025: pd.Timestamp("2025-06-30"),   # Wimbledon 2025: 30 Jun – 13 Jul
 }
 
 CI_LEVEL          = 0.90   # credible interval coverage
@@ -1246,7 +1250,10 @@ def _build_year_index(year: int) -> tuple:
     men_rows = mat[mat["match_id"].isin(men_ids)]
     for _, row in men_rows.iterrows():
         mid = row["match_id"]
-        p1, p2 = str(row["player1"]), str(row["player2"])
+        # Phase B: normalise PBP player names to the canonical form so
+        # fingerprint keys match the spelling in all other pipeline outputs.
+        p1 = normalize_name(str(row["player1"]))
+        p2 = normalize_name(str(row["player2"]))
         opp_lookup[(mid, p1)] = p2
         opp_lookup[(mid, p2)] = p1
         for name, pnum in ((p1, 1), (p2, 2)):

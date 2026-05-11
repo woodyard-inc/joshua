@@ -1721,7 +1721,7 @@
         "year": 2018,
         "date": "2018-07-02",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -4146,7 +4146,7 @@
         "year": 2019,
         "date": "2019-06-17",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Stuttgart",
@@ -5548,7 +5548,7 @@
         "year": 2019,
         "date": "2019-06-17",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Queen's Club",
@@ -5588,7 +5588,7 @@
         "year": 2018,
         "date": "2018-07-02",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -10230,8 +10230,8 @@
     },
     "elo_win_prob_vs_avg": 0.3932
   },
-  "Juan Martin del Potro": {
-    "player": "Juan Martin del Potro",
+  "Juan Martin Del Potro": {
+    "player": "Juan Martin Del Potro",
     "surface": "grass",
     "year": 2021,
     "source": "grass_atp",
@@ -10340,7 +10340,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Juan Martin del Potro",
+      "name": "Juan Martin Del Potro",
       "n_overall": 619,
       "n_surface": 57,
       "R_overall": 2125.4,
@@ -16075,7 +16075,7 @@
         "year": 2018,
         "date": "2018-07-02",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       }
     ],
     "elo_snapshot": {
@@ -16789,7 +16789,7 @@
         "year": 2018,
         "date": "2018-07-02",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",

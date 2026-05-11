@@ -4,7 +4,7 @@
     "surface": "grass",
     "year": 2014,
     "n_matches": 10,
-    "n_points": 252,
+    "n_points": 255,
     "n_eff_matches": 9.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -87,9 +87,9 @@
         "year": 2013,
         "round": "SF",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1968.5,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2494
       },
       {
         "match_id": "2013-wimbledon-1501",
@@ -103,44 +103,44 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 46.8,
-        "ci_90_lo": 39.6,
-        "ci_90_hi": 54.2
+        "value": 45.4,
+        "ci_90_lo": 38.3,
+        "ci_90_hi": 52.8
       },
       "fspw_pct": {
         "value": 76.0,
-        "ci_90_lo": 64.7,
-        "ci_90_hi": 82.9
+        "ci_90_lo": 64.6,
+        "ci_90_hi": 83.0
       },
       "sspw_pct": {
         "value": 61.8,
-        "ci_90_lo": 45.6,
-        "ci_90_hi": 74.1
+        "ci_90_lo": 45.5,
+        "ci_90_hi": 74.2
       },
       "rpw_pct": {
         "value": 37.4,
-        "ci_90_lo": 31.1,
-        "ci_90_hi": 44.8
+        "ci_90_lo": 31.0,
+        "ci_90_hi": 44.7
       },
       "rpw_vs_1st_pct": {
         "value": 26.9,
         "ci_90_lo": 19.4,
-        "ci_90_hi": 38.3
+        "ci_90_hi": 38.4
       },
       "rpw_vs_2nd_pct": {
         "value": 50.3,
-        "ci_90_lo": 36.7,
-        "ci_90_hi": 63.9
+        "ci_90_lo": 36.6,
+        "ci_90_hi": 64.0
       },
       "sgw_pct": {
-        "value": 86.9,
-        "ci_90_lo": 66.1,
-        "ci_90_hi": 92.1
+        "value": 87.1,
+        "ci_90_lo": 66.5,
+        "ci_90_hi": 92.2
       },
       "rgw_pct": {
-        "value": 25.3,
-        "ci_90_lo": 15.5,
-        "ci_90_hi": 45.1
+        "value": 24.9,
+        "ci_90_lo": 15.2,
+        "ci_90_hi": 44.7
       }
     },
     "tier2": {
@@ -151,62 +151,62 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": -1.5,
-        "high_lev_win_pct": 50.9,
+        "value": -1.6,
+        "high_lev_win_pct": 50.8,
         "baseline_win_pct": 52.4,
-        "n_eff": 39,
+        "n_eff": 40,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": -0.015
+        "modifier_delta": -0.016
       },
       "df_pressure_delta": {
         "available": true,
         "value": 0.2,
         "bp_df_rate": 1.8,
         "baseline_df_rate": 1.6,
-        "n_eff": 6,
+        "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
         "modifier_delta": 0.002
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 3.9,
-        "bp_speed_kmh": 179.1,
-        "overall_speed_kmh": 175.2,
+        "value": 4.0,
+        "bp_speed_kmh": 179.3,
+        "overall_speed_kmh": 175.3,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.039,
+        "modifier_delta": 0.04,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 53.3,
-        "ad_win_pct": 51.2,
-        "asymmetry": 2.1,
+        "deuce_win_pct": 53.2,
+        "ad_win_pct": 51.3,
+        "asymmetry": 1.9,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 1.83,
-        "streak_survival_rate": 0.397,
-        "streak_recovery_rate": 0.442
+        "streak_initiation_rate": 1.85,
+        "streak_survival_rate": 0.395,
+        "streak_recovery_rate": 0.456
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.598,
-        "bp_conversion": 0.339,
-        "bp_created": 12.2,
-        "bp_converted": 4.2
+        "bp_per_return_game": 0.596,
+        "bp_conversion": 0.336,
+        "bp_created": 12.3,
+        "bp_converted": 4.1
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0317,
+        "value": 0.0318,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0223,
+            "delta_frac": 0.0228,
             "weight": 0.3,
-            "contribution": 0.0067
+            "contribution": 0.0068
           },
           "df_rate_delta": {
             "delta_frac": 0.125,
@@ -218,7 +218,7 @@
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.0317,
+        "modifier_delta": 0.0318,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -230,7 +230,7 @@
         "value": 32.6,
         "first_avg_kmh": 184.6,
         "second_avg_kmh": 152.0,
-        "n_eff": 27,
+        "n_eff": 26,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
@@ -247,8 +247,8 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -2.3,
-        "first_games_win_pct": 50.1,
+        "value": -2.2,
+        "first_games_win_pct": 50.2,
         "overall_win_pct": 52.4,
         "n_eff": 45,
         "confidence": "LOW"
@@ -256,8 +256,8 @@
       "first_serve_pressure": {
         "available": true,
         "value": -0.9,
-        "fsp_at_pressure": 45.9,
-        "fsp_overall": 46.8,
+        "fsp_at_pressure": 44.5,
+        "fsp_overall": 45.4,
         "n_eff": 12,
         "confidence": "UNRELIABLE"
       },
@@ -266,7 +266,7 @@
         "value": -1.7,
         "tb_win_pct": 50.7,
         "baseline_win_pct": 52.4,
-        "n_eff": 245,
+        "n_eff": 247,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -1135,7 +1135,7 @@
     "surface": "grass",
     "year": 2014,
     "n_matches": 6,
-    "n_points": 189,
+    "n_points": 188,
     "n_eff_matches": 5.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -1191,41 +1191,41 @@
         "year": 2012,
         "round": "R128",
         "opponent": "Paul-Henri Mathieu",
-        "opponent_elo": null,
+        "opponent_elo": 1692.7,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.0739
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 27.8,
-        "ci_90_lo": 21.6,
-        "ci_90_hi": 36.2
+        "value": 27.6,
+        "ci_90_lo": 21.4,
+        "ci_90_hi": 36.1
       },
       "fspw_pct": {
         "value": 75.7,
-        "ci_90_lo": 58.7,
-        "ci_90_hi": 84.5
+        "ci_90_lo": 58.6,
+        "ci_90_hi": 84.6
       },
       "sspw_pct": {
         "value": 57.2,
-        "ci_90_lo": 39.3,
-        "ci_90_hi": 72.1
+        "ci_90_lo": 39.2,
+        "ci_90_hi": 72.2
       },
       "rpw_pct": {
-        "value": 33.1,
+        "value": 33.2,
         "ci_90_lo": 26.1,
         "ci_90_hi": 42.0
       },
       "rpw_vs_1st_pct": {
         "value": 27.1,
-        "ci_90_lo": 17.9,
-        "ci_90_hi": 43.0
+        "ci_90_lo": 17.8,
+        "ci_90_hi": 43.1
       },
       "rpw_vs_2nd_pct": {
         "value": 51.0,
-        "ci_90_lo": 33.5,
-        "ci_90_hi": 68.0
+        "ci_90_lo": 33.4,
+        "ci_90_hi": 68.1
       },
       "sgw_pct": {
         "value": 78.1,
@@ -1233,9 +1233,9 @@
         "ci_90_hi": 87.3
       },
       "rgw_pct": {
-        "value": 17.6,
+        "value": 17.7,
         "ci_90_lo": 10.3,
-        "ci_90_hi": 41.9
+        "ci_90_hi": 42.0
       }
     },
     "tier2": {
@@ -1246,13 +1246,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 3.3,
+        "value": 3.2,
         "high_lev_win_pct": 52.3,
-        "baseline_win_pct": 49.0,
+        "baseline_win_pct": 49.1,
         "n_eff": 31,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.033
+        "modifier_delta": 0.032
       },
       "df_pressure_delta": {
         "available": true,
@@ -1266,13 +1266,13 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 1.2,
+        "value": 1.1,
         "bp_speed_kmh": 163.5,
-        "overall_speed_kmh": 162.3,
+        "overall_speed_kmh": 162.4,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.012,
+        "modifier_delta": 0.011,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
@@ -1284,11 +1284,11 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 1.64,
-        "streak_survival_rate": 0.485,
-        "streak_recovery_rate": 0.491
+        "streak_survival_rate": 0.483,
+        "streak_recovery_rate": 0.487
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.42,
+        "bp_per_return_game": 0.424,
         "bp_conversion": 0.372,
         "bp_created": 6.2,
         "bp_converted": 2.3
@@ -1296,12 +1296,12 @@
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.0449,
+        "value": -0.0451,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0074,
+            "delta_frac": 0.0068,
             "weight": 0.3,
-            "contribution": 0.0022
+            "contribution": 0.002
           },
           "df_rate_delta": {
             "delta_frac": -0.2353,
@@ -1313,7 +1313,7 @@
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": -0.0449,
+        "modifier_delta": -0.0451,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -1342,25 +1342,25 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -1.7,
-        "first_games_win_pct": 47.3,
-        "overall_win_pct": 49.0,
+        "value": -1.9,
+        "first_games_win_pct": 47.2,
+        "overall_win_pct": 49.1,
         "n_eff": 31,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -12.4,
-        "fsp_at_pressure": 15.4,
-        "fsp_overall": 27.8,
+        "value": -12.3,
+        "fsp_at_pressure": 15.3,
+        "fsp_overall": 27.6,
         "n_eff": 17,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
         "value": 0.2,
-        "tb_win_pct": 49.2,
-        "baseline_win_pct": 49.0,
+        "tb_win_pct": 49.3,
+        "baseline_win_pct": 49.1,
         "n_eff": 182,
         "confidence": "RELIABLE"
       },
@@ -1393,7 +1393,7 @@
     "surface": "grass",
     "year": 2014,
     "n_matches": 4,
-    "n_points": 232,
+    "n_points": 233,
     "n_eff_matches": 4.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -1431,51 +1431,51 @@
         "year": 2012,
         "round": "R128",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1933.7,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2269
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 30.7,
-        "ci_90_lo": 24.8,
-        "ci_90_hi": 38.1
+        "value": 29.1,
+        "ci_90_lo": 23.4,
+        "ci_90_hi": 36.5
       },
       "fspw_pct": {
         "value": 77.0,
-        "ci_90_lo": 63.0,
-        "ci_90_hi": 84.6
+        "ci_90_lo": 62.6,
+        "ci_90_hi": 84.7
       },
       "sspw_pct": {
         "value": 54.1,
-        "ci_90_lo": 37.9,
-        "ci_90_hi": 68.8
+        "ci_90_lo": 37.5,
+        "ci_90_hi": 69.1
       },
       "rpw_pct": {
-        "value": 26.2,
-        "ci_90_lo": 20.4,
-        "ci_90_hi": 34.3
+        "value": 26.4,
+        "ci_90_lo": 20.6,
+        "ci_90_hi": 34.5
       },
       "rpw_vs_1st_pct": {
         "value": 15.9,
-        "ci_90_lo": 10.0,
-        "ci_90_hi": 31.2
+        "ci_90_lo": 9.9,
+        "ci_90_hi": 31.7
       },
       "rpw_vs_2nd_pct": {
         "value": 35.9,
-        "ci_90_lo": 22.3,
-        "ci_90_hi": 55.9
+        "ci_90_lo": 22.0,
+        "ci_90_hi": 56.4
       },
       "sgw_pct": {
-        "value": 86.9,
-        "ci_90_lo": 65.8,
-        "ci_90_hi": 92.1
+        "value": 86.6,
+        "ci_90_lo": 65.6,
+        "ci_90_hi": 92.0
       },
       "rgw_pct": {
-        "value": 7.3,
-        "ci_90_lo": 4.8,
-        "ci_90_hi": 27.9
+        "value": 7.6,
+        "ci_90_lo": 4.9,
+        "ci_90_hi": 28.2
       }
     },
     "tier2": {
@@ -1506,42 +1506,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 3.2,
-        "bp_speed_kmh": 179.3,
+        "value": 3.1,
+        "bp_speed_kmh": 179.2,
         "overall_speed_kmh": 176.1,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.032,
+        "modifier_delta": 0.031,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 46.5,
+        "deuce_win_pct": 46.6,
         "ad_win_pct": 49.2,
-        "asymmetry": 2.7,
+        "asymmetry": 2.6,
         "stronger_side": "ad"
       },
       "momentum_profile": {
         "streak_initiation_rate": 3.45,
-        "streak_survival_rate": 0.409,
-        "streak_recovery_rate": 0.383
+        "streak_survival_rate": 0.414,
+        "streak_recovery_rate": 0.362
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.137,
-        "bp_conversion": 0.44,
-        "bp_created": 2.7,
-        "bp_converted": 1.2
+        "bp_per_return_game": 0.142,
+        "bp_conversion": 0.454,
+        "bp_created": 2.8,
+        "bp_converted": 1.3
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1945,
+        "value": -0.1947,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0182,
+            "delta_frac": 0.0176,
             "weight": 0.3,
-            "contribution": 0.0055
+            "contribution": 0.0053
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -1553,7 +1553,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.1945,
+        "modifier_delta": -0.1947,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -1578,26 +1578,26 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -4.1,
-        "first_games_win_pct": 43.8,
+        "value": -4.3,
+        "first_games_win_pct": 43.6,
         "overall_win_pct": 47.9,
         "n_eff": 39,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": 2.3,
-        "fsp_at_pressure": 33.0,
-        "fsp_overall": 30.7,
+        "value": 3.0,
+        "fsp_at_pressure": 32.1,
+        "fsp_overall": 29.1,
         "n_eff": 22,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -1.0,
-        "tb_win_pct": 46.9,
+        "value": -0.9,
+        "tb_win_pct": 47.0,
         "baseline_win_pct": 47.9,
-        "n_eff": 225,
+        "n_eff": 226,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -2136,7 +2136,7 @@
     "surface": "grass",
     "year": 2014,
     "n_matches": 3,
-    "n_points": 272,
+    "n_points": 273,
     "n_eff_matches": 3.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -2156,9 +2156,9 @@
         "year": 2013,
         "round": "R128",
         "opponent": "Yen-Hsun Lu",
-        "opponent_elo": null,
+        "opponent_elo": 1665.5,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.0571
       },
       {
         "match_id": "2012-wimbledon-1228",
@@ -2172,19 +2172,19 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 12.8,
-        "ci_90_lo": 9.4,
-        "ci_90_hi": 18.8
+        "value": 12.5,
+        "ci_90_lo": 9.2,
+        "ci_90_hi": 18.5
       },
       "fspw_pct": {
         "value": 49.0,
-        "ci_90_lo": 31.9,
-        "ci_90_hi": 66.6
+        "ci_90_lo": 31.8,
+        "ci_90_hi": 66.7
       },
       "sspw_pct": {
         "value": 44.4,
-        "ci_90_lo": 24.8,
-        "ci_90_hi": 68.1
+        "ci_90_lo": 24.7,
+        "ci_90_hi": 68.3
       },
       "rpw_pct": {
         "value": 31.5,
@@ -2194,17 +2194,17 @@
       "rpw_vs_1st_pct": {
         "value": 26.1,
         "ci_90_lo": 15.4,
-        "ci_90_hi": 48.6
+        "ci_90_hi": 48.8
       },
       "rpw_vs_2nd_pct": {
         "value": 30.8,
         "ci_90_lo": 16.7,
-        "ci_90_hi": 59.1
+        "ci_90_hi": 59.3
       },
       "sgw_pct": {
-        "value": 76.5,
-        "ci_90_lo": 56.4,
-        "ci_90_hi": 85.7
+        "value": 76.7,
+        "ci_90_lo": 56.6,
+        "ci_90_hi": 85.8
       },
       "rgw_pct": {
         "value": 7.8,
@@ -2220,29 +2220,29 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 4.8,
-        "high_lev_win_pct": 51.1,
+        "value": 4.7,
+        "high_lev_win_pct": 51.0,
         "baseline_win_pct": 46.3,
         "n_eff": 44,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.048
+        "modifier_delta": 0.047
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 0.4,
-        "bp_df_rate": 2.3,
+        "value": 0.3,
+        "bp_df_rate": 2.2,
         "baseline_df_rate": 1.9,
         "n_eff": 15,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.004
+        "modifier_delta": 0.003
       },
       "serve_speed_courage": {
         "available": true,
         "value": 4.6,
-        "bp_speed_kmh": 172.1,
-        "overall_speed_kmh": 167.5,
+        "bp_speed_kmh": 172.0,
+        "overall_speed_kmh": 167.4,
         "n_eff": 15,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
@@ -2251,26 +2251,26 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 47.0,
-        "ad_win_pct": 45.3,
+        "deuce_win_pct": 47.1,
+        "ad_win_pct": 45.4,
         "asymmetry": 1.7,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 4.56,
+        "streak_initiation_rate": 4.6,
         "streak_survival_rate": 0.428,
-        "streak_recovery_rate": 0.462
+        "streak_recovery_rate": 0.461
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.365,
-        "bp_conversion": 0.177,
-        "bp_created": 7.7,
+        "bp_per_return_game": 0.368,
+        "bp_conversion": 0.174,
+        "bp_created": 7.8,
         "bp_converted": 1.4
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0503,
+        "value": 0.0398,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0275,
@@ -2278,16 +2278,16 @@
             "contribution": 0.0082
           },
           "df_rate_delta": {
-            "delta_frac": 0.2105,
+            "delta_frac": 0.1579,
             "weight": 0.2,
-            "contribution": 0.0421
+            "contribution": 0.0316
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.0503,
+        "modifier_delta": 0.0398,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -2316,26 +2316,26 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": -0.2,
-        "first_games_win_pct": 46.1,
+        "value": -0.1,
+        "first_games_win_pct": 46.2,
         "overall_win_pct": 46.3,
-        "n_eff": 54,
+        "n_eff": 53,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": 5.7,
-        "fsp_at_pressure": 18.5,
-        "fsp_overall": 12.8,
+        "value": 5.8,
+        "fsp_at_pressure": 18.3,
+        "fsp_overall": 12.5,
         "n_eff": 26,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -1.6,
-        "tb_win_pct": 44.7,
+        "value": -1.5,
+        "tb_win_pct": 44.8,
         "baseline_win_pct": 46.3,
-        "n_eff": 261,
+        "n_eff": 262,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -3245,7 +3245,7 @@
     "surface": "grass",
     "year": 2014,
     "n_matches": 5,
-    "n_points": 279,
+    "n_points": 280,
     "n_eff_matches": 5.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -3291,27 +3291,27 @@
         "match_id": "2012-wimbledon-1152",
         "year": 2012,
         "round": "R128",
-        "opponent": "Stanislas Wawrinka",
-        "opponent_elo": null,
+        "opponent": "Stan Wawrinka",
+        "opponent_elo": 1744.6,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.1069
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 19.0,
-        "ci_90_lo": 14.7,
-        "ci_90_hi": 25.4
+        "value": 18.5,
+        "ci_90_lo": 14.3,
+        "ci_90_hi": 25.0
       },
       "fspw_pct": {
         "value": 62.5,
-        "ci_90_lo": 46.3,
+        "ci_90_lo": 46.2,
         "ci_90_hi": 74.7
       },
       "sspw_pct": {
         "value": 52.8,
-        "ci_90_lo": 29.0,
-        "ci_90_hi": 74.4
+        "ci_90_lo": 28.8,
+        "ci_90_hi": 74.5
       },
       "rpw_pct": {
         "value": 35.7,
@@ -3321,22 +3321,22 @@
       "rpw_vs_1st_pct": {
         "value": 25.3,
         "ci_90_lo": 15.2,
-        "ci_90_hi": 46.6
+        "ci_90_hi": 46.8
       },
       "rpw_vs_2nd_pct": {
         "value": 33.3,
-        "ci_90_lo": 18.3,
-        "ci_90_hi": 60.3
+        "ci_90_lo": 18.2,
+        "ci_90_hi": 60.5
       },
       "sgw_pct": {
-        "value": 81.3,
+        "value": 81.2,
         "ci_90_lo": 62.2,
         "ci_90_hi": 88.6
       },
       "rgw_pct": {
-        "value": 21.6,
-        "ci_90_lo": 13.3,
-        "ci_90_hi": 40.4
+        "value": 21.5,
+        "ci_90_lo": 13.2,
+        "ci_90_hi": 40.3
       }
     },
     "tier2": {
@@ -3347,29 +3347,29 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 6.0,
-        "high_lev_win_pct": 56.1,
+        "value": 5.9,
+        "high_lev_win_pct": 56.0,
         "baseline_win_pct": 50.1,
         "n_eff": 41,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.06
+        "modifier_delta": 0.059
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 5.3,
-        "bp_df_rate": 8.1,
+        "value": 5.7,
+        "bp_df_rate": 8.5,
         "baseline_df_rate": 2.8,
         "n_eff": 12,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.053
+        "modifier_delta": 0.057
       },
       "serve_speed_courage": {
         "available": true,
         "value": 3.8,
-        "bp_speed_kmh": 171.6,
-        "overall_speed_kmh": 167.8,
+        "bp_speed_kmh": 171.5,
+        "overall_speed_kmh": 167.7,
         "n_eff": 11,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
@@ -3379,42 +3379,42 @@
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 47.0,
-        "ad_win_pct": 53.4,
-        "asymmetry": 6.4,
+        "ad_win_pct": 53.5,
+        "asymmetry": 6.5,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.3,
-        "streak_survival_rate": 0.42,
-        "streak_recovery_rate": 0.319
+        "streak_initiation_rate": 3.31,
+        "streak_survival_rate": 0.421,
+        "streak_recovery_rate": 0.316
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.436,
-        "bp_conversion": 0.496,
+        "bp_per_return_game": 0.433,
+        "bp_conversion": 0.497,
         "bp_created": 10.0,
         "bp_converted": 5.0
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.3854,
+        "value": 0.4139,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0226,
+            "delta_frac": 0.0227,
             "weight": 0.3,
             "contribution": 0.0068
           },
           "df_rate_delta": {
-            "delta_frac": 1.8929,
+            "delta_frac": 2.0357,
             "weight": 0.2,
-            "contribution": 0.3786
+            "contribution": 0.4071
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.3854,
+        "modifier_delta": 0.4139,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -3446,14 +3446,14 @@
         "value": -1.5,
         "first_games_win_pct": 48.6,
         "overall_win_pct": 50.1,
-        "n_eff": 64,
+        "n_eff": 65,
         "confidence": "RELIABLE"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": 16.6,
-        "fsp_at_pressure": 35.6,
-        "fsp_overall": 19.0,
+        "value": 16.4,
+        "fsp_at_pressure": 34.9,
+        "fsp_overall": 18.5,
         "n_eff": 20,
         "confidence": "UNRELIABLE"
       },
@@ -3462,7 +3462,7 @@
         "value": -0.6,
         "tb_win_pct": 49.5,
         "baseline_win_pct": 50.1,
-        "n_eff": 271,
+        "n_eff": 272,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -5734,9 +5734,9 @@
         "year": 2014,
         "round": "R128",
         "opponent": "Paul-Henri Mathieu",
-        "opponent_elo": null,
+        "opponent_elo": 1641.2,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.0412
       },
       {
         "match_id": "2013-wimbledon-1156",
@@ -5769,17 +5769,17 @@
     "tier1": {
       "fsp_pct": {
         "value": 37.0,
-        "ci_90_lo": 30.5,
-        "ci_90_hi": 44.4
+        "ci_90_lo": 30.6,
+        "ci_90_hi": 44.5
       },
       "fspw_pct": {
-        "value": 80.6,
-        "ci_90_lo": 68.1,
+        "value": 80.7,
+        "ci_90_lo": 68.2,
         "ci_90_hi": 87.0
       },
       "sspw_pct": {
-        "value": 47.8,
-        "ci_90_lo": 33.5,
+        "value": 47.9,
+        "ci_90_lo": 33.6,
         "ci_90_hi": 62.8
       },
       "rpw_pct": {
@@ -5800,10 +5800,10 @@
       "sgw_pct": {
         "value": 85.9,
         "ci_90_lo": 65.6,
-        "ci_90_hi": 91.5
+        "ci_90_hi": 91.6
       },
       "rgw_pct": {
-        "value": 18.2,
+        "value": 18.3,
         "ci_90_lo": 11.0,
         "ci_90_hi": 38.3
       }
@@ -5826,13 +5826,13 @@
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 3.8,
-        "bp_df_rate": 6.7,
+        "value": 3.9,
+        "bp_df_rate": 6.8,
         "baseline_df_rate": 2.9,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.038
+        "modifier_delta": 0.039
       },
       "serve_speed_courage": {
         "available": true,
@@ -5858,15 +5858,15 @@
         "streak_recovery_rate": 0.436
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.525,
-        "bp_conversion": 0.299,
+        "bp_per_return_game": 0.527,
+        "bp_conversion": 0.298,
         "bp_created": 10.9,
-        "bp_converted": 3.2
+        "bp_converted": 3.3
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.2654,
+        "value": 0.2723,
         "components": {
           "serve_speed_delta": {
             "delta_frac": 0.0109,
@@ -5874,16 +5874,16 @@
             "contribution": 0.0033
           },
           "df_rate_delta": {
-            "delta_frac": 1.3103,
+            "delta_frac": 1.3448,
             "weight": 0.2,
-            "contribution": 0.2621
+            "contribution": 0.269
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.2654,
+        "modifier_delta": 0.2723,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -5895,7 +5895,7 @@
         "value": 35.9,
         "first_avg_kmh": 192.0,
         "second_avg_kmh": 156.1,
-        "n_eff": 23,
+        "n_eff": 22,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
@@ -5920,8 +5920,8 @@
       },
       "first_serve_pressure": {
         "available": true,
-        "value": 9.9,
-        "fsp_at_pressure": 46.9,
+        "value": 10.0,
+        "fsp_at_pressure": 47.0,
         "fsp_overall": 37.0,
         "n_eff": 14,
         "confidence": "UNRELIABLE"
@@ -6161,7 +6161,14 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null,
+    "elo_snapshot": {
+      "name": "Paul-Henri Mathieu",
+      "n_overall": 507,
+      "n_surface": 47,
+      "R_overall": 1730.8,
+      "R_surface": 1581.5,
+      "R_adjusted": 1641.2
+    },
     "career_editions_used": [
       2012,
       2014
@@ -11407,7 +11414,7 @@
     "year": 2014,
     "n_matches": 4,
     "n_points": 209,
-    "n_eff_matches": 3.9,
+    "n_eff_matches": 4.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": false,
@@ -11444,51 +11451,51 @@
         "year": 2012,
         "round": "R128",
         "opponent": "Yen-Hsun Lu",
-        "opponent_elo": null,
+        "opponent_elo": 1700.9,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.0791
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 12.8,
-        "ci_90_lo": 9.2,
-        "ci_90_hi": 19.9
+        "value": 12.6,
+        "ci_90_lo": 9.0,
+        "ci_90_hi": 19.6
       },
       "fspw_pct": {
         "value": 67.9,
-        "ci_90_lo": 44.9,
+        "ci_90_lo": 44.7,
         "ci_90_hi": 81.2
       },
       "sspw_pct": {
         "value": 43.3,
-        "ci_90_lo": 23.1,
-        "ci_90_hi": 68.9
+        "ci_90_lo": 23.0,
+        "ci_90_hi": 69.0
       },
       "rpw_pct": {
-        "value": 27.4,
-        "ci_90_lo": 21.3,
-        "ci_90_hi": 35.7
+        "value": 27.6,
+        "ci_90_lo": 21.5,
+        "ci_90_hi": 35.9
       },
       "rpw_vs_1st_pct": {
         "value": 17.6,
         "ci_90_lo": 10.2,
-        "ci_90_hi": 43.3
+        "ci_90_hi": 43.5
       },
       "rpw_vs_2nd_pct": {
         "value": 27.6,
         "ci_90_lo": 14.7,
-        "ci_90_hi": 58.9
+        "ci_90_hi": 59.1
       },
       "sgw_pct": {
-        "value": 82.5,
-        "ci_90_lo": 60.4,
-        "ci_90_hi": 89.6
+        "value": 82.7,
+        "ci_90_lo": 60.6,
+        "ci_90_hi": 89.8
       },
       "rgw_pct": {
-        "value": 6.4,
-        "ci_90_lo": 4.5,
-        "ci_90_hi": 28.8
+        "value": 6.7,
+        "ci_90_lo": 4.6,
+        "ci_90_hi": 29.1
       }
     },
     "tier2": {
@@ -11499,29 +11506,29 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 3.7,
-        "high_lev_win_pct": 50.1,
-        "baseline_win_pct": 46.4,
-        "n_eff": 29,
-        "confidence": "UNRELIABLE",
-        "verdict": "UNRELIABLE",
-        "modifier_delta": 0.037
+        "value": 3.8,
+        "high_lev_win_pct": 50.3,
+        "baseline_win_pct": 46.5,
+        "n_eff": 30,
+        "confidence": "LOW",
+        "verdict": "PASS",
+        "modifier_delta": 0.038
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 0.6,
+        "value": 0.7,
         "bp_df_rate": 3.3,
-        "baseline_df_rate": 2.7,
+        "baseline_df_rate": 2.6,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.006
+        "modifier_delta": 0.007
       },
       "serve_speed_courage": {
         "available": true,
         "value": -4.7,
-        "bp_speed_kmh": 170.4,
-        "overall_speed_kmh": 175.1,
+        "bp_speed_kmh": 170.6,
+        "overall_speed_kmh": 175.3,
         "n_eff": 7,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
@@ -11530,43 +11537,43 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 47.4,
+        "deuce_win_pct": 47.6,
         "ad_win_pct": 45.2,
-        "asymmetry": 2.2,
+        "asymmetry": 2.4,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 2.85,
-        "streak_survival_rate": 0.402,
-        "streak_recovery_rate": 0.244
+        "streak_initiation_rate": 2.87,
+        "streak_survival_rate": 0.403,
+        "streak_recovery_rate": 0.247
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.345,
-        "bp_conversion": 0.186,
-        "bp_created": 5.9,
+        "bp_per_return_game": 0.35,
+        "bp_conversion": 0.192,
+        "bp_created": 6.0,
         "bp_converted": 1.1
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": 0.0363,
+        "value": 0.0458,
         "components": {
           "serve_speed_delta": {
             "delta_frac": -0.0268,
             "weight": 0.3,
-            "contribution": -0.0081
+            "contribution": -0.008
           },
           "df_rate_delta": {
-            "delta_frac": 0.2222,
+            "delta_frac": 0.2692,
             "weight": 0.2,
-            "contribution": 0.0444
+            "contribution": 0.0538
           }
         },
         "components_used": 2,
         "components_total": 5,
-        "confidence": "UNRELIABLE",
-        "verdict": "UNRELIABLE",
-        "modifier_delta": 0.0363,
+        "confidence": "LOW",
+        "verdict": "PASS",
+        "modifier_delta": 0.0458,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -11596,24 +11603,24 @@
       "set_transition_delta": {
         "available": true,
         "value": -1.6,
-        "first_games_win_pct": 44.8,
-        "overall_win_pct": 46.4,
+        "first_games_win_pct": 44.9,
+        "overall_win_pct": 46.5,
         "n_eff": 38,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -9.2,
+        "value": -9.0,
         "fsp_at_pressure": 3.6,
-        "fsp_overall": 12.8,
+        "fsp_overall": 12.6,
         "n_eff": 15,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
         "value": -1.0,
-        "tb_win_pct": 45.4,
-        "baseline_win_pct": 46.4,
+        "tb_win_pct": 45.5,
+        "baseline_win_pct": 46.5,
         "n_eff": 202,
         "confidence": "RELIABLE"
       },
@@ -12954,7 +12961,7 @@
     "surface": "grass",
     "year": 2014,
     "n_matches": 2,
-    "n_points": 257,
+    "n_points": 251,
     "n_eff_matches": 2.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -12974,51 +12981,51 @@
         "year": 2013,
         "round": "R16",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1968.5,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2494
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 35.8,
-        "ci_90_lo": 29.4,
-        "ci_90_hi": 43.3
+        "value": 32.3,
+        "ci_90_lo": 26.2,
+        "ci_90_hi": 39.9
       },
       "fspw_pct": {
         "value": 83.1,
-        "ci_90_lo": 70.5,
-        "ci_90_hi": 88.9
+        "ci_90_lo": 69.5,
+        "ci_90_hi": 89.1
       },
       "sspw_pct": {
         "value": 56.2,
-        "ci_90_lo": 39.9,
-        "ci_90_hi": 70.3
+        "ci_90_lo": 39.1,
+        "ci_90_hi": 71.0
       },
       "rpw_pct": {
-        "value": 32.2,
-        "ci_90_lo": 26.3,
-        "ci_90_hi": 39.5
+        "value": 31.9,
+        "ci_90_lo": 25.9,
+        "ci_90_hi": 39.2
       },
       "rpw_vs_1st_pct": {
         "value": 27.8,
-        "ci_90_lo": 19.7,
-        "ci_90_hi": 40.2
+        "ci_90_lo": 19.4,
+        "ci_90_hi": 41.0
       },
       "rpw_vs_2nd_pct": {
         "value": 40.0,
-        "ci_90_lo": 27.8,
-        "ci_90_hi": 55.2
+        "ci_90_lo": 27.2,
+        "ci_90_hi": 56.0
       },
       "sgw_pct": {
-        "value": 85.0,
-        "ci_90_lo": 64.5,
-        "ci_90_hi": 91.0
+        "value": 84.7,
+        "ci_90_lo": 63.9,
+        "ci_90_hi": 90.8
       },
       "rgw_pct": {
-        "value": 9.5,
-        "ci_90_lo": 5.9,
-        "ci_90_hi": 29.2
+        "value": 8.7,
+        "ci_90_lo": 5.5,
+        "ci_90_hi": 28.7
       }
     },
     "tier2": {
@@ -13029,20 +13036,20 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 10.5,
-        "high_lev_win_pct": 59.4,
-        "baseline_win_pct": 48.9,
-        "n_eff": 35,
+        "value": 11.8,
+        "high_lev_win_pct": 60.4,
+        "baseline_win_pct": 48.6,
+        "n_eff": 34,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.105
+        "modifier_delta": 0.118
       },
       "df_pressure_delta": {
         "available": true,
         "value": -3.6,
         "bp_df_rate": 0.0,
         "baseline_df_rate": 3.6,
-        "n_eff": 9,
+        "n_eff": 10,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
         "modifier_delta": -0.036
@@ -13052,7 +13059,7 @@
         "value": 7.1,
         "bp_speed_kmh": 171.5,
         "overall_speed_kmh": 164.4,
-        "n_eff": 5,
+        "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
         "modifier_delta": 0.071,
@@ -13060,21 +13067,21 @@
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 47.2,
+        "deuce_win_pct": 46.6,
         "ad_win_pct": 50.6,
-        "asymmetry": 3.4,
+        "asymmetry": 4.0,
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 6.75,
-        "streak_survival_rate": 0.63,
-        "streak_recovery_rate": 0.385
+        "streak_initiation_rate": 6.56,
+        "streak_survival_rate": 0.611,
+        "streak_recovery_rate": 0.39
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.262,
-        "bp_conversion": 0.273,
-        "bp_created": 5.5,
-        "bp_converted": 1.5
+        "bp_per_return_game": 0.25,
+        "bp_conversion": 0.261,
+        "bp_created": 5.1,
+        "bp_converted": 1.3
       },
       "rluep": null,
       "spci": {
@@ -13121,26 +13128,26 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 0.5,
-        "first_games_win_pct": 49.4,
-        "overall_win_pct": 48.9,
-        "n_eff": 44,
+        "value": -0.4,
+        "first_games_win_pct": 48.2,
+        "overall_win_pct": 48.6,
+        "n_eff": 42,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -21.5,
-        "fsp_at_pressure": 14.3,
-        "fsp_overall": 35.8,
-        "n_eff": 14,
+        "value": -20.1,
+        "fsp_at_pressure": 12.2,
+        "fsp_overall": 32.3,
+        "n_eff": 15,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -1.7,
-        "tb_win_pct": 47.2,
-        "baseline_win_pct": 48.9,
-        "n_eff": 249,
+        "value": -1.9,
+        "tb_win_pct": 46.7,
+        "baseline_win_pct": 48.6,
+        "n_eff": 244,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -14550,7 +14557,7 @@
     "surface": "grass",
     "year": 2014,
     "n_matches": 10,
-    "n_points": 252,
+    "n_points": 249,
     "n_eff_matches": 9.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -14579,9 +14586,9 @@
         "year": 2013,
         "round": "QF",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1968.5,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2494
       },
       {
         "match_id": "2013-wimbledon-1403",
@@ -14633,9 +14640,9 @@
         "year": 2012,
         "round": "R16",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1933.7,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2269
       },
       {
         "match_id": "2012-wimbledon-1309",
@@ -14649,44 +14656,44 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 14.5,
-        "ci_90_lo": 10.7,
-        "ci_90_hi": 21.2
+        "value": 14.1,
+        "ci_90_lo": 10.3,
+        "ci_90_hi": 20.7
       },
       "fspw_pct": {
         "value": 63.3,
-        "ci_90_lo": 43.6,
-        "ci_90_hi": 77.1
+        "ci_90_lo": 43.2,
+        "ci_90_hi": 77.2
       },
       "sspw_pct": {
         "value": 50.7,
-        "ci_90_lo": 26.5,
-        "ci_90_hi": 74.3
+        "ci_90_lo": 26.2,
+        "ci_90_hi": 74.6
       },
       "rpw_pct": {
-        "value": 36.8,
-        "ci_90_lo": 30.4,
-        "ci_90_hi": 44.3
+        "value": 36.7,
+        "ci_90_lo": 30.3,
+        "ci_90_hi": 44.2
       },
       "rpw_vs_1st_pct": {
         "value": 35.0,
-        "ci_90_lo": 20.8,
-        "ci_90_hi": 57.2
+        "ci_90_lo": 20.6,
+        "ci_90_hi": 57.7
       },
       "rpw_vs_2nd_pct": {
         "value": 53.0,
-        "ci_90_lo": 27.5,
-        "ci_90_hi": 75.8
+        "ci_90_lo": 27.2,
+        "ci_90_hi": 76.1
       },
       "sgw_pct": {
-        "value": 82.7,
+        "value": 82.8,
         "ci_90_lo": 62.2,
         "ci_90_hi": 89.7
       },
       "rgw_pct": {
-        "value": 25.4,
-        "ci_90_lo": 15.4,
-        "ci_90_hi": 45.6
+        "value": 25.1,
+        "ci_90_lo": 15.2,
+        "ci_90_hi": 45.5
       }
     },
     "tier2": {
@@ -14697,74 +14704,74 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 0.6,
-        "high_lev_win_pct": 52.2,
-        "baseline_win_pct": 51.6,
-        "n_eff": 42,
+        "value": 0.8,
+        "high_lev_win_pct": 52.3,
+        "baseline_win_pct": 51.5,
+        "n_eff": 41,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.006
+        "modifier_delta": 0.008
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 0.0,
-        "bp_df_rate": 2.4,
+        "value": -0.1,
+        "bp_df_rate": 2.3,
         "baseline_df_rate": 2.4,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.0
+        "modifier_delta": -0.001
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -1.0,
-        "bp_speed_kmh": 167.8,
+        "value": -0.6,
+        "bp_speed_kmh": 168.2,
         "overall_speed_kmh": 168.8,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.01,
+        "modifier_delta": -0.006,
         "note": null
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 52.1,
+        "deuce_win_pct": 52.0,
         "ad_win_pct": 50.9,
-        "asymmetry": 1.2,
+        "asymmetry": 1.1,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 1.58,
+        "streak_initiation_rate": 1.56,
         "streak_survival_rate": 0.424,
-        "streak_recovery_rate": 0.469
+        "streak_recovery_rate": 0.47
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.61,
-        "bp_conversion": 0.393,
-        "bp_created": 12.0,
-        "bp_converted": 4.7
+        "bp_per_return_game": 0.602,
+        "bp_conversion": 0.394,
+        "bp_created": 11.7,
+        "bp_converted": 4.6
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.0018,
+        "value": -0.0094,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0059,
+            "delta_frac": -0.0036,
             "weight": 0.3,
-            "contribution": -0.0018
+            "contribution": -0.0011
           },
           "df_rate_delta": {
-            "delta_frac": 0.0,
+            "delta_frac": -0.0417,
             "weight": 0.2,
-            "contribution": 0.0
+            "contribution": -0.0083
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": -0.0018,
+        "modifier_delta": -0.0094,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -14793,26 +14800,26 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 0.5,
-        "first_games_win_pct": 52.1,
-        "overall_win_pct": 51.6,
-        "n_eff": 51,
+        "value": 0.4,
+        "first_games_win_pct": 51.9,
+        "overall_win_pct": 51.5,
+        "n_eff": 50,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": 9.2,
-        "fsp_at_pressure": 23.7,
-        "fsp_overall": 14.5,
-        "n_eff": 17,
+        "value": 8.8,
+        "fsp_at_pressure": 22.9,
+        "fsp_overall": 14.1,
+        "n_eff": 16,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
         "value": -1.1,
-        "tb_win_pct": 50.5,
-        "baseline_win_pct": 51.6,
-        "n_eff": 243,
+        "tb_win_pct": 50.4,
+        "baseline_win_pct": 51.5,
+        "n_eff": 240,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -14843,9 +14850,9 @@
     "player": "Stan Wawrinka",
     "surface": "grass",
     "year": 2014,
-    "n_matches": 5,
-    "n_points": 206,
-    "n_eff_matches": 4.9,
+    "n_matches": 7,
+    "n_points": 223,
+    "n_eff_matches": 6.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
     "tier2_wide_intervals": true,
@@ -14882,9 +14889,9 @@
         "year": 2014,
         "round": "R64",
         "opponent": "Yen-Hsun Lu",
-        "opponent_elo": null,
+        "opponent_elo": 1693.8,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.0745
       },
       {
         "match_id": "2014-wimbledon-1133",
@@ -14894,48 +14901,66 @@
         "opponent_elo": 1687.7,
         "w_t": 1.0,
         "w_q": 1.0707
+      },
+      {
+        "match_id": "2013-wimbledon-1140",
+        "year": 2013,
+        "round": "R128",
+        "opponent": "Lleyton Hewitt",
+        "opponent_elo": 1866.7,
+        "w_t": 1.0,
+        "w_q": 1.1848
+      },
+      {
+        "match_id": "2012-wimbledon-1152",
+        "year": 2012,
+        "round": "R128",
+        "opponent": "Jurgen Melzer",
+        "opponent_elo": 1758.5,
+        "w_t": 1.0,
+        "w_q": 1.1157
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 58.8,
-        "ci_90_lo": 50.5,
-        "ci_90_hi": 66.2
+        "value": 38.7,
+        "ci_90_lo": 31.8,
+        "ci_90_hi": 46.7
       },
       "fspw_pct": {
-        "value": 82.3,
-        "ci_90_lo": 71.6,
-        "ci_90_hi": 87.8
+        "value": 82.2,
+        "ci_90_lo": 69.2,
+        "ci_90_hi": 88.3
       },
       "sspw_pct": {
-        "value": 65.1,
-        "ci_90_lo": 51.6,
-        "ci_90_hi": 75.1
+        "value": 64.8,
+        "ci_90_lo": 49.0,
+        "ci_90_hi": 76.2
       },
       "rpw_pct": {
-        "value": 32.0,
-        "ci_90_lo": 25.4,
-        "ci_90_hi": 40.2
+        "value": 33.5,
+        "ci_90_lo": 27.0,
+        "ci_90_hi": 41.4
       },
       "rpw_vs_1st_pct": {
-        "value": 27.9,
-        "ci_90_lo": 20.8,
-        "ci_90_hi": 38.2
+        "value": 28.1,
+        "ci_90_lo": 20.0,
+        "ci_90_hi": 40.3
       },
       "rpw_vs_2nd_pct": {
-        "value": 36.6,
-        "ci_90_lo": 25.5,
-        "ci_90_hi": 51.3
+        "value": 36.7,
+        "ci_90_lo": 24.2,
+        "ci_90_hi": 53.9
       },
       "sgw_pct": {
-        "value": 93.1,
-        "ci_90_lo": 70.8,
-        "ci_90_hi": 95.3
+        "value": 86.8,
+        "ci_90_lo": 65.2,
+        "ci_90_hi": 92.1
       },
       "rgw_pct": {
-        "value": 20.9,
-        "ci_90_lo": 12.5,
-        "ci_90_hi": 42.3
+        "value": 20.4,
+        "ci_90_lo": 12.2,
+        "ci_90_hi": 41.3
       }
     },
     "tier2": {
@@ -14946,74 +14971,74 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 3.5,
-        "high_lev_win_pct": 56.3,
-        "baseline_win_pct": 52.8,
-        "n_eff": 22,
+        "value": 3.1,
+        "high_lev_win_pct": 54.7,
+        "baseline_win_pct": 51.6,
+        "n_eff": 29,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.035
+        "modifier_delta": 0.031
       },
       "df_pressure_delta": {
         "available": true,
-        "value": -1.5,
-        "bp_df_rate": 0.0,
-        "baseline_df_rate": 1.5,
-        "n_eff": 4,
+        "value": -0.7,
+        "bp_df_rate": 2.3,
+        "baseline_df_rate": 3.0,
+        "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.015
+        "modifier_delta": -0.007
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -6.1,
-        "bp_speed_kmh": 168.9,
-        "overall_speed_kmh": 175.0,
-        "n_eff": 4,
+        "value": 0.2,
+        "bp_speed_kmh": 174.2,
+        "overall_speed_kmh": 174.0,
+        "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.061,
+        "modifier_delta": 0.002,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 52.1,
-        "ad_win_pct": 53.1,
-        "asymmetry": 1.0,
-        "stronger_side": "ad"
+        "deuce_win_pct": 52.4,
+        "ad_win_pct": 50.4,
+        "asymmetry": 2.0,
+        "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 3.24,
-        "streak_survival_rate": 0.523,
-        "streak_recovery_rate": 0.455
+        "streak_initiation_rate": 2.29,
+        "streak_survival_rate": 0.504,
+        "streak_recovery_rate": 0.488
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.343,
-        "bp_conversion": 0.448,
-        "bp_created": 6.3,
-        "bp_converted": 2.8
+        "bp_per_return_game": 0.401,
+        "bp_conversion": 0.413,
+        "bp_created": 7.6,
+        "bp_converted": 3.2
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2105,
+        "value": -0.0464,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0349,
+            "delta_frac": 0.0011,
             "weight": 0.3,
-            "contribution": -0.0105
+            "contribution": 0.0003
           },
           "df_rate_delta": {
-            "delta_frac": -1.0,
+            "delta_frac": -0.2333,
             "weight": 0.2,
-            "contribution": -0.2
+            "contribution": -0.0467
           }
         },
         "components_used": 2,
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.2105,
+        "modifier_delta": -0.0464,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -15025,8 +15050,8 @@
         "value": 32.4,
         "first_avg_kmh": 188.0,
         "second_avg_kmh": 155.6,
-        "n_eff": 40,
-        "confidence": "LOW"
+        "n_eff": 29,
+        "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
         "available": false,
@@ -15042,26 +15067,26 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 0.3,
-        "first_games_win_pct": 53.1,
-        "overall_win_pct": 52.8,
-        "n_eff": 37,
+        "value": 0.2,
+        "first_games_win_pct": 51.8,
+        "overall_win_pct": 51.6,
+        "n_eff": 41,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -23.1,
-        "fsp_at_pressure": 35.7,
-        "fsp_overall": 58.8,
-        "n_eff": 8,
+        "value": -20.9,
+        "fsp_at_pressure": 17.8,
+        "fsp_overall": 38.7,
+        "n_eff": 11,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -1.5,
-        "tb_win_pct": 51.3,
-        "baseline_win_pct": 52.8,
-        "n_eff": 201,
+        "value": -0.4,
+        "tb_win_pct": 51.2,
+        "baseline_win_pct": 51.6,
+        "n_eff": 217,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -15082,9 +15107,11 @@
       "R_adjusted": 1857.9
     },
     "career_editions_used": [
+      2012,
+      2013,
       2014
     ],
-    "n_matches_career": 5
+    "n_matches_career": 7
   },
   "Joao Sousa": {
     "player": "Joao Sousa",
@@ -15526,7 +15553,14 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null,
+    "elo_snapshot": {
+      "name": "Yen-Hsun Lu",
+      "n_overall": 288,
+      "n_surface": 52,
+      "R_overall": 1767.7,
+      "R_surface": 1644.6,
+      "R_adjusted": 1693.8
+    },
     "career_editions_used": [
       2012,
       2013,
@@ -15550,9 +15584,9 @@
         "year": 2014,
         "round": "R128",
         "opponent": "Yen-Hsun Lu",
-        "opponent_elo": null,
+        "opponent_elo": 1693.8,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.0745
       }
     ],
     "tier1": {
@@ -18914,7 +18948,7 @@
     "surface": "grass",
     "year": 2014,
     "n_matches": 5,
-    "n_points": 252,
+    "n_points": 250,
     "n_eff_matches": 4.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -18951,10 +18985,10 @@
         "match_id": "2013-wimbledon-1140",
         "year": 2013,
         "round": "R128",
-        "opponent": "Stanislas Wawrinka",
-        "opponent_elo": null,
+        "opponent": "Stan Wawrinka",
+        "opponent_elo": 1818.5,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.1542
       },
       {
         "match_id": "2012-wimbledon-1149",
@@ -18968,44 +19002,44 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 28.4,
-        "ci_90_lo": 22.6,
-        "ci_90_hi": 36.0
+        "value": 27.7,
+        "ci_90_lo": 22.0,
+        "ci_90_hi": 35.3
       },
       "fspw_pct": {
         "value": 69.9,
-        "ci_90_lo": 55.0,
-        "ci_90_hi": 79.6
+        "ci_90_lo": 54.8,
+        "ci_90_hi": 79.7
       },
       "sspw_pct": {
         "value": 57.6,
-        "ci_90_lo": 40.4,
-        "ci_90_hi": 71.9
+        "ci_90_lo": 40.2,
+        "ci_90_hi": 72.1
       },
       "rpw_pct": {
-        "value": 36.8,
-        "ci_90_lo": 30.5,
-        "ci_90_hi": 44.1
+        "value": 36.9,
+        "ci_90_lo": 30.6,
+        "ci_90_hi": 44.2
       },
       "rpw_vs_1st_pct": {
         "value": 30.7,
-        "ci_90_lo": 21.4,
-        "ci_90_hi": 44.5
+        "ci_90_lo": 21.3,
+        "ci_90_hi": 44.7
       },
       "rpw_vs_2nd_pct": {
         "value": 47.8,
-        "ci_90_lo": 32.2,
-        "ci_90_hi": 64.3
+        "ci_90_lo": 32.0,
+        "ci_90_hi": 64.5
       },
       "sgw_pct": {
-        "value": 80.8,
-        "ci_90_lo": 59.6,
-        "ci_90_hi": 88.6
+        "value": 80.9,
+        "ci_90_lo": 59.7,
+        "ci_90_hi": 88.7
       },
       "rgw_pct": {
-        "value": 19.3,
-        "ci_90_lo": 11.5,
-        "ci_90_hi": 39.8
+        "value": 19.7,
+        "ci_90_lo": 11.8,
+        "ci_90_hi": 40.3
       }
     },
     "tier2": {
@@ -19016,13 +19050,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 0.3,
-        "high_lev_win_pct": 49.4,
-        "baseline_win_pct": 49.1,
+        "value": 0.5,
+        "high_lev_win_pct": 49.7,
+        "baseline_win_pct": 49.2,
         "n_eff": 44,
         "confidence": "LOW",
         "verdict": "PASS",
-        "modifier_delta": 0.003
+        "modifier_delta": 0.005
       },
       "df_pressure_delta": {
         "available": true,
@@ -19036,42 +19070,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -2.7,
-        "bp_speed_kmh": 152.0,
-        "overall_speed_kmh": 154.7,
+        "value": -2.9,
+        "bp_speed_kmh": 151.9,
+        "overall_speed_kmh": 154.8,
         "n_eff": 8,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.027,
+        "modifier_delta": -0.029,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 49.8,
-        "ad_win_pct": 48.2,
-        "asymmetry": 1.6,
+        "ad_win_pct": 48.3,
+        "asymmetry": 1.5,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
         "streak_initiation_rate": 2.76,
-        "streak_survival_rate": 0.405,
-        "streak_recovery_rate": 0.425
+        "streak_survival_rate": 0.406,
+        "streak_recovery_rate": 0.42
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.614,
-        "bp_conversion": 0.282,
-        "bp_created": 12.1,
-        "bp_converted": 3.4
+        "bp_per_return_game": 0.622,
+        "bp_conversion": 0.286,
+        "bp_created": 12.2,
+        "bp_converted": 3.5
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.2052,
+        "value": -0.2056,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.0175,
+            "delta_frac": -0.0187,
             "weight": 0.3,
-            "contribution": -0.0052
+            "contribution": -0.0056
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -19083,7 +19117,7 @@
         "components_total": 5,
         "confidence": "LOW",
         "verdict": "MARGINAL",
-        "modifier_delta": -0.2052,
+        "modifier_delta": -0.2056,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -19095,7 +19129,7 @@
         "value": 28.9,
         "first_avg_kmh": 161.1,
         "second_avg_kmh": 132.2,
-        "n_eff": 22,
+        "n_eff": 21,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
@@ -19113,25 +19147,25 @@
       "set_transition_delta": {
         "available": true,
         "value": 2.9,
-        "first_games_win_pct": 52.0,
-        "overall_win_pct": 49.1,
-        "n_eff": 47,
+        "first_games_win_pct": 52.1,
+        "overall_win_pct": 49.2,
+        "n_eff": 46,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -7.5,
-        "fsp_at_pressure": 20.9,
-        "fsp_overall": 28.4,
-        "n_eff": 15,
+        "value": -7.6,
+        "fsp_at_pressure": 20.1,
+        "fsp_overall": 27.7,
+        "n_eff": 16,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": 0.2,
+        "value": 0.1,
         "tb_win_pct": 49.3,
-        "baseline_win_pct": 49.1,
-        "n_eff": 243,
+        "baseline_win_pct": 49.2,
+        "n_eff": 242,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -22591,8 +22625,8 @@
     ],
     "n_matches_career": 1
   },
-  "Pierre-Hugues Herbert": {
-    "player": "Pierre-Hugues Herbert",
+  "Pierre Hugues Herbert": {
+    "player": "Pierre Hugues Herbert",
     "surface": "grass",
     "year": 2014,
     "n_matches": 1,
@@ -22773,7 +22807,14 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null,
+    "elo_snapshot": {
+      "name": "Pierre Hugues Herbert",
+      "n_overall": 9,
+      "n_surface": 2,
+      "R_overall": 1618.8,
+      "R_surface": 1580.1,
+      "R_adjusted": 1595.6
+    },
     "career_editions_used": [
       2014
     ],
@@ -22803,17 +22844,17 @@
         "match_id": "2014-wimbledon-1150",
         "year": 2014,
         "round": "R128",
-        "opponent": "Pierre-Hugues Herbert",
-        "opponent_elo": null,
+        "opponent": "Pierre Hugues Herbert",
+        "opponent_elo": 1595.6,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.0122
       }
     ],
     "tier1": {
       "fsp_pct": {
         "value": 61.7,
-        "ci_90_lo": 53.7,
-        "ci_90_hi": 68.6
+        "ci_90_lo": 53.8,
+        "ci_90_hi": 68.7
       },
       "fspw_pct": {
         "value": 78.3,
@@ -22821,28 +22862,28 @@
         "ci_90_hi": 84.4
       },
       "sspw_pct": {
-        "value": 64.7,
-        "ci_90_lo": 50.7,
-        "ci_90_hi": 75.1
+        "value": 64.8,
+        "ci_90_lo": 50.8,
+        "ci_90_hi": 75.2
       },
       "rpw_pct": {
-        "value": 28.4,
+        "value": 28.5,
         "ci_90_lo": 22.6,
         "ci_90_hi": 36.2
       },
       "rpw_vs_1st_pct": {
         "value": 20.2,
-        "ci_90_lo": 14.5,
+        "ci_90_lo": 14.6,
         "ci_90_hi": 29.7
       },
       "rpw_vs_2nd_pct": {
-        "value": 38.4,
-        "ci_90_lo": 27.5,
-        "ci_90_hi": 52.1
+        "value": 38.5,
+        "ci_90_lo": 27.6,
+        "ci_90_hi": 52.2
       },
       "sgw_pct": {
         "value": 91.2,
-        "ci_90_lo": 69.3,
+        "ci_90_lo": 69.4,
         "ci_90_hi": 94.4
       },
       "rgw_pct": {
@@ -22896,14 +22937,14 @@
         "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 7.14,
-        "streak_survival_rate": 0.44,
-        "streak_recovery_rate": 0.356
+        "streak_initiation_rate": 7.15,
+        "streak_survival_rate": 0.441,
+        "streak_recovery_rate": 0.353
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.285,
+        "bp_per_return_game": 0.287,
         "bp_conversion": 0.273,
-        "bp_created": 5.2,
+        "bp_created": 5.3,
         "bp_converted": 1.4
       },
       "rluep": null,
@@ -22963,8 +23004,8 @@
       },
       "first_serve_pressure": {
         "available": true,
-        "value": -5.1,
-        "fsp_at_pressure": 56.6,
+        "value": -5.0,
+        "fsp_at_pressure": 56.7,
         "fsp_overall": 61.7,
         "n_eff": 14,
         "confidence": "UNRELIABLE"
@@ -23032,10 +23073,10 @@
         "match_id": "2014-wimbledon-1151",
         "year": 2014,
         "round": "R128",
-        "opponent": "Jan-Lennard Struff",
-        "opponent_elo": null,
+        "opponent": "Jan Lennard Struff",
+        "opponent_elo": 1554.2,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 0.986
       },
       {
         "match_id": "2013-wimbledon-1503",
@@ -23058,12 +23099,12 @@
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 37.0,
+        "value": 36.9,
         "ci_90_lo": 30.0,
-        "ci_90_hi": 45.1
+        "ci_90_hi": 45.0
       },
       "fspw_pct": {
-        "value": 79.1,
+        "value": 79.2,
         "ci_90_lo": 65.3,
         "ci_90_hi": 86.2
       },
@@ -23078,19 +23119,19 @@
         "ci_90_hi": 37.9
       },
       "rpw_vs_1st_pct": {
-        "value": 17.7,
+        "value": 17.6,
         "ci_90_lo": 11.4,
         "ci_90_hi": 31.5
       },
       "rpw_vs_2nd_pct": {
-        "value": 34.6,
-        "ci_90_lo": 22.1,
-        "ci_90_hi": 53.2
+        "value": 34.5,
+        "ci_90_lo": 22.0,
+        "ci_90_hi": 53.1
       },
       "sgw_pct": {
         "value": 89.2,
         "ci_90_lo": 66.5,
-        "ci_90_hi": 93.4
+        "ci_90_hi": 93.3
       },
       "rgw_pct": {
         "value": 15.7,
@@ -23144,12 +23185,12 @@
       },
       "momentum_profile": {
         "streak_initiation_rate": 2.5,
-        "streak_survival_rate": 0.539,
+        "streak_survival_rate": 0.54,
         "streak_recovery_rate": 0.453
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.286,
-        "bp_conversion": 0.399,
+        "bp_per_return_game": 0.285,
+        "bp_conversion": 0.4,
         "bp_created": 5.0,
         "bp_converted": 2.0
       },
@@ -23210,9 +23251,9 @@
       },
       "first_serve_pressure": {
         "available": true,
-        "value": 0.1,
-        "fsp_at_pressure": 37.1,
-        "fsp_overall": 37.0,
+        "value": 0.0,
+        "fsp_at_pressure": 36.9,
+        "fsp_overall": 36.9,
         "n_eff": 13,
         "confidence": "UNRELIABLE"
       },
@@ -23221,7 +23262,7 @@
         "value": -1.6,
         "tb_win_pct": 48.6,
         "baseline_win_pct": 50.2,
-        "n_eff": 200,
+        "n_eff": 199,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -23247,8 +23288,8 @@
     ],
     "n_matches_career": 5
   },
-  "Jan-Lennard Struff": {
-    "player": "Jan-Lennard Struff",
+  "Jan Lennard Struff": {
+    "player": "Jan Lennard Struff",
     "surface": "grass",
     "year": 2014,
     "n_matches": 1,
@@ -23429,7 +23470,14 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null,
+    "elo_snapshot": {
+      "name": "Jan Lennard Struff",
+      "n_overall": 29,
+      "n_surface": 6,
+      "R_overall": 1747.6,
+      "R_surface": 1425.3,
+      "R_adjusted": 1554.2
+    },
     "career_editions_used": [
       2014
     ],
@@ -25423,7 +25471,7 @@
     "surface": "grass",
     "year": 2014,
     "n_matches": 6,
-    "n_points": 211,
+    "n_points": 210,
     "n_eff_matches": 6.0,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -25479,51 +25527,51 @@
         "year": 2012,
         "round": "R32",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1933.7,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.2269
       }
     ],
     "tier1": {
       "fsp_pct": {
-        "value": 44.2,
-        "ci_90_lo": 36.6,
-        "ci_90_hi": 52.3
+        "value": 42.8,
+        "ci_90_lo": 35.3,
+        "ci_90_hi": 50.9
       },
       "fspw_pct": {
         "value": 77.1,
-        "ci_90_lo": 64.4,
-        "ci_90_hi": 84.3
+        "ci_90_lo": 64.1,
+        "ci_90_hi": 84.4
       },
       "sspw_pct": {
         "value": 63.9,
-        "ci_90_lo": 46.8,
-        "ci_90_hi": 76.1
+        "ci_90_lo": 46.5,
+        "ci_90_hi": 76.3
       },
       "rpw_pct": {
         "value": 33.6,
-        "ci_90_lo": 27.0,
-        "ci_90_hi": 41.8
+        "ci_90_lo": 26.9,
+        "ci_90_hi": 41.7
       },
       "rpw_vs_1st_pct": {
         "value": 24.7,
-        "ci_90_lo": 17.2,
-        "ci_90_hi": 37.1
+        "ci_90_lo": 17.1,
+        "ci_90_hi": 37.4
       },
       "rpw_vs_2nd_pct": {
         "value": 38.4,
-        "ci_90_lo": 25.3,
-        "ci_90_hi": 55.8
+        "ci_90_lo": 25.1,
+        "ci_90_hi": 56.1
       },
       "sgw_pct": {
-        "value": 86.2,
-        "ci_90_lo": 63.7,
-        "ci_90_hi": 91.8
+        "value": 85.6,
+        "ci_90_lo": 63.0,
+        "ci_90_hi": 91.4
       },
       "rgw_pct": {
-        "value": 19.2,
-        "ci_90_lo": 11.4,
-        "ci_90_hi": 41.0
+        "value": 18.9,
+        "ci_90_lo": 11.2,
+        "ci_90_hi": 40.7
       }
     },
     "tier2": {
@@ -25534,52 +25582,52 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": -1.2,
+        "value": -1.1,
         "high_lev_win_pct": 49.7,
-        "baseline_win_pct": 50.9,
+        "baseline_win_pct": 50.8,
         "n_eff": 28,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.012
+        "modifier_delta": -0.011
       },
       "df_pressure_delta": {
         "available": true,
-        "value": 2.8,
-        "bp_df_rate": 5.8,
-        "baseline_df_rate": 3.0,
+        "value": 2.9,
+        "bp_df_rate": 6.0,
+        "baseline_df_rate": 3.1,
         "n_eff": 6,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.028
+        "modifier_delta": 0.029
       },
       "serve_speed_courage": {
         "available": true,
-        "value": -4.6,
-        "bp_speed_kmh": 159.8,
-        "overall_speed_kmh": 164.4,
+        "value": -4.8,
+        "bp_speed_kmh": 159.5,
+        "overall_speed_kmh": 164.3,
         "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.046,
+        "modifier_delta": -0.048,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
         "available": true,
         "deuce_win_pct": 51.6,
-        "ad_win_pct": 49.8,
-        "asymmetry": 1.8,
+        "ad_win_pct": 49.5,
+        "asymmetry": 2.1,
         "stronger_side": "deuce"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 2.3,
-        "streak_survival_rate": 0.473,
-        "streak_recovery_rate": 0.351
+        "streak_initiation_rate": 2.28,
+        "streak_survival_rate": 0.476,
+        "streak_recovery_rate": 0.347
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.434,
-        "bp_conversion": 0.379,
-        "bp_created": 7.8,
-        "bp_converted": 3.0
+        "bp_per_return_game": 0.427,
+        "bp_conversion": 0.378,
+        "bp_created": 7.6,
+        "bp_converted": 2.9
       },
       "rluep": null,
       "spci": {
@@ -25587,14 +25635,14 @@
         "value": 0.1783,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": -0.028,
+            "delta_frac": -0.0292,
             "weight": 0.3,
-            "contribution": -0.0084
+            "contribution": -0.0088
           },
           "df_rate_delta": {
-            "delta_frac": 0.9333,
+            "delta_frac": 0.9355,
             "weight": 0.2,
-            "contribution": 0.1867
+            "contribution": 0.1871
           }
         },
         "components_used": 2,
@@ -25613,7 +25661,7 @@
         "value": 30.1,
         "first_avg_kmh": 177.4,
         "second_avg_kmh": 147.3,
-        "n_eff": 16,
+        "n_eff": 15,
         "confidence": "UNRELIABLE"
       },
       "serve_depth_entropy": {
@@ -25630,25 +25678,25 @@
       },
       "set_transition_delta": {
         "available": true,
-        "value": 3.2,
-        "first_games_win_pct": 54.1,
-        "overall_win_pct": 50.9,
+        "value": 2.7,
+        "first_games_win_pct": 53.5,
+        "overall_win_pct": 50.8,
         "n_eff": 46,
         "confidence": "LOW"
       },
       "first_serve_pressure": {
         "available": true,
         "value": -20.4,
-        "fsp_at_pressure": 23.8,
-        "fsp_overall": 44.2,
-        "n_eff": 12,
+        "fsp_at_pressure": 22.4,
+        "fsp_overall": 42.8,
+        "n_eff": 13,
         "confidence": "UNRELIABLE"
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -0.1,
-        "tb_win_pct": 50.8,
-        "baseline_win_pct": 50.9,
+        "value": -0.2,
+        "tb_win_pct": 50.6,
+        "baseline_win_pct": 50.8,
         "n_eff": 206,
         "confidence": "RELIABLE"
       },

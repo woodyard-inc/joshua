@@ -44,6 +44,9 @@ from fingerprint import (
     CAREER_WINDOW, CAREER_EDITIONS,
     confidence_flag, pct_metric,
 )
+# Phase B: canonical name normalisation — keeps grass-profile keys consistent
+# with the match-level CSV spellings written by data_prep.py.
+from canonical_names import normalize_name
 
 # ── paths ─────────────────────────────────────────────────────────────────────
 ROOT     = Path(__file__).parent.parent

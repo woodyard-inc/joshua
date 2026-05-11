@@ -841,7 +841,7 @@
         "year": 2014,
         "date": "2014-06-23",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "s Hertogenbosch",
@@ -1007,7 +1007,7 @@
         "year": 2016,
         "date": "2016-06-27",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -1173,7 +1173,7 @@
         "year": 2016,
         "date": "2016-06-27",
         "result": "W",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Halle",
@@ -1372,7 +1372,7 @@
         "year": 2015,
         "date": "2015-06-21",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -2133,7 +2133,7 @@
         "year": 2016,
         "date": "2016-06-27",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Wimbledon",
@@ -4082,7 +4082,7 @@
         "year": 2016,
         "date": "2016-06-13",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Wimbledon",
@@ -5915,7 +5915,7 @@
         "year": 2015,
         "date": "2015-06-29",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -7086,7 +7086,7 @@
         "year": 2015,
         "date": "2015-06-21",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Queen's Club",
@@ -8172,7 +8172,7 @@
         "year": 2016,
         "date": "2016-06-06",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -8394,7 +8394,7 @@
         "year": 2016,
         "date": "2016-06-06",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -11574,7 +11574,7 @@
         "year": 2016,
         "date": "2016-06-13",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Queen's Club",
@@ -11741,7 +11741,7 @@
         "year": 2016,
         "date": "2016-06-06",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -11976,8 +11976,8 @@
     },
     "elo_win_prob_vs_avg": 0.4982
   },
-  "Juan Martin del Potro": {
-    "player": "Juan Martin del Potro",
+  "Juan Martin Del Potro": {
+    "player": "Juan Martin Del Potro",
     "surface": "grass",
     "year": 2017,
     "source": "grass_atp",
@@ -12094,7 +12094,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Juan Martin del Potro",
+      "name": "Juan Martin Del Potro",
       "n_overall": 511,
       "n_surface": 48,
       "R_overall": 2134.1,
@@ -12391,7 +12391,7 @@
         "year": 2014,
         "date": "2014-06-16",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       },
       {
         "tourney": "Queen's Club",
@@ -13255,7 +13255,7 @@
         "year": 2016,
         "date": "2016-06-13",
         "result": "W",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Queen's Club",
@@ -13842,7 +13842,7 @@
         "year": 2016,
         "date": "2016-06-27",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -15730,7 +15730,7 @@
         "year": 2014,
         "date": "2014-06-09",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -17323,7 +17323,7 @@
         "year": 2016,
         "date": "2016-06-06",
         "result": "W",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "s Hertogenbosch",
@@ -18192,8 +18192,8 @@
     },
     "elo_win_prob_vs_avg": 0.3366
   },
-  "Paul Henri Mathieu": {
-    "player": "Paul Henri Mathieu",
+  "Paul-Henri Mathieu": {
+    "player": "Paul-Henri Mathieu",
     "surface": "grass",
     "year": 2017,
     "source": "grass_atp",
@@ -18326,7 +18326,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Paul Henri Mathieu",
+      "name": "Paul-Henri Mathieu",
       "n_overall": 582,
       "n_surface": 54,
       "R_overall": 1663.3,
@@ -18686,7 +18686,7 @@
         "year": 2016,
         "date": "2016-06-06",
         "result": "W",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Stuttgart",
@@ -19305,7 +19305,7 @@
         "year": 2016,
         "date": "2016-06-06",
         "result": "L",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       },
       {
         "tourney": "Newport",
@@ -20273,7 +20273,7 @@
         "year": 2015,
         "date": "2015-06-21",
         "result": "L",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -21225,7 +21225,7 @@
         "year": 2016,
         "date": "2016-06-27",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Wimbledon",
@@ -21471,7 +21471,7 @@
         "year": 2016,
         "date": "2016-06-27",
         "result": "L",
-        "opponent": "Juan Martin del Potro"
+        "opponent": "Juan Martin Del Potro"
       },
       {
         "tourney": "Nottingham",
@@ -23675,7 +23675,7 @@
         "year": 2015,
         "date": "2015-06-15",
         "result": "W",
-        "opponent": "Paul Henri Mathieu"
+        "opponent": "Paul-Henri Mathieu"
       }
     ],
     "elo_snapshot": {
@@ -23830,8 +23830,8 @@
     },
     "elo_win_prob_vs_avg": 0.3078
   },
-  "Yen Hsun Lu": {
-    "player": "Yen Hsun Lu",
+  "Yen-Hsun Lu": {
+    "player": "Yen-Hsun Lu",
     "surface": "grass",
     "year": 2017,
     "source": "grass_atp",
@@ -23964,7 +23964,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Yen Hsun Lu",
+      "name": "Yen-Hsun Lu",
       "n_overall": 378,
       "n_surface": 63,
       "R_overall": 1734.2,

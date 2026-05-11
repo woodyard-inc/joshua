@@ -3,7 +3,7 @@
 
 // ── State ─────────────────────────────────────────────────────────
 const state = {
-  year:            2019,
+  year:            2025,
   playerName:      null,
   profiles:        null,
   tournament:      null,
@@ -18,7 +18,7 @@ const state = {
 
 const AVAILABLE_YEARS = [2011, 2012, 2013, 2014, 2015, 2016,
                           2017, 2018, 2019,
-                          2021, 2022, 2023, 2024];
+                          2021, 2022, 2023, 2024, 2025];
 
 // ── Boot ──────────────────────────────────────────────────────────
 async function boot() {
@@ -1047,17 +1047,8 @@ function renderAggression(p, t) {
   const net  = ag.winners - ag.unf_err;
   const ratio = ag.unf_err > 0 ? (ag.winners / ag.unf_err).toFixed(2) : "∞";
 
-  // Player-type verdict combines this card's signal (attack precision)
-  // with the streakiness + clean-service-games signals from Game Control,
-  // so it's surfaced at the bottom of THIS card to anchor the section.
-  const verdict = _playerTypeVerdict(p);
-  const verdictBlock = verdict ? `
-    <div class="agg-verdict">
-      <div class="agg-verdict-label">Player type</div>
-      <div class="agg-verdict-val" style="color:${verdict.colour}">${verdict.label}</div>
-      <div class="agg-verdict-help">Combines streakiness · clean holds · attack precision</div>
-    </div>` : "";
-
+  // Verdict moved to the Game Control card — it reads more naturally there
+  // alongside the other percentile rows it draws on (streaks + clean games).
   document.getElementById("aggression-viz").innerHTML = `
     <div class="agg-meter-wrap">
       <div class="agg-score">${val}</div>
@@ -1085,8 +1076,7 @@ function renderAggression(p, t) {
         <span class="agg-num">${ratio}</span>
         <span class="agg-sub">W : UE</span>
       </div>
-    </div>
-    ${verdictBlock}`;
+    </div>`;
 }
 
 // ── Clean Games ───────────────────────────────────────────────────
@@ -1297,6 +1287,19 @@ function renderStreaks(p, t) {
       "Return games won without reaching deuce · higher = breaks decisively when the chance comes",
       0,
     );
+  }
+
+  // Player-type verdict — combines all three dimensions (streakiness, clean
+  // holds, attack precision) into a single archetype label.  Lives here
+  // because this card has all three contributing signals in view.
+  const verdict = _playerTypeVerdict(p);
+  if (verdict) {
+    html += `
+      <div class="agg-verdict gc-verdict">
+        <div class="agg-verdict-label">Player type</div>
+        <div class="agg-verdict-val" style="color:${verdict.colour}">${verdict.label}</div>
+        <div class="agg-verdict-help">Combines streakiness · clean holds · attack precision</div>
+      </div>`;
   }
 
   container.innerHTML = html;

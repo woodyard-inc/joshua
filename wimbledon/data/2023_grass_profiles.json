@@ -6516,7 +6516,7 @@
         "year": 2021,
         "date": "2021-06-14",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -13077,7 +13077,7 @@
         "year": 2021,
         "date": "2021-06-28",
         "result": "W",
-        "opponent": "Yen Hsun Lu"
+        "opponent": "Yen-Hsun Lu"
       }
     ],
     "elo_snapshot": {
@@ -20484,8 +20484,8 @@
     },
     "elo_win_prob_vs_avg": 0.2863
   },
-  "Yen Hsun Lu": {
-    "player": "Yen Hsun Lu",
+  "Yen-Hsun Lu": {
+    "player": "Yen-Hsun Lu",
     "surface": "grass",
     "year": 2023,
     "source": "grass_atp",
@@ -20554,7 +20554,7 @@
       }
     ],
     "elo_snapshot": {
-      "name": "Yen Hsun Lu",
+      "name": "Yen-Hsun Lu",
       "n_overall": 398,
       "n_surface": 66,
       "R_overall": 1679.7,

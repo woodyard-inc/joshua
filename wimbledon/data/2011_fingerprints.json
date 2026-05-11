@@ -220,7 +220,14 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null,
+    "elo_snapshot": {
+      "name": "Juan Martin Del Potro",
+      "n_overall": 260,
+      "n_surface": 22,
+      "R_overall": 2157.9,
+      "R_surface": 1764.4,
+      "R_adjusted": 1921.8
+    },
     "career_editions_used": [
       2011
     ],
@@ -242,9 +249,9 @@
         "year": 2011,
         "round": "R128",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1921.8,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.219
       }
     ],
     "tier1": {
@@ -6474,7 +6481,7 @@
     "surface": "grass",
     "year": 2011,
     "n_matches": 6,
-    "n_points": 209,
+    "n_points": 211,
     "n_eff_matches": 5.9,
     "confidence": "RELIABLE",
     "tier2_available": true,
@@ -6512,9 +6519,9 @@
         "year": 2011,
         "round": "R16",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1921.8,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.219
       },
       {
         "match_id": "2011-wimbledon-1301",
@@ -6552,9 +6559,9 @@
         "ci_90_hi": null
       },
       "rpw_pct": {
-        "value": 36.4,
-        "ci_90_lo": 29.6,
-        "ci_90_hi": 44.4
+        "value": 36.2,
+        "ci_90_lo": 29.5,
+        "ci_90_hi": 44.2
       },
       "rpw_vs_1st_pct": {
         "value": null,
@@ -6567,14 +6574,14 @@
         "ci_90_hi": null
       },
       "sgw_pct": {
-        "value": 88.8,
-        "ci_90_lo": 66.7,
-        "ci_90_hi": 93.1
+        "value": 89.0,
+        "ci_90_lo": 67.1,
+        "ci_90_hi": 93.3
       },
       "rgw_pct": {
-        "value": 23.9,
-        "ci_90_lo": 14.3,
-        "ci_90_hi": 45.1
+        "value": 23.3,
+        "ci_90_lo": 14.0,
+        "ci_90_hi": 44.5
       }
     },
     "tier2": {
@@ -6585,13 +6592,13 @@
       "rally_win_curve": null,
       "clutch_differential": {
         "available": true,
-        "value": 2.5,
-        "high_lev_win_pct": 55.4,
+        "value": 2.3,
+        "high_lev_win_pct": 55.2,
         "baseline_win_pct": 52.9,
         "n_eff": 21,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.025
+        "modifier_delta": 0.023
       },
       "df_pressure_delta": {
         "available": true,
@@ -6605,42 +6612,42 @@
       },
       "serve_speed_courage": {
         "available": true,
-        "value": 3.1,
-        "bp_speed_kmh": 176.7,
-        "overall_speed_kmh": 173.6,
+        "value": 2.7,
+        "bp_speed_kmh": 176.4,
+        "overall_speed_kmh": 173.7,
         "n_eff": 4,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": 0.031,
+        "modifier_delta": 0.027,
         "note": "Component of SPCI \u2014 cross with opponent RDAS before verdict. See session decision 8."
       },
       "court_side_asymmetry": {
         "available": true,
-        "deuce_win_pct": 52.7,
+        "deuce_win_pct": 52.5,
         "ad_win_pct": 52.7,
-        "asymmetry": 0.0,
-        "stronger_side": "deuce"
+        "asymmetry": 0.2,
+        "stronger_side": "ad"
       },
       "momentum_profile": {
-        "streak_initiation_rate": 2.38,
-        "streak_survival_rate": 0.461,
-        "streak_recovery_rate": 0.403
+        "streak_initiation_rate": 2.39,
+        "streak_survival_rate": 0.467,
+        "streak_recovery_rate": 0.423
       },
       "bp_creation_profile": {
-        "bp_per_return_game": 0.465,
-        "bp_conversion": 0.463,
-        "bp_created": 8.5,
-        "bp_converted": 3.9
+        "bp_per_return_game": 0.455,
+        "bp_conversion": 0.458,
+        "bp_created": 8.3,
+        "bp_converted": 3.8
       },
       "rluep": null,
       "spci": {
         "available": true,
-        "value": -0.1946,
+        "value": -0.1953,
         "components": {
           "serve_speed_delta": {
-            "delta_frac": 0.0179,
+            "delta_frac": 0.0155,
             "weight": 0.3,
-            "contribution": 0.0054
+            "contribution": 0.0047
           },
           "df_rate_delta": {
             "delta_frac": -1.0,
@@ -6652,7 +6659,7 @@
         "components_total": 5,
         "confidence": "UNRELIABLE",
         "verdict": "UNRELIABLE",
-        "modifier_delta": -0.1946,
+        "modifier_delta": -0.1953,
         "note": "Partial SPCI: 2/5 components. See tiebreak_differential, set_transition_delta, first_serve_pressure for additional pressure metrics."
       },
       "rally_volatility": {
@@ -6689,10 +6696,10 @@
       },
       "tiebreak_differential": {
         "available": true,
-        "value": -1.1,
-        "tb_win_pct": 51.8,
+        "value": -1.2,
+        "tb_win_pct": 51.7,
         "baseline_win_pct": 52.9,
-        "n_eff": 206,
+        "n_eff": 208,
         "confidence": "RELIABLE"
       },
       "hold_after_break": {
@@ -7354,9 +7361,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1921.8,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.219
       }
     ],
     "tier1": {
@@ -9273,10 +9280,10 @@
         "match_id": "2011-wimbledon-1212",
         "year": 2011,
         "round": "R64",
-        "opponent": "Stanislas Wawrinka",
-        "opponent_elo": null,
+        "opponent": "Stan Wawrinka",
+        "opponent_elo": 1711.3,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.0854
       }
     ],
     "tier1": {
@@ -9460,8 +9467,8 @@
     ],
     "n_matches_career": 1
   },
-  "Stanislas Wawrinka": {
-    "player": "Stanislas Wawrinka",
+  "Stan Wawrinka": {
+    "player": "Stan Wawrinka",
     "surface": "grass",
     "year": 2011,
     "n_matches": 1,
@@ -9654,7 +9661,14 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null,
+    "elo_snapshot": {
+      "name": "Stan Wawrinka",
+      "n_overall": 346,
+      "n_surface": 22,
+      "R_overall": 1976.9,
+      "R_surface": 1534.3,
+      "R_adjusted": 1711.3
+    },
     "career_editions_used": [
       2011
     ],
@@ -12048,9 +12062,9 @@
         "year": 2011,
         "round": "R64",
         "opponent": "Yen-Hsun Lu",
-        "opponent_elo": null,
+        "opponent_elo": 1645.7,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.0438
       }
     ],
     "tier1": {
@@ -12433,7 +12447,14 @@
       "available": false,
       "avg_km_per_match": null
     },
-    "elo_snapshot": null,
+    "elo_snapshot": {
+      "name": "Yen-Hsun Lu",
+      "n_overall": 185,
+      "n_surface": 36,
+      "R_overall": 1704.1,
+      "R_surface": 1606.8,
+      "R_adjusted": 1645.7
+    },
     "career_editions_used": [
       2011
     ],
@@ -12869,9 +12890,9 @@
         "year": 2011,
         "round": "R32",
         "opponent": "Juan Martin Del Potro",
-        "opponent_elo": null,
+        "opponent_elo": 1921.8,
         "w_t": 1.0,
-        "w_q": 1.0
+        "w_q": 1.219
       }
     ],
     "tier1": {

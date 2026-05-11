@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>What Wins on Grass — Wimbledon Player Intelligence · Joshua Woodyard</title>
-  <meta name="description" content="Point-by-point player intelligence and grass-court Monte Carlo prediction for the Wimbledon men's draw, 2011–2024. Built on Jeff Sackmann's open tennis datasets (Slam point-by-point + ATP match results), enriched with full grass-circuit aggregates and a custom Elo rating system.">
-  <link rel="stylesheet" href="../foundations.css?v=43">
-  <link rel="stylesheet" href="styles.css?v=43">
+  <meta name="description" content="Point-by-point player intelligence and grass-court Monte Carlo prediction for the Wimbledon men's draw, 2011–2025. Built on Jeff Sackmann's open tennis datasets (Slam point-by-point + ATP match results), enriched with full grass-circuit aggregates and a custom Elo rating system.">
+  <link rel="stylesheet" href="../foundations.css?v=45">
+  <link rel="stylesheet" href="styles.css?v=45">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
 </head>
 <body>
@@ -52,11 +52,12 @@
             <option value="2016">2016</option>
             <option value="2017">2017</option>
             <option value="2018">2018</option>
-            <option value="2019" selected>2019</option>
+            <option value="2019">2019</option>
             <option value="2021">2021</option>
             <option value="2022">2022</option>
             <option value="2023">2023</option>
             <option value="2024">2024</option>
+            <option value="2025" selected>2025</option>
           </select>
         </div>
         <div class="control-group">
@@ -82,7 +83,7 @@
     <div class="empty-overlay">
       <p class="empty-eyebrow">Wimbledon · Men's Draw</p>
       <h2 class="empty-title">What Wins on Grass</h2>
-      <p class="empty-desc">A point-by-point breakdown of serve speed, direction, rally length, and pressure play across the Wimbledon men's draw, 2011–2024. Combines Jeff Sackmann's open Slam point-by-point dataset with full ATP grass-circuit match aggregates and a Kovalchik-style adaptive Elo system. Select a player above to begin.</p>
+      <p class="empty-desc">A point-by-point breakdown of serve speed, direction, rally length, and pressure play across the Wimbledon men's draw, 2011–2025. Combines Jeff Sackmann's open Slam point-by-point dataset with full ATP grass-circuit match aggregates and a Kovalchik-style adaptive Elo system. Select a player above to begin.</p>
     </div>
   </div>
 
@@ -320,10 +321,10 @@
         <div id="aggression-viz" class="aggression-viz"></div>
       </div>
 
-      <!-- Game Control (sits right of Attack Precision, half-width) -->
+      <!-- Game Control -->
       <div class="card">
         <div class="card-header"><h3>Game Control</h3><span class="card-tag">Momentum profile</span></div>
-        <p class="card-note">Three facets of game-level momentum benchmarked against the field · player type shown on the Attack Precision card to the left</p>
+        <p class="card-note">Three facets of game-level momentum benchmarked against the field · player type derived from all three signals</p>
         <div id="streaks-viz" class="streaks-viz"></div>
       </div>
 
@@ -384,8 +385,8 @@
     <span class="pf-col-r">PBP &amp; ATP data · Jeff Sackmann · Grass Elo &amp; profiles built in-house</span>
   </footer>
 
-  <script src="markov.js?v=43"></script>
-  <script src="compare.js?v=43"></script>
-  <script src="app.js?v=43"></script>
+  <script src="markov.js?v=45"></script>
+  <script src="compare.js?v=45"></script>
+  <script src="app.js?v=45"></script>
 </body>
 </html>

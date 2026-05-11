@@ -62,12 +62,18 @@ from canonical_names import normalize_name
 DATA_DIR        = Path(__file__).parent.parent / "data" / "raw"
 PROC_DIR        = Path(__file__).parent.parent / "data" / "processed"
 OUT_DIR         = Path(__file__).parent.parent / "data"
-SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024, 2025]
+SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024]
 
 # Career-window fingerprint settings
 CAREER_WINDOW   = 10   # max matches per fingerprint (across all eligible years)
 CAREER_EDITIONS = 3    # look back this many Wimbledon editions (not calendar years)
                        # e.g. for 2024: use 2022, 2023, 2024 — 2020 gap handled naturally
+
+# Edition-decay weight: matches from the most recent edition get w_t=1.0,
+# one edition ago gets EDITION_DECAY, two editions ago gets EDITION_DECAY^2.
+# This ensures recent form counts more than stale history while still
+# retaining career-window breadth for sample-size stability.
+EDITION_DECAY   = 0.65
 
 # Actual Wimbledon start dates (Monday of the fortnight)
 WIMBLEDON_STARTS: Dict[int, pd.Timestamp] = {
@@ -84,7 +90,6 @@ WIMBLEDON_STARTS: Dict[int, pd.Timestamp] = {
     2022: pd.Timestamp("2022-06-27"),
     2023: pd.Timestamp("2023-07-03"),
     2024: pd.Timestamp("2024-07-01"),
-    2025: pd.Timestamp("2025-06-30"),   # Wimbledon 2025: 30 Jun – 13 Jul
 }
 
 CI_LEVEL          = 0.90   # credible interval coverage
@@ -1273,8 +1278,9 @@ def build_year_fingerprints(year: int,
     Build fingerprints for every player in the Wimbledon draw for `year`.
 
     Uses the player's last `career_window` matches across the most recent
-    `career_editions` Wimbledon editions (≤ `year`).  No temporal weighting
-    is applied — all matches in the window are weighted equally (w_t = 1.0).
+    `career_editions` Wimbledon editions (≤ `year`).  Edition-decay
+    weighting applied: most recent edition → w_t=1.0, one edition back
+    → w_t=EDITION_DECAY, two editions back → w_t=EDITION_DECAY².
     Opponent Elo quality weights (w_q) still apply.
 
     Returns a dict: {player_name: fingerprint_dict}
@@ -1364,12 +1370,15 @@ def build_year_fingerprints(year: int,
             if match_pts.empty:
                 continue
 
-            # No temporal weighting — all matches in the window treated equally.
-            # Opponent quality weight still applied so finals/QF matches count more.
-            # The opponent's Elo is looked up AS-OF the year that match was
-            # played (rec["year"]), not the prediction year.  This avoids
-            # weighting a 2014 Hurkacz match by his 2024 form.
-            w_t = 1.0
+            # Edition-decay temporal weighting: most-recent edition → 1.0,
+            # one edition back → EDITION_DECAY (0.65), two back → 0.42.
+            # Ensures recent form dominates while retaining sample-size
+            # breadth.  Opponent quality weight still applied.
+            try:
+                editions_ago = list(reversed(eligible_years)).index(rec["year"])
+            except ValueError:
+                editions_ago = len(eligible_years)  # shouldn't happen
+            w_t = EDITION_DECAY ** editions_ago
             if elo is not None:
                 match_year = rec["year"]
                 w_q     = elo.quality_weight_at_by_name(rec["opp_name"], match_year)

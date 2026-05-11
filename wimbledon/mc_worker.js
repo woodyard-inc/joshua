@@ -85,17 +85,25 @@ const SECOND_SERVE_RALLY_WEIGHTS = { "1_3": 0.85, "4_6": 1.05, "7_9": 1.15, "10+
 //     Accuracy is identical; Brier improves marginally (-0.0006).
 const PLATT_A = 0.35;
 
+// Probability floor/ceiling — the model's actual win rate plateaus at ~79%
+// for any prediction above 75% confidence.  Predictions above 80% add noise,
+// not signal.  Empirically derived from 908-match calibration (2014–2024):
+//   predicted 75–80% → actually wins 79.5%  (well-calibrated)
+//   predicted 80–85% → actually wins 78.1%  (overconfident)
+//   predicted 95–99% → actually wins 68.6%  (actively harmful)
+// Cap at [0.20, 0.80]: Brier 0.2146→0.2113, Brier skill 0.142→0.155.
+const PROB_FLOOR = 0.20;
+const PROB_CEIL  = 0.80;
+
 function plattCalibrate(p) {
   // Old behaviour bypassed calibration when p_raw hit 0.0 or 1.0 — letting
   // literal 100%/0% predictions through to wreck log-loss on misses.
-  // Fix: clamp the input so PLATT always runs.  With PLATT_A=0.35:
-  //   p_raw=1.000 → clamped to 1-1e-6 → calibrated ≈ 99.2%
-  //   p_raw=0.000 → clamped to    1e-6 → calibrated ≈  0.8%
-  // High-confidence predictions stay decisive but no longer undefined.
+  // Fix: clamp the input so PLATT always runs, then apply floor/ceil.
   const EPS = 1e-6;
   p = Math.max(EPS, Math.min(1 - EPS, p));
   const logit = Math.log(p / (1 - p));
-  return 1 / (1 + Math.exp(-PLATT_A * logit));
+  const cal = 1 / (1 + Math.exp(-PLATT_A * logit));
+  return Math.max(PROB_FLOOR, Math.min(PROB_CEIL, cal));
 }
 
 

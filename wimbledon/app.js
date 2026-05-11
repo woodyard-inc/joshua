@@ -3,7 +3,7 @@
 
 // ── State ─────────────────────────────────────────────────────────
 const state = {
-  year:            2025,
+  year:            2024,
   playerName:      null,
   profiles:        null,
   tournament:      null,
@@ -18,7 +18,7 @@ const state = {
 
 const AVAILABLE_YEARS = [2011, 2012, 2013, 2014, 2015, 2016,
                           2017, 2018, 2019,
-                          2021, 2022, 2023, 2024, 2025];
+                          2021, 2022, 2023, 2024];
 
 // ── Boot ──────────────────────────────────────────────────────────
 async function boot() {
@@ -208,8 +208,8 @@ async function loadYear(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
   const nc   = { cache: "no-store" };
   const [profiles, tourn, fingerprints, grassProfiles, archetypes, archetypesMeta] = await Promise.all([
-    fetch(`${base}/data/${year}_men_profiles.json`, nc).then(r => r.json()),
-    fetch(`${base}/data/${year}_men_tournament.json`, nc).then(r => r.json()),
+    fetch(`${base}/data/${year}_men_profiles.json`, nc).then(r => r.json()).catch(() => ({})),
+    fetch(`${base}/data/${year}_men_tournament.json`, nc).then(r => r.json()).catch(() => ({})),
     fetch(`${base}/data/${year}_fingerprints.json`, nc).then(r => r.json()).catch(() => ({})),
     fetch(`${base}/data/${year}_grass_profiles.json`, nc).then(r => r.json()).catch(() => ({})),
     fetch(`${base}/data/${year}_archetypes.json`, nc).then(r => r.json()).catch(() => ({})),
@@ -312,7 +312,11 @@ function populateDropdown() {
   const sel = document.getElementById("player-select");
   const cur = sel.value;
   sel.innerHTML = '<option value="">Select a player…</option>';
-  for (const name of Object.keys(state.profiles).sort()) {
+  // Fall back to fingerprint keys if profiles is empty (e.g. synthetic year)
+  const playerNames = Object.keys(state.profiles).length
+    ? Object.keys(state.profiles)
+    : Object.keys(state.fingerprints || {});
+  for (const name of playerNames.sort()) {
     const opt = document.createElement("option");
     opt.value = opt.textContent = name;
     sel.appendChild(opt);
@@ -365,6 +369,8 @@ function renderProfile(name) {
   const p = state.profiles[name];
   const t = state.tournament;
   const f = (state.fingerprints || {})[name] || null;
+
+  if (!p) { showNotCompeting(name, state.year); return; }
 
   state.mode = "profile";
   document.getElementById("lb-toggle").classList.remove("active");
@@ -550,7 +556,7 @@ function renderHero(p, t) {
   document.getElementById("player-meta").innerHTML =
     `${p.year} Wimbledon · ${p.matches_played} match${p.matches_played !== 1 ? "es" : ""}${archHtml}`;
   document.getElementById("srv-pts-badge").textContent =
-    `${p.serve.total_pts} serve pts`;
+    p.serve.total_pts != null ? `${p.serve.total_pts} serve pts` : "No PBP data";
 
   const hl = document.getElementById("headline-stats");
   hl.innerHTML = "";
@@ -2551,7 +2557,9 @@ function exitMatchupMode() {
 }
 
 function populateMuDropdowns() {
-  const names = Object.keys(state.profiles || {}).sort();
+  const names = (Object.keys(state.profiles || {}).length
+    ? Object.keys(state.profiles)
+    : Object.keys(state.fingerprints || {})).sort();
   ["mu-select-a", "mu-select-b"].forEach(id => {
     const sel = document.getElementById(id);
     const cur = sel.value;

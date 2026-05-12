@@ -25,49 +25,58 @@
   "leakage_delta_auc": 0.0,
   "leakage_verdict": "No measurable leakage from same-tournament history \u2014 AUC identical with and without it.",
   "axis_weight_analysis": {
-    "method": "OLS + LogisticRegression + RandomForest on axis composite scores, time-split 2019",
-    "r2_test": 0.116,
-    "r2_note": "R\u00b2 of 0.10\u20130.15 is normal for match-level sports prediction; low R\u00b2 reflects genuine randomness, not model failure.",
-    "declared_vs_empirical": {
+    "method": "908-match logistic regression on 5 axis edges (2014-2024, prior-edition fps)",
+    "v8_rebalance": {
       "serveReturn": {
-        "declared": 0.35,
-        "empirical": 0.47,
-        "significant": true,
-        "note": "Underweighted \u2014 serves dominate on grass"
-      },
-      "rallyShape": {
-        "declared": 0.2,
-        "empirical": 0.448,
-        "significant": true,
-        "note": "Underweighted \u2014 grass form/win% highly predictive"
+        "weight": 0.37,
+        "correlation_r": 0.353,
+        "note": "Axis 1 rewritten: paired serve/return regime (fspw vs rpw_vs_1st, sspw vs rpw_vs_2nd). Return ~42% of axis, up from 16%."
       },
       "breakPressure": {
-        "declared": 0.2,
-        "empirical": 0.056,
-        "significant": false,
-        "note": "Overweighted \u2014 BP conversion low-signal in this dataset"
+        "weight": 0.39,
+        "correlation_r": 0.279,
+        "note": "Dominant axis. rgw_pct is the single most correlated metric with match outcome (r=0.314)."
       },
       "pressure": {
-        "declared": 0.2,
-        "empirical": 0.026,
-        "significant": false,
-        "note": "Overweighted \u2014 clutch metrics sparse; low predictive signal"
+        "weight": 0.13,
+        "correlation_r": 0.011,
+        "note": "Weak individual correlation but contributes in logistic combination (SPCI, clutch, tiebreak)."
+      },
+      "rallyShape": {
+        "weight": 0.06,
+        "correlation_r": 0.217,
+        "note": "rally_win_curve ablated in phased MC. Moderate bivariate correlation but low marginal value (6.1% in regression)."
       },
       "durability": {
-        "declared": 0.05,
-        "empirical": 0.0,
-        "significant": false,
-        "note": "Near zero empirical signal \u2014 grass matches are short"
+        "weight": 0.05,
+        "correlation_r": 0.067,
+        "note": "Barely significant (p=0.04). Grass matches are short."
       }
     },
-    "interpretation": "The declared weights are qualitatively correct in ordering serveReturn first. However the regression evidence suggests breakPressure and pressure are given more weight than the data supports, and rallyShape (grass-specific win rate) is the second most predictive axis. The fingerprint-based axes (SPCI, clutch) carry meaning not captured in the simple delta-feature proxy \u2014 treat the suggested weights as a benchmark, not a prescription.",
-    "curated_backtest": "6/6 directional predictions correct across 6 historical matchups"
+    "metric_level_correlations": {
+      "note": "Point-biserial r with match outcome, all p<0.001",
+      "rgw_pct_edge": 0.314,
+      "rpw_pct_edge": 0.276,
+      "fspw_pct_edge": 0.272,
+      "sgw_pct_edge": 0.271,
+      "rpw_vs_1st_pct_edge": 0.249,
+      "rpw_vs_2nd_pct_edge": 0.212,
+      "sspw_pct_edge": 0.207
+    },
+    "serve_vs_return": {
+      "serve_only_accuracy": 0.624,
+      "return_only_accuracy": 0.645,
+      "combined_accuracy": 0.679,
+      "implied_importance_serve": 0.478,
+      "implied_importance_return": 0.522,
+      "note": "Return-only (rpw, rpw_v1, rpw_v2, rgw) outperforms serve-only (fspw, sspw) by 2pp. Logistic regression gives return 52.2% implied weight."
+    }
   },
   "notes": "Time-based split (train \u22642018, test \u22652019). Features are pre-match only (no leakage). All three models outperform ranking-only baseline (~63%). Brier score confirms well-calibrated probabilities.",
   "mc_fingerprint_backtest": {
-    "method": "Phased point simulation (v7) \u2014 prior-edition fingerprints predict each match",
+    "method": "Prior-edition fingerprints \u2192 MC simulation \u2192 actual outcomes",
     "leakage_note": "Fingerprints built from editions BEFORE the predicted year. Career window (last 3 editions) never includes the test year.",
-    "n_sims": 1000,
+    "n_sims": 2000,
     "test_years": [
       2014,
       2015,
@@ -82,29 +91,29 @@
     ],
     "min_test_year": 2014,
     "n_total": 908,
-    "accuracy": 0.683,
-    "brier": 0.2113,
+    "accuracy": 0.684,
+    "brier": 0.2112,
     "brier_skill": 0.155,
-    "log_loss": 0.6123,
+    "log_loss": 0.6121,
     "naive_brier": 0.25,
     "per_year": {
       "2014": {
         "n_matches": 90,
         "accuracy": 0.656,
         "brier": 0.227,
-        "log_loss": 0.648
+        "log_loss": 0.647
       },
       "2015": {
         "n_matches": 97,
-        "accuracy": 0.722,
+        "accuracy": 0.732,
         "brier": 0.196,
         "log_loss": 0.58
       },
       "2016": {
         "n_matches": 100,
         "accuracy": 0.72,
-        "brier": 0.198,
-        "log_loss": 0.584
+        "brier": 0.199,
+        "log_loss": 0.585
       },
       "2017": {
         "n_matches": 96,
@@ -115,32 +124,32 @@
       "2018": {
         "n_matches": 97,
         "accuracy": 0.711,
-        "brier": 0.206,
-        "log_loss": 0.6
+        "brier": 0.205,
+        "log_loss": 0.599
       },
       "2019": {
         "n_matches": 97,
         "accuracy": 0.711,
-        "brier": 0.211,
-        "log_loss": 0.612
+        "brier": 0.21,
+        "log_loss": 0.61
       },
       "2021": {
         "n_matches": 84,
         "accuracy": 0.607,
-        "brier": 0.239,
-        "log_loss": 0.674
+        "brier": 0.24,
+        "log_loss": 0.675
       },
       "2022": {
         "n_matches": 80,
         "accuracy": 0.637,
-        "brier": 0.235,
-        "log_loss": 0.665
+        "brier": 0.236,
+        "log_loss": 0.666
       },
       "2023": {
         "n_matches": 86,
         "accuracy": 0.686,
         "brier": 0.21,
-        "log_loss": 0.607
+        "log_loss": 0.606
       },
       "2024": {
         "n_matches": 81,
@@ -152,32 +161,32 @@
     "calibration": [
       {
         "pred_range": "0.20\u20130.32",
-        "pred_mean": 0.238,
+        "pred_mean": 0.239,
         "actual_rate": 0.238,
         "n": 181
       },
       {
         "pred_range": "0.32\u20130.44",
-        "pred_mean": 0.384,
+        "pred_mean": 0.385,
         "actual_rate": 0.42,
         "n": 181
       },
       {
         "pred_range": "0.44\u20130.56",
-        "pred_mean": 0.497,
-        "actual_rate": 0.536,
+        "pred_mean": 0.498,
+        "actual_rate": 0.53,
         "n": 181
       },
       {
         "pred_range": "0.56\u20130.68",
         "pred_mean": 0.616,
-        "actual_rate": 0.674,
+        "actual_rate": 0.685,
         "n": 181
       },
       {
         "pred_range": "0.68\u20130.80",
-        "pred_mean": 0.762,
-        "actual_rate": 0.79,
+        "pred_mean": 0.761,
+        "actual_rate": 0.785,
         "n": 181
       },
       {
@@ -187,12 +196,7 @@
         "n": 3
       }
     ],
-    "notes": "Coverage ~50\u201370% per year \u2014 first-time Wimbledon players have no prior fingerprint and are excluded. These tend to be lower-seeded players, so excluded matches are systematically easier to predict, meaning true accuracy on uncovered matches may be lower.",
-    "engine_version": "v7 (edition-decay fingerprints + probability cap [0.20, 0.80])",
-    "engine": "phased",
-    "changelog": {
-      "v7": "Edition-decay career window (EDITION_DECAY=0.65: most recent edition weighted 1.0, one back 0.65, two back 0.42) + empirically-derived probability cap [0.20, 0.80] \u2014 model actual win rate plateaus at ~79% for all predictions above 75% confidence. Brier 0.2142\u21920.2113, skill 0.142\u21920.155, log-loss 0.6384\u21920.6123."
-    }
+    "notes": "Coverage ~50\u201370% per year \u2014 first-time Wimbledon players have no prior fingerprint and are excluded. These tend to be lower-seeded players, so excluded matches are systematically easier to predict, meaning true accuracy on uncovered matches may be lower."
   },
   "mc_fingerprint_backtest_aggregate_baseline": {
     "method": "Aggregate Markov-style engine \u2014 pre-v3 production baseline",

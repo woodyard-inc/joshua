@@ -19,7 +19,8 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 
 TIER1_METRICS = [
     "fsp_pct", "fspw_pct", "sspw_pct",
-    "rpw_pct", "sgw_pct", "rgw_pct",
+    "rpw_pct", "rpw_vs_1st_pct", "rpw_vs_2nd_pct",
+    "sgw_pct", "rgw_pct",
 ]
 
 TIER2_SCALAR = {

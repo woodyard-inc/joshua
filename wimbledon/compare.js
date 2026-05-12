@@ -7,12 +7,12 @@
  * All axes return values in [−1, +1].
  * Positive = A advantage. Negative = B advantage.
  *
- * Surface weights (grass) — empirically rebalanced 2026-05:
- *   Serve/Return   0.40  (↑ from 0.35 — dominant predictor, AUC-validated)
- *   Rally Shape    0.28  (↑ from 0.20 — grass win% is 2nd-strongest signal)
- *   Break Pressure 0.15  (↓ from 0.20 — BP conversion low-signal in sparse data)
- *   Pressure       0.12  (↓ from 0.20 — SPCI/clutch carry meaning but dataset-limited)
- *   Durability     0.05  (unchanged  — grass matches are short; endurance minimal)
+ * Surface weights (grass) — derived from 908-match logistic regression (2014–2024):
+ *   Break Pressure 0.39  (rgw% is the single most correlated metric, r=0.31)
+ *   Serve/Return   0.37  (paired serve/return regime with split return stats)
+ *   Pressure       0.13  (SPCI + clutch + tiebreak contribute under pressure)
+ *   Rally Shape    0.06  (rally-win-curve ablated in phased MC; low marginal signal)
+ *   Durability     0.05  (grass matches are short; physical attrition minimal)
  */
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -61,6 +61,10 @@ function _t2conf(fp, ...keys) {
 
 // ── p_serve ────────────────────────────────────────────────────────────────
 
+const GRASS_RPW_VS_1ST_AVG = 25.0;
+const GRASS_RPW_VS_2ND_AVG = 40.0;
+const GRASS_RPW_AVG         = 35.0;
+
 function pServe(fp) {
   const fsp  = _t1(fp, "fsp_pct");
   const fspw = _t1(fp, "fspw_pct");
@@ -73,55 +77,95 @@ function pServe(fp) {
   return (fsp/100)*(fspw/100) + (1 - fsp/100)*(sspw/100);
 }
 
+/** Matchup-adjusted p_serve: pairs each serve type against returner's quality. */
+function pServeMatchup(fpServer, fpReturner) {
+  const fsp  = _t1(fpServer, "fsp_pct");
+  const fspw = _t1(fpServer, "fspw_pct");
+  const sspw = _t1(fpServer, "sspw_pct");
+
+  if (fsp == null || fspw == null || sspw == null) {
+    // Fallback: no granular serve data → use SGW-based estimate + blended RPW adj
+    let pRaw = pServe(fpServer);
+    const rpw = _t1(fpReturner, "rpw_pct");
+    if (rpw != null) pRaw -= (rpw - GRASS_RPW_AVG) / 100;
+    return Math.max(0.45, Math.min(0.85, pRaw));
+  }
+
+  const rpwV1 = _t1(fpReturner, "rpw_vs_1st_pct");
+  const rpwV2 = _t1(fpReturner, "rpw_vs_2nd_pct");
+
+  let pFirst, pSecond;
+  if (rpwV1 != null && rpwV2 != null) {
+    pFirst  = fspw / 100 - (rpwV1 - GRASS_RPW_VS_1ST_AVG) / 100;
+    pSecond = sspw / 100 - (rpwV2 - GRASS_RPW_VS_2ND_AVG) / 100;
+  } else {
+    const rpw = _t1(fpReturner, "rpw_pct");
+    const adj = rpw != null ? (rpw - GRASS_RPW_AVG) / 100 : 0;
+    pFirst  = fspw / 100 - adj;
+    pSecond = sspw / 100 - adj;
+  }
+
+  const p = (fsp / 100) * pFirst + (1 - fsp / 100) * pSecond;
+  return Math.max(0.45, Math.min(0.85, p));
+}
+
 // ── Axis 1: Serve vs Return ────────────────────────────────────────────────
+// Empirically derived from 908-match logistic regression (2014–2024).
+// Return stats are roughly as predictive as serve stats (52% vs 48%).
+// The axis pairs each serve metric against its return counterpart.
 
 function axisServeReturn(fpA, fpB, year, eraStats) {
   const z = (v, m) => _zScore(v, m, year, eraStats);
 
+  let raw = 0, wSum = 0;
+
+  // ── 1st-serve regime (0.52 total) ──────────────────────────────
   const fspwA = z(_t1(fpA, "fspw_pct"), "fspw_pct");
   const fspwB = z(_t1(fpB, "fspw_pct"), "fspw_pct");
+  if (fspwA != null && fspwB != null) { raw += 0.26 * (fspwA - fspwB); wSum += 0.26; }
+
+  const rpw1A = z(_t1(fpA, "rpw_vs_1st_pct"), "rpw_vs_1st_pct");
+  const rpw1B = z(_t1(fpB, "rpw_vs_1st_pct"), "rpw_vs_1st_pct");
+  if (rpw1A != null && rpw1B != null) { raw += 0.26 * (rpw1A - rpw1B); wSum += 0.26; }
+
+  // ── 2nd-serve regime (0.24 total) ──────────────────────────────
   const sspwA = z(_t1(fpA, "sspw_pct"), "sspw_pct");
   const sspwB = z(_t1(fpB, "sspw_pct"), "sspw_pct");
-  const rpwA  = z(_t1(fpA, "rpw_pct"),  "rpw_pct");
-  const rpwB  = z(_t1(fpB, "rpw_pct"),  "rpw_pct");
+  if (sspwA != null && sspwB != null) { raw += 0.12 * (sspwA - sspwB); wSum += 0.12; }
 
-  let raw = 0, wSum = 0;
-  if (fspwA != null && fspwB != null) { raw += 0.32 * (fspwA - fspwB); wSum += 0.32; }
-  if (sspwA != null && sspwB != null) { raw += 0.20 * (sspwA - sspwB); wSum += 0.20; }
-  if (rpwA  != null && rpwB  != null) { raw += 0.16 * (rpwA  - rpwB);  wSum += 0.16; }
+  const rpw2A = z(_t1(fpA, "rpw_vs_2nd_pct"), "rpw_vs_2nd_pct");
+  const rpw2B = z(_t1(fpB, "rpw_vs_2nd_pct"), "rpw_vs_2nd_pct");
+  if (rpw2A != null && rpw2B != null) { raw += 0.12 * (rpw2A - rpw2B); wSum += 0.12; }
 
-  // Serve direction entropy (existing)
+  // ── Serve style modifiers (0.24 total) ─────────────────────────
+  // Serve direction entropy
   const entA = _t2(fpA, "serve_entropy", "pct_of_max");
   const entB = _t2(fpB, "serve_entropy", "pct_of_max");
   if (entA != null && entB != null) {
     const zeA = z(entA, "serve_entropy_pct");
     const zeB = z(entB, "serve_entropy_pct");
-    if (zeA != null && zeB != null) { raw += 0.10 * (zeA - zeB); wSum += 0.10; }
+    if (zeA != null && zeB != null) { raw += 0.08 * (zeA - zeB); wSum += 0.08; }
   }
 
-  // NEW: Mean serve speed (sourced from serve_speed_courage.overall_speed_kmh)
+  // Mean serve speed
   const spdA = _t2(fpA, "serve_speed_courage", "overall_speed_kmh");
   const spdB = _t2(fpB, "serve_speed_courage", "overall_speed_kmh");
   if (spdA != null && spdB != null) {
-    // Simple normalised difference: 10 km/h gap → 0.1 edge unit
-    raw += 0.12 * _clamp((spdA - spdB) / 30.0); wSum += 0.12;
+    raw += 0.08 * _clamp((spdA - spdB) / 30.0); wSum += 0.08;
   }
 
-  // NEW: Serve speed differential (1st minus 2nd mean speed)
+  // Serve speed differential (1st minus 2nd) — lower = better (reversed)
   const ssdA = _t2(fpA, "serve_speed_differential", "value");
   const ssdB = _t2(fpB, "serve_speed_differential", "value");
   if (ssdA != null && ssdB != null) {
-    // Higher gap = bigger boom-or-bust risk; on grass the 2nd serve is attackable.
-    // Opponent who can threaten the 2nd serve more (lower differential) has edge.
-    raw += 0.06 * _clamp((ssdB - ssdA) / 20.0); wSum += 0.06;  // reversed: lower diff = better
+    raw += 0.04 * _clamp((ssdB - ssdA) / 20.0); wSum += 0.04;
   }
 
-  // NEW: Serve depth entropy (CTL/NCTL — unpredictability of depth placement)
+  // Serve depth entropy (CTL/NCTL placement mix)
   const sdepA = _t2(fpA, "serve_depth_entropy", "pct_of_max");
   const sdepB = _t2(fpB, "serve_depth_entropy", "pct_of_max");
   if (sdepA != null && sdepB != null) { raw += 0.04 * _clamp((sdepA - sdepB) / 30.0); wSum += 0.04; }
 
-  // Rescale to declared axis weight if some components missing
   return wSum > 0 ? _clamp(raw * (1.0 / wSum)) : 0;
 }
 
@@ -298,29 +342,27 @@ function axisBreakPressure(fpA, fpB, year, eraStats) {
   const cvrA = bpcA.bp_conversion;
   const cvrB = bpcB.bp_conversion;
 
-  // On grass, opportunities are scarce — converting them (cvrScore) matters
-  // more than the volume of chances created (crScore). Weights flipped.
   let crScore  = 0;
   let cvrScore = 0;
-  if (crA  != null && crB  != null) crScore  = 0.20 * _clamp((crA  - crB)  / 0.30);
-  if (cvrA != null && cvrB != null) cvrScore = 0.40 * _clamp((cvrA - cvrB) / 0.20);
+  if (crA  != null && crB  != null) crScore  = 0.35 * _clamp((crA  - crB)  / 0.30);
+  if (cvrA != null && cvrB != null) cvrScore = 0.25 * _clamp((cvrA - cvrB) / 0.20);
 
   return _clamp(rgwScore + crScore + cvrScore);
 }
 
 // ── weighted edge narrative ────────────────────────────────────────────────
 
-// Axis weights rebalanced for grass (empirical regression, 2026-05):
-//  • Serve/Return raised — rank + SGW% + 1stWon% are far the strongest predictors.
-//  • Rally Shape raised — grass-specific win rate is the clear #2 signal.
-//  • Break Pressure trimmed — converting rare BPs matters, but feature signal is sparse.
-//  • Pressure trimmed — SPCI/clutch are meaningful but low-n; dataset caps the signal.
+// Axis weights derived from 908-match logistic regression (2014–2024):
+//  • Break Pressure dominant — rgw% is the single most correlated metric (r=0.31).
+//  • Serve/Return strong — paired serve/return regime carries 37% of signal.
+//  • Pressure meaningful — SPCI + clutch + tiebreak contribute under pressure.
+//  • Rally Shape minimal — rally-win-curve ablated in phased MC; low marginal signal.
 //  • Durability unchanged — grass matches are short; physical attrition minimal.
 const AXIS_META = [
-  { key: "serveReturn",   label: "Serve / Return",   weight: 0.40 },
-  { key: "rallyShape",    label: "Rally Shape",       weight: 0.28 },
-  { key: "breakPressure", label: "Break Pressure",    weight: 0.15 },
-  { key: "pressure",      label: "Pressure",          weight: 0.12 },
+  { key: "breakPressure", label: "Break Pressure",    weight: 0.39 },
+  { key: "serveReturn",   label: "Serve / Return",   weight: 0.37 },
+  { key: "pressure",      label: "Pressure",          weight: 0.13 },
+  { key: "rallyShape",    label: "Rally Shape",       weight: 0.06 },
   { key: "durability",    label: "Durability",        weight: 0.05 },
 ];
 
@@ -362,10 +404,10 @@ function compareEngine(fpA, fpB, year, eraStats) {
     breakPressure: ax5,
   };
 
-  const edge = 0.40*ax1 + 0.28*ax2 + 0.12*ax3 + 0.05*ax4 + 0.15*ax5;
+  const edge = 0.37*ax1 + 0.06*ax2 + 0.13*ax3 + 0.05*ax4 + 0.39*ax5;
 
-  const pA = pServe(fpA);
-  const pB = pServe(fpB);
+  const pA = pServeMatchup(fpA, fpB);
+  const pB = pServeMatchup(fpB, fpA);
 
   const pWinA   = pMatchWin(pA, pB);
   const scoreDist = fullScoreDist(pA, pB);

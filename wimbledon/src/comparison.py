@@ -47,11 +47,11 @@ DATA_DIR = Path(__file__).parent.parent / "data"
 
 SURFACE_WEIGHTS: Dict[str, Dict[str, float]] = {
     "grass": {
-        "axis_serve_return":  0.40,
-        "axis_rally_shape":   0.28,
-        "axis_pressure":      0.12,
+        "axis_serve_return":  0.37,
+        "axis_rally_shape":   0.06,
+        "axis_pressure":      0.13,
         "axis_durability":    0.05,
-        "axis_break_pressure":0.15,
+        "axis_break_pressure":0.39,
     },
     "hard": {
         "axis_serve_return":  0.28,
@@ -114,6 +114,7 @@ class EraDeflator:
 
     # Metrics extracted from tier1
     TIER1_METRICS = ["fsp_pct", "fspw_pct", "sspw_pct", "rpw_pct",
+                     "rpw_vs_1st_pct", "rpw_vs_2nd_pct",
                      "sgw_pct", "rgw_pct"]
 
     # Tier2 scalar metrics (key → path in tier2 dict)
@@ -210,7 +211,9 @@ def _t2_conf(fp: dict, *keys) -> Optional[str]:
 # Grass-court tour average return points won (~35% across ATP grass events).
 # Used as the baseline for matchup adjustment: if the opponent's rpw is above
 # this, the server's effective probability decreases and vice versa.
-GRASS_RPW_AVG = 35.0
+GRASS_RPW_AVG        = 35.0
+GRASS_RPW_VS_1ST_AVG = 25.0   # return pts won vs 1st serve, grass tour avg
+GRASS_RPW_VS_2ND_AVG = 40.0   # return pts won vs 2nd serve, grass tour avg
 
 
 def p_serve_from_fp(fp: dict) -> float:
@@ -239,32 +242,46 @@ def p_serve_from_fp(fp: dict) -> float:
 
 def p_serve_matchup(fp_server: dict, fp_returner: dict) -> float:
     """
-    Compute matchup-adjusted serve win probability.
+    Compute matchup-adjusted serve win probability using split return stats.
 
-    Takes the server's isolated serve rate and adjusts for the opponent's
-    return quality relative to the tour average.
+    Pairs each serve type against its return counterpart:
+      p_first  = fspw_server − (rpw_vs_1st_returner − avg) / 100
+      p_second = sspw_server − (rpw_vs_2nd_returner − avg) / 100
+      p_serve  = fsp × p_first + (1 − fsp) × p_second
 
-    Formula:
-      p_serve_A_vs_B = p_raw_A − (rpw_B − rpw_avg) / 100
-
-    If B is a stronger returner than average (rpw_B > rpw_avg), A's serve
-    probability decreases. If B is a weaker returner, it increases.
-
-    This is the "common opponent" adjustment: without it, two servers with
-    65% SPW look identical even if one faced top returners and the other
-    faced qualifiers. The Elo system handles this through quality ratings;
-    here we handle it directly in the probability model.
-
+    Falls back to blended rpw_pct adjustment if split stats unavailable.
     Clamped to [0.45, 0.85] to prevent degenerate probabilities.
     """
-    p_raw = p_serve_from_fp(fp_server)
+    fsp  = _t1(fp_server, "fsp_pct")
+    fspw = _t1(fp_server, "fspw_pct")
+    sspw = _t1(fp_server, "sspw_pct")
 
-    rpw_returner = _t1(fp_returner, "rpw_pct")
-    if rpw_returner is None:
-        return p_raw   # no return data → no adjustment
+    if fsp is None or fspw is None or sspw is None:
+        # Fallback: no granular serve data → use SGW-based estimate
+        p_raw = p_serve_from_fp(fp_server)
+        rpw = _t1(fp_returner, "rpw_pct")
+        if rpw is not None:
+            p_raw -= (rpw - GRASS_RPW_AVG) / 100.0
+        return max(0.45, min(0.85, p_raw))
 
-    adjustment = (rpw_returner - GRASS_RPW_AVG) / 100.0
-    return max(0.45, min(0.85, p_raw - adjustment))
+    # Try split return stats first
+    rpw_v1 = _t1(fp_returner, "rpw_vs_1st_pct")
+    rpw_v2 = _t1(fp_returner, "rpw_vs_2nd_pct")
+
+    if rpw_v1 is not None and rpw_v2 is not None:
+        # Paired matchup: each serve type adjusted by the returner's
+        # quality against that specific serve type
+        p_first  = fspw / 100.0 - (rpw_v1 - GRASS_RPW_VS_1ST_AVG) / 100.0
+        p_second = sspw / 100.0 - (rpw_v2 - GRASS_RPW_VS_2ND_AVG) / 100.0
+    else:
+        # Fallback to blended rpw adjustment
+        rpw = _t1(fp_returner, "rpw_pct")
+        adj = (rpw - GRASS_RPW_AVG) / 100.0 if rpw is not None else 0.0
+        p_first  = fspw / 100.0 - adj
+        p_second = sspw / 100.0 - adj
+
+    p_serve = (fsp / 100.0) * p_first + (1 - fsp / 100.0) * p_second
+    return max(0.45, min(0.85, p_serve))
 
 
 # ── Axis 1: Serve vs Return ───────────────────────────────────────────────
@@ -272,80 +289,98 @@ def p_serve_matchup(fp_server: dict, fp_returner: dict) -> float:
 def _axis_serve_return(fp_a: dict, fp_b: dict,
                        year: int, defl: EraDeflator) -> Tuple[float, dict]:
     """
-    Edge = A's serve+return package minus B's (fully differential).
+    Edge = A's serve+return package minus B's (paired by serve type).
 
-    Components (grass weights, rescaled if data missing):
-      0.32 × (z(fspw_pct_A) - z(fspw_pct_B))   — 1st serve quality edge
-      0.20 × (z(sspw_pct_A) - z(sspw_pct_B))   — 2nd serve quality edge
-      0.16 × (z(rpw_pct_A)  - z(rpw_pct_B))    — return quality edge
-      0.10 × (z(entropy_A)  - z(entropy_B))     — serve direction unpredictability
-      0.12 × (spdA - spdB) / 30                 — mean serve speed (km/h)
-      0.06 × (ssdB - ssdA) / 20                 — speed differential reversed (lower = tighter 2nd)
-      0.04 × (sdepA - sdepB) / 30               — serve depth entropy (CTL/NCTL mix)
+    Empirically derived from 908-match logistic regression (2014–2024).
+    Return stats are roughly as predictive as serve stats (52% vs 48%),
+    so the axis pairs each serve metric against its return counterpart:
 
-    Session Decision 7: entropy is directional (W/B/T) only.
-    Session Decision 8: SSCI is NOT applied here (it's an SPCI component).
-    Rebalanced 2026-05 to match empirically calibrated compare.js.
+      1st-serve regime (0.52 total):
+        0.26 × z(fspw_pct) edge       — 1st serve quality
+        0.26 × z(rpw_vs_1st_pct) edge — return quality vs 1st serve
+
+      2nd-serve regime (0.24 total):
+        0.12 × z(sspw_pct) edge       — 2nd serve quality
+        0.12 × z(rpw_vs_2nd_pct) edge — return quality vs 2nd serve
+
+      Serve style modifiers (0.24 total):
+        0.08 × z(entropy) edge         — serve direction unpredictability
+        0.08 × speed edge              — mean serve speed (km/h)
+        0.04 × speed differential      — 1st-2nd speed gap (reversed)
+        0.04 × depth entropy edge      — serve depth placement mix
     """
     components: dict = {}
     raw = 0.0
     w_sum = 0.0
 
-    # --- 1st serve quality differential ---
+    # ── 1st-serve regime ─────────────────────────────────────────────
+    # Server's 1st serve quality
     fspw_a = defl.z(year, "fspw_pct", _t1(fp_a, "fspw_pct"))
     fspw_b = defl.z(year, "fspw_pct", _t1(fp_b, "fspw_pct"))
     if fspw_a is not None and fspw_b is not None:
-        raw   += 0.32 * (fspw_a - fspw_b)
-        w_sum += 0.32
+        raw   += 0.26 * (fspw_a - fspw_b)
+        w_sum += 0.26
         components["fspw_z_A"] = round(fspw_a, 3)
         components["fspw_z_B"] = round(fspw_b, 3)
         components["fspw_edge"] = round(fspw_a - fspw_b, 3)
 
-    # --- 2nd serve quality differential ---
+    # Returner's quality vs 1st serve
+    rpw1_a = defl.z(year, "rpw_vs_1st_pct", _t1(fp_a, "rpw_vs_1st_pct"))
+    rpw1_b = defl.z(year, "rpw_vs_1st_pct", _t1(fp_b, "rpw_vs_1st_pct"))
+    if rpw1_a is not None and rpw1_b is not None:
+        raw   += 0.26 * (rpw1_a - rpw1_b)
+        w_sum += 0.26
+        components["rpw_vs_1st_z_A"] = round(rpw1_a, 3)
+        components["rpw_vs_1st_z_B"] = round(rpw1_b, 3)
+        components["rpw_vs_1st_edge"] = round(rpw1_a - rpw1_b, 3)
+
+    # ── 2nd-serve regime ─────────────────────────────────────────────
+    # Server's 2nd serve quality
     sspw_a = defl.z(year, "sspw_pct", _t1(fp_a, "sspw_pct"))
     sspw_b = defl.z(year, "sspw_pct", _t1(fp_b, "sspw_pct"))
     if sspw_a is not None and sspw_b is not None:
-        raw   += 0.20 * (sspw_a - sspw_b)
-        w_sum += 0.20
+        raw   += 0.12 * (sspw_a - sspw_b)
+        w_sum += 0.12
         components["sspw_edge"] = round(sspw_a - sspw_b, 3)
 
-    # --- Return quality differential ---
-    rpw_a = defl.z(year, "rpw_pct", _t1(fp_a, "rpw_pct"))
-    rpw_b = defl.z(year, "rpw_pct", _t1(fp_b, "rpw_pct"))
-    if rpw_a is not None and rpw_b is not None:
-        raw   += 0.16 * (rpw_a - rpw_b)
-        w_sum += 0.16
-        components["rpw_edge"] = round(rpw_a - rpw_b, 3)
+    # Returner's quality vs 2nd serve
+    rpw2_a = defl.z(year, "rpw_vs_2nd_pct", _t1(fp_a, "rpw_vs_2nd_pct"))
+    rpw2_b = defl.z(year, "rpw_vs_2nd_pct", _t1(fp_b, "rpw_vs_2nd_pct"))
+    if rpw2_a is not None and rpw2_b is not None:
+        raw   += 0.12 * (rpw2_a - rpw2_b)
+        w_sum += 0.12
+        components["rpw_vs_2nd_edge"] = round(rpw2_a - rpw2_b, 3)
 
-    # --- Entropy (direction unpredictability, z-scored) ---
+    # ── Serve style modifiers ────────────────────────────────────────
+    # Entropy (direction unpredictability, z-scored)
     ent_a_raw = _t2(fp_a, "serve_entropy", "pct_of_max")
     ent_b_raw = _t2(fp_b, "serve_entropy", "pct_of_max")
     if ent_a_raw is not None and ent_b_raw is not None:
         ent_a = defl.z(year, "serve_entropy_pct", ent_a_raw)
         ent_b = defl.z(year, "serve_entropy_pct", ent_b_raw)
         if ent_a is not None and ent_b is not None:
-            raw   += 0.10 * (ent_a - ent_b)
-            w_sum += 0.10
+            raw   += 0.08 * (ent_a - ent_b)
+            w_sum += 0.08
             components["entropy_edge_z"] = round(ent_a - ent_b, 3)
 
-    # --- NEW: Mean serve speed (overall_speed_kmh) ---
+    # Mean serve speed (overall_speed_kmh)
     spd_a = _t2(fp_a, "serve_speed_courage", "overall_speed_kmh")
     spd_b = _t2(fp_b, "serve_speed_courage", "overall_speed_kmh")
     if spd_a is not None and spd_b is not None:
-        raw   += 0.12 * float(np.clip((spd_a - spd_b) / 30.0, -1, 1))
-        w_sum += 0.12
+        raw   += 0.08 * float(np.clip((spd_a - spd_b) / 30.0, -1, 1))
+        w_sum += 0.08
         components["speed_edge_kmh"] = round(spd_a - spd_b, 1)
 
-    # --- NEW: Serve speed differential (1st − 2nd mean speed) — lower = better (reversed) ---
+    # Serve speed differential (1st − 2nd mean speed) — lower = better (reversed)
     ssd_a = _t2(fp_a, "serve_speed_differential", "value")
     ssd_b = _t2(fp_b, "serve_speed_differential", "value")
     if ssd_a is not None and ssd_b is not None:
-        raw   += 0.06 * float(np.clip((ssd_b - ssd_a) / 20.0, -1, 1))
-        w_sum += 0.06
+        raw   += 0.04 * float(np.clip((ssd_b - ssd_a) / 20.0, -1, 1))
+        w_sum += 0.04
         components["speed_diff_A"] = round(ssd_a, 1)
         components["speed_diff_B"] = round(ssd_b, 1)
 
-    # --- NEW: Serve depth entropy (CTL/NCTL mix — unpredictability of depth) ---
+    # Serve depth entropy (CTL/NCTL mix — unpredictability of depth)
     sdep_a = _t2(fp_a, "serve_depth_entropy", "pct_of_max")
     sdep_b = _t2(fp_b, "serve_depth_entropy", "pct_of_max")
     if sdep_a is not None and sdep_b is not None:

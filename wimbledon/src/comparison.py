@@ -6,12 +6,12 @@ Bridges two player fingerprints to the Markov engine by computing:
   2. Confidence-gated five-axis edge values
   3. A MatchupOutput dataclass consumed by monte_carlo.py
 
-Five axes (Wimbledon grass weights — empirically rebalanced 2026-05):
-  Axis 1 — Serve vs Return     0.40  (↑ strongest validated signal)
-  Axis 2 — Rally Shape         0.28  (↑ grass win% is clear #2 predictor)
-  Axis 3 — Pressure Resilience 0.12  (↓ meaningful but dataset-limited)
-  Axis 4 — Physical Durability 0.05  (unchanged — grass matches short)
-  Axis 5 — Break Pressure      0.15  (↓ BP conversion sparse on grass)
+Five axes (Wimbledon grass weights — 908-match logistic regression, v9):
+  Axis 1 — Serve / Return      0.37  (paired 1st/2nd serve vs return)
+  Axis 2 — Rally Shape          0.06  (low marginal value after serve/return)
+  Axis 3 — Pressure Resilience  0.13  (spci, clutch, tiebreak)
+  Axis 4 — Physical Durability  0.05  (grass matches are short)
+  Axis 5 — Break Pressure       0.39  (rgw_pct is #1 correlated metric)
 
 Usage:
     from comparison import compare, load_fingerprint

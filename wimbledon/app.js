@@ -2624,13 +2624,21 @@ function runComparison(nameA, nameB, overrideFps = null) {
   // Terminate any prior worker
   if (window._mcWorker) { window._mcWorker.terminate(); window._mcWorker = null; }
 
-  const worker      = new Worker("mc_worker.js");
+  const worker      = new Worker("mc_worker.js?v=50");
   const startTime   = Date.now();
   const MIN_LOAD_MS = 5200;   // keep animation visible for a full loop
   window._mcWorker  = worker;
 
   worker.onmessage = (e) => {
     const { type } = e.data;
+
+    if (type === "error") {
+      if (window._spriteTimer) { clearInterval(window._spriteTimer); window._spriteTimer = null; }
+      worker.terminate(); window._mcWorker = null;
+      resultEl.innerHTML = `<p class="mu-error">Worker error: ${e.data.message}</p>`;
+      console.error("MC worker error:", e.data.message, e.data.stack);
+      return;
+    }
 
     if (type === "progress") {
       const bar = document.getElementById("mu-progress-bar");
@@ -2649,18 +2657,16 @@ function runComparison(nameA, nameB, overrideFps = null) {
       worker.terminate();
       window._mcWorker = null;
 
-      // Run structural 5-axis breakdown (still driven by compare.js)
-      const structural = compareEngine(fpA, fpB, state.year, state.eraStats || {});
-
-      // Merge: probabilities + score dist + CI come from MC;
-      // structural axes + pServe come from compareEngine
+      // v9 unified: everything comes from the MC worker.
+      // • axes:        structural edges [-1,+1] for bar display (who is better)
+      // • axisContrib: MC neutralisation deltas for "decisive axis" analysis
       const merged = {
         nameA, nameB,
         year:     state.year,
         fingerprintYear,          // null = current year; set = prior year (leak-free)
-        pServeA:  structural.pServeA,
-        pServeB:  structural.pServeB,
-        axes:     structural.axes,
+        pServeA:  e.data.pServeA,
+        pServeB:  e.data.pServeB,
+        axes:     e.data.axes,          // structural edges for bar display
         pWinA:    e.data.pWinA,
         pWinB:    e.data.pWinB,
         ciLow:    e.data.ciLow,
@@ -2669,7 +2675,7 @@ function runComparison(nameA, nameB, overrideFps = null) {
         axisContrib:  e.data.axisContrib,
         dominantAxis: e.data.dominantAxis,
         nSims:    e.data.nSims,
-        narrative: edgeNarrative(structural.axes, nameA, nameB, e.data.pWinA),
+        narrative: e.data.narrative,
       };
 
         renderMatchupResult(merged);
@@ -2686,21 +2692,14 @@ function runComparison(nameA, nameB, overrideFps = null) {
 
 // ── Render matchup result ─────────────────────────────────────────
 
+// v9 unified: axis defs with empirically-derived weights (908-match logistic regression)
 const AXIS_DEFS = [
-  { key: "serveReturn",   label: "Serve / Return",   weight: "0.35" },
-  { key: "rallyShape",    label: "Rally Shape",       weight: "0.15" },
-  { key: "pressure",      label: "Pressure",          weight: "0.25" },
-  { key: "durability",    label: "Durability",        weight: "0.10" },
-  { key: "breakPressure", label: "Break Pressure",    weight: "0.15" },
+  { key: "serveReturn",   label: "Serve / Return",   weight: "0.37" },
+  { key: "rallyShape",    label: "Rally Shape",       weight: "0.06" },
+  { key: "pressure",      label: "Pressure",          weight: "0.13" },
+  { key: "durability",    label: "Durability",        weight: "0.05" },
+  { key: "breakPressure", label: "Break Pressure",    weight: "0.39" },
 ];
-
-// MC axis name → display label
-const MC_AXIS_LABELS = {
-  rallyShape:    "Rally Shape",
-  pressure:      "Pressure",
-  serveEntropy:  "Serve Entropy",
-  breakPressure: "Break Pressure",
-};
 
 function renderMatchupResult(r) {
   const el = document.getElementById("mu-result");
@@ -2769,7 +2768,8 @@ function renderMatchupResult(r) {
   // Key Factor — incorporate MC dominant axis if available
   let keyFactorHTML = `<p class="mu-narrative">${r.narrative}</p>`;
   if (r.dominantAxis && r.axisContrib) {
-    const axLabel   = MC_AXIS_LABELS[r.dominantAxis] || r.dominantAxis;
+    const axDef     = AXIS_DEFS.find(d => d.key === r.dominantAxis);
+    const axLabel   = axDef ? axDef.label : r.dominantAxis;
     const contrib   = r.axisContrib[r.dominantAxis];
     const contribPp = Math.abs(Math.round(contrib * 100));
     const beneficiary = contrib > 0

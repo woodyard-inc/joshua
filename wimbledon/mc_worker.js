@@ -59,6 +59,7 @@ const GRASS_AVG_DF_RATE  = 0.035;  // ~3.5% of service points are DFs
 const GRASS_AVG_FSP      = 0.63;
 const GRASS_AVG_FSPW     = 0.72;
 const GRASS_AVG_SSPW     = 0.56;
+const GRASS_AVG_RGW      = 16.0;  // return games won %, grass-court 2014–2024 mean
 
 // Rally length bands and grass-court prior
 const RALLY_BANDS = ["1_3", "4_6", "7_9", "10+"];
@@ -129,6 +130,7 @@ function extractModifiers(fp) {
     rpw:      (t1.rpw_pct?.value          != null) ? t1.rpw_pct.value         : GRASS_RPW_AVG,
     rpwVs1st: (t1.rpw_vs_1st_pct?.value  != null) ? t1.rpw_vs_1st_pct.value  : GRASS_RPW_VS_1ST_AVG,
     rpwVs2nd: (t1.rpw_vs_2nd_pct?.value  != null) ? t1.rpw_vs_2nd_pct.value  : GRASS_RPW_VS_2ND_AVG,
+    rgw:      (t1.rgw_pct?.value         != null) ? t1.rgw_pct.value         : GRASS_AVG_RGW,
 
     // Phase 1: serve
     baseDFRate,
@@ -328,6 +330,24 @@ function simulatePoint(srvMods, retMods, state) {
     }
 
     // bpConversion modifier dropped in v3 (cost +0.44pp accuracy ablated).
+
+    // Return-game conversion burst at break points (rgw_pct).
+    // The "closing" component — stronger at the decisive moment.
+    if (state.isBreakPoint) {
+      const rgwExcess = (retMods.rgw - GRASS_AVG_RGW) / 100;
+      p -= rgwExcess * 0.20;
+    }
+  }
+
+  // 3b-iv. Return-game pressure (rgw_pct) — ALL POINTS.
+  //   rgw_pct (r=0.314 with match outcome) captures sustained return
+  //   quality that rpw doesn't explain (r²=0.74, 26% unique variance).
+  //   A player who wins more return games brings relentless pressure
+  //   across all points — not just at break points.
+  //   Split: 0.08 baseline (all points) + 0.20 burst (break points above).
+  {
+    const rgwExcess = (retMods.rgw - GRASS_AVG_RGW) / 100;
+    p -= rgwExcess * 0.08;
   }
 
   // momentum catch-fire mechanic dropped in v3 (cost +0.44pp accuracy).
@@ -641,14 +661,26 @@ function runMonteCarlo(fpA, fpB, nSims, onProgress) {
 
 /**
  * Estimate each fingerprint axis's contribution by running "neutralised"
- * simulations — replace one axis's data with the average and measure
+ * simulations — replace one axis's data with the tour average and measure
  * the change in pWinA.
+ *
+ * v9 UNIFIED AXES (5 axes matching the display):
+ *   serveReturn   — fsp, fspw, sspw, rpw_vs_1st, rpw_vs_2nd, entropy
+ *   rallyShape    — rally_win_curve distribution
+ *   pressure      — spci, clutch, tiebreak, setTransition, holdAfterBreak
+ *   durability    — attrition_slope
+ *   breakPressure — rgw_pct
+ *
+ * Axis weights (empirically derived, 908-match logistic regression):
+ *   serveReturn 0.37, breakPressure 0.39, pressure 0.13,
+ *   rallyShape 0.06, durability 0.05
  */
 function measureAxisContrib(fpA, fpB, basePWinA, nSims = 2000) {
   const axes = {
+    serveReturn:   () => neutraliseServeReturn(fpA, fpB),
     rallyShape:    () => neutraliseRally(fpA, fpB),
     pressure:      () => neutralisePressure(fpA, fpB),
-    serveEntropy:  () => neutraliseEntropy(fpA, fpB),
+    durability:    () => neutraliseDurability(fpA, fpB),
     breakPressure: () => neutraliseBP(fpA, fpB),
   };
 
@@ -667,10 +699,48 @@ function measureAxisContrib(fpA, fpB, basePWinA, nSims = 2000) {
   return { contrib, dominantAxis: dominant[0] };
 }
 
+// ── Axis labels for self-contained display ────────────────────────────────
+const AXIS_LABELS = {
+  serveReturn:   "Serve / Return",
+  rallyShape:    "Rally Shape",
+  pressure:      "Pressure",
+  durability:    "Durability",
+  breakPressure: "Break Pressure",
+};
+
+// Axis order + empirical weights for display
+const AXIS_ORDER = ["serveReturn", "rallyShape", "pressure", "durability", "breakPressure"];
+const AXIS_WEIGHTS = { serveReturn: 0.37, rallyShape: 0.06, pressure: 0.13, durability: 0.05, breakPressure: 0.39 };
+
 // NOTE: rallyCurve, court-side, momentum, bp-conversion, rally-volatility,
 // first-serve-pressure modifiers were removed from the model in v3.
 // The neutralisation functions below only modify fields the model actually
 // reads; touching dropped fields would be a no-op.
+
+/**
+ * Neutralise SERVE/RETURN axis.
+ * Sets both players' core serve & return stats to tour average so the MC
+ * runs as if they have identical serve/return profiles. Includes entropy
+ * (part of the serve package) and DF rate.
+ */
+function neutraliseServeReturn(fpA, fpB) {
+  const nA = deepClone(fpA), nB = deepClone(fpB);
+  for (const fp of [nA, nB]) {
+    // Tier 1: serve stats → tour average
+    if (fp.tier1?.fsp_pct)        fp.tier1.fsp_pct.value        = GRASS_AVG_FSP * 100;
+    if (fp.tier1?.fspw_pct)       fp.tier1.fspw_pct.value       = GRASS_AVG_FSPW * 100;
+    if (fp.tier1?.sspw_pct)       fp.tier1.sspw_pct.value       = GRASS_AVG_SSPW * 100;
+    // Tier 1: return stats → tour average
+    if (fp.tier1?.rpw_pct)        fp.tier1.rpw_pct.value        = GRASS_RPW_AVG;
+    if (fp.tier1?.rpw_vs_1st_pct) fp.tier1.rpw_vs_1st_pct.value = GRASS_RPW_VS_1ST_AVG;
+    if (fp.tier1?.rpw_vs_2nd_pct) fp.tier1.rpw_vs_2nd_pct.value = GRASS_RPW_VS_2ND_AVG;
+    // Tier 2: serve entropy → tour centre (75% of max)
+    if (fp.tier2?.serve_entropy)  fp.tier2.serve_entropy.pct_of_max = 75;
+    // Tier 2: DF pressure → neutral
+    if (fp.tier2?.df_pressure_delta) fp.tier2.df_pressure_delta.baseline_df_rate = GRASS_AVG_DF_RATE * 100;
+  }
+  return [nA, nB];
+}
 
 function neutraliseRally(fpA, fpB) {
   // The rally-shape "axis" no longer drives p in the model — only the
@@ -691,22 +761,305 @@ function neutralisePressure(fpA, fpB) {
   return [nA, nB];
 }
 
-function neutraliseEntropy(fpA, fpB) {
+/**
+ * Neutralise DURABILITY axis.
+ * Sets attrition_slope to 0 (no per-set decay) for both players.
+ */
+function neutraliseDurability(fpA, fpB) {
   const nA = deepClone(fpA), nB = deepClone(fpB);
-  if (nA.tier2?.serve_entropy) nA.tier2.serve_entropy.pct_of_max = 75;
-  if (nB.tier2?.serve_entropy) nB.tier2.serve_entropy.pct_of_max = 75;
+  for (const fp of [nA, nB]) {
+    if (fp.tier2?.attrition_slope) fp.tier2.attrition_slope.value = 0;
+  }
   return [nA, nB];
 }
 
 function neutraliseBP(fpA, fpB) {
-  // bp-conversion modifier removed in v3 (see model header notes).
-  // Neutralising rgw at Tier 1 instead, since break creation/conversion
-  // is captured implicitly in the returner's rgw_pct that drives the model.
+  // Neutralise return-game conversion: set rgw_pct to tour average for
+  // both players so the break-point modifier fires with zero edge.
   const nA = deepClone(fpA), nB = deepClone(fpB);
   for (const fp of [nA, nB]) {
-    if (fp.tier1?.rgw_pct?.value != null) fp.tier1.rgw_pct.value = 17;  // tour avg
+    if (fp.tier1?.rgw_pct) fp.tier1.rgw_pct.value = GRASS_AVG_RGW;
   }
   return [nA, nB];
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+//  STRUCTURAL AXIS EDGES (for bar display)
+// ══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Compute structural player-vs-player edges for the axis bar display.
+ * Returns values in [-1, +1] where positive = A advantage.
+ *
+ * These measure WHO IS BETTER per axis (intuitive for bars), as opposed
+ * to MC neutralisation which measures HOW MUCH EACH AXIS MATTERS for the
+ * match outcome.  Both are needed: structural for display, neutralisation
+ * for the "decisive axis" analytical tag.
+ *
+ * Uses normalised metric differences: (valA - valB) / typical_SD.
+ * The SDs are stable grass-court averages (2014–2024), so we don't need
+ * eraStats in the worker.  For same-year comparisons the z-score difference
+ * is mathematically identical: zA - zB = (valA - valB) / SD.
+ */
+
+// Typical grass-court SDs for key metrics (2014–2024 average)
+const SD_FSPW    = 6.3;
+const SD_SSPW    = 6.3;
+const SD_RPW_V1  = 5.2;
+const SD_RPW_V2  = 5.4;
+const SD_RGW     = 7.1;
+
+function _t1v(fp, key) { return fp?.tier1?.[key]?.value ?? null; }
+
+function _t2v(fp, ...keys) {
+  let node = fp?.tier2;
+  for (const k of keys) {
+    if (!node || typeof node !== "object") return null;
+    node = node[k];
+  }
+  if (node == null) return null;
+  if (typeof node === "object" && node.available === false) return null;
+  return (typeof node === "object") ? (node.value ?? null) : node;
+}
+
+function _cw(fp, ...keys) {
+  let node = fp?.tier2;
+  for (const k of keys) { if (!node) return 0; node = node[k]; }
+  if (!node || typeof node !== "object") return 0;
+  const c = node.confidence;
+  if (!c || c === "UNRELIABLE") return 0;
+  if (c === "LOW") return 0.5;
+  return 1;
+}
+
+function _cl(v) { return Math.max(-1, Math.min(1, v)); }
+
+function computeStructuralAxes(fpA, fpB) {
+  // ── Axis 1: Serve / Return ──────────────────────────────────────
+  // Paired structure: 1st-serve regime (0.52), 2nd-serve regime (0.24),
+  // serve style modifiers (0.24).  Matches compare.js axisServeReturn.
+  let sr = 0, srW = 0;
+
+  // 1st-serve regime
+  const fspwA = _t1v(fpA, "fspw_pct"), fspwB = _t1v(fpB, "fspw_pct");
+  if (fspwA != null && fspwB != null) {
+    sr += 0.26 * _cl((fspwA - fspwB) / (2 * SD_FSPW)); srW += 0.26;
+  }
+  const rpw1A = _t1v(fpA, "rpw_vs_1st_pct"), rpw1B = _t1v(fpB, "rpw_vs_1st_pct");
+  if (rpw1A != null && rpw1B != null) {
+    sr += 0.26 * _cl((rpw1A - rpw1B) / (2 * SD_RPW_V1)); srW += 0.26;
+  }
+
+  // 2nd-serve regime
+  const sspwA = _t1v(fpA, "sspw_pct"), sspwB = _t1v(fpB, "sspw_pct");
+  if (sspwA != null && sspwB != null) {
+    sr += 0.12 * _cl((sspwA - sspwB) / (2 * SD_SSPW)); srW += 0.12;
+  }
+  const rpw2A = _t1v(fpA, "rpw_vs_2nd_pct"), rpw2B = _t1v(fpB, "rpw_vs_2nd_pct");
+  if (rpw2A != null && rpw2B != null) {
+    sr += 0.12 * _cl((rpw2A - rpw2B) / (2 * SD_RPW_V2)); srW += 0.12;
+  }
+
+  // Serve style modifiers
+  const entA = _t2v(fpA, "serve_entropy", "pct_of_max");
+  const entB = _t2v(fpB, "serve_entropy", "pct_of_max");
+  if (entA != null && entB != null) {
+    sr += 0.08 * _cl((entA - entB) / 30); srW += 0.08;
+  }
+  const spdA = _t2v(fpA, "serve_speed_courage", "overall_speed_kmh");
+  const spdB = _t2v(fpB, "serve_speed_courage", "overall_speed_kmh");
+  if (spdA != null && spdB != null) {
+    sr += 0.08 * _cl((spdA - spdB) / 30); srW += 0.08;
+  }
+  const ssdA = _t2v(fpA, "serve_speed_differential", "value");
+  const ssdB = _t2v(fpB, "serve_speed_differential", "value");
+  if (ssdA != null && ssdB != null) {
+    sr += 0.04 * _cl((ssdB - ssdA) / 20); srW += 0.04;  // reversed: lower diff = better
+  }
+  const sdepA = _t2v(fpA, "serve_depth_entropy", "pct_of_max");
+  const sdepB = _t2v(fpB, "serve_depth_entropy", "pct_of_max");
+  if (sdepA != null && sdepB != null) {
+    sr += 0.04 * _cl((sdepA - sdepB) / 30); srW += 0.04;
+  }
+
+  const axServeReturn = srW > 0 ? _cl(sr / srW) : 0;
+
+  // ── Axis 2: Rally Shape ─────────────────────────────────────────
+  let rs = 0, rsW = 0;
+  const rwcA = fpA?.tier2?.rally_win_curve || {};
+  const rwcB = fpB?.tier2?.rally_win_curve || {};
+  const RALLY_W = { "1_3": 0.55, "4_6": 0.30, "7_9": 0.10, "10+": 0.05 };
+  if (Object.keys(rwcA).length && Object.keys(rwcB).length) {
+    for (const [band, w] of Object.entries(RALLY_W)) {
+      const wA = rwcA[band]?.win_pct, wB = rwcB[band]?.win_pct;
+      if (wA != null && wB != null) {
+        rs += w * 0.75 * (wA - wB) / 10; rsW += w * 0.75;
+      }
+    }
+  }
+  const rvA = _t2v(fpA, "rally_volatility", "value");
+  const rvB = _t2v(fpB, "rally_volatility", "value");
+  if (rvA != null && rvB != null) {
+    const wA = _cw(fpA, "rally_volatility") || 1;
+    const wB = _cw(fpB, "rally_volatility") || 1;
+    rs += 0.25 * _cl((rvA * wA - rvB * wB) / 2); rsW += 0.25;
+  }
+  const axRallyShape = rsW > 0 ? _cl(rs / rsW) : 0;
+
+  // ── Axis 3: Pressure ────────────────────────────────────────────
+  let pr = 0, prW = 0;
+
+  // SPCI
+  const spciA = fpA?.tier2?.spci, spciB = fpB?.tier2?.spci;
+  if (spciA?.value != null && spciB?.value != null) {
+    const wa = _cw(fpA, "spci") || 1, wb = _cw(fpB, "spci") || 1;
+    pr += 0.22 * _cl((spciA.value * wa - spciB.value * wb) / 0.30); prW += 0.22;
+  }
+
+  // Clutch differential
+  const clA = fpA?.tier2?.clutch_differential, clB = fpB?.tier2?.clutch_differential;
+  if (clA?.value != null && clB?.value != null) {
+    const wa = _cw(fpA, "clutch_differential") || 1, wb = _cw(fpB, "clutch_differential") || 1;
+    pr += 0.16 * _cl((clA.value * wa - clB.value * wb) / 12); prW += 0.16;
+  }
+
+  // DF pressure delta (lower = better → reversed)
+  const dfpA = fpA?.tier2?.df_pressure_delta, dfpB = fpB?.tier2?.df_pressure_delta;
+  if (dfpA?.value != null && dfpB?.value != null) {
+    const wa = _cw(fpA, "df_pressure_delta") || 1, wb = _cw(fpB, "df_pressure_delta") || 1;
+    pr += 0.16 * _cl((dfpB.value * wb - dfpA.value * wa) / 10); prW += 0.16;
+  }
+
+  // Tiebreak differential
+  const tbA = fpA?.tier2?.tiebreak_differential, tbB = fpB?.tier2?.tiebreak_differential;
+  if (tbA?.value != null && tbB?.value != null) {
+    const wa = _cw(fpA, "tiebreak_differential") || 1, wb = _cw(fpB, "tiebreak_differential") || 1;
+    pr += 0.24 * _cl((tbA.value * wa - tbB.value * wb) / 8); prW += 0.24;
+  }
+
+  // Set transition delta
+  const stA = fpA?.tier2?.set_transition_delta, stB = fpB?.tier2?.set_transition_delta;
+  if (stA?.value != null && stB?.value != null) {
+    const wa = _cw(fpA, "set_transition_delta") || 1, wb = _cw(fpB, "set_transition_delta") || 1;
+    pr += 0.14 * _cl((stA.value * wa - stB.value * wb) / 8); prW += 0.14;
+  }
+
+  // 1st serve aggression under pressure
+  const fspA2 = fpA?.tier2?.first_serve_pressure, fspB2 = fpB?.tier2?.first_serve_pressure;
+  if (fspA2?.value != null && fspB2?.value != null) {
+    const wa = _cw(fpA, "first_serve_pressure") || 1, wb = _cw(fpB, "first_serve_pressure") || 1;
+    pr += 0.08 * _cl((fspA2.value * wa - fspB2.value * wb) / 10); prW += 0.08;
+  }
+
+  const axPressure = prW > 0 ? _cl(pr / prW) : 0;
+
+  // ── Axis 4: Durability ──────────────────────────────────────────
+  let du = 0, duW = 0;
+
+  const kmA = fpA?.distance?.avg_km_per_match, kmB = fpB?.distance?.avg_km_per_match;
+  if (kmA != null && kmB != null) {
+    du += 0.50 * _cl((kmA - kmB) / 2); duW += 0.50;
+  }
+  const dreA = _t2v(fpA, "distance_run_efficiency", "value");
+  const dreB = _t2v(fpB, "distance_run_efficiency", "value");
+  if (dreA != null && dreB != null) {
+    du += 0.30 * _cl((dreB - dreA) / 0.5); duW += 0.30;  // reversed: lower = better
+  }
+  const attA = _t2v(fpA, "attrition_slope", "value");
+  const attB = _t2v(fpB, "attrition_slope", "value");
+  if (attA != null && attB != null) {
+    du += 0.20 * _cl((attB - attA) / 0.5); duW += 0.20;  // reversed: lower = better
+  }
+
+  const axDurability = duW > 0 ? _cl(du / duW) : 0;
+
+  // ── Axis 5: Break Pressure ──────────────────────────────────────
+  let bp = 0;
+
+  const rgwA = _t1v(fpA, "rgw_pct"), rgwB = _t1v(fpB, "rgw_pct");
+  if (rgwA != null && rgwB != null) {
+    bp += 0.40 * _cl((rgwA - rgwB) / (2 * SD_RGW));
+  }
+  const bpcA = fpA?.tier2?.bp_creation_profile || {};
+  const bpcB = fpB?.tier2?.bp_creation_profile || {};
+  if (bpcA.bp_per_return_game != null && bpcB.bp_per_return_game != null) {
+    bp += 0.35 * _cl((bpcA.bp_per_return_game - bpcB.bp_per_return_game) / 0.30);
+  }
+  if (bpcA.bp_conversion != null && bpcB.bp_conversion != null) {
+    bp += 0.25 * _cl((bpcA.bp_conversion - bpcB.bp_conversion) / 0.20);
+  }
+
+  const axBreakPressure = _cl(bp);
+
+  return {
+    serveReturn:   axServeReturn,
+    rallyShape:    axRallyShape,
+    pressure:      axPressure,
+    durability:    axDurability,
+    breakPressure: axBreakPressure,
+  };
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+//  pServeMatchup — matchup-aware serve win probability
+// ══════════════════════════════════════════════════════════════════════════
+
+/**
+ * Compute P(server wins service point) factoring in the returner's quality.
+ * Splits by serve type: 1st serve vs 1st return, 2nd serve vs 2nd return.
+ *
+ * This is the SAME formula used by the Python monte_carlo_phased engine
+ * (see src/monte_carlo_phased.py lines 346-356), ensuring browser and
+ * backtest produce identical probabilities.
+ */
+function pServeMatchup(fpServer, fpReturner) {
+  const t1s = fpServer.tier1   || {};
+  const t1r = fpReturner.tier1 || {};
+
+  const fsp  = (t1s.fsp_pct?.value  != null) ? t1s.fsp_pct.value / 100  : GRASS_AVG_FSP;
+  const fspw = (t1s.fspw_pct?.value != null) ? t1s.fspw_pct.value / 100 : GRASS_AVG_FSPW;
+  const sspw = (t1s.sspw_pct?.value != null) ? t1s.sspw_pct.value / 100 : GRASS_AVG_SSPW;
+
+  const rpwV1 = (t1r.rpw_vs_1st_pct?.value != null) ? t1r.rpw_vs_1st_pct.value : GRASS_RPW_VS_1ST_AVG;
+  const rpwV2 = (t1r.rpw_vs_2nd_pct?.value != null) ? t1r.rpw_vs_2nd_pct.value : GRASS_RPW_VS_2ND_AVG;
+
+  // 1st-serve regime: server fspw adjusted by returner's rpw vs 1st
+  const pFirst  = fspw - (rpwV1 - GRASS_RPW_VS_1ST_AVG) / 100;
+  // 2nd-serve regime: server sspw adjusted by returner's rpw vs 2nd
+  const pSecond = sspw - (rpwV2 - GRASS_RPW_VS_2ND_AVG) / 100;
+
+  // Blend by 1st-serve percentage
+  const pServe = fsp * clamp(pFirst) + (1 - fsp) * clamp(pSecond);
+  return clamp(pServe, 0.45, 0.85);   // guard rails
+}
+
+
+// ══════════════════════════════════════════════════════════════════════════
+//  edgeNarrative — self-contained narrative builder
+// ══════════════════════════════════════════════════════════════════════════
+
+function edgeNarrative(axisContrib, nameA, nameB, pWinA) {
+  // Dominant axis = largest absolute MC contribution
+  let domKey = "serveReturn", domAbs = 0;
+  for (const k of AXIS_ORDER) {
+    const v = Math.abs(axisContrib[k] || 0);
+    if (v > domAbs) { domKey = k; domAbs = v; }
+  }
+
+  const gap = Math.abs(pWinA - 0.5);
+  const favours = pWinA >= 0.5 ? nameA : nameB;
+
+  const confidence = gap < 0.03 ? "too close to call"
+                   : gap < 0.08 ? "has a slight advantage"
+                   : gap < 0.18 ? "is the likelier winner"
+                   : "is the clear favourite";
+
+  if (gap < 0.03) {
+    return `Too close to call — the decisive axis will be ${AXIS_LABELS[domKey].toLowerCase()}.`;
+  }
+  return `${favours} ${confidence} — the decisive axis is ${AXIS_LABELS[domKey].toLowerCase()}.`;
 }
 
 
@@ -715,6 +1068,7 @@ function neutraliseBP(fpA, fpB) {
 // ══════════════════════════════════════════════════════════════════════════
 
 self.onmessage = function (e) {
+  try {
   const { fpA, fpB, nSims = 10000 } = e.data;
 
   self.postMessage({ type: "progress", pct: 5, msg: "Loading player data…" });
@@ -727,14 +1081,36 @@ self.onmessage = function (e) {
     });
   });
 
-  self.postMessage({ type: "progress", pct: 82, msg: "Calculating probabilities…" });
+  self.postMessage({ type: "progress", pct: 82, msg: "Calculating axis contributions…" });
 
+  // 5-axis neutralisation-based decomposition (for "decisive axis" analysis)
   const { contrib, dominantAxis } = measureAxisContrib(fpA, fpB, result.pWinA);
+
+  // Structural axes (for bar display — who is better per axis)
+  const structuralAxes = computeStructuralAxes(fpA, fpB);
+
+  // Matchup-aware serve win probabilities (same formula as Python engine)
+  const pServeA = pServeMatchup(fpA, fpB);
+  const pServeB = pServeMatchup(fpB, fpA);
+
+  // Self-contained narrative
+  const nameA = fpA.player || "Player A";
+  const nameB = fpB.player || "Player B";
+  const narrative = edgeNarrative(contrib, nameA, nameB, result.pWinA);
 
   self.postMessage({
     type: "result",
     ...result,
-    axisContrib: contrib,
+    pServeA,
+    pServeB,
+    axes: structuralAxes,       // structural edges for bar display [-1, +1]
+    axisContrib: contrib,       // MC neutralisation deltas for analysis
     dominantAxis,
+    axisLabels: AXIS_LABELS,
+    axisOrder: AXIS_ORDER,
+    narrative,
   });
+  } catch (err) {
+    self.postMessage({ type: "error", message: err.message, stack: err.stack });
+  }
 };

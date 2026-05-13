@@ -52,6 +52,7 @@ GRASS_AVG_DF_RATE = 0.035
 GRASS_AVG_FSP     = 0.63
 GRASS_AVG_FSPW    = 0.72
 GRASS_AVG_SSPW    = 0.56
+GRASS_AVG_RGW     = 16.0   # return games won %, grass-court 2014–2024 mean
 
 RALLY_BANDS = ["1_3", "4_6", "7_9", "10+"]
 GRASS_PRIOR = {"1_3": 0.55, "4_6": 0.30, "7_9": 0.10, "10+": 0.05}
@@ -82,6 +83,7 @@ ABLATABLE = {
     "spci",               # Phase 3 SPCI under pressure
     "clutch",             # Phase 3 returner clutch differential
     "bpConversion",       # Phase 3 returner BP conversion
+    "rgw",                # Phase 3 return-game conversion at BPs
     "momentum",           # Phase 3 catch-fire streak boost
     "tiebreak",           # Phase 3 tiebreak differential
     "setTransition",      # Phase 3 set-opener edge
@@ -228,6 +230,7 @@ def extract_modifiers(fp: dict) -> dict:
         "serveEntropy":       (t2.get("serve_entropy") or {}).get("pct_of_max"),
         "spci":               t2.get("spci"),
         "clutch":             t2.get("clutch_differential"),
+        "rgw":                _t1(fp, "rgw_pct", GRASS_AVG_RGW),
         "bpConversion":       (t2.get("bp_creation_profile") or {}).get("bp_conversion"),
         "momentum":           t2.get("momentum_profile"),
         "tiebreak":           t2.get("tiebreak_differential"),
@@ -392,6 +395,19 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
 
         if "bpConversion" not in _ABLATED and state["isBreakPoint"] and ret.get("bpConversion") is not None:
             p -= (ret["bpConversion"] - 0.45) * 0.15
+
+        # Return-game conversion burst at break points (rgw_pct).
+        if "rgw" not in _ABLATED and state["isBreakPoint"]:
+            rgw_excess = (ret["rgw"] - GRASS_AVG_RGW) / 100
+            p -= rgw_excess * 0.20
+
+    # Return-game pressure (rgw_pct) — ALL points.
+    # rgw_pct (r=0.314 with match outcome) captures sustained return
+    # quality that rpw doesn't explain (r²=0.74, 26% unique variance).
+    # Split: 0.08 baseline (all points) + 0.20 burst (break points above).
+    if "rgw" not in _ABLATED:
+        rgw_excess = (ret["rgw"] - GRASS_AVG_RGW) / 100
+        p -= rgw_excess * 0.08
 
     # Continuous momentum (catch fire from point 1)
     streak = state.get("streakCount", 0)

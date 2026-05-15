@@ -6,9 +6,9 @@ first config (baseline).
 
 Usage:
     python3 src/compare_backtests.py baseline=data/backtest_baseline.json \\
-        latent=data/backtest_latent.json \\
         pressure=data/backtest_pressure.json \\
-        both=data/backtest_both.json
+        gated=data/backtest_gate_stale.json \\
+        combined=data/backtest_combined_v2.json
 """
 
 from __future__ import annotations

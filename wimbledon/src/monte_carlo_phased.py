@@ -37,40 +37,19 @@ PLATT_A = 0.35
 PROB_FLOOR = 0.20
 PROB_CEIL  = 0.80
 
-# Latent-factor experiment toggle.  When True, extract_modifiers() substitutes
-# the four Tier 1 serve/return metrics with the two-factor smoothed values
-# from latent_factors.json (loaded by the caller into fp["latent_factors"]).
-USE_LATENT_FACTORS = False
-
-
-def set_use_latent_factors(flag: bool) -> None:
-    global USE_LATENT_FACTORS
-    USE_LATENT_FACTORS = bool(flag)
-    print(f"[monte_carlo_phased] USE_LATENT_FACTORS={USE_LATENT_FACTORS}")
-
-
 # Pressure-state baseline toggle.  When True, simulate_point() Phase 2 looks up
 # a state-conditional baseline (fspw_neutral/fspw_pressure, sspw_neutral/...) from
-# fp["pressure_states"] instead of the single fspw/sspw value.  When this is on,
-# the Phase-3 pressure-firing modifiers ({spci, clutch, firstServePressure,
-# dfPressure}) are auto-ablated to avoid double-counting.
+# fp["pressure_states"] instead of the single fspw/sspw value.  Decision to use
+# per-state baseline is made per-match by _should_use_pressure (reliability gate);
+# when fired, spci and clutch are skipped point-by-point in simulate_point to
+# avoid double-counting effects already absorbed into the per-state baselines.
 USE_PRESSURE_STATES = False
-# Modifiers whose Phase-2/Phase-3 effects are absorbed by per-state baselines.
-# Auto-disabled when USE_PRESSURE_STATES is True.  dfPressure is *not* in this
-# set: it lives in Phase 1 (DF rate on 2nd serve at BP), which the per-state
-# baselines don't model — they only condition on point-given-serve-played.
-_PRESSURE_FIRING_MODIFIERS = {
-    "spci", "clutch", "firstServePressure",
-}
 
 
 def set_use_pressure_states(flag: bool) -> None:
     global USE_PRESSURE_STATES
     USE_PRESSURE_STATES = bool(flag)
     print(f"[monte_carlo_phased] USE_PRESSURE_STATES={USE_PRESSURE_STATES}")
-    # Note: no global modifier auto-ablation.  The gate is per-match (see
-    # _should_use_pressure) so spci/clutch are skipped point-by-point only
-    # when state["usePressure"] is True.
 
 
 def _is_sparse_fp(fp: dict, current_year: Optional[int]) -> bool:
@@ -354,15 +333,7 @@ def extract_modifiers(fp: dict) -> dict:
     rpw_v1_pct   = _t1(fp, "rpw_vs_1st_pct", GRASS_RPW_VS_1ST_AVG)
     rpw_v2_pct   = _t1(fp, "rpw_vs_2nd_pct", GRASS_RPW_VS_2ND_AVG)
 
-    if USE_LATENT_FACTORS:
-        lf = fp.get("latent_factors")
-        if lf:
-            fspw_pct   = lf.get("smoothed_fspw_pct",       fspw_pct)
-            sspw_pct   = lf.get("smoothed_sspw_pct",       sspw_pct)
-            rpw_v1_pct = lf.get("smoothed_rpw_vs_1st_pct", rpw_v1_pct)
-            rpw_v2_pct = lf.get("smoothed_rpw_vs_2nd_pct", rpw_v2_pct)
-
-    # Per-state baselines.  Default to the (possibly latent-smoothed) overall
+    # Per-state baselines.  Default to the overall Tier-1
     # baseline; override with pressure_states.json values when available.
     fspw_n_pct = fspw_pressure_pct = fspw_pct
     sspw_n_pct = sspw_pressure_pct = sspw_pct

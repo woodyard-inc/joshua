@@ -56,32 +56,19 @@ def prior_edition(year: int) -> Optional[int]:
 
 
 def load_fp_file(year: int, merge_grass: bool = True,
-                 attach_latent: bool = False,
                  attach_pressure: bool = False,
                  attach_momentum: bool = False) -> Dict[str, dict]:
     """Load all fingerprints for a given year, merged with grass profiles.
 
-    If attach_latent=True, also load {year}_latent_factors.json and attach
-    each player's latent record to fp["latent_factors"] so the engine can
-    use the smoothed serve/return values when USE_LATENT_FACTORS is set.
     If attach_pressure=True, also load {year}_pressure_states.json and attach
-    state-conditional baselines to fp["pressure_states"].
+    state-conditional baselines to fp["pressure_states"] for the engine to
+    use under USE_PRESSURE_STATES + reliability gate.
+
+    If attach_momentum=True, also load {year}_momentum_hmm.json and attach
+    within-game momentum (hot/neutral) baselines to fp["momentum_hmm"].
     """
     data_dir = ROOT / "data"
     fps = load_all_fingerprints(year, data_dir=data_dir, merge_grass=merge_grass)
-    if attach_latent:
-        lf_path = data_dir / f"{year}_latent_factors.json"
-        if lf_path.exists():
-            latents = json.loads(lf_path.read_text())
-            attached = 0
-            for player, fp in fps.items():
-                lf = latents.get(player)
-                if lf is not None:
-                    fp["latent_factors"] = lf
-                    attached += 1
-            print(f"  [{year}] attached latent factors for {attached}/{len(fps)} players")
-        else:
-            print(f"  [{year}] WARNING: --use_latent set but {lf_path.name} not found")
     if attach_pressure:
         ps_path = data_dir / f"{year}_pressure_states.json"
         if ps_path.exists():
@@ -259,9 +246,6 @@ def main():
     parser.add_argument("--ablate", default=None,
                         help="(phased only) Comma-separated modifier names to disable, e.g. "
                              "'momentum,courtSide,setTransition'. See monte_carlo_phased.ABLATABLE.")
-    parser.add_argument("--use_latent", action="store_true",
-                        help="(phased only) Substitute Tier 1 serve/return metrics with the "
-                             "two-factor smoothed values from {year}_latent_factors.json.")
     parser.add_argument("--use_pressure_states", action="store_true",
                         help="(phased only) Use per-state baselines from {year}_pressure_states.json. "
                              "Per-match reliability gate decides which matches actually use them.")
@@ -281,10 +265,6 @@ def main():
     if args.ablate:
         import monte_carlo_phased as mcp
         mcp.set_ablation(set(args.ablate.split(",")))
-
-    if args.use_latent:
-        import monte_carlo_phased as mcp
-        mcp.set_use_latent_factors(True)
 
     if args.use_pressure_states:
         import monte_carlo_phased as mcp
@@ -311,7 +291,6 @@ def main():
             continue
 
         prior_fps = load_fp_file(prior,
-                                 attach_latent=args.use_latent,
                                  attach_pressure=args.use_pressure_states,
                                  attach_momentum=args.use_momentum_hmm)
         if not prior_fps:

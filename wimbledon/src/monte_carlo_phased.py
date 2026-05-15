@@ -103,12 +103,12 @@ def _is_sparse_fp(fp: dict, current_year: Optional[int]) -> bool:
     return False
 
 
-PRESSURE_GATE_MODE = "any"  # "any" | "both" | "stale_only"
+PRESSURE_GATE_MODE = "any"  # "any" | "both" | "stale_only" | "stale_or_gap"
 
 
 def set_pressure_gate_mode(mode: str) -> None:
     global PRESSURE_GATE_MODE
-    if mode not in ("any", "both", "stale_only"):
+    if mode not in ("any", "both", "stale_only", "stale_or_gap"):
         raise ValueError(f"unknown mode: {mode!r}")
     PRESSURE_GATE_MODE = mode
     print(f"[monte_carlo_phased] PRESSURE_GATE_MODE={PRESSURE_GATE_MODE}")
@@ -125,10 +125,28 @@ def _is_stale_fp(fp: dict, current_year: Optional[int]) -> bool:
     return current_year - most_recent > 1
 
 
+def _has_career_gap(fp: dict) -> bool:
+    """The fingerprint's career history contains a missing edition year
+    (e.g., a player who played 2018, 2019, then skipped 2020/2021 and
+    returned 2022, or any COVID-style discontinuity)."""
+    eds = fp.get("career_editions_used") or []
+    if not isinstance(eds, list) or len(eds) < 2:
+        return False
+    try:
+        ys = sorted(int(y) for y in eds)
+    except (TypeError, ValueError):
+        return False
+    # contiguous: max - min == len - 1
+    return (ys[-1] - ys[0]) > (len(ys) - 1)
+
+
 def _should_use_pressure(fp_a: dict, fp_b: dict,
                          current_year: Optional[int]) -> bool:
     if PRESSURE_GATE_MODE == "stale_only":
         return _is_stale_fp(fp_a, current_year) or _is_stale_fp(fp_b, current_year)
+    if PRESSURE_GATE_MODE == "stale_or_gap":
+        return (_is_stale_fp(fp_a, current_year) or _is_stale_fp(fp_b, current_year)
+                or _has_career_gap(fp_a) or _has_career_gap(fp_b))
     if PRESSURE_GATE_MODE == "both":
         return (_is_sparse_fp(fp_a, current_year) and
                 _is_sparse_fp(fp_b, current_year))

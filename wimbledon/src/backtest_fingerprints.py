@@ -251,7 +251,8 @@ def main():
     parser.add_argument("--use_pressure_states", action="store_true",
                         help="(phased only) Use per-state baselines from {year}_pressure_states.json. "
                              "Per-match reliability gate decides which matches actually use them.")
-    parser.add_argument("--pressure_gate_mode", choices=["any", "both", "stale_only"],
+    parser.add_argument("--pressure_gate_mode",
+                        choices=["any", "both", "stale_only", "stale_or_gap"],
                         default="any",
                         help="(phased only) Which matches fire the pressure-state gate. "
                              "any=either player sparse/stale, both=both must be, "

@@ -103,7 +103,12 @@ def _is_sparse_fp(fp: dict, current_year: Optional[int]) -> bool:
     return False
 
 
-PRESSURE_GATE_MODE = "any"  # "any" | "both" | "stale_only" | "stale_or_gap"
+# Production default = "stale_only" — only fires when EITHER player's prior
+# fingerprint has its most-recent career edition >1 year before the predicted
+# year (the 2021/COVID case).  Validated to beat baseline by -0.0010 Brier on
+# the 908-match backtest, every other year unchanged.  Looser gates ("any",
+# "both", "stale_or_gap") all regress vs this on the same set.
+PRESSURE_GATE_MODE = "stale_only"  # "any" | "both" | "stale_only" | "stale_or_gap"
 
 
 def set_pressure_gate_mode(mode: str) -> None:

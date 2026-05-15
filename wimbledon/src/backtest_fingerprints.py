@@ -253,7 +253,7 @@ def main():
                              "Per-match reliability gate decides which matches actually use them.")
     parser.add_argument("--pressure_gate_mode",
                         choices=["any", "both", "stale_only", "stale_or_gap"],
-                        default="any",
+                        default="stale_only",
                         help="(phased only) Which matches fire the pressure-state gate. "
                              "any=either player sparse/stale, both=both must be, "
                              "stale_only=only fire on year-staleness >1 (COVID-style).")

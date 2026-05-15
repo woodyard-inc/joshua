@@ -161,7 +161,8 @@ def evaluate_year(year: int, prior_fps: Dict[str, dict],
         # Run MC
         try:
             if engine == "phased":
-                sim = simulate_match_phased(fp1, fp2, n=n_sims, seed=42)
+                sim = simulate_match_phased(fp1, fp2, n=n_sims, seed=42,
+                                            current_year=year)
                 p_win_1_raw = sim.p_win_a_raw
             else:
                 matchup = compare(fp1, fp2, year=year)

@@ -68,12 +68,45 @@ def set_use_pressure_states(flag: bool) -> None:
     global USE_PRESSURE_STATES
     USE_PRESSURE_STATES = bool(flag)
     print(f"[monte_carlo_phased] USE_PRESSURE_STATES={USE_PRESSURE_STATES}")
-    if USE_PRESSURE_STATES:
-        # Add the pressure-firing modifiers to the ablation set (idempotent).
-        global _ABLATED
-        _ABLATED = _ABLATED | _PRESSURE_FIRING_MODIFIERS
-        print(f"[monte_carlo_phased] auto-ablated pressure modifiers: "
-              f"{sorted(_PRESSURE_FIRING_MODIFIERS)}")
+    # Note: no global modifier auto-ablation.  The gate is per-match (see
+    # _should_use_pressure) so spci/clutch are skipped point-by-point only
+    # when state["usePressure"] is True.
+
+
+def _is_sparse_fp(fp: dict, current_year: Optional[int]) -> bool:
+    """Whether a fingerprint is sparse or stale enough that pressure-state
+    shrinkage is preferable to the standard baseline + modifier pipeline.
+
+    Sparse: <3 career editions feeding the fingerprint (typical pre-2014
+            data, or comeback players, or qualifiers).
+    Stale:  most-recent feeding edition is more than 1 year before the year
+            being predicted (e.g., 2019 fingerprint predicting 2021 — COVID
+            gap).
+
+    The signal that drove this gate is the per-year backtest pattern: under
+    USE_PRESSURE_STATES, sparse/stale years (2014, 2021, 2022) gain Brier
+    while clean years (2017, 2023) lose.  Reliability gating captures the
+    gain without the loss.
+    """
+    eds = fp.get("career_editions_used") or []
+    if not isinstance(eds, list):
+        eds = []
+    if len(eds) < 3:
+        return True
+    if current_year is not None and eds:
+        try:
+            most_recent = max(int(y) for y in eds)
+        except (TypeError, ValueError):
+            return True
+        if current_year - most_recent > 1:
+            return True
+    return False
+
+
+def _should_use_pressure(fp_a: dict, fp_b: dict,
+                         current_year: Optional[int]) -> bool:
+    return (_is_sparse_fp(fp_a, current_year) or
+            _is_sparse_fp(fp_b, current_year))
 
 GRASS_RPW_AVG     = 35.0  # blended; used as fallback / display
 
@@ -430,7 +463,8 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
     # great 1st-serve returner moves the 1st-serve point baseline more than
     # he/she moves a 2nd-serve point baseline (and vice versa).  This is the
     # phased-return upgrade that aligns Tier 1 with the phased simulation.
-    if USE_PRESSURE_STATES:
+    use_pressure_pt = bool(srv.get("_usePressure"))
+    if use_pressure_pt:
         is_pressure = bool(state.get("isBreakPoint") or state.get("isDeuce"))
         if is_second:
             srv_base = srv["sspwPressure"] if is_pressure else srv["sspwNeutral"]
@@ -473,12 +507,15 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         p += 0.025 * ((srv["serveEntropy"] / 100) - 0.75)
 
     if state["isBreakPoint"] or state["isDeuce"]:
-        if "spci" not in _ABLATED:
+        # When this match is using per-state baselines (reliability gate fired),
+        # spci and clutch are absorbed into the baselines — skip them to avoid
+        # double-counting.
+        if "spci" not in _ABLATED and not use_pressure_pt:
             spci = srv.get("spci")
             if spci and spci.get("modifier_delta") is not None:
                 p += _conf_weight(spci.get("confidence")) * spci["modifier_delta"] * 0.50
 
-        if "clutch" not in _ABLATED:
+        if "clutch" not in _ABLATED and not use_pressure_pt:
             clutch = ret.get("clutch")
             if clutch and clutch.get("modifier_delta") is not None:
                 p -= _conf_weight(clutch.get("confidence")) * (clutch["modifier_delta"] / 100) * 0.60
@@ -761,10 +798,20 @@ class PhasedResult:
 
 def simulate_match_phased(fp_a: dict, fp_b: dict,
                           n: int = 10_000,
-                          seed: Optional[int] = None) -> PhasedResult:
+                          seed: Optional[int] = None,
+                          current_year: Optional[int] = None) -> PhasedResult:
     rng = random.Random(seed)
     mods_a = extract_modifiers(fp_a)
     mods_b = extract_modifiers(fp_b)
+
+    # Per-match reliability gate: pressure-state baselines are used only
+    # when at least one fingerprint is sparse or stale (see _is_sparse_fp).
+    # Otherwise the standard Tier-1 baseline + Phase-3 modifier pipeline
+    # runs unchanged.
+    use_pressure_match = (USE_PRESSURE_STATES and
+                          _should_use_pressure(fp_a, fp_b, current_year))
+    mods_a["_usePressure"] = use_pressure_match
+    mods_b["_usePressure"] = use_pressure_match
 
     # Pre-compute reweighted rally distributions (1st/2nd serve) for each
     # serving direction.  Constant for the whole match.

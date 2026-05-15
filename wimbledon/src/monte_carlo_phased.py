@@ -55,10 +55,12 @@ def set_use_latent_factors(flag: bool) -> None:
 # the Phase-3 pressure-firing modifiers ({spci, clutch, firstServePressure,
 # dfPressure}) are auto-ablated to avoid double-counting.
 USE_PRESSURE_STATES = False
-# Modifiers whose effect is absorbed by per-state baselines.  Auto-disabled when
-# USE_PRESSURE_STATES is True.
+# Modifiers whose Phase-2/Phase-3 effects are absorbed by per-state baselines.
+# Auto-disabled when USE_PRESSURE_STATES is True.  dfPressure is *not* in this
+# set: it lives in Phase 1 (DF rate on 2nd serve at BP), which the per-state
+# baselines don't model — they only condition on point-given-serve-played.
 _PRESSURE_FIRING_MODIFIERS = {
-    "spci", "clutch", "firstServePressure", "dfPressure",
+    "spci", "clutch", "firstServePressure",
 }
 
 

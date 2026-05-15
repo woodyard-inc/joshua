@@ -41,7 +41,7 @@ def main():
     print(f"\n{'='*84}")
     print(f"BACKTEST COMPARISON  (n_total = {configs[0][1].get('n_total')})")
     print(f"{'='*84}")
-    print(f"{'config':<22}  {'acc':>6}  {'Δ':>+7}    {'brier':>7}  {'Δ':>+7}    {'log_loss':>8}  {'Δ':>+7}")
+    print(f"{'config':<22}  {'acc':>6}  {'Δ':>7}    {'brier':>7}  {'Δ':>7}    {'log_loss':>8}  {'Δ':>7}")
     print("-" * 84)
     for label, d in configs:
         a, b, l = d.get("accuracy", 0), d.get("brier", 0), d.get("log_loss", 0)

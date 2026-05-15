@@ -103,8 +103,36 @@ def _is_sparse_fp(fp: dict, current_year: Optional[int]) -> bool:
     return False
 
 
+PRESSURE_GATE_MODE = "any"  # "any" | "both" | "stale_only"
+
+
+def set_pressure_gate_mode(mode: str) -> None:
+    global PRESSURE_GATE_MODE
+    if mode not in ("any", "both", "stale_only"):
+        raise ValueError(f"unknown mode: {mode!r}")
+    PRESSURE_GATE_MODE = mode
+    print(f"[monte_carlo_phased] PRESSURE_GATE_MODE={PRESSURE_GATE_MODE}")
+
+
+def _is_stale_fp(fp: dict, current_year: Optional[int]) -> bool:
+    eds = fp.get("career_editions_used") or []
+    if not isinstance(eds, list) or not eds or current_year is None:
+        return False
+    try:
+        most_recent = max(int(y) for y in eds)
+    except (TypeError, ValueError):
+        return False
+    return current_year - most_recent > 1
+
+
 def _should_use_pressure(fp_a: dict, fp_b: dict,
                          current_year: Optional[int]) -> bool:
+    if PRESSURE_GATE_MODE == "stale_only":
+        return _is_stale_fp(fp_a, current_year) or _is_stale_fp(fp_b, current_year)
+    if PRESSURE_GATE_MODE == "both":
+        return (_is_sparse_fp(fp_a, current_year) and
+                _is_sparse_fp(fp_b, current_year))
+    # default "any"
     return (_is_sparse_fp(fp_a, current_year) or
             _is_sparse_fp(fp_b, current_year))
 

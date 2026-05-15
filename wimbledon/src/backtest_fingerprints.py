@@ -250,7 +250,12 @@ def main():
                              "two-factor smoothed values from {year}_latent_factors.json.")
     parser.add_argument("--use_pressure_states", action="store_true",
                         help="(phased only) Use per-state baselines from {year}_pressure_states.json. "
-                             "Auto-ablates pressure-firing Phase-3 modifiers to avoid double counting.")
+                             "Per-match reliability gate decides which matches actually use them.")
+    parser.add_argument("--pressure_gate_mode", choices=["any", "both", "stale_only"],
+                        default="any",
+                        help="(phased only) Which matches fire the pressure-state gate. "
+                             "any=either player sparse/stale, both=both must be, "
+                             "stale_only=only fire on year-staleness >1 (COVID-style).")
     args = parser.parse_args()
 
     # Apply ablation flags before importing happens (they're read at runtime)
@@ -265,6 +270,7 @@ def main():
     if args.use_pressure_states:
         import monte_carlo_phased as mcp
         mcp.set_use_pressure_states(True)
+        mcp.set_pressure_gate_mode(args.pressure_gate_mode)
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []

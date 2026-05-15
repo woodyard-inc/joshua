@@ -48,6 +48,31 @@ def set_use_latent_factors(flag: bool) -> None:
     USE_LATENT_FACTORS = bool(flag)
     print(f"[monte_carlo_phased] USE_LATENT_FACTORS={USE_LATENT_FACTORS}")
 
+
+# Pressure-state baseline toggle.  When True, simulate_point() Phase 2 looks up
+# a state-conditional baseline (fspw_neutral/fspw_pressure, sspw_neutral/...) from
+# fp["pressure_states"] instead of the single fspw/sspw value.  When this is on,
+# the Phase-3 pressure-firing modifiers ({spci, clutch, firstServePressure,
+# dfPressure}) are auto-ablated to avoid double-counting.
+USE_PRESSURE_STATES = False
+# Modifiers whose effect is absorbed by per-state baselines.  Auto-disabled when
+# USE_PRESSURE_STATES is True.
+_PRESSURE_FIRING_MODIFIERS = {
+    "spci", "clutch", "firstServePressure", "dfPressure",
+}
+
+
+def set_use_pressure_states(flag: bool) -> None:
+    global USE_PRESSURE_STATES
+    USE_PRESSURE_STATES = bool(flag)
+    print(f"[monte_carlo_phased] USE_PRESSURE_STATES={USE_PRESSURE_STATES}")
+    if USE_PRESSURE_STATES:
+        # Add the pressure-firing modifiers to the ablation set (idempotent).
+        global _ABLATED
+        _ABLATED = _ABLATED | _PRESSURE_FIRING_MODIFIERS
+        print(f"[monte_carlo_phased] auto-ablated pressure modifiers: "
+              f"{sorted(_PRESSURE_FIRING_MODIFIERS)}")
+
 GRASS_RPW_AVG     = 35.0  # blended; used as fallback / display
 
 # Grass-court tour averages for return-points-won by serve type.
@@ -233,6 +258,25 @@ def extract_modifiers(fp: dict) -> dict:
             rpw_v1_pct = lf.get("smoothed_rpw_vs_1st_pct", rpw_v1_pct)
             rpw_v2_pct = lf.get("smoothed_rpw_vs_2nd_pct", rpw_v2_pct)
 
+    # Per-state baselines.  Default to the (possibly latent-smoothed) overall
+    # baseline; override with pressure_states.json values when available.
+    fspw_n_pct = fspw_pressure_pct = fspw_pct
+    sspw_n_pct = sspw_pressure_pct = sspw_pct
+    rpw_v1_n_pct = rpw_v1_pressure_pct = rpw_v1_pct
+    rpw_v2_n_pct = rpw_v2_pressure_pct = rpw_v2_pct
+
+    if USE_PRESSURE_STATES:
+        ps = fp.get("pressure_states")
+        if ps:
+            fspw_n_pct        = ps.get("fspw_neutral_pct",        fspw_pct)
+            fspw_pressure_pct = ps.get("fspw_pressure_pct",       fspw_pct)
+            sspw_n_pct        = ps.get("sspw_neutral_pct",        sspw_pct)
+            sspw_pressure_pct = ps.get("sspw_pressure_pct",       sspw_pct)
+            rpw_v1_n_pct        = ps.get("rpw_vs_1st_neutral_pct",  rpw_v1_pct)
+            rpw_v1_pressure_pct = ps.get("rpw_vs_1st_pressure_pct", rpw_v1_pct)
+            rpw_v2_n_pct        = ps.get("rpw_vs_2nd_neutral_pct",  rpw_v2_pct)
+            rpw_v2_pressure_pct = ps.get("rpw_vs_2nd_pressure_pct", rpw_v2_pct)
+
     return {
         "fsp":       (_t1(fp, "fsp_pct",  GRASS_AVG_FSP * 100)) / 100,
         "fspw":      fspw_pct / 100,
@@ -240,6 +284,15 @@ def extract_modifiers(fp: dict) -> dict:
         "rpw":        _t1(fp, "rpw_pct",        GRASS_RPW_AVG),         # fallback/blend
         "rpwVs1st":   rpw_v1_pct,  # matchup adj for 1st serve points
         "rpwVs2nd":   rpw_v2_pct,  # matchup adj for 2nd serve points
+        # State-conditional baselines (used when USE_PRESSURE_STATES is True).
+        "fspwNeutral":     fspw_n_pct / 100,
+        "fspwPressure":    fspw_pressure_pct / 100,
+        "sspwNeutral":     sspw_n_pct / 100,
+        "sspwPressure":    sspw_pressure_pct / 100,
+        "rpwVs1stNeutral":  rpw_v1_n_pct,
+        "rpwVs1stPressure": rpw_v1_pressure_pct,
+        "rpwVs2ndNeutral":  rpw_v2_n_pct,
+        "rpwVs2ndPressure": rpw_v2_pressure_pct,
         "baseDFRate":         base_df,
         "dfPressureDelta":    df_node if isinstance(df_node, dict) else None,
         "firstServePressure": t2.get("first_serve_pressure"),
@@ -375,12 +428,23 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
     # great 1st-serve returner moves the 1st-serve point baseline more than
     # he/she moves a 2nd-serve point baseline (and vice versa).  This is the
     # phased-return upgrade that aligns Tier 1 with the phased simulation.
-    if is_second:
-        p = srv["sspw"]
-        p -= (ret["rpwVs2nd"] - GRASS_RPW_VS_2ND_AVG) / 100
+    if USE_PRESSURE_STATES:
+        is_pressure = bool(state.get("isBreakPoint") or state.get("isDeuce"))
+        if is_second:
+            srv_base = srv["sspwPressure"] if is_pressure else srv["sspwNeutral"]
+            ret_base = ret["rpwVs2ndPressure"] if is_pressure else ret["rpwVs2ndNeutral"]
+            p = srv_base - (ret_base - GRASS_RPW_VS_2ND_AVG) / 100
+        else:
+            srv_base = srv["fspwPressure"] if is_pressure else srv["fspwNeutral"]
+            ret_base = ret["rpwVs1stPressure"] if is_pressure else ret["rpwVs1stNeutral"]
+            p = srv_base - (ret_base - GRASS_RPW_VS_1ST_AVG) / 100
     else:
-        p = srv["fspw"]
-        p -= (ret["rpwVs1st"] - GRASS_RPW_VS_1ST_AVG) / 100
+        if is_second:
+            p = srv["sspw"]
+            p -= (ret["rpwVs2nd"] - GRASS_RPW_VS_2ND_AVG) / 100
+        else:
+            p = srv["fspw"]
+            p -= (ret["rpwVs1st"] - GRASS_RPW_VS_1ST_AVG) / 100
 
     if "rallyCurve" not in _ABLATED:
         src = srv["rallyCurve"]

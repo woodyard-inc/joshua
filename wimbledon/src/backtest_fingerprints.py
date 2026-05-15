@@ -56,12 +56,15 @@ def prior_edition(year: int) -> Optional[int]:
 
 
 def load_fp_file(year: int, merge_grass: bool = True,
-                 attach_latent: bool = False) -> Dict[str, dict]:
+                 attach_latent: bool = False,
+                 attach_pressure: bool = False) -> Dict[str, dict]:
     """Load all fingerprints for a given year, merged with grass profiles.
 
     If attach_latent=True, also load {year}_latent_factors.json and attach
     each player's latent record to fp["latent_factors"] so the engine can
     use the smoothed serve/return values when USE_LATENT_FACTORS is set.
+    If attach_pressure=True, also load {year}_pressure_states.json and attach
+    state-conditional baselines to fp["pressure_states"].
     """
     data_dir = ROOT / "data"
     fps = load_all_fingerprints(year, data_dir=data_dir, merge_grass=merge_grass)
@@ -78,6 +81,19 @@ def load_fp_file(year: int, merge_grass: bool = True,
             print(f"  [{year}] attached latent factors for {attached}/{len(fps)} players")
         else:
             print(f"  [{year}] WARNING: --use_latent set but {lf_path.name} not found")
+    if attach_pressure:
+        ps_path = data_dir / f"{year}_pressure_states.json"
+        if ps_path.exists():
+            states = json.loads(ps_path.read_text())
+            attached = 0
+            for player, fp in fps.items():
+                ps = states.get(player)
+                if ps is not None:
+                    fp["pressure_states"] = ps
+                    attached += 1
+            print(f"  [{year}] attached pressure states for {attached}/{len(fps)} players")
+        else:
+            print(f"  [{year}] WARNING: --use_pressure_states set but {ps_path.name} not found")
     return fps
 
 
@@ -231,6 +247,9 @@ def main():
     parser.add_argument("--use_latent", action="store_true",
                         help="(phased only) Substitute Tier 1 serve/return metrics with the "
                              "two-factor smoothed values from {year}_latent_factors.json.")
+    parser.add_argument("--use_pressure_states", action="store_true",
+                        help="(phased only) Use per-state baselines from {year}_pressure_states.json. "
+                             "Auto-ablates pressure-firing Phase-3 modifiers to avoid double counting.")
     args = parser.parse_args()
 
     # Apply ablation flags before importing happens (they're read at runtime)
@@ -241,6 +260,10 @@ def main():
     if args.use_latent:
         import monte_carlo_phased as mcp
         mcp.set_use_latent_factors(True)
+
+    if args.use_pressure_states:
+        import monte_carlo_phased as mcp
+        mcp.set_use_pressure_states(True)
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []
@@ -257,7 +280,9 @@ def main():
             print(f"  [{year}] No prior edition — skipping.")
             continue
 
-        prior_fps = load_fp_file(prior, attach_latent=args.use_latent)
+        prior_fps = load_fp_file(prior,
+                                 attach_latent=args.use_latent,
+                                 attach_pressure=args.use_pressure_states)
         if not prior_fps:
             print(f"  [{year}] No fingerprints for prior edition {prior} — skipping.")
             continue

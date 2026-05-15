@@ -259,6 +259,11 @@ def main():
                         help="(phased only) Apply per-player within-game momentum delta from "
                              "{year}_momentum_hmm.json (Klaassen-Magnus 2014 backed). "
                              "Resets at game boundary; +/-MOMENTUM_MAX_DELTA_PCT cap.")
+    parser.add_argument("--use_form_noise", action="store_true",
+                        help="(phased only) Inject Gaussian fingerprint perturbation once per "
+                             "simulated match.  Replaces Platt+clamp match-level calibration "
+                             "with real form-day variance.  Sigmas calibrated from year-to-year "
+                             "stability (75% scaling).")
     args = parser.parse_args()
 
     # Apply ablation flags before importing happens (they're read at runtime)
@@ -274,6 +279,10 @@ def main():
     if args.use_momentum_hmm:
         import monte_carlo_phased as mcp
         mcp.set_use_momentum_hmm(True)
+
+    if args.use_form_noise:
+        import monte_carlo_phased as mcp
+        mcp.set_use_form_noise(True)
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []

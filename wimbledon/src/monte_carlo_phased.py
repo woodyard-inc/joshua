@@ -37,6 +37,41 @@ PLATT_A = 0.35
 PROB_FLOOR = 0.20
 PROB_CEIL  = 0.80
 
+
+# Form-noise calibration toggle.  When True, simulate_match_phased draws a
+# Gaussian-perturbed copy of each player's Tier-1 base metrics ONCE per
+# simulated match (not per point).  This injects realistic match-day form
+# variance directly, replacing the post-hoc Platt+clamp pipeline that was
+# faking variance through aggressive squashing.
+#
+# Sigmas calibrated from empirical year-to-year fingerprint stability across
+# 776 player-year pairs (2013-2024), scaled by 0.75 to separate form
+# variation from true skill drift:
+#
+#   fspw           year-to-year stdev 3.93pp -> form sigma 2.95pp
+#   sspw           year-to-year stdev 5.03pp -> form sigma 3.77pp
+#   rpw_vs_1st     year-to-year stdev 3.81pp -> form sigma 2.86pp
+#   rpw_vs_2nd     year-to-year stdev 4.96pp -> form sigma 3.72pp
+#
+# When form-noise is on, the Platt sigmoid and [0.20, 0.80] clamp are skipped
+# (the squash was a workaround for variance-deficient raw MC; form-noise
+# provides the variance natively).  A minimal safety clamp [0.005, 0.995]
+# is kept for log-loss numerical stability.
+USE_FORM_NOISE = False
+FORM_SIGMA_FSPW       = 2.95
+FORM_SIGMA_SSPW       = 3.77
+FORM_SIGMA_RPW_VS_1ST = 2.86
+FORM_SIGMA_RPW_VS_2ND = 3.72
+FORM_SAFETY_FLOOR     = 0.005
+FORM_SAFETY_CEIL      = 0.995
+
+
+def set_use_form_noise(flag: bool) -> None:
+    global USE_FORM_NOISE
+    USE_FORM_NOISE = bool(flag)
+    print(f"[monte_carlo_phased] USE_FORM_NOISE={USE_FORM_NOISE}")
+
+
 # Pressure-state baseline toggle.  When True, simulate_point() Phase 2 looks up
 # a state-conditional baseline (fspw_neutral/fspw_pressure, sspw_neutral/...) from
 # fp["pressure_states"] instead of the single fspw/sspw value.  Decision to use
@@ -904,6 +939,36 @@ class PhasedResult:
     p_win_a_raw: float = 0.0
 
 
+_FORM_KEYS = ("fspw", "sspw", "rpwVs1st", "rpwVs2nd")
+_FORM_SIGMAS = (FORM_SIGMA_FSPW, FORM_SIGMA_SSPW,
+                FORM_SIGMA_RPW_VS_1ST, FORM_SIGMA_RPW_VS_2ND)
+# Per-point clamps for the perturbed metrics (percentage units; rpw are
+# already in pct, fsp/ssp are in 0-1 here so the helper handles both).
+_FORM_FSPW_RANGE     = (0.40, 0.90)
+_FORM_SSPW_RANGE     = (0.30, 0.75)
+_FORM_RPW_V1_RANGE   = (10.0, 45.0)
+_FORM_RPW_V2_RANGE   = (25.0, 65.0)
+_FORM_RANGES         = (_FORM_FSPW_RANGE, _FORM_SSPW_RANGE,
+                        _FORM_RPW_V1_RANGE, _FORM_RPW_V2_RANGE)
+
+
+def _apply_form_draw(mods: dict, base: tuple, rng) -> None:
+    """In-place: jitter the 4 base Tier-1 metrics in `mods` by Gaussian
+    noise, clipped to physically plausible per-metric ranges.
+    `base` is the (fspw_0_1, sspw_0_1, rpwVs1st_pct, rpwVs2nd_pct) tuple
+    captured before the match loop so each draw is relative to a fixed
+    centre, not the previous draw."""
+    for key, sigma, rng_lo_hi, b in zip(_FORM_KEYS, _FORM_SIGMAS, _FORM_RANGES, base):
+        # fspw / sspw are stored as fractions in mods; rpwVs* are percentages.
+        if key in ("fspw", "sspw"):
+            v = b + rng.gauss(0.0, sigma) / 100.0
+            v = max(rng_lo_hi[0], min(rng_lo_hi[1], v))
+        else:
+            v = b + rng.gauss(0.0, sigma)
+            v = max(rng_lo_hi[0], min(rng_lo_hi[1], v))
+        mods[key] = v
+
+
 def simulate_match_phased(fp_a: dict, fp_b: dict,
                           n: int = 10_000,
                           seed: Optional[int] = None,
@@ -926,9 +991,18 @@ def simulate_match_phased(fp_a: dict, fp_b: dict,
     ab_dists = _matchup_rally_dists(mods_a, mods_b, fp_a, fp_b)  # A serves
     ba_dists = _matchup_rally_dists(mods_b, mods_a, fp_b, fp_a)  # B serves
 
+    # Form-noise: capture the centre values now so every per-sim draw is
+    # relative to a fixed mean rather than a moving target.
+    if USE_FORM_NOISE:
+        base_a = tuple(mods_a[k] for k in _FORM_KEYS)
+        base_b = tuple(mods_b[k] for k in _FORM_KEYS)
+
     score_count = {}
     wins_a = 0
     for _ in range(n):
+        if USE_FORM_NOISE:
+            _apply_form_draw(mods_a, base_a, rng)
+            _apply_form_draw(mods_b, base_b, rng)
         sA, sB = _simulate_one_match(mods_a, mods_b, ab_dists, ba_dists, rng)
         key = f"{sA}-{sB}"
         score_count[key] = score_count.get(key, 0) + 1
@@ -936,7 +1010,13 @@ def simulate_match_phased(fp_a: dict, fp_b: dict,
             wins_a += 1
 
     p_raw = wins_a / n
-    p_cal = max(PROB_FLOOR, min(PROB_CEIL, _platt(p_raw)))
+    if USE_FORM_NOISE:
+        # Form-noise replaces Platt's variance-faking with real variance.
+        # Minimal safety clamp keeps log-loss numerically stable for the
+        # tails that genuinely deserve a 0% / 100% prediction.
+        p_cal = max(FORM_SAFETY_FLOOR, min(FORM_SAFETY_CEIL, p_raw))
+    else:
+        p_cal = max(PROB_FLOOR, min(PROB_CEIL, _platt(p_raw)))
 
     return PhasedResult(
         player_a      = fp_a.get("player", "A"),

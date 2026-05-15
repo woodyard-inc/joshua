@@ -382,15 +382,24 @@ def extract_modifiers(fp: dict) -> dict:
             rpw_v2_pressure_pct = ps.get("rpw_vs_2nd_pressure_pct", rpw_v2_pct)
 
     # Momentum HMM hot/neutral pairs (only used when USE_MOMENTUM_HMM is True).
-    # Stored in fp["momentum_hmm"] by the backtest harness.
+    # Stored in fp["momentum_hmm"] by the backtest harness.  Each entry is
+    # (hot_pct, neutral_pct, n_hot, frac_hot) where frac_hot is the empirical
+    # fraction of points spent in the hot state for that serve type.
+    # frac_hot enables a zero-mean bias correction in simulate_point: the
+    # lifetime Tier-1 fspw already averages hot+neutral, so applying a raw
+    # delta only during hot points inflates expected server p.  Using
+    # delta * (1 - frac_hot) when hot and -delta * frac_hot when neutral
+    # preserves the lifetime average.
     momentum_pairs: Dict[str, tuple] = {}
     mh = fp.get("momentum_hmm") or {}
     for key in ("fspw", "sspw", "rpw_vs_1st", "rpw_vs_2nd"):
         hot_pct = mh.get(f"{key}_hot_pct")
         neu_pct = mh.get(f"{key}_neutral_pct")
         n_hot   = mh.get(f"{key}_hot_n", 0) or 0
+        n_neu   = mh.get(f"{key}_neutral_n", 0) or 0
         if hot_pct is not None and neu_pct is not None:
-            momentum_pairs[key] = (hot_pct, neu_pct, n_hot)
+            frac_hot = n_hot / (n_hot + n_neu) if (n_hot + n_neu) > 0 else 0.0
+            momentum_pairs[key] = (hot_pct, neu_pct, n_hot, frac_hot)
 
     return {
         "fsp":       (_t1(fp, "fsp_pct",  GRASS_AVG_FSP * 100)) / 100,
@@ -714,29 +723,47 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
     # is at least MOMENTUM_HOT_MIN.  state["streakCount"] > 0 = server on
     # winning streak; < 0 = returner on winning streak.  Resets at game
     # boundary (handled by _simulate_game).
+    #
+    # Zero-mean bias correction: Tier-1 fspw is the lifetime average across
+    # hot+neutral states, so applying raw delta only when hot would inflate
+    # expected server p by frac_hot * delta over a match.  We apply:
+    #
+    #   when hot:     p +=  delta * (1 - frac_hot)
+    #   when neutral: p += -delta * frac_hot
+    #
+    # This keeps the expected per-point p equal to the player's lifetime
+    # baseline while correctly differentiating hot from neutral states.
     if USE_MOMENTUM_HMM:
         streak = state.get("streakCount", 0)
+        server_hot   = streak >= MOMENTUM_HOT_MIN
+        returner_hot = streak <= -MOMENTUM_HOT_MIN
+
+        # SERVER side: their fspw/sspw delta affects p directly.
         srv_pairs = srv.get("momentumHmm") or {}
+        srv_key = "sspw" if is_second else "fspw"
+        srv_pair = srv_pairs.get(srv_key)
+        if srv_pair:
+            hot_pct, neu_pct, n_hot, frac_hot = srv_pair
+            if n_hot >= MOMENTUM_MIN_N_HOT:
+                delta_pct = hot_pct - neu_pct
+                weight = (1.0 - frac_hot) if server_hot else -frac_hot
+                applied = max(-MOMENTUM_MAX_DELTA_PCT,
+                              min(MOMENTUM_MAX_DELTA_PCT, delta_pct * weight))
+                p += applied / 100.0
+
+        # RETURNER side: their rpw delta moves p in the opposite direction
+        # (returner playing above their average pushes server's p down).
         ret_pairs = ret.get("momentumHmm") or {}
-        if streak >= MOMENTUM_HOT_MIN:
-            key = "sspw" if is_second else "fspw"
-            pair = srv_pairs.get(key)
-            if pair:
-                hot_pct, neu_pct, n_hot = pair
-                if n_hot >= MOMENTUM_MIN_N_HOT:
-                    delta_pct = max(-MOMENTUM_MAX_DELTA_PCT,
-                                    min(MOMENTUM_MAX_DELTA_PCT, hot_pct - neu_pct))
-                    p += delta_pct / 100.0
-        elif streak <= -MOMENTUM_HOT_MIN:
-            key = "rpw_vs_2nd" if is_second else "rpw_vs_1st"
-            pair = ret_pairs.get(key)
-            if pair:
-                hot_pct, neu_pct, n_hot = pair
-                if n_hot >= MOMENTUM_MIN_N_HOT:
-                    delta_pct = max(-MOMENTUM_MAX_DELTA_PCT,
-                                    min(MOMENTUM_MAX_DELTA_PCT, hot_pct - neu_pct))
-                    # Returner gain == server loss
-                    p -= delta_pct / 100.0
+        ret_key = "rpw_vs_2nd" if is_second else "rpw_vs_1st"
+        ret_pair = ret_pairs.get(ret_key)
+        if ret_pair:
+            hot_pct, neu_pct, n_hot, frac_hot = ret_pair
+            if n_hot >= MOMENTUM_MIN_N_HOT:
+                delta_pct = hot_pct - neu_pct
+                weight = (1.0 - frac_hot) if returner_hot else -frac_hot
+                applied = max(-MOMENTUM_MAX_DELTA_PCT,
+                              min(MOMENTUM_MAX_DELTA_PCT, delta_pct * weight))
+                p -= applied / 100.0
 
     return rng.random() < _clamp(p)
 

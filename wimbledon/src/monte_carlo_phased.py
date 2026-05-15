@@ -23,17 +23,17 @@ from dataclasses import dataclass, field
 from typing import Dict, Optional, Tuple
 
 # ── constants ──────────────────────────────────────────────────────────────
-PLATT_A = 0.35   # re-fit on phased model raw outputs (915-match sweep)
-
-# Probability floor/ceiling: the model's actual win rate plateaus at ~79%
-# for any prediction above 75% confidence and never goes higher — the
-# fingerprint comparison genuinely cannot distinguish beyond that level.
-# Predictions above 80% are just noise masquerading as confidence.
-# Empirically derived from 908-match calibration curve (2014–2024):
-#   predicted 75–80% → actually wins 79.5%  ✓ well-calibrated
-#   predicted 80–85% → actually wins 78.1%  ← starts overconfident
-#   predicted 95–99% → actually wins 68.6%  ← actively harmful
-# Cap at [0.20, 0.80]: Brier 0.2146→0.2113, skill 0.142→0.155.
+# Calibration parameters — validated via grid search + leave-one-year-out CV
+# on 908 matches (2014–2024).  Alternatives tested and rejected:
+#   Platt A=1.5–5.0     → raw MC is too overconfident (0%–100%); aggressive
+#                         compression at A=0.35 is correct (Brier 0.2103)
+#   ELO blend 20–50%    → improves subset (592 matches, Brier −3.5%) but
+#                         degrades full dataset, especially 2019→2021 gap
+#                         where stale ELO hurts more than fingerprints
+#   Floor/ceil 0.10–0.90 → extremes aren't discriminative enough to justify
+# The bottleneck is raw MC discrimination, not calibration.  Next gains
+# come from improving simulatePoint() inputs (tier2 features, surface ELO).
+PLATT_A = 0.35
 PROB_FLOOR = 0.20
 PROB_CEIL  = 0.80
 
@@ -89,33 +89,40 @@ ABLATABLE = {
     "setTransition",      # Phase 3 set-opener edge
     "holdAfterBreak",     # Phase 3 post-break hold edge
     "attrition",          # Phase 3 fatigue per set
-    "rallyVolatility",    # Phase 3 volatility direction kick
+    "rallyVolatility",    # Phase 3 volatility direction kick (original)
+    "rallyVolDirect",     # Phase 3 volatility as direct advantage (no direction)
+    "distanceRunEff",     # Phase 3 movement efficiency edge
+    "serveDepthEntropy",  # Phase 3 serve depth unpredictability
+    "serveSpeedCourage",  # Phase 3 serve speed under pressure
 }
 
-# Production-default ablation set: 7 modifiers proved net-harmful in the
-# 915-match ablation backtest (committed as ablation_run2.json).  Removing
-# them gains +1.09pp accuracy and -0.0032 Brier vs the all-on phased model,
-# clearing the aggregate baseline (67.10% / 0.2146) on both metrics.
+# Production-default ablation set.  Initial 7 from 915-match ablation
+# (ablation_run2.json); updated with 1000-sim/908-match ablation (2025-05).
 #
-# Why each was dropped:
-#   rallyCurve         single biggest drag (Δacc +1.53pp ablated alone) —
-#                      per-band win% is too noisy on small samples and
-#                      duplicates signal already in fspw/sspw
-#   bpConversion       small-sample noise (most players have 5-15 BPs);
-#                      hurts both accuracy and Brier
-#   rallyVolatility    style signal that doesn't predict outcomes
-#   courtSideRally     court-side asymmetry signal washes out across long
-#   courtSideServe     matches, adds noise when applied per-point
-#   firstServePressure mostly UNRELIABLE confidence; gates limit firing
-#   momentum           catch-fire mechanic — conceptually compelling but
-#                      empirically degrades accuracy by 0.44pp.  Likely
-#                      time-scale mismatch (real momentum decays between
-#                      service games; we fire boost on every consecutive
-#                      point during the same game).
+# Promoted to active:
+#   rallyVolDirect     rally volatility as direct advantage (r=+0.233);
+#                      Brier 0.2103→0.2098.  Replaces direction-based version.
+#
+# Disabled:
+#   rallyCurve         single biggest drag — per-band win% too noisy
+#   bpConversion       small-sample noise (5-15 BPs per player)
+#   rallyVolatility    replaced by rallyVolDirect
+#   courtSideRally     asymmetry washes out across long matches
+#   courtSideServe     same
+#   firstServePressure mostly UNRELIABLE confidence
+#   momentum           time-scale mismatch (boost fires every point,
+#                      real momentum decays between service games)
+#   setTransition      slight Brier drag (0.2103→0.2100 without it)
+#   distanceRunEff     marginal; not worth complexity
+#   serveDepthEntropy  slightly worse Brier
+#   serveSpeedCourage  neutral; no signal
 PRODUCTION_ABLATED = frozenset({
     "rallyCurve", "bpConversion", "rallyVolatility",
     "courtSideRally", "courtSideServe",
     "firstServePressure", "momentum",
+    "setTransition",
+    "distanceRunEff",
+    "serveDepthEntropy", "serveSpeedCourage",
 })
 
 _ABLATED: set = set(PRODUCTION_ABLATED)
@@ -152,17 +159,7 @@ def _conf_weight(conf: Optional[str]) -> float:
 
 
 def _platt(p: float) -> float:
-    """Temperature-scaled probability calibration.
-
-    Old behaviour bypassed calibration entirely when p_raw was 0.0 or 1.0,
-    letting through literal 100% / 0% predictions and ruining log-loss on
-    misses.  The fix is to clamp the input to a small interior bracket so
-    PLATT always runs.  With PLATT_A=0.35:
-       p_raw=1.000 → clamped to 1-1e-6 → logit≈13.8 → calibrated ≈ 99.2%
-       p_raw=0.000 → clamped to    1e-6 → logit≈-13.8 → calibrated ≈ 0.8%
-    so we never emit literal 0%/100% but high-confidence predictions stay
-    appropriately decisive.
-    """
+    """Temperature-scaled probability calibration (Platt sigmoid)."""
     EPS = 1e-6
     p = max(EPS, min(1 - EPS, p))
     logit = math.log(p / (1 - p))
@@ -239,6 +236,9 @@ def extract_modifiers(fp: dict) -> dict:
         "attrition":          t2.get("attrition_slope"),
         "rallyVolatility":    t2.get("rally_volatility"),
         "rluep":              t2.get("rluep"),
+        "distanceRunEff":     t2.get("distance_run_efficiency"),
+        "serveDepthEntropy":  t2.get("serve_depth_entropy"),
+        "serveSpeedCourage":  t2.get("serve_speed_courage"),
     }
 
 
@@ -470,6 +470,36 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
             rv_diff = rvS["value"] - rvR["value"]
             direction = -1 if p > 0.5 else 1
             p += direction * (rv_diff / 5.0) * 0.012
+
+    # Rally volatility as direct advantage (r=+0.233 with outcome).
+    # Higher volatility = more aggressive rally play = wins more on grass.
+    if "rallyVolDirect" not in _ABLATED:
+        rvS = srv.get("rallyVolatility")
+        rvR = ret.get("rallyVolatility")
+        if rvS and rvS.get("available") and rvR and rvR.get("available"):
+            rv_diff = rvS["value"] - rvR["value"]
+            p += (rv_diff / 5.0) * 0.015
+
+    # Distance run efficiency: lower = more efficient mover (r=-0.095 with outcome
+    # means the diff is negative when p1 wins → better mover has edge).
+    if "distanceRunEff" not in _ABLATED:
+        dreS = srv.get("distanceRunEff")
+        dreR = ret.get("distanceRunEff")
+        if dreS and dreS.get("available") and dreR and dreR.get("available"):
+            dre_diff = dreS["value"] - dreR["value"]
+            p -= _conf_weight(dreS.get("confidence")) * (dre_diff / 5.0) * 0.010
+
+    # Serve depth entropy: higher = more varied serve depth (r=+0.070).
+    if "serveDepthEntropy" not in _ABLATED:
+        sdeS = srv.get("serveDepthEntropy")
+        if sdeS and sdeS.get("available") and sdeS.get("value") is not None:
+            p += _conf_weight(sdeS.get("confidence")) * (sdeS["value"] - 0.90) * 0.020
+
+    # Serve speed courage: higher speed under pressure (r=+0.041).
+    if "serveSpeedCourage" not in _ABLATED:
+        sscS = srv.get("serveSpeedCourage")
+        if sscS and sscS.get("available") and sscS.get("value") is not None:
+            p += _conf_weight(sscS.get("confidence")) * (sscS["value"] / 10.0) * 0.008
 
     return rng.random() < _clamp(p)
 

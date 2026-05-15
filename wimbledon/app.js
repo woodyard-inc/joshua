@@ -2624,7 +2624,7 @@ function runComparison(nameA, nameB, overrideFps = null) {
   // Terminate any prior worker
   if (window._mcWorker) { window._mcWorker.terminate(); window._mcWorker = null; }
 
-  const worker      = new Worker("mc_worker.js?v=50");
+  const worker      = new Worker("mc_worker.js?v=52");
   const startTime   = Date.now();
   const MIN_LOAD_MS = 5200;   // keep animation visible for a full loop
   window._mcWorker  = worker;
@@ -2749,8 +2749,8 @@ function renderMatchupResult(r) {
     const pct   = Math.round(Math.abs(edge) * 45);   // max 45% per side
     const isA   = edge >= 0;
     const fill  = isA
-      ? `left:50%;width:${pct}%`
-      : `left:${50 - pct}%;width:${pct}%`;
+      ? `left:${50 - pct}%;width:${pct}%`
+      : `left:50%;width:${pct}%`;
     const cls   = isA ? "mu-axis-fill-a" : "mu-axis-fill-b";
     const label = Math.abs(edge) < 0.03 ? "Even"
                 : isA ? `+${(Math.abs(edge)).toFixed(2)} A`

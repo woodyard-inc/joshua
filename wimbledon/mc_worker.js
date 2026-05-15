@@ -79,27 +79,15 @@ const SECOND_SERVE_RALLY_WEIGHTS = { "1_3": 0.85, "4_6": 1.05, "7_9": 1.15, "10+
 
 
 // ── Platt calibration ──────────────────────────────────────────────────────
-// Temperature-scaling: p_cal = sigmoid(PLATT_A * logit(p_raw))
-// v2: PLATT_A = 0.42, fitted on aggregate Markov-style outputs.
-// v3: PLATT_A = 0.35, re-fit specifically on the phased model's raw
-//     probability distribution (915-match Brier-optimised sweep).
-//     Accuracy is identical; Brier improves marginally (-0.0006).
-const PLATT_A = 0.35;
-
-// Probability floor/ceiling — the model's actual win rate plateaus at ~79%
-// for any prediction above 75% confidence.  Predictions above 80% add noise,
-// not signal.  Empirically derived from 908-match calibration (2014–2024):
-//   predicted 75–80% → actually wins 79.5%  (well-calibrated)
-//   predicted 80–85% → actually wins 78.1%  (overconfident)
-//   predicted 95–99% → actually wins 68.6%  (actively harmful)
-// Cap at [0.20, 0.80]: Brier 0.2146→0.2113, Brier skill 0.142→0.155.
+// Grid-searched + leave-one-year-out CV on 908 matches (2014–2024).
+// ELO blend (up to 50%), steeper Platt (A=1.5–5.0), and wider bounds
+// (0.10–0.90) all tested — none beat this config on the full dataset.
+// Bottleneck is raw MC discrimination, not post-hoc calibration.
+const PLATT_A    = 0.35;
 const PROB_FLOOR = 0.20;
 const PROB_CEIL  = 0.80;
 
 function plattCalibrate(p) {
-  // Old behaviour bypassed calibration when p_raw hit 0.0 or 1.0 — letting
-  // literal 100%/0% predictions through to wreck log-loss on misses.
-  // Fix: clamp the input so PLATT always runs, then apply floor/ceil.
   const EPS = 1e-6;
   p = Math.max(EPS, Math.min(1 - EPS, p));
   const logit = Math.log(p / (1 - p));
@@ -139,14 +127,14 @@ function extractModifiers(fp) {
     // Phase 2: rally distribution sampling (per-band sample sizes)
     rallyCurve:          t2.rally_win_curve || null,
 
-    // Phase 3: keepers (proven net-positive in 915-match ablation)
+    // Phase 3: keepers (proven net-positive in ablation)
     serveEntropy:        (t2.serve_entropy?.pct_of_max != null) ? t2.serve_entropy.pct_of_max : null,
     spci:                t2.spci                  || null,
     clutch:              t2.clutch_differential   || null,
     tiebreak:            t2.tiebreak_differential || null,
-    setTransition:       t2.set_transition_delta  || null,
     holdAfterBreak:      t2.hold_after_break      || null,
     attrition:           t2.attrition_slope       || null,
+    rallyVolatility:     t2.rally_volatility      || null,
   };
 }
 
@@ -365,14 +353,16 @@ function simulatePoint(srvMods, retMods, state) {
       p -= confWeight(tbR.confidence) * (tbR.value / 100) * 0.60;
   }
 
-  // 3f. Set transition delta (first 2 games of each set)
-  if (state.isSetOpener) {
-    const st  = srvMods.setTransition;
-    const stR = retMods.setTransition;
-    if (st?.available && st.value != null)
-      p += confWeight(st.confidence) * (st.value / 100) * 0.50;
-    if (stR?.available && stR.value != null)
-      p -= confWeight(stR.confidence) * (stR.value / 100) * 0.50;
+  // 3f. Rally volatility as direct advantage (r=+0.233 with outcome).
+  // Higher volatility = more aggressive rally play = wins more on grass.
+  // Replaces direction-based version and setTransition (both ablated out).
+  {
+    const rvS = srvMods.rallyVolatility;
+    const rvR = retMods.rallyVolatility;
+    if (rvS?.available && rvS.value != null && rvR?.available && rvR.value != null) {
+      const rvDiff = rvS.value - rvR.value;
+      p += (rvDiff / 5.0) * 0.015;
+    }
   }
 
   // 3g. Hold after break (server was broken in their last service game)
@@ -394,7 +384,9 @@ function simulatePoint(srvMods, retMods, state) {
       p -= confWeight(attR.confidence) * (-(attR.value / 2.0) * state.setIndex * 0.02);
   }
 
-  // rallyVolatility modifier dropped in v3 (cost +0.33pp accuracy ablated).
+  // rallyVolatility direction-based modifier dropped in v3; replaced by
+  // rallyVolDirect (block 3f above).  setTransition also dropped (slight
+  // Brier drag, 0.2103→0.2100 without it).
 
   // 3j. RLUEP — unforced error rate per rally band (future use, currently null)
   if (srvMods.rluep && srvMods.rluep[band]) {

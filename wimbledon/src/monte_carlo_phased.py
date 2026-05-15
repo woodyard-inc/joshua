@@ -111,6 +111,24 @@ def _is_sparse_fp(fp: dict, current_year: Optional[int]) -> bool:
 PRESSURE_GATE_MODE = "stale_only"  # "any" | "both" | "stale_only" | "stale_or_gap"
 
 
+# Momentum-HMM toggle.  When True, simulate_point applies a Phase-3 additive
+# delta when state.streakCount magnitude >= MOMENTUM_HOT_MIN (server or
+# returner is on a within-game streak).  Delta = per-player (hot - neutral)
+# baseline difference from {year}_momentum_hmm.json, gated by sample size.
+# Backed by Klaassen & Magnus (2001, 2014): within-game momentum +2-3pp is
+# real; resets at game boundary (which streakCount already does).
+USE_MOMENTUM_HMM = False
+MOMENTUM_HOT_MIN     = 2     # streak length threshold for "hot" state
+MOMENTUM_MIN_N_HOT   = 30    # require >=30 hot-state observations to apply
+MOMENTUM_MAX_DELTA_PCT = 6.0 # cap individual momentum delta at +-6pp safety
+
+
+def set_use_momentum_hmm(flag: bool) -> None:
+    global USE_MOMENTUM_HMM
+    USE_MOMENTUM_HMM = bool(flag)
+    print(f"[monte_carlo_phased] USE_MOMENTUM_HMM={USE_MOMENTUM_HMM}")
+
+
 def set_pressure_gate_mode(mode: str) -> None:
     global PRESSURE_GATE_MODE
     if mode not in ("any", "both", "stale_only", "stale_or_gap"):
@@ -363,6 +381,17 @@ def extract_modifiers(fp: dict) -> dict:
             rpw_v2_n_pct        = ps.get("rpw_vs_2nd_neutral_pct",  rpw_v2_pct)
             rpw_v2_pressure_pct = ps.get("rpw_vs_2nd_pressure_pct", rpw_v2_pct)
 
+    # Momentum HMM hot/neutral pairs (only used when USE_MOMENTUM_HMM is True).
+    # Stored in fp["momentum_hmm"] by the backtest harness.
+    momentum_pairs: Dict[str, tuple] = {}
+    mh = fp.get("momentum_hmm") or {}
+    for key in ("fspw", "sspw", "rpw_vs_1st", "rpw_vs_2nd"):
+        hot_pct = mh.get(f"{key}_hot_pct")
+        neu_pct = mh.get(f"{key}_neutral_pct")
+        n_hot   = mh.get(f"{key}_hot_n", 0) or 0
+        if hot_pct is not None and neu_pct is not None:
+            momentum_pairs[key] = (hot_pct, neu_pct, n_hot)
+
     return {
         "fsp":       (_t1(fp, "fsp_pct",  GRASS_AVG_FSP * 100)) / 100,
         "fspw":      fspw_pct / 100,
@@ -379,6 +408,8 @@ def extract_modifiers(fp: dict) -> dict:
         "rpwVs1stPressure": rpw_v1_pressure_pct,
         "rpwVs2ndNeutral":  rpw_v2_n_pct,
         "rpwVs2ndPressure": rpw_v2_pressure_pct,
+        # Momentum HMM hot/neutral pairs (hot_pct, neutral_pct, n_hot)
+        "momentumHmm": momentum_pairs,
         "baseDFRate":         base_df,
         "dfPressureDelta":    df_node if isinstance(df_node, dict) else None,
         "firstServePressure": t2.get("first_serve_pressure"),
@@ -678,6 +709,34 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         sscS = srv.get("serveSpeedCourage")
         if sscS and sscS.get("available") and sscS.get("value") is not None:
             p += _conf_weight(sscS.get("confidence")) * (sscS["value"] / 10.0) * 0.008
+
+    # Momentum HMM: per-player (hot - neutral) delta when within-game streak
+    # is at least MOMENTUM_HOT_MIN.  state["streakCount"] > 0 = server on
+    # winning streak; < 0 = returner on winning streak.  Resets at game
+    # boundary (handled by _simulate_game).
+    if USE_MOMENTUM_HMM:
+        streak = state.get("streakCount", 0)
+        srv_pairs = srv.get("momentumHmm") or {}
+        ret_pairs = ret.get("momentumHmm") or {}
+        if streak >= MOMENTUM_HOT_MIN:
+            key = "sspw" if is_second else "fspw"
+            pair = srv_pairs.get(key)
+            if pair:
+                hot_pct, neu_pct, n_hot = pair
+                if n_hot >= MOMENTUM_MIN_N_HOT:
+                    delta_pct = max(-MOMENTUM_MAX_DELTA_PCT,
+                                    min(MOMENTUM_MAX_DELTA_PCT, hot_pct - neu_pct))
+                    p += delta_pct / 100.0
+        elif streak <= -MOMENTUM_HOT_MIN:
+            key = "rpw_vs_2nd" if is_second else "rpw_vs_1st"
+            pair = ret_pairs.get(key)
+            if pair:
+                hot_pct, neu_pct, n_hot = pair
+                if n_hot >= MOMENTUM_MIN_N_HOT:
+                    delta_pct = max(-MOMENTUM_MAX_DELTA_PCT,
+                                    min(MOMENTUM_MAX_DELTA_PCT, hot_pct - neu_pct))
+                    # Returner gain == server loss
+                    p -= delta_pct / 100.0
 
     return rng.random() < _clamp(p)
 

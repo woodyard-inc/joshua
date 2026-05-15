@@ -57,7 +57,8 @@ def prior_edition(year: int) -> Optional[int]:
 
 def load_fp_file(year: int, merge_grass: bool = True,
                  attach_latent: bool = False,
-                 attach_pressure: bool = False) -> Dict[str, dict]:
+                 attach_pressure: bool = False,
+                 attach_momentum: bool = False) -> Dict[str, dict]:
     """Load all fingerprints for a given year, merged with grass profiles.
 
     If attach_latent=True, also load {year}_latent_factors.json and attach
@@ -94,6 +95,19 @@ def load_fp_file(year: int, merge_grass: bool = True,
             print(f"  [{year}] attached pressure states for {attached}/{len(fps)} players")
         else:
             print(f"  [{year}] WARNING: --use_pressure_states set but {ps_path.name} not found")
+    if attach_momentum:
+        mh_path = data_dir / f"{year}_momentum_hmm.json"
+        if mh_path.exists():
+            mh = json.loads(mh_path.read_text())
+            attached = 0
+            for player, fp in fps.items():
+                rec = mh.get(player)
+                if rec is not None:
+                    fp["momentum_hmm"] = rec
+                    attached += 1
+            print(f"  [{year}] attached momentum HMM for {attached}/{len(fps)} players")
+        else:
+            print(f"  [{year}] WARNING: --use_momentum_hmm set but {mh_path.name} not found")
     return fps
 
 
@@ -257,6 +271,10 @@ def main():
                         help="(phased only) Which matches fire the pressure-state gate. "
                              "any=either player sparse/stale, both=both must be, "
                              "stale_only=only fire on year-staleness >1 (COVID-style).")
+    parser.add_argument("--use_momentum_hmm", action="store_true",
+                        help="(phased only) Apply per-player within-game momentum delta from "
+                             "{year}_momentum_hmm.json (Klaassen-Magnus 2014 backed). "
+                             "Resets at game boundary; +/-MOMENTUM_MAX_DELTA_PCT cap.")
     args = parser.parse_args()
 
     # Apply ablation flags before importing happens (they're read at runtime)
@@ -272,6 +290,10 @@ def main():
         import monte_carlo_phased as mcp
         mcp.set_use_pressure_states(True)
         mcp.set_pressure_gate_mode(args.pressure_gate_mode)
+
+    if args.use_momentum_hmm:
+        import monte_carlo_phased as mcp
+        mcp.set_use_momentum_hmm(True)
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []
@@ -290,7 +312,8 @@ def main():
 
         prior_fps = load_fp_file(prior,
                                  attach_latent=args.use_latent,
-                                 attach_pressure=args.use_pressure_states)
+                                 attach_pressure=args.use_pressure_states,
+                                 attach_momentum=args.use_momentum_hmm)
         if not prior_fps:
             print(f"  [{year}] No fingerprints for prior edition {prior} — skipping.")
             continue

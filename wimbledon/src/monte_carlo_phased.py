@@ -37,6 +37,17 @@ PLATT_A = 0.35
 PROB_FLOOR = 0.20
 PROB_CEIL  = 0.80
 
+# Latent-factor experiment toggle.  When True, extract_modifiers() substitutes
+# the four Tier 1 serve/return metrics with the two-factor smoothed values
+# from latent_factors.json (loaded by the caller into fp["latent_factors"]).
+USE_LATENT_FACTORS = False
+
+
+def set_use_latent_factors(flag: bool) -> None:
+    global USE_LATENT_FACTORS
+    USE_LATENT_FACTORS = bool(flag)
+    print(f"[monte_carlo_phased] USE_LATENT_FACTORS={USE_LATENT_FACTORS}")
+
 GRASS_RPW_AVG     = 35.0  # blended; used as fallback / display
 
 # Grass-court tour averages for return-points-won by serve type.
@@ -209,13 +220,26 @@ def extract_modifiers(fp: dict) -> dict:
         else:
             csa_deuce = csa_ad = None
 
+    fspw_pct     = _t1(fp, "fspw_pct",       GRASS_AVG_FSPW * 100)
+    sspw_pct     = _t1(fp, "sspw_pct",       GRASS_AVG_SSPW * 100)
+    rpw_v1_pct   = _t1(fp, "rpw_vs_1st_pct", GRASS_RPW_VS_1ST_AVG)
+    rpw_v2_pct   = _t1(fp, "rpw_vs_2nd_pct", GRASS_RPW_VS_2ND_AVG)
+
+    if USE_LATENT_FACTORS:
+        lf = fp.get("latent_factors")
+        if lf:
+            fspw_pct   = lf.get("smoothed_fspw_pct",       fspw_pct)
+            sspw_pct   = lf.get("smoothed_sspw_pct",       sspw_pct)
+            rpw_v1_pct = lf.get("smoothed_rpw_vs_1st_pct", rpw_v1_pct)
+            rpw_v2_pct = lf.get("smoothed_rpw_vs_2nd_pct", rpw_v2_pct)
+
     return {
         "fsp":       (_t1(fp, "fsp_pct",  GRASS_AVG_FSP * 100)) / 100,
-        "fspw":      (_t1(fp, "fspw_pct", GRASS_AVG_FSPW * 100)) / 100,
-        "sspw":      (_t1(fp, "sspw_pct", GRASS_AVG_SSPW * 100)) / 100,
+        "fspw":      fspw_pct / 100,
+        "sspw":      sspw_pct / 100,
         "rpw":        _t1(fp, "rpw_pct",        GRASS_RPW_AVG),         # fallback/blend
-        "rpwVs1st":   _t1(fp, "rpw_vs_1st_pct", GRASS_RPW_VS_1ST_AVG),  # matchup adj for 1st serve points
-        "rpwVs2nd":   _t1(fp, "rpw_vs_2nd_pct", GRASS_RPW_VS_2ND_AVG),  # matchup adj for 2nd serve points
+        "rpwVs1st":   rpw_v1_pct,  # matchup adj for 1st serve points
+        "rpwVs2nd":   rpw_v2_pct,  # matchup adj for 2nd serve points
         "baseDFRate":         base_df,
         "dfPressureDelta":    df_node if isinstance(df_node, dict) else None,
         "firstServePressure": t2.get("first_serve_pressure"),

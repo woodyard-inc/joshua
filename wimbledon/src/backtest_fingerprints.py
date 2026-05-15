@@ -55,10 +55,30 @@ def prior_edition(year: int) -> Optional[int]:
     return past[-1] if past else None
 
 
-def load_fp_file(year: int, merge_grass: bool = True) -> Dict[str, dict]:
-    """Load all fingerprints for a given year, merged with grass profiles."""
+def load_fp_file(year: int, merge_grass: bool = True,
+                 attach_latent: bool = False) -> Dict[str, dict]:
+    """Load all fingerprints for a given year, merged with grass profiles.
+
+    If attach_latent=True, also load {year}_latent_factors.json and attach
+    each player's latent record to fp["latent_factors"] so the engine can
+    use the smoothed serve/return values when USE_LATENT_FACTORS is set.
+    """
     data_dir = ROOT / "data"
-    return load_all_fingerprints(year, data_dir=data_dir, merge_grass=merge_grass)
+    fps = load_all_fingerprints(year, data_dir=data_dir, merge_grass=merge_grass)
+    if attach_latent:
+        lf_path = data_dir / f"{year}_latent_factors.json"
+        if lf_path.exists():
+            latents = json.loads(lf_path.read_text())
+            attached = 0
+            for player, fp in fps.items():
+                lf = latents.get(player)
+                if lf is not None:
+                    fp["latent_factors"] = lf
+                    attached += 1
+            print(f"  [{year}] attached latent factors for {attached}/{len(fps)} players")
+        else:
+            print(f"  [{year}] WARNING: --use_latent set but {lf_path.name} not found")
+    return fps
 
 
 def match_winner_from_points(pts: pd.DataFrame, match_id: str) -> Optional[int]:
@@ -208,12 +228,19 @@ def main():
     parser.add_argument("--ablate", default=None,
                         help="(phased only) Comma-separated modifier names to disable, e.g. "
                              "'momentum,courtSide,setTransition'. See monte_carlo_phased.ABLATABLE.")
+    parser.add_argument("--use_latent", action="store_true",
+                        help="(phased only) Substitute Tier 1 serve/return metrics with the "
+                             "two-factor smoothed values from {year}_latent_factors.json.")
     args = parser.parse_args()
 
     # Apply ablation flags before importing happens (they're read at runtime)
     if args.ablate:
         import monte_carlo_phased as mcp
         mcp.set_ablation(set(args.ablate.split(",")))
+
+    if args.use_latent:
+        import monte_carlo_phased as mcp
+        mcp.set_use_latent_factors(True)
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []
@@ -230,7 +257,7 @@ def main():
             print(f"  [{year}] No prior edition — skipping.")
             continue
 
-        prior_fps = load_fp_file(prior)
+        prior_fps = load_fp_file(prior, attach_latent=args.use_latent)
         if not prior_fps:
             print(f"  [{year}] No fingerprints for prior edition {prior} — skipping.")
             continue

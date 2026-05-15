@@ -1,0 +1,127 @@
+{
+  "mc_fingerprint_backtest": {
+    "method": "Prior-edition fingerprints \u2192 MC simulation \u2192 actual outcomes",
+    "leakage_note": "Fingerprints built from editions BEFORE the predicted year. Career window (last 3 editions) never includes the test year.",
+    "n_sims": 1000,
+    "test_years": [
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "min_test_year": 2014,
+    "n_total": 908,
+    "accuracy": 0.664,
+    "brier": 0.2154,
+    "brier_skill": 0.138,
+    "log_loss": 0.6213,
+    "naive_brier": 0.25,
+    "per_year": {
+      "2014": {
+        "n_matches": 90,
+        "accuracy": 0.667,
+        "brier": 0.224,
+        "log_loss": 0.641
+      },
+      "2015": {
+        "n_matches": 97,
+        "accuracy": 0.608,
+        "brier": 0.214,
+        "log_loss": 0.617
+      },
+      "2016": {
+        "n_matches": 100,
+        "accuracy": 0.7,
+        "brier": 0.21,
+        "log_loss": 0.612
+      },
+      "2017": {
+        "n_matches": 96,
+        "accuracy": 0.708,
+        "brier": 0.204,
+        "log_loss": 0.597
+      },
+      "2018": {
+        "n_matches": 97,
+        "accuracy": 0.691,
+        "brier": 0.212,
+        "log_loss": 0.616
+      },
+      "2019": {
+        "n_matches": 97,
+        "accuracy": 0.711,
+        "brier": 0.206,
+        "log_loss": 0.603
+      },
+      "2021": {
+        "n_matches": 84,
+        "accuracy": 0.595,
+        "brier": 0.242,
+        "log_loss": 0.68
+      },
+      "2022": {
+        "n_matches": 80,
+        "accuracy": 0.6,
+        "brier": 0.222,
+        "log_loss": 0.632
+      },
+      "2023": {
+        "n_matches": 86,
+        "accuracy": 0.674,
+        "brier": 0.215,
+        "log_loss": 0.618
+      },
+      "2024": {
+        "n_matches": 81,
+        "accuracy": 0.667,
+        "brier": 0.209,
+        "log_loss": 0.608
+      }
+    },
+    "calibration": [
+      {
+        "pred_range": "0.20\u20130.35",
+        "pred_mean": 0.275,
+        "actual_rate": 0.26,
+        "n": 181
+      },
+      {
+        "pred_range": "0.35\u20130.46",
+        "pred_mean": 0.411,
+        "actual_rate": 0.376,
+        "n": 181
+      },
+      {
+        "pred_range": "0.46\u20130.55",
+        "pred_mean": 0.506,
+        "actual_rate": 0.586,
+        "n": 181
+      },
+      {
+        "pred_range": "0.55\u20130.66",
+        "pred_mean": 0.596,
+        "actual_rate": 0.669,
+        "n": 181
+      },
+      {
+        "pred_range": "0.66\u20130.80",
+        "pred_mean": 0.729,
+        "actual_rate": 0.762,
+        "n": 181
+      },
+      {
+        "pred_range": "0.80\u20130.80",
+        "pred_mean": 0.8,
+        "actual_rate": 1.0,
+        "n": 3
+      }
+    ],
+    "notes": "Coverage ~50\u201370% per year \u2014 first-time Wimbledon players have no prior fingerprint and are excluded. These tend to be lower-seeded players, so excluded matches are systematically easier to predict, meaning true accuracy on uncovered matches may be lower."
+  }
+}

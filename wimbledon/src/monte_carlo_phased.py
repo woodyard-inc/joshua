@@ -327,6 +327,52 @@ GRASS_AVG_RGW     = 16.0   # return games won %, grass-court 2014–2024 mean
 RALLY_BANDS = ["1_3", "4_6", "7_9", "10+"]
 GRASS_PRIOR = {"1_3": 0.55, "4_6": 0.30, "7_9": 0.10, "10+": 0.05}
 
+# v13 Stage A: band-conditional modifier weights.  Each Phase-3 modifier has
+# a physically-motivated weight profile by rally length band.  Replaces the
+# implicit "all modifiers fire equally on every point" with band-specific
+# firing (a serve-quality modifier should fade on a 20-shot rally; an
+# attrition modifier should be zero on a 1-shot ace).
+#
+# Weights are SET A PRIORI from physical reasoning, NOT tuned on backtest.
+# All values in [0, 1].  A modifier not in the table fires at weight 1.0
+# (band-independent).
+#
+# Rationale per row:
+#   spci         — serve composite: serve advantage dominates short points;
+#                  irrelevant once rally is established.
+#   clutch       — returner clutch: minimal on quick serve points; matters
+#                  most when returner is in extended exchange.
+#   attrition    — physical decay: zero on quick points; grows with rally length.
+#   serveEntropy — serve direction unpredictability: only affects how the
+#                  rally STARTS; gone by mid-rally.
+#   rallyVolDirect — rally aggression: meaningless on 1-shot points; matters
+#                    once rallies develop.
+#   (band-independent modifiers — rgw, tiebreak, holdAfterBreak, dfPressure —
+#    are omitted; they fire at weight 1.0)
+BAND_WEIGHTS = {
+    "spci":           {"1_3": 1.0, "4_6": 0.7, "7_9": 0.5, "10+": 0.3},
+    "clutch":         {"1_3": 0.3, "4_6": 0.7, "7_9": 1.0, "10+": 1.0},
+    "attrition":      {"1_3": 0.0, "4_6": 0.3, "7_9": 0.7, "10+": 1.0},
+    "serveEntropy":   {"1_3": 1.0, "4_6": 0.5, "7_9": 0.2, "10+": 0.0},
+    "rallyVolDirect": {"1_3": 0.0, "4_6": 0.7, "7_9": 1.0, "10+": 1.0},
+}
+
+
+def _band_weight(name: str, band: str) -> float:
+    """Returns the band-conditional firing weight for a Phase-3 modifier.
+    Defaults to 1.0 for modifiers not in BAND_WEIGHTS (band-independent)."""
+    return BAND_WEIGHTS.get(name, {}).get(band, 1.0)
+
+
+# Toggle to disable Stage A (for ablation testing).  Default ON in v13.
+USE_BAND_WEIGHTS = True
+
+
+def set_use_band_weights(flag: bool) -> None:
+    global USE_BAND_WEIGHTS
+    USE_BAND_WEIGHTS = bool(flag)
+    print(f"[monte_carlo_phased] USE_BAND_WEIGHTS={USE_BAND_WEIGHTS}")
+
 FIRST_SERVE_RALLY_WEIGHTS  = {"1_3": 1.15, "4_6": 1.00, "7_9": 0.80, "10+": 0.70}
 SECOND_SERVE_RALLY_WEIGHTS = {"1_3": 0.85, "4_6": 1.05, "7_9": 1.15, "10+": 1.20}
 
@@ -640,6 +686,74 @@ def _sample_band(dist: dict, rng) -> str:
     return "10+"
 
 
+# ── v13 Stage B: continuous rally length sampling ─────────────────────────
+#
+# Per the user's proposal: instead of sampling discrete bands {1_3, 4_6, 7_9,
+# 10+} which only give a 4-bucket view, sample a CONTINUOUS rally length from
+# a Gaussian shaped by the matchup-specific mean and stdev derived from
+# both players' rally length statistics.  Then use the actual length value
+# as a smooth multiplier on each modifier's response curve.
+#
+# Same physical reasoning as Stage A but smoother:
+#   spci         exp(-(L-1)/5)        full at L=1, ~0.17 at L=10
+#   serveEntropy max(0, 1 - (L-1)/9)  full at L=1, 0 at L=10
+#   clutch       min(1, 0.3 + (L-1)/7) ramp from 0.3 at L=1 to 1.0 at L=8
+#   attrition    min(1, max(0, (L-1)/9))  0 at L=1 to 1.0 at L=10
+#   rallyVolDirect min(1, max(0, (L-1)/4))  0 at L=1, saturates at L=5
+USE_CONTINUOUS_RALLY = False
+GRASS_DEFAULT_RALLY_SD = 2.5   # fallback when player rally_volatility unavailable
+
+
+def set_use_continuous_rally(flag: bool) -> None:
+    global USE_CONTINUOUS_RALLY
+    USE_CONTINUOUS_RALLY = bool(flag)
+    print(f"[monte_carlo_phased] USE_CONTINUOUS_RALLY={USE_CONTINUOUS_RALLY}")
+
+
+def _cont_bw(name: str, L: float) -> float:
+    """Smooth response curve for a modifier as function of continuous rally length L."""
+    if name == "spci":           return math.exp(-(L - 1.0) / 5.0)
+    if name == "serveEntropy":   return max(0.0, 1.0 - (L - 1.0) / 9.0)
+    if name == "clutch":         return min(1.0, 0.3 + (L - 1.0) / 7.0)
+    if name == "attrition":      return min(1.0, max(0.0, (L - 1.0) / 9.0))
+    if name == "rallyVolDirect": return min(1.0, max(0.0, (L - 1.0) / 4.0))
+    return 1.0
+
+
+def _length_to_band(L: float) -> str:
+    """Map continuous length to discrete band (for backward compatibility)."""
+    if L < 4.0:  return "1_3"
+    if L < 7.0:  return "4_6"
+    if L < 10.0: return "7_9"
+    return "10+"
+
+
+def _matchup_rally_moments(fp_srv: dict, fp_ret: dict, is_second: bool):
+    """Return (mean, stdev) of rally length for this matchup direction.
+    Pulls from men_profile.rally_shots (mean) and tier2.rally_volatility (stdev).
+    Falls back to grass averages if data unavailable."""
+    srv_prof = (fp_srv.get("men_profile") or {}).get("rally_shots") or {}
+    ret_prof = (fp_ret.get("men_profile") or {}).get("rally_shots") or {}
+    if is_second:
+        srv_mean = srv_prof.get("srv_2nd_avg")
+        ret_mean = ret_prof.get("ret_2nd_avg")
+    else:
+        srv_mean = srv_prof.get("srv_1st_avg")
+        ret_mean = ret_prof.get("ret_1st_avg")
+    srv_mean = srv_mean if isinstance(srv_mean, (int, float)) else 3.5
+    ret_mean = ret_mean if isinstance(ret_mean, (int, float)) else 3.5
+    mean = (srv_mean + ret_mean) / 2.0
+
+    srv_t2 = (fp_srv.get("tier2") or {}).get("rally_volatility") or {}
+    ret_t2 = (fp_ret.get("tier2") or {}).get("rally_volatility") or {}
+    sds = []
+    for t2 in (srv_t2, ret_t2):
+        if t2.get("available") and isinstance(t2.get("value"), (int, float)):
+            sds.append(float(t2["value"]))
+    stdev = sum(sds) / len(sds) if sds else GRASS_DEFAULT_RALLY_SD
+    return mean, max(stdev, 0.5)   # floor on stdev to avoid degenerate sampling
+
+
 # ── PHASED POINT SIMULATION ───────────────────────────────────────────────
 
 def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
@@ -686,8 +800,23 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
             return False  # double fault
 
     # ──────────────── PHASE 2: RALLY ────────────────
-    rd = state["rallyDist2"] if is_second else state["rallyDist1"]
-    band = _sample_band(rd, rng)
+    # v13 Stage B: when USE_CONTINUOUS_RALLY is on, sample continuous length
+    # from the matchup-derived Gaussian (mean from men_profile.rally_shots,
+    # stdev from tier2.rally_volatility — pre-computed once per match in
+    # simulate_match_phased and passed via state).  Derive band from length
+    # for compatibility with band-using code paths.  Otherwise use the v12
+    # discrete-band sampler.
+    if USE_CONTINUOUS_RALLY and srv.get("_rallyMean1") is not None:
+        if is_second:
+            mu = srv["_rallyMean2"]; sd = srv["_rallyStdev2"]
+        else:
+            mu = srv["_rallyMean1"]; sd = srv["_rallyStdev1"]
+        L = max(1.0, min(30.0, rng.gauss(mu, sd)))
+        band = _length_to_band(L)
+    else:
+        rd = state["rallyDist2"] if is_second else state["rallyDist1"]
+        band = _sample_band(rd, rng)
+        L = None  # signal to bw() to use band-step weights
 
     # Serve-type-specific baseline + serve-type-specific matchup adjustment.
     # Each serve regime has its own tour average (1st: ~28%, 2nd: ~52%) so a
@@ -753,8 +882,21 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
             p -= ((sideR - ret["csaOverall"]) / 100) * 0.30
 
     # ──────────────── PHASE 3: MODIFIERS ────────────────
+    # v13 Stage A: each modifier may be band-weighted (multiply by
+    # BAND_WEIGHTS[name][band]) so its effect is physically appropriate
+    # for the rally length.  bw() returns 1.0 when USE_BAND_WEIGHTS is False
+    # or the modifier isn't in the table.
+    def bw(name):
+        if not USE_BAND_WEIGHTS:
+            return 1.0
+        # Stage B: smooth response curve on continuous length L when available
+        if L is not None:
+            return _cont_bw(name, L)
+        # Stage A fallback: discrete band-step weights
+        return _band_weight(name, band)
+
     if "serveEntropy" not in _ABLATED and srv.get("serveEntropy") is not None:
-        p += 0.025 * ((srv["serveEntropy"] / 100) - 0.75)
+        p += 0.025 * ((srv["serveEntropy"] / 100) - 0.75) * bw("serveEntropy")
 
     if state["isBreakPoint"] or state["isDeuce"]:
         # When this match is using per-state baselines (reliability gate fired),
@@ -767,12 +909,12 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
                                        "spci_modifier_delta",
                                        srv.get("archetype_id"),
                                        spci.get("confidence"))
-                p += val * 0.50
+                p += val * 0.50 * bw("spci")
 
         if "clutch" not in _ABLATED and not use_pressure_pt:
             clutch = ret.get("clutch")
             if clutch and clutch.get("modifier_delta") is not None:
-                p -= _conf_weight(clutch.get("confidence")) * (clutch["modifier_delta"] / 100) * 0.60
+                p -= _conf_weight(clutch.get("confidence")) * (clutch["modifier_delta"] / 100) * 0.60 * bw("clutch")
 
         if "bpConversion" not in _ABLATED and state["isBreakPoint"] and ret.get("bpConversion") is not None:
             p -= (ret["bpConversion"] - 0.45) * 0.15
@@ -844,14 +986,15 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
     if "attrition" not in _ABLATED and state["setIndex"] is not None and state["setIndex"] > 0:
         att = srv.get("attrition")
         attR = ret.get("attrition")
+        attr_band = bw("attrition")
         if att and att.get("available"):
             val = _shrunk_modifier(att.get("value"), "attrition_value",
                                    srv.get("archetype_id"), att.get("confidence"))
-            p += -(val / 2.0) * state["setIndex"] * 0.02
+            p += -(val / 2.0) * state["setIndex"] * 0.02 * attr_band
         if attR and attR.get("available"):
             valR = _shrunk_modifier(attR.get("value"), "attrition_value",
                                     ret.get("archetype_id"), attR.get("confidence"))
-            p -= -(valR / 2.0) * state["setIndex"] * 0.02
+            p -= -(valR / 2.0) * state["setIndex"] * 0.02 * attr_band
 
     if "rallyVolatility" not in _ABLATED:
         rvS = srv.get("rallyVolatility")
@@ -868,7 +1011,7 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         rvR = ret.get("rallyVolatility")
         if rvS and rvS.get("available") and rvR and rvR.get("available"):
             rv_diff = rvS["value"] - rvR["value"]
-            p += (rv_diff / 5.0) * 0.015
+            p += (rv_diff / 5.0) * 0.015 * bw("rallyVolDirect")
 
     # Distance run efficiency: lower = more efficient mover (r=-0.095 with outcome
     # means the diff is negative when p1 wins → better mover has edge).
@@ -1156,6 +1299,15 @@ def simulate_match_phased(fp_a: dict, fp_b: dict,
     # serving direction.  Constant for the whole match.
     ab_dists = _matchup_rally_dists(mods_a, mods_b, fp_a, fp_b)  # A serves
     ba_dists = _matchup_rally_dists(mods_b, mods_a, fp_b, fp_a)  # B serves
+
+    # v13 Stage B: pre-compute matchup rally length moments (mean + stdev)
+    # for each serving direction × serve type.  Stamped on mods so
+    # simulate_point can read them via state.  Constant per match.
+    if USE_CONTINUOUS_RALLY:
+        mods_a["_rallyMean1"],  mods_a["_rallyStdev1"]  = _matchup_rally_moments(fp_a, fp_b, is_second=False)
+        mods_a["_rallyMean2"],  mods_a["_rallyStdev2"]  = _matchup_rally_moments(fp_a, fp_b, is_second=True)
+        mods_b["_rallyMean1"],  mods_b["_rallyStdev1"]  = _matchup_rally_moments(fp_b, fp_a, is_second=False)
+        mods_b["_rallyMean2"],  mods_b["_rallyStdev2"]  = _matchup_rally_moments(fp_b, fp_a, is_second=True)
 
     # Form-noise: capture the centre values now so every per-sim draw is
     # relative to a fixed mean rather than a moving target.

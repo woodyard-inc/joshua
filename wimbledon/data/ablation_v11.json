@@ -1,0 +1,84 @@
+{
+  "method": "bootstrap CI on per-match Brier delta vs v11 baseline",
+  "n_bootstrap_draws": 2000,
+  "n_sims_per_backtest": 500,
+  "results": {
+    "bpConversion": {
+      "n_matches": 908,
+      "mean_delta_brier": 0.0005199790748898665,
+      "ci_95_lo": -0.0002372400881057279,
+      "ci_95_hi": 0.0012724383259911877,
+      "verdict": "NOISE - drop was unjustified"
+    },
+    "courtSideRally": {
+      "n_matches": 908,
+      "mean_delta_brier": -0.00012950770925110216,
+      "ci_95_lo": -0.0008434603524229082,
+      "ci_95_hi": 0.0005393094713656372,
+      "verdict": "NOISE - drop was unjustified"
+    },
+    "courtSideServe": {
+      "n_matches": 908,
+      "mean_delta_brier": -7.83182819383267e-05,
+      "ci_95_lo": -0.0006933678414096917,
+      "ci_95_hi": 0.0005539008810572692,
+      "verdict": "NOISE - drop was unjustified"
+    },
+    "distanceRunEff": {
+      "n_matches": 908,
+      "mean_delta_brier": -0.00030513325991189476,
+      "ci_95_lo": -0.0010271729074889883,
+      "ci_95_hi": 0.000386525330396475,
+      "verdict": "NOISE - drop was unjustified"
+    },
+    "firstServePressure": {
+      "n_matches": 908,
+      "mean_delta_brier": 0.00017165528634361152,
+      "ci_95_lo": -0.0004303865638766533,
+      "ci_95_hi": 0.0007228414096916296,
+      "verdict": "NOISE - drop was unjustified"
+    },
+    "momentum": {
+      "n_matches": 908,
+      "mean_delta_brier": -0.00014177533039647615,
+      "ci_95_lo": -0.000946209251101322,
+      "ci_95_hi": 0.0006273182819383247,
+      "verdict": "NOISE - drop was unjustified"
+    },
+    "rallyCurve": {
+      "n_matches": 908,
+      "mean_delta_brier": 0.00260606718061674,
+      "ci_95_lo": -0.0007851905286343624,
+      "ci_95_hi": 0.0058135440528634405,
+      "verdict": "NOISE - drop was unjustified"
+    },
+    "rallyVolatility": {
+      "n_matches": 908,
+      "mean_delta_brier": 0.00030706607929515377,
+      "ci_95_lo": -0.0003297544052863442,
+      "ci_95_hi": 0.0009820969162995595,
+      "verdict": "NOISE - drop was unjustified"
+    },
+    "serveDepthEntropy": {
+      "n_matches": 908,
+      "mean_delta_brier": 0.00012088436123348014,
+      "ci_95_lo": -0.0003001266519823786,
+      "ci_95_hi": 0.0005571222466960357,
+      "verdict": "NOISE - drop was unjustified"
+    },
+    "serveSpeedCourage": {
+      "n_matches": 908,
+      "mean_delta_brier": 0.0,
+      "ci_95_lo": 0.0,
+      "ci_95_hi": 0.0,
+      "verdict": "NOISE - drop was unjustified"
+    },
+    "setTransition": {
+      "n_matches": 908,
+      "mean_delta_brier": 1.673678414096934e-05,
+      "ci_95_lo": -0.0006196883259911892,
+      "ci_95_hi": 0.0006611718061674019,
+      "verdict": "NOISE - drop was unjustified"
+    }
+  }
+}

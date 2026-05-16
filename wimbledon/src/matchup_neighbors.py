@@ -81,7 +81,7 @@ MATCHUP_METRICS = [
     ("tiebreak_diff",  None, "tiebreak_differential",  "value"),
     ("attrition",      None, "attrition_slope",        "value"),
     ("rally_volat",    None, "rally_volatility",       "value"),
-    # v12.1 men_profile additions (the "display layer" features):
+    # men_profile additions (display-layer features — added in v12.1):
     ("net_won_pct",     "PROFILE", None, "net.net_won_pct"),
     ("aggression_idx",  "PROFILE", None, "aggression.aggression_index"),
     ("rally_srv_1st",   "PROFILE", None, "rally_shots.srv_1st_avg"),
@@ -90,34 +90,6 @@ MATCHUP_METRICS = [
     ("srv_clean_pct",   "PROFILE", None, "clean_games.srv_clean_pct"),
     ("match_mins",      "PROFILE", None, "match_duration.avg_mins"),
     ("distance_km",     "PROFILE", None, "distance.avg_km_per_match"),
-]
-
-
-# v12.2 PAIRING features (Sprint 8): cross-player interaction quantities
-# that capture matchup quality, not just standalone player metrics.
-# Each pairing emits ONE feature (vs MATCHUP_METRICS which emit two: diff
-# + level).  Pairings are the actual quantities that determine point
-# outcomes in tennis — serve quality across the net against return quality.
-#
-# Format: (name, op, left_metric, right_metric, fallback)
-# Ops:
-#   "sub"     -> left - right        (signed advantage)
-#   "mul100"  -> left * right / 100  (compound effect)
-#
-# Names list metric names from MATCHUP_METRICS so they share fallback values
-# and traversal logic.
-MATCHUP_PAIRINGS = [
-    # Serve-return cross-pairings: the literal quantities that govern
-    # per-point outcomes.  Different from `fspw_diff` (overall server
-    # quality difference) — captures whether A's serve specifically beats
-    # B's return on that serve regime.
-    ("srv_1st_pairing",      "sub", "fspw",       "rpw_vs_1st",   45.0),  # A serves 1st vs B returns 1st
-    ("srv_2nd_pairing",      "sub", "sspw",       "rpw_vs_2nd",   15.0),  # A serves 2nd vs B returns 2nd
-    ("ret_1st_pairing",      "sub", "rpw_vs_1st", "fspw",        -45.0),  # A returns 1st vs B serves 1st
-    ("ret_2nd_pairing",      "sub", "rpw_vs_2nd", "sspw",        -15.0),  # A returns 2nd vs B serves 2nd
-    # Style pairings: characterise the MATCH that's about to happen.
-    ("aggression_compound",  "mul100", "aggression_idx",  "aggression_idx",  30.0),  # both-aggressive = slugfest
-    ("duration_compound",    "mul100", "match_mins",      "match_mins",      22500.0),  # both-long = grind match
 ]
 
 
@@ -181,33 +153,17 @@ def _fp_value(fp: dict, t1_key: Optional[str], t2_key: Optional[str],
 
 def matchup_features(fp_a: dict, fp_b: dict) -> List[float]:
     """Raw (un-normalised) matchup feature vector.
-    Length = 2 * len(MATCHUP_METRICS) + len(MATCHUP_PAIRINGS).
+    Length = 2 * len(MATCHUP_METRICS).  For each metric we emit a
+    (A − B) differential AND (A + B)/2 level so K-NN sees both the
+    edge and the quality of the matchup.
     """
     feats: List[float] = []
-    # Phase 1: per-metric differential + level (existing behavior)
-    per_metric_value: Dict[str, tuple] = {}
     for name, t1, t2, path in MATCHUP_METRICS:
         fb = _FALLBACK[name]
         a = _fp_value(fp_a, t1, t2, path, fb)
         b = _fp_value(fp_b, t1, t2, path, fb)
-        per_metric_value[name] = (a, b)
         feats.append(a - b)
         feats.append((a + b) / 2.0)
-    # Phase 2: cross-player pairings — A's metric vs B's complementary metric
-    # (e.g. A.fspw vs B.rpw_vs_1st).  Captures matchup quality directly,
-    # not just standalone-player edge.
-    for name, op, left_m, right_m, fb in MATCHUP_PAIRINGS:
-        a_left  = per_metric_value.get(left_m,  (None, None))[0]
-        b_right = per_metric_value.get(right_m, (None, None))[1]
-        if a_left is None or b_right is None:
-            feats.append(fb)
-            continue
-        if op == "sub":
-            feats.append(a_left - b_right)
-        elif op == "mul100":
-            feats.append(a_left * b_right / 100.0)
-        else:
-            feats.append(fb)
     return feats
 
 
@@ -302,12 +258,9 @@ def build_corpus() -> dict:
 
     return {
         "n_entries":     len(entries),
-        "feature_names": (
-            [f"{n}_{kind}"
-             for (n, *_) in MATCHUP_METRICS
-             for kind in ("diff", "level")]
-            + [p[0] for p in MATCHUP_PAIRINGS]
-        ),
+        "feature_names": [f"{n}_{kind}"
+                          for (n, *_) in MATCHUP_METRICS
+                          for kind in ("diff", "level")],
         "mean":          mean.tolist(),
         "std":           std.tolist(),
         "entries":       entries,

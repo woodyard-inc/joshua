@@ -23,7 +23,7 @@ import json
 import math
 import sys
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 import pandas as pd
 
@@ -293,63 +293,35 @@ def main():
                              "(validated; loose 'any'/'both'/'stale_or_gap' regressed).")
     parser.add_argument("--no_tiebreak", action="store_true",
                         help="ABLATION: disable tiebreak-specific baselines (production default ON).")
-    parser.add_argument("--use_archetype_shrinkage", action="store_true",
-                        help="OPT-IN: shrink Tier-2 modifier values (spci, holdAfterBreak, "
-                             "attrition) toward archetype-mean priors instead of toward zero "
-                             "when player confidence is below RELIABLE.  Helps sparse-data "
-                             "players retain style signal.")
     parser.add_argument("--no_matchup_neighbors", action="store_true",
                         help="ABLATION: disable K-nearest matchup-neighbors prior "
                              "(production default ON at blend_weight=0.15).")
     parser.add_argument("--neighbor_blend_weight", type=float, default=0.15,
                         help="Blend weight for matchup neighbors (default 0.15 = v12 production).")
-    parser.add_argument("--use_band_weights", action="store_true",
-                        help="OPT-IN: v13 Stage A band-conditional Phase-3 modifiers. "
-                             "Backtested negative — kept opt-in for future re-test.")
-    parser.add_argument("--use_continuous_rally", action="store_true",
-                        help="OPT-IN: v13 Stage B — sample continuous rally length per point "
-                             "from matchup Gaussian (men_profile rally avg + tier2 volatility) "
-                             "and apply smooth response curves on each modifier.")
     parser.add_argument("--use_momentum_hmm", action="store_true",
                         help="OPT-IN: Apply per-player within-game momentum delta from "
                              "{year}_momentum_hmm.json (Klaassen-Magnus 2014 backed).  Validated "
-                             "as no-op or slight drag on 908-match backtest; not in production stack.")
-    parser.add_argument("--use_form_noise", action="store_true",
-                        help="OPT-IN: Inject Gaussian fingerprint perturbation per simulated match. "
-                             "Validated as net negative (replaces Platt's useful squashing); not in "
-                             "production stack.  Kept for research.")
+                             "as no-op on 908-match backtest; not in production stack.")
     args = parser.parse_args()
 
-    # Apply ablation flags before importing happens (they're read at runtime)
+    import monte_carlo_phased as mcp
+
     if args.ablate:
-        import monte_carlo_phased as mcp
         mcp.set_ablation(set(args.ablate.split(",")))
 
-    # Production stack: pressure_states + tiebreak ON by default in the
-    # engine.  --no_X CLI flags toggle them off for ablation.
-    import monte_carlo_phased as mcp
+    # Production stack: pressure_states + tiebreak + matchup_neighbors are ON
+    # by default in the engine.  --no_* CLI flags disable them for ablation.
     mcp.set_pressure_gate_mode(args.pressure_gate_mode)
     if args.no_pressure_states:
         mcp.set_use_pressure_states(False)
     if args.no_tiebreak:
         mcp.set_use_tiebreak_baselines(False)
-    if args.use_momentum_hmm:
-        mcp.set_use_momentum_hmm(True)
-    if args.use_form_noise:
-        mcp.set_use_form_noise(True)
-    if args.use_archetype_shrinkage:
-        mcp.set_use_archetype_shrinkage(True)
-    # Matchup neighbors: ON by default in v12; --no flag disables for ablation.
-    # blend_weight always honoured (default 0.15).
     if args.no_matchup_neighbors:
         mcp.set_use_matchup_neighbors(False)
     else:
         mcp.set_use_matchup_neighbors(True, blend_weight=args.neighbor_blend_weight)
-    # v13 Stage A/B both opt-in (backtested negative; kept for future re-test).
-    if args.use_band_weights:
-        mcp.set_use_band_weights(True)
-    if args.use_continuous_rally:
-        mcp.set_use_continuous_rally(True)
+    if args.use_momentum_hmm:
+        mcp.set_use_momentum_hmm(True)
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []

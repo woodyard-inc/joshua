@@ -20,7 +20,7 @@ from __future__ import annotations
 import math
 import random
 from dataclasses import dataclass, field
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 
 # ── constants ──────────────────────────────────────────────────────────────
 # Calibration parameters — validated via grid search + leave-one-year-out CV
@@ -37,40 +37,46 @@ PLATT_A = 0.35
 PROB_FLOOR = 0.20
 PROB_CEIL  = 0.80
 
+# ── Grass-court reference averages ────────────────────────────────────────
+# Population means used as fallbacks when a player's data is missing AND
+# as the reference points for matchup adjustments (a returner above the
+# tour-average rpw_vs_1st pulls the server's effective probability down
+# by the excess).  Measured on the 2024 fingerprint+grass-profile dataset
+# (273 players).
+GRASS_RPW_AVG        = 35.0   # overall return-points-won (blended; display fallback)
+GRASS_RPW_VS_1ST_AVG = 25.0   # median rpw vs 1st serves on grass
+GRASS_RPW_VS_2ND_AVG = 40.0   # median rpw vs 2nd serves on grass
+GRASS_AVG_DF_RATE    = 0.035
+GRASS_AVG_FSP        = 0.63
+GRASS_AVG_FSPW       = 0.72
+GRASS_AVG_SSPW       = 0.56
+GRASS_AVG_RGW        = 16.0   # return games won %, grass-court 2014–2024 mean
 
-# Form-noise calibration toggle.  When True, simulate_match_phased draws a
-# Gaussian-perturbed copy of each player's Tier-1 base metrics ONCE per
-# simulated match (not per point).  This injects realistic match-day form
-# variance directly, replacing the post-hoc Platt+clamp pipeline that was
-# faking variance through aggressive squashing.
-#
-# Sigmas calibrated from empirical year-to-year fingerprint stability across
-# 776 player-year pairs (2013-2024), scaled by 0.75 to separate form
-# variation from true skill drift:
-#
-#   fspw           year-to-year stdev 3.93pp -> form sigma 2.95pp
-#   sspw           year-to-year stdev 5.03pp -> form sigma 3.77pp
-#   rpw_vs_1st     year-to-year stdev 3.81pp -> form sigma 2.86pp
-#   rpw_vs_2nd     year-to-year stdev 4.96pp -> form sigma 3.72pp
-#
-# When form-noise is on, the Platt sigmoid and [0.20, 0.80] clamp are skipped
-# (the squash was a workaround for variance-deficient raw MC; form-noise
-# provides the variance natively).  A minimal safety clamp [0.005, 0.995]
-# is kept for log-loss numerical stability.
-USE_FORM_NOISE = False
-FORM_SIGMA_FSPW       = 2.95
-FORM_SIGMA_SSPW       = 3.77
-FORM_SIGMA_RPW_VS_1ST = 2.86
-FORM_SIGMA_RPW_VS_2ND = 3.72
-FORM_SAFETY_FLOOR     = 0.005
-FORM_SAFETY_CEIL      = 0.995
+# Rally-length bands and grass-court priors for the per-point sampler.
+RALLY_BANDS = ["1_3", "4_6", "7_9", "10+"]
+GRASS_PRIOR = {"1_3": 0.55, "4_6": 0.30, "7_9": 0.10, "10+": 0.05}
+FIRST_SERVE_RALLY_WEIGHTS  = {"1_3": 1.15, "4_6": 1.00, "7_9": 0.80, "10+": 0.70}
+SECOND_SERVE_RALLY_WEIGHTS = {"1_3": 0.85, "4_6": 1.05, "7_9": 1.15, "10+": 1.20}
+
+# Continuous momentum (catch-fire) constants — only used when the
+# "momentum" modifier is in the ablation set as ACTIVE.  Default
+# production stack has it disabled (in PRODUCTION_ABLATED).
+STREAK_BOOST_PER_POINT = 0.004
+STREAK_GROWTH_RATE     = 0.35
+STREAK_MAX_BOOST       = 0.06
+AVG_STREAK_INIT        = 5.5
+AVG_STREAK_SURV        = 0.431
+AVG_STREAK_REC         = 0.416
+
+# Match format.
+SETS_TO_WIN = 3
 
 
-def set_use_form_noise(flag: bool) -> None:
-    global USE_FORM_NOISE
-    USE_FORM_NOISE = bool(flag)
-    print(f"[monte_carlo_phased] USE_FORM_NOISE={USE_FORM_NOISE}")
-
+# ── Toggles & engine setters ──────────────────────────────────────────────
+# All "USE_*" toggles default to the validated v12.1 production stack;
+# rejected experiments (form-noise, isotonic, band-weights, archetype
+# shrinkage, continuous-rally) have been removed from the codebase entirely
+# — see CLAUDE.md "What has been tried" for the negative-results record.
 
 # Tiebreak-baseline toggle.  When True, simulate_point's Phase 2 substitutes
 # the per-player tiebreak-fitted baselines (from {year}_tiebreak_baselines.json)
@@ -90,16 +96,6 @@ def set_use_tiebreak_baselines(flag: bool) -> None:
     global USE_TIEBREAK_BASELINES
     USE_TIEBREAK_BASELINES = bool(flag)
     print(f"[monte_carlo_phased] USE_TIEBREAK_BASELINES={USE_TIEBREAK_BASELINES}")
-
-
-# Archetype-prior shrinkage for Tier-2 modifiers.  When True, modifier
-# values are shrunk toward the player's archetype-mean modifier value
-# rather than toward zero.  The shrinkage weight is the existing
-# _conf_weight: RELIABLE players' raw values are unchanged; UNRELIABLE
-# players get the full archetype mean.  Helps low-confidence players
-# (qualifiers, sparse-data) retain style information.
-USE_ARCHETYPE_SHRINKAGE = False
-_ARCHETYPE_MEANS: dict = {}    # populated by _load_archetype_means
 
 
 # Matchup-neighbors prior (Sprint 5a).  At match-level finalisation, blend
@@ -135,57 +131,6 @@ def _load_matchup_corpus() -> None:
     print(f"[monte_carlo_phased] loaded matchup corpus: "
           f"{_MATCHUP_CORPUS.get('n_entries', 0)} entries, "
           f"{len(_MATCHUP_CORPUS.get('feature_names', []))} features")
-
-
-def set_use_archetype_shrinkage(flag: bool) -> None:
-    global USE_ARCHETYPE_SHRINKAGE
-    USE_ARCHETYPE_SHRINKAGE = bool(flag)
-    print(f"[monte_carlo_phased] USE_ARCHETYPE_SHRINKAGE={USE_ARCHETYPE_SHRINKAGE}")
-    if USE_ARCHETYPE_SHRINKAGE and not _ARCHETYPE_MEANS:
-        _load_archetype_means()
-
-
-def _load_archetype_means() -> None:
-    """Lazy-load data/archetype_modifier_means.json into _ARCHETYPE_MEANS."""
-    from pathlib import Path as _P
-    import json as _json
-    path = _P(__file__).parent.parent / "data" / "archetype_modifier_means.json"
-    if not path.exists():
-        print(f"[monte_carlo_phased] WARNING: {path.name} not found; archetype "
-              f"shrinkage degrades to zero-shrinkage")
-        return
-    _ARCHETYPE_MEANS.update(_json.loads(path.read_text()))
-    print(f"[monte_carlo_phased] loaded archetype means: "
-          f"{len(_ARCHETYPE_MEANS.get('per_archetype', {}))} modifiers")
-
-
-def _archetype_mean(modifier_name: str, archetype_id) -> float:
-    """Return archetype-mean modifier value, falling back to field mean."""
-    if not _ARCHETYPE_MEANS:
-        return 0.0
-    per = _ARCHETYPE_MEANS.get("per_archetype", {}).get(modifier_name, {})
-    if archetype_id is not None:
-        v = per.get(str(archetype_id))
-        if v is not None:
-            return float(v)
-    return float(_ARCHETYPE_MEANS.get("field_mean", {}).get(modifier_name, 0.0))
-
-
-def _shrunk_modifier(player_val, modifier_name: str,
-                     archetype_id, confidence) -> float:
-    """Bayesian-shrunk modifier value.  RELIABLE: raw player value.
-    Lower confidence: blend toward archetype mean.  UNRELIABLE: pure
-    archetype mean.
-
-    When USE_ARCHETYPE_SHRINKAGE is False, falls back to the original
-    _conf_weight() * player_val form for backward compatibility."""
-    if not USE_ARCHETYPE_SHRINKAGE:
-        return _conf_weight(confidence) * (player_val if player_val is not None else 0.0)
-    arch = _archetype_mean(modifier_name, archetype_id)
-    if player_val is None:
-        return arch
-    w_player = _conf_weight(confidence)  # 1.0 / 0.75 / 0.40 / 0.0
-    return w_player * player_val + (1.0 - w_player) * arch
 
 
 # Pressure-state baseline toggle.  When True, simulate_point() Phase 2 looks up
@@ -307,90 +252,7 @@ def _should_use_pressure(fp_a: dict, fp_b: dict,
     return (_is_sparse_fp(fp_a, current_year) or
             _is_sparse_fp(fp_b, current_year))
 
-GRASS_RPW_AVG     = 35.0  # blended; used as fallback / display
-
-# Grass-court tour averages for return-points-won by serve type.
-# Measured on the 2024 fingerprint+grass-profile dataset (273 players):
-#   1st serve regime: median 24.8% RPW (returner under maximum pressure)
-#   2nd serve regime: median 40.3% RPW (returner attacks; tends to win rallies)
-# These are the matchup baselines for the phased simulation — a returner
-# above his/her serve-type average shifts the server's effective probability
-# down for that phase only.
-GRASS_RPW_VS_1ST_AVG = 25.0
-GRASS_RPW_VS_2ND_AVG = 40.0
-GRASS_AVG_DF_RATE = 0.035
-GRASS_AVG_FSP     = 0.63
-GRASS_AVG_FSPW    = 0.72
-GRASS_AVG_SSPW    = 0.56
-GRASS_AVG_RGW     = 16.0   # return games won %, grass-court 2014–2024 mean
-
-RALLY_BANDS = ["1_3", "4_6", "7_9", "10+"]
-GRASS_PRIOR = {"1_3": 0.55, "4_6": 0.30, "7_9": 0.10, "10+": 0.05}
-
-# v13 Stage A: band-conditional modifier weights.  Each Phase-3 modifier has
-# a physically-motivated weight profile by rally length band.  Replaces the
-# implicit "all modifiers fire equally on every point" with band-specific
-# firing (a serve-quality modifier should fade on a 20-shot rally; an
-# attrition modifier should be zero on a 1-shot ace).
-#
-# Weights are SET A PRIORI from physical reasoning, NOT tuned on backtest.
-# All values in [0, 1].  A modifier not in the table fires at weight 1.0
-# (band-independent).
-#
-# Rationale per row:
-#   spci         — serve composite: serve advantage dominates short points;
-#                  irrelevant once rally is established.
-#   clutch       — returner clutch: minimal on quick serve points; matters
-#                  most when returner is in extended exchange.
-#   attrition    — physical decay: zero on quick points; grows with rally length.
-#   serveEntropy — serve direction unpredictability: only affects how the
-#                  rally STARTS; gone by mid-rally.
-#   rallyVolDirect — rally aggression: meaningless on 1-shot points; matters
-#                    once rallies develop.
-#   (band-independent modifiers — rgw, tiebreak, holdAfterBreak, dfPressure —
-#    are omitted; they fire at weight 1.0)
-BAND_WEIGHTS = {
-    "spci":           {"1_3": 1.0, "4_6": 0.7, "7_9": 0.5, "10+": 0.3},
-    "clutch":         {"1_3": 0.3, "4_6": 0.7, "7_9": 1.0, "10+": 1.0},
-    "attrition":      {"1_3": 0.0, "4_6": 0.3, "7_9": 0.7, "10+": 1.0},
-    "serveEntropy":   {"1_3": 1.0, "4_6": 0.5, "7_9": 0.2, "10+": 0.0},
-    "rallyVolDirect": {"1_3": 0.0, "4_6": 0.7, "7_9": 1.0, "10+": 1.0},
-}
-
-
-def _band_weight(name: str, band: str) -> float:
-    """Returns the band-conditional firing weight for a Phase-3 modifier.
-    Defaults to 1.0 for modifiers not in BAND_WEIGHTS (band-independent)."""
-    return BAND_WEIGHTS.get(name, {}).get(band, 1.0)
-
-
-# Toggle to enable Stage A (band-conditional Phase-3 modifier weights).
-# Backtested NEGATIVE: at our calibration, restricting modifiers to specific
-# rally bands cuts more signal than band-specificity adds.  Brier regressed
-# +0.0007 vs v12.1 production stack.  Kept as opt-in for future re-test
-# (e.g., with re-tuned weights or larger sample size in 2025+).
-USE_BAND_WEIGHTS = False
-
-
-def set_use_band_weights(flag: bool) -> None:
-    global USE_BAND_WEIGHTS
-    USE_BAND_WEIGHTS = bool(flag)
-    print(f"[monte_carlo_phased] USE_BAND_WEIGHTS={USE_BAND_WEIGHTS}")
-
-FIRST_SERVE_RALLY_WEIGHTS  = {"1_3": 1.15, "4_6": 1.00, "7_9": 0.80, "10+": 0.70}
-SECOND_SERVE_RALLY_WEIGHTS = {"1_3": 0.85, "4_6": 1.05, "7_9": 1.15, "10+": 1.20}
-
-STREAK_BOOST_PER_POINT = 0.004
-STREAK_GROWTH_RATE     = 0.35
-STREAK_MAX_BOOST       = 0.06
-AVG_STREAK_INIT        = 5.5
-AVG_STREAK_SURV        = 0.431
-AVG_STREAK_REC         = 0.416
-
-SETS_TO_WIN = 3
-
-
-# ── ablation harness ──────────────────────────────────────────────────────
+# ── Ablation harness ──────────────────────────────────────────────────────
 # Set via set_ablation(); each name corresponds to a modifier block in
 # simulate_point.  Disabling = the modifier contributes 0pp to p.
 ABLATABLE = {
@@ -690,74 +552,6 @@ def _sample_band(dist: dict, rng) -> str:
     return "10+"
 
 
-# ── v13 Stage B: continuous rally length sampling ─────────────────────────
-#
-# Per the user's proposal: instead of sampling discrete bands {1_3, 4_6, 7_9,
-# 10+} which only give a 4-bucket view, sample a CONTINUOUS rally length from
-# a Gaussian shaped by the matchup-specific mean and stdev derived from
-# both players' rally length statistics.  Then use the actual length value
-# as a smooth multiplier on each modifier's response curve.
-#
-# Same physical reasoning as Stage A but smoother:
-#   spci         exp(-(L-1)/5)        full at L=1, ~0.17 at L=10
-#   serveEntropy max(0, 1 - (L-1)/9)  full at L=1, 0 at L=10
-#   clutch       min(1, 0.3 + (L-1)/7) ramp from 0.3 at L=1 to 1.0 at L=8
-#   attrition    min(1, max(0, (L-1)/9))  0 at L=1 to 1.0 at L=10
-#   rallyVolDirect min(1, max(0, (L-1)/4))  0 at L=1, saturates at L=5
-USE_CONTINUOUS_RALLY = False
-GRASS_DEFAULT_RALLY_SD = 2.5   # fallback when player rally_volatility unavailable
-
-
-def set_use_continuous_rally(flag: bool) -> None:
-    global USE_CONTINUOUS_RALLY
-    USE_CONTINUOUS_RALLY = bool(flag)
-    print(f"[monte_carlo_phased] USE_CONTINUOUS_RALLY={USE_CONTINUOUS_RALLY}")
-
-
-def _cont_bw(name: str, L: float) -> float:
-    """Smooth response curve for a modifier as function of continuous rally length L."""
-    if name == "spci":           return math.exp(-(L - 1.0) / 5.0)
-    if name == "serveEntropy":   return max(0.0, 1.0 - (L - 1.0) / 9.0)
-    if name == "clutch":         return min(1.0, 0.3 + (L - 1.0) / 7.0)
-    if name == "attrition":      return min(1.0, max(0.0, (L - 1.0) / 9.0))
-    if name == "rallyVolDirect": return min(1.0, max(0.0, (L - 1.0) / 4.0))
-    return 1.0
-
-
-def _length_to_band(L: float) -> str:
-    """Map continuous length to discrete band (for backward compatibility)."""
-    if L < 4.0:  return "1_3"
-    if L < 7.0:  return "4_6"
-    if L < 10.0: return "7_9"
-    return "10+"
-
-
-def _matchup_rally_moments(fp_srv: dict, fp_ret: dict, is_second: bool):
-    """Return (mean, stdev) of rally length for this matchup direction.
-    Pulls from men_profile.rally_shots (mean) and tier2.rally_volatility (stdev).
-    Falls back to grass averages if data unavailable."""
-    srv_prof = (fp_srv.get("men_profile") or {}).get("rally_shots") or {}
-    ret_prof = (fp_ret.get("men_profile") or {}).get("rally_shots") or {}
-    if is_second:
-        srv_mean = srv_prof.get("srv_2nd_avg")
-        ret_mean = ret_prof.get("ret_2nd_avg")
-    else:
-        srv_mean = srv_prof.get("srv_1st_avg")
-        ret_mean = ret_prof.get("ret_1st_avg")
-    srv_mean = srv_mean if isinstance(srv_mean, (int, float)) else 3.5
-    ret_mean = ret_mean if isinstance(ret_mean, (int, float)) else 3.5
-    mean = (srv_mean + ret_mean) / 2.0
-
-    srv_t2 = (fp_srv.get("tier2") or {}).get("rally_volatility") or {}
-    ret_t2 = (fp_ret.get("tier2") or {}).get("rally_volatility") or {}
-    sds = []
-    for t2 in (srv_t2, ret_t2):
-        if t2.get("available") and isinstance(t2.get("value"), (int, float)):
-            sds.append(float(t2["value"]))
-    stdev = sum(sds) / len(sds) if sds else GRASS_DEFAULT_RALLY_SD
-    return mean, max(stdev, 0.5)   # floor on stdev to avoid degenerate sampling
-
-
 # ── PHASED POINT SIMULATION ───────────────────────────────────────────────
 
 def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
@@ -804,23 +598,8 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
             return False  # double fault
 
     # ──────────────── PHASE 2: RALLY ────────────────
-    # v13 Stage B: when USE_CONTINUOUS_RALLY is on, sample continuous length
-    # from the matchup-derived Gaussian (mean from men_profile.rally_shots,
-    # stdev from tier2.rally_volatility — pre-computed once per match in
-    # simulate_match_phased and passed via state).  Derive band from length
-    # for compatibility with band-using code paths.  Otherwise use the v12
-    # discrete-band sampler.
-    if USE_CONTINUOUS_RALLY and srv.get("_rallyMean1") is not None:
-        if is_second:
-            mu = srv["_rallyMean2"]; sd = srv["_rallyStdev2"]
-        else:
-            mu = srv["_rallyMean1"]; sd = srv["_rallyStdev1"]
-        L = max(1.0, min(30.0, rng.gauss(mu, sd)))
-        band = _length_to_band(L)
-    else:
-        rd = state["rallyDist2"] if is_second else state["rallyDist1"]
-        band = _sample_band(rd, rng)
-        L = None  # signal to bw() to use band-step weights
+    rd = state["rallyDist2"] if is_second else state["rallyDist1"]
+    band = _sample_band(rd, rng)
 
     # Serve-type-specific baseline + serve-type-specific matchup adjustment.
     # Each serve regime has its own tour average (1st: ~28%, 2nd: ~52%) so a
@@ -886,21 +665,8 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
             p -= ((sideR - ret["csaOverall"]) / 100) * 0.30
 
     # ──────────────── PHASE 3: MODIFIERS ────────────────
-    # v13 Stage A: each modifier may be band-weighted (multiply by
-    # BAND_WEIGHTS[name][band]) so its effect is physically appropriate
-    # for the rally length.  bw() returns 1.0 when USE_BAND_WEIGHTS is False
-    # or the modifier isn't in the table.
-    def bw(name):
-        if not USE_BAND_WEIGHTS:
-            return 1.0
-        # Stage B: smooth response curve on continuous length L when available
-        if L is not None:
-            return _cont_bw(name, L)
-        # Stage A fallback: discrete band-step weights
-        return _band_weight(name, band)
-
     if "serveEntropy" not in _ABLATED and srv.get("serveEntropy") is not None:
-        p += 0.025 * ((srv["serveEntropy"] / 100) - 0.75) * bw("serveEntropy")
+        p += 0.025 * ((srv["serveEntropy"] / 100) - 0.75)
 
     if state["isBreakPoint"] or state["isDeuce"]:
         # When this match is using per-state baselines (reliability gate fired),
@@ -908,17 +674,13 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         # double-counting.
         if "spci" not in _ABLATED and not use_pressure_pt:
             spci = srv.get("spci")
-            if spci is not None:
-                val = _shrunk_modifier(spci.get("modifier_delta"),
-                                       "spci_modifier_delta",
-                                       srv.get("archetype_id"),
-                                       spci.get("confidence"))
-                p += val * 0.50 * bw("spci")
+            if spci and spci.get("modifier_delta") is not None:
+                p += _conf_weight(spci.get("confidence")) * spci["modifier_delta"] * 0.50
 
         if "clutch" not in _ABLATED and not use_pressure_pt:
             clutch = ret.get("clutch")
             if clutch and clutch.get("modifier_delta") is not None:
-                p -= _conf_weight(clutch.get("confidence")) * (clutch["modifier_delta"] / 100) * 0.60 * bw("clutch")
+                p -= _conf_weight(clutch.get("confidence")) * (clutch["modifier_delta"] / 100) * 0.60
 
         if "bpConversion" not in _ABLATED and state["isBreakPoint"] and ret.get("bpConversion") is not None:
             p -= (ret["bpConversion"] - 0.45) * 0.15
@@ -982,23 +744,16 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
 
     if "holdAfterBreak" not in _ABLATED and state["isPostBreak"]:
         habr = srv.get("holdAfterBreak")
-        if habr and habr.get("available"):
-            val = _shrunk_modifier(habr.get("value"), "hold_after_break_value",
-                                   srv.get("archetype_id"), habr.get("confidence"))
-            p += (val / 100) * 0.50
+        if habr and habr.get("available") and habr.get("value") is not None:
+            p += _conf_weight(habr.get("confidence")) * (habr["value"] / 100) * 0.50
 
     if "attrition" not in _ABLATED and state["setIndex"] is not None and state["setIndex"] > 0:
         att = srv.get("attrition")
         attR = ret.get("attrition")
-        attr_band = bw("attrition")
-        if att and att.get("available"):
-            val = _shrunk_modifier(att.get("value"), "attrition_value",
-                                   srv.get("archetype_id"), att.get("confidence"))
-            p += -(val / 2.0) * state["setIndex"] * 0.02 * attr_band
-        if attR and attR.get("available"):
-            valR = _shrunk_modifier(attR.get("value"), "attrition_value",
-                                    ret.get("archetype_id"), attR.get("confidence"))
-            p -= -(valR / 2.0) * state["setIndex"] * 0.02 * attr_band
+        if att and att.get("available") and att.get("value") is not None:
+            p += _conf_weight(att.get("confidence")) * (-(att["value"] / 2.0) * state["setIndex"] * 0.02)
+        if attR and attR.get("available") and attR.get("value") is not None:
+            p -= _conf_weight(attR.get("confidence")) * (-(attR["value"] / 2.0) * state["setIndex"] * 0.02)
 
     if "rallyVolatility" not in _ABLATED:
         rvS = srv.get("rallyVolatility")
@@ -1015,7 +770,7 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         rvR = ret.get("rallyVolatility")
         if rvS and rvS.get("available") and rvR and rvR.get("available"):
             rv_diff = rvS["value"] - rvR["value"]
-            p += (rv_diff / 5.0) * 0.015 * bw("rallyVolDirect")
+            p += (rv_diff / 5.0) * 0.015
 
     # Distance run efficiency: lower = more efficient mover (r=-0.095 with outcome
     # means the diff is negative when p1 wins → better mover has edge).
@@ -1252,36 +1007,6 @@ class PhasedResult:
     p_win_a_raw: float = 0.0
 
 
-_FORM_KEYS = ("fspw", "sspw", "rpwVs1st", "rpwVs2nd")
-_FORM_SIGMAS = (FORM_SIGMA_FSPW, FORM_SIGMA_SSPW,
-                FORM_SIGMA_RPW_VS_1ST, FORM_SIGMA_RPW_VS_2ND)
-# Per-point clamps for the perturbed metrics (percentage units; rpw are
-# already in pct, fsp/ssp are in 0-1 here so the helper handles both).
-_FORM_FSPW_RANGE     = (0.40, 0.90)
-_FORM_SSPW_RANGE     = (0.30, 0.75)
-_FORM_RPW_V1_RANGE   = (10.0, 45.0)
-_FORM_RPW_V2_RANGE   = (25.0, 65.0)
-_FORM_RANGES         = (_FORM_FSPW_RANGE, _FORM_SSPW_RANGE,
-                        _FORM_RPW_V1_RANGE, _FORM_RPW_V2_RANGE)
-
-
-def _apply_form_draw(mods: dict, base: tuple, rng) -> None:
-    """In-place: jitter the 4 base Tier-1 metrics in `mods` by Gaussian
-    noise, clipped to physically plausible per-metric ranges.
-    `base` is the (fspw_0_1, sspw_0_1, rpwVs1st_pct, rpwVs2nd_pct) tuple
-    captured before the match loop so each draw is relative to a fixed
-    centre, not the previous draw."""
-    for key, sigma, rng_lo_hi, b in zip(_FORM_KEYS, _FORM_SIGMAS, _FORM_RANGES, base):
-        # fspw / sspw are stored as fractions in mods; rpwVs* are percentages.
-        if key in ("fspw", "sspw"):
-            v = b + rng.gauss(0.0, sigma) / 100.0
-            v = max(rng_lo_hi[0], min(rng_lo_hi[1], v))
-        else:
-            v = b + rng.gauss(0.0, sigma)
-            v = max(rng_lo_hi[0], min(rng_lo_hi[1], v))
-        mods[key] = v
-
-
 def simulate_match_phased(fp_a: dict, fp_b: dict,
                           n: int = 10_000,
                           seed: Optional[int] = None,
@@ -1304,27 +1029,9 @@ def simulate_match_phased(fp_a: dict, fp_b: dict,
     ab_dists = _matchup_rally_dists(mods_a, mods_b, fp_a, fp_b)  # A serves
     ba_dists = _matchup_rally_dists(mods_b, mods_a, fp_b, fp_a)  # B serves
 
-    # v13 Stage B: pre-compute matchup rally length moments (mean + stdev)
-    # for each serving direction × serve type.  Stamped on mods so
-    # simulate_point can read them via state.  Constant per match.
-    if USE_CONTINUOUS_RALLY:
-        mods_a["_rallyMean1"],  mods_a["_rallyStdev1"]  = _matchup_rally_moments(fp_a, fp_b, is_second=False)
-        mods_a["_rallyMean2"],  mods_a["_rallyStdev2"]  = _matchup_rally_moments(fp_a, fp_b, is_second=True)
-        mods_b["_rallyMean1"],  mods_b["_rallyStdev1"]  = _matchup_rally_moments(fp_b, fp_a, is_second=False)
-        mods_b["_rallyMean2"],  mods_b["_rallyStdev2"]  = _matchup_rally_moments(fp_b, fp_a, is_second=True)
-
-    # Form-noise: capture the centre values now so every per-sim draw is
-    # relative to a fixed mean rather than a moving target.
-    if USE_FORM_NOISE:
-        base_a = tuple(mods_a[k] for k in _FORM_KEYS)
-        base_b = tuple(mods_b[k] for k in _FORM_KEYS)
-
     score_count = {}
     wins_a = 0
     for _ in range(n):
-        if USE_FORM_NOISE:
-            _apply_form_draw(mods_a, base_a, rng)
-            _apply_form_draw(mods_b, base_b, rng)
         sA, sB = _simulate_one_match(mods_a, mods_b, ab_dists, ba_dists, rng)
         key = f"{sA}-{sB}"
         score_count[key] = score_count.get(key, 0) + 1
@@ -1332,18 +1039,13 @@ def simulate_match_phased(fp_a: dict, fp_b: dict,
             wins_a += 1
 
     p_raw = wins_a / n
-    if USE_FORM_NOISE:
-        # Form-noise replaces Platt's variance-faking with real variance.
-        # Minimal safety clamp keeps log-loss numerically stable for the
-        # tails that genuinely deserve a 0% / 100% prediction.
-        p_cal = max(FORM_SAFETY_FLOOR, min(FORM_SAFETY_CEIL, p_raw))
-    else:
-        p_cal = max(PROB_FLOOR, min(PROB_CEIL, _platt(p_raw)))
+    p_cal = max(PROB_FLOOR, min(PROB_CEIL, _platt(p_raw)))
 
-    # Sprint 5a: supplementary matchup-neighbors prior, blended at match-level
-    # finalisation.  Looks up K=30 nearest historical matchups (by metric-
-    # vector distance), returns their win rate, blends with calibrated MC at
-    # NEIGHBOR_BLEND_WEIGHT.  Leakage-safe via current_year filter.
+    # Supplementary matchup-neighbours prior, blended at match-level
+    # finalisation.  K=30 nearest historical matchups (by metric-vector
+    # distance), distance-weighted average win rate, blended with the MC
+    # output at NEIGHBOR_BLEND_WEIGHT.  Leakage-safe via current_year
+    # filter.  Falls back silently if corpus missing or too few neighbours.
     if USE_MATCHUP_NEIGHBORS:
         if not _MATCHUP_CORPUS:
             _load_matchup_corpus()  # lazy load on first use
@@ -1354,10 +1056,8 @@ def simulate_match_phased(fp_a: dict, fp_b: dict,
                                         exclude_year=current_year, k=30)
                 if p_neighbor is not None:
                     p_cal = (1.0 - NEIGHBOR_BLEND_WEIGHT) * p_cal + NEIGHBOR_BLEND_WEIGHT * p_neighbor
-            except Exception as _e:
-                # Lookup failure (missing data, import error) should never break
-                # the engine — neighbor signal is supplementary.
-                pass
+            except Exception:
+                pass  # neighbour signal is supplementary; never break the engine
 
     return PhasedResult(
         player_a      = fp_a.get("player", "A"),

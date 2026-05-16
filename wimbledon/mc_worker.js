@@ -155,7 +155,7 @@ const NEIGHBOR_K            = 30;
 
 // Must mirror MATCHUP_METRICS in src/matchup_neighbors.py exactly.
 // Each entry: [display_name, tier1_key | null | "PROFILE", tier2_key | null, value_path | null, fallback]
-// "PROFILE" sentinel -> traverse fp.men_profile via dotted path (v12.1).
+// "PROFILE" sentinel -> traverse fp.men_profile via dotted path.
 const MATCHUP_METRICS = [
   ["fspw",          "fspw_pct",        null,                      null,         72.0],
   ["sspw",          "sspw_pct",        null,                      null,         56.0],
@@ -168,7 +168,7 @@ const MATCHUP_METRICS = [
   ["tiebreak_diff", null,              "tiebreak_differential",   "value",       0.0],
   ["attrition",     null,              "attrition_slope",         "value",       0.1],
   ["rally_volat",   null,              "rally_volatility",        "value",       3.0],
-  // v12.1 display-layer additions from men_profile (must match Python)
+  // Display-layer additions from men_profile (added v12.1)
   ["net_won_pct",     "PROFILE",       null, "net.net_won_pct",                60.0],
   ["aggression_idx",  "PROFILE",       null, "aggression.aggression_index",    55.0],
   ["rally_srv_1st",   "PROFILE",       null, "rally_shots.srv_1st_avg",         3.5],

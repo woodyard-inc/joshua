@@ -171,8 +171,8 @@ Activated by default when fingerprint data is attached:
 - **Platt A 1.5–5.0** — raw MC overconfident, A=0.35 is the optimum.
 - **Elo blend (20-50%)** — improves 592-match subset but degrades full dataset (2019→2021 COVID gap).
 - **Floor/ceil 0.10/0.90** — extremes not discriminative enough.
-- **Form-noise injection** (per-sim Gaussian fingerprint perturbation, no Platt, no clamp): Brier regressed from 0.2098 to 0.2266. Variance ≠ mean-squashing; Platt was doing legitimate work.
-- **Isotonic regression** (LOYO): Brier regressed by +0.0045 on both baseline and pressure stacks. At 908 matches the non-parametric flexibility costs more than it saves.
+- **Form-noise injection** (per-sim Gaussian fingerprint perturbation, no Platt, no clamp): Brier regressed from 0.2098 to 0.2266. Variance ≠ mean-squashing; Platt was doing legitimate work.  Code REMOVED in cleanup.
+- **Isotonic regression** (LOYO): Brier regressed by +0.0045 on both baseline and pressure stacks. At 908 matches the non-parametric flexibility costs more than it saves.  Builder REMOVED.
 
 ### Sprint 7 (v13) — band-conditional & continuous-rally modifiers REJECTED
 Hypothesis: each Phase-3 modifier should fire selectively by rally length
@@ -188,14 +188,25 @@ all points.  Tested in two forms:
 Both regress ~+0.0007 Brier vs v12.1.  Diagnosis: at this calibration,
 modifiers already operate near their minimum useful strength.  Cutting
 modifier effect on 70% of points (via band weights ≤1.0) reduces signal
-below noise floor for the matches where modifiers were contributing real
-value.  Kept as opt-in (`--use_band_weights`, `--use_continuous_rally`)
-for future re-test when sample size grows.  Code: `BAND_WEIGHTS` table,
-`_cont_bw()`, `_matchup_rally_moments()` in `monte_carlo_phased.py`.
+below noise floor.  Code REMOVED from `monte_carlo_phased.py` in the
+post-audit cleanup; can be reconstructed from git history if revived
+when sample size grows.
+
+### Sprint 8 — cross-player pairing features TIED (corpus revert)
+Hypothesis: adding "matchup-quality" features to the K-NN corpus —
+literal serve-vs-return cross-pairings like `A.fspw − B.rpw_vs_1st`,
+plus compound style pairings (aggression × aggression, duration ×
+duration) — would compound on the matchup-neighbours win.  Tested at
+44-dim corpus vs 38-dim production.  Result: essentially tied (Brier
+0.2076 vs 0.2075; accuracy 68.2% vs 68.5%).  Diagnosis: cross-player
+pairings are mathematically reconstructible from the existing
+differential + level features, so K-NN distance gains no new info.
+Corpus reverted to 38-dim in the cleanup.
 
 ### Feature experiments
 - **Latent two-factor model** (smooth fspw/sspw into one serve latent, rpw_v1/v2 into one return latent, with empirical-Bayes shrinkage): Brier regressed from 0.2098 to 0.2154. Shrinking top players toward field mean destroyed signal that the Phase-3 modifiers were exploiting.
-- **Per-point momentum HMM** (Klaassen-Magnus 2014, with zero-mean bias correction): essentially neutral (0.2097 alone, no detectable improvement in any combination). Real signal but too small to recover at 908-match sample size.
+- **Per-point momentum HMM** (Klaassen-Magnus 2014, with zero-mean bias correction): essentially neutral (0.2097 alone, no detectable improvement in any combination). Real signal but too small to recover at 908-match sample size.  Kept as opt-in (`--use_momentum_hmm`).
+- **Archetype-prior shrinkage for Tier-2 modifiers** (replace `_conf_weight() → 0 for UNRELIABLE` with shrinkage toward archetype mean): neutral (Brier ±0.0001 vs v12.1).  Builder REMOVED.
 - **Pressure-state gate variants**: `any` and `both` regressed (over-fires on clean years); `stale_or_gap` regressed (catches normal injury-comeback careers); `stale_only` won.
 
 ### Ablation framework

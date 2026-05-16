@@ -207,8 +207,24 @@ Already running on port 3400: `python3 -m http.server 3400 --directory joshua/wi
 6. `mc_worker.js` — browser mirror (still on v10; not yet synced with v11 changes)
 7. `data/model_metrics.json` — current results
 
-### Browser-side sync note
-The v11 changes (pressure-state baselines, tiebreak baselines, reliability gate) are Python-only.  `mc_worker.js` still runs the v10 logic — needs sync for the front-end app to reflect v11 backtest performance.
+### Browser-side sync status
+`mc_worker.js` and `app.js` synced to v11:
+- `loadFingerprintsOnly()` and main data load both fetch `{year}_pressure_states.json`,
+  `{year}_tiebreak_baselines.json`, `{year}_archetypes.json` and attach to each fingerprint
+- `mc_worker.js` adds the same `USE_PRESSURE_STATES`, `USE_TIEBREAK_BASELINES`,
+  `PRESSURE_GATE_MODE='stale_only'` toggles as Python
+- `extractModifiers` surfaces state-conditional + tiebreak baselines
+- `simulatePoint` Phase 2 has the tiebreak > pressure > Tier-1 priority order
+- Phase 3 spci/clutch/tiebreak modifiers auto-skip when their effects are absorbed
+- `runMonteCarlo` accepts `currentYear` and stamps `_usePressure` on mods once per match
+- `app.js` posts `currentYear: state.year` to the worker; worker version bumped to v53
+
+Pre-existing numerical divergence: the v10 JS engine never numerically matched the
+Python engine (modifier coefficient details + rally sampling differ in places).
+The v11 sync ports the **structure** of the improvements; verified on a seeded
+parity test that v11 attachments shift prediction by ~+0.011 in the direction
+the Python backtest validated.  Full numerical parity is a separate cleanup
+not addressed in this session.
 
 ## Open questions for a fresh perspective
 

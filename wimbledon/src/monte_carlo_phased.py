@@ -102,6 +102,40 @@ USE_ARCHETYPE_SHRINKAGE = False
 _ARCHETYPE_MEANS: dict = {}    # populated by _load_archetype_means
 
 
+# Matchup-neighbors prior (Sprint 5a).  At match-level finalisation, blend
+# the MC probability with the win-rate of the K-nearest historical matchups
+# (by metric-vector distance).  Supplementary signal, default weight 0.15.
+# Lookup is leakage-safe via current_year filtering in lookup().
+USE_MATCHUP_NEIGHBORS = False
+NEIGHBOR_BLEND_WEIGHT = 0.15
+_MATCHUP_CORPUS: dict = {}
+
+
+def set_use_matchup_neighbors(flag: bool, blend_weight: Optional[float] = None) -> None:
+    global USE_MATCHUP_NEIGHBORS, NEIGHBOR_BLEND_WEIGHT
+    USE_MATCHUP_NEIGHBORS = bool(flag)
+    if blend_weight is not None:
+        NEIGHBOR_BLEND_WEIGHT = float(blend_weight)
+    print(f"[monte_carlo_phased] USE_MATCHUP_NEIGHBORS={USE_MATCHUP_NEIGHBORS} "
+          f"(blend_weight={NEIGHBOR_BLEND_WEIGHT})")
+    if USE_MATCHUP_NEIGHBORS and not _MATCHUP_CORPUS:
+        _load_matchup_corpus()
+
+
+def _load_matchup_corpus() -> None:
+    from pathlib import Path as _P
+    import json as _json
+    path = _P(__file__).parent.parent / "data" / "matchup_corpus.json"
+    if not path.exists():
+        print(f"[monte_carlo_phased] WARNING: {path.name} not found; matchup "
+              f"neighbors disabled at query time")
+        return
+    _MATCHUP_CORPUS.update(_json.loads(path.read_text()))
+    print(f"[monte_carlo_phased] loaded matchup corpus: "
+          f"{_MATCHUP_CORPUS.get('n_entries', 0)} entries, "
+          f"{len(_MATCHUP_CORPUS.get('feature_names', []))} features")
+
+
 def set_use_archetype_shrinkage(flag: bool) -> None:
     global USE_ARCHETYPE_SHRINKAGE
     USE_ARCHETYPE_SHRINKAGE = bool(flag)
@@ -1148,6 +1182,22 @@ def simulate_match_phased(fp_a: dict, fp_b: dict,
         p_cal = max(FORM_SAFETY_FLOOR, min(FORM_SAFETY_CEIL, p_raw))
     else:
         p_cal = max(PROB_FLOOR, min(PROB_CEIL, _platt(p_raw)))
+
+    # Sprint 5a: supplementary matchup-neighbors prior, blended at match-level
+    # finalisation.  Looks up K=30 nearest historical matchups (by metric-
+    # vector distance), returns their win rate, blends with calibrated MC at
+    # NEIGHBOR_BLEND_WEIGHT.  Leakage-safe via current_year filter.
+    if USE_MATCHUP_NEIGHBORS and _MATCHUP_CORPUS:
+        try:
+            from matchup_neighbors import lookup as _mn_lookup
+            p_neighbor = _mn_lookup(fp_a, fp_b, _MATCHUP_CORPUS,
+                                    exclude_year=current_year, k=30)
+            if p_neighbor is not None:
+                p_cal = (1.0 - NEIGHBOR_BLEND_WEIGHT) * p_cal + NEIGHBOR_BLEND_WEIGHT * p_neighbor
+        except Exception as _e:
+            # Lookup failure (missing data, import error) should never break
+            # the engine — neighbor signal is supplementary.
+            pass
 
     return PhasedResult(
         player_a      = fp_a.get("player", "A"),

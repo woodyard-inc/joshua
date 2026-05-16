@@ -290,6 +290,12 @@ def main():
                              "attrition) toward archetype-mean priors instead of toward zero "
                              "when player confidence is below RELIABLE.  Helps sparse-data "
                              "players retain style signal.")
+    parser.add_argument("--use_matchup_neighbors", action="store_true",
+                        help="OPT-IN: blend K-nearest historical-matchup win rate (from "
+                             "data/matchup_corpus.json) into the calibrated MC probability. "
+                             "Supplementary signal; leakage-safe via current_year filter.")
+    parser.add_argument("--neighbor_blend_weight", type=float, default=0.15,
+                        help="Blend weight for --use_matchup_neighbors (default 0.15).")
     parser.add_argument("--use_momentum_hmm", action="store_true",
                         help="OPT-IN: Apply per-player within-game momentum delta from "
                              "{year}_momentum_hmm.json (Klaassen-Magnus 2014 backed).  Validated "
@@ -319,6 +325,8 @@ def main():
         mcp.set_use_form_noise(True)
     if args.use_archetype_shrinkage:
         mcp.set_use_archetype_shrinkage(True)
+    if args.use_matchup_neighbors:
+        mcp.set_use_matchup_neighbors(True, blend_weight=args.neighbor_blend_weight)
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []

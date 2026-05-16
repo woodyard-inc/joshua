@@ -303,8 +303,9 @@ def main():
                              "(production default ON at blend_weight=0.15).")
     parser.add_argument("--neighbor_blend_weight", type=float, default=0.15,
                         help="Blend weight for matchup neighbors (default 0.15 = v12 production).")
-    parser.add_argument("--no_band_weights", action="store_true",
-                        help="ABLATION: disable v13 Stage A band-conditional Phase-3 modifiers.")
+    parser.add_argument("--use_band_weights", action="store_true",
+                        help="OPT-IN: v13 Stage A band-conditional Phase-3 modifiers. "
+                             "Backtested negative — kept opt-in for future re-test.")
     parser.add_argument("--use_continuous_rally", action="store_true",
                         help="OPT-IN: v13 Stage B — sample continuous rally length per point "
                              "from matchup Gaussian (men_profile rally avg + tier2 volatility) "
@@ -344,9 +345,9 @@ def main():
         mcp.set_use_matchup_neighbors(False)
     else:
         mcp.set_use_matchup_neighbors(True, blend_weight=args.neighbor_blend_weight)
-    # v13 Stage A band-conditional modifiers (ON by default), Stage B opt-in.
-    if args.no_band_weights:
-        mcp.set_use_band_weights(False)
+    # v13 Stage A/B both opt-in (backtested negative; kept for future re-test).
+    if args.use_band_weights:
+        mcp.set_use_band_weights(True)
     if args.use_continuous_rally:
         mcp.set_use_continuous_rally(True)
 

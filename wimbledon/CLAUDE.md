@@ -174,6 +174,25 @@ Activated by default when fingerprint data is attached:
 - **Form-noise injection** (per-sim Gaussian fingerprint perturbation, no Platt, no clamp): Brier regressed from 0.2098 to 0.2266. Variance ≠ mean-squashing; Platt was doing legitimate work.
 - **Isotonic regression** (LOYO): Brier regressed by +0.0045 on both baseline and pressure stacks. At 908 matches the non-parametric flexibility costs more than it saves.
 
+### Sprint 7 (v13) — band-conditional & continuous-rally modifiers REJECTED
+Hypothesis: each Phase-3 modifier should fire selectively by rally length
+(spci heavy on 1-3, attrition heavy on 10+, etc.) instead of equally on
+all points.  Tested in two forms:
+
+- **Stage A**: discrete band weights per modifier, set a priori from
+  physical reasoning.  Backtest: 67.6% / 0.2082 (vs v12.1 68.5% / 0.2075).
+- **Stage B**: continuous rally length sampling (Gaussian on matchup
+  mean/stdev from men_profile.rally_shots + tier2.rally_volatility),
+  smooth response curves per modifier.  Backtest: 67.5% / 0.2081.
+
+Both regress ~+0.0007 Brier vs v12.1.  Diagnosis: at this calibration,
+modifiers already operate near their minimum useful strength.  Cutting
+modifier effect on 70% of points (via band weights ≤1.0) reduces signal
+below noise floor for the matches where modifiers were contributing real
+value.  Kept as opt-in (`--use_band_weights`, `--use_continuous_rally`)
+for future re-test when sample size grows.  Code: `BAND_WEIGHTS` table,
+`_cont_bw()`, `_matchup_rally_moments()` in `monte_carlo_phased.py`.
+
 ### Feature experiments
 - **Latent two-factor model** (smooth fspw/sspw into one serve latent, rpw_v1/v2 into one return latent, with empirical-Bayes shrinkage): Brier regressed from 0.2098 to 0.2154. Shrinking top players toward field mean destroyed signal that the Phase-3 modifiers were exploiting.
 - **Per-point momentum HMM** (Klaassen-Magnus 2014, with zero-mean bias correction): essentially neutral (0.2097 alone, no detectable improvement in any combination). Real signal but too small to recover at 908-match sample size.

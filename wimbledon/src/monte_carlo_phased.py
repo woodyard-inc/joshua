@@ -364,8 +364,12 @@ def _band_weight(name: str, band: str) -> float:
     return BAND_WEIGHTS.get(name, {}).get(band, 1.0)
 
 
-# Toggle to disable Stage A (for ablation testing).  Default ON in v13.
-USE_BAND_WEIGHTS = True
+# Toggle to enable Stage A (band-conditional Phase-3 modifier weights).
+# Backtested NEGATIVE: at our calibration, restricting modifiers to specific
+# rally bands cuts more signal than band-specificity adds.  Brier regressed
+# +0.0007 vs v12.1 production stack.  Kept as opt-in for future re-test
+# (e.g., with re-tuned weights or larger sample size in 2025+).
+USE_BAND_WEIGHTS = False
 
 
 def set_use_band_weights(flag: bool) -> None:

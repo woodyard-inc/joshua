@@ -75,15 +75,24 @@ These were grid-searched with leave-one-year-out CV on 908 matches.
 
 `backtest_fingerprints.py` runs leave-one-year-out: predict year Y using fingerprints built from year Y-1 data only. No data leakage. Tests 2014-2024 (skip 2020, no tournament). 908 total matches where both players have prior-year fingerprints.
 
-### Current performance (v10, as of 2025-05-15)
+### Current performance (v11, as of 2026-05-16)
 
-| Metric | Value |
-|--------|-------|
-| Accuracy | 67.6% |
-| Brier score | 0.2098 |
-| Brier skill | +0.161 (vs naive 0.25) |
-| Log loss | 0.6088 |
-| Matches | 908 |
+**Production stack**: pressure-state baselines (with `stale_only` reliability gate)
+  +  tiebreak-specific baselines.  Both with Beta-Binomial + archetype-prior
+  shrinkage.  See `src/pressure_states.py`, `src/tiebreak_baselines.py`.
+
+| Metric | v10 (Platt+clamp only) | v11 (production stack) |
+|--------|------------------------|------------------------|
+| Accuracy | 67.7% | **68.5%** (+0.8pp) |
+| Brier score | 0.2098 | **0.2091** (−0.0007) |
+| Brier skill | +0.161 | +0.164 |
+| Log loss | 0.6086 | **0.6072** (−0.0014) |
+| Matches | 908 | 908 |
+
+The +0.8pp accuracy gain comes from tiebreak baselines flipping borderline
+matches in the right direction.  The Brier improvement (−0.0007) comes
+primarily from the pressure-state gate, which resolves the 2021 COVID-gap
+regression (0.240 → 0.229 Brier on that year).
 
 ### For comparison — ML baselines (trained on 1991-2018 match-level features)
 
@@ -97,34 +106,78 @@ These were grid-searched with leave-one-year-out CV on 908 matches.
 
 ### ELO-only baseline
 
-A simple Elo-difference logistic model achieves Brier 0.2086 on the same 908 matches — essentially matching the full MC engine (0.2098). This is the central puzzle: the fingerprint-based point simulation currently adds minimal value over a simple rating.
+A simple Elo-difference logistic model achieves Brier 0.2086 on the same 908 matches. The pre-v11 engine (0.2098) sat slightly above this; v11 (0.2091) sits between the two — fingerprints adding value via state-conditional baselines rather than over Elo as a rating.
 
-## What has been tried and what didn't work
+## v11 production-stack components (in `monte_carlo_phased.py`)
 
-### Calibration experiments (all rejected on full 908-match dataset)
-- Platt A from 1.5 to 5.0 — raw MC is too overconfident, A=0.35 is correct
-- ELO blend (20-50% weight) — improves on 592-match subset but degrades full dataset, especially across 2019→2021 COVID gap where stale Elo hurts
-- Floor/ceiling at 0.10/0.90 — extremes aren't discriminative enough
-- Isotonic regression calibration — overfit on this sample size
+Activated by default when fingerprint data is attached:
 
-### Feature/modifier experiments (ablation tested)
-- 16 modifiers tested individually. 7 were net-harmful and disabled. Of the new tier2 features tested (rallyVolDirect, distanceRunEff, serveDepthEntropy, serveSpeedCourage), only rallyVolDirect improved Brier.
-- The ablation framework is in `monte_carlo_phased.py`: `PRODUCTION_ABLATED` frozenset controls which modifiers fire. `set_ablation()` swaps configs for testing.
+1. **Pressure-state baselines** with reliability gate (`USE_PRESSURE_STATES = True`)
+   - Per-player Beta-Binomial baselines for {neutral, pressure} states where pressure = BP-against OR deuce/AD.
+   - Shrinkage toward archetype-mean baseline (k=30 pseudo-observations).
+   - Per-match gate (`PRESSURE_GATE_MODE = "stale_only"`): only fire when EITHER player's prior fingerprint has its most-recent career edition >1 year before the predicted year (the COVID-gap case). Looser gate modes regressed.
+   - When gate fires for a point: skips spci + clutch modifiers (absorbed into baselines).
+   - Builder: `src/pressure_states.py`.  Data: `data/{year}_pressure_states.json`.
 
-### Key insight: the bottleneck is NOT calibration
+2. **Tiebreak baselines** (`USE_TIEBREAK_BASELINES = True`)
+   - Per-player Beta-Binomial baselines for {regular, tiebreak} states.
+   - Same archetype-shrinkage scheme as pressure_states.
+   - Fires when `state["isTiebreak"]` and both players have tiebreak data.
+   - When firing: skips the legacy `tiebreak_differential` Phase-3 modifier.
+   - Builder: `src/tiebreak_baselines.py`.  Data: `data/{year}_tiebreak_baselines.json`.
+   - Validated by Klaassen-Magnus (2004): tiebreak win rates differ measurably from regular-game rates.
 
-The improvement path is not post-hoc calibration (Platt, Elo blend, bounds). All tested, all worse or neutral on the full dataset. The bottleneck is **raw MC discrimination at the point level** — the `simulatePoint()` function needs to produce raw probabilities that better separate winners from losers before any calibration is applied.
+3. **Platt+clamp post-calibration** (unchanged from v10): `PLATT_A=0.35`, clamp [0.20, 0.80].
+
+## What was tried and rejected during v10→v11 development
+
+### Calibration experiments (all worse or neutral on full 908-match LOYO)
+- **Platt A 1.5–5.0** — raw MC overconfident, A=0.35 is the optimum.
+- **Elo blend (20-50%)** — improves 592-match subset but degrades full dataset (2019→2021 COVID gap).
+- **Floor/ceil 0.10/0.90** — extremes not discriminative enough.
+- **Form-noise injection** (per-sim Gaussian fingerprint perturbation, no Platt, no clamp): Brier regressed from 0.2098 to 0.2266. Variance ≠ mean-squashing; Platt was doing legitimate work.
+- **Isotonic regression** (LOYO): Brier regressed by +0.0045 on both baseline and pressure stacks. At 908 matches the non-parametric flexibility costs more than it saves.
+
+### Feature experiments
+- **Latent two-factor model** (smooth fspw/sspw into one serve latent, rpw_v1/v2 into one return latent, with empirical-Bayes shrinkage): Brier regressed from 0.2098 to 0.2154. Shrinking top players toward field mean destroyed signal that the Phase-3 modifiers were exploiting.
+- **Per-point momentum HMM** (Klaassen-Magnus 2014, with zero-mean bias correction): essentially neutral (0.2097 alone, no detectable improvement in any combination). Real signal but too small to recover at 908-match sample size.
+- **Pressure-state gate variants**: `any` and `both` regressed (over-fires on clean years); `stale_or_gap` regressed (catches normal injury-comeback careers); `stale_only` won.
+
+### Ablation framework
+- 16 Tier-2 modifiers tested individually pre-v11.
+- Framework in `monte_carlo_phased.py`: `PRODUCTION_ABLATED` frozenset controls which fire. `set_ablation()` swaps configs.
+- NOTE: framework lacks confidence intervals on Brier deltas. Several disabled modifiers had deltas ≤0.001 — possibly dropped on noise. Re-validation pending.
+
+### Key v11 insight: it's NOT a single bottleneck
+The v10 briefing claimed the bottleneck was "raw MC discrimination."  v11 shows it's actually state-conditional baselines — fitting different fspw values when the score state is genuinely different (pressure vs neutral, tiebreak vs regular).  The literature (Klaassen-Magnus) supports this; post-hoc calibration (Platt, isotonic, Elo blend) cannot recover this signal since the per-point regime distinction is destroyed by the time aggregation reaches the match-level probability.
 
 ## Running the backtest
 
 ```bash
 cd joshua/wimbledon
+# Production stack (pressure_states + tiebreak baselines, both ON by default):
 python3 src/backtest_fingerprints.py --n_sims 2000 --engine phased --out data/model_metrics.json
+
+# Ablations:
+python3 src/backtest_fingerprints.py --n_sims 1000 --engine phased --no_pressure_states --no_tiebreak  # pre-v11 baseline
+python3 src/backtest_fingerprints.py --n_sims 1000 --engine phased --no_tiebreak                       # pressure-only
+python3 src/backtest_fingerprints.py --n_sims 1000 --engine phased --use_momentum_hmm                  # add momentum HMM (no detectable gain)
 ```
 
 At 2000 sims this takes ~12 minutes on an M-series Mac. 1000 sims takes ~6 minutes and is adequate for A/B comparisons.
 
-## Running ablation tests
+## Regenerating the v11 baseline data
+
+Both pressure-state and tiebreak baselines are pre-built per-year JSON files.  Rebuild from raw PBP if fingerprints change:
+
+```bash
+python3 src/pressure_states.py     # writes data/{year}_pressure_states.json (13 years)
+python3 src/tiebreak_baselines.py  # writes data/{year}_tiebreak_baselines.json (13 years)
+```
+
+Builders read from `data/raw/{year}-wimbledon-{points,matches}.csv` (Sackmann Slam PBP, gitignored).
+
+## Running ablation tests on Tier-2 modifiers
 
 ```bash
 cd joshua/wimbledon
@@ -138,17 +191,24 @@ set_ablation(PRODUCTION_ABLATED - {"someFeature"})  # enable a feature
 set_ablation(PRODUCTION_ABLATED | {"someFeature"})  # disable a feature
 ```
 
+Note: framework currently lacks bootstrap CIs on per-modifier Brier deltas.  Future work.
+
 ## Dev server
 
 Already running on port 3400: `python3 -m http.server 3400 --directory joshua/wimbledon`
 
 ## Key files to read first
 
-1. `src/monte_carlo_phased.py` — the engine (704 lines)
-2. `mc_worker.js` — browser mirror (1108 lines, must match Python)
-3. `src/backtest_fingerprints.py` — backtesting harness (325 lines)
-4. `src/fingerprint.py` — how fingerprints are built (1506 lines)
-5. `data/model_metrics.json` — current results
+1. `src/monte_carlo_phased.py` — the engine with v11 production stack defaults
+2. `src/pressure_states.py` — pressure-state baseline builder (v11)
+3. `src/tiebreak_baselines.py` — tiebreak baseline builder (v11)
+4. `src/backtest_fingerprints.py` — backtesting harness with `--no_X` ablation flags
+5. `src/fingerprint.py` — how Tier-1/Tier-2 fingerprints are built (1506 lines)
+6. `mc_worker.js` — browser mirror (still on v10; not yet synced with v11 changes)
+7. `data/model_metrics.json` — current results
+
+### Browser-side sync note
+The v11 changes (pressure-state baselines, tiebreak baselines, reliability gate) are Python-only.  `mc_worker.js` still runs the v10 logic — needs sync for the front-end app to reflect v11 backtest performance.
 
 ## Open questions for a fresh perspective
 

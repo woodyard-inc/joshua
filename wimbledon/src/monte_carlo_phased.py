@@ -83,7 +83,7 @@ def set_use_form_noise(flag: bool) -> None:
 # pressure baselines on tiebreak points (tiebreak points are typically
 # scored in a way that's NOT classified as deuce/AD by the pressure
 # classifier, so there's minimal overlap in practice).
-USE_TIEBREAK_BASELINES = False
+USE_TIEBREAK_BASELINES = True  # production default — see CLAUDE.md backtest history
 
 
 def set_use_tiebreak_baselines(flag: bool) -> None:
@@ -98,7 +98,7 @@ def set_use_tiebreak_baselines(flag: bool) -> None:
 # per-state baseline is made per-match by _should_use_pressure (reliability gate);
 # when fired, spci and clutch are skipped point-by-point in simulate_point to
 # avoid double-counting effects already absorbed into the per-state baselines.
-USE_PRESSURE_STATES = False
+USE_PRESSURE_STATES = True  # production default — see CLAUDE.md backtest history
 
 
 def set_use_pressure_states(flag: bool) -> None:

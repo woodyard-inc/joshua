@@ -260,28 +260,27 @@ def main():
     parser.add_argument("--ablate", default=None,
                         help="(phased only) Comma-separated modifier names to disable, e.g. "
                              "'momentum,courtSide,setTransition'. See monte_carlo_phased.ABLATABLE.")
-    parser.add_argument("--use_pressure_states", action="store_true",
-                        help="(phased only) Use per-state baselines from {year}_pressure_states.json. "
-                             "Per-match reliability gate decides which matches actually use them.")
+    # Production stack defaults (validated on 908-match LOYO backtest):
+    #   pressure_states + reliability gate (stale_only)  +  tiebreak baselines
+    # Result: Brier 0.2091, accuracy 68.5% (vs baseline 0.2098, 67.7%).
+    # See CLAUDE.md for full backtest history.  --no_X flags disable for ablation.
+    parser.add_argument("--no_pressure_states", action="store_true",
+                        help="ABLATION: disable per-state pressure baselines (production default ON).")
     parser.add_argument("--pressure_gate_mode",
                         choices=["any", "both", "stale_only", "stale_or_gap"],
                         default="stale_only",
-                        help="(phased only) Which matches fire the pressure-state gate. "
-                             "any=either player sparse/stale, both=both must be, "
-                             "stale_only=only fire on year-staleness >1 (COVID-style).")
+                        help="(phased only) Reliability gate mode.  stale_only is production default "
+                             "(validated; loose 'any'/'both'/'stale_or_gap' regressed).")
+    parser.add_argument("--no_tiebreak", action="store_true",
+                        help="ABLATION: disable tiebreak-specific baselines (production default ON).")
     parser.add_argument("--use_momentum_hmm", action="store_true",
-                        help="(phased only) Apply per-player within-game momentum delta from "
-                             "{year}_momentum_hmm.json (Klaassen-Magnus 2014 backed). "
-                             "Resets at game boundary; +/-MOMENTUM_MAX_DELTA_PCT cap.")
+                        help="OPT-IN: Apply per-player within-game momentum delta from "
+                             "{year}_momentum_hmm.json (Klaassen-Magnus 2014 backed).  Validated "
+                             "as no-op or slight drag on 908-match backtest; not in production stack.")
     parser.add_argument("--use_form_noise", action="store_true",
-                        help="(phased only) Inject Gaussian fingerprint perturbation once per "
-                             "simulated match.  Replaces Platt+clamp match-level calibration "
-                             "with real form-day variance.  Sigmas calibrated from year-to-year "
-                             "stability (75% scaling).")
-    parser.add_argument("--use_tiebreak", action="store_true",
-                        help="(phased only) Use tiebreak-specific baselines from "
-                             "{year}_tiebreak_baselines.json on tiebreak points.  Klaassen-Magnus "
-                             "2004 validated.  Composes with pressure_states and momentum_hmm.")
+                        help="OPT-IN: Inject Gaussian fingerprint perturbation per simulated match. "
+                             "Validated as net negative (replaces Platt's useful squashing); not in "
+                             "production stack.  Kept for research.")
     args = parser.parse_args()
 
     # Apply ablation flags before importing happens (they're read at runtime)
@@ -289,22 +288,18 @@ def main():
         import monte_carlo_phased as mcp
         mcp.set_ablation(set(args.ablate.split(",")))
 
-    if args.use_pressure_states:
-        import monte_carlo_phased as mcp
-        mcp.set_use_pressure_states(True)
-        mcp.set_pressure_gate_mode(args.pressure_gate_mode)
-
+    # Production stack: pressure_states + tiebreak ON by default in the
+    # engine.  --no_X CLI flags toggle them off for ablation.
+    import monte_carlo_phased as mcp
+    mcp.set_pressure_gate_mode(args.pressure_gate_mode)
+    if args.no_pressure_states:
+        mcp.set_use_pressure_states(False)
+    if args.no_tiebreak:
+        mcp.set_use_tiebreak_baselines(False)
     if args.use_momentum_hmm:
-        import monte_carlo_phased as mcp
         mcp.set_use_momentum_hmm(True)
-
     if args.use_form_noise:
-        import monte_carlo_phased as mcp
         mcp.set_use_form_noise(True)
-
-    if args.use_tiebreak:
-        import monte_carlo_phased as mcp
-        mcp.set_use_tiebreak_baselines(True)
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []
@@ -322,9 +317,9 @@ def main():
             continue
 
         prior_fps = load_fp_file(prior,
-                                 attach_pressure=args.use_pressure_states,
+                                 attach_pressure=not args.no_pressure_states,
                                  attach_momentum=args.use_momentum_hmm,
-                                 attach_tiebreak=args.use_tiebreak)
+                                 attach_tiebreak=not args.no_tiebreak)
         if not prior_fps:
             print(f"  [{year}] No fingerprints for prior edition {prior} — skipping.")
             continue

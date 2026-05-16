@@ -58,7 +58,8 @@ def prior_edition(year: int) -> Optional[int]:
 def load_fp_file(year: int, merge_grass: bool = True,
                  attach_pressure: bool = False,
                  attach_momentum: bool = False,
-                 attach_tiebreak: bool = False) -> Dict[str, dict]:
+                 attach_tiebreak: bool = False,
+                 attach_archetype: bool = True) -> Dict[str, dict]:
     """Load all fingerprints for a given year, merged with grass profiles.
 
     If attach_pressure=True, also load {year}_pressure_states.json and attach
@@ -67,9 +68,20 @@ def load_fp_file(year: int, merge_grass: bool = True,
 
     If attach_momentum=True, also load {year}_momentum_hmm.json and attach
     within-game momentum (hot/neutral) baselines to fp["momentum_hmm"].
+
+    attach_archetype is True by default — attaches fp["archetype_id"] so
+    the engine can shrink modifier values toward archetype-mean priors
+    under USE_ARCHETYPE_SHRINKAGE.
     """
     data_dir = ROOT / "data"
     fps = load_all_fingerprints(year, data_dir=data_dir, merge_grass=merge_grass)
+    if attach_archetype:
+        arch_path = data_dir / f"{year}_archetypes.json"
+        if arch_path.exists():
+            archetypes = json.loads(arch_path.read_text())
+            for player, fp in fps.items():
+                rec = archetypes.get(player) or {}
+                fp["archetype_id"] = rec.get("id")
     if attach_pressure:
         ps_path = data_dir / f"{year}_pressure_states.json"
         if ps_path.exists():
@@ -273,6 +285,11 @@ def main():
                              "(validated; loose 'any'/'both'/'stale_or_gap' regressed).")
     parser.add_argument("--no_tiebreak", action="store_true",
                         help="ABLATION: disable tiebreak-specific baselines (production default ON).")
+    parser.add_argument("--use_archetype_shrinkage", action="store_true",
+                        help="OPT-IN: shrink Tier-2 modifier values (spci, holdAfterBreak, "
+                             "attrition) toward archetype-mean priors instead of toward zero "
+                             "when player confidence is below RELIABLE.  Helps sparse-data "
+                             "players retain style signal.")
     parser.add_argument("--use_momentum_hmm", action="store_true",
                         help="OPT-IN: Apply per-player within-game momentum delta from "
                              "{year}_momentum_hmm.json (Klaassen-Magnus 2014 backed).  Validated "
@@ -300,6 +317,8 @@ def main():
         mcp.set_use_momentum_hmm(True)
     if args.use_form_noise:
         mcp.set_use_form_noise(True)
+    if args.use_archetype_shrinkage:
+        mcp.set_use_archetype_shrinkage(True)
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []

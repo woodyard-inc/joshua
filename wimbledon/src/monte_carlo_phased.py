@@ -92,6 +92,67 @@ def set_use_tiebreak_baselines(flag: bool) -> None:
     print(f"[monte_carlo_phased] USE_TIEBREAK_BASELINES={USE_TIEBREAK_BASELINES}")
 
 
+# Archetype-prior shrinkage for Tier-2 modifiers.  When True, modifier
+# values are shrunk toward the player's archetype-mean modifier value
+# rather than toward zero.  The shrinkage weight is the existing
+# _conf_weight: RELIABLE players' raw values are unchanged; UNRELIABLE
+# players get the full archetype mean.  Helps low-confidence players
+# (qualifiers, sparse-data) retain style information.
+USE_ARCHETYPE_SHRINKAGE = False
+_ARCHETYPE_MEANS: dict = {}    # populated by _load_archetype_means
+
+
+def set_use_archetype_shrinkage(flag: bool) -> None:
+    global USE_ARCHETYPE_SHRINKAGE
+    USE_ARCHETYPE_SHRINKAGE = bool(flag)
+    print(f"[monte_carlo_phased] USE_ARCHETYPE_SHRINKAGE={USE_ARCHETYPE_SHRINKAGE}")
+    if USE_ARCHETYPE_SHRINKAGE and not _ARCHETYPE_MEANS:
+        _load_archetype_means()
+
+
+def _load_archetype_means() -> None:
+    """Lazy-load data/archetype_modifier_means.json into _ARCHETYPE_MEANS."""
+    from pathlib import Path as _P
+    import json as _json
+    path = _P(__file__).parent.parent / "data" / "archetype_modifier_means.json"
+    if not path.exists():
+        print(f"[monte_carlo_phased] WARNING: {path.name} not found; archetype "
+              f"shrinkage degrades to zero-shrinkage")
+        return
+    _ARCHETYPE_MEANS.update(_json.loads(path.read_text()))
+    print(f"[monte_carlo_phased] loaded archetype means: "
+          f"{len(_ARCHETYPE_MEANS.get('per_archetype', {}))} modifiers")
+
+
+def _archetype_mean(modifier_name: str, archetype_id) -> float:
+    """Return archetype-mean modifier value, falling back to field mean."""
+    if not _ARCHETYPE_MEANS:
+        return 0.0
+    per = _ARCHETYPE_MEANS.get("per_archetype", {}).get(modifier_name, {})
+    if archetype_id is not None:
+        v = per.get(str(archetype_id))
+        if v is not None:
+            return float(v)
+    return float(_ARCHETYPE_MEANS.get("field_mean", {}).get(modifier_name, 0.0))
+
+
+def _shrunk_modifier(player_val, modifier_name: str,
+                     archetype_id, confidence) -> float:
+    """Bayesian-shrunk modifier value.  RELIABLE: raw player value.
+    Lower confidence: blend toward archetype mean.  UNRELIABLE: pure
+    archetype mean.
+
+    When USE_ARCHETYPE_SHRINKAGE is False, falls back to the original
+    _conf_weight() * player_val form for backward compatibility."""
+    if not USE_ARCHETYPE_SHRINKAGE:
+        return _conf_weight(confidence) * (player_val if player_val is not None else 0.0)
+    arch = _archetype_mean(modifier_name, archetype_id)
+    if player_val is None:
+        return arch
+    w_player = _conf_weight(confidence)  # 1.0 / 0.75 / 0.40 / 0.0
+    return w_player * player_val + (1.0 - w_player) * arch
+
+
 # Pressure-state baseline toggle.  When True, simulate_point() Phase 2 looks up
 # a state-conditional baseline (fspw_neutral/fspw_pressure, sspw_neutral/...) from
 # fp["pressure_states"] instead of the single fspw/sspw value.  Decision to use
@@ -440,6 +501,7 @@ def extract_modifiers(fp: dict) -> dict:
         rpw_v2_tb_pct = tb.get("rpw_vs_2nd_tiebreak_pct")
 
     return {
+        "archetype_id": fp.get("archetype_id"),
         "fsp":       (_t1(fp, "fsp_pct",  GRASS_AVG_FSP * 100)) / 100,
         "fspw":      fspw_pct / 100,
         "sspw":      sspw_pct / 100,
@@ -665,8 +727,12 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         # double-counting.
         if "spci" not in _ABLATED and not use_pressure_pt:
             spci = srv.get("spci")
-            if spci and spci.get("modifier_delta") is not None:
-                p += _conf_weight(spci.get("confidence")) * spci["modifier_delta"] * 0.50
+            if spci is not None:
+                val = _shrunk_modifier(spci.get("modifier_delta"),
+                                       "spci_modifier_delta",
+                                       srv.get("archetype_id"),
+                                       spci.get("confidence"))
+                p += val * 0.50
 
         if "clutch" not in _ABLATED and not use_pressure_pt:
             clutch = ret.get("clutch")
@@ -735,16 +801,22 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
 
     if "holdAfterBreak" not in _ABLATED and state["isPostBreak"]:
         habr = srv.get("holdAfterBreak")
-        if habr and habr.get("available") and habr.get("value") is not None:
-            p += _conf_weight(habr.get("confidence")) * (habr["value"] / 100) * 0.50
+        if habr and habr.get("available"):
+            val = _shrunk_modifier(habr.get("value"), "hold_after_break_value",
+                                   srv.get("archetype_id"), habr.get("confidence"))
+            p += (val / 100) * 0.50
 
     if "attrition" not in _ABLATED and state["setIndex"] is not None and state["setIndex"] > 0:
         att = srv.get("attrition")
         attR = ret.get("attrition")
-        if att and att.get("available") and att.get("value") is not None:
-            p += _conf_weight(att.get("confidence")) * (-(att["value"] / 2.0) * state["setIndex"] * 0.02)
-        if attR and attR.get("available") and attR.get("value") is not None:
-            p -= _conf_weight(attR.get("confidence")) * (-(attR["value"] / 2.0) * state["setIndex"] * 0.02)
+        if att and att.get("available"):
+            val = _shrunk_modifier(att.get("value"), "attrition_value",
+                                   srv.get("archetype_id"), att.get("confidence"))
+            p += -(val / 2.0) * state["setIndex"] * 0.02
+        if attR and attR.get("available"):
+            valR = _shrunk_modifier(attR.get("value"), "attrition_value",
+                                    ret.get("archetype_id"), attR.get("confidence"))
+            p -= -(valR / 2.0) * state["setIndex"] * 0.02
 
     if "rallyVolatility" not in _ABLATED:
         rvS = srv.get("rallyVolatility")

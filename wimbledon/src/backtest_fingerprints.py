@@ -57,7 +57,8 @@ def prior_edition(year: int) -> Optional[int]:
 
 def load_fp_file(year: int, merge_grass: bool = True,
                  attach_pressure: bool = False,
-                 attach_momentum: bool = False) -> Dict[str, dict]:
+                 attach_momentum: bool = False,
+                 attach_tiebreak: bool = False) -> Dict[str, dict]:
     """Load all fingerprints for a given year, merged with grass profiles.
 
     If attach_pressure=True, also load {year}_pressure_states.json and attach
@@ -95,6 +96,19 @@ def load_fp_file(year: int, merge_grass: bool = True,
             print(f"  [{year}] attached momentum HMM for {attached}/{len(fps)} players")
         else:
             print(f"  [{year}] WARNING: --use_momentum_hmm set but {mh_path.name} not found")
+    if attach_tiebreak:
+        tb_path = data_dir / f"{year}_tiebreak_baselines.json"
+        if tb_path.exists():
+            tb_data = json.loads(tb_path.read_text())
+            attached = 0
+            for player, fp in fps.items():
+                rec = tb_data.get(player)
+                if rec is not None:
+                    fp["tiebreak_baselines"] = rec
+                    attached += 1
+            print(f"  [{year}] attached tiebreak baselines for {attached}/{len(fps)} players")
+        else:
+            print(f"  [{year}] WARNING: --use_tiebreak set but {tb_path.name} not found")
     return fps
 
 
@@ -264,6 +278,10 @@ def main():
                              "simulated match.  Replaces Platt+clamp match-level calibration "
                              "with real form-day variance.  Sigmas calibrated from year-to-year "
                              "stability (75% scaling).")
+    parser.add_argument("--use_tiebreak", action="store_true",
+                        help="(phased only) Use tiebreak-specific baselines from "
+                             "{year}_tiebreak_baselines.json on tiebreak points.  Klaassen-Magnus "
+                             "2004 validated.  Composes with pressure_states and momentum_hmm.")
     args = parser.parse_args()
 
     # Apply ablation flags before importing happens (they're read at runtime)
@@ -284,6 +302,10 @@ def main():
         import monte_carlo_phased as mcp
         mcp.set_use_form_noise(True)
 
+    if args.use_tiebreak:
+        import monte_carlo_phased as mcp
+        mcp.set_use_tiebreak_baselines(True)
+
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []
 
@@ -301,7 +323,8 @@ def main():
 
         prior_fps = load_fp_file(prior,
                                  attach_pressure=args.use_pressure_states,
-                                 attach_momentum=args.use_momentum_hmm)
+                                 attach_momentum=args.use_momentum_hmm,
+                                 attach_tiebreak=args.use_tiebreak)
         if not prior_fps:
             print(f"  [{year}] No fingerprints for prior edition {prior} — skipping.")
             continue

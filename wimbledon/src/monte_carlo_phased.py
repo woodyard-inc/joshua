@@ -72,6 +72,26 @@ def set_use_form_noise(flag: bool) -> None:
     print(f"[monte_carlo_phased] USE_FORM_NOISE={USE_FORM_NOISE}")
 
 
+# Tiebreak-baseline toggle.  When True, simulate_point's Phase 2 substitutes
+# the per-player tiebreak-fitted baselines (from {year}_tiebreak_baselines.json)
+# whenever state["isTiebreak"] is True.  Klaassen-Magnus (2004) validate
+# tiebreak as a distinct psychological regime — empirical fspw/sspw/rpw
+# differ measurably from regular-game baselines.  Beta-Binomial + archetype-
+# prior shrinkage in the builder handles small per-player tiebreak samples.
+#
+# Composition with pressure_states: tiebreak baselines take priority over
+# pressure baselines on tiebreak points (tiebreak points are typically
+# scored in a way that's NOT classified as deuce/AD by the pressure
+# classifier, so there's minimal overlap in practice).
+USE_TIEBREAK_BASELINES = False
+
+
+def set_use_tiebreak_baselines(flag: bool) -> None:
+    global USE_TIEBREAK_BASELINES
+    USE_TIEBREAK_BASELINES = bool(flag)
+    print(f"[monte_carlo_phased] USE_TIEBREAK_BASELINES={USE_TIEBREAK_BASELINES}")
+
+
 # Pressure-state baseline toggle.  When True, simulate_point() Phase 2 looks up
 # a state-conditional baseline (fspw_neutral/fspw_pressure, sspw_neutral/...) from
 # fp["pressure_states"] instead of the single fspw/sspw value.  Decision to use
@@ -407,6 +427,18 @@ def extract_modifiers(fp: dict) -> dict:
             frac_hot = n_hot / (n_hot + n_neu) if (n_hot + n_neu) > 0 else 0.0
             momentum_pairs[key] = (hot_pct, neu_pct, n_hot, frac_hot)
 
+    # Tiebreak-state baselines (used when USE_TIEBREAK_BASELINES and
+    # state["isTiebreak"]).  Already shrunk toward archetype-mean in the
+    # builder, so even small per-player n_tb gracefully degrades to prior.
+    fspw_tb_pct        = sspw_tb_pct        = None
+    rpw_v1_tb_pct      = rpw_v2_tb_pct      = None
+    tb = fp.get("tiebreak_baselines")
+    if tb:
+        fspw_tb_pct   = tb.get("fspw_tiebreak_pct")
+        sspw_tb_pct   = tb.get("sspw_tiebreak_pct")
+        rpw_v1_tb_pct = tb.get("rpw_vs_1st_tiebreak_pct")
+        rpw_v2_tb_pct = tb.get("rpw_vs_2nd_tiebreak_pct")
+
     return {
         "fsp":       (_t1(fp, "fsp_pct",  GRASS_AVG_FSP * 100)) / 100,
         "fspw":      fspw_pct / 100,
@@ -425,6 +457,11 @@ def extract_modifiers(fp: dict) -> dict:
         "rpwVs2ndPressure": rpw_v2_pressure_pct,
         # Momentum HMM hot/neutral pairs (hot_pct, neutral_pct, n_hot)
         "momentumHmm": momentum_pairs,
+        # Tiebreak-state baselines (None when not available — fp lacks data).
+        "fspwTiebreak":     fspw_tb_pct / 100 if fspw_tb_pct is not None else None,
+        "sspwTiebreak":     sspw_tb_pct / 100 if sspw_tb_pct is not None else None,
+        "rpwVs1stTiebreak": rpw_v1_tb_pct,
+        "rpwVs2ndTiebreak": rpw_v2_tb_pct,
         "baseDFRate":         base_df,
         "dfPressureDelta":    df_node if isinstance(df_node, dict) else None,
         "firstServePressure": t2.get("first_serve_pressure"),
@@ -561,7 +598,26 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
     # he/she moves a 2nd-serve point baseline (and vice versa).  This is the
     # phased-return upgrade that aligns Tier 1 with the phased simulation.
     use_pressure_pt = bool(srv.get("_usePressure"))
-    if use_pressure_pt:
+    is_tiebreak_pt = bool(state.get("isTiebreak"))
+    # Phase-2 baseline priority: tiebreak baselines > pressure baselines > Tier 1.
+    # Tiebreak fires only when the toggle is on AND both players have tiebreak
+    # data available (avoids asymmetric Tier-1-vs-tiebreak matchups).
+    use_tiebreak_pt = (
+        USE_TIEBREAK_BASELINES and is_tiebreak_pt
+        and (srv.get("sspwTiebreak" if is_second else "fspwTiebreak") is not None)
+        and (ret.get("rpwVs2ndTiebreak" if is_second else "rpwVs1stTiebreak") is not None)
+    )
+
+    if use_tiebreak_pt:
+        if is_second:
+            srv_base = srv["sspwTiebreak"]
+            ret_base = ret["rpwVs2ndTiebreak"]
+            p = srv_base - (ret_base - GRASS_RPW_VS_2ND_AVG) / 100
+        else:
+            srv_base = srv["fspwTiebreak"]
+            ret_base = ret["rpwVs1stTiebreak"]
+            p = srv_base - (ret_base - GRASS_RPW_VS_1ST_AVG) / 100
+    elif use_pressure_pt:
         is_pressure = bool(state.get("isBreakPoint") or state.get("isDeuce"))
         if is_second:
             srv_base = srv["sspwPressure"] if is_pressure else srv["sspwNeutral"]
@@ -658,7 +714,10 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
 
         p += boost if is_srv_streak else -boost
 
-    if "tiebreak" not in _ABLATED and state["isTiebreak"]:
+    # Tiebreak differential modifier — skipped when per-state tiebreak
+    # baselines are in use for this point (already absorbed into the
+    # baselines, would double-count otherwise).
+    if "tiebreak" not in _ABLATED and state["isTiebreak"] and not use_tiebreak_pt:
         tb = srv.get("tiebreak")
         tbR = ret.get("tiebreak")
         if tb and tb.get("available") and tb.get("value") is not None:

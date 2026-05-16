@@ -75,41 +75,50 @@ These were grid-searched with leave-one-year-out CV on 908 matches.
 
 `backtest_fingerprints.py` runs leave-one-year-out: predict year Y using fingerprints built from year Y-1 data only. No data leakage. Tests 2014-2024 (skip 2020, no tournament). 908 total matches where both players have prior-year fingerprints.
 
-### Current performance (v12, as of 2026-05-16)
+### Current performance (v12.1, as of 2026-05-16)
 
 **Production stack**:
   1. Pressure-state baselines with `stale_only` reliability gate
   2. Tiebreak-specific baselines
-  3. K-nearest matchup-neighbors prior (blend weight 0.15)
+  3. K-nearest matchup-neighbors prior (38-dim corpus, blend weight 0.15)
 
 All three default ON.  See `src/pressure_states.py`, `src/tiebreak_baselines.py`,
 `src/matchup_neighbors.py`.
 
-| Metric | v10 (Platt+clamp only) | v11 (pressure+tiebreak) | v12 (+matchup neighbors) |
-|--------|------------------------|------------------------|--------------------------|
-| Accuracy | 67.7% | 68.5% (+0.8pp) | **68.3%** (+0.6pp) |
-| Brier score | 0.2098 | 0.2091 (−0.0007) | **0.2078** (−0.0020) |
-| Brier skill | +0.161 | +0.164 | **+0.169** |
-| Log loss | 0.6086 | 0.6072 (−0.0014) | **0.6041** (−0.0045) |
-| vs Elo (0.2086) | +0.0012 above | +0.0005 above | **−0.0008 below** ✓ |
+| Metric | v10 (Platt+clamp) | v11 (pressure+tiebreak) | v12 (matchup 22-dim) | v12.1 (matchup 38-dim) |
+|--------|------------------|------------------------|--------------------|----------------------|
+| Accuracy | 67.7% | 68.5% | 68.3% | **68.5%** (+0.8pp) |
+| Brier score | 0.2098 | 0.2091 | 0.2078 | **0.2075** (−0.0023) |
+| Brier skill | +0.161 | +0.164 | +0.169 | **+0.170** |
+| Log loss | 0.6086 | 0.6072 | 0.6041 | **0.6031** (−0.0055) |
+| vs Elo (0.2086) | +0.0012 | +0.0005 | −0.0008 | **−0.0011** ✓ |
 
-v12 produces probabilities better-calibrated than Elo for the first time in the
-project's history.  The accuracy trade (−0.2pp from v11) was explicit:
-calibration foundation prioritised, future accuracy work compounds on top.
+v12.1 extends v12 by adding 8 display-layer metrics from `men_profiles.json`
+to the matchup-neighbours feature vector (corpus dimension 22 → 38).  The
+added metrics: `net.net_won_pct`, `aggression.aggression_index`,
+`rally_shots.srv_1st_avg` / `srv_2nd_avg`, `serve_direction.wide_pct`,
+`clean_games.srv_clean_pct`, `match_duration.avg_mins`,
+`distance.avg_km_per_match`.
 
-Blend-weight sweep (validated on full 908-match LOYO):
+Why this works where per-point ablation said "no signal": K-NN doesn't
+assume linearity, handles redundancy, and is naturally asymmetric.  The
+same features that produced noise-grade CIs as small linear modifiers
+contribute real signal as similarity dimensions.  The "zero effect"
+ablation verdicts on these features said *wrong application mechanism*,
+not *no signal*.
+
+Blend-weight sweep (validated on full 908-match LOYO at v12, 22-dim corpus):
 
 | weight | acc | Brier | log_loss |
 |--------|-----|-------|----------|
 | 0.10 | 68.5% | 0.2082 | 0.6050 |
-| **0.15 (production)** | **68.3%** | **0.2078** | **0.6041** |
+| **0.15 (production)** | 68.3% | 0.2078 | 0.6041 |
 | 0.20 | 68.1% | 0.2075 | 0.6034 |
 | 0.25 | 67.8% | 0.2073 | 0.6028 |
 | 0.30 | 67.3% | 0.2071 | 0.6023 |
 
-Monotonic trade-off — Brier improves with weight, accuracy degrades.
-w=0.10 if strict no-regression desired; w=0.15 for the calibration-focused
-production default.
+w=0.15 production default carried forward to v12.1 (corpus dimensionality
+change is orthogonal to blend weight choice).
 
 ### For comparison — ML baselines (trained on 1991-2018 match-level features)
 
@@ -146,12 +155,13 @@ Activated by default when fingerprint data is attached:
 
 3. **K-nearest matchup-neighbors prior** (`USE_MATCHUP_NEIGHBORS = True`, `NEIGHBOR_BLEND_WEIGHT = 0.15`)
    - At match-level finalisation, looks up K=30 nearest historical matchups in a corpus of 1,816 entries (908 matches × 2 sides each, symmetric encoding).
-   - Distance metric: Euclidean on a 22-dimensional vector — for each of 11 metrics (6 Tier-1 + 5 Tier-2), encodes both `(A−B)` differential (style mismatch) AND `(A+B)/2` level (so a high-level matchup isn't matched against a low-level one with similar style differential).
+   - Distance metric: Euclidean on a **38-dimensional vector** (v12.1) — 19 metrics × 2 (differential + level).  Metrics are 6 Tier-1 + 5 Tier-2 + 8 display-layer (`net_won_pct`, `aggression_idx`, `rally_srv_1st`, `rally_srv_2nd`, `serve_dir_wide`, `srv_clean_pct`, `match_mins`, `distance_km`).
+   - The differential captures style mismatch; the level addresses "Federer vs Gasquet": same style differential, very different levels.
    - Distance-weighted average of neighbours' win rates becomes a prior.
    - Blended at weight 0.15: `p_final = 0.85 * p_mc_calibrated + 0.15 * p_neighbor`.
    - Leakage-safe: lookup excludes entries from the predicting year.
-   - Builder: `src/matchup_neighbors.py`.  Corpus: `data/matchup_corpus.json` (~200KB).
-   - The first audit experiment to produce **uniquely non-Elo signal** — historical similar matchups encode patterns the per-point MC engine can't extract.
+   - Builder: `src/matchup_neighbors.py`.  Corpus: `data/matchup_corpus.json` (~280KB at 38-dim).
+   - The first audit experiment to produce **uniquely non-Elo signal** — historical similar matchups encode patterns the per-point MC engine can't extract.  v12.1 demonstrates that the "display-only" metrics (shown on the website but never wired into the per-point engine) carry real signal too — they were ablated as noise-grade in linear-modifier form, but contribute meaningfully via K-NN.
 
 4. **Platt+clamp post-calibration** (unchanged from v10): `PLATT_A=0.35`, clamp [0.20, 0.80].
 

@@ -154,7 +154,8 @@ const NEIGHBOR_BLEND_WEIGHT = 0.15;
 const NEIGHBOR_K            = 30;
 
 // Must mirror MATCHUP_METRICS in src/matchup_neighbors.py exactly.
-// Each entry: [display_name, tier1_key | null, tier2_key | null, value_path | null, fallback]
+// Each entry: [display_name, tier1_key | null | "PROFILE", tier2_key | null, value_path | null, fallback]
+// "PROFILE" sentinel -> traverse fp.men_profile via dotted path (v12.1).
 const MATCHUP_METRICS = [
   ["fspw",          "fspw_pct",        null,                      null,         72.0],
   ["sspw",          "sspw_pct",        null,                      null,         56.0],
@@ -167,9 +168,30 @@ const MATCHUP_METRICS = [
   ["tiebreak_diff", null,              "tiebreak_differential",   "value",       0.0],
   ["attrition",     null,              "attrition_slope",         "value",       0.1],
   ["rally_volat",   null,              "rally_volatility",        "value",       3.0],
+  // v12.1 display-layer additions from men_profile (must match Python)
+  ["net_won_pct",     "PROFILE",       null, "net.net_won_pct",                60.0],
+  ["aggression_idx",  "PROFILE",       null, "aggression.aggression_index",    55.0],
+  ["rally_srv_1st",   "PROFILE",       null, "rally_shots.srv_1st_avg",         3.5],
+  ["rally_srv_2nd",   "PROFILE",       null, "rally_shots.srv_2nd_avg",         4.0],
+  ["serve_dir_wide",  "PROFILE",       null, "serve_direction.wide_pct",       35.0],
+  ["srv_clean_pct",   "PROFILE",       null, "clean_games.srv_clean_pct",      65.0],
+  ["match_mins",      "PROFILE",       null, "match_duration.avg_mins",       150.0],
+  ["distance_km",     "PROFILE",       null, "distance.avg_km_per_match",       3.2],
 ];
 
 function fpMetricValue(fp, t1Key, t2Key, path, fallback) {
+  // v12.1: "PROFILE" -> dotted-path lookup in fp.men_profile
+  if (t1Key === "PROFILE") {
+    let node = fp.men_profile;
+    if (!node) return fallback;
+    for (const k of (path || "").split(".")) {
+      if (!node || typeof node !== "object") return fallback;
+      node = node[k];
+    }
+    if (node == null || typeof node === "object") return fallback;
+    const n = Number(node);
+    return Number.isFinite(n) ? n : fallback;
+  }
   if (t1Key) {
     const node = fp.tier1?.[t1Key];
     return (node && node.value != null) ? node.value : fallback;

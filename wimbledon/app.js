@@ -137,21 +137,24 @@ async function boot() {
 async function loadFingerprintsOnly(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
   const nc = { cache: "no-store" };
-  const [fps, gps, ps, tb, arch] = await Promise.all([
+  const [fps, gps, ps, tb, arch, prof] = await Promise.all([
     fetch(`${base}/data/${year}_fingerprints.json`,        nc).then(r => r.json()).catch(() => null),
     fetch(`${base}/data/${year}_grass_profiles.json`,      nc).then(r => r.json()).catch(() => ({})),
     fetch(`${base}/data/${year}_pressure_states.json`,     nc).then(r => r.json()).catch(() => ({})),
     fetch(`${base}/data/${year}_tiebreak_baselines.json`,  nc).then(r => r.json()).catch(() => ({})),
     fetch(`${base}/data/${year}_archetypes.json`,          nc).then(r => r.json()).catch(() => ({})),
+    fetch(`${base}/data/${year}_men_profiles.json`,        nc).then(r => r.json()).catch(() => ({})),
   ]);
   if (!fps) return null;
   const merged = mergeGrassProfiles(fps, gps);
-  // v11: attach pressure-state baselines, tiebreak baselines, and
-  // archetype id so the MC worker can run the production stack.
+  // v11/v12.1: attach state-conditional baselines + archetype id + men_profile
+  // so the MC worker can run the production stack and the v12.1 matchup-
+  // neighbours lookup (which needs profile-derived features).
   for (const [name, fp] of Object.entries(merged)) {
     if (ps[name])   fp.pressure_states    = ps[name];
     if (tb[name])   fp.tiebreak_baselines = tb[name];
     if (arch[name]) fp.archetype_id       = arch[name].id ?? null;
+    if (prof[name]) fp.men_profile        = prof[name];
   }
   return merged;
 }
@@ -232,11 +235,15 @@ async function loadYear(year) {
   state.profiles       = profiles;
   state.tournament     = tourn;
   const merged = mergeGrassProfiles(fingerprints, grassProfiles);
-  // v11: attach state-conditional baselines + archetype id for the MC engine.
+  // v11/v12.1: attach state-conditional baselines + archetype id + men_profile.
+  // men_profile feeds the expanded matchup-neighbours feature vector (8 new
+  // display-layer metrics in v12.1).  profiles is `state.profiles`, already
+  // loaded above, so we reuse it.
   for (const [name, fp] of Object.entries(merged)) {
     if (pressureStates[name])    fp.pressure_states    = pressureStates[name];
     if (tiebreakBaselines[name]) fp.tiebreak_baselines = tiebreakBaselines[name];
     if (archetypes[name])        fp.archetype_id       = archetypes[name].id ?? null;
+    if (profiles[name])          fp.men_profile        = profiles[name];
   }
   state.fingerprints   = merged;
   state.archetypes     = archetypes;
@@ -2645,7 +2652,7 @@ function runComparison(nameA, nameB, overrideFps = null) {
   // Terminate any prior worker
   if (window._mcWorker) { window._mcWorker.terminate(); window._mcWorker = null; }
 
-  const worker      = new Worker("mc_worker.js?v=54");  // v12 stack (+ matchup neighbors)
+  const worker      = new Worker("mc_worker.js?v=55");  // v12.1 (matchup neighbors + display-layer features)
   const startTime   = Date.now();
   const MIN_LOAD_MS = 5200;   // keep animation visible for a full loop
   window._mcWorker  = worker;

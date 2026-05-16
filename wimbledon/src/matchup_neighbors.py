@@ -61,6 +61,13 @@ def _prior_edition(year: int) -> Optional[int]:
 # Metrics used for the matchup vector.  Tier-1 first (always available);
 # tier-2 selectively where most players have data.  Each metric produces
 # two features: differential (A-B) and level ((A+B)/2).
+#
+# v12.1 adds 8 men_profile-derived metrics (display-only in v12) so the
+# K-NN lookup can use richer match-play data the per-point engine can't
+# encode as small linear modifiers.  Each is a `("profile", None, None,
+# dotted.path)` triple — fetched from fp["men_profile"] (attached by
+# the harness).  Selection: 100%-coverage fields only (serve_speed
+# excluded — ~55% coverage across years).
 MATCHUP_METRICS = [
     # (display_name,         tier1_key,           tier2_key,                value_path)
     ("fspw",        "fspw_pct",        None,                       None),
@@ -74,6 +81,15 @@ MATCHUP_METRICS = [
     ("tiebreak_diff",  None, "tiebreak_differential",  "value"),
     ("attrition",      None, "attrition_slope",        "value"),
     ("rally_volat",    None, "rally_volatility",       "value"),
+    # v12.1 men_profile additions (the "display layer" features):
+    ("net_won_pct",     "PROFILE", None, "net.net_won_pct"),
+    ("aggression_idx",  "PROFILE", None, "aggression.aggression_index"),
+    ("rally_srv_1st",   "PROFILE", None, "rally_shots.srv_1st_avg"),
+    ("rally_srv_2nd",   "PROFILE", None, "rally_shots.srv_2nd_avg"),
+    ("serve_dir_wide",  "PROFILE", None, "serve_direction.wide_pct"),
+    ("srv_clean_pct",   "PROFILE", None, "clean_games.srv_clean_pct"),
+    ("match_mins",      "PROFILE", None, "match_duration.avg_mins"),
+    ("distance_km",     "PROFILE", None, "distance.avg_km_per_match"),
 ]
 
 
@@ -90,11 +106,36 @@ _FALLBACK = {
     "tiebreak_diff":   0.0,
     "attrition":       0.1,
     "rally_volat":     3.0,
+    # v12.1 profile fallbacks (rough field means; corpus z-scoring normalises out)
+    "net_won_pct":      60.0,
+    "aggression_idx":   55.0,
+    "rally_srv_1st":     3.5,
+    "rally_srv_2nd":     4.0,
+    "serve_dir_wide":   35.0,
+    "srv_clean_pct":    65.0,
+    "match_mins":      150.0,
+    "distance_km":       3.2,
 }
 
 
 def _fp_value(fp: dict, t1_key: Optional[str], t2_key: Optional[str],
               path: Optional[str], fallback: float) -> float:
+    # v12.1: "PROFILE" sentinel -> traverse fp["men_profile"] via dotted path
+    if t1_key == "PROFILE":
+        node = fp.get("men_profile") or {}
+        for k in (path or "").split("."):
+            if not isinstance(node, dict):
+                return fallback
+            node = node.get(k)
+        # Some profile blocks have an `available` flag; respect it.
+        if isinstance(node, dict):
+            return fallback
+        if node is None:
+            return fallback
+        try:
+            return float(node)
+        except (TypeError, ValueError):
+            return fallback
     if t1_key is not None:
         node = (fp.get("tier1") or {}).get(t1_key)
         if isinstance(node, dict) and node.get("value") is not None:
@@ -135,19 +176,34 @@ def _match_winner_from_pts(pts: pd.DataFrame, match_id: str) -> Optional[int]:
 
 def build_corpus() -> dict:
     """Walk all matches 2014-2024; produce (features, won, year, fp_year)
-    entries — TWO per match for symmetric lookup."""
+    entries — TWO per match for symmetric lookup.
+
+    v12.1: attaches men_profile of the prior edition to each fingerprint
+    so matchup_features can extract the 8 new display-layer metrics.
+    Same prior-year-only scheme as fingerprints (leakage-safe)."""
     fps_cache: Dict[int, dict] = {}
+    profiles_cache: Dict[int, dict] = {}
     entries: List[dict] = []
+
+    def _prior_fps_with_profiles(prior_year: int) -> dict:
+        if prior_year in fps_cache:
+            return fps_cache[prior_year]
+        fps = load_all_fingerprints(prior_year, data_dir=DATA_DIR, merge_grass=True)
+        prof_path = DATA_DIR / f"{prior_year}_men_profiles.json"
+        profiles = json.loads(prof_path.read_text()) if prof_path.exists() else {}
+        profiles_cache[prior_year] = profiles
+        for name, fp in fps.items():
+            if name in profiles:
+                fp["men_profile"] = profiles[name]
+        fps_cache[prior_year] = fps
+        return fps
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     for year in test_years:
         prior = _prior_edition(year)
         if prior is None:
             continue
-        if prior not in fps_cache:
-            fps_cache[prior] = load_all_fingerprints(prior, data_dir=DATA_DIR,
-                                                    merge_grass=True)
-        fps_prior = fps_cache[prior]
+        fps_prior = _prior_fps_with_profiles(prior)
         try:
             pts, mat = load_year(year)
         except FileNotFoundError:

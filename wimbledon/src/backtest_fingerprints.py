@@ -59,7 +59,8 @@ def load_fp_file(year: int, merge_grass: bool = True,
                  attach_pressure: bool = False,
                  attach_momentum: bool = False,
                  attach_tiebreak: bool = False,
-                 attach_archetype: bool = True) -> Dict[str, dict]:
+                 attach_archetype: bool = True,
+                 attach_profile: bool = True) -> Dict[str, dict]:
     """Load all fingerprints for a given year, merged with grass profiles.
 
     If attach_pressure=True, also load {year}_pressure_states.json and attach
@@ -82,6 +83,13 @@ def load_fp_file(year: int, merge_grass: bool = True,
             for player, fp in fps.items():
                 rec = archetypes.get(player) or {}
                 fp["archetype_id"] = rec.get("id")
+    if attach_profile:
+        prof_path = data_dir / f"{year}_men_profiles.json"
+        if prof_path.exists():
+            profiles = json.loads(prof_path.read_text())
+            for player, fp in fps.items():
+                if player in profiles:
+                    fp["men_profile"] = profiles[player]
     if attach_pressure:
         ps_path = data_dir / f"{year}_pressure_states.json"
         if ps_path.exists():

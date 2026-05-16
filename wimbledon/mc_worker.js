@@ -142,6 +142,88 @@ function shouldUsePressure(fpA, fpB, currentYear) {
 }
 
 
+// ── v12 matchup-neighbors prior (mirrors src/matchup_neighbors.py) ────────
+//
+// At match-level finalisation, blend in the win rate of the K nearest
+// historical matchups (by metric-vector distance).  Supplementary signal:
+// MC engine continues to drive the prediction; neighbour prior nudges it
+// at NEIGHBOR_BLEND_WEIGHT.  Validated -0.0013 Brier vs v11 on 908-match
+// backtest at w=0.15.
+const USE_MATCHUP_NEIGHBORS = true;
+const NEIGHBOR_BLEND_WEIGHT = 0.15;
+const NEIGHBOR_K            = 30;
+
+// Must mirror MATCHUP_METRICS in src/matchup_neighbors.py exactly.
+// Each entry: [display_name, tier1_key | null, tier2_key | null, value_path | null, fallback]
+const MATCHUP_METRICS = [
+  ["fspw",          "fspw_pct",        null,                      null,         72.0],
+  ["sspw",          "sspw_pct",        null,                      null,         56.0],
+  ["rpw_vs_1st",    "rpw_vs_1st_pct",  null,                      null,         25.0],
+  ["rpw_vs_2nd",    "rpw_vs_2nd_pct",  null,                      null,         40.0],
+  ["sgw",           "sgw_pct",         null,                      null,         80.0],
+  ["rgw",           "rgw_pct",         null,                      null,         16.0],
+  ["serve_entropy", null,              "serve_entropy",           "pct_of_max", 75.0],
+  ["clutch_diff",   null,              "clutch_differential",     "value",       0.0],
+  ["tiebreak_diff", null,              "tiebreak_differential",   "value",       0.0],
+  ["attrition",     null,              "attrition_slope",         "value",       0.1],
+  ["rally_volat",   null,              "rally_volatility",        "value",       3.0],
+];
+
+function fpMetricValue(fp, t1Key, t2Key, path, fallback) {
+  if (t1Key) {
+    const node = fp.tier1?.[t1Key];
+    return (node && node.value != null) ? node.value : fallback;
+  }
+  const node = fp.tier2?.[t2Key];
+  if (!node || typeof node !== "object") return fallback;
+  if (node.available === false) return fallback;
+  const v = node[path];
+  return v != null ? v : fallback;
+}
+
+function matchupFeatures(fpA, fpB) {
+  const feats = new Array(MATCHUP_METRICS.length * 2);
+  let i = 0;
+  for (const [, t1, t2, path, fb] of MATCHUP_METRICS) {
+    const a = fpMetricValue(fpA, t1, t2, path, fb);
+    const b = fpMetricValue(fpB, t1, t2, path, fb);
+    feats[i++] = a - b;          // differential
+    feats[i++] = (a + b) / 2;    // level
+  }
+  return feats;
+}
+
+function neighborLookup(fpA, fpB, corpus, excludeYear, k = NEIGHBOR_K) {
+  if (!corpus || !corpus.entries || !corpus.mean || !corpus.std) return null;
+  const raw = matchupFeatures(fpA, fpB);
+  // z-score with corpus normalisation
+  const q = new Array(raw.length);
+  for (let i = 0; i < raw.length; i++) q[i] = (raw[i] - corpus.mean[i]) / corpus.std[i];
+
+  const distances = [];
+  for (const e of corpus.entries) {
+    if (excludeYear != null && e.year === excludeYear) continue;
+    const f = e.features;
+    let d2 = 0;
+    for (let i = 0; i < q.length; i++) {
+      const diff = q[i] - f[i];
+      d2 += diff * diff;
+    }
+    distances.push([d2, e.won_left]);
+  }
+  if (distances.length < k) return null;
+  distances.sort((a, b) => a[0] - b[0]);
+  let weightedWon = 0, totalW = 0;
+  for (let i = 0; i < k; i++) {
+    const [d2, won] = distances[i];
+    const w = 1 / (Math.sqrt(d2) + 0.5);
+    weightedWon += w * won;
+    totalW += w;
+  }
+  return weightedWon / totalW;
+}
+
+
 // ── Pre-extracted modifier cache ──────────────────────────────────────────
 // Extracted once per matchup to avoid repeated deep property access
 // during the hot simulation loop.
@@ -738,7 +820,7 @@ function simulateMatch(modsA, modsB) {
 //  MONTE CARLO RUNNER
 // ══════════════════════════════════════════════════════════════════════════
 
-function runMonteCarlo(fpA, fpB, nSims, onProgress, currentYear = null) {
+function runMonteCarlo(fpA, fpB, nSims, onProgress, currentYear = null, matchupCorpus = null) {
   // Pre-extract modifiers once for the entire matchup
   const modsA = extractModifiers(fpA);
   const modsB = extractModifiers(fpB);
@@ -769,7 +851,19 @@ function runMonteCarlo(fpA, fpB, nSims, onProgress, currentYear = null) {
 
   // Raw MC → Platt-calibrated probability
   const pWinA_raw = winsA / nSims;
-  const pWinA = plattCalibrate(pWinA_raw);
+  let pWinA = plattCalibrate(pWinA_raw);
+
+  // v12: blend in K-nearest matchup-neighbors prior at NEIGHBOR_BLEND_WEIGHT.
+  // Lookup is leakage-safe via currentYear filter.  Supplementary signal —
+  // skipped silently if corpus unavailable or too few neighbours.
+  if (USE_MATCHUP_NEIGHBORS && matchupCorpus) {
+    try {
+      const pNeighbor = neighborLookup(fpA, fpB, matchupCorpus, currentYear, NEIGHBOR_K);
+      if (pNeighbor != null) {
+        pWinA = (1 - NEIGHBOR_BLEND_WEIGHT) * pWinA + NEIGHBOR_BLEND_WEIGHT * pNeighbor;
+      }
+    } catch (e) { /* swallow — neighbour signal is supplementary */ }
+  }
   const pWinB = 1 - pWinA;
 
   // Wilson confidence interval
@@ -1204,7 +1298,7 @@ function edgeNarrative(axisContrib, nameA, nameB, pWinA) {
 
 self.onmessage = function (e) {
   try {
-  const { fpA, fpB, nSims = 10000, currentYear = null } = e.data;
+  const { fpA, fpB, nSims = 10000, currentYear = null, matchupCorpus = null } = e.data;
 
   self.postMessage({ type: "progress", pct: 5, msg: "Loading player data…" });
 
@@ -1214,7 +1308,7 @@ self.onmessage = function (e) {
       pct,
       msg: `Running simulations… ${count.toLocaleString()} / ${nSims.toLocaleString()}`,
     });
-  }, currentYear);
+  }, currentYear, matchupCorpus);
 
   self.postMessage({ type: "progress", pct: 82, msg: "Calculating axis contributions…" });
 

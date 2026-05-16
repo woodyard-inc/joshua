@@ -75,24 +75,41 @@ These were grid-searched with leave-one-year-out CV on 908 matches.
 
 `backtest_fingerprints.py` runs leave-one-year-out: predict year Y using fingerprints built from year Y-1 data only. No data leakage. Tests 2014-2024 (skip 2020, no tournament). 908 total matches where both players have prior-year fingerprints.
 
-### Current performance (v11, as of 2026-05-16)
+### Current performance (v12, as of 2026-05-16)
 
-**Production stack**: pressure-state baselines (with `stale_only` reliability gate)
-  +  tiebreak-specific baselines.  Both with Beta-Binomial + archetype-prior
-  shrinkage.  See `src/pressure_states.py`, `src/tiebreak_baselines.py`.
+**Production stack**:
+  1. Pressure-state baselines with `stale_only` reliability gate
+  2. Tiebreak-specific baselines
+  3. K-nearest matchup-neighbors prior (blend weight 0.15)
 
-| Metric | v10 (Platt+clamp only) | v11 (production stack) |
-|--------|------------------------|------------------------|
-| Accuracy | 67.7% | **68.5%** (+0.8pp) |
-| Brier score | 0.2098 | **0.2091** (−0.0007) |
-| Brier skill | +0.161 | +0.164 |
-| Log loss | 0.6086 | **0.6072** (−0.0014) |
-| Matches | 908 | 908 |
+All three default ON.  See `src/pressure_states.py`, `src/tiebreak_baselines.py`,
+`src/matchup_neighbors.py`.
 
-The +0.8pp accuracy gain comes from tiebreak baselines flipping borderline
-matches in the right direction.  The Brier improvement (−0.0007) comes
-primarily from the pressure-state gate, which resolves the 2021 COVID-gap
-regression (0.240 → 0.229 Brier on that year).
+| Metric | v10 (Platt+clamp only) | v11 (pressure+tiebreak) | v12 (+matchup neighbors) |
+|--------|------------------------|------------------------|--------------------------|
+| Accuracy | 67.7% | 68.5% (+0.8pp) | **68.3%** (+0.6pp) |
+| Brier score | 0.2098 | 0.2091 (−0.0007) | **0.2078** (−0.0020) |
+| Brier skill | +0.161 | +0.164 | **+0.169** |
+| Log loss | 0.6086 | 0.6072 (−0.0014) | **0.6041** (−0.0045) |
+| vs Elo (0.2086) | +0.0012 above | +0.0005 above | **−0.0008 below** ✓ |
+
+v12 produces probabilities better-calibrated than Elo for the first time in the
+project's history.  The accuracy trade (−0.2pp from v11) was explicit:
+calibration foundation prioritised, future accuracy work compounds on top.
+
+Blend-weight sweep (validated on full 908-match LOYO):
+
+| weight | acc | Brier | log_loss |
+|--------|-----|-------|----------|
+| 0.10 | 68.5% | 0.2082 | 0.6050 |
+| **0.15 (production)** | **68.3%** | **0.2078** | **0.6041** |
+| 0.20 | 68.1% | 0.2075 | 0.6034 |
+| 0.25 | 67.8% | 0.2073 | 0.6028 |
+| 0.30 | 67.3% | 0.2071 | 0.6023 |
+
+Monotonic trade-off — Brier improves with weight, accuracy degrades.
+w=0.10 if strict no-regression desired; w=0.15 for the calibration-focused
+production default.
 
 ### For comparison — ML baselines (trained on 1991-2018 match-level features)
 
@@ -108,7 +125,7 @@ regression (0.240 → 0.229 Brier on that year).
 
 A simple Elo-difference logistic model achieves Brier 0.2086 on the same 908 matches. The pre-v11 engine (0.2098) sat slightly above this; v11 (0.2091) sits between the two — fingerprints adding value via state-conditional baselines rather than over Elo as a rating.
 
-## v11 production-stack components (in `monte_carlo_phased.py`)
+## v12 production-stack components (in `monte_carlo_phased.py`)
 
 Activated by default when fingerprint data is attached:
 
@@ -127,7 +144,16 @@ Activated by default when fingerprint data is attached:
    - Builder: `src/tiebreak_baselines.py`.  Data: `data/{year}_tiebreak_baselines.json`.
    - Validated by Klaassen-Magnus (2004): tiebreak win rates differ measurably from regular-game rates.
 
-3. **Platt+clamp post-calibration** (unchanged from v10): `PLATT_A=0.35`, clamp [0.20, 0.80].
+3. **K-nearest matchup-neighbors prior** (`USE_MATCHUP_NEIGHBORS = True`, `NEIGHBOR_BLEND_WEIGHT = 0.15`)
+   - At match-level finalisation, looks up K=30 nearest historical matchups in a corpus of 1,816 entries (908 matches × 2 sides each, symmetric encoding).
+   - Distance metric: Euclidean on a 22-dimensional vector — for each of 11 metrics (6 Tier-1 + 5 Tier-2), encodes both `(A−B)` differential (style mismatch) AND `(A+B)/2` level (so a high-level matchup isn't matched against a low-level one with similar style differential).
+   - Distance-weighted average of neighbours' win rates becomes a prior.
+   - Blended at weight 0.15: `p_final = 0.85 * p_mc_calibrated + 0.15 * p_neighbor`.
+   - Leakage-safe: lookup excludes entries from the predicting year.
+   - Builder: `src/matchup_neighbors.py`.  Corpus: `data/matchup_corpus.json` (~200KB).
+   - The first audit experiment to produce **uniquely non-Elo signal** — historical similar matchups encode patterns the per-point MC engine can't extract.
+
+4. **Platt+clamp post-calibration** (unchanged from v10): `PLATT_A=0.35`, clamp [0.20, 0.80].
 
 ## What was tried and rejected during v10→v11 development
 

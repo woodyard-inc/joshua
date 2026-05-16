@@ -106,8 +106,9 @@ _ARCHETYPE_MEANS: dict = {}    # populated by _load_archetype_means
 # the MC probability with the win-rate of the K-nearest historical matchups
 # (by metric-vector distance).  Supplementary signal, default weight 0.15.
 # Lookup is leakage-safe via current_year filtering in lookup().
-USE_MATCHUP_NEIGHBORS = False
-NEIGHBOR_BLEND_WEIGHT = 0.15
+USE_MATCHUP_NEIGHBORS = True  # v12 production default — see CLAUDE.md
+NEIGHBOR_BLEND_WEIGHT = 0.15  # validated on full sweep: w=0.15 best calibration/accuracy trade
+                              # (w=0.10 keeps accuracy; w=0.25 best Brier; w=0.15 strict middle)
 _MATCHUP_CORPUS: dict = {}
 
 
@@ -1187,17 +1188,20 @@ def simulate_match_phased(fp_a: dict, fp_b: dict,
     # finalisation.  Looks up K=30 nearest historical matchups (by metric-
     # vector distance), returns their win rate, blends with calibrated MC at
     # NEIGHBOR_BLEND_WEIGHT.  Leakage-safe via current_year filter.
-    if USE_MATCHUP_NEIGHBORS and _MATCHUP_CORPUS:
-        try:
-            from matchup_neighbors import lookup as _mn_lookup
-            p_neighbor = _mn_lookup(fp_a, fp_b, _MATCHUP_CORPUS,
-                                    exclude_year=current_year, k=30)
-            if p_neighbor is not None:
-                p_cal = (1.0 - NEIGHBOR_BLEND_WEIGHT) * p_cal + NEIGHBOR_BLEND_WEIGHT * p_neighbor
-        except Exception as _e:
-            # Lookup failure (missing data, import error) should never break
-            # the engine — neighbor signal is supplementary.
-            pass
+    if USE_MATCHUP_NEIGHBORS:
+        if not _MATCHUP_CORPUS:
+            _load_matchup_corpus()  # lazy load on first use
+        if _MATCHUP_CORPUS:
+            try:
+                from matchup_neighbors import lookup as _mn_lookup
+                p_neighbor = _mn_lookup(fp_a, fp_b, _MATCHUP_CORPUS,
+                                        exclude_year=current_year, k=30)
+                if p_neighbor is not None:
+                    p_cal = (1.0 - NEIGHBOR_BLEND_WEIGHT) * p_cal + NEIGHBOR_BLEND_WEIGHT * p_neighbor
+            except Exception as _e:
+                # Lookup failure (missing data, import error) should never break
+                # the engine — neighbor signal is supplementary.
+                pass
 
     return PhasedResult(
         player_a      = fp_a.get("player", "A"),

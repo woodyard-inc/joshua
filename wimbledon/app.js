@@ -2645,7 +2645,7 @@ function runComparison(nameA, nameB, overrideFps = null) {
   // Terminate any prior worker
   if (window._mcWorker) { window._mcWorker.terminate(); window._mcWorker = null; }
 
-  const worker      = new Worker("mc_worker.js?v=53");  // v11 stack
+  const worker      = new Worker("mc_worker.js?v=54");  // v12 stack (+ matchup neighbors)
   const startTime   = Date.now();
   const MIN_LOAD_MS = 5200;   // keep animation visible for a full loop
   window._mcWorker  = worker;
@@ -2713,7 +2713,23 @@ function runComparison(nameA, nameB, overrideFps = null) {
   // For live UI, both fingerprints are typically same-year so gate is mostly
   // dormant; the visible v11 win comes from tiebreak baselines, which fire
   // whenever both players have tiebreak data on a tiebreak point.
-  worker.postMessage({ fpA, fpB, nSims: 25000, currentYear: state.year });
+  // v12: lazy-load matchup-neighbors corpus on first compare, cache on state.
+  // The corpus is leakage-safe at lookup time (excludes the predicting year).
+  if (!state.matchupCorpus) {
+    try {
+      const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
+      state.matchupCorpus = await fetch(`${base}/data/matchup_corpus.json`,
+                                        { cache: "no-store" })
+                                    .then(r => r.json()).catch(() => null);
+    } catch (_e) { state.matchupCorpus = null; }
+  }
+
+  worker.postMessage({
+    fpA, fpB,
+    nSims: 25000,
+    currentYear: state.year,
+    matchupCorpus: state.matchupCorpus,  // null if load failed; worker skips silently
+  });
 }
 
 // ── Render matchup result ─────────────────────────────────────────

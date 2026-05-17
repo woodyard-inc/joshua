@@ -455,8 +455,9 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
   color: var(--ink-muted);
   border-top: 1px solid var(--ink);
 }
-.pf-col-c { text-align: center; }
-.pf-col-r { text-align: right; }
+.pf-col-l { text-align: left;   white-space: nowrap; }
+.pf-col-c { text-align: center; white-space: nowrap; }
+.pf-col-r { text-align: right;  white-space: nowrap; }
 .pf-colophon a { color: inherit; border: none; }
 .pf-colophon a:hover { color: var(--cobalt); }
 

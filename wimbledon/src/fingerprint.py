@@ -62,7 +62,7 @@ from canonical_names import normalize_name
 DATA_DIR        = Path(__file__).parent.parent / "data" / "raw"
 PROC_DIR        = Path(__file__).parent.parent / "data" / "processed"
 OUT_DIR         = Path(__file__).parent.parent / "data"
-SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023, 2024]
+SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2022, 2023]
 
 # Career-window fingerprint settings
 CAREER_WINDOW   = 10   # max matches per fingerprint (across all eligible years)

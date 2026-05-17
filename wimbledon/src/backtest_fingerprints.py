@@ -38,7 +38,7 @@ from monte_carlo_phased import simulate_match_phased
 
 # ── constants ─────────────────────────────────────────────────────────────────
 SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016,
-                   2017, 2018, 2019, 2021, 2022, 2023, 2024]
+                   2017, 2018, 2019, 2021, 2022, 2023]
 
 # First year with full 128-player draws + reasonable PBP coverage
 MIN_TEST_YEAR   = 2014

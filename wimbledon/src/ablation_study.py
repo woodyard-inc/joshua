@@ -26,7 +26,7 @@ import monte_carlo_phased as mcp
 
 EPSILON = 1e-9
 SUPPORTED_YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019,
-                   2021, 2022, 2023, 2024]
+                   2021, 2022, 2023]
 MIN_TEST_YEAR = 2014
 
 

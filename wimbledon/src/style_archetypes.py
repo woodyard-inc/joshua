@@ -241,7 +241,7 @@ def main():
 
     # Load fingerprints
     if args.multi_year:
-        years = [2019, 2021, 2022, 2023, 2024]
+        years = [2019, 2021, 2022, 2023]
         all_fps = {}
         for y in years:
             fps = load_all_fingerprints(y)

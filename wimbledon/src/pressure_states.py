@@ -64,7 +64,7 @@ from build_player_profiles import load_year, men_match_ids   # noqa: E402
 from canonical_names import normalize_name                    # noqa: E402
 
 YEARS = [2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018,
-         2019, 2021, 2022, 2023, 2024]
+         2019, 2021, 2022, 2023]
 
 # Beta(α, β) weak prior (matches fingerprint.py BETA_PRIOR convention)
 PRIOR_ALPHA = 2.0

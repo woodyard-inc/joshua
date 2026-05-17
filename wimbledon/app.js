@@ -2603,7 +2603,7 @@ function populateMuDropdowns() {
 
 // overrideFps: optional fingerprint set from a different year (e.g. prior year
 // to avoid within-tournament data leakage when predicting a specific matchup).
-function runComparison(nameA, nameB, overrideFps = null) {
+async function runComparison(nameA, nameB, overrideFps = null) {
   const fps = overrideFps || state.fingerprints || {};
   const fpA = fps[nameA];
   const fpB = fps[nameB];

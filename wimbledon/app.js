@@ -473,6 +473,7 @@ const PLAYER_PHOTOS = {
   "Juan Monaco":           "Juan_Monaco",
   "Julien Benneteau":      "Julien_Benneteau",
   "Mikhail Youzhny":       "Mikhail_Youzhny",
+  "Milos Raonic":          "Milos_Raonic",
   "Nicolas Almagro":       "Nicolas_Almagro",
   "Dominic Thiem":         "Dominic_Thiem",
   "Novak Djokovic":        "Novak_Djokovic",

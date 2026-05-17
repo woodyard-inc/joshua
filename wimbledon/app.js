@@ -589,11 +589,11 @@ function renderHero(p, t) {
   const hl = document.getElementById("headline-stats");
   hl.innerHTML = "";
   const hlStats = [
-    { val: `${p.serve.first_in_pct ?? "—"}%`,            label: "1st Srv In" },
-    { val: `${p.serve.first_won_pct ?? "—"}%`,           label: "1st Srv Won" },
-    { val: `${p.aggression.aggression_index ?? "—"}`,    label: "Atk Precision" },
-    { val: `${p.pressure.bp_saved_pct ?? "—"}%`,         label: "BP Saved" },
-    { val: `${p.pressure.bp_created_per_opp_sg ?? "—"}`, label: "BPs/Opp Sg" },
+    { val: `${p.serve.aces_total ?? "—"}`,           label: "Aces" },
+    { val: `${p.serve.first_in_pct ?? "—"}%`,        label: "1st Srv %" },
+    { val: `${p.serve.first_won_pct ?? "—"}%`,       label: "1st Srv Won" },
+    { val: `${p.serve.second_won_pct ?? "—"}%`,      label: "2nd Srv Won" },
+    { val: `${p.pressure.bp_saved_pct ?? "—"}%`,     label: "BP Saved" },
   ];
   for (const s of hlStats) {
     const div = document.createElement("div");
@@ -2985,9 +2985,9 @@ const BACKTEST_DATA = {
   test_years:   "2014–2023 (leave-one-year-out)",
   // Approaches compared — from weakest to strongest
   approaches: [
-    { name: "Coin-flip",                       desc: "No information",                       acc: 0.50, highlight: false },
-    { name: "Ranking only",                    desc: "ATP seeding alone",                    acc: 0.63, highlight: false },
-    { name: "Playing-style fingerprints (MC)", desc: "v12.1 simulation — production engine", acc: 0.684, highlight: true  },
+    { name: "Coin-flip",                       desc: "No information",                              acc: 0.50, highlight: false },
+    { name: "Ranking only",                    desc: "Higher ATP-seeded player wins",               acc: 0.63, highlight: false },
+    { name: "Playing-style fingerprints (MC)", desc: "v12.1 simulation — production engine",         acc: 0.684, highlight: true  },
   ],
 };
 

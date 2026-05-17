@@ -242,10 +242,15 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   pointer-events: none;
 }
 
-/* ── Photo overlay: nameplate bottom-left, lifted clear of the edge ── */
+/* ── Photo overlay: nameplate moved upward so name + headline stats stay
+ *    visible above the fold on the initial paint.  The previous bottom:
+ *    12% put the stats near the lower edge of a 16:9 photo, which dropped
+ *    them below the viewport on standard laptop heights.  bottom: 24%
+ *    keeps the nameplate clear of the edge but anchors the stats well
+ *    inside the visible region. */
 .hero-section:has(.has-photo) .hero-nameplate {
   position: absolute;
-  bottom: 12%;
+  bottom: 24%;
   left: 0;
   right: 0;
   z-index: 2;

@@ -23,7 +23,7 @@ import json
 import math
 import sys
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 import pandas as pd
 
@@ -55,10 +55,81 @@ def prior_edition(year: int) -> Optional[int]:
     return past[-1] if past else None
 
 
-def load_fp_file(year: int, merge_grass: bool = True) -> Dict[str, dict]:
-    """Load all fingerprints for a given year, merged with grass profiles."""
+def load_fp_file(year: int, merge_grass: bool = True,
+                 attach_pressure: bool = False,
+                 attach_momentum: bool = False,
+                 attach_tiebreak: bool = False,
+                 attach_archetype: bool = True,
+                 attach_profile: bool = True) -> Dict[str, dict]:
+    """Load all fingerprints for a given year, merged with grass profiles.
+
+    If attach_pressure=True, also load {year}_pressure_states.json and attach
+    state-conditional baselines to fp["pressure_states"] for the engine to
+    use under USE_PRESSURE_STATES + reliability gate.
+
+    If attach_momentum=True, also load {year}_momentum_hmm.json and attach
+    within-game momentum (hot/neutral) baselines to fp["momentum_hmm"].
+
+    attach_archetype is True by default — attaches fp["archetype_id"] so
+    the engine can shrink modifier values toward archetype-mean priors
+    under USE_ARCHETYPE_SHRINKAGE.
+    """
     data_dir = ROOT / "data"
-    return load_all_fingerprints(year, data_dir=data_dir, merge_grass=merge_grass)
+    fps = load_all_fingerprints(year, data_dir=data_dir, merge_grass=merge_grass)
+    if attach_archetype:
+        arch_path = data_dir / f"{year}_archetypes.json"
+        if arch_path.exists():
+            archetypes = json.loads(arch_path.read_text())
+            for player, fp in fps.items():
+                rec = archetypes.get(player) or {}
+                fp["archetype_id"] = rec.get("id")
+    if attach_profile:
+        prof_path = data_dir / f"{year}_men_profiles.json"
+        if prof_path.exists():
+            profiles = json.loads(prof_path.read_text())
+            for player, fp in fps.items():
+                if player in profiles:
+                    fp["men_profile"] = profiles[player]
+    if attach_pressure:
+        ps_path = data_dir / f"{year}_pressure_states.json"
+        if ps_path.exists():
+            states = json.loads(ps_path.read_text())
+            attached = 0
+            for player, fp in fps.items():
+                ps = states.get(player)
+                if ps is not None:
+                    fp["pressure_states"] = ps
+                    attached += 1
+            print(f"  [{year}] attached pressure states for {attached}/{len(fps)} players")
+        else:
+            print(f"  [{year}] WARNING: --use_pressure_states set but {ps_path.name} not found")
+    if attach_momentum:
+        mh_path = data_dir / f"{year}_momentum_hmm.json"
+        if mh_path.exists():
+            mh = json.loads(mh_path.read_text())
+            attached = 0
+            for player, fp in fps.items():
+                rec = mh.get(player)
+                if rec is not None:
+                    fp["momentum_hmm"] = rec
+                    attached += 1
+            print(f"  [{year}] attached momentum HMM for {attached}/{len(fps)} players")
+        else:
+            print(f"  [{year}] WARNING: --use_momentum_hmm set but {mh_path.name} not found")
+    if attach_tiebreak:
+        tb_path = data_dir / f"{year}_tiebreak_baselines.json"
+        if tb_path.exists():
+            tb_data = json.loads(tb_path.read_text())
+            attached = 0
+            for player, fp in fps.items():
+                rec = tb_data.get(player)
+                if rec is not None:
+                    fp["tiebreak_baselines"] = rec
+                    attached += 1
+            print(f"  [{year}] attached tiebreak baselines for {attached}/{len(fps)} players")
+        else:
+            print(f"  [{year}] WARNING: --use_tiebreak set but {tb_path.name} not found")
+    return fps
 
 
 def match_winner_from_points(pts: pd.DataFrame, match_id: str) -> Optional[int]:
@@ -125,7 +196,8 @@ def evaluate_year(year: int, prior_fps: Dict[str, dict],
         # Run MC
         try:
             if engine == "phased":
-                sim = simulate_match_phased(fp1, fp2, n=n_sims, seed=42)
+                sim = simulate_match_phased(fp1, fp2, n=n_sims, seed=42,
+                                            current_year=year)
                 p_win_1_raw = sim.p_win_a_raw
             else:
                 matchup = compare(fp1, fp2, year=year)
@@ -208,12 +280,48 @@ def main():
     parser.add_argument("--ablate", default=None,
                         help="(phased only) Comma-separated modifier names to disable, e.g. "
                              "'momentum,courtSide,setTransition'. See monte_carlo_phased.ABLATABLE.")
+    # Production stack defaults (validated on 908-match LOYO backtest):
+    #   pressure_states + reliability gate (stale_only)  +  tiebreak baselines
+    # Result: Brier 0.2091, accuracy 68.5% (vs baseline 0.2098, 67.7%).
+    # See CLAUDE.md for full backtest history.  --no_X flags disable for ablation.
+    parser.add_argument("--no_pressure_states", action="store_true",
+                        help="ABLATION: disable per-state pressure baselines (production default ON).")
+    parser.add_argument("--pressure_gate_mode",
+                        choices=["any", "both", "stale_only", "stale_or_gap"],
+                        default="stale_only",
+                        help="(phased only) Reliability gate mode.  stale_only is production default "
+                             "(validated; loose 'any'/'both'/'stale_or_gap' regressed).")
+    parser.add_argument("--no_tiebreak", action="store_true",
+                        help="ABLATION: disable tiebreak-specific baselines (production default ON).")
+    parser.add_argument("--no_matchup_neighbors", action="store_true",
+                        help="ABLATION: disable K-nearest matchup-neighbors prior "
+                             "(production default ON at blend_weight=0.15).")
+    parser.add_argument("--neighbor_blend_weight", type=float, default=0.15,
+                        help="Blend weight for matchup neighbors (default 0.15 = v12 production).")
+    parser.add_argument("--use_momentum_hmm", action="store_true",
+                        help="OPT-IN: Apply per-player within-game momentum delta from "
+                             "{year}_momentum_hmm.json (Klaassen-Magnus 2014 backed).  Validated "
+                             "as no-op on 908-match backtest; not in production stack.")
     args = parser.parse_args()
 
-    # Apply ablation flags before importing happens (they're read at runtime)
+    import monte_carlo_phased as mcp
+
     if args.ablate:
-        import monte_carlo_phased as mcp
         mcp.set_ablation(set(args.ablate.split(",")))
+
+    # Production stack: pressure_states + tiebreak + matchup_neighbors are ON
+    # by default in the engine.  --no_* CLI flags disable them for ablation.
+    mcp.set_pressure_gate_mode(args.pressure_gate_mode)
+    if args.no_pressure_states:
+        mcp.set_use_pressure_states(False)
+    if args.no_tiebreak:
+        mcp.set_use_tiebreak_baselines(False)
+    if args.no_matchup_neighbors:
+        mcp.set_use_matchup_neighbors(False)
+    else:
+        mcp.set_use_matchup_neighbors(True, blend_weight=args.neighbor_blend_weight)
+    if args.use_momentum_hmm:
+        mcp.set_use_momentum_hmm(True)
 
     test_years = [y for y in SUPPORTED_YEARS if y >= MIN_TEST_YEAR]
     all_results: List[dict] = []
@@ -230,7 +338,10 @@ def main():
             print(f"  [{year}] No prior edition — skipping.")
             continue
 
-        prior_fps = load_fp_file(prior)
+        prior_fps = load_fp_file(prior,
+                                 attach_pressure=not args.no_pressure_states,
+                                 attach_momentum=args.use_momentum_hmm,
+                                 attach_tiebreak=not args.no_tiebreak)
         if not prior_fps:
             print(f"  [{year}] No fingerprints for prior edition {prior} — skipping.")
             continue

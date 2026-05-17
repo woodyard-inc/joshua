@@ -96,6 +96,156 @@ function plattCalibrate(p) {
 }
 
 
+// ── v11 production stack (mirrors monte_carlo_phased.py) ──────────────────
+//
+// Pressure-state baselines: per-state fspw/sspw/rpw_vs_1st/rpw_vs_2nd
+//   fitted from raw PBP with archetype-prior shrinkage.  Applied via a
+//   per-match reliability gate ('stale_only': fires when EITHER player's
+//   prior fingerprint has its most-recent career edition >1yr before the
+//   predicted year — the COVID-gap case).
+// Tiebreak baselines: separate fspw/sspw/rpw fits for tiebreak vs regular
+//   game points.  Applied when state.isTiebreak and both players have data.
+//
+// Validated on 908-match LOYO backtest:
+//   pre-v11 baseline       acc 67.7%  brier 0.2098
+//   v11 production stack   acc 68.5%  brier 0.2091
+const USE_PRESSURE_STATES   = true;
+const USE_TIEBREAK_BASELINES = true;
+const PRESSURE_GATE_MODE    = "stale_only";
+
+function isStaleFp(fp, currentYear) {
+  const eds = fp?.career_editions_used;
+  if (!Array.isArray(eds) || eds.length === 0 || currentYear == null) return false;
+  let mostRecent = -Infinity;
+  for (const y of eds) {
+    const n = parseInt(y, 10);
+    if (!Number.isNaN(n) && n > mostRecent) mostRecent = n;
+  }
+  if (mostRecent === -Infinity) return false;
+  return (currentYear - mostRecent) > 1;
+}
+
+function isSparseFp(fp, currentYear) {
+  const eds = fp?.career_editions_used;
+  const len = Array.isArray(eds) ? eds.length : 0;
+  if (len < 3) return true;
+  return isStaleFp(fp, currentYear);
+}
+
+function shouldUsePressure(fpA, fpB, currentYear) {
+  if (!USE_PRESSURE_STATES) return false;
+  if (PRESSURE_GATE_MODE === "stale_only") {
+    return isStaleFp(fpA, currentYear) || isStaleFp(fpB, currentYear);
+  }
+  // (other modes parity with Python kept for ablation; production = stale_only)
+  return isSparseFp(fpA, currentYear) || isSparseFp(fpB, currentYear);
+}
+
+
+// ── v12 matchup-neighbors prior (mirrors src/matchup_neighbors.py) ────────
+//
+// At match-level finalisation, blend in the win rate of the K nearest
+// historical matchups (by metric-vector distance).  Supplementary signal:
+// MC engine continues to drive the prediction; neighbour prior nudges it
+// at NEIGHBOR_BLEND_WEIGHT.  Validated -0.0013 Brier vs v11 on 908-match
+// backtest at w=0.15.
+const USE_MATCHUP_NEIGHBORS = true;
+const NEIGHBOR_BLEND_WEIGHT = 0.15;
+const NEIGHBOR_K            = 30;
+
+// Must mirror MATCHUP_METRICS in src/matchup_neighbors.py exactly.
+// Each entry: [display_name, tier1_key | null | "PROFILE", tier2_key | null, value_path | null, fallback]
+// "PROFILE" sentinel -> traverse fp.men_profile via dotted path.
+const MATCHUP_METRICS = [
+  ["fspw",          "fspw_pct",        null,                      null,         72.0],
+  ["sspw",          "sspw_pct",        null,                      null,         56.0],
+  ["rpw_vs_1st",    "rpw_vs_1st_pct",  null,                      null,         25.0],
+  ["rpw_vs_2nd",    "rpw_vs_2nd_pct",  null,                      null,         40.0],
+  ["sgw",           "sgw_pct",         null,                      null,         80.0],
+  ["rgw",           "rgw_pct",         null,                      null,         16.0],
+  ["serve_entropy", null,              "serve_entropy",           "pct_of_max", 75.0],
+  ["clutch_diff",   null,              "clutch_differential",     "value",       0.0],
+  ["tiebreak_diff", null,              "tiebreak_differential",   "value",       0.0],
+  ["attrition",     null,              "attrition_slope",         "value",       0.1],
+  ["rally_volat",   null,              "rally_volatility",        "value",       3.0],
+  // Display-layer additions from men_profile (added v12.1)
+  ["net_won_pct",     "PROFILE",       null, "net.net_won_pct",                60.0],
+  ["aggression_idx",  "PROFILE",       null, "aggression.aggression_index",    55.0],
+  ["rally_srv_1st",   "PROFILE",       null, "rally_shots.srv_1st_avg",         3.5],
+  ["rally_srv_2nd",   "PROFILE",       null, "rally_shots.srv_2nd_avg",         4.0],
+  ["serve_dir_wide",  "PROFILE",       null, "serve_direction.wide_pct",       35.0],
+  ["srv_clean_pct",   "PROFILE",       null, "clean_games.srv_clean_pct",      65.0],
+  ["match_mins",      "PROFILE",       null, "match_duration.avg_mins",       150.0],
+  ["distance_km",     "PROFILE",       null, "distance.avg_km_per_match",       3.2],
+];
+
+function fpMetricValue(fp, t1Key, t2Key, path, fallback) {
+  // v12.1: "PROFILE" -> dotted-path lookup in fp.men_profile
+  if (t1Key === "PROFILE") {
+    let node = fp.men_profile;
+    if (!node) return fallback;
+    for (const k of (path || "").split(".")) {
+      if (!node || typeof node !== "object") return fallback;
+      node = node[k];
+    }
+    if (node == null || typeof node === "object") return fallback;
+    const n = Number(node);
+    return Number.isFinite(n) ? n : fallback;
+  }
+  if (t1Key) {
+    const node = fp.tier1?.[t1Key];
+    return (node && node.value != null) ? node.value : fallback;
+  }
+  const node = fp.tier2?.[t2Key];
+  if (!node || typeof node !== "object") return fallback;
+  if (node.available === false) return fallback;
+  const v = node[path];
+  return v != null ? v : fallback;
+}
+
+function matchupFeatures(fpA, fpB) {
+  const feats = new Array(MATCHUP_METRICS.length * 2);
+  let i = 0;
+  for (const [, t1, t2, path, fb] of MATCHUP_METRICS) {
+    const a = fpMetricValue(fpA, t1, t2, path, fb);
+    const b = fpMetricValue(fpB, t1, t2, path, fb);
+    feats[i++] = a - b;          // differential
+    feats[i++] = (a + b) / 2;    // level
+  }
+  return feats;
+}
+
+function neighborLookup(fpA, fpB, corpus, excludeYear, k = NEIGHBOR_K) {
+  if (!corpus || !corpus.entries || !corpus.mean || !corpus.std) return null;
+  const raw = matchupFeatures(fpA, fpB);
+  // z-score with corpus normalisation
+  const q = new Array(raw.length);
+  for (let i = 0; i < raw.length; i++) q[i] = (raw[i] - corpus.mean[i]) / corpus.std[i];
+
+  const distances = [];
+  for (const e of corpus.entries) {
+    if (excludeYear != null && e.year === excludeYear) continue;
+    const f = e.features;
+    let d2 = 0;
+    for (let i = 0; i < q.length; i++) {
+      const diff = q[i] - f[i];
+      d2 += diff * diff;
+    }
+    distances.push([d2, e.won_left]);
+  }
+  if (distances.length < k) return null;
+  distances.sort((a, b) => a[0] - b[0]);
+  let weightedWon = 0, totalW = 0;
+  for (let i = 0; i < k; i++) {
+    const [d2, won] = distances[i];
+    const w = 1 / (Math.sqrt(d2) + 0.5);
+    weightedWon += w * won;
+    totalW += w;
+  }
+  return weightedWon / totalW;
+}
+
+
 // ── Pre-extracted modifier cache ──────────────────────────────────────────
 // Extracted once per matchup to avoid repeated deep property access
 // during the hot simulation loop.
@@ -110,15 +260,67 @@ function extractModifiers(fp) {
     baseDFRate = t2.df_pressure_delta.baseline_df_rate / 100;
   }
 
+  // Default Tier-1 base metrics
+  const fspwPct   = (t1.fspw_pct?.value       != null) ? t1.fspw_pct.value       : GRASS_AVG_FSPW * 100;
+  const sspwPct   = (t1.sspw_pct?.value       != null) ? t1.sspw_pct.value       : GRASS_AVG_SSPW * 100;
+  const rpwV1Pct  = (t1.rpw_vs_1st_pct?.value != null) ? t1.rpw_vs_1st_pct.value : GRASS_RPW_VS_1ST_AVG;
+  const rpwV2Pct  = (t1.rpw_vs_2nd_pct?.value != null) ? t1.rpw_vs_2nd_pct.value : GRASS_RPW_VS_2ND_AVG;
+
+  // v11: per-state baselines (used when reliability gate fires for this match).
+  // Default fallback to the overall Tier-1 baseline so any missing data
+  // gracefully degrades.
+  let fspwN = fspwPct, fspwP = fspwPct;
+  let sspwN = sspwPct, sspwP = sspwPct;
+  let rpwV1N = rpwV1Pct, rpwV1P = rpwV1Pct;
+  let rpwV2N = rpwV2Pct, rpwV2P = rpwV2Pct;
+  const ps = fp.pressure_states;
+  if (ps) {
+    fspwN  = ps.fspw_neutral_pct       ?? fspwN;
+    fspwP  = ps.fspw_pressure_pct      ?? fspwP;
+    sspwN  = ps.sspw_neutral_pct       ?? sspwN;
+    sspwP  = ps.sspw_pressure_pct      ?? sspwP;
+    rpwV1N = ps.rpw_vs_1st_neutral_pct ?? rpwV1N;
+    rpwV1P = ps.rpw_vs_1st_pressure_pct ?? rpwV1P;
+    rpwV2N = ps.rpw_vs_2nd_neutral_pct ?? rpwV2N;
+    rpwV2P = ps.rpw_vs_2nd_pressure_pct ?? rpwV2P;
+  }
+
+  // v11: tiebreak-specific baselines (used when state.isTiebreak and both
+  // players have tiebreak data).  Stored in pct units; converted to
+  // fractions for fspw/sspw downstream.
+  let fspwTb = null, sspwTb = null, rpwV1Tb = null, rpwV2Tb = null;
+  const tb = fp.tiebreak_baselines;
+  if (tb) {
+    if (tb.fspw_tiebreak_pct       != null) fspwTb  = tb.fspw_tiebreak_pct;
+    if (tb.sspw_tiebreak_pct       != null) sspwTb  = tb.sspw_tiebreak_pct;
+    if (tb.rpw_vs_1st_tiebreak_pct != null) rpwV1Tb = tb.rpw_vs_1st_tiebreak_pct;
+    if (tb.rpw_vs_2nd_tiebreak_pct != null) rpwV2Tb = tb.rpw_vs_2nd_tiebreak_pct;
+  }
+
   return {
     // Tier 1 serve / return stats — backbone of the model
     fsp:  (t1.fsp_pct?.value  != null) ? t1.fsp_pct.value  / 100 : GRASS_AVG_FSP,
-    fspw:     (t1.fspw_pct?.value != null) ? t1.fspw_pct.value / 100 : GRASS_AVG_FSPW,
-    sspw:     (t1.sspw_pct?.value != null) ? t1.sspw_pct.value / 100 : GRASS_AVG_SSPW,
-    rpw:      (t1.rpw_pct?.value          != null) ? t1.rpw_pct.value         : GRASS_RPW_AVG,
-    rpwVs1st: (t1.rpw_vs_1st_pct?.value  != null) ? t1.rpw_vs_1st_pct.value  : GRASS_RPW_VS_1ST_AVG,
-    rpwVs2nd: (t1.rpw_vs_2nd_pct?.value  != null) ? t1.rpw_vs_2nd_pct.value  : GRASS_RPW_VS_2ND_AVG,
+    fspw:     fspwPct / 100,
+    sspw:     sspwPct / 100,
+    rpw:      (t1.rpw_pct?.value         != null) ? t1.rpw_pct.value         : GRASS_RPW_AVG,
+    rpwVs1st: rpwV1Pct,
+    rpwVs2nd: rpwV2Pct,
     rgw:      (t1.rgw_pct?.value         != null) ? t1.rgw_pct.value         : GRASS_AVG_RGW,
+
+    // v11: state-conditional baselines.  fspw* in fractions, rpw* in pct.
+    fspwNeutral:      fspwN  / 100,
+    fspwPressure:     fspwP  / 100,
+    sspwNeutral:      sspwN  / 100,
+    sspwPressure:     sspwP  / 100,
+    rpwVs1stNeutral:  rpwV1N,
+    rpwVs1stPressure: rpwV1P,
+    rpwVs2ndNeutral:  rpwV2N,
+    rpwVs2ndPressure: rpwV2P,
+    // v11: tiebreak baselines (null when fp lacks tiebreak data).
+    fspwTiebreak:     fspwTb != null ? fspwTb / 100 : null,
+    sspwTiebreak:     sspwTb != null ? sspwTb / 100 : null,
+    rpwVs1stTiebreak: rpwV1Tb,
+    rpwVs2ndTiebreak: rpwV2Tb,
 
     // Phase 1: serve
     baseDFRate,
@@ -135,6 +337,9 @@ function extractModifiers(fp) {
     holdAfterBreak:      t2.hold_after_break      || null,
     attrition:           t2.attrition_slope       || null,
     rallyVolatility:     t2.rally_volatility      || null,
+
+    // v11: per-match reliability-gate decision stamped here by runMonteCarlo
+    _usePressure:        false,
   };
 }
 
@@ -267,21 +472,48 @@ function simulatePoint(srvMods, retMods, state) {
   const rallyDist = reweightDist(state.rallyDist, rallyWeights);
   const band = sampleBand(rallyDist);
 
-  // 2b. Serve-type-specific baseline
-  //     1st serve in → fspw_pct as baseline (big serve = advantage)
-  //     2nd serve    → sspw_pct as baseline (returner is more engaged)
   // 2b. Serve-type-specific baseline + serve-type-specific matchup adjustment.
-  //     The returner's RPW vs 1st serves and vs 2nd serves are very different
-  //     regimes on grass (~28% vs ~52%).  Using the right split per phase
-  //     captures whether the returner is good at neutralising big serves
-  //     or at attacking second serves — those are different skills.
+  //     v11 priority order in Phase 2: tiebreak > pressure-state > Tier 1.
+  //     - Tiebreak baseline used when state.isTiebreak and BOTH players have
+  //       tiebreak data (avoids asymmetric Tier-1-vs-tiebreak matchups).
+  //     - Pressure-state baseline used when the per-match reliability gate
+  //       fired and the point is BP-against or deuce/AD.  Skips spci/clutch
+  //       later to avoid double-counting.
+  const usePressurePt = !!srvMods._usePressure;
+  const isPressurePt  = !!(state.isBreakPoint || state.isDeuce);
+  const useTiebreakPt = (
+    USE_TIEBREAK_BASELINES && state.isTiebreak &&
+    (isSecondServe ? srvMods.sspwTiebreak     : srvMods.fspwTiebreak)     != null &&
+    (isSecondServe ? retMods.rpwVs2ndTiebreak : retMods.rpwVs1stTiebreak) != null
+  );
+
   let p, adj;
-  if (isSecondServe) {
-    p   = srvMods.sspw;
-    adj = (retMods.rpwVs2nd - GRASS_RPW_VS_2ND_AVG) / 100;
+  if (useTiebreakPt) {
+    if (isSecondServe) {
+      p   = srvMods.sspwTiebreak;
+      adj = (retMods.rpwVs2ndTiebreak - GRASS_RPW_VS_2ND_AVG) / 100;
+    } else {
+      p   = srvMods.fspwTiebreak;
+      adj = (retMods.rpwVs1stTiebreak - GRASS_RPW_VS_1ST_AVG) / 100;
+    }
+  } else if (usePressurePt) {
+    if (isSecondServe) {
+      p   = isPressurePt ? srvMods.sspwPressure : srvMods.sspwNeutral;
+      adj = ((isPressurePt ? retMods.rpwVs2ndPressure : retMods.rpwVs2ndNeutral)
+             - GRASS_RPW_VS_2ND_AVG) / 100;
+    } else {
+      p   = isPressurePt ? srvMods.fspwPressure : srvMods.fspwNeutral;
+      adj = ((isPressurePt ? retMods.rpwVs1stPressure : retMods.rpwVs1stNeutral)
+             - GRASS_RPW_VS_1ST_AVG) / 100;
+    }
   } else {
-    p   = srvMods.fspw;
-    adj = (retMods.rpwVs1st - GRASS_RPW_VS_1ST_AVG) / 100;
+    if (isSecondServe) {
+      p   = srvMods.sspw;
+      adj = (retMods.rpwVs2nd - GRASS_RPW_VS_2ND_AVG) / 100;
+    } else {
+      p   = srvMods.fspw;
+      adj = (retMods.rpwVs1st - GRASS_RPW_VS_1ST_AVG) / 100;
+    }
   }
   p -= adj;
 
@@ -302,19 +534,23 @@ function simulatePoint(srvMods, retMods, state) {
   }
 
   // 3b. Pressure adjustments (break point / deuce states)
+  //     v11: skip spci/clutch for THIS point when per-state pressure baseline
+  //     was used in Phase 2 (their effect is absorbed into that baseline).
   if (state.isBreakPoint || state.isDeuce) {
-    // Server SPCI — holding serve under pressure
-    const spci = srvMods.spci;
-    if (spci?.modifier_delta != null) {
-      const w = confWeight(spci.confidence);
-      p += w * spci.modifier_delta * 0.50;
-    }
+    if (!usePressurePt) {
+      // Server SPCI — holding serve under pressure
+      const spci = srvMods.spci;
+      if (spci?.modifier_delta != null) {
+        const w = confWeight(spci.confidence);
+        p += w * spci.modifier_delta * 0.50;
+      }
 
-    // Returner clutch differential — lifting their game at BPs
-    const clutch = retMods.clutch;
-    if (clutch?.modifier_delta != null) {
-      const w = confWeight(clutch.confidence);
-      p -= w * (clutch.modifier_delta / 100) * 0.60;
+      // Returner clutch differential — lifting their game at BPs
+      const clutch = retMods.clutch;
+      if (clutch?.modifier_delta != null) {
+        const w = confWeight(clutch.confidence);
+        p -= w * (clutch.modifier_delta / 100) * 0.60;
+      }
     }
 
     // bpConversion modifier dropped in v3 (cost +0.44pp accuracy ablated).
@@ -343,8 +579,10 @@ function simulatePoint(srvMods, retMods, state) {
   // application was too aggressive — real momentum decays between service
   // games, not point-to-point during the same hold.
 
-  // 3e. Tiebreak differential
-  if (state.isTiebreak) {
+  // 3e. Tiebreak differential modifier
+  //     v11: skip when per-state tiebreak baseline was used in Phase 2
+  //     for THIS point (absorbed into baseline; double-counting otherwise).
+  if (state.isTiebreak && !useTiebreakPt) {
     const tb  = srvMods.tiebreak;
     const tbR = retMods.tiebreak;
     if (tb?.available && tb.value != null)
@@ -604,10 +842,19 @@ function simulateMatch(modsA, modsB) {
 //  MONTE CARLO RUNNER
 // ══════════════════════════════════════════════════════════════════════════
 
-function runMonteCarlo(fpA, fpB, nSims, onProgress) {
+function runMonteCarlo(fpA, fpB, nSims, onProgress, currentYear = null, matchupCorpus = null) {
   // Pre-extract modifiers once for the entire matchup
   const modsA = extractModifiers(fpA);
   const modsB = extractModifiers(fpB);
+
+  // v11: per-match reliability gate.  Pressure-state baselines are used
+  // only when at least one fingerprint is stale (max career_editions_used
+  // year > 1yr before currentYear, e.g., 2019 fp predicting 2021).
+  // Otherwise the standard Tier-1 baseline + Phase-3 modifier pipeline
+  // runs unchanged for this match.
+  const useMatchPressure = shouldUsePressure(fpA, fpB, currentYear);
+  modsA._usePressure = useMatchPressure;
+  modsB._usePressure = useMatchPressure;
 
   let winsA = 0;
   const scoreCount = {};
@@ -626,7 +873,19 @@ function runMonteCarlo(fpA, fpB, nSims, onProgress) {
 
   // Raw MC → Platt-calibrated probability
   const pWinA_raw = winsA / nSims;
-  const pWinA = plattCalibrate(pWinA_raw);
+  let pWinA = plattCalibrate(pWinA_raw);
+
+  // v12: blend in K-nearest matchup-neighbors prior at NEIGHBOR_BLEND_WEIGHT.
+  // Lookup is leakage-safe via currentYear filter.  Supplementary signal —
+  // skipped silently if corpus unavailable or too few neighbours.
+  if (USE_MATCHUP_NEIGHBORS && matchupCorpus) {
+    try {
+      const pNeighbor = neighborLookup(fpA, fpB, matchupCorpus, currentYear, NEIGHBOR_K);
+      if (pNeighbor != null) {
+        pWinA = (1 - NEIGHBOR_BLEND_WEIGHT) * pWinA + NEIGHBOR_BLEND_WEIGHT * pNeighbor;
+      }
+    } catch (e) { /* swallow — neighbour signal is supplementary */ }
+  }
   const pWinB = 1 - pWinA;
 
   // Wilson confidence interval
@@ -1061,7 +1320,7 @@ function edgeNarrative(axisContrib, nameA, nameB, pWinA) {
 
 self.onmessage = function (e) {
   try {
-  const { fpA, fpB, nSims = 10000 } = e.data;
+  const { fpA, fpB, nSims = 10000, currentYear = null, matchupCorpus = null } = e.data;
 
   self.postMessage({ type: "progress", pct: 5, msg: "Loading player data…" });
 
@@ -1071,7 +1330,7 @@ self.onmessage = function (e) {
       pct,
       msg: `Running simulations… ${count.toLocaleString()} / ${nSims.toLocaleString()}`,
     });
-  });
+  }, currentYear, matchupCorpus);
 
   self.postMessage({ type: "progress", pct: 82, msg: "Calculating axis contributions…" });
 

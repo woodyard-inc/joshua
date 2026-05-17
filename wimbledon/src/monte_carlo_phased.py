@@ -20,7 +20,7 @@ from __future__ import annotations
 import math
 import random
 from dataclasses import dataclass, field
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional
 
 # ── constants ──────────────────────────────────────────────────────────────
 # Calibration parameters — validated via grid search + leave-one-year-out CV
@@ -37,29 +37,30 @@ PLATT_A = 0.35
 PROB_FLOOR = 0.20
 PROB_CEIL  = 0.80
 
-GRASS_RPW_AVG     = 35.0  # blended; used as fallback / display
+# ── Grass-court reference averages ────────────────────────────────────────
+# Population means used as fallbacks when a player's data is missing AND
+# as the reference points for matchup adjustments (a returner above the
+# tour-average rpw_vs_1st pulls the server's effective probability down
+# by the excess).  Measured on the 2024 fingerprint+grass-profile dataset
+# (273 players).
+GRASS_RPW_AVG        = 35.0   # overall return-points-won (blended; display fallback)
+GRASS_RPW_VS_1ST_AVG = 25.0   # median rpw vs 1st serves on grass
+GRASS_RPW_VS_2ND_AVG = 40.0   # median rpw vs 2nd serves on grass
+GRASS_AVG_DF_RATE    = 0.035
+GRASS_AVG_FSP        = 0.63
+GRASS_AVG_FSPW       = 0.72
+GRASS_AVG_SSPW       = 0.56
+GRASS_AVG_RGW        = 16.0   # return games won %, grass-court 2014–2024 mean
 
-# Grass-court tour averages for return-points-won by serve type.
-# Measured on the 2024 fingerprint+grass-profile dataset (273 players):
-#   1st serve regime: median 24.8% RPW (returner under maximum pressure)
-#   2nd serve regime: median 40.3% RPW (returner attacks; tends to win rallies)
-# These are the matchup baselines for the phased simulation — a returner
-# above his/her serve-type average shifts the server's effective probability
-# down for that phase only.
-GRASS_RPW_VS_1ST_AVG = 25.0
-GRASS_RPW_VS_2ND_AVG = 40.0
-GRASS_AVG_DF_RATE = 0.035
-GRASS_AVG_FSP     = 0.63
-GRASS_AVG_FSPW    = 0.72
-GRASS_AVG_SSPW    = 0.56
-GRASS_AVG_RGW     = 16.0   # return games won %, grass-court 2014–2024 mean
-
+# Rally-length bands and grass-court priors for the per-point sampler.
 RALLY_BANDS = ["1_3", "4_6", "7_9", "10+"]
 GRASS_PRIOR = {"1_3": 0.55, "4_6": 0.30, "7_9": 0.10, "10+": 0.05}
-
 FIRST_SERVE_RALLY_WEIGHTS  = {"1_3": 1.15, "4_6": 1.00, "7_9": 0.80, "10+": 0.70}
 SECOND_SERVE_RALLY_WEIGHTS = {"1_3": 0.85, "4_6": 1.05, "7_9": 1.15, "10+": 1.20}
 
+# Continuous momentum (catch-fire) constants — only used when the
+# "momentum" modifier is in the ablation set as ACTIVE.  Default
+# production stack has it disabled (in PRODUCTION_ABLATED).
 STREAK_BOOST_PER_POINT = 0.004
 STREAK_GROWTH_RATE     = 0.35
 STREAK_MAX_BOOST       = 0.06
@@ -67,10 +68,191 @@ AVG_STREAK_INIT        = 5.5
 AVG_STREAK_SURV        = 0.431
 AVG_STREAK_REC         = 0.416
 
+# Match format.
 SETS_TO_WIN = 3
 
 
-# ── ablation harness ──────────────────────────────────────────────────────
+# ── Toggles & engine setters ──────────────────────────────────────────────
+# All "USE_*" toggles default to the validated v12.1 production stack;
+# rejected experiments (form-noise, isotonic, band-weights, archetype
+# shrinkage, continuous-rally) have been removed from the codebase entirely
+# — see CLAUDE.md "What has been tried" for the negative-results record.
+
+# Tiebreak-baseline toggle.  When True, simulate_point's Phase 2 substitutes
+# the per-player tiebreak-fitted baselines (from {year}_tiebreak_baselines.json)
+# whenever state["isTiebreak"] is True.  Klaassen-Magnus (2004) validate
+# tiebreak as a distinct psychological regime — empirical fspw/sspw/rpw
+# differ measurably from regular-game baselines.  Beta-Binomial + archetype-
+# prior shrinkage in the builder handles small per-player tiebreak samples.
+#
+# Composition with pressure_states: tiebreak baselines take priority over
+# pressure baselines on tiebreak points (tiebreak points are typically
+# scored in a way that's NOT classified as deuce/AD by the pressure
+# classifier, so there's minimal overlap in practice).
+USE_TIEBREAK_BASELINES = True  # production default — see CLAUDE.md backtest history
+
+
+def set_use_tiebreak_baselines(flag: bool) -> None:
+    global USE_TIEBREAK_BASELINES
+    USE_TIEBREAK_BASELINES = bool(flag)
+    print(f"[monte_carlo_phased] USE_TIEBREAK_BASELINES={USE_TIEBREAK_BASELINES}")
+
+
+# Matchup-neighbors prior (Sprint 5a).  At match-level finalisation, blend
+# the MC probability with the win-rate of the K-nearest historical matchups
+# (by metric-vector distance).  Supplementary signal, default weight 0.15.
+# Lookup is leakage-safe via current_year filtering in lookup().
+USE_MATCHUP_NEIGHBORS = True  # v12 production default — see CLAUDE.md
+NEIGHBOR_BLEND_WEIGHT = 0.15  # validated on full sweep: w=0.15 best calibration/accuracy trade
+                              # (w=0.10 keeps accuracy; w=0.25 best Brier; w=0.15 strict middle)
+_MATCHUP_CORPUS: dict = {}
+
+
+def set_use_matchup_neighbors(flag: bool, blend_weight: Optional[float] = None) -> None:
+    global USE_MATCHUP_NEIGHBORS, NEIGHBOR_BLEND_WEIGHT
+    USE_MATCHUP_NEIGHBORS = bool(flag)
+    if blend_weight is not None:
+        NEIGHBOR_BLEND_WEIGHT = float(blend_weight)
+    print(f"[monte_carlo_phased] USE_MATCHUP_NEIGHBORS={USE_MATCHUP_NEIGHBORS} "
+          f"(blend_weight={NEIGHBOR_BLEND_WEIGHT})")
+    if USE_MATCHUP_NEIGHBORS and not _MATCHUP_CORPUS:
+        _load_matchup_corpus()
+
+
+def _load_matchup_corpus() -> None:
+    from pathlib import Path as _P
+    import json as _json
+    path = _P(__file__).parent.parent / "data" / "matchup_corpus.json"
+    if not path.exists():
+        print(f"[monte_carlo_phased] WARNING: {path.name} not found; matchup "
+              f"neighbors disabled at query time")
+        return
+    _MATCHUP_CORPUS.update(_json.loads(path.read_text()))
+    print(f"[monte_carlo_phased] loaded matchup corpus: "
+          f"{_MATCHUP_CORPUS.get('n_entries', 0)} entries, "
+          f"{len(_MATCHUP_CORPUS.get('feature_names', []))} features")
+
+
+# Pressure-state baseline toggle.  When True, simulate_point() Phase 2 looks up
+# a state-conditional baseline (fspw_neutral/fspw_pressure, sspw_neutral/...) from
+# fp["pressure_states"] instead of the single fspw/sspw value.  Decision to use
+# per-state baseline is made per-match by _should_use_pressure (reliability gate);
+# when fired, spci and clutch are skipped point-by-point in simulate_point to
+# avoid double-counting effects already absorbed into the per-state baselines.
+USE_PRESSURE_STATES = True  # production default — see CLAUDE.md backtest history
+
+
+def set_use_pressure_states(flag: bool) -> None:
+    global USE_PRESSURE_STATES
+    USE_PRESSURE_STATES = bool(flag)
+    print(f"[monte_carlo_phased] USE_PRESSURE_STATES={USE_PRESSURE_STATES}")
+
+
+def _is_sparse_fp(fp: dict, current_year: Optional[int]) -> bool:
+    """Whether a fingerprint is sparse or stale enough that pressure-state
+    shrinkage is preferable to the standard baseline + modifier pipeline.
+
+    Sparse: <3 career editions feeding the fingerprint (typical pre-2014
+            data, or comeback players, or qualifiers).
+    Stale:  most-recent feeding edition is more than 1 year before the year
+            being predicted (e.g., 2019 fingerprint predicting 2021 — COVID
+            gap).
+
+    The signal that drove this gate is the per-year backtest pattern: under
+    USE_PRESSURE_STATES, sparse/stale years (2014, 2021, 2022) gain Brier
+    while clean years (2017, 2023) lose.  Reliability gating captures the
+    gain without the loss.
+    """
+    eds = fp.get("career_editions_used") or []
+    if not isinstance(eds, list):
+        eds = []
+    if len(eds) < 3:
+        return True
+    if current_year is not None and eds:
+        try:
+            most_recent = max(int(y) for y in eds)
+        except (TypeError, ValueError):
+            return True
+        if current_year - most_recent > 1:
+            return True
+    return False
+
+
+# Production default = "stale_only" — only fires when EITHER player's prior
+# fingerprint has its most-recent career edition >1 year before the predicted
+# year (the 2021/COVID case).  Validated to beat baseline by -0.0010 Brier on
+# the 908-match backtest, every other year unchanged.  Looser gates ("any",
+# "both", "stale_or_gap") all regress vs this on the same set.
+PRESSURE_GATE_MODE = "stale_only"  # "any" | "both" | "stale_only" | "stale_or_gap"
+
+
+# Momentum-HMM toggle.  When True, simulate_point applies a Phase-3 additive
+# delta when state.streakCount magnitude >= MOMENTUM_HOT_MIN (server or
+# returner is on a within-game streak).  Delta = per-player (hot - neutral)
+# baseline difference from {year}_momentum_hmm.json, gated by sample size.
+# Backed by Klaassen & Magnus (2001, 2014): within-game momentum +2-3pp is
+# real; resets at game boundary (which streakCount already does).
+USE_MOMENTUM_HMM = False
+MOMENTUM_HOT_MIN     = 2     # streak length threshold for "hot" state
+MOMENTUM_MIN_N_HOT   = 30    # require >=30 hot-state observations to apply
+MOMENTUM_MAX_DELTA_PCT = 6.0 # cap individual momentum delta at +-6pp safety
+
+
+def set_use_momentum_hmm(flag: bool) -> None:
+    global USE_MOMENTUM_HMM
+    USE_MOMENTUM_HMM = bool(flag)
+    print(f"[monte_carlo_phased] USE_MOMENTUM_HMM={USE_MOMENTUM_HMM}")
+
+
+def set_pressure_gate_mode(mode: str) -> None:
+    global PRESSURE_GATE_MODE
+    if mode not in ("any", "both", "stale_only", "stale_or_gap"):
+        raise ValueError(f"unknown mode: {mode!r}")
+    PRESSURE_GATE_MODE = mode
+    print(f"[monte_carlo_phased] PRESSURE_GATE_MODE={PRESSURE_GATE_MODE}")
+
+
+def _is_stale_fp(fp: dict, current_year: Optional[int]) -> bool:
+    eds = fp.get("career_editions_used") or []
+    if not isinstance(eds, list) or not eds or current_year is None:
+        return False
+    try:
+        most_recent = max(int(y) for y in eds)
+    except (TypeError, ValueError):
+        return False
+    return current_year - most_recent > 1
+
+
+def _has_career_gap(fp: dict) -> bool:
+    """The fingerprint's career history contains a missing edition year
+    (e.g., a player who played 2018, 2019, then skipped 2020/2021 and
+    returned 2022, or any COVID-style discontinuity)."""
+    eds = fp.get("career_editions_used") or []
+    if not isinstance(eds, list) or len(eds) < 2:
+        return False
+    try:
+        ys = sorted(int(y) for y in eds)
+    except (TypeError, ValueError):
+        return False
+    # contiguous: max - min == len - 1
+    return (ys[-1] - ys[0]) > (len(ys) - 1)
+
+
+def _should_use_pressure(fp_a: dict, fp_b: dict,
+                         current_year: Optional[int]) -> bool:
+    if PRESSURE_GATE_MODE == "stale_only":
+        return _is_stale_fp(fp_a, current_year) or _is_stale_fp(fp_b, current_year)
+    if PRESSURE_GATE_MODE == "stale_or_gap":
+        return (_is_stale_fp(fp_a, current_year) or _is_stale_fp(fp_b, current_year)
+                or _has_career_gap(fp_a) or _has_career_gap(fp_b))
+    if PRESSURE_GATE_MODE == "both":
+        return (_is_sparse_fp(fp_a, current_year) and
+                _is_sparse_fp(fp_b, current_year))
+    # default "any"
+    return (_is_sparse_fp(fp_a, current_year) or
+            _is_sparse_fp(fp_b, current_year))
+
+# ── Ablation harness ──────────────────────────────────────────────────────
 # Set via set_ablation(); each name corresponds to a modifier block in
 # simulate_point.  Disabling = the modifier contributes 0pp to p.
 ABLATABLE = {
@@ -209,13 +391,86 @@ def extract_modifiers(fp: dict) -> dict:
         else:
             csa_deuce = csa_ad = None
 
+    fspw_pct     = _t1(fp, "fspw_pct",       GRASS_AVG_FSPW * 100)
+    sspw_pct     = _t1(fp, "sspw_pct",       GRASS_AVG_SSPW * 100)
+    rpw_v1_pct   = _t1(fp, "rpw_vs_1st_pct", GRASS_RPW_VS_1ST_AVG)
+    rpw_v2_pct   = _t1(fp, "rpw_vs_2nd_pct", GRASS_RPW_VS_2ND_AVG)
+
+    # Per-state baselines.  Default to the overall Tier-1
+    # baseline; override with pressure_states.json values when available.
+    fspw_n_pct = fspw_pressure_pct = fspw_pct
+    sspw_n_pct = sspw_pressure_pct = sspw_pct
+    rpw_v1_n_pct = rpw_v1_pressure_pct = rpw_v1_pct
+    rpw_v2_n_pct = rpw_v2_pressure_pct = rpw_v2_pct
+
+    if USE_PRESSURE_STATES:
+        ps = fp.get("pressure_states")
+        if ps:
+            fspw_n_pct        = ps.get("fspw_neutral_pct",        fspw_pct)
+            fspw_pressure_pct = ps.get("fspw_pressure_pct",       fspw_pct)
+            sspw_n_pct        = ps.get("sspw_neutral_pct",        sspw_pct)
+            sspw_pressure_pct = ps.get("sspw_pressure_pct",       sspw_pct)
+            rpw_v1_n_pct        = ps.get("rpw_vs_1st_neutral_pct",  rpw_v1_pct)
+            rpw_v1_pressure_pct = ps.get("rpw_vs_1st_pressure_pct", rpw_v1_pct)
+            rpw_v2_n_pct        = ps.get("rpw_vs_2nd_neutral_pct",  rpw_v2_pct)
+            rpw_v2_pressure_pct = ps.get("rpw_vs_2nd_pressure_pct", rpw_v2_pct)
+
+    # Momentum HMM hot/neutral pairs (only used when USE_MOMENTUM_HMM is True).
+    # Stored in fp["momentum_hmm"] by the backtest harness.  Each entry is
+    # (hot_pct, neutral_pct, n_hot, frac_hot) where frac_hot is the empirical
+    # fraction of points spent in the hot state for that serve type.
+    # frac_hot enables a zero-mean bias correction in simulate_point: the
+    # lifetime Tier-1 fspw already averages hot+neutral, so applying a raw
+    # delta only during hot points inflates expected server p.  Using
+    # delta * (1 - frac_hot) when hot and -delta * frac_hot when neutral
+    # preserves the lifetime average.
+    momentum_pairs: Dict[str, tuple] = {}
+    mh = fp.get("momentum_hmm") or {}
+    for key in ("fspw", "sspw", "rpw_vs_1st", "rpw_vs_2nd"):
+        hot_pct = mh.get(f"{key}_hot_pct")
+        neu_pct = mh.get(f"{key}_neutral_pct")
+        n_hot   = mh.get(f"{key}_hot_n", 0) or 0
+        n_neu   = mh.get(f"{key}_neutral_n", 0) or 0
+        if hot_pct is not None and neu_pct is not None:
+            frac_hot = n_hot / (n_hot + n_neu) if (n_hot + n_neu) > 0 else 0.0
+            momentum_pairs[key] = (hot_pct, neu_pct, n_hot, frac_hot)
+
+    # Tiebreak-state baselines (used when USE_TIEBREAK_BASELINES and
+    # state["isTiebreak"]).  Already shrunk toward archetype-mean in the
+    # builder, so even small per-player n_tb gracefully degrades to prior.
+    fspw_tb_pct        = sspw_tb_pct        = None
+    rpw_v1_tb_pct      = rpw_v2_tb_pct      = None
+    tb = fp.get("tiebreak_baselines")
+    if tb:
+        fspw_tb_pct   = tb.get("fspw_tiebreak_pct")
+        sspw_tb_pct   = tb.get("sspw_tiebreak_pct")
+        rpw_v1_tb_pct = tb.get("rpw_vs_1st_tiebreak_pct")
+        rpw_v2_tb_pct = tb.get("rpw_vs_2nd_tiebreak_pct")
+
     return {
+        "archetype_id": fp.get("archetype_id"),
         "fsp":       (_t1(fp, "fsp_pct",  GRASS_AVG_FSP * 100)) / 100,
-        "fspw":      (_t1(fp, "fspw_pct", GRASS_AVG_FSPW * 100)) / 100,
-        "sspw":      (_t1(fp, "sspw_pct", GRASS_AVG_SSPW * 100)) / 100,
+        "fspw":      fspw_pct / 100,
+        "sspw":      sspw_pct / 100,
         "rpw":        _t1(fp, "rpw_pct",        GRASS_RPW_AVG),         # fallback/blend
-        "rpwVs1st":   _t1(fp, "rpw_vs_1st_pct", GRASS_RPW_VS_1ST_AVG),  # matchup adj for 1st serve points
-        "rpwVs2nd":   _t1(fp, "rpw_vs_2nd_pct", GRASS_RPW_VS_2ND_AVG),  # matchup adj for 2nd serve points
+        "rpwVs1st":   rpw_v1_pct,  # matchup adj for 1st serve points
+        "rpwVs2nd":   rpw_v2_pct,  # matchup adj for 2nd serve points
+        # State-conditional baselines (used when USE_PRESSURE_STATES is True).
+        "fspwNeutral":     fspw_n_pct / 100,
+        "fspwPressure":    fspw_pressure_pct / 100,
+        "sspwNeutral":     sspw_n_pct / 100,
+        "sspwPressure":    sspw_pressure_pct / 100,
+        "rpwVs1stNeutral":  rpw_v1_n_pct,
+        "rpwVs1stPressure": rpw_v1_pressure_pct,
+        "rpwVs2ndNeutral":  rpw_v2_n_pct,
+        "rpwVs2ndPressure": rpw_v2_pressure_pct,
+        # Momentum HMM hot/neutral pairs (hot_pct, neutral_pct, n_hot)
+        "momentumHmm": momentum_pairs,
+        # Tiebreak-state baselines (None when not available — fp lacks data).
+        "fspwTiebreak":     fspw_tb_pct / 100 if fspw_tb_pct is not None else None,
+        "sspwTiebreak":     sspw_tb_pct / 100 if sspw_tb_pct is not None else None,
+        "rpwVs1stTiebreak": rpw_v1_tb_pct,
+        "rpwVs2ndTiebreak": rpw_v2_tb_pct,
         "baseDFRate":         base_df,
         "dfPressureDelta":    df_node if isinstance(df_node, dict) else None,
         "firstServePressure": t2.get("first_serve_pressure"),
@@ -351,12 +606,43 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
     # great 1st-serve returner moves the 1st-serve point baseline more than
     # he/she moves a 2nd-serve point baseline (and vice versa).  This is the
     # phased-return upgrade that aligns Tier 1 with the phased simulation.
-    if is_second:
-        p = srv["sspw"]
-        p -= (ret["rpwVs2nd"] - GRASS_RPW_VS_2ND_AVG) / 100
+    use_pressure_pt = bool(srv.get("_usePressure"))
+    is_tiebreak_pt = bool(state.get("isTiebreak"))
+    # Phase-2 baseline priority: tiebreak baselines > pressure baselines > Tier 1.
+    # Tiebreak fires only when the toggle is on AND both players have tiebreak
+    # data available (avoids asymmetric Tier-1-vs-tiebreak matchups).
+    use_tiebreak_pt = (
+        USE_TIEBREAK_BASELINES and is_tiebreak_pt
+        and (srv.get("sspwTiebreak" if is_second else "fspwTiebreak") is not None)
+        and (ret.get("rpwVs2ndTiebreak" if is_second else "rpwVs1stTiebreak") is not None)
+    )
+
+    if use_tiebreak_pt:
+        if is_second:
+            srv_base = srv["sspwTiebreak"]
+            ret_base = ret["rpwVs2ndTiebreak"]
+            p = srv_base - (ret_base - GRASS_RPW_VS_2ND_AVG) / 100
+        else:
+            srv_base = srv["fspwTiebreak"]
+            ret_base = ret["rpwVs1stTiebreak"]
+            p = srv_base - (ret_base - GRASS_RPW_VS_1ST_AVG) / 100
+    elif use_pressure_pt:
+        is_pressure = bool(state.get("isBreakPoint") or state.get("isDeuce"))
+        if is_second:
+            srv_base = srv["sspwPressure"] if is_pressure else srv["sspwNeutral"]
+            ret_base = ret["rpwVs2ndPressure"] if is_pressure else ret["rpwVs2ndNeutral"]
+            p = srv_base - (ret_base - GRASS_RPW_VS_2ND_AVG) / 100
+        else:
+            srv_base = srv["fspwPressure"] if is_pressure else srv["fspwNeutral"]
+            ret_base = ret["rpwVs1stPressure"] if is_pressure else ret["rpwVs1stNeutral"]
+            p = srv_base - (ret_base - GRASS_RPW_VS_1ST_AVG) / 100
     else:
-        p = srv["fspw"]
-        p -= (ret["rpwVs1st"] - GRASS_RPW_VS_1ST_AVG) / 100
+        if is_second:
+            p = srv["sspw"]
+            p -= (ret["rpwVs2nd"] - GRASS_RPW_VS_2ND_AVG) / 100
+        else:
+            p = srv["fspw"]
+            p -= (ret["rpwVs1st"] - GRASS_RPW_VS_1ST_AVG) / 100
 
     if "rallyCurve" not in _ABLATED:
         src = srv["rallyCurve"]
@@ -383,12 +669,15 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         p += 0.025 * ((srv["serveEntropy"] / 100) - 0.75)
 
     if state["isBreakPoint"] or state["isDeuce"]:
-        if "spci" not in _ABLATED:
+        # When this match is using per-state baselines (reliability gate fired),
+        # spci and clutch are absorbed into the baselines — skip them to avoid
+        # double-counting.
+        if "spci" not in _ABLATED and not use_pressure_pt:
             spci = srv.get("spci")
             if spci and spci.get("modifier_delta") is not None:
                 p += _conf_weight(spci.get("confidence")) * spci["modifier_delta"] * 0.50
 
-        if "clutch" not in _ABLATED:
+        if "clutch" not in _ABLATED and not use_pressure_pt:
             clutch = ret.get("clutch")
             if clutch and clutch.get("modifier_delta") is not None:
                 p -= _conf_weight(clutch.get("confidence")) * (clutch["modifier_delta"] / 100) * 0.60
@@ -434,7 +723,10 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
 
         p += boost if is_srv_streak else -boost
 
-    if "tiebreak" not in _ABLATED and state["isTiebreak"]:
+    # Tiebreak differential modifier — skipped when per-state tiebreak
+    # baselines are in use for this point (already absorbed into the
+    # baselines, would double-count otherwise).
+    if "tiebreak" not in _ABLATED and state["isTiebreak"] and not use_tiebreak_pt:
         tb = srv.get("tiebreak")
         tbR = ret.get("tiebreak")
         if tb and tb.get("available") and tb.get("value") is not None:
@@ -500,6 +792,52 @@ def simulate_point(srv: dict, ret: dict, state: dict, rng) -> bool:
         sscS = srv.get("serveSpeedCourage")
         if sscS and sscS.get("available") and sscS.get("value") is not None:
             p += _conf_weight(sscS.get("confidence")) * (sscS["value"] / 10.0) * 0.008
+
+    # Momentum HMM: per-player (hot - neutral) delta when within-game streak
+    # is at least MOMENTUM_HOT_MIN.  state["streakCount"] > 0 = server on
+    # winning streak; < 0 = returner on winning streak.  Resets at game
+    # boundary (handled by _simulate_game).
+    #
+    # Zero-mean bias correction: Tier-1 fspw is the lifetime average across
+    # hot+neutral states, so applying raw delta only when hot would inflate
+    # expected server p by frac_hot * delta over a match.  We apply:
+    #
+    #   when hot:     p +=  delta * (1 - frac_hot)
+    #   when neutral: p += -delta * frac_hot
+    #
+    # This keeps the expected per-point p equal to the player's lifetime
+    # baseline while correctly differentiating hot from neutral states.
+    if USE_MOMENTUM_HMM:
+        streak = state.get("streakCount", 0)
+        server_hot   = streak >= MOMENTUM_HOT_MIN
+        returner_hot = streak <= -MOMENTUM_HOT_MIN
+
+        # SERVER side: their fspw/sspw delta affects p directly.
+        srv_pairs = srv.get("momentumHmm") or {}
+        srv_key = "sspw" if is_second else "fspw"
+        srv_pair = srv_pairs.get(srv_key)
+        if srv_pair:
+            hot_pct, neu_pct, n_hot, frac_hot = srv_pair
+            if n_hot >= MOMENTUM_MIN_N_HOT:
+                delta_pct = hot_pct - neu_pct
+                weight = (1.0 - frac_hot) if server_hot else -frac_hot
+                applied = max(-MOMENTUM_MAX_DELTA_PCT,
+                              min(MOMENTUM_MAX_DELTA_PCT, delta_pct * weight))
+                p += applied / 100.0
+
+        # RETURNER side: their rpw delta moves p in the opposite direction
+        # (returner playing above their average pushes server's p down).
+        ret_pairs = ret.get("momentumHmm") or {}
+        ret_key = "rpw_vs_2nd" if is_second else "rpw_vs_1st"
+        ret_pair = ret_pairs.get(ret_key)
+        if ret_pair:
+            hot_pct, neu_pct, n_hot, frac_hot = ret_pair
+            if n_hot >= MOMENTUM_MIN_N_HOT:
+                delta_pct = hot_pct - neu_pct
+                weight = (1.0 - frac_hot) if returner_hot else -frac_hot
+                applied = max(-MOMENTUM_MAX_DELTA_PCT,
+                              min(MOMENTUM_MAX_DELTA_PCT, delta_pct * weight))
+                p -= applied / 100.0
 
     return rng.random() < _clamp(p)
 
@@ -671,10 +1009,20 @@ class PhasedResult:
 
 def simulate_match_phased(fp_a: dict, fp_b: dict,
                           n: int = 10_000,
-                          seed: Optional[int] = None) -> PhasedResult:
+                          seed: Optional[int] = None,
+                          current_year: Optional[int] = None) -> PhasedResult:
     rng = random.Random(seed)
     mods_a = extract_modifiers(fp_a)
     mods_b = extract_modifiers(fp_b)
+
+    # Per-match reliability gate: pressure-state baselines are used only
+    # when at least one fingerprint is sparse or stale (see _is_sparse_fp).
+    # Otherwise the standard Tier-1 baseline + Phase-3 modifier pipeline
+    # runs unchanged.
+    use_pressure_match = (USE_PRESSURE_STATES and
+                          _should_use_pressure(fp_a, fp_b, current_year))
+    mods_a["_usePressure"] = use_pressure_match
+    mods_b["_usePressure"] = use_pressure_match
 
     # Pre-compute reweighted rally distributions (1st/2nd serve) for each
     # serving direction.  Constant for the whole match.
@@ -692,6 +1040,24 @@ def simulate_match_phased(fp_a: dict, fp_b: dict,
 
     p_raw = wins_a / n
     p_cal = max(PROB_FLOOR, min(PROB_CEIL, _platt(p_raw)))
+
+    # Supplementary matchup-neighbours prior, blended at match-level
+    # finalisation.  K=30 nearest historical matchups (by metric-vector
+    # distance), distance-weighted average win rate, blended with the MC
+    # output at NEIGHBOR_BLEND_WEIGHT.  Leakage-safe via current_year
+    # filter.  Falls back silently if corpus missing or too few neighbours.
+    if USE_MATCHUP_NEIGHBORS:
+        if not _MATCHUP_CORPUS:
+            _load_matchup_corpus()  # lazy load on first use
+        if _MATCHUP_CORPUS:
+            try:
+                from matchup_neighbors import lookup as _mn_lookup
+                p_neighbor = _mn_lookup(fp_a, fp_b, _MATCHUP_CORPUS,
+                                        exclude_year=current_year, k=30)
+                if p_neighbor is not None:
+                    p_cal = (1.0 - NEIGHBOR_BLEND_WEIGHT) * p_cal + NEIGHBOR_BLEND_WEIGHT * p_neighbor
+            except Exception:
+                pass  # neighbour signal is supplementary; never break the engine
 
     return PhasedResult(
         player_a      = fp_a.get("player", "A"),

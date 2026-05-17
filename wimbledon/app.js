@@ -2977,18 +2977,20 @@ function renderFeatured() {
 
 // ── Backtest panel ────────────────────────────────────────────────
 
-// Feature validation data — this benchmarks the fingerprint features themselves,
-// not the simulation engine. A supervised ML classifier was trained on the same
-// fingerprint inputs to confirm they carry signal beyond ranking alone.
+// v12.1 production-stack backtest (matches CLAUDE.md and the LOYO harness).
+// Numbers from data/model_metrics.json -> mc_fingerprint_backtest:
+//   n_total = 908, accuracy = 0.685, brier = 0.2075 on 2014-2024 LOYO.
+// The Elo benchmark (Brier 0.2086) is included so the headline conveys
+// that the simulation now BEATS a strong ranking-only baseline on
+// probability quality, not just accuracy.
 const BACKTEST_DATA = {
-  n_test:       623,
-  train_years:  "1991–2018",
-  test_years:   "2019–2023",
-  // Approaches compared — from weakest to strongest signal
+  n_test:       908,
+  test_years:   "2014–2024 (leave-one-year-out)",
+  // Approaches compared — from weakest to strongest
   approaches: [
-    { name: "Coin-flip",         desc: "No information",          acc: 0.50, highlight: false },
-    { name: "Ranking only",      desc: "ATP seeding alone",       acc: 0.63, highlight: false },
-    { name: "Playing-style fingerprints", desc: "The features powering this tool", acc: 0.70, highlight: true  },
+    { name: "Coin-flip",                       desc: "No information",                       acc: 0.50, highlight: false },
+    { name: "Ranking only",                    desc: "ATP seeding alone",                    acc: 0.63, highlight: false },
+    { name: "Playing-style fingerprints (MC)", desc: "v12.1 simulation — production engine", acc: 0.685, highlight: true  },
   ],
 };
 
@@ -3008,22 +3010,22 @@ function renderBacktest() {
         <div class="bt-bar ${barClass}" style="width:${barW}%"></div>
         <div class="bt-baseline" style="left:50%"></div>
       </div>
-      <span class="bt-acc ${a.highlight ? "bt-acc-strong" : ""}">${Math.round(a.acc * 100)}%</span>
+      <span class="bt-acc ${a.highlight ? "bt-acc-strong" : ""}">${(a.acc * 100).toFixed(1)}%</span>
     </div>`;
   }).join("");
 
   el.innerHTML = `
     <div class="bt-headline">
-      <span class="bt-headline-num">${Math.round(best.acc * 100)}%</span>
+      <span class="bt-headline-num">${(best.acc * 100).toFixed(1)}%</span>
       <span class="bt-headline-label">prediction accuracy · ${d.n_test} matches</span>
-      <span class="bt-headline-note">Tested on ${d.test_years} · trained on ${d.train_years}</span>
+      <span class="bt-headline-note">${d.test_years} — no rankings, no live odds, fingerprints only</span>
     </div>
     <div class="bt-rows">${rows}</div>
-    <p class="bt-caveat">The fingerprint features driving this tool were validated
-    against ${d.n_test} out-of-sample Wimbledon matches. Using playing-style data alone —
-    no live odds, no ranking — predicts the correct winner 70% of the time,
-    vs 63% for ranking alone. The simulation uses these same fingerprints
-    to model each match point by point.</p>`;
+    <p class="bt-caveat">The simulation engine was validated against ${d.n_test} out-of-sample
+    Wimbledon matches under leave-one-year-out cross-validation (fingerprints for the predicted
+    year are never used in its own prediction).  Using playing-style data alone the v12.1
+    stack predicts the correct winner 68.5% of the time vs 63% for ranking, and produces a
+    Brier score of 0.2075 — better calibrated than a pure rating-based Elo benchmark (0.2086).</p>`;
 }
 
 // ── Start ─────────────────────────────────────────────────────────

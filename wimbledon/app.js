@@ -2979,18 +2979,15 @@ function renderFeatured() {
 
 // v12.1 production-stack backtest (matches CLAUDE.md and the LOYO harness).
 // Numbers from data/model_metrics.json -> mc_fingerprint_backtest:
-//   n_total = 908, accuracy = 0.685, brier = 0.2075 on 2014-2024 LOYO.
-// The Elo benchmark (Brier 0.2086) is included so the headline conveys
-// that the simulation now BEATS a strong ranking-only baseline on
-// probability quality, not just accuracy.
+//   n_total = 827, accuracy = 0.684, brier = 0.2075 on 2014-2023 LOYO.
 const BACKTEST_DATA = {
-  n_test:       908,
-  test_years:   "2014–2024 (leave-one-year-out)",
+  n_test:       827,
+  test_years:   "2014–2023 (leave-one-year-out)",
   // Approaches compared — from weakest to strongest
   approaches: [
     { name: "Coin-flip",                       desc: "No information",                       acc: 0.50, highlight: false },
     { name: "Ranking only",                    desc: "ATP seeding alone",                    acc: 0.63, highlight: false },
-    { name: "Playing-style fingerprints (MC)", desc: "v12.1 simulation — production engine", acc: 0.685, highlight: true  },
+    { name: "Playing-style fingerprints (MC)", desc: "v12.1 simulation — production engine", acc: 0.684, highlight: true  },
   ],
 };
 
@@ -3024,7 +3021,7 @@ function renderBacktest() {
     <p class="bt-caveat">The simulation engine was validated against ${d.n_test} out-of-sample
     Wimbledon matches under leave-one-year-out cross-validation (fingerprints for the predicted
     year are never used in its own prediction).  Using playing-style data alone the v12.1
-    stack predicts the correct winner 68.5% of the time vs 63% for ranking, and produces a
+    stack predicts the correct winner 68.4% of the time vs 63% for ranking, and produces a
     Brier score of 0.2075 — better calibrated than a pure rating-based Elo benchmark (0.2086).</p>`;
 }
 

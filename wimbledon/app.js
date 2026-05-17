@@ -2985,9 +2985,10 @@ const BACKTEST_DATA = {
   test_years:   "2014–2023 (leave-one-year-out)",
   // Approaches compared — from weakest to strongest
   approaches: [
-    { name: "Coin-flip",                       desc: "No information",                              acc: 0.50, highlight: false },
-    { name: "Ranking only",                    desc: "Higher ATP-seeded player wins",               acc: 0.63, highlight: false },
-    { name: "Playing-style fingerprints (MC)", desc: "v12.1 simulation — production engine",         acc: 0.684, highlight: true  },
+    { name: "Coin-flip",                       desc: "No information",                              acc: 0.50,   highlight: false },
+    { name: "Ranking only",                    desc: "Higher ATP-seeded player wins",               acc: 0.63,   highlight: false },
+    { name: "Regression (same features)",      desc: "Random Forest on the matchup vector",         acc: 0.680,  highlight: false },
+    { name: "Playing-style fingerprints (MC)", desc: "v12.1 simulation — production engine",         acc: 0.684,  highlight: true  },
   ],
 };
 
@@ -3022,7 +3023,10 @@ function renderBacktest() {
     Wimbledon matches under leave-one-year-out cross-validation (fingerprints for the predicted
     year are never used in its own prediction).  Using playing-style data alone the v12.1
     stack predicts the correct winner 68.4% of the time vs 63% for ranking, and produces a
-    Brier score of 0.2075 — better calibrated than a pure rating-based Elo benchmark (0.2086).</p>`;
+    Brier score of 0.2075 — narrowly beating a Random Forest classifier trained on the same
+    features and the same methodology (68.0% / 0.2078).  Point-by-point simulation extracts
+    slightly more signal here than a supervised classifier — and produces score distributions
+    and match narratives a regression can't.</p>`;
 }
 
 // ── Start ─────────────────────────────────────────────────────────

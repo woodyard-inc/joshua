@@ -152,6 +152,29 @@
   .hyp .h .verdict strong { color: var(--cobalt); font-weight: 700; }
   .hyp .h p.body { font-family: var(--font-body); font-size: 15px; line-height: 1.55; color: var(--ink-soft); margin-top: 8px; margin-bottom: 0; }
 
+  /* Per-card country mini-scorecard */
+  .hyp .h .scorecard { margin-top: var(--s-4); padding-top: var(--s-3); border-top: 1px solid var(--rule); }
+  .hyp .h .scorecard .lens {
+    font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted);
+    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px;
+    display: block;
+  }
+  .hyp .h .scorecard .dots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; max-width: 320px; }
+  .hyp .h .scorecard .dot {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    font-family: var(--font-mono); font-size: 9px; color: var(--ink-muted);
+    letter-spacing: 0.08em;
+  }
+  .hyp .h .scorecard .dot .sq {
+    width: 100%; height: 22px; background: var(--paper-warm);
+    border: 1px solid var(--rule);
+  }
+  .hyp .h .scorecard .dot.is-strong .sq { background: var(--cobalt); border-color: var(--cobalt); }
+  .hyp .h .scorecard .dot.is-mid    .sq { background: var(--ink);    border-color: var(--ink); }
+  .hyp .h .scorecard .dot.is-low    .sq { background: var(--paper-warm); border-color: var(--rule-strong); }
+  .hyp .h .scorecard .dot.is-strong .lbl,
+  .hyp .h .scorecard .dot.is-mid    .lbl { color: var(--ink); }
+
   /* Figure */
   .figure {
     border: 1px solid var(--rule-strong); background: var(--paper-bright);
@@ -562,24 +585,64 @@
           <p class="q">Social capital is positively associated with life satisfaction within each country.</p>
           <span class="verdict"><strong>Supported.</strong></span>
           <p class="body">Trust in fairness was significant and positive in all five countries (β = 0.09 to 0.29, p&nbsp;&lt;&nbsp;.01). Organisational trust, likewise. Other dimensions produced country-specific patterns rather than universal effects.</p>
+          <div class="scorecard">
+            <span class="lens">Universal support &middot; trust dimension</span>
+            <div class="dots">
+              <div class="dot is-strong" title="Trust in society significant; other trust dimensions positive"><div class="sq"></div><span class="lbl">US</span></div>
+              <div class="dot is-strong" title="Trust in fairness β=0.29, strongest in sample"><div class="sq"></div><span class="lbl">AT</span></div>
+              <div class="dot is-strong" title="Trust in society β=0.17 + organisational trust positive"><div class="sq"></div><span class="lbl">ZA</span></div>
+              <div class="dot is-strong" title="Trust in society β=0.19, organisational trust positive"><div class="sq"></div><span class="lbl">RU</span></div>
+              <div class="dot is-strong" title="Organisational trust β=0.12 + societal-care norm β=0.07"><div class="sq"></div><span class="lbl">CN</span></div>
+            </div>
+          </div>
         </div>
         <div class="h">
           <span class="code">H1b · Between</span>
           <p class="q">The relationship between social capital and life satisfaction varies across countries.</p>
           <span class="verdict"><strong>Supported.</strong></span>
           <p class="body">With social capital held at its sample mean, satisfaction differs significantly between almost every country pair (8 of 10, Tukey p&nbsp;&lt;&nbsp;.001). Ranking: US ≈ AT &gt; ZA ≈ RU &gt; CN — consistent with the guanxi literature, where Chinese social capital functions as economic necessity rather than enrichment.</p>
+          <div class="scorecard">
+            <span class="lens">Satisfaction at mean social capital</span>
+            <div class="dots">
+              <div class="dot is-strong" title="LS 5.22"><div class="sq"></div><span class="lbl">US</span></div>
+              <div class="dot is-strong" title="LS 5.14"><div class="sq"></div><span class="lbl">AT</span></div>
+              <div class="dot is-mid"    title="LS 4.38"><div class="sq"></div><span class="lbl">ZA</span></div>
+              <div class="dot is-mid"    title="LS 4.26"><div class="sq"></div><span class="lbl">RU</span></div>
+              <div class="dot is-low"    title="LS 3.71"><div class="sq"></div><span class="lbl">CN</span></div>
+            </div>
+          </div>
         </div>
         <div class="h">
           <span class="code">H2a · Implicit</span>
           <p class="q">Implicit national factors — natural-disaster risk and Hofstede cultural values — moderate the relationship.</p>
           <span class="verdict"><strong>Supported,</strong> with nuance.</span>
           <p class="body">Higher natural-disaster risk weakened the trust-to-satisfaction link but strengthened the societal-care-to-satisfaction link — in vulnerable environments, community becomes compensatory. Individualism amplified the effect of social networks; collectivism amplified the effect of organisational support.</p>
+          <div class="scorecard">
+            <span class="lens">Natural-hazard exposure (INFORM)</span>
+            <div class="dots">
+              <div class="dot is-strong" title="INFORM hazard 6.9"><div class="sq"></div><span class="lbl">US</span></div>
+              <div class="dot is-low"    title="INFORM hazard 2.5"><div class="sq"></div><span class="lbl">AT</span></div>
+              <div class="dot is-mid"    title="INFORM hazard 4.2"><div class="sq"></div><span class="lbl">ZA</span></div>
+              <div class="dot is-mid"    title="INFORM hazard 5.1"><div class="sq"></div><span class="lbl">RU</span></div>
+              <div class="dot is-strong" title="INFORM hazard 7.8, highest in sample"><div class="sq"></div><span class="lbl">CN</span></div>
+            </div>
+          </div>
         </div>
         <div class="h">
           <span class="code">H2b · Explicit</span>
           <p class="q">Explicit national factors — HDI, SPI, corruption, income — moderate the relationship.</p>
           <span class="verdict"><strong>Supported.</strong></span>
           <p class="body">As state capacity rose — better HDI, higher SPI, lower corruption — the marginal effect of most social capital dimensions on life satisfaction decreased. Governance substitutes, partially, for what communities used to do.</p>
+          <div class="scorecard">
+            <span class="lens">Human Development Index</span>
+            <div class="dots">
+              <div class="dot is-strong" title="HDI 0.92"><div class="sq"></div><span class="lbl">US</span></div>
+              <div class="dot is-strong" title="HDI 0.92"><div class="sq"></div><span class="lbl">AT</span></div>
+              <div class="dot is-low"    title="HDI 0.72"><div class="sq"></div><span class="lbl">ZA</span></div>
+              <div class="dot is-mid"    title="HDI 0.83"><div class="sq"></div><span class="lbl">RU</span></div>
+              <div class="dot is-low"    title="HDI 0.75"><div class="sq"></div><span class="lbl">CN</span></div>
+            </div>
+          </div>
         </div>
     </div>
 

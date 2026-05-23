@@ -244,10 +244,18 @@
     border-bottom: 1px solid var(--rule);
     margin-bottom: var(--s-5);
   }
-  .country-strip .strip-head h4 {
-    font-family: var(--font-display); font-size: 12px; font-weight: 700;
-    letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink);
+  .country-strip .strip-head .strip-title {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 400;
+    letter-spacing: 0.08em; color: var(--ink-muted);
     margin: 0;
+    display: flex; align-items: baseline; gap: var(--s-3);
+  }
+  .country-strip .strip-head .strip-title .figno {
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--cobalt); letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .country-strip .strip-head .strip-title .strip-name {
+    color: var(--ink); letter-spacing: 0.02em; text-transform: none;
   }
   .country-strip .strip-head .lede {
     font-family: var(--font-body); font-size: 16px; font-style: italic;
@@ -544,7 +552,7 @@
               <span class="cell" data-tier="3" title="RU"></span>
               <span class="cell" data-tier="4" title="CN β=0.117, strongest in sample"></span>
             </div>
-            <div class="gradient-key"><span>weaker</span><span class="bar"></span><span>stronger β</span></div>
+            <div class="gradient-key"><span>weaker</span><span class="bar"></span><span>stronger coefficient</span></div>
           </div>
         </div>
         <div class="h">
@@ -570,7 +578,6 @@
               <span class="cell-val">4.26</span>
               <span class="cell-val">3.71</span>
             </div>
-            <div class="gradient-key"><span>3.7</span><span class="bar"></span><span>5.3</span></div>
           </div>
         </div>
         <div class="h">
@@ -580,6 +587,7 @@
           <p class="body">Higher natural-disaster risk weakened the trust-to-satisfaction link but strengthened the societal-care-to-satisfaction link — in vulnerable environments, community becomes compensatory. Individualism amplified the effect of social networks; collectivism amplified the effect of organisational support.</p>
           <div class="scorecard">
             <span class="lens">Implicit moderators · INFORM hazard + Hofstede dimensions</span>
+            <span class="lens" style="margin-top: -4px; text-transform: none; letter-spacing: 0; font-style: italic; font-family: var(--font-body); font-size: 12px; line-height: 1.4;">INFORM&nbsp;= 2024 natural-hazard exposure (0–10) · Hofstede dimensions on 0–10 (Power Distance, Masculinity, Individualism)</span>
             <div class="matrix">
               <span class="corner"></span>
               <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
@@ -618,6 +626,7 @@
           <p class="body">As state capacity rose — better HDI, higher SPI, lower corruption — the marginal effect of most social capital dimensions on life satisfaction decreased. Governance substitutes, partially, for what communities used to do.</p>
           <div class="scorecard">
             <span class="lens">Explicit moderators · governance, development, integrity</span>
+            <span class="lens" style="margin-top: -4px; text-transform: none; letter-spacing: 0; font-style: italic; font-family: var(--font-body); font-size: 12px; line-height: 1.4;">HDI&nbsp;= UN Human Development Index · SPI&nbsp;= Social Progress Index · CPI&nbsp;= Corruption Perception Index</span>
             <div class="matrix">
               <span class="corner"></span>
               <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
@@ -633,7 +642,7 @@
               <span class="cell" data-tier="2" title="Social Progress 6.725"></span>
               <span class="cell" data-tier="1" title="Social Progress 6.717"></span>
               <span class="cell" data-tier="0" title="Social Progress 6.372"></span>
-              <span class="row-head">CPI&nbsp;(integrity)</span>
+              <span class="row-head">CPI</span>
               <span class="cell" data-tier="4" title="Corruption Perception 7.5 (clean)"></span>
               <span class="cell" data-tier="4" title="Corruption Perception 7.5 (clean)"></span>
               <span class="cell" data-tier="2" title="Corruption Perception 4.3"></span>
@@ -645,10 +654,18 @@
         </div>
     </div>
 
+    <div class="article-body-resume">
+      <h2 id="limits">What the data couldn't say <span class="section-num">§ 04</span></h2>
+      <p>Three honest limits.</p>
+      <p>The design is cross-sectional, so <em>association</em> is the correct verb throughout — not <em>effect</em>, not <em>impact</em>. Any of the relationships I found could reflect reverse causation (satisfied people invest more in community) or a third variable (personality, which the ISSP doesn't measure).</p>
+      <p>R² around 0.22 means the model explains roughly a fifth of variance in life satisfaction. That's within the normal range for this literature, but it means four-fifths of what determines whether someone reports being satisfied with their life is not in this model.</p>
+      <p>The "moderation by income" finding needs a specific caveat. Absolute income showed no significant main effect in the full model — but <em>household financial ease</em>, a subjective measure of making ends meet, was one of the strongest predictors throughout. The Easterlin-style reading ("money doesn't matter") is therefore only partly right: absolute income didn't predict satisfaction, but felt financial strain absolutely did.</p>
+    </div>
+
     <section class="country-strip">
       <div class="strip-head">
-        <h4>Life satisfaction at mean social capital, by country <span class="n" style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); letter-spacing: 0.12em; font-weight: 400;">Fig. 01</span></h4>
-        <p class="lede">Even when people have similar levels of social connection, where you live still shapes how happy you feel — and by a meaningful margin. The gaps between clusters are large enough that they almost certainly reflect something structural — cultural values, institutions, or how social connection is experienced — rather than just measurement noise.</p>
+        <div class="strip-title"><span class="figno">Fig. 01</span><span class="strip-name">Life satisfaction at mean social capital, by country</span></div>
+        <p class="lede">Before the recommendations, a recap. Even when people have similar levels of social connection, where you live still shapes how happy you feel — and by a meaningful margin. The gaps between clusters are large enough that they almost certainly reflect something structural — cultural values, institutions, or how social connection is experienced — rather than just measurement noise.</p>
       </div>
       <div class="country-cards">
 
@@ -742,12 +759,6 @@
     </section>
 
     <div class="article-body-resume">
-      <h2 id="limits">What the data couldn't say <span class="section-num">§ 04</span></h2>
-      <p>Three honest limits.</p>
-      <p>The design is cross-sectional, so <em>association</em> is the correct verb throughout — not <em>effect</em>, not <em>impact</em>. Any of the relationships I found could reflect reverse causation (satisfied people invest more in community) or a third variable (personality, which the ISSP doesn't measure).</p>
-      <p>R² around 0.22 means the model explains roughly a fifth of variance in life satisfaction. That's within the normal range for this literature, but it means four-fifths of what determines whether someone reports being satisfied with their life is not in this model.</p>
-      <p>The "moderation by income" finding needs a specific caveat. Absolute income showed no significant main effect in the full model — but <em>household financial ease</em>, a subjective measure of making ends meet, was one of the strongest predictors throughout. The Easterlin-style reading ("money doesn't matter") is therefore only partly right: absolute income didn't predict satisfaction, but felt financial strain absolutely did.</p>
-
       <h2 id="reco">Recommendation <span class="section-num">§ 05</span></h2>
       <p class="lead">For policy-makers and development institutions in already-developed economies, the finding that matters is the interaction between state capacity and social capital. Once a country crosses a threshold of human development, further gains in life satisfaction appear to come more reliably from investments that build trust, fairness, and community participation than from investments that raise GDP.</p>
 

@@ -189,6 +189,14 @@
   .hyp .h .scorecard .matrix .cell[data-tier="3"] { background: #6e6962; border-color: #6e6962; }
   .hyp .h .scorecard .matrix .cell[data-tier="4"] { background: var(--ink); border-color: var(--ink); }
 
+  /* Optional value-row that sits beneath a matrix cell row. */
+  .hyp .h .scorecard .matrix .cell-val {
+    text-align: center; font-family: var(--font-mono);
+    font-size: 10px; font-weight: 700; color: var(--ink);
+    padding-top: 4px; font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+  }
+
   .hyp .h .scorecard .gradient-key {
     display: flex; align-items: center; gap: 6px;
     margin-top: var(--s-3);
@@ -517,19 +525,19 @@
             <div class="matrix">
               <span class="corner"></span>
               <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
-              <span class="row-head">Trust&nbsp;in&nbsp;society</span>
+              <span class="row-head">Society</span>
               <span class="cell" data-tier="0" title="US — not significant"></span>
               <span class="cell" data-tier="2" title="AT"></span>
               <span class="cell" data-tier="3" title="ZA β=0.17"></span>
               <span class="cell" data-tier="4" title="RU β=0.19"></span>
               <span class="cell" data-tier="2" title="CN"></span>
-              <span class="row-head">Trust&nbsp;in&nbsp;fairness</span>
+              <span class="row-head">Fairness</span>
               <span class="cell" data-tier="3" title="US"></span>
               <span class="cell" data-tier="4" title="AT β=0.29, strongest in sample"></span>
               <span class="cell" data-tier="2" title="ZA"></span>
               <span class="cell" data-tier="2" title="RU"></span>
               <span class="cell" data-tier="2" title="CN"></span>
-              <span class="row-head">Org.&nbsp;trust</span>
+              <span class="row-head">Organisational</span>
               <span class="cell" data-tier="2" title="US"></span>
               <span class="cell" data-tier="2" title="AT"></span>
               <span class="cell" data-tier="2" title="ZA β=0.083"></span>
@@ -555,6 +563,12 @@
               <span class="cell" data-tier="2" title="4.38"></span>
               <span class="cell" data-tier="2" title="4.26"></span>
               <span class="cell" data-tier="0" title="3.71"></span>
+              <span class="corner"></span>
+              <span class="cell-val">5.22</span>
+              <span class="cell-val">5.14</span>
+              <span class="cell-val">4.38</span>
+              <span class="cell-val">4.26</span>
+              <span class="cell-val">3.71</span>
             </div>
             <div class="gradient-key"><span>3.7</span><span class="bar"></span><span>5.3</span></div>
           </div>

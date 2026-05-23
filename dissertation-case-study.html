@@ -152,51 +152,54 @@
   .hyp .h .verdict strong { color: var(--cobalt); font-weight: 700; }
   .hyp .h p.body { font-family: var(--font-body); font-size: 15px; line-height: 1.55; color: var(--ink-soft); margin-top: 8px; margin-bottom: 0; }
 
-  /* Per-card country mini-scorecard */
+  /* Per-card country mini-scorecard (matrix-style heatmap, grey gradient) */
   .hyp .h .scorecard { margin-top: var(--s-4); padding-top: var(--s-3); border-top: 1px solid var(--rule); }
   .hyp .h .scorecard .lens {
     font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted);
-    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px;
+    letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px;
     display: block;
   }
-  .hyp .h .scorecard .dots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; max-width: 320px; }
-  .hyp .h .scorecard .dot {
-    display: flex; flex-direction: column; align-items: center; gap: 4px;
-    font-family: var(--font-mono); font-size: 9px; color: var(--ink-muted);
-    letter-spacing: 0.08em;
+  .hyp .h .scorecard .matrix {
+    display: grid; grid-template-columns: 88px repeat(5, 1fr); gap: 2px;
+    align-items: center;
+    font-family: var(--font-mono);
   }
-  .hyp .h .scorecard .dot .sq {
-    width: 100%; height: 22px; background: var(--paper-warm);
+  .hyp .h .scorecard .matrix .corner { }
+  .hyp .h .scorecard .matrix .col-head {
+    text-align: center; font-size: 10px; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.08em;
+    padding-bottom: 4px;
+  }
+  .hyp .h .scorecard .matrix .row-head {
+    font-size: 9px; color: var(--ink-soft);
+    letter-spacing: 0.04em; text-transform: uppercase;
+    padding-right: 8px; text-align: right;
+    line-height: 1.2;
+  }
+  .hyp .h .scorecard .matrix .cell {
+    height: 16px;
+    background: var(--paper-warm);
     border: 1px solid var(--rule);
   }
-  .hyp .h .scorecard .dot .lbl {
-    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em;
-    color: var(--ink-muted);
-  }
-  .hyp .h .scorecard .dot .v {
-    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
-    color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: 0;
-  }
-  .hyp .h .scorecard .dot.is-strong .sq { background: var(--cobalt); border-color: var(--cobalt); }
-  .hyp .h .scorecard .dot.is-mid    .sq { background: var(--ink);    border-color: var(--ink); }
-  .hyp .h .scorecard .dot.is-low    .sq { background: var(--paper-warm); border-color: var(--rule-strong); }
-  .hyp .h .scorecard .dot.is-strong .lbl,
-  .hyp .h .scorecard .dot.is-mid    .lbl { color: var(--ink); }
-  .hyp .h .scorecard .legend {
-    display: flex; gap: var(--s-4); margin-top: var(--s-3);
+  /* 5-tier grey gradient: tier 0 (lightest) → tier 4 (darkest).
+     Cobalt is reserved for headline figures elsewhere. */
+  .hyp .h .scorecard .matrix .cell[data-tier="0"] { background: var(--paper-warm); border-color: var(--rule); }
+  .hyp .h .scorecard .matrix .cell[data-tier="1"] { background: #d9d4cd; border-color: #d9d4cd; }
+  .hyp .h .scorecard .matrix .cell[data-tier="2"] { background: #a8a39a; border-color: #a8a39a; }
+  .hyp .h .scorecard .matrix .cell[data-tier="3"] { background: #6e6962; border-color: #6e6962; }
+  .hyp .h .scorecard .matrix .cell[data-tier="4"] { background: var(--ink); border-color: var(--ink); }
+
+  .hyp .h .scorecard .gradient-key {
+    display: flex; align-items: center; gap: 6px;
+    margin-top: var(--s-3);
     font-family: var(--font-mono); font-size: 9px; color: var(--ink-muted);
-    letter-spacing: 0.06em; text-transform: uppercase;
+    letter-spacing: 0.04em; text-transform: uppercase;
   }
-  .hyp .h .scorecard .legend .key {
-    display: inline-flex; align-items: center; gap: 6px;
-  }
-  .hyp .h .scorecard .legend .swatch {
-    display: inline-block; width: 12px; height: 8px;
+  .hyp .h .scorecard .gradient-key .bar {
+    flex: 0 0 auto; width: 88px; height: 8px;
+    background: linear-gradient(to right, var(--paper-warm) 0%, #d9d4cd 25%, #a8a39a 50%, #6e6962 75%, var(--ink) 100%);
     border: 1px solid var(--rule);
   }
-  .hyp .h .scorecard .legend .swatch.is-strong { background: var(--cobalt); border-color: var(--cobalt); }
-  .hyp .h .scorecard .legend .swatch.is-mid    { background: var(--ink);    border-color: var(--ink); }
-  .hyp .h .scorecard .legend .swatch.is-low    { background: var(--paper-warm); border-color: var(--rule-strong); }
 
   /* Figure */
   .figure {
@@ -510,15 +513,30 @@
           <span class="verdict"><strong>Supported.</strong></span>
           <p class="body">Trust in fairness was significant and positive in all five countries (β = 0.09 to 0.29, p&nbsp;&lt;&nbsp;.01). Organisational trust, likewise. Other dimensions produced country-specific patterns rather than universal effects.</p>
           <div class="scorecard">
-            <span class="lens">Trust significance, by country</span>
-            <div class="dots">
-              <div class="dot is-strong" title="Trust in society significant; other trust dimensions positive"><div class="sq"></div><span class="lbl">US</span><span class="v">✓</span></div>
-              <div class="dot is-strong" title="Trust in fairness β=0.29, strongest in sample"><div class="sq"></div><span class="lbl">AT</span><span class="v">✓</span></div>
-              <div class="dot is-strong" title="Trust in society β=0.17 + organisational trust positive"><div class="sq"></div><span class="lbl">ZA</span><span class="v">✓</span></div>
-              <div class="dot is-strong" title="Trust in society β=0.19, organisational trust positive"><div class="sq"></div><span class="lbl">RU</span><span class="v">✓</span></div>
-              <div class="dot is-strong" title="Organisational trust β=0.12 + societal-care norm β=0.07"><div class="sq"></div><span class="lbl">CN</span><span class="v">✓</span></div>
+            <span class="lens">Trust dimension significance, by country</span>
+            <div class="matrix">
+              <span class="corner"></span>
+              <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
+              <span class="row-head">Trust&nbsp;in&nbsp;society</span>
+              <span class="cell" data-tier="0" title="US — not significant"></span>
+              <span class="cell" data-tier="2" title="AT"></span>
+              <span class="cell" data-tier="3" title="ZA β=0.17"></span>
+              <span class="cell" data-tier="4" title="RU β=0.19"></span>
+              <span class="cell" data-tier="2" title="CN"></span>
+              <span class="row-head">Trust&nbsp;in&nbsp;fairness</span>
+              <span class="cell" data-tier="3" title="US"></span>
+              <span class="cell" data-tier="4" title="AT β=0.29, strongest in sample"></span>
+              <span class="cell" data-tier="2" title="ZA"></span>
+              <span class="cell" data-tier="2" title="RU"></span>
+              <span class="cell" data-tier="2" title="CN"></span>
+              <span class="row-head">Org.&nbsp;trust</span>
+              <span class="cell" data-tier="2" title="US"></span>
+              <span class="cell" data-tier="2" title="AT"></span>
+              <span class="cell" data-tier="2" title="ZA β=0.083"></span>
+              <span class="cell" data-tier="3" title="RU"></span>
+              <span class="cell" data-tier="4" title="CN β=0.117, strongest in sample"></span>
             </div>
-            <div class="legend"><span class="key"><span class="swatch is-strong"></span>Trust dimension positive &amp; significant in all 5 countries</span></div>
+            <div class="gradient-key"><span>weaker</span><span class="bar"></span><span>stronger β</span></div>
           </div>
         </div>
         <div class="h">
@@ -527,19 +545,18 @@
           <span class="verdict"><strong>Supported.</strong></span>
           <p class="body">With social capital held at its sample mean, satisfaction differs significantly between almost every country pair (8 of 10, Tukey p&nbsp;&lt;&nbsp;.001). Ranking: US ≈ AT &gt; ZA ≈ RU &gt; CN — consistent with the guanxi literature, where Chinese social capital functions as economic necessity rather than enrichment.</p>
           <div class="scorecard">
-            <span class="lens">Life satisfaction at mean social capital · 1–7</span>
-            <div class="dots">
-              <div class="dot is-strong" title="LS 5.22"><div class="sq"></div><span class="lbl">US</span><span class="v">5.22</span></div>
-              <div class="dot is-strong" title="LS 5.14"><div class="sq"></div><span class="lbl">AT</span><span class="v">5.14</span></div>
-              <div class="dot is-mid"    title="LS 4.38"><div class="sq"></div><span class="lbl">ZA</span><span class="v">4.38</span></div>
-              <div class="dot is-mid"    title="LS 4.26"><div class="sq"></div><span class="lbl">RU</span><span class="v">4.26</span></div>
-              <div class="dot is-low"    title="LS 3.71"><div class="sq"></div><span class="lbl">CN</span><span class="v">3.71</span></div>
+            <span class="lens">Life satisfaction at mean social capital · 1–7 Likert</span>
+            <div class="matrix">
+              <span class="corner"></span>
+              <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
+              <span class="row-head">LS&nbsp;mean</span>
+              <span class="cell" data-tier="4" title="5.22"></span>
+              <span class="cell" data-tier="4" title="5.14"></span>
+              <span class="cell" data-tier="2" title="4.38"></span>
+              <span class="cell" data-tier="2" title="4.26"></span>
+              <span class="cell" data-tier="0" title="3.71"></span>
             </div>
-            <div class="legend">
-              <span class="key"><span class="swatch is-strong"></span>≥ 5.0</span>
-              <span class="key"><span class="swatch is-mid"></span>4.0 – 5.0</span>
-              <span class="key"><span class="swatch is-low"></span>&lt; 4.0</span>
-            </div>
+            <div class="gradient-key"><span>3.7</span><span class="bar"></span><span>5.3</span></div>
           </div>
         </div>
         <div class="h">
@@ -548,19 +565,36 @@
           <span class="verdict"><strong>Supported,</strong> with nuance.</span>
           <p class="body">Higher natural-disaster risk weakened the trust-to-satisfaction link but strengthened the societal-care-to-satisfaction link — in vulnerable environments, community becomes compensatory. Individualism amplified the effect of social networks; collectivism amplified the effect of organisational support.</p>
           <div class="scorecard">
-            <span class="lens">Natural-hazard exposure · INFORM 2024 · 0–10</span>
-            <div class="dots">
-              <div class="dot is-strong" title="INFORM hazard 6.9"><div class="sq"></div><span class="lbl">US</span><span class="v">6.9</span></div>
-              <div class="dot is-low"    title="INFORM hazard 2.5"><div class="sq"></div><span class="lbl">AT</span><span class="v">2.5</span></div>
-              <div class="dot is-mid"    title="INFORM hazard 4.2"><div class="sq"></div><span class="lbl">ZA</span><span class="v">4.2</span></div>
-              <div class="dot is-mid"    title="INFORM hazard 5.1"><div class="sq"></div><span class="lbl">RU</span><span class="v">5.1</span></div>
-              <div class="dot is-strong" title="INFORM hazard 7.8, highest in sample"><div class="sq"></div><span class="lbl">CN</span><span class="v">7.8</span></div>
+            <span class="lens">Implicit moderators · INFORM hazard + Hofstede dimensions</span>
+            <div class="matrix">
+              <span class="corner"></span>
+              <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
+              <span class="row-head">Natural&nbsp;hazard</span>
+              <span class="cell" data-tier="3" title="INFORM 6.9"></span>
+              <span class="cell" data-tier="0" title="INFORM 2.5"></span>
+              <span class="cell" data-tier="1" title="INFORM 4.2"></span>
+              <span class="cell" data-tier="2" title="INFORM 5.1"></span>
+              <span class="cell" data-tier="4" title="INFORM 7.8, highest in sample"></span>
+              <span class="row-head">Power&nbsp;distance</span>
+              <span class="cell" data-tier="1" title="Hofstede PDI 4.0"></span>
+              <span class="cell" data-tier="0" title="Hofstede PDI 1.1"></span>
+              <span class="cell" data-tier="2" title="Hofstede PDI 4.9"></span>
+              <span class="cell" data-tier="4" title="Hofstede PDI 9.3, highest in sample"></span>
+              <span class="cell" data-tier="3" title="Hofstede PDI 8.0"></span>
+              <span class="row-head">Masculinity</span>
+              <span class="cell" data-tier="1" title="Hofstede M-F 6.2"></span>
+              <span class="cell" data-tier="4" title="Hofstede M-F 7.9, highest in sample"></span>
+              <span class="cell" data-tier="2" title="Hofstede M-F 6.3"></span>
+              <span class="cell" data-tier="0" title="Hofstede M-F 3.6 (most feminine)"></span>
+              <span class="cell" data-tier="3" title="Hofstede M-F 6.6"></span>
+              <span class="row-head">Individualism</span>
+              <span class="cell" data-tier="4" title="Hofstede C-I 9.1, highest in sample"></span>
+              <span class="cell" data-tier="2" title="Hofstede C-I 5.5"></span>
+              <span class="cell" data-tier="3" title="Hofstede C-I 6.5"></span>
+              <span class="cell" data-tier="1" title="Hofstede C-I 3.9"></span>
+              <span class="cell" data-tier="0" title="Hofstede C-I 2.0 (most collectivist)"></span>
             </div>
-            <div class="legend">
-              <span class="key"><span class="swatch is-strong"></span>High &middot; ≥ 6</span>
-              <span class="key"><span class="swatch is-mid"></span>Mid &middot; 4 – 6</span>
-              <span class="key"><span class="swatch is-low"></span>Low &middot; &lt; 4</span>
-            </div>
+            <div class="gradient-key"><span>lower</span><span class="bar"></span><span>higher in sample</span></div>
           </div>
         </div>
         <div class="h">
@@ -569,19 +603,30 @@
           <span class="verdict"><strong>Supported.</strong></span>
           <p class="body">As state capacity rose — better HDI, higher SPI, lower corruption — the marginal effect of most social capital dimensions on life satisfaction decreased. Governance substitutes, partially, for what communities used to do.</p>
           <div class="scorecard">
-            <span class="lens">Human Development Index · UN · 0–1</span>
-            <div class="dots">
-              <div class="dot is-strong" title="HDI 0.92"><div class="sq"></div><span class="lbl">US</span><span class="v">0.92</span></div>
-              <div class="dot is-strong" title="HDI 0.92"><div class="sq"></div><span class="lbl">AT</span><span class="v">0.92</span></div>
-              <div class="dot is-low"    title="HDI 0.72"><div class="sq"></div><span class="lbl">ZA</span><span class="v">0.72</span></div>
-              <div class="dot is-mid"    title="HDI 0.83"><div class="sq"></div><span class="lbl">RU</span><span class="v">0.83</span></div>
-              <div class="dot is-low"    title="HDI 0.75"><div class="sq"></div><span class="lbl">CN</span><span class="v">0.75</span></div>
+            <span class="lens">Explicit moderators · governance, development, integrity</span>
+            <div class="matrix">
+              <span class="corner"></span>
+              <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
+              <span class="row-head">HDI</span>
+              <span class="cell" data-tier="4" title="HDI 0.924, highest in sample"></span>
+              <span class="cell" data-tier="3" title="HDI 0.916"></span>
+              <span class="cell" data-tier="0" title="HDI 0.72"></span>
+              <span class="cell" data-tier="2" title="HDI 0.833"></span>
+              <span class="cell" data-tier="1" title="HDI 0.747"></span>
+              <span class="row-head">SPI</span>
+              <span class="cell" data-tier="3" title="Social Progress 8.643"></span>
+              <span class="cell" data-tier="4" title="Social Progress 8.798, highest in sample"></span>
+              <span class="cell" data-tier="2" title="Social Progress 6.725"></span>
+              <span class="cell" data-tier="1" title="Social Progress 6.717"></span>
+              <span class="cell" data-tier="0" title="Social Progress 6.372"></span>
+              <span class="row-head">CPI&nbsp;(integrity)</span>
+              <span class="cell" data-tier="4" title="Corruption Perception 7.5 (clean)"></span>
+              <span class="cell" data-tier="4" title="Corruption Perception 7.5 (clean)"></span>
+              <span class="cell" data-tier="2" title="Corruption Perception 4.3"></span>
+              <span class="cell" data-tier="0" title="Corruption Perception 2.9, lowest integrity"></span>
+              <span class="cell" data-tier="1" title="Corruption Perception 4.1"></span>
             </div>
-            <div class="legend">
-              <span class="key"><span class="swatch is-strong"></span>Very high &middot; ≥ 0.90</span>
-              <span class="key"><span class="swatch is-mid"></span>High &middot; 0.80 – 0.90</span>
-              <span class="key"><span class="swatch is-low"></span>Med &middot; &lt; 0.80</span>
-            </div>
+            <div class="gradient-key"><span>lower</span><span class="bar"></span><span>higher in sample</span></div>
           </div>
         </div>
     </div>

@@ -173,6 +173,83 @@
   .chart-row .tr .f--cobalt { background: var(--cobalt); }
   .chart-row .val { font-family: var(--font-display); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
 
+  /* ── Five-country strip (between Instrument & sample and Findings) ── */
+  .country-strip {
+    grid-column: 1 / -1;
+    border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
+    margin: var(--s-7) 0;
+    padding: var(--s-5) 0 0;
+  }
+  .country-strip .strip-head {
+    display: grid; grid-template-columns: minmax(180px, 1fr) 3fr; gap: var(--s-6);
+    align-items: baseline;
+    padding-bottom: var(--s-5);
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: var(--s-5);
+  }
+  .country-strip .strip-head h4 {
+    font-family: var(--font-display); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink);
+    margin: 0;
+  }
+  .country-strip .strip-head .lede {
+    font-family: var(--font-body); font-size: 16px; font-style: italic;
+    color: var(--ink-soft); line-height: 1.5; margin: 0;
+  }
+  .country-cards {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+  }
+  .country-card {
+    padding: var(--s-4) var(--s-4) var(--s-5);
+    border-right: 1px solid var(--rule);
+    display: flex; flex-direction: column; gap: var(--s-3);
+  }
+  .country-card:last-child { border-right: none; }
+  .country-card .top-rule {
+    height: 3px; background: var(--ink); margin-bottom: var(--s-3);
+  }
+  .country-card.is-high .top-rule { background: var(--cobalt); }
+  .country-card .head {
+    display: grid; grid-template-columns: auto 1fr; gap: var(--s-3);
+    align-items: baseline;
+  }
+  .country-card .code {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.18em; color: var(--cobalt);
+    padding: 3px 6px; border: 1px solid var(--cobalt);
+    line-height: 1;
+  }
+  .country-card .name {
+    font-family: var(--font-display); font-size: 15px; font-weight: 700;
+    letter-spacing: 0.04em; color: var(--ink); text-transform: none;
+  }
+  .country-card .ls {
+    font-family: var(--font-display); font-size: 38px; line-height: 0.95;
+    font-weight: 700; letter-spacing: -0.04em; color: var(--ink);
+    font-variant-numeric: tabular-nums;
+    margin-top: var(--s-2);
+  }
+  .country-card .ls-cap {
+    font-family: var(--font-display); font-size: 9px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted);
+    margin-bottom: var(--s-3);
+  }
+  .country-card .stats { display: flex; flex-direction: column; gap: 4px; padding-top: var(--s-3); border-top: 1px solid var(--rule); }
+  .country-card .stat {
+    display: grid; grid-template-columns: 78px 1fr 30px; gap: var(--s-2); align-items: center;
+    font-family: var(--font-mono); font-size: 10px; color: var(--ink-soft);
+  }
+  .country-card .stat .lbl { letter-spacing: 0.08em; text-transform: uppercase; }
+  .country-card .stat .bar { height: 5px; background: var(--paper-warm); position: relative; }
+  .country-card .stat .bar .fill { position: absolute; inset: 0 auto 0 0; background: var(--ink); }
+  .country-card.is-high .stat .bar .fill { background: var(--cobalt); }
+  .country-card .stat .v { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); }
+  .country-card .finding {
+    font-family: var(--font-body); font-size: 13px; line-height: 1.5;
+    color: var(--ink); margin: var(--s-3) 0 0;
+  }
+  .country-card .finding strong { color: var(--cobalt); font-weight: 700; }
+
   /* Methods grid */
   .methods {
     grid-column: 1 / -1;
@@ -227,6 +304,10 @@
     .stat-row .s:last-child  { padding-right: var(--s-4); border-right: 1px solid var(--rule-strong); }
     .stat-row .s:nth-child(2n) { border-right: none; }
     .stat-row .s:nth-last-child(-n+2) { border-bottom: none; }
+    .country-strip .strip-head { grid-template-columns: 1fr; gap: var(--s-3); }
+    .country-cards { grid-template-columns: 1fr; }
+    .country-card { border-right: none; border-bottom: 1px solid var(--rule); padding: var(--s-4) 0 var(--s-5); }
+    .country-card:last-child { border-bottom: none; }
     .article { grid-template-columns: 1fr; padding: var(--s-7) 0 var(--s-8); }
     .article .article-body-resume,
     .article .marg-col,
@@ -372,7 +453,105 @@
       <p>The dependent variable was life satisfaction, measured on the ISSP's single-item 7-point Likert scale. Social capital was operationalised through nine constructs: trust in society, trust in fairness, organisational trust, social networks (Lin's position generator, weighted by ISEI occupational status), personal and organisational support resources (Van der Gaag &amp; Snijders' resource generator, adapted by the ISSP team), norms of reciprocity (three: elder care, family first, societal care), and contact frequency (daily and organisational). Multi-item constructs were reduced via PCA with reliability checks (most α ≥ 0.71).</p>
       <p>Five countries were selected for maximum cross-cultural variance on development, governance, and cultural values: <em>Austria, China, Russia, the United States, South Africa</em>. National-level moderators came from Hofstede's cultural dimensions, HDI, Social Progress Index, Corruption Perception Index, INFORM natural-hazard risk, and within-country income percentiles.</p>
       <p>Controls: age, partner status, ISCO-08 skill level, household financial ease. Missing data (3,968 of 15,217 rows had at least one missing value) were handled via MICE with predictive mean matching, imputed within country to preserve national characteristics.</p>
+    </div>
 
+    <section class="country-strip">
+      <div class="strip-head">
+        <h4>The five cases <span class="n" style="font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); letter-spacing: 0.12em; font-weight: 400;">Fig. 00</span></h4>
+        <p class="lede">Five countries, ranked below by life satisfaction at mean social capital. The order does <em>not</em> match GDP or HDI — and the reasons are what the rest of the case study unpacks.</p>
+      </div>
+      <div class="country-cards">
+
+        <article class="country-card is-high">
+          <div class="top-rule"></div>
+          <div class="head">
+            <span class="code">US</span>
+            <span class="name">United States</span>
+          </div>
+          <span class="ls-cap">Life satisfaction · 1–7</span>
+          <div class="ls">5.22</div>
+          <div class="stats">
+            <div class="stat"><span class="lbl">HDI</span><div class="bar"><div class="fill" style="width: 92%"></div></div><span class="v">0.92</span></div>
+            <div class="stat"><span class="lbl">Indiv.</span><div class="bar"><div class="fill" style="width: 91%"></div></div><span class="v">9.1</span></div>
+            <div class="stat"><span class="lbl">Hazard</span><div class="bar"><div class="fill" style="width: 69%"></div></div><span class="v">6.9</span></div>
+            <div class="stat"><span class="lbl">n</span><div class="bar"><div class="fill" style="width: 28%"></div></div><span class="v">1,173</span></div>
+          </div>
+          <p class="finding"><strong>Weakest</strong> social-capital → satisfaction slope in the sample. Wealth provides the floor; <em>bridging</em> capital is the scarce resource (Putnam).</p>
+        </article>
+
+        <article class="country-card is-high">
+          <div class="top-rule"></div>
+          <div class="head">
+            <span class="code">AT</span>
+            <span class="name">Austria</span>
+          </div>
+          <span class="ls-cap">Life satisfaction · 1–7</span>
+          <div class="ls">5.14</div>
+          <div class="stats">
+            <div class="stat"><span class="lbl">HDI</span><div class="bar"><div class="fill" style="width: 92%"></div></div><span class="v">0.92</span></div>
+            <div class="stat"><span class="lbl">Indiv.</span><div class="bar"><div class="fill" style="width: 55%"></div></div><span class="v">5.5</span></div>
+            <div class="stat"><span class="lbl">Hazard</span><div class="bar"><div class="fill" style="width: 25%"></div></div><span class="v">2.5</span></div>
+            <div class="stat"><span class="lbl">n</span><div class="bar"><div class="fill" style="width: 27%"></div></div><span class="v">1,120</span></div>
+          </div>
+          <p class="finding">Trust-in-fairness coefficient nearly <strong>2×</strong> the cross-country average — the "warm glow" of high-trust governance.</p>
+        </article>
+
+        <article class="country-card">
+          <div class="top-rule"></div>
+          <div class="head">
+            <span class="code">ZA</span>
+            <span class="name">South Africa</span>
+          </div>
+          <span class="ls-cap">Life satisfaction · 1–7</span>
+          <div class="ls">4.38</div>
+          <div class="stats">
+            <div class="stat"><span class="lbl">HDI</span><div class="bar"><div class="fill" style="width: 72%"></div></div><span class="v">0.72</span></div>
+            <div class="stat"><span class="lbl">Indiv.</span><div class="bar"><div class="fill" style="width: 65%"></div></div><span class="v">6.5</span></div>
+            <div class="stat"><span class="lbl">Hazard</span><div class="bar"><div class="fill" style="width: 42%"></div></div><span class="v">4.2</span></div>
+            <div class="stat"><span class="lbl">n</span><div class="bar"><div class="fill" style="width: 73%"></div></div><span class="v">3,098</span></div>
+          </div>
+          <p class="finding">The <strong>only</strong> country where social networks remained significant in the pooled model — community as compensation for institutional gaps.</p>
+        </article>
+
+        <article class="country-card">
+          <div class="top-rule"></div>
+          <div class="head">
+            <span class="code">RU</span>
+            <span class="name">Russia</span>
+          </div>
+          <span class="ls-cap">Life satisfaction · 1–7</span>
+          <div class="ls">4.26</div>
+          <div class="stats">
+            <div class="stat"><span class="lbl">HDI</span><div class="bar"><div class="fill" style="width: 83%"></div></div><span class="v">0.83</span></div>
+            <div class="stat"><span class="lbl">Indiv.</span><div class="bar"><div class="fill" style="width: 39%"></div></div><span class="v">3.9</span></div>
+            <div class="stat"><span class="lbl">Hazard</span><div class="bar"><div class="fill" style="width: 51%"></div></div><span class="v">5.1</span></div>
+            <div class="stat"><span class="lbl">n</span><div class="bar"><div class="fill" style="width: 37%"></div></div><span class="v">1,559</span></div>
+          </div>
+          <p class="finding"><strong>Highest power distance</strong> (9.3) and lowest CPI (2.9) in the sample — trust in society binds satisfaction where institutions don't.</p>
+        </article>
+
+        <article class="country-card">
+          <div class="top-rule"></div>
+          <div class="head">
+            <span class="code">CN</span>
+            <span class="name">China</span>
+          </div>
+          <span class="ls-cap">Life satisfaction · 1–7</span>
+          <div class="ls">3.71</div>
+          <div class="stats">
+            <div class="stat"><span class="lbl">HDI</span><div class="bar"><div class="fill" style="width: 75%"></div></div><span class="v">0.75</span></div>
+            <div class="stat"><span class="lbl">Indiv.</span><div class="bar"><div class="fill" style="width: 20%"></div></div><span class="v">2.0</span></div>
+            <div class="stat"><span class="lbl">Hazard</span><div class="bar"><div class="fill" style="width: 78%"></div></div><span class="v">7.8</span></div>
+            <div class="stat"><span class="lbl">n</span><div class="bar"><div class="fill" style="width: 100%"></div></div><span class="v">4,219</span></div>
+          </div>
+          <p class="finding">Lowest satisfaction at mean social capital. <strong>Guanxi 關係</strong> makes social capital an economic necessity, not an extra (He & Gebhardt, 2015).</p>
+        </article>
+
+      </div>
+      <p class="fc" style="font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; padding: var(--s-4) var(--s-4) var(--s-4); border-top: 1px solid var(--rule); margin: 0;">HDI is the UN Human Development Index (0–1). Individualism is Hofstede's Collectivism–Individualism dimension (1 = most collectivist, 10 = most individualistic). Hazard is INFORM 2024 natural-hazard exposure (0–10). Bars are scaled to the indicator's nominal range. Cobalt cards mark the high-HDI cluster.</p>
+    </section>
+
+    <div>
       <h2 id="findings">What the data said <span class="section-num">§ 03</span></h2>
       <p style="font-size: 18px;" data-cc-id="cc-3">Four hypotheses, four findings.</p>
     </div>

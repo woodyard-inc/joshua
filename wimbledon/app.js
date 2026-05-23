@@ -2767,7 +2767,8 @@ function renderMatchupResult(r) {
   const probLabelA = `<span class="mu-prob-label">match win probability</span>`;
   const probLabelB = `<span class="mu-prob-label">match win probability</span>`;
 
-  // Score distribution — sorted A-wins then B-wins
+  // Score distribution — cobalt follows the projected winner, not player A.
+  // Winner's scorelines listed first (descending probability), loser's below.
   const aWins = [], bWins = [];
   for (const [k, p] of Object.entries(r.scoreDist)) {
     const [sa] = k.split("-").map(Number);
@@ -2775,16 +2776,23 @@ function renderMatchupResult(r) {
   }
   aWins.sort((a, b) => b[1] - a[1]);
   bWins.sort((a, b) => b[1] - a[1]);
-  const allScores = [...aWins, ...bWins];
-  const maxP = Math.max(...allScores.map(([, p]) => p));
 
-  const scoreRows = allScores.map(([k, p]) => {
-    const pct = Math.round(p * 100);
+  const aIsWinner   = r.pWinA >= 0.5;
+  const winnerWins  = aIsWinner ? aWins : bWins;
+  const loserWins   = aIsWinner ? bWins : aWins;
+  const allScores   = [
+    ...winnerWins.map(([k, p]) => ({ k, p, isWinnerRow: true })),
+    ...loserWins.map (([k, p]) => ({ k, p, isWinnerRow: false })),
+  ];
+  const maxP = Math.max(...allScores.map(s => s.p));
+
+  const scoreRows = allScores.map(({ k, p, isWinnerRow }) => {
+    const pct  = Math.round(p * 100);
     const barW = Math.round((p / maxP) * 100);
     const [sa, sb] = k.split("-").map(Number);
+    const cls  = isWinnerRow ? "dist-bar-a" : "dist-bar-b";
+    // Always display "winner sets – loser sets" for readability
     const aWon = sa === 3;
-    const cls  = aWon ? "dist-bar-a" : "dist-bar-b";
-    // Display "winner sets – loser sets" for readability
     const displayLabel = aWon ? `${sa}-${sb}` : `${sb}-${sa}`;
     return `<div class="mu-dist-row">
       <span class="mu-dist-score">${displayLabel}</span>

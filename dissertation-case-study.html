@@ -169,11 +169,34 @@
     width: 100%; height: 22px; background: var(--paper-warm);
     border: 1px solid var(--rule);
   }
+  .hyp .h .scorecard .dot .lbl {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em;
+    color: var(--ink-muted);
+  }
+  .hyp .h .scorecard .dot .v {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
+    color: var(--ink); font-variant-numeric: tabular-nums; letter-spacing: 0;
+  }
   .hyp .h .scorecard .dot.is-strong .sq { background: var(--cobalt); border-color: var(--cobalt); }
   .hyp .h .scorecard .dot.is-mid    .sq { background: var(--ink);    border-color: var(--ink); }
   .hyp .h .scorecard .dot.is-low    .sq { background: var(--paper-warm); border-color: var(--rule-strong); }
   .hyp .h .scorecard .dot.is-strong .lbl,
   .hyp .h .scorecard .dot.is-mid    .lbl { color: var(--ink); }
+  .hyp .h .scorecard .legend {
+    display: flex; gap: var(--s-4); margin-top: var(--s-3);
+    font-family: var(--font-mono); font-size: 9px; color: var(--ink-muted);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .hyp .h .scorecard .legend .key {
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .hyp .h .scorecard .legend .swatch {
+    display: inline-block; width: 12px; height: 8px;
+    border: 1px solid var(--rule);
+  }
+  .hyp .h .scorecard .legend .swatch.is-strong { background: var(--cobalt); border-color: var(--cobalt); }
+  .hyp .h .scorecard .legend .swatch.is-mid    { background: var(--ink);    border-color: var(--ink); }
+  .hyp .h .scorecard .legend .swatch.is-low    { background: var(--paper-warm); border-color: var(--rule-strong); }
 
   /* Figure */
   .figure {
@@ -586,14 +609,15 @@
           <span class="verdict"><strong>Supported.</strong></span>
           <p class="body">Trust in fairness was significant and positive in all five countries (β = 0.09 to 0.29, p&nbsp;&lt;&nbsp;.01). Organisational trust, likewise. Other dimensions produced country-specific patterns rather than universal effects.</p>
           <div class="scorecard">
-            <span class="lens">Universal support &middot; trust dimension</span>
+            <span class="lens">Trust significance, by country</span>
             <div class="dots">
-              <div class="dot is-strong" title="Trust in society significant; other trust dimensions positive"><div class="sq"></div><span class="lbl">US</span></div>
-              <div class="dot is-strong" title="Trust in fairness β=0.29, strongest in sample"><div class="sq"></div><span class="lbl">AT</span></div>
-              <div class="dot is-strong" title="Trust in society β=0.17 + organisational trust positive"><div class="sq"></div><span class="lbl">ZA</span></div>
-              <div class="dot is-strong" title="Trust in society β=0.19, organisational trust positive"><div class="sq"></div><span class="lbl">RU</span></div>
-              <div class="dot is-strong" title="Organisational trust β=0.12 + societal-care norm β=0.07"><div class="sq"></div><span class="lbl">CN</span></div>
+              <div class="dot is-strong" title="Trust in society significant; other trust dimensions positive"><div class="sq"></div><span class="lbl">US</span><span class="v">✓</span></div>
+              <div class="dot is-strong" title="Trust in fairness β=0.29, strongest in sample"><div class="sq"></div><span class="lbl">AT</span><span class="v">✓</span></div>
+              <div class="dot is-strong" title="Trust in society β=0.17 + organisational trust positive"><div class="sq"></div><span class="lbl">ZA</span><span class="v">✓</span></div>
+              <div class="dot is-strong" title="Trust in society β=0.19, organisational trust positive"><div class="sq"></div><span class="lbl">RU</span><span class="v">✓</span></div>
+              <div class="dot is-strong" title="Organisational trust β=0.12 + societal-care norm β=0.07"><div class="sq"></div><span class="lbl">CN</span><span class="v">✓</span></div>
             </div>
+            <div class="legend"><span class="key"><span class="swatch is-strong"></span>Trust dimension positive &amp; significant in all 5 countries</span></div>
           </div>
         </div>
         <div class="h">
@@ -602,13 +626,18 @@
           <span class="verdict"><strong>Supported.</strong></span>
           <p class="body">With social capital held at its sample mean, satisfaction differs significantly between almost every country pair (8 of 10, Tukey p&nbsp;&lt;&nbsp;.001). Ranking: US ≈ AT &gt; ZA ≈ RU &gt; CN — consistent with the guanxi literature, where Chinese social capital functions as economic necessity rather than enrichment.</p>
           <div class="scorecard">
-            <span class="lens">Satisfaction at mean social capital</span>
+            <span class="lens">Life satisfaction at mean social capital · 1–7</span>
             <div class="dots">
-              <div class="dot is-strong" title="LS 5.22"><div class="sq"></div><span class="lbl">US</span></div>
-              <div class="dot is-strong" title="LS 5.14"><div class="sq"></div><span class="lbl">AT</span></div>
-              <div class="dot is-mid"    title="LS 4.38"><div class="sq"></div><span class="lbl">ZA</span></div>
-              <div class="dot is-mid"    title="LS 4.26"><div class="sq"></div><span class="lbl">RU</span></div>
-              <div class="dot is-low"    title="LS 3.71"><div class="sq"></div><span class="lbl">CN</span></div>
+              <div class="dot is-strong" title="LS 5.22"><div class="sq"></div><span class="lbl">US</span><span class="v">5.22</span></div>
+              <div class="dot is-strong" title="LS 5.14"><div class="sq"></div><span class="lbl">AT</span><span class="v">5.14</span></div>
+              <div class="dot is-mid"    title="LS 4.38"><div class="sq"></div><span class="lbl">ZA</span><span class="v">4.38</span></div>
+              <div class="dot is-mid"    title="LS 4.26"><div class="sq"></div><span class="lbl">RU</span><span class="v">4.26</span></div>
+              <div class="dot is-low"    title="LS 3.71"><div class="sq"></div><span class="lbl">CN</span><span class="v">3.71</span></div>
+            </div>
+            <div class="legend">
+              <span class="key"><span class="swatch is-strong"></span>≥ 5.0</span>
+              <span class="key"><span class="swatch is-mid"></span>4.0 – 5.0</span>
+              <span class="key"><span class="swatch is-low"></span>&lt; 4.0</span>
             </div>
           </div>
         </div>
@@ -618,13 +647,18 @@
           <span class="verdict"><strong>Supported,</strong> with nuance.</span>
           <p class="body">Higher natural-disaster risk weakened the trust-to-satisfaction link but strengthened the societal-care-to-satisfaction link — in vulnerable environments, community becomes compensatory. Individualism amplified the effect of social networks; collectivism amplified the effect of organisational support.</p>
           <div class="scorecard">
-            <span class="lens">Natural-hazard exposure (INFORM)</span>
+            <span class="lens">Natural-hazard exposure · INFORM 2024 · 0–10</span>
             <div class="dots">
-              <div class="dot is-strong" title="INFORM hazard 6.9"><div class="sq"></div><span class="lbl">US</span></div>
-              <div class="dot is-low"    title="INFORM hazard 2.5"><div class="sq"></div><span class="lbl">AT</span></div>
-              <div class="dot is-mid"    title="INFORM hazard 4.2"><div class="sq"></div><span class="lbl">ZA</span></div>
-              <div class="dot is-mid"    title="INFORM hazard 5.1"><div class="sq"></div><span class="lbl">RU</span></div>
-              <div class="dot is-strong" title="INFORM hazard 7.8, highest in sample"><div class="sq"></div><span class="lbl">CN</span></div>
+              <div class="dot is-strong" title="INFORM hazard 6.9"><div class="sq"></div><span class="lbl">US</span><span class="v">6.9</span></div>
+              <div class="dot is-low"    title="INFORM hazard 2.5"><div class="sq"></div><span class="lbl">AT</span><span class="v">2.5</span></div>
+              <div class="dot is-mid"    title="INFORM hazard 4.2"><div class="sq"></div><span class="lbl">ZA</span><span class="v">4.2</span></div>
+              <div class="dot is-mid"    title="INFORM hazard 5.1"><div class="sq"></div><span class="lbl">RU</span><span class="v">5.1</span></div>
+              <div class="dot is-strong" title="INFORM hazard 7.8, highest in sample"><div class="sq"></div><span class="lbl">CN</span><span class="v">7.8</span></div>
+            </div>
+            <div class="legend">
+              <span class="key"><span class="swatch is-strong"></span>High &middot; ≥ 6</span>
+              <span class="key"><span class="swatch is-mid"></span>Mid &middot; 4 – 6</span>
+              <span class="key"><span class="swatch is-low"></span>Low &middot; &lt; 4</span>
             </div>
           </div>
         </div>
@@ -634,13 +668,18 @@
           <span class="verdict"><strong>Supported.</strong></span>
           <p class="body">As state capacity rose — better HDI, higher SPI, lower corruption — the marginal effect of most social capital dimensions on life satisfaction decreased. Governance substitutes, partially, for what communities used to do.</p>
           <div class="scorecard">
-            <span class="lens">Human Development Index</span>
+            <span class="lens">Human Development Index · UN · 0–1</span>
             <div class="dots">
-              <div class="dot is-strong" title="HDI 0.92"><div class="sq"></div><span class="lbl">US</span></div>
-              <div class="dot is-strong" title="HDI 0.92"><div class="sq"></div><span class="lbl">AT</span></div>
-              <div class="dot is-low"    title="HDI 0.72"><div class="sq"></div><span class="lbl">ZA</span></div>
-              <div class="dot is-mid"    title="HDI 0.83"><div class="sq"></div><span class="lbl">RU</span></div>
-              <div class="dot is-low"    title="HDI 0.75"><div class="sq"></div><span class="lbl">CN</span></div>
+              <div class="dot is-strong" title="HDI 0.92"><div class="sq"></div><span class="lbl">US</span><span class="v">0.92</span></div>
+              <div class="dot is-strong" title="HDI 0.92"><div class="sq"></div><span class="lbl">AT</span><span class="v">0.92</span></div>
+              <div class="dot is-low"    title="HDI 0.72"><div class="sq"></div><span class="lbl">ZA</span><span class="v">0.72</span></div>
+              <div class="dot is-mid"    title="HDI 0.83"><div class="sq"></div><span class="lbl">RU</span><span class="v">0.83</span></div>
+              <div class="dot is-low"    title="HDI 0.75"><div class="sq"></div><span class="lbl">CN</span><span class="v">0.75</span></div>
+            </div>
+            <div class="legend">
+              <span class="key"><span class="swatch is-strong"></span>Very high &middot; ≥ 0.90</span>
+              <span class="key"><span class="swatch is-mid"></span>High &middot; 0.80 – 0.90</span>
+              <span class="key"><span class="swatch is-low"></span>Med &middot; &lt; 0.80</span>
             </div>
           </div>
         </div>

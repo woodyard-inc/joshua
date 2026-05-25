@@ -604,45 +604,68 @@ function renderHero(p, t) {
   }
 }
 
-// ── Serve Waterfall ───────────────────────────────────────────────
+// ── Serve Strength ────────────────────────────────────────────────
 function renderServeWaterfall(p, t) {
   const srv = p.serve;
-  const ta  = t.serve;
-  const rows = [
-    { stage:1, label:"1st Serve In",   desc:"of all serve points",       val:srv.first_in_pct,   avg:ta.first_in_pct   },
-    { stage:2, label:"1st Serve Won",  desc:"of 1st serves that went in", val:srv.first_won_pct,  avg:ta.first_won_pct  },
-    { stage:3, label:"2nd Serve In",   desc:"of 2nd-serve attempts",      val:srv.second_in_pct,  avg:null              },
-    { stage:4, label:"2nd Serve Won",  desc:"of 2nd serves that went in", val:srv.second_won_pct, avg:ta.second_won_pct },
-  ];
-
+  const ta  = t.serve || {};
   const container = document.getElementById("serve-waterfall");
   container.innerHTML = "";
-  for (const r of rows) {
-    if (r.val == null) continue;
-    const div = document.createElement("div");
-    div.className = `wf-row stage-${r.stage}`;
-    div.innerHTML = `
-      <div class="wf-labels">
-        <span class="wf-label">${r.label}</span>
-        <span class="wf-label">${r.desc}</span>
-      </div>
-      <div class="wf-vals">
-        <span class="wf-val-main">${r.val}%</span>
-        ${r.avg != null ? `<span class="wf-val-avg">avg ${r.avg}%</span>` : ""}
-      </div>
-      <div class="wf-track">
-        <div class="wf-bar" style="width:${r.val}%"></div>
-        ${r.avg != null ? `<div class="wf-avg-tick" style="left:${r.avg}%"></div>` : ""}
-      </div>`;
-    container.appendChild(div);
+  if (!srv || srv.first_in_pct == null) {
+    container.innerHTML = naCard("Serve Strength", p.year);
+    return;
   }
 
-  const note = document.createElement("div");
-  note.style.cssText = "margin-top:10px;font-size:11px;color:var(--ink-muted);display:flex;gap:16px";
-  note.innerHTML = `
-    <span>Aces: <strong style="color:var(--ink)">${srv.aces_total}</strong> (${srv.ace_pct}% of srv pts)</span>
-    <span>DFs: <strong style="color:var(--ink)">${srv.dfs_total}</strong> (${srv.df_pct}% of srv pts)</span>`;
-  container.appendChild(note);
+  // Overall serve points won:
+  //   P(1st in)·P(win|1st) + P(1st out)·P(2nd in)·P(win|2nd)
+  const spw = (fi, fw, si, sw) =>
+    (fi / 100) * (fw / 100) + (1 - fi / 100) * (si / 100) * (sw / 100);
+  const playerSPW = spw(srv.first_in_pct, srv.first_won_pct,
+                        srv.second_in_pct, srv.second_won_pct) * 100;
+
+  // Tournament avg: the avg file has no 2nd-serve-in, so derive it from
+  // the double-fault rate (DFs land on 2nd serves only).
+  let avgSPW = null;
+  if (ta.first_in_pct != null && ta.first_won_pct != null && ta.second_won_pct != null) {
+    const secondAttempts = 1 - ta.first_in_pct / 100;
+    const avgSecondIn = (ta.df_pct != null && secondAttempts > 0)
+      ? (1 - (ta.df_pct / 100) / secondAttempts) * 100
+      : 90;
+    avgSPW = spw(ta.first_in_pct, ta.first_won_pct, avgSecondIn, ta.second_won_pct) * 100;
+  }
+
+  // Headline card — overall serve points won
+  const delta = (avgSPW != null) ? playerSPW - avgSPW : null;
+  const deltaStr = (delta != null)
+    ? `<span class="srv-delta ${delta >= 0 ? "pos" : "neg"}">${delta >= 0 ? "+" : ""}${delta.toFixed(1)} vs avg</span>`
+    : "";
+  const avgStr = (avgSPW != null)
+    ? `<span class="srv-headline-avg">tournament avg ${avgSPW.toFixed(1)}%</span>` : "";
+
+  // Supporting stat cards
+  const cards = [
+    { label: "1st Serve In",  val: srv.first_in_pct,   avg: ta.first_in_pct   },
+    { label: "1st Serve Won", val: srv.first_won_pct,  avg: ta.first_won_pct  },
+    { label: "2nd Serve Won", val: srv.second_won_pct, avg: ta.second_won_pct },
+  ].map(c => `
+    <div class="srv-card">
+      <span class="srv-card-label">${c.label}</span>
+      <span class="srv-card-val">${c.val != null ? c.val + "%" : "—"}</span>
+      <span class="srv-card-avg">${c.avg != null ? "avg " + c.avg + "%" : "&nbsp;"}</span>
+    </div>`).join("");
+
+  container.innerHTML = `
+    <div class="srv-headline">
+      <div class="srv-headline-main">
+        <span class="srv-headline-val">${playerSPW.toFixed(1)}%</span>
+        <span class="srv-headline-label">Serve Points Won</span>
+      </div>
+      <div class="srv-headline-meta">${avgStr}${deltaStr}</div>
+    </div>
+    <div class="srv-cards">${cards}</div>
+    <div class="srv-aces">
+      <span>Aces: <strong>${srv.aces_total}</strong> (${srv.ace_pct}% of srv pts)</span>
+      <span>DFs: <strong>${srv.dfs_total}</strong> (${srv.df_pct}% of srv pts)</span>
+    </div>`;
 }
 
 // ── Serve Speed ───────────────────────────────────────────────────
@@ -1510,8 +1533,8 @@ function renderTier1(f) {
 
   const t1    = f.tier1;
   const COLOR = {
-    serve:  "var(--cobalt)",       // ALL serve stats — consistent cobalt
-    return: "var(--terracotta)",   // ALL return stats — consistent terracotta
+    serve:  "var(--cobalt)",        // ALL serve stats — consistent cobalt
+    return: "var(--forest-mid)",    // ALL return stats — consistent grass green
   };
 
   // Each group has: heading | colour bucket | array of stat configs.

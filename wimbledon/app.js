@@ -894,30 +894,24 @@ function renderRally(p, t) {
 
   function renderRow(label, val, avg) {
     if (val == null) return "";
-    const count    = Math.round(val);
-    const shown    = Math.min(Math.max(count, Math.round(avg ?? 0), MAX_BALLS), MAX_BALLS);
+    const count = Math.round(val);
+    const shown = Math.min(count, MAX_BALLS);
     let balls = "";
-    for (let i = 1; i <= shown; i++) balls += ballSVG(i <= count);
+    for (let i = 1; i <= shown; i++) balls += ballSVG(true);
+    const overflow = count > MAX_BALLS
+      ? `<span class="rally-overflow">+${count - MAX_BALLS}</span>` : "";
 
-    // Use the FLOAT avg for marker positioning so 2.6 vs 3.4 don't both
-    // collapse to the same position (3) after rounding.  A downward arrow
-    // sits just above the ball with the avg value printed above it so
-    // each row's tour-avg reading is legible at a glance.
-    let avgLine = "";
-    if (avg != null) {
-      const pos = Math.min(avg / shown, 1) * 100;
-      avgLine = `
-        <div class="rally-avg-marker" style="left:${pos.toFixed(2)}%" title="Tournament avg: ${avg.toFixed(1)} shots">
-          <span class="rally-avg-num">${avg.toFixed(1)}</span>
-          <span class="rally-avg-arrow">▼</span>
-        </div>`;
-    }
+    // Tournament average is shown inline next to the player's count
+    // rather than as a floating marker above the balls — the marker
+    // overlapped adjacent rows and broke on narrow screens.
+    const avgStr = (avg != null)
+      ? `<span class="rally-avg-inline">avg ${avg.toFixed(1)}</span>` : "";
     return `
       <div class="rally-row">
         <span class="rally-label">${label}</span>
         <div class="rally-balls-wrap">
-          <div class="rally-balls">${balls}${avgLine}</div>
-          <span class="rally-shot-count">${val.toFixed(1)} shots</span>
+          <div class="rally-balls">${balls}${overflow}</div>
+          <span class="rally-shot-count">${val.toFixed(1)} shots ${avgStr}</span>
         </div>
       </div>`;
   }
@@ -930,7 +924,14 @@ function renderRally(p, t) {
     ? `<p class="rally-partial-note"><em>Some rally categories have no data for ${p.year}; only available rows are shown.</em></p>`
     : "";
 
-  container.innerHTML = groups.map(g => `
+  const maxRally = rs.max_rally;
+  const maxHeadline = (maxRally != null) ? `
+    <div class="rally-max">
+      <span class="rally-max-val">${maxRally}</span>
+      <span class="rally-max-label">shots · longest rally contested (${p.year})</span>
+    </div>` : "";
+
+  container.innerHTML = maxHeadline + groups.map(g => `
     <div class="rally-group">
       <div class="rally-group-heading">${g.heading}</div>
       ${g.rows.map(r => renderRow(r.label, r.val, r.avg)).join("")}

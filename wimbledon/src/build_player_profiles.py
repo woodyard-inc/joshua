@@ -319,6 +319,11 @@ def compute_player_profile(name: str, pn: int,
         "rc_ret_sum": float(ret_rc.sum()),   "rc_ret_n": int(len(ret_rc)),
         "rc_ret1_sum": float(ret_rc1.sum()), "rc_ret1_n": int(len(ret_rc1)),
         "rc_ret2_sum": float(ret_rc2.sum()), "rc_ret2_n": int(len(ret_rc2)),
+        # longest rally the player contested this match (serving or returning)
+        "rc_max": float(max(
+            srv_rc.max() if len(srv_rc) else 0,
+            ret_rc.max() if len(ret_rc) else 0,
+        )),
         # attack
         "winners": winners, "unf_err": unf_err, "net_pts": net_pts, "net_won": net_won,
         # pressure
@@ -386,6 +391,9 @@ def aggregate_matches(match_results: list, year: int) -> dict:
     for d in match_results:
         for k, v in d.items():
             agg[k] = agg.get(k, 0) + (v or 0)
+
+    # rc_max is a maximum, not a sum — recompute across matches.
+    agg["rc_max"] = max((d.get("rc_max", 0) or 0) for d in match_results) if match_results else 0
 
     srv   = agg["srv_total"]
     s1in  = agg["srv_1st_in"]
@@ -463,6 +471,7 @@ def aggregate_matches(match_results: list, year: int) -> dict:
             "ret_all_avg":  r(agg["rc_ret_sum"]  / agg["rc_ret_n"],  1) if rc_ok and agg["rc_ret_n"]  else None,
             "ret_1st_avg":  r(agg["rc_ret1_sum"] / agg["rc_ret1_n"], 1) if rc_ok and agg["rc_ret1_n"] else None,
             "ret_2nd_avg":  r(agg["rc_ret2_sum"] / agg["rc_ret2_n"], 1) if rc_ok and agg["rc_ret2_n"] else None,
+            "max_rally":    int(agg["rc_max"]) if rc_ok and agg.get("rc_max") else None,
         },
         "pressure": {
             "bp_created":            int(agg["bp_created"]),

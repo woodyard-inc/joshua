@@ -637,7 +637,21 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 /* Larger row gap so the avg-marker stack (number + arrow) above each row
  * has clearance from the balls of the row above AND from the
  * Serving / Returning section heading directly above the first row. */
-.rally-group { display: flex; flex-direction: column; gap: 44px; padding-top: 4px; }
+.rally-max {
+  display: flex; align-items: baseline; gap: var(--s-3);
+  padding-bottom: var(--s-4); margin-bottom: var(--s-3);
+  border-bottom: var(--hairline-ink);
+}
+.rally-max-val {
+  font-family: var(--font-sans); font-size: 40px; font-weight: 700;
+  letter-spacing: -0.03em; color: var(--ink); line-height: 0.9;
+  font-variant-numeric: tabular-nums;
+}
+.rally-max-label {
+  font-family: var(--font-sans); font-size: var(--t-micro);
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
+}
+.rally-group { display: flex; flex-direction: column; gap: var(--s-4); padding-top: 4px; }
 .rally-group-heading {
   font-family: var(--font-sans);
   font-size: var(--t-micro);
@@ -671,50 +685,24 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 .rally-balls {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 4px;
-  position: relative;
   flex: 1;
 }
-.rally-avg-line {
-  position: absolute;
-  top: -4px;
-  bottom: -4px;
-  width: 2px;
-  background: var(--ink-muted);
-  opacity: 0.4;
-  border-radius: 1px;
-  pointer-events: none;
-}
-/* Downward-arrow tournament-average marker — replaces the vertical line
- * so per-row positions are visually distinguishable across rally bands.
- * Neutral grey + generous breathing room above the balls so the
- * number+arrow stack doesn't crowd the row content. */
-.rally-avg-marker {
-  position: absolute;
-  /* Lifted higher so the number + arrow clear the balls with breathing room */
-  top: -46px;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1;
-  color: var(--ink-muted);
-  pointer-events: auto;
-  cursor: help;
-}
-.rally-avg-num {
+.rally-overflow {
   font-family: var(--font-sans);
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  margin-bottom: 8px;
-  color: var(--ink-soft);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-muted);
+  align-self: center;
+  margin-left: 2px;
 }
-.rally-avg-arrow {
-  font-size: 10px;
-  line-height: 1;
-  /* Clear gap between arrow and top of balls */
-  margin-bottom: 8px;
+.rally-avg-inline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-left: 2px;
 }
 /* Italic note shown when some rally categories are missing data */
 .rally-partial-note {
@@ -1471,6 +1459,14 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
   .hl-stat .hl-val { font-size: 22px; }
   .brand-centre h1 { font-size: 22px; }
   select#player-select { min-width: 140px; }
+
+  /* Rally rows: stack label + balls + count so nothing overlaps, and
+   * shrink the balls so a 10-ball row fits a phone width. */
+  .rally-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .rally-label { width: auto; }
+  .rally-balls-wrap { flex-direction: column; align-items: flex-start; gap: 4px; width: 100%; }
+  .rally-ball { width: 18px; height: 18px; }
+  .rally-max-val { font-size: 34px; }
 
   /* Mobile hero: compact 16:9 photo, then nameplate BELOW as a solid
    * ink strip — ensures photo + name + stats all visible on first paint

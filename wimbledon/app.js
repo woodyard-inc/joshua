@@ -997,7 +997,10 @@ function renderResilience(p, t) {
   }
   peers.sort((a, b) => b.pct - a.pct);
   const top  = peers[0];
-  const bot  = peers[peers.length - 1];
+  // Lowest player who still saved at least one BP (>0%) — a 0% "low"
+  // benchmark reads as broken rather than informative.
+  const positivePeers = peers.filter(x => x.pct > 0);
+  const bot  = positivePeers[positivePeers.length - 1];
   // Two players closest in BP-saved% to this player (excluding top/bot)
   const similar = peers
     .filter(x => x !== top && x !== bot)
@@ -1023,7 +1026,7 @@ function renderResilience(p, t) {
       <tbody>
         ${row("Top",      top,        "res-tbl-row--top")}
         ${similar.map(x => row("Similar", x, "res-tbl-row--similar")).join("")}
-        ${row("Bottom",   bot,        "res-tbl-row--bot")}
+        ${row("Low",      bot,        "res-tbl-row--bot")}
       </tbody>
     </table>
     <p class="res-bench-note">Filtered to players with ≥${MIN_FACED} break points faced.</p>

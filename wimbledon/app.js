@@ -641,17 +641,21 @@ function renderServeWaterfall(p, t) {
   const avgStr = (avgSPW != null)
     ? `<span class="srv-headline-avg">tournament avg ${avgSPW.toFixed(1)}%</span>` : "";
 
-  // Supporting stat cards
+  // Supporting stat cards — value coloured vs its tournament average
   const cards = [
     { label: "1st Serve In",  val: srv.first_in_pct,   avg: ta.first_in_pct   },
     { label: "1st Serve Won", val: srv.first_won_pct,  avg: ta.first_won_pct  },
     { label: "2nd Serve Won", val: srv.second_won_pct, avg: ta.second_won_pct },
-  ].map(c => `
+  ].map(c => {
+    const cmp = (c.val != null && c.avg != null)
+      ? (c.val >= c.avg ? "above" : "below") : "";
+    return `
     <div class="srv-card">
       <span class="srv-card-label">${c.label}</span>
-      <span class="srv-card-val">${c.val != null ? c.val + "%" : "—"}</span>
+      <span class="srv-card-val ${cmp}">${c.val != null ? c.val + "%" : "—"}</span>
       <span class="srv-card-avg">${c.avg != null ? "avg " + c.avg + "%" : "&nbsp;"}</span>
-    </div>`).join("");
+    </div>`;
+  }).join("");
 
   container.innerHTML = `
     <div class="srv-headline">

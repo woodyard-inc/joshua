@@ -35,9 +35,9 @@
 
   .cv-fullname {
     font-family: var(--font-wordmark); font-weight: 700;
-    font-size: 32px; letter-spacing: 0.015em; text-transform: uppercase;
-    font-kerning: none;
+    font-size: clamp(28px, 5.5vw, 40px); letter-spacing: normal; text-transform: lowercase;
     color: var(--ink);
+    line-height: 1;
     margin: 6px 0 8px;
   }
 
@@ -95,8 +95,7 @@
     color: var(--ink);
   }
   .role-bar .role em {
-    font-family: var(--font-body); font-style: italic; font-weight: 300;
-    color: var(--cobalt); font-size: 14px; letter-spacing: 0;
+    font-style: normal;
   }
   .role-bar .where {
     font-family: var(--font-sans); font-weight: 400;
@@ -279,7 +278,7 @@
     .back-link { padding: var(--s-4) var(--s-5); margin: 0; }
     .page { padding: var(--s-5) var(--s-4); margin-bottom: var(--s-5); }
     .cv-eyebrow { font-size: 9px; letter-spacing: 0.14em; }
-    .cv-fullname { font-size: 24px; }
+    .cv-fullname { font-size: 26px; }
     .cv-contact { font-size: 10.5px; gap: 2px 0; }
     .cv-contact .sep { margin: 0 6px; }
     .role-bar { grid-template-columns: 1fr; gap: 2px; }
@@ -332,16 +331,17 @@
     <h2>Experience</h2>
 
     <div class="role-bar">
-      <span class="role">Sr. Executive — Data &amp; Insights, <em>Publicis Groupe</em></span>
+      <span class="role">Sr. Executive — Data &amp; Insights (Talent), <em>Publicis Groupe</em></span>
       <span class="where">London, UK</span>
       <span class="when">Jul 2025 – Current</span>
     </div>
     <ul class="cv-bullets">
-      <li>Established <strong>analytics infrastructure, standardised workflows, and reporting frameworks</strong> for a newly created staffing role, enabling non-technical staff to benefit from technical efficiencies.</li>
-      <li>Developed new end-to-end data wrangling, processing, and aggregation practices; creating new integrity checks, reducing human intervention, and complete accountability of roles.</li>
-      <li>Built real-time staffing dashboards for business leads, providing live visibility into resource allocation during <strong>90-day global transitions</strong> and enabling data-driven staffing decisions.</li>
-      <li>Delivered custom reports for senior leadership and clients, translating data into simple insights.</li>
-      <li>Led and supported resolution of critical staffing issues across <strong>40+ markets</strong> during transitions.</li>
+      <li>Own analytics, governance, and BI delivery for a newly created talent intelligence function, architecting <strong>master data models and standardised workflows</strong> spanning workforce planning, recruitment operations, and staffing decisions.</li>
+      <li>Defined data standards and taxonomy — job levels, disciplines, functions, regions, channels — across the organisation, building repeatable ETL processes that cut manual intervention and gave every report a single source of truth.</li>
+      <li>Built Power BI dashboards and executive scorecards tracking recruitment pipeline health, open requisitions, and staffing risk in real time, used by business leads throughout a <strong>90-day global transition</strong>.</li>
+      <li>Led taxonomy and organisational-structure harmonisation for incoming client workforces during business transitions, preserving historical comparability while integrating new data sources.</li>
+      <li>Translated technical methodology into plain-language documentation and executive summaries for non-technical stakeholders, enabling self-service reporting.</li>
+      <li>Identified and resolved stalled hiring activity and staffing bottlenecks across <strong>40+ markets</strong>, building early-warning indicators to flag operational risk before it escalated.</li>
     </ul>
 
     <div class="role-bar">

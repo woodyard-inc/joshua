@@ -208,7 +208,10 @@
   }
   .back-link:hover { color: var(--ink); }
 
-  body[data-colour="grey"] .page { filter: grayscale(1); }
+  /* Greyscale mode — swaps the actual colour value rather than a filter,
+     since print/PDF engines (Chrome's included) frequently drop CSS filter
+     effects on the print path even though they render fine on screen. */
+  body[data-colour="grey"] { --cobalt: var(--ink); }
 
   /* ---- Gate + generator UI (not part of the printed CV) ---- */
   .tool-shell { max-width: 8.5in; margin: 0 auto var(--s-6); }

@@ -253,8 +253,10 @@
   .save-panel button:hover, .save-panel a.sp-link:hover { background: rgba(250,247,240,0.1); }
   .save-panel button.active { background: rgba(250,247,240,0.15); border-color: var(--paper); }
 
-  /* Greyscale mode */
-  body[data-colour="grey"] .page { filter: grayscale(1); }
+  /* Greyscale mode — swaps the actual colour value rather than a filter,
+     since print/PDF engines (Chrome's included) frequently drop CSS filter
+     effects on the print path even though they render fine on screen. */
+  body[data-colour="grey"] { --cobalt: var(--ink); }
 
   @media print {
     .back-link, .save-panel { display: none; }

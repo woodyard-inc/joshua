@@ -34,8 +34,9 @@
   .cv-eyebrow .page-no { color: var(--ink-muted); font-weight: 400; letter-spacing: 0.1em; }
 
   .cv-fullname {
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: 27px; letter-spacing: 0.03em; text-transform: uppercase;
+    font-family: var(--font-wordmark); font-weight: 700;
+    font-size: 32px; letter-spacing: 0.015em; text-transform: uppercase;
+    font-kerning: none;
     color: var(--ink);
     margin: 6px 0 8px;
   }
@@ -94,7 +95,8 @@
     color: var(--ink);
   }
   .role-bar .role em {
-    font-style: normal;
+    font-family: var(--font-body); font-style: italic; font-weight: 300;
+    color: var(--cobalt); font-size: 14px; letter-spacing: 0;
   }
   .role-bar .where {
     font-family: var(--font-sans); font-weight: 400;
@@ -126,13 +128,13 @@
   .cv-bullets li::before {
     content: "•";
     position: absolute; left: 2px; top: 0;
-    color: var(--ink);
+    color: var(--cobalt);
     font-family: var(--font-sans); font-weight: 700;
     font-size: 13px; line-height: 1.3;
   }
   .cv-bullets li strong {
     font-family: var(--font-body); font-weight: 700; font-style: normal;
-    color: var(--ink);
+    color: var(--cobalt);
   }
 
   /* Education row — degree left, school centre, dates right */
@@ -199,7 +201,7 @@
   .twocol .v .lang .level {
     font-family: var(--font-sans); font-weight: 700;
     font-size: 9.5px; letter-spacing: 0.14em;
-    color: var(--ink-muted); margin-left: 4px;
+    color: var(--cobalt); margin-left: 4px;
   }
 
   /* Foot */
@@ -235,17 +237,23 @@
     background: var(--ink); color: var(--paper);
     padding: 14px 18px;
     font-family: var(--font-display); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
-    display: flex; align-items: center; gap: 12px;
+    display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
     box-shadow: 0 8px 32px -8px #14141466;
   }
   .save-panel .sp-label { color: rgba(250,247,240,0.5); }
+  .save-panel .sp-row { display: flex; gap: 6px; width: 100%; }
   .save-panel button {
     font-family: var(--font-display); font-weight: 700; font-size: 10px;
     letter-spacing: 0.22em; text-transform: uppercase;
     padding: 8px 12px; border: 1px solid rgba(250,247,240,0.4);
     background: transparent; color: var(--paper); cursor: pointer;
+    flex: 1;
   }
   .save-panel button:hover { background: rgba(250,247,240,0.1); }
+  .save-panel button.active { background: rgba(250,247,240,0.15); border-color: var(--paper); }
+
+  /* Greyscale mode */
+  body[data-colour="grey"] .page { filter: grayscale(1); }
 
   @media print {
     .back-link, .save-panel { display: none; }
@@ -271,7 +279,7 @@
     .back-link { padding: var(--s-4) var(--s-5); margin: 0; }
     .page { padding: var(--s-5) var(--s-4); margin-bottom: var(--s-5); }
     .cv-eyebrow { font-size: 9px; letter-spacing: 0.14em; }
-    .cv-fullname { font-size: 22px; }
+    .cv-fullname { font-size: 24px; }
     .cv-contact { font-size: 10.5px; gap: 2px 0; }
     .cv-contact .sep { margin: 0 6px; }
     .role-bar { grid-template-columns: 1fr; gap: 2px; }
@@ -279,10 +287,11 @@
     .cv-bullets li { font-size: 13px; }
     .save-panel {
       bottom: 0; right: 0; left: 0;
-      justify-content: space-between;
+      flex-direction: row; align-items: center; justify-content: space-between;
       padding: 10px 14px; gap: 8px;
     }
     .save-panel .sp-label { display: none; }
+    .save-panel .sp-row { width: auto; }
   }
 
   @media (hover: none) {
@@ -503,8 +512,19 @@
 
 <div class="save-panel">
   <span class="sp-label">Joshua Woodyard · CV</span>
+  <div class="sp-row">
+    <button class="active" id="btn-colour" onclick="setColour('colour')">Colour</button>
+    <button id="btn-grey" onclick="setColour('grey')">Greyscale</button>
+  </div>
   <button onclick="window.print()">Save as PDF →</button>
 </div>
+<script>
+  function setColour(mode) {
+    document.body.dataset.colour = mode;
+    document.getElementById('btn-colour').classList.toggle('active', mode === 'colour');
+    document.getElementById('btn-grey').classList.toggle('active', mode === 'grey');
+  }
+</script>
 
 </body>
 </html>

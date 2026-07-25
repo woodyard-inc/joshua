@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CV Tailoring — Joshua Woodyard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F0EBDD">
+<link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
+<link rel="stylesheet" href="foundations.css">
+<style>
+  body { background: var(--paper-warm); padding: var(--s-7) 0; }
+
+  .page {
+    width: 8.5in; min-height: 11in;
+    margin: 0 auto var(--s-6);
+    background: var(--paper);
+    padding: 0.3in 0.55in 0.5in;
+    box-shadow: 0 8px 40px -16px #14141433;
+    display: flex; flex-direction: column;
+  }
+
+  .cv-masthead { margin-bottom: 6px; }
+  .cv-eyebrow {
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .cv-eyebrow .sep { color: var(--ink-muted); margin: 0 8px; font-weight: 400; }
+  .cv-eyebrow .page-no { color: var(--ink-muted); font-weight: 400; letter-spacing: 0.1em; }
+
+  .cv-fullname {
+    font-family: var(--font-wordmark); font-weight: 700;
+    font-size: clamp(28px, 5.5vw, 40px); letter-spacing: normal; text-transform: lowercase;
+    color: var(--ink);
+    line-height: 1;
+    margin: 6px 0 8px;
+  }
+
+  .cv-contact {
+    font-family: var(--font-sans); font-weight: 400;
+    font-size: 10.5px; letter-spacing: 0.02em;
+    color: var(--ink);
+    padding: 0 0 8px;
+    border-bottom: 1px solid var(--ink);
+    display: flex; flex-wrap: wrap; align-items: center;
+  }
+  .cv-contact .item { display: inline-flex; align-items: center; }
+  .cv-contact .sep { color: var(--ink-muted); margin: 0 10px; }
+  .cv-contact a { color: var(--ink); border: none; }
+  .cv-contact a:hover { color: var(--ink-soft); text-decoration: underline; }
+
+  .cv-lede {
+    margin: 10px 0 0;
+    font-family: var(--font-body); font-weight: 300;
+    font-size: 13px; line-height: 1.45;
+    color: var(--ink);
+    max-width: none;
+    text-wrap: pretty;
+  }
+
+  .cv-section { margin-top: 16px; }
+  .cv-section > h2 {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 11px; letter-spacing: 0.24em;
+    text-transform: uppercase; color: var(--ink);
+    padding-bottom: 4px;
+    border-bottom: 1.5px solid var(--ink);
+    margin: 0 0 4px;
+  }
+  .cv-section > h2 .cont {
+    font-family: var(--font-body); font-style: italic; font-weight: 300;
+    font-size: 11px; letter-spacing: 0; color: var(--ink-muted); text-transform: none;
+    float: right; padding-top: 2px;
+  }
+
+  .role-bar {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: var(--s-4);
+    align-items: baseline;
+    padding: 10px 0 2px;
+  }
+  .role-bar .role {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 13px; letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .role-bar .role em { font-style: normal; }
+  .role-bar .where {
+    font-family: var(--font-sans); font-weight: 400;
+    font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .role-bar .when {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .cv-bullets { list-style: none; padding: 0; margin: 4px 0 8px; }
+  .cv-bullets li {
+    font-family: var(--font-body); font-weight: 300;
+    font-size: 12px; line-height: 1.35;
+    color: var(--ink);
+    padding-left: 1.1em;
+    position: relative;
+    margin: 0 0 2px;
+    max-width: none;
+    text-wrap: unset;
+  }
+  .cv-bullets li::before {
+    content: "•";
+    position: absolute; left: 2px; top: 0;
+    color: var(--cobalt);
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 13px; line-height: 1.3;
+  }
+  .cv-bullets li strong {
+    font-family: var(--font-body); font-weight: 700; font-style: normal;
+    color: var(--cobalt);
+  }
+
+  .edu-row {
+    display: grid; grid-template-columns: 1fr auto auto;
+    gap: var(--s-4); align-items: baseline;
+    padding: 10px 0 2px;
+  }
+  .edu-row .degree {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 13px; letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .edu-row .school {
+    font-family: var(--font-body); font-weight: 400; font-style: normal;
+    font-size: 13px; color: var(--ink-soft);
+    white-space: nowrap;
+  }
+  .edu-row .school em { font-style: italic; color: var(--ink-muted); }
+  .edu-row .when {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink); white-space: nowrap;
+  }
+  .edu-meta { list-style: none; padding: 0; margin: 2px 0 6px; }
+  .edu-meta li {
+    font-family: var(--font-body); font-weight: 300; font-size: 11.5px;
+    line-height: 1.35; color: var(--ink);
+    padding-left: 1.1em; position: relative; margin-bottom: 1px;
+    max-width: none; text-wrap: unset;
+  }
+  .edu-meta li::before {
+    content: "•"; position: absolute; left: 2px; top: 0;
+    color: var(--ink); font-weight: 700;
+  }
+  .edu-meta .topics {
+    padding-left: 0; color: var(--ink-soft); font-style: italic;
+    font-size: 11.5px; margin-top: 4px;
+  }
+  .edu-meta .topics::before { content: ""; }
+  .edu-meta .topics b { font-family: var(--font-sans); font-weight: 700; font-style: normal;
+    text-transform: uppercase; letter-spacing: 0.18em; font-size: 9.5px;
+    color: var(--ink-muted); margin-right: 6px; }
+
+  .twocol {
+    display: grid; grid-template-columns: 180px 1fr; gap: var(--s-5);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .twocol:last-child { border-bottom: none; }
+  .twocol .k {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-muted); padding-top: 2px;
+  }
+  .twocol .v {
+    font-family: var(--font-body); font-weight: 300; font-size: 12.5px; line-height: 1.45;
+    color: var(--ink); max-width: none; text-wrap: unset;
+  }
+  .twocol .v .lang { display: inline-block; margin-right: 16px; }
+  .twocol .v .lang .level {
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 9.5px; letter-spacing: 0.14em;
+    color: var(--cobalt); margin-left: 4px;
+  }
+
+  .cv-foot {
+    margin-top: auto;
+    padding-top: var(--s-3);
+    border-top: 1px solid var(--ink);
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    font-family: var(--font-sans); font-weight: 700;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .cv-foot .c { text-align: center; }
+  .cv-foot .r { text-align: right; }
+
+  .back-link {
+    display: block; max-width: 8.5in; margin: 0 auto var(--s-4);
+    font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--ink-muted); border: none; padding: 0;
+  }
+  .back-link:hover { color: var(--ink); }
+
+  body[data-colour="grey"] .page { filter: grayscale(1); }
+
+  /* ---- Gate + generator UI (not part of the printed CV) ---- */
+  .tool-shell { max-width: 8.5in; margin: 0 auto var(--s-6); }
+  .tool-panel {
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    padding: var(--s-6);
+  }
+  .tool-panel h1 {
+    font-family: var(--font-sans); font-weight: 700; font-size: 13px;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink);
+    margin: 0 0 var(--s-4);
+  }
+  .tool-panel label {
+    display: block; font-family: var(--font-sans); font-weight: 700;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-muted); margin-bottom: 6px;
+  }
+  .tool-panel input[type="password"],
+  .tool-panel textarea {
+    width: 100%; font-family: var(--font-body); font-size: 14px;
+    color: var(--ink); background: var(--paper-bone);
+    border: 1px solid var(--rule-strong); padding: 10px 12px;
+    box-sizing: border-box;
+  }
+  .tool-panel textarea { min-height: 260px; resize: vertical; line-height: 1.4; }
+  .tool-panel .field { margin-bottom: var(--s-4); }
+  .tool-panel button.primary {
+    font-family: var(--font-sans); font-weight: 700; font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 12px 20px; border: 1px solid var(--ink);
+    background: var(--ink); color: var(--paper); cursor: pointer;
+  }
+  .tool-panel button.primary:hover { background: var(--ink-soft); }
+  .tool-panel button.primary:disabled { opacity: 0.5; cursor: default; }
+  .tool-panel .error {
+    color: #A3242A; font-family: var(--font-sans); font-size: 12px;
+    margin-top: var(--s-3);
+  }
+  .tool-panel .hint {
+    color: var(--ink-muted); font-family: var(--font-body); font-size: 12px;
+    margin-top: var(--s-3); line-height: 1.5;
+  }
+  .tool-bar {
+    max-width: 8.5in; margin: 0 auto var(--s-5);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .tool-bar button.link {
+    background: none; border: none; padding: 0; cursor: pointer;
+    font: inherit; letter-spacing: inherit; color: var(--ink-muted);
+  }
+  .tool-bar button.link:hover { color: var(--ink); }
+  [hidden] { display: none !important; }
+
+  .save-panel {
+    position: fixed; bottom: 24px; right: 24px; z-index: 50;
+    background: var(--ink); color: var(--paper);
+    padding: 14px 18px;
+    font-family: var(--font-display); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase;
+    display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
+    box-shadow: 0 8px 32px -8px #14141466;
+  }
+  .save-panel .sp-label { color: rgba(250,247,240,0.5); }
+  .save-panel .sp-row { display: flex; gap: 6px; width: 100%; }
+  .save-panel button {
+    font-family: var(--font-display); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    padding: 8px 12px; border: 1px solid rgba(250,247,240,0.4);
+    background: transparent; color: var(--paper); cursor: pointer;
+    flex: 1;
+  }
+  .save-panel button:hover { background: rgba(250,247,240,0.1); }
+  .save-panel button.active { background: rgba(250,247,240,0.15); border-color: var(--paper); }
+
+  @media print {
+    .back-link, .save-panel, .tool-shell, .tool-bar { display: none; }
+    body { background: var(--paper); padding: 0; }
+    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 0.5in 0.55in; }
+    @page { size: letter; margin: 0; }
+  }
+
+  @media (max-width: 8.5in) {
+    body { padding: var(--s-5) 0; }
+    .page, .tool-shell, .tool-bar { width: 100%; }
+    .page { padding: var(--s-6) var(--s-5); min-height: auto; box-shadow: none; }
+    .role-bar { grid-template-columns: 1fr; }
+    .role-bar .where { display: none; }
+    .edu-row { grid-template-columns: 1fr; gap: var(--s-2); }
+    .edu-row .school, .edu-row .when { text-align: left; }
+    .twocol { grid-template-columns: 1fr; gap: var(--s-2); }
+    .cv-foot { grid-template-columns: 1fr; }
+    .cv-foot .c, .cv-foot .r { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← Back to portfolio</a>
+
+<div class="tool-shell">
+  <!-- GATE -->
+  <div class="tool-panel" id="gate">
+    <h1>CV Tailoring — Private</h1>
+    <div class="field">
+      <label for="pw">Password</label>
+      <input type="password" id="pw" autocomplete="off">
+    </div>
+    <button class="primary" id="gate-submit">Enter</button>
+    <p class="error" id="gate-error" hidden></p>
+  </div>
+
+  <!-- GENERATOR -->
+  <div class="tool-panel" id="generator" hidden>
+    <h1>Tailor CV to a job description</h1>
+    <div class="field">
+      <label for="jd">Job description</label>
+      <textarea id="jd" placeholder="Paste the full job description here…"></textarea>
+    </div>
+    <button class="primary" id="generate">Generate tailored CV</button>
+    <p class="error" id="gen-error" hidden></p>
+    <p class="hint">Only reorders and re-emphasises your real experience — nothing is invented. Employers, dates, titles, and numbers never change.</p>
+  </div>
+</div>
+
+<div class="tool-bar" id="result-bar" hidden>
+  <span id="result-status">Tailored for this job description</span>
+  <button class="link" id="start-over">← New job description</button>
+</div>
+
+<!-- PAGE 1 -->
+<article class="page" id="page1" hidden>
+  <header class="cv-masthead">
+    <div class="cv-eyebrow">
+      <span>Analytics<span class="sep">|</span>Market Research<span class="sep">|</span>Human Behaviour</span>
+      <span class="page-no">1</span>
+    </div>
+    <h1 class="cv-fullname">Joshua Woodyard</h1>
+    <div class="cv-contact">
+      <span class="item">N7, London, England</span>
+      <span class="sep">|</span>
+      <span class="item">Email on request</span>
+      <span class="sep">|</span>
+      <span class="item">Phone on request</span>
+      <span class="sep">|</span>
+      <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
+    </div>
+  </header>
+
+  <p class="cv-lede" id="out-lede"></p>
+
+  <section class="cv-section">
+    <h2>Experience</h2>
+    <div id="out-roles-p1"></div>
+  </section>
+
+  <footer class="cv-foot">
+    <span class="l">Joshua Woodyard</span>
+    <span class="c">Continued on page 2 →</span>
+    <span class="r"><strong style="color:var(--ink);">1 / 2</strong></span>
+  </footer>
+</article>
+
+<!-- PAGE 2 -->
+<article class="page" id="page2" hidden>
+  <header class="cv-masthead">
+    <div class="cv-eyebrow">
+      <span>Analytics<span class="sep">|</span>Market Research<span class="sep">|</span>Human Behaviour</span>
+      <span class="page-no">2</span>
+    </div>
+    <h1 class="cv-fullname">Joshua Woodyard</h1>
+    <div class="cv-contact">
+      <span class="item">N7, London, England</span>
+      <span class="sep">|</span>
+      <span class="item">Email on request</span>
+      <span class="sep">|</span>
+      <span class="item">Phone on request</span>
+      <span class="sep">|</span>
+      <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
+    </div>
+  </header>
+
+  <section class="cv-section">
+    <h2>Experience <span class="cont">continued</span></h2>
+    <div id="out-roles-p2"></div>
+  </section>
+
+  <section class="cv-section">
+    <h2>Education</h2>
+
+    <div class="edu-row">
+      <span class="degree">MSc Behavioural Economics</span>
+      <span class="school">City St. George's, University of London</span>
+      <span class="when">Sept 2023 – Sept 2024</span>
+    </div>
+    <ul class="edu-meta">
+      <li>Graduated with Merit; 67%</li>
+      <li class="topics"><b>Topics</b>Experimental Economics, Game Theory, Cognitive Psychology, Decision Making, Econometrics, Research Methods</li>
+    </ul>
+
+    <div class="edu-row">
+      <span class="degree">BSc Marketing</span>
+      <span class="school">DePaul University</span>
+      <span class="when">Sept 2015 – Dec 2018</span>
+    </div>
+    <ul class="edu-meta">
+      <li>Graduated early with Merit; 3.6 / 4.0</li>
+      <li>Minors in German and International Business</li>
+      <li class="topics"><b>Topics</b>Market Research, Predictive Modelling, Psychology, Statistics, Economics, German</li>
+    </ul>
+
+    <div class="edu-row">
+      <span class="degree">Exchange Programme</span>
+      <span class="school">Universität Bonn</span>
+      <span class="when">Mar 2017 – Aug 2017</span>
+    </div>
+    <ul class="edu-meta">
+      <li class="topics"><b>Topics</b>German Language; Economy and Trade</li>
+    </ul>
+
+    <div class="edu-row">
+      <span class="degree">Summer Courses <em>(Scheduled)</em></span>
+      <span class="school">London School of Economics and Political Science</span>
+      <span class="when">Jun 2026 – Jul 2026</span>
+    </div>
+    <ul class="edu-meta">
+      <li class="topics"><b>Topics</b>Developmental Economics; Machine Learning</li>
+    </ul>
+  </section>
+
+  <section class="cv-section">
+    <h2>Languages &amp; Competencies</h2>
+
+    <div class="twocol">
+      <span class="k">Languages</span>
+      <div class="v">
+        <span class="lang">English<span class="level">C2</span></span>
+        <span class="lang">German<span class="level">B2</span></span>
+        <span class="lang">French<span class="level">B2</span></span>
+        <span class="lang">Cantonese<span class="level">spoken only</span></span>
+      </div>
+    </div>
+
+    <div class="twocol">
+      <span class="k">Languages &amp; Tools</span>
+      <div class="v" id="out-tools"></div>
+    </div>
+
+    <div class="twocol">
+      <span class="k">Methods &amp; Expertise</span>
+      <div class="v" id="out-methods"></div>
+    </div>
+  </section>
+
+  <footer class="cv-foot">
+    <span class="l">Joshua Woodyard</span>
+    <span class="c">Curriculum Vitae · Tailored</span>
+    <span class="r"><strong style="color:var(--ink);">2 / 2</strong></span>
+  </footer>
+</article>
+
+<div class="save-panel" id="save-panel" hidden>
+  <span class="sp-label">Joshua Woodyard · CV</span>
+  <div class="sp-row">
+    <button class="active" id="btn-colour" onclick="setColour('colour')">Colour</button>
+    <button id="btn-grey" onclick="setColour('grey')">Greyscale</button>
+  </div>
+  <button onclick="window.print()">Save as PDF →</button>
+</div>
+
+<script>
+  const WORKER_URL = "https://joshua-cv-tailor.woodyardjoshuae.workers.dev";
+
+  function setColour(mode) {
+    document.body.dataset.colour = mode;
+    document.getElementById('btn-colour').classList.toggle('active', mode === 'colour');
+    document.getElementById('btn-grey').classList.toggle('active', mode === 'grey');
+  }
+
+  // Static role chrome — title/company/location/dates never change.
+  // Bullets are populated at render time from the tailored API response.
+  const BASE_ROLES = [
+    { id: "publicis",     page: 1, role: "Sr. Executive — Data &amp; Insights (Talent), <em>Publicis Groupe</em>", where: "London, UK", when: "Jul 2025 – Current" },
+    { id: "uniqlo",       page: 1, role: "Freelance Researcher (Part-time), <em>UNIQLO</em>", where: "New York City, US", when: "May 2021 – May 2023" },
+    { id: "horizon-bi",   page: 1, role: "Sr. Analyst — Analytics BI, <em>Horizon Media</em>", where: "New York City, US", when: "Jan 2022 – Sept 2023" },
+    { id: "petco",        page: 1, role: "Sr. Analyst — Petco, <em>Horizon Media</em>", where: "New York City, US", when: "Jul 2020 – Jan 2022" },
+    { id: "sprint-boost", page: 2, role: "Analyst — Sprint &amp; Boost Mobile, <em>Horizon Media</em>", where: "New York City, US", when: "Dec 2019 – Jul 2020" },
+    { id: "dunkin",       page: 2, role: "Strategy Associate — Dunkin', <em>Publicis Media</em>", where: "New York City, US", when: "Apr 2019 – Dec 2019" },
+  ];
+
+  const gate = document.getElementById('gate');
+  const generator = document.getElementById('generator');
+  const gateSubmit = document.getElementById('gate-submit');
+  const gateError = document.getElementById('gate-error');
+  const pwInput = document.getElementById('pw');
+  const genButton = document.getElementById('generate');
+  const genError = document.getElementById('gen-error');
+  const jdInput = document.getElementById('jd');
+  const resultBar = document.getElementById('result-bar');
+  const resultStatus = document.getElementById('result-status');
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
+  const savePanel = document.getElementById('save-panel');
+
+  function getPassword() {
+    return sessionStorage.getItem('cv-tailor-pw') || '';
+  }
+
+  function showGenerator() {
+    gate.hidden = true;
+    generator.hidden = false;
+  }
+
+  if (getPassword()) showGenerator();
+
+  gateSubmit.addEventListener('click', () => {
+    const pw = pwInput.value;
+    if (!pw) return;
+    sessionStorage.setItem('cv-tailor-pw', pw);
+    gateError.hidden = true;
+    showGenerator();
+  });
+  pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') gateSubmit.click(); });
+
+  function renderRoles(tailoredRoles) {
+    const byId = Object.fromEntries(tailoredRoles.map(r => [r.id, r.bullets]));
+    const containers = { 1: document.getElementById('out-roles-p1'), 2: document.getElementById('out-roles-p2') };
+    containers[1].innerHTML = '';
+    containers[2].innerHTML = '';
+
+    for (const base of BASE_ROLES) {
+      const bar = document.createElement('div');
+      bar.className = 'role-bar';
+      bar.innerHTML = `<span class="role">${base.role}</span><span class="where">${base.where}</span><span class="when">${base.when}</span>`;
+
+      const ul = document.createElement('ul');
+      ul.className = 'cv-bullets';
+      const bullets = byId[base.id] || [];
+      for (const text of bullets) {
+        const li = document.createElement('li');
+        li.textContent = text; // API-derived text — never innerHTML
+        ul.appendChild(li);
+      }
+
+      containers[base.page].appendChild(bar);
+      containers[base.page].appendChild(ul);
+    }
+  }
+
+  function renderList(containerId, items) {
+    const el = document.getElementById(containerId);
+    el.textContent = items.join(', ');
+  }
+
+  async function generate() {
+    const jobDescription = jdInput.value.trim();
+    genError.hidden = true;
+    if (jobDescription.length < 20) {
+      genError.textContent = 'Paste the full job description first.';
+      genError.hidden = false;
+      return;
+    }
+
+    genButton.disabled = true;
+    genButton.textContent = 'Tailoring…';
+
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: getPassword(), jobDescription }),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        if (res.status === 401) {
+          sessionStorage.removeItem('cv-tailor-pw');
+          gate.hidden = false;
+          generator.hidden = true;
+          gateError.textContent = 'Incorrect password.';
+          gateError.hidden = false;
+          return;
+        }
+        throw new Error(data.error || 'Something went wrong.');
+      }
+
+      document.getElementById('out-lede').textContent = data.lede;
+      renderRoles(data.roles);
+      renderList('out-tools', data.tools_order);
+      renderList('out-methods', data.methods_order);
+
+      generator.hidden = true;
+      page1.hidden = false;
+      page2.hidden = false;
+      resultBar.hidden = false;
+      savePanel.hidden = false;
+      window.scrollTo(0, 0);
+    } catch (err) {
+      genError.textContent = err.message || 'Something went wrong. Try again.';
+      genError.hidden = false;
+    } finally {
+      genButton.disabled = false;
+      genButton.textContent = 'Generate tailored CV';
+    }
+  }
+
+  genButton.addEventListener('click', generate);
+
+  document.getElementById('start-over').addEventListener('click', () => {
+    page1.hidden = true;
+    page2.hidden = true;
+    resultBar.hidden = true;
+    savePanel.hidden = true;
+    generator.hidden = false;
+  });
+</script>
+
+</body>
+</html>

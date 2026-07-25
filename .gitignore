@@ -23,3 +23,8 @@ wimbledon/data/processed/
 # Editor
 .vscode/
 .idea/
+
+# Cloudflare Worker (secrets/local state — never commit)
+cf-worker/.dev.vars
+cf-worker/.wrangler/
+cf-worker/node_modules/

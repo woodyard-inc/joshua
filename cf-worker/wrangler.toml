@@ -1,0 +1,11 @@
+name = "joshua-cv-tailor"
+main = "src/worker.js"
+compatibility_date = "2024-11-01"
+
+[vars]
+ALLOWED_ORIGIN = "https://woodyard-inc.github.io"
+CV_SOURCE_URL = "https://woodyard-inc.github.io/joshua/cv.html"
+
+# Secrets (set via `wrangler secret put`, never stored here):
+#   ANTHROPIC_API_KEY
+#   CV_PASSWORD

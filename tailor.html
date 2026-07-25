@@ -304,7 +304,7 @@
     @page { size: letter; margin: 0; }
   }
 
-  @media (max-width: 8.5in) {
+  @media screen and (max-width: 8.5in) {
     body { padding: var(--s-5) 0; }
     .page, .tool-shell, .tool-bar { width: 100%; }
     .page { padding: var(--s-6) var(--s-5); min-height: auto; box-shadow: none; }
@@ -341,6 +341,10 @@
       <label for="jd">Job description</label>
       <textarea id="jd" placeholder="Paste the full job description here…"></textarea>
     </div>
+    <div class="field">
+      <label for="extra">Additional real skills or experience not yet on your CV (optional)</label>
+      <textarea id="extra" style="min-height:90px" placeholder="e.g. a cert, a tool you've used recently, a skill you have that this role wants but your CV doesn't mention yet…"></textarea>
+    </div>
     <button class="primary" id="generate">Generate tailored CV</button>
     <p class="error" id="gen-error" hidden></p>
     <p class="hint">Identifies the highest-weight keywords in the posting, then only reorders and re-emphasises your real experience toward them — nothing is invented, and no keyword is ever added without a real bullet behind it. Employers, dates, titles, and numbers never change. Give it a final read yourself before sending.</p>
@@ -370,9 +374,9 @@
     <div class="cv-contact">
       <span class="item">N7, London, England</span>
       <span class="sep">|</span>
-      <span class="item">Email on request</span>
+      <span class="item"><a href="mailto:woodyardjoshuae@gmail.com">woodyardjoshuae@gmail.com</a></span>
       <span class="sep">|</span>
-      <span class="item">Phone on request</span>
+      <span class="item"><a href="tel:+447714350869">+44 7714 350869</a></span>
       <span class="sep">|</span>
       <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
     </div>
@@ -403,9 +407,9 @@
     <div class="cv-contact">
       <span class="item">N7, London, England</span>
       <span class="sep">|</span>
-      <span class="item">Email on request</span>
+      <span class="item"><a href="mailto:woodyardjoshuae@gmail.com">woodyardjoshuae@gmail.com</a></span>
       <span class="sep">|</span>
-      <span class="item">Phone on request</span>
+      <span class="item"><a href="tel:+447714350869">+44 7714 350869</a></span>
       <span class="sep">|</span>
       <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
     </div>
@@ -485,7 +489,7 @@
 
   <footer class="cv-foot">
     <span class="l">Joshua Woodyard</span>
-    <span class="c">Curriculum Vitae · Tailored</span>
+    <span class="c" id="out-datestamp">Curriculum Vitae</span>
     <span class="r"><strong style="color:var(--ink);">2 / 2</strong></span>
   </footer>
 </article>
@@ -537,6 +541,7 @@
   const genButton = document.getElementById('generate');
   const genError = document.getElementById('gen-error');
   const jdInput = document.getElementById('jd');
+  const extraInput = document.getElementById('extra');
   const resultBar = document.getElementById('result-bar');
   const resultStatus = document.getElementById('result-status');
   const page1 = document.getElementById('page1');
@@ -611,7 +616,7 @@
     const lines = [];
     lines.push('JOSHUA WOODYARD');
     lines.push('Analytics | Market Research | Human Behaviour');
-    lines.push('N7, London, England | Email on request | Phone on request | linkedin.com/in/joshua-woodyard');
+    lines.push('N7, London, England | woodyardjoshuae@gmail.com | +44 7714 350869 | linkedin.com/in/joshua-woodyard');
     lines.push('');
     lines.push(data.lede);
     lines.push('');
@@ -660,8 +665,13 @@
     }
   });
 
+  function formatDateStamp() {
+    return new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+  }
+
   async function generate() {
     const jobDescription = jdInput.value.trim();
+    const extraSkills = extraInput.value.trim();
     genError.hidden = true;
     if (jobDescription.length < 20) {
       genError.textContent = 'Paste the full job description first.';
@@ -676,7 +686,7 @@
       const res = await fetch(WORKER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: getPassword(), jobDescription }),
+        body: JSON.stringify({ password: getPassword(), jobDescription, extraSkills }),
       });
       const data = await res.json();
 
@@ -697,6 +707,7 @@
       renderList('out-tools', data.tools_order);
       renderList('out-methods', data.methods_order);
       renderKeywords(data.keywords_targeted);
+      document.getElementById('out-datestamp').textContent = `Curriculum Vitae · ${formatDateStamp()}`;
       lastTailored = data;
 
       generator.hidden = true;

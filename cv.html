@@ -263,7 +263,7 @@
     @page { size: letter; margin: 0; }
   }
 
-  @media (max-width: 8.5in) {
+  @media screen and (max-width: 8.5in) {
     body { padding: var(--s-5) 0; }
     .page { width: 100%; padding: var(--s-6) var(--s-5); min-height: auto; box-shadow: none; }
     .role-bar { grid-template-columns: 1fr; }
@@ -275,7 +275,7 @@
     .cv-foot .c, .cv-foot .r { text-align: left; }
   }
 
-  @media (max-width: 600px) {
+  @media screen and (max-width: 600px) {
     body { padding: 0; }
     .back-link { padding: var(--s-4) var(--s-5); margin: 0; }
     .page { padding: var(--s-5) var(--s-4); margin-bottom: var(--s-5); }

@@ -260,6 +260,7 @@
     .back-link, .save-panel { display: none; }
     body { background: var(--paper); padding: 0; }
     .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 0.5in 0.55in; }
+    .page:not(:last-of-type) { break-after: page; }
     @page { size: letter; margin: 0; }
   }
 

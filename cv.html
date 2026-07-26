@@ -21,6 +21,11 @@
     padding: 0.3in 0.55in 0.5in;
     box-shadow: 0 8px 40px -16px #14141433;
     display: flex; flex-direction: column;
+    /* Disables ligature glyph substitution (fi/fl/ffi/etc.) everywhere in the
+       CV. Some PDF export paths don't map ligature glyphs back to their plain
+       letters in the extracted text layer, which can silently break ATS
+       keyword matching. Costs nothing visually — removes the risk entirely. */
+    font-variant-ligatures: none;
   }
 
   /* Masthead — plain, monochrome, left-aligned. Mirrors the InDesign master. */

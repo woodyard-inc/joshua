@@ -95,7 +95,9 @@
   .letter .mark { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-muted); }
   .letter .mark .now { color: var(--cobalt); display: block; margin-top: 6px; }
   .letter .main { max-width: 60ch; }
-  .letter .main p.dropcap {
+  /* Lead paragraph — slightly larger. No drop cap: the new opening letter
+     is "I", which renders as a featureless bar in the Helvetica dropcap. */
+  .letter .main p.lead {
     font-family: var(--font-body); font-size: 19px; line-height: 1.55;
   }
   .letter .main p { font-family: var(--font-body); font-size: 18px; line-height: 1.6; color: var(--ink); margin-bottom: 1em; }
@@ -115,7 +117,7 @@
   .work-row:hover { padding-left: var(--s-4); background: var(--paper-warm); }
   .work-row .n { font-family: var(--font-mono); font-size: 12px; color: var(--ink-muted); letter-spacing: 0.12em; }
   .work-row .t { font-family: var(--font-display); font-size: 30px; letter-spacing: -0.02em; color: var(--ink); line-height: 1.1; font-weight: 700; }
-  .work-row .t em { font-family: var(--font-body); font-style: italic; font-weight: 300; color: var(--ink-muted); font-size: 22px; letter-spacing: 0; }
+  .work-row .sub { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-top: var(--s-2); }
   .work-row .d { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--ink-soft); line-height: 1.45; }
   .work-row .m { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); }
   .work-row .y { font-family: var(--font-mono); font-size: 12px; color: var(--ink); text-align: right; letter-spacing: 0.1em; }
@@ -239,7 +241,7 @@
     .sect-head .counter { display: none; }
     .hero .hero-meta .lede { font-size: 19px; }
     .work-row .t { font-size: 24px; }
-    .work-row .t em { font-size: 18px; display: block; margin-top: 6px; }
+    .work-row .sub { font-size: 10px; letter-spacing: 0.14em; }
     .stats .s-cell .v { font-size: 48px; }
     .contact-block { padding: var(--s-7) var(--s-5); }
     .contact-block h3 { font-size: 32px; }
@@ -285,7 +287,7 @@
     <h1><span style="color: var(--cobalt);">Human behaviour</span>, made&nbsp;measurable.
 <span style="color: var(--cobalt);">Decisions</span>, made&nbsp;defensible.</h1>
     <div class="hero-meta">
-      <p class="lede">Six years of turning ambiguous questions into evidence that a room of executives can act on by Friday.</p>
+      <p class="lede">Six years of turning ambiguous questions into evidence — finding the solution before it becomes a problem.</p>
       <span class="where">Available for <strong>research &amp; advisory</strong> · London</span>
     </div>
   </section>
@@ -298,10 +300,10 @@
     </div>
   </div>
 
-  <!-- EDITOR'S LETTER -->
+  <!-- THE APPROACH -->
   <section id="about">
     <div class="sect-head">
-      <h2>Editor's letter</h2>
+      <h2>The approach</h2>
       <div class="stroke"></div>
       <span class="counter">§ 01</span>
     </div>
@@ -312,9 +314,10 @@
         <span class="now" id="london-time">Now · in London</span>
       </div>
       <div class="main">
-        <p class="dropcap">The best research I've done didn't begin with a brief. It began with someone — a VP, a buyer, a client — saying something like <em>"we don't know why this is happening, and we need to by Tuesday."</em> My job is to sit in that gap between ambiguity and deadline, run the right experiment, and come back with an answer the room can actually use.</p>
-        <p>My background braids two things. On one side, advanced technical work — R, SQL, dashboards, predictive modelling, ETL pipelines. On the other, behavioural economics and marketing science, studied formally at City and taught informally by six years of watching people make decisions in real buildings.</p>
-        <p>I work best where the question is fuzzy, the stakes are clear, and the answer has to be legible to both an analyst and a CEO.</p>
+        <p class="lead">I studied marketing (BSc) and behavioural economics (MSc) because I wanted to understand why people, at scale, do what they do. That's shaped two methods I regularly draw on to reach conclusions.</p>
+        <p>The first is technical: years spent in SQL, Python, and dashboarding taught me that if you can't build the infrastructure to test an idea, it's not an insight — it's a hunch. The second is behavioural: formal training in decision-making and cognitive psychology taught me that even good infrastructure produces bad answers if you can't interpret why people actually behave the way they do.</p>
+        <p>Neither is sufficient alone. Technical skill without behavioural grounding produces dashboards and reports that are technically correct and practically useless — numbers nobody trusts enough to act on. Behavioural insight without technical rigour produces opinions dressed up as strategy. What I bring is the discipline to hold both: building something defensible, then reading it the way a decision-scientist would.</p>
+        <p>It's a combination I want to apply more directly — using robust infrastructure to answer harder questions about markets and behaviour, not just to maintain the systems that make those questions answerable.</p>
       </div>
       <div class="aside">
         <span class="label--micro">Currently reading</span>
@@ -361,7 +364,8 @@
       <a class="work-row" href="wimbledon/">
         <span class="n">003</span>
         <div>
-          <div class="t">What Wins on Grass <em>— point-by-point player intelligence</em></div>
+          <div class="t">What Wins on Grass</div>
+          <div class="sub">Predictive Player Analytics</div>
         </div>
         <div class="d">Browser-based Monte Carlo match simulator for the Wimbledon men's draw. Player fingerprints built from Jeff Sackmann's 2011–2023 point-by-point data drive head-to-head predictions.</div>
         <div class="m">Monte Carlo · Sports analytics</div>
@@ -370,7 +374,7 @@
       <a class="work-row" href="dissertation-case-study.html">
         <span class="n">002</span>
         <div>
-          <div class="t">Money can't buy happiness <em>— but community can</em></div>
+          <div class="t">Money can't buy happiness but community can</div>
         </div>
         <div class="d">MSc dissertation · cross-cultural analysis of 11,249 respondents across five countries. Trust in fairness predicts life satisfaction in every country studied; income, after controls, does not.</div>
         <div class="m">Research · Behavioural economics</div>
@@ -379,7 +383,8 @@
       <a class="work-row" href="uniqlo-case-study.html">
         <span class="n">001</span>
         <div>
-          <div class="t">Four hundred sales, one afternoon <em>— what the SOHO floor told me the data couldn't</em></div>
+          <div class="t">Four hundred sales, one afternoon</div>
+          <div class="sub">Retail Floor Research: Qualitative + Sales Data</div>
         </div>
         <div class="d">Sales-data investigation across eight NY metro UNIQLO stores. Uncovered a 0.90+ basket correlation and turned it into a floor-planning change that moved 40,000+ units through the late-summer tail.</div>
         <div class="m">Research · Retail analytics</div>
@@ -403,7 +408,7 @@
       </div>
       <div class="body">
         <span class="mark">Testimonial</span>
-        <q>Josh is worth his weight in Gold... And judging by his looks that's not much.</q>
+        <q>Josh is worth his weight in gold — within weeks of onboarding he was already improving our data pipelines, and within months he owned reporting for our major accounts.</q>
         <span class="attrib">— VP Product Development, Horizon Media · 2021</span>
       </div>
     </div>

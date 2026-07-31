@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>CV Tailoring — Joshua Woodyard</title>
+<title>CV Workshop — Joshua Woodyard</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#F0EBDD">
@@ -302,6 +302,67 @@
     border-left: 2px solid var(--ink-soft); padding-left: 10px; line-height: 1.5;
   }
   .fitnote.warn { color: #A3242A; border-left-color: #A3242A; }
+
+  /* ---- View switcher + read-only content library ---- */
+  .viewnav { max-width: 8.5in; margin: 0 auto var(--s-4); display: flex; gap: 6px; }
+  .viewnav .vn {
+    font-family: var(--font-sans); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 9px 14px; border: 1px solid var(--ink);
+    background: transparent; color: var(--ink); cursor: pointer;
+  }
+  .viewnav .vn.active { background: var(--ink); color: var(--paper); }
+
+  #library h1 .lib-src {
+    font-family: var(--font-mono); font-size: 10px; letter-spacing: 0;
+    text-transform: none; color: var(--ink-muted); margin-left: 10px; font-weight: 400;
+  }
+  .lib-actions { display: flex; gap: 6px; margin: var(--s-4) 0 var(--s-5); }
+  .lib-actions .ghost {
+    font-family: var(--font-sans); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 8px 12px; border: 1px solid var(--rule-strong);
+    background: transparent; color: var(--ink-soft); cursor: pointer;
+  }
+  .lib-actions .ghost:hover { border-color: var(--ink); color: var(--ink); }
+
+  .lib-sect { margin-bottom: var(--s-6); }
+  .lib-sect > h2 {
+    font-family: var(--font-sans); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink);
+    border-bottom: 1.5px solid var(--ink); padding-bottom: 4px; margin: 0 0 var(--s-3);
+  }
+  .lib-sub {
+    font-family: var(--font-sans); font-weight: 700; font-size: 12px;
+    color: var(--ink); margin: var(--s-4) 0 2px;
+  }
+  .lib-sub .meta { font-weight: 400; color: var(--ink-muted); font-size: 10.5px; margin-left: 8px; }
+  .lib-item {
+    display: grid; grid-template-columns: 150px 1fr; gap: var(--s-3);
+    padding: 5px 0; border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .lib-id {
+    font-family: var(--font-mono); font-size: 10.5px; color: var(--cobalt);
+    word-break: break-all;
+  }
+  .lib-text {
+    font-family: var(--font-body); font-size: 13px; line-height: 1.45; color: var(--ink);
+  }
+  .lib-flag {
+    font-family: var(--font-sans); font-weight: 700; font-size: 8.5px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--paper); background: var(--ink-soft);
+    padding: 2px 5px; margin-left: 6px; vertical-align: 1px;
+  }
+  .lib-flag.why { background: var(--cobalt); }
+  #library code {
+    font-family: var(--font-mono); font-size: 11.5px;
+    background: var(--paper-warm); padding: 1px 4px;
+  }
+  @media screen and (max-width: 8.5in) {
+    body:not(.measuring) .lib-item { grid-template-columns: 1fr; gap: 2px; }
+  }
   .lowfit {
     border: 1px solid #A3242A; color: #A3242A; padding: 10px 12px;
     font-family: var(--font-sans); font-size: 12px; line-height: 1.5;
@@ -393,7 +454,7 @@
 <div class="tool-shell">
   <!-- GATE -->
   <div class="tool-panel" id="gate">
-    <h1>CV Tailoring — Private</h1>
+    <h1>CV Workshop — Private</h1>
     <div class="field">
       <label for="pw">Password</label>
       <input type="password" id="pw" autocomplete="off">
@@ -403,6 +464,11 @@
   </div>
 
   <!-- GENERATOR -->
+  <div class="viewnav" id="viewnav" hidden>
+    <button class="vn active" id="nav-tailor">Tailor a CV</button>
+    <button class="vn" id="nav-library">Content library</button>
+  </div>
+
   <div class="tool-panel" id="generator" hidden>
     <h1>Tailor CV to a job description</h1>
     <div class="field">
@@ -416,6 +482,17 @@
     <button class="primary" id="generate">Generate tailored CV</button>
     <p class="error" id="gen-error" hidden></p>
     <p class="hint">Identifies the highest-weight keywords in the posting, then only reorders and re-emphasises your real experience toward them — nothing is invented, and no keyword is ever added without a real bullet behind it. Employers, dates, titles, and numbers never change. Give it a final read yourself before sending.</p>
+  </div>
+
+  <div class="tool-panel" id="library" hidden>
+    <h1>Content library <span class="lib-src" id="lib-src"></span></h1>
+    <p class="hint" style="margin-top:0">Read-only view of <code>cv-data.json</code> — every string the tailor is allowed to use. Nothing is editable here: to change something, quote the <code>id</code> in brackets and the edit can be made at source. The tailor can only ever emit text that appears on this page.</p>
+    <div class="lib-actions">
+      <button class="ghost" id="lib-copy">Copy raw JSON</button>
+      <button class="ghost" id="lib-reload">Reload</button>
+    </div>
+    <div id="lib-body"></div>
+    <p class="error" id="lib-error" hidden></p>
   </div>
 </div>
 
@@ -574,7 +651,154 @@
   let lastTailored = null;
 
   const getPassword = () => sessionStorage.getItem('cv-tailor-pw') || '';
-  function showGenerator() { gate.hidden = true; generator.hidden = false; }
+  const viewnav = $('viewnav'), library = $('library');
+  function showGenerator() {
+    gate.hidden = true;
+    viewnav.hidden = false;
+    generator.hidden = false;
+  }
+
+  /* ---- Read-only content library ------------------------------------
+     Renders cv-data.json exactly as the tailor sees it, with every id
+     exposed so a change can be requested by quoting the id. Deliberately
+     has no edit affordance: cv-data.json is the anti-fabrication corpus,
+     and it stays editable only at source. */
+  let libLoaded = false;
+
+  function libSection(title) {
+    const sec = el('div', 'lib-sect');
+    sec.appendChild(el('h2', null, title));
+    return sec;
+  }
+  function libItem(id, text, flags) {
+    const row = el('div', 'lib-item');
+    row.appendChild(el('span', 'lib-id', id));
+    const t = el('span', 'lib-text', text);
+    (flags || []).forEach((f) => {
+      const b = el('span', 'lib-flag' + (f.kind ? ' ' + f.kind : ''), f.label);
+      t.appendChild(b);
+    });
+    row.appendChild(t);
+    return row;
+  }
+
+  async function loadLibrary(force) {
+    if (libLoaded && !force) return;
+    const body = $('lib-body'), err = $('lib-error');
+    err.hidden = true;
+    body.innerHTML = '';
+    let cv;
+    try {
+      const res = await fetch('cv-data.json?cb=' + Date.now());
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      cv = await res.json();
+    } catch (e) {
+      err.textContent = 'Could not load cv-data.json — ' + e.message;
+      err.hidden = false;
+      return;
+    }
+    $('lib-src').textContent = 'cv-data.json · updated ' + (cv.meta ? cv.meta.updated : '—');
+    window.__CV_RAW__ = JSON.stringify(cv, null, 2);
+
+    // Positioning
+    let sec = libSection('Positioning');
+    sec.appendChild(libItem('thesis', cv.positioning.thesis));
+    sec.appendChild(libItem('capabilityTagline', cv.positioning.capabilityTagline));
+    sec.appendChild(libItem('methodsLine', cv.positioning.methodsLine));
+    body.appendChild(sec);
+
+    // Summaries
+    sec = libSection('Summaries');
+    Object.entries(cv.summaries).forEach(([k, v]) => sec.appendChild(libItem(k, v)));
+    body.appendChild(sec);
+
+    // Roles
+    sec = libSection('Experience — roles & bullets');
+    cv.roles.forEach((r) => {
+      const h = el('div', 'lib-sub', `${r.title}, ${r.company}`);
+      h.appendChild(el('span', 'meta', `${r.id} · ${r.where} · ${r.when}`));
+      sec.appendChild(h);
+      if (r.titlePeopleScience) {
+        sec.appendChild(libItem('titlePeopleScience', r.titlePeopleScience));
+      }
+      r.bullets.forEach((b) => {
+        const flags = [];
+        if (b.alwaysKeep) flags.push({ label: 'always kept' });
+        sec.appendChild(libItem(b.id, b.text, flags));
+      });
+      (r.whyBullets || []).forEach((w) => {
+        sec.appendChild(libItem(w.id, w.text, [{ label: 'why-variant → ' + w.replaces, kind: 'why' }]));
+      });
+    });
+    body.appendChild(sec);
+
+    // Selected problems
+    sec = libSection('Selected problems solved');
+    cv.selectedProblems.forEach((p) => {
+      const flags = [];
+      if (p.optional) flags.push({ label: 'optional' });
+      if (p.demoteUnlessPeopleScience) flags.push({ label: 'people-science only' });
+      sec.appendChild(libItem(p.id, `${p.domain} (${p.org}) — ${p.text}`, flags));
+    });
+    body.appendChild(sec);
+
+    // Dissertation + project
+    sec = libSection('Research & projects');
+    sec.appendChild(libItem('dissertation.title', cv.dissertation.title));
+    sec.appendChild(libItem('dissertation.result', `${cv.dissertation.institution} · ${cv.dissertation.result} · ${cv.dissertation.scale}`));
+    sec.appendChild(libItem('dissertation.body', cv.dissertation.body));
+    sec.appendChild(libItem('dissertation.bodyShort', cv.dissertation.bodyShort));
+    sec.appendChild(libItem('project.title', `${cv.project.title} (${cv.project.year})`));
+    sec.appendChild(libItem('project.body', cv.project.body));
+    body.appendChild(sec);
+
+    // Education
+    sec = libSection('Education');
+    cv.education.forEach((e, i) => {
+      sec.appendChild(libItem(`education[${i}]`, `${e.degree} — ${e.school} — ${e.when}`));
+      (e.meta || []).forEach((m, j) => sec.appendChild(libItem(`education[${i}].meta[${j}]`, m)));
+      if (e.topics) sec.appendChild(libItem(`education[${i}].topics`, e.topics));
+    });
+    body.appendChild(sec);
+
+    // Skills
+    sec = libSection('Languages, methods & tools');
+    sec.appendChild(libItem('languages', cv.languages.map((l) => `${l.name} (${l.level})`).join(', ')));
+    sec.appendChild(libItem('methods', cv.methods.join(', ')));
+    sec.appendChild(libItem('methodsTrackB', cv.methodsTrackB.join(', ')));
+    Object.entries(cv.tools).forEach(([k, v]) => sec.appendChild(libItem('tools.' + k, v.join(', '))));
+    body.appendChild(sec);
+
+    libLoaded = true;
+  }
+
+  function setView(which) {
+    const tailorView = which === 'tailor';
+    $('nav-tailor').classList.toggle('active', tailorView);
+    $('nav-library').classList.toggle('active', !tailorView);
+    library.hidden = tailorView;
+    // Only show the generator when nothing has been rendered yet.
+    generator.hidden = !tailorView || !!lastTailored;
+    if (!tailorView) loadLibrary(false);
+  }
+
+  $('nav-tailor').addEventListener('click', () => setView('tailor'));
+  $('nav-library').addEventListener('click', () => setView('library'));
+  $('lib-reload').addEventListener('click', () => loadLibrary(true));
+  $('lib-copy').addEventListener('click', async () => {
+    if (!window.__CV_RAW__) return;
+    const btn = $('lib-copy');
+    try {
+      await navigator.clipboard.writeText(window.__CV_RAW__);
+      const o = btn.textContent; btn.textContent = 'Copied ✓';
+      setTimeout(() => { btn.textContent = o; }, 1600);
+    } catch {
+      const blob = new Blob([window.__CV_RAW__], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob); a.download = 'cv-data.json'; a.click();
+      URL.revokeObjectURL(a.href);
+    }
+  });
   if (getPassword()) showGenerator();
 
   gateSubmit.addEventListener('click', () => {
@@ -940,6 +1164,7 @@
     page1.hidden = true; page2.hidden = true;
     resultBar.hidden = true; savePanel.hidden = true;
     $('keywords-panel').hidden = true;
+    setView('tailor');
     document.body.dataset.density = '';
     lastTailored = null;
     generator.hidden = false;

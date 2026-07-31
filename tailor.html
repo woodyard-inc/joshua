@@ -276,6 +276,43 @@
     border: 1px solid var(--cobalt); padding: 4px 10px;
   }
   .keywords-box .hint { margin-top: var(--s-4); }
+  .track-row { display: flex; align-items: baseline; gap: var(--s-3); flex-wrap: wrap; margin-bottom: var(--s-4); }
+  .track-badge {
+    font-family: var(--font-sans); font-weight: 700; font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--ink); color: var(--paper); padding: 4px 10px;
+  }
+  .track-why { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); }
+  .lowfit {
+    border: 1px solid #A3242A; color: #A3242A; padding: 10px 12px;
+    font-family: var(--font-sans); font-size: 12px; line-height: 1.5;
+    margin-bottom: var(--s-4);
+  }
+  .lowfit strong { display: block; letter-spacing: 0.04em; }
+
+  /* Capability tagline — only present when the behavioural layer is active */
+  .cv-tagline {
+    margin: 10px 0 0;
+    font-family: var(--font-body); font-style: italic; font-weight: 300;
+    font-size: 13.5px; line-height: 1.4; color: var(--cobalt);
+    max-width: none;
+  }
+
+  /* Selected problems band */
+  .problem-row {
+    display: grid; grid-template-columns: 190px 1fr; gap: var(--s-4);
+    align-items: baseline; padding: 5px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .problem-row:last-child { border-bottom: none; }
+  .problem-row .p-label {
+    font-family: var(--font-sans); font-weight: 700; font-size: 9.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .problem-row .p-text {
+    font-family: var(--font-body); font-weight: 300; font-size: 12px;
+    line-height: 1.35; color: var(--ink);
+  }
   .tool-bar button.link {
     background: none; border: none; padding: 0; cursor: pointer;
     font: inherit; letter-spacing: inherit; color: var(--ink-muted);
@@ -320,6 +357,7 @@
     .edu-row { grid-template-columns: 1fr; gap: var(--s-2); }
     .edu-row .school, .edu-row .when { text-align: left; }
     .twocol { grid-template-columns: 1fr; gap: var(--s-2); }
+    .problem-row { grid-template-columns: 1fr; gap: 2px; }
     .cv-foot { grid-template-columns: 1fr; }
     .cv-foot .c, .cv-foot .r { text-align: left; }
   }
@@ -364,9 +402,17 @@
 </div>
 <div class="tool-shell" id="keywords-panel" hidden>
   <div class="tool-panel keywords-box">
+    <div class="track-row">
+      <span class="track-badge" id="out-track"></span>
+      <span class="track-why" id="out-rationale"></span>
+    </div>
+    <div class="lowfit" id="lowfit" hidden>
+      <strong>Low fit — review before sending.</strong>
+      <span id="lowfit-reason"></span>
+    </div>
     <label>Keywords targeted from this posting</label>
     <div id="out-keywords" class="keyword-chips"></div>
-    <p class="hint">Every keyword shown is backed by a real bullet or listed skill below — none are inserted without evidence.</p>
+    <p class="hint">Assembled by selecting from pre-approved content only — the model picks which of your real bullets to show and in what order, and never writes CV prose itself. Give it a final read before sending.</p>
   </div>
 </div>
 
@@ -389,7 +435,13 @@
     </div>
   </header>
 
+  <p class="cv-tagline" id="out-tagline" hidden></p>
   <p class="cv-lede" id="out-lede"></p>
+
+  <section class="cv-section" id="sec-problems" hidden>
+    <h2>Selected problems solved</h2>
+    <div id="out-problems"></div>
+  </section>
 
   <section class="cv-section">
     <h2>Experience</h2>
@@ -422,75 +474,43 @@
     </div>
   </header>
 
-  <section class="cv-section">
+  <section class="cv-section" id="sec-roles2" hidden>
     <h2>Experience <span class="cont">continued</span></h2>
     <div id="out-roles-p2"></div>
   </section>
 
+  <section class="cv-section" id="sec-dissertation">
+    <h2>Research</h2>
+    <div id="out-dissertation"></div>
+  </section>
+
+  <section class="cv-section" id="sec-project" hidden>
+    <h2>Projects</h2>
+    <div id="out-project"></div>
+  </section>
+
   <section class="cv-section">
     <h2>Education</h2>
-
-    <div class="edu-row">
-      <span class="degree">MSc Behavioural Economics</span>
-      <span class="school">City St. George's, University of London</span>
-      <span class="when">Sept 2023 – Sept 2024</span>
-    </div>
-    <ul class="edu-meta">
-      <li>Graduated with Merit; 67%</li>
-      <li class="topics"><b>Topics</b>Experimental Economics, Game Theory, Cognitive Psychology, Decision Making, Econometrics, Research Methods</li>
-    </ul>
-
-    <div class="edu-row">
-      <span class="degree">BSc Marketing</span>
-      <span class="school">DePaul University</span>
-      <span class="when">Sept 2015 – Dec 2018</span>
-    </div>
-    <ul class="edu-meta">
-      <li>Graduated early with Merit; 3.6 / 4.0</li>
-      <li>Minors in German and International Business</li>
-      <li class="topics"><b>Topics</b>Market Research, Predictive Modelling, Psychology, Statistics, Economics, German</li>
-    </ul>
-
-    <div class="edu-row">
-      <span class="degree">Exchange Programme</span>
-      <span class="school">Universität Bonn</span>
-      <span class="when">Mar 2017 – Aug 2017</span>
-    </div>
-    <ul class="edu-meta">
-      <li class="topics"><b>Topics</b>German Language; Economy and Trade</li>
-    </ul>
-
-    <div class="edu-row">
-      <span class="degree">Summer Courses <em>(Postponed)</em></span>
-      <span class="school">London School of Economics and Political Science</span>
-      <span class="when">TBD</span>
-    </div>
-    <ul class="edu-meta">
-      <li class="topics"><b>Topics</b>Developmental Economics; Machine Learning</li>
-    </ul>
+    <div id="out-education"></div>
   </section>
 
   <section class="cv-section">
     <h2>Languages &amp; Competencies</h2>
-
     <div class="twocol">
       <span class="k">Languages</span>
-      <div class="v">
-        <span class="lang">English<span class="level">C2</span></span>
-        <span class="lang">German<span class="level">B2</span></span>
-        <span class="lang">French<span class="level">B2</span></span>
-        <span class="lang">Cantonese<span class="level">spoken only</span></span>
-      </div>
+      <div class="v" id="out-languages"></div>
     </div>
-
-    <div class="twocol">
-      <span class="k">Languages &amp; Tools</span>
-      <div class="v" id="out-tools"></div>
+    <div class="twocol" id="row-methodsline" hidden>
+      <span class="k">Approach</span>
+      <div class="v" id="out-methodsline"></div>
     </div>
-
     <div class="twocol">
       <span class="k">Methods &amp; Expertise</span>
       <div class="v" id="out-methods"></div>
+    </div>
+    <div class="twocol">
+      <span class="k">Languages &amp; Tools</span>
+      <div class="v" id="out-tools"></div>
     </div>
   </section>
 
@@ -520,149 +540,200 @@
     document.getElementById('btn-grey').classList.toggle('active', mode === 'grey');
   }
 
-  // Static role chrome — title/company/location/dates never change.
-  // Bullets are populated at render time from the tailored API response.
-  const BASE_ROLES = [
-    { id: "publicis",     page: 1, role: "Sr. Executive — Data &amp; Insights (Talent), <em>Publicis Groupe</em>", plain: "Sr. Executive — Data & Insights (Talent), Publicis Groupe", where: "London, UK", when: "Jul 2025 – Current" },
-    { id: "uniqlo",       page: 1, role: "Freelance Researcher (Part-time), <em>UNIQLO</em>", plain: "Freelance Researcher (Part-time), UNIQLO", where: "New York City, US", when: "May 2021 – May 2023" },
-    { id: "horizon-bi",   page: 1, role: "Sr. Analyst — Analytics BI, <em>Horizon Media</em>", plain: "Sr. Analyst — Analytics BI, Horizon Media", where: "New York City, US", when: "Jan 2022 – Sept 2023" },
-    { id: "petco",        page: 1, role: "Sr. Analyst — Petco, <em>Horizon Media</em>", plain: "Sr. Analyst — Petco, Horizon Media", where: "New York City, US", when: "Jul 2020 – Jan 2022" },
-    { id: "sprint-boost", page: 2, role: "Analyst — Sprint &amp; Boost Mobile, <em>Horizon Media</em>", plain: "Analyst — Sprint & Boost Mobile, Horizon Media", where: "New York City, US", when: "Dec 2019 – Jul 2020" },
-    { id: "dunkin",       page: 2, role: "Strategy Associate — Dunkin', <em>Publicis Media</em>", plain: "Strategy Associate — Dunkin', Publicis Media", where: "New York City, US", when: "Apr 2019 – Dec 2019" },
-  ];
+  const $ = (id) => document.getElementById(id);
+  const gate = $('gate'), generator = $('generator');
+  const gateSubmit = $('gate-submit'), gateError = $('gate-error'), pwInput = $('pw');
+  const genButton = $('generate'), genError = $('gen-error'), jdInput = $('jd');
+  const extraInput = $('extra');
+  const resultBar = $('result-bar'), page1 = $('page1'), page2 = $('page2'), savePanel = $('save-panel');
 
-  const BASE_EDUCATION = [
-    { degree: "MSc Behavioural Economics", school: "City St. George's, University of London", when: "Sept 2023 – Sept 2024", meta: ["Graduated with Merit; 67%", "Topics: Experimental Economics, Game Theory, Cognitive Psychology, Decision Making, Econometrics, Research Methods"] },
-    { degree: "BSc Marketing", school: "DePaul University", when: "Sept 2015 – Dec 2018", meta: ["Graduated early with Merit; 3.6 / 4.0", "Minors in German and International Business", "Topics: Market Research, Predictive Modelling, Psychology, Statistics, Economics, German"] },
-    { degree: "Exchange Programme", school: "Universität Bonn", when: "Mar 2017 – Aug 2017", meta: ["Topics: German Language; Economy and Trade"] },
-    { degree: "Summer Courses (Postponed)", school: "London School of Economics and Political Science", when: "TBD", meta: ["Topics: Developmental Economics; Machine Learning"] },
-  ];
+  let lastTailored = null;
 
-  const BASE_LANGUAGES = "English (C2), German (B2), French (B2), Cantonese (spoken only)";
-
-  const gate = document.getElementById('gate');
-  const generator = document.getElementById('generator');
-  const gateSubmit = document.getElementById('gate-submit');
-  const gateError = document.getElementById('gate-error');
-  const pwInput = document.getElementById('pw');
-  const genButton = document.getElementById('generate');
-  const genError = document.getElementById('gen-error');
-  const jdInput = document.getElementById('jd');
-  const extraInput = document.getElementById('extra');
-  const resultBar = document.getElementById('result-bar');
-  const resultStatus = document.getElementById('result-status');
-  const page1 = document.getElementById('page1');
-  const page2 = document.getElementById('page2');
-  const savePanel = document.getElementById('save-panel');
-
-  function getPassword() {
-    return sessionStorage.getItem('cv-tailor-pw') || '';
-  }
-
-  function showGenerator() {
-    gate.hidden = true;
-    generator.hidden = false;
-  }
-
+  const getPassword = () => sessionStorage.getItem('cv-tailor-pw') || '';
+  function showGenerator() { gate.hidden = true; generator.hidden = false; }
   if (getPassword()) showGenerator();
 
   gateSubmit.addEventListener('click', () => {
-    const pw = pwInput.value;
-    if (!pw) return;
-    sessionStorage.setItem('cv-tailor-pw', pw);
+    if (!pwInput.value) return;
+    sessionStorage.setItem('cv-tailor-pw', pwInput.value);
     gateError.hidden = true;
     showGenerator();
   });
   pwInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') gateSubmit.click(); });
 
-  function renderRoles(tailoredRoles) {
-    const byId = Object.fromEntries(tailoredRoles.map(r => [r.id, r.bullets]));
-    const containers = { 1: document.getElementById('out-roles-p1'), 2: document.getElementById('out-roles-p2') };
-    containers[1].innerHTML = '';
-    containers[2].innerHTML = '';
+  function formatDateStamp() {
+    return new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+  }
 
-    for (const base of BASE_ROLES) {
-      const bar = document.createElement('div');
-      bar.className = 'role-bar';
-      bar.innerHTML = `<span class="role">${base.role}</span><span class="where">${base.where}</span><span class="when">${base.when}</span>`;
+  // All CV text below arrives already resolved from the approved corpus by the
+  // Worker. It is injected with textContent, never innerHTML.
+  function el(tag, cls, text) {
+    const n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text !== undefined) n.textContent = text;
+    return n;
+  }
 
-      const ul = document.createElement('ul');
-      ul.className = 'cv-bullets';
-      const bullets = byId[base.id] || [];
-      for (const text of bullets) {
-        const li = document.createElement('li');
-        li.textContent = text; // API-derived text — never innerHTML
-        ul.appendChild(li);
+  function renderRoles(roles) {
+    const p1 = $('out-roles-p1'), p2 = $('out-roles-p2');
+    p1.innerHTML = ''; p2.innerHTML = '';
+    // Keep the first four roles on page 1, the remainder on page 2 — mirrors
+    // the master CV's split.
+    roles.forEach((r, i) => {
+      const target = i < 4 ? p1 : p2;
+      const bar = el('div', 'role-bar');
+      bar.appendChild(el('span', 'role', r.role));
+      bar.appendChild(el('span', 'where', r.where));
+      bar.appendChild(el('span', 'when', r.when));
+      const ul = el('ul', 'cv-bullets');
+      r.bullets.forEach((b) => ul.appendChild(el('li', null, b)));
+      target.appendChild(bar); target.appendChild(ul);
+    });
+    $('sec-roles2').hidden = roles.length <= 4;
+  }
+
+  function renderProblems(problems) {
+    const box = $('out-problems');
+    box.innerHTML = '';
+    (problems || []).forEach((p) => {
+      const row = el('div', 'problem-row');
+      row.appendChild(el('span', 'p-label', p.label));
+      row.appendChild(el('span', 'p-text', p.text));
+      box.appendChild(row);
+    });
+    $('sec-problems').hidden = !problems || problems.length === 0;
+  }
+
+  function renderDissertation(d) {
+    const box = $('out-dissertation');
+    box.innerHTML = '';
+    const bar = el('div', 'edu-row');
+    bar.appendChild(el('span', 'degree', d.title));
+    bar.appendChild(el('span', 'school', d.institution));
+    bar.appendChild(el('span', 'when', d.result));
+    box.appendChild(bar);
+    const ul = el('ul', 'edu-meta');
+    ul.appendChild(el('li', null, d.scale));
+    const body = el('li', 'topics'); body.textContent = d.body;
+    ul.appendChild(body);
+    box.appendChild(ul);
+  }
+
+  function renderProject(p) {
+    $('sec-project').hidden = !p;
+    if (!p) return;
+    const box = $('out-project');
+    box.innerHTML = '';
+    const bar = el('div', 'edu-row');
+    bar.appendChild(el('span', 'degree', p.title));
+    bar.appendChild(el('span', 'school', ''));
+    bar.appendChild(el('span', 'when', p.year));
+    box.appendChild(bar);
+    const ul = el('ul', 'edu-meta');
+    const body = el('li', 'topics'); body.textContent = p.body;
+    ul.appendChild(body);
+    box.appendChild(ul);
+  }
+
+  function renderEducation(items) {
+    const box = $('out-education');
+    box.innerHTML = '';
+    (items || []).forEach((e) => {
+      const bar = el('div', 'edu-row');
+      bar.appendChild(el('span', 'degree', e.degree));
+      bar.appendChild(el('span', 'school', e.school));
+      bar.appendChild(el('span', 'when', e.when));
+      box.appendChild(bar);
+      const ul = el('ul', 'edu-meta');
+      (e.meta || []).forEach((m) => ul.appendChild(el('li', null, m)));
+      if (e.topics) {
+        const t = el('li', 'topics');
+        t.appendChild(el('b', null, 'Topics'));
+        t.appendChild(document.createTextNode(e.topics));
+        ul.appendChild(t);
       }
-
-      containers[base.page].appendChild(bar);
-      containers[base.page].appendChild(ul);
-    }
+      box.appendChild(ul);
+    });
   }
 
-  function renderList(containerId, items) {
-    const el = document.getElementById(containerId);
-    el.textContent = items.join(', ');
+  function renderLanguages(langs) {
+    const box = $('out-languages');
+    box.innerHTML = '';
+    (langs || []).forEach((l) => {
+      const span = el('span', 'lang', l.name);
+      span.appendChild(el('span', 'level', l.level));
+      box.appendChild(span);
+    });
   }
 
-  function renderKeywords(keywords) {
-    const el = document.getElementById('out-keywords');
-    el.innerHTML = '';
-    for (const kw of (keywords || [])) {
-      const span = document.createElement('span');
-      span.textContent = kw; // API-derived — textContent only
-      el.appendChild(span);
-    }
-    document.getElementById('keywords-panel').hidden = !keywords || keywords.length === 0;
+  function renderKeywords(data) {
+    const el2 = $('out-keywords');
+    el2.innerHTML = '';
+    (data.keywords_targeted || []).forEach((k) => el2.appendChild(el('span', null, k)));
+    const bits = [`Track ${data.track}`];
+    if (data.peopleScience) bits.push('People Science lane');
+    if (data.behaviouralLayer) bits.push('Behavioural emphasis');
+    $('out-track').textContent = bits.join(' · ');
+    $('out-rationale').textContent = data.rationale || '';
+    $('lowfit').hidden = !data.lowFit;
+    $('lowfit-reason').textContent = data.lowFitReason || '';
+    $('keywords-panel').hidden = false;
   }
 
-  let lastTailored = null; // holds the most recent API response for the ATS export
-
-  function buildAtsText(data) {
-    const byId = Object.fromEntries(data.roles.map(r => [r.id, r.bullets]));
-    const lines = [];
-    lines.push('JOSHUA WOODYARD');
-    lines.push('Analytics | Market Research | Human Behaviour');
-    lines.push('N7, London, England | woodyardjoshuae@gmail.com | +44 7714 350869 | linkedin.com/in/joshua-woodyard');
-    lines.push('');
-    lines.push(data.lede);
-    lines.push('');
-    lines.push('EXPERIENCE');
-    for (const base of BASE_ROLES) {
-      lines.push('');
-      lines.push(`${base.plain} — ${base.where} — ${base.when}`);
-      for (const b of (byId[base.id] || [])) lines.push(`- ${b}`);
+  function buildAtsText(d) {
+    const L = [];
+    L.push('JOSHUA WOODYARD');
+    L.push('Analytics | Market Research | Human Behaviour');
+    L.push('N7, London, England | woodyardjoshuae@gmail.com | +44 7714 350869 | linkedin.com/in/joshua-woodyard');
+    L.push('');
+    if (d.capabilityTagline) { L.push(d.capabilityTagline); L.push(''); }
+    L.push(d.summary);
+    if (d.selectedProblems && d.selectedProblems.length) {
+      L.push(''); L.push('SELECTED PROBLEMS SOLVED');
+      d.selectedProblems.forEach((p) => L.push(`- ${p.label}: ${p.text}`));
     }
-    lines.push('');
-    lines.push('EDUCATION');
-    for (const edu of BASE_EDUCATION) {
-      lines.push('');
-      lines.push(`${edu.degree} — ${edu.school} — ${edu.when}`);
-      for (const m of edu.meta) lines.push(`- ${m}`);
+    L.push(''); L.push('EXPERIENCE');
+    d.roles.forEach((r) => {
+      L.push('');
+      L.push(`${r.role} — ${r.where} — ${r.when}`);
+      r.bullets.forEach((b) => L.push(`- ${b}`));
+    });
+    L.push(''); L.push('RESEARCH');
+    L.push(`${d.dissertation.title} (${d.dissertation.scale})`);
+    L.push(`${d.dissertation.institution} · ${d.dissertation.result}`);
+    L.push(d.dissertation.body);
+    if (d.project) {
+      L.push(''); L.push('PROJECTS');
+      L.push(`${d.project.title} (${d.project.year})`);
+      L.push(d.project.body);
     }
-    lines.push('');
-    lines.push('LANGUAGES');
-    lines.push(BASE_LANGUAGES);
-    lines.push('');
-    lines.push('LANGUAGES & TOOLS');
-    lines.push(data.tools_order.join(', '));
-    lines.push('');
-    lines.push('METHODS & EXPERTISE');
-    lines.push(data.methods_order.join(', '));
-    return lines.join('\n');
+    L.push(''); L.push('EDUCATION');
+    (d.education || []).forEach((e) => {
+      L.push('');
+      L.push(`${e.degree} — ${e.school} — ${e.when}`);
+      (e.meta || []).forEach((m) => L.push(`- ${m}`));
+      if (e.topics) L.push(`Topics: ${e.topics}`);
+    });
+    L.push(''); L.push('LANGUAGES');
+    L.push((d.languages || []).map((l) => `${l.name} (${l.level})`).join(', '));
+    if (d.methodsLine) { L.push(''); L.push('APPROACH'); L.push(d.methodsLine); }
+    L.push(''); L.push('METHODS & EXPERTISE');
+    L.push((d.methods || []).join(', '));
+    L.push(''); L.push('TOOLS');
+    L.push((d.tools || []).join(', '));
+    return L.join('\n');
   }
 
-  document.getElementById('btn-ats').addEventListener('click', async () => {
+  $('btn-ats').addEventListener('click', async () => {
     if (!lastTailored) return;
     const text = buildAtsText(lastTailored);
-    const btn = document.getElementById('btn-ats');
+    const btn = $('btn-ats');
     try {
       await navigator.clipboard.writeText(text);
       const original = btn.textContent;
       btn.textContent = 'Copied ✓';
       setTimeout(() => { btn.textContent = original; }, 1800);
     } catch {
-      // Clipboard API unavailable — fall back to a downloadable file.
       const blob = new Blob([text], { type: 'text/plain' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
@@ -672,36 +743,31 @@
     }
   });
 
-  function formatDateStamp() {
-    return new Date().toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
-  }
-
   async function generate() {
     const jobDescription = jdInput.value.trim();
-    const extraSkills = extraInput.value.trim();
     genError.hidden = true;
     if (jobDescription.length < 20) {
       genError.textContent = 'Paste the full job description first.';
       genError.hidden = false;
       return;
     }
-
     genButton.disabled = true;
     genButton.textContent = 'Tailoring…';
-
     try {
       const res = await fetch(WORKER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password: getPassword(), jobDescription, extraSkills }),
+        body: JSON.stringify({
+          password: getPassword(),
+          jobDescription,
+          extraSkills: extraInput ? extraInput.value.trim() : ''
+        }),
       });
       const data = await res.json();
-
       if (!res.ok) {
         if (res.status === 401) {
           sessionStorage.removeItem('cv-tailor-pw');
-          gate.hidden = false;
-          generator.hidden = true;
+          gate.hidden = false; generator.hidden = true;
           gateError.textContent = 'Incorrect password.';
           gateError.hidden = false;
           return;
@@ -709,19 +775,28 @@
         throw new Error(data.error || 'Something went wrong.');
       }
 
-      document.getElementById('out-lede').textContent = data.lede;
+      const tagline = $('out-tagline');
+      tagline.textContent = data.capabilityTagline || '';
+      tagline.hidden = !data.capabilityTagline;
+
+      $('out-lede').textContent = data.summary;
+      renderProblems(data.selectedProblems);
       renderRoles(data.roles);
-      renderList('out-tools', data.tools_order);
-      renderList('out-methods', data.methods_order);
-      renderKeywords(data.keywords_targeted);
-      document.getElementById('out-datestamp').textContent = `Curriculum Vitae · ${formatDateStamp()}`;
+      renderDissertation(data.dissertation);
+      renderProject(data.project);
+      renderEducation(data.education);
+      renderLanguages(data.languages);
+      $('out-methods').textContent = (data.methods || []).join(', ');
+      $('out-tools').textContent = (data.tools || []).join(', ');
+      $('out-methodsline').textContent = data.methodsLine || '';
+      $('row-methodsline').hidden = !data.methodsLine;
+      $('out-datestamp').textContent = `Curriculum Vitae · ${formatDateStamp()}`;
+      renderKeywords(data);
       lastTailored = data;
 
       generator.hidden = true;
-      page1.hidden = false;
-      page2.hidden = false;
-      resultBar.hidden = false;
-      savePanel.hidden = false;
+      page1.hidden = false; page2.hidden = false;
+      resultBar.hidden = false; savePanel.hidden = false;
       window.scrollTo(0, 0);
     } catch (err) {
       genError.textContent = err.message || 'Something went wrong. Try again.';
@@ -734,12 +809,10 @@
 
   genButton.addEventListener('click', generate);
 
-  document.getElementById('start-over').addEventListener('click', () => {
-    page1.hidden = true;
-    page2.hidden = true;
-    resultBar.hidden = true;
-    savePanel.hidden = true;
-    document.getElementById('keywords-panel').hidden = true;
+  $('start-over').addEventListener('click', () => {
+    page1.hidden = true; page2.hidden = true;
+    resultBar.hidden = true; savePanel.hidden = true;
+    $('keywords-panel').hidden = true;
     lastTailored = null;
     generator.hidden = false;
   });

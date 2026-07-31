@@ -47,7 +47,7 @@
       "bullets": [
         { "id": "uni-research", "text": "Designed and executed quantitative and qualitative research with no predefined scope for leadership, combining predictive statistics on sales data with behavioural insight to shape merchandising strategy." },
         { "id": "uni-basket", "text": "Uncovered a 0.90+ basket correlation across eight stores and translated it into a floor-planning change that moved 40,000+ units." },
-        { "id": "uni-creative-lab", "needsConfirm": true, "text": "Embedded with UNIQLO's Global Creative Lab, researching the topics that shaped brand direction for leadership." }
+        { "id": "uni-creative-lab", "text": "Embedded with UNIQLO's Global Creative Lab, researching the topics that shaped brand direction for leadership." }
       ],
       "whyBullets": [
         { "id": "uni-why-basket", "replaces": "uni-basket", "text": "Investigated why certain products sold together across eight stores — a 0.90+ basket correlation — and translated the behavioural pattern into a floor-planning change that moved 40,000+ units." }

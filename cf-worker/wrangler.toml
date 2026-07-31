@@ -4,7 +4,9 @@ compatibility_date = "2024-11-01"
 
 [vars]
 ALLOWED_ORIGIN = "https://woodyard-inc.github.io"
-CV_SOURCE_URL = "https://woodyard-inc.github.io/joshua/cv.html"
+# Structured approved-content corpus. The model selects IDs from this; the
+# Worker resolves them to text, so only approved strings can reach a page.
+CV_DATA_URL = "https://woodyard-inc.github.io/joshua/cv-data.json"
 
 # Secrets (set via `wrangler secret put`, never stored here):
 #   ANTHROPIC_API_KEY

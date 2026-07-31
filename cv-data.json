@@ -1,0 +1,174 @@
+{
+  "_README": "Single source of truth for CV content. cv.html (the 2-page master) and the CV tailor both draw from here. The Cloudflare Worker verifies every bullet it emits against the strings in this file, so nothing reaches a page that isn't approved here. Add a variant here before the tailor can ever use it.",
+  "meta": {
+    "updated": "2026-07-31",
+    "spec": "cv_tailor_handover.md v2 — domain-agnostic positioning"
+  },
+
+  "positioning": {
+    "thesis": "My expertise is behavioural and market analysis grounded in statistical method. Give me any sector and I'll learn it fast and make it legible — I've already done it across five unrelated domains.",
+    "capabilityTagline": "I answer \"why do people do this?\" with statistical rigour — across markets, products, and organisations — and turn the answer into something a room can act on.",
+    "methodsLine": "Behavioural investigation — designing research and experiments to explain why people, users, and markets behave as they do, and translating findings into decisions."
+  },
+
+  "summaries": {
+    "master": "Analytics strategist and behavioural researcher with 6+ years building data infrastructure, governance, and insight functions for global organisations — most recently owning BI delivery for a newly created talent intelligence function at Publicis Groupe. Proven track record standardising practices across large divisions and translating complex data into strategic insight for audiences ranging from C-suite to entry-level staff. Academically specialised in behavioural economics (MSc) and marketing science (BSc). Targeting analytics leadership, behavioural insight, or research roles where human-centred data shapes product or policy decisions.",
+    "trackA": "Behavioural and market analyst with 6+ years applying statistical method to unfamiliar domains — telecom, QSR, retail, media, and workforce — and making each legible to decision-makers. My expertise is the science of understanding markets and behaviour, not any single sector: I arrive without predefined scope, learn the domain fast, find what's actually happening, and deliver something a room can act on. Formally grounded in behavioural economics (MSc, City St George's) and marketing science (BSc), with the technical range to build whatever infrastructure the analysis requires.",
+    "trackB": "Applied behavioural researcher with 6+ years designing and executing quantitative studies under real organisational constraints, anchored by a first-class MSc dissertation applying multivariate methods to 11,249 cross-cultural respondents. My domain is method and human behaviour, not a sector — I've applied the same statistical toolkit across five unrelated industries, learning each quickly and translating rigorous analysis into decisions non-specialists can act on. Comfortable across the full pipeline: instrument and experimental design, imputation and construct reduction, regression and interaction modelling, and honest reporting of what a model can and can't support."
+  },
+
+  "roles": [
+    {
+      "id": "publicis",
+      "title": "Sr. Executive — Data & Insights",
+      "titlePeopleScience": "Sr. Executive — Data & Insights (Talent)",
+      "company": "Publicis Groupe",
+      "where": "London, UK",
+      "when": "Jul 2025 – Current",
+      "demoteUnlessPeopleScience": true,
+      "bullets": [
+        { "id": "pub-cold", "alwaysKeep": true, "text": "Dropped into an entirely new domain with no existing analytics function and no predefined scope; built the data models, governance, and reporting from scratch and made an opaque operation legible to leadership." },
+        { "id": "pub-taxonomy", "text": "Defined data standards and taxonomy; built repeatable ETL processes that improved reporting consistency and auditability." },
+        { "id": "pub-stalled", "text": "Identified stalled activity and operational bottlenecks across 40+ markets ahead of a 90-day global transition, using dashboards that tracked progress against the transition plan alongside rule-based date/status checks that surfaced roles sitting without updated notes." },
+        { "id": "pub-translate", "text": "Translated technical methodology into plain-language executive summaries, enabling self-service reporting for non-technical stakeholders." },
+        { "id": "pub-powerbi", "text": "Built Power BI dashboards and executive scorecards tracking recruitment pipeline health, open requisitions, and staffing risk in real time, used by business leads throughout a 90-day global transition." },
+        { "id": "pub-harmonise", "text": "Led taxonomy and organisational-structure harmonisation for incoming client workforces during business transitions, preserving historical comparability while integrating new data sources." }
+      ],
+      "whyBullets": [
+        { "id": "pub-why-stalled", "replaces": "pub-stalled", "text": "Diagnosed why roles were stalling across 40+ markets — using dashboards that tracked progress against the transition plan plus date/status logic that surfaced requisitions sitting without updates — flagging the drivers before they escalated." }
+      ]
+    },
+    {
+      "id": "uniqlo",
+      "title": "Freelance Researcher (Part-time)",
+      "company": "UNIQLO",
+      "where": "New York City, US",
+      "when": "May 2021 – May 2023",
+      "bullets": [
+        { "id": "uni-research", "text": "Designed and executed quantitative and qualitative research with no predefined scope for leadership, combining predictive statistics on sales data with behavioural insight to shape merchandising strategy." },
+        { "id": "uni-basket", "text": "Uncovered a 0.90+ basket correlation across eight stores and translated it into a floor-planning change that moved 40,000+ units." },
+        { "id": "uni-creative-lab", "needsConfirm": true, "text": "Embedded with UNIQLO's Global Creative Lab, researching the topics that shaped brand direction for leadership." }
+      ],
+      "whyBullets": [
+        { "id": "uni-why-basket", "replaces": "uni-basket", "text": "Investigated why certain products sold together across eight stores — a 0.90+ basket correlation — and translated the behavioural pattern into a floor-planning change that moved 40,000+ units." }
+      ]
+    },
+    {
+      "id": "horizon-bi",
+      "title": "Sr. Analyst — Analytics BI",
+      "company": "Horizon Media",
+      "where": "New York City, US",
+      "when": "Jan 2022 – Sept 2023",
+      "bullets": [
+        { "id": "hbi-practice", "text": "Co-designed standardised practice for a 129-person division and trained analysts and managers, embedding a repeatable methodology for insight generation." },
+        { "id": "hbi-runtime", "text": "Cut reporting runtime by 13% while improving data quality, freeing analyst time from production toward strategic analysis." },
+        { "id": "hbi-spend", "text": "Consulted on both new and pre-existing clients with spend in the hundreds of millions." },
+        { "id": "hbi-tableau", "text": "Built, updated, and maintained Tableau dashboards and visualisation products for clients." },
+        { "id": "hbi-panel", "text": "Worked on an interview panel dedicated to identifying new analysts for the department and navigated conflicts arising due to candidate preference." }
+      ],
+      "whyBullets": []
+    },
+    {
+      "id": "petco",
+      "title": "Sr. Analyst — Petco",
+      "company": "Horizon Media",
+      "where": "New York City, US",
+      "when": "Jul 2020 – Jan 2022",
+      "bullets": [
+        { "id": "pet-etl", "text": "Maintained ETL pipelines processing 10,000+ weekly rows (Knime, Snowflake) underpinning multi-channel media reporting for a nine-figure retail client." },
+        { "id": "pet-vendor", "text": "Led vendor relationships and communicated requirements for accurate reporting. Revised processes, reports, and dashboards to accommodate internal team and client needs." }
+      ],
+      "whyBullets": []
+    },
+    {
+      "id": "sprint-boost",
+      "title": "Analyst — Sprint & Boost Mobile",
+      "company": "Horizon Media",
+      "where": "New York City, US",
+      "when": "Dec 2019 – Jul 2020",
+      "bullets": [
+        { "id": "spr-synth", "text": "Synthesised fragmented campaign data into performance narratives that informed budget allocation in competitive telecom." },
+        { "id": "spr-kantar", "text": "Partnered with Kantar on brand-lift studies and A/B creative tests during a brand relaunch (experimental design, control/exposed comparison), converting results into forward-looking strategy." },
+        { "id": "spr-pca", "text": "Collaborated with non-analytics teams to create Post-Campaign Analysis (PCA) reports easily digestible for all." }
+      ],
+      "whyBullets": [
+        { "id": "spr-why-kantar", "replaces": "spr-kantar", "text": "Explained why campaigns moved the needle — brand-lift studies and A/B creative tests with Kantar during a brand relaunch — converting behavioural findings into forward-looking strategy." }
+      ]
+    },
+    {
+      "id": "dunkin",
+      "title": "Strategy Associate — Dunkin'",
+      "company": "Publicis Media",
+      "where": "New York City, US",
+      "when": "Apr 2019 – Dec 2019",
+      "bullets": [
+        { "id": "dun-competitive", "text": "Ran competitive analysis across 40+ markets to identify efficient market entry and share-gain opportunities." },
+        { "id": "dun-recs", "text": "Delivered media recommendations that grew sales while cutting costs by tens of thousands." },
+        { "id": "dun-ops", "text": "Managed day-to-day media operations including creative trafficking, vendor coordination, plan restructuring, and budget tracking across the busiest Dunkin' markets." }
+      ],
+      "whyBullets": [
+        { "id": "dun-why-competitive", "replaces": "dun-competitive", "text": "Analysed why certain markets outperformed across 40+ regions, converting the drivers into media recommendations that grew sales while cutting costs." }
+      ]
+    }
+  ],
+
+  "selectedProblems": [
+    { "id": "sp-retail", "domain": "Retail", "org": "UNIQLO", "text": "Uncovered a 0.90+ basket correlation across an eight-store sales investigation and turned it into a floor-planning change that moved 40,000+ units through the late-summer tail." },
+    { "id": "sp-qsr", "domain": "QSR / media", "org": "Dunkin', Publicis Media", "text": "Competitive analysis across 40+ markets that grew sales while cutting costs by tens of thousands, using syndicated research and market-entry modelling." },
+    { "id": "sp-measurement", "domain": "Media measurement", "org": "Horizon Media", "text": "Redesigned automated data processes to cut reporting runtime by 13% while improving data quality for a nine-figure retail client." },
+    { "id": "sp-research", "domain": "Behavioural research", "org": "MSc dissertation", "text": "Multivariate cross-cultural analysis of 11,249 respondents; identified trust in fairness as the only universal predictor of life satisfaction across five countries, income as non-significant." },
+    { "id": "sp-workforce", "domain": "Workforce", "org": "Publicis Groupe", "optional": true, "demoteUnlessPeopleScience": true, "text": "Built a behavioural-analytics function from scratch across 40+ markets with no predefined scope; flagged operational risk before it escalated." }
+  ],
+
+  "dissertation": {
+    "title": "MSc Dissertation — Social Capital & Life Satisfaction: A Cross-Cultural Analysis",
+    "scale": "11,249 respondents, 5 countries",
+    "institution": "City St. George's, University of London",
+    "result": "First-class honours, 71%",
+    "supervisor": "Dr Anke Plagnol",
+    "supervisorNeedsConfirm": true,
+    "body": "Applied an underused ISSP 2017 instrument to test social capital as multi-dimensional across five national contexts. Methods: PCA construct reduction, MICE imputation (country-grouped), pooled OLS with interaction terms, LSmeans with Tukey correction, VIF and AIC/BIC model comparison. Finding: trust in fairness was the only universal cross-cultural predictor of life satisfaction; absolute income showed no significant effect, though subjective financial strain did.",
+    "bodyShort": "Applied an underused ISSP 2017 instrument to test social capital as multi-dimensional across five national contexts, using PCA construct reduction, MICE imputation, and pooled OLS with interaction terms. Trust in fairness was the only universal cross-cultural predictor of life satisfaction; absolute income showed no significant effect."
+  },
+
+  "project": {
+    "title": "Independent Project — Monte Carlo Match Simulator, Wimbledon Men's Draw",
+    "year": "2026",
+    "body": "Built player \"fingerprints\" from Jeff Sackmann's 2011–2023 point-by-point data to drive head-to-head win-probability simulations. Browser-based deployment."
+  },
+
+  "education": [
+    { "degree": "MSc Behavioural Economics", "school": "City St. George's, University of London", "when": "Sept 2023 – Sept 2024", "meta": ["Graduated with Merit; 67%"], "topics": "Experimental Economics, Game Theory, Cognitive Psychology, Decision Making, Econometrics, Research Methods" },
+    { "degree": "BSc Marketing", "school": "DePaul University", "when": "Sept 2015 – Dec 2018", "meta": ["Graduated early with Merit; 3.6 / 4.0", "Minors in German and International Business"], "topics": "Market Research, Predictive Modelling, Psychology, Statistics, Economics, German" },
+    { "degree": "Exchange Programme", "school": "Universität Bonn", "when": "Mar 2017 – Aug 2017", "meta": [], "topics": "German Language; Economy and Trade" },
+    { "degree": "Summer Courses (Postponed)", "school": "London School of Economics and Political Science", "when": "TBD", "meta": [], "topics": "Developmental Economics; Machine Learning" }
+  ],
+
+  "languages": [
+    { "name": "English", "level": "C2" },
+    { "name": "German", "level": "B2" },
+    { "name": "French", "level": "B2" },
+    { "name": "Cantonese", "level": "spoken only" }
+  ],
+
+  "methods": [
+    "Experimental design", "A/B testing", "predictive modelling and econometrics",
+    "user research", "behavioural analysis", "research synthesis",
+    "strategic recommendations", "data infrastructure design", "stakeholder discovery",
+    "strategic advisory", "ETL / data pipelines", "dashboard design",
+    "cross-functional training and development"
+  ],
+
+  "methodsTrackB": [
+    "Experimental design", "PCA / factor analysis", "MICE imputation",
+    "OLS / regression with interaction terms", "A/B testing",
+    "predictive modelling and econometrics", "behavioural analysis",
+    "research synthesis", "user research", "stakeholder discovery"
+  ],
+
+  "tools": {
+    "master": ["SQL", "R", "Python", "Power Query", "Power BI (DAX)", "Tableau", "Command Line", "Knime", "Alteryx", "SPSS"],
+    "trackA": ["SQL", "Python", "R", "Tableau", "Power BI (DAX)", "Power Query", "Knime", "Alteryx", "SPSS"],
+    "trackB": ["R (mice, lsmeans, emmeans, car)", "Python", "SQL", "SPSS", "Tableau", "Power BI (DAX)"]
+  }
+}

@@ -216,6 +216,19 @@
      effects on the print path even though they render fine on screen. */
   body[data-colour="grey"] { --cobalt: var(--ink); }
 
+  /* Compact density — engaged automatically by the two-page auto-fit when a
+     tailored CV would otherwise spill onto a third sheet. */
+  body[data-density="compact"] .cv-lede { font-size: 12.5px; line-height: 1.4; }
+  body[data-density="compact"] .cv-bullets li { font-size: 11.5px; line-height: 1.28; margin-bottom: 1px; }
+  body[data-density="compact"] .role-bar { padding: 7px 0 2px; }
+  body[data-density="compact"] .edu-row { padding: 7px 0 2px; }
+  body[data-density="compact"] .edu-meta li { font-size: 11px; line-height: 1.28; }
+  body[data-density="compact"] .cv-section { margin-top: 11px; }
+  body[data-density="compact"] .problem-row { padding: 3px 0; }
+  body[data-density="compact"] .problem-row .p-text { font-size: 11.5px; line-height: 1.28; }
+  body[data-density="compact"] .twocol { padding: 4px 0; }
+  body[data-density="compact"] .twocol .v { font-size: 12px; line-height: 1.38; }
+
   /* ---- Gate + generator UI (not part of the printed CV) ---- */
   .tool-shell { max-width: 8.5in; margin: 0 auto var(--s-6); }
   .tool-panel {
@@ -283,6 +296,12 @@
     background: var(--ink); color: var(--paper); padding: 4px 10px;
   }
   .track-why { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); }
+  .fitnote {
+    font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.02em;
+    color: var(--ink-soft); margin-top: var(--s-4);
+    border-left: 2px solid var(--ink-soft); padding-left: 10px; line-height: 1.5;
+  }
+  .fitnote.warn { color: #A3242A; border-left-color: #A3242A; }
   .lowfit {
     border: 1px solid #A3242A; color: #A3242A; padding: 10px 12px;
     font-family: var(--font-sans); font-size: 12px; line-height: 1.5;
@@ -349,17 +368,21 @@
   }
 
   @media screen and (max-width: 8.5in) {
-    body { padding: var(--s-5) 0; }
-    .page, .tool-shell, .tool-bar { width: 100%; }
-    .page { padding: var(--s-6) var(--s-5); min-height: auto; box-shadow: none; }
-    .role-bar { grid-template-columns: 1fr; }
-    .role-bar .where { display: none; }
-    .edu-row { grid-template-columns: 1fr; gap: var(--s-2); }
-    .edu-row .school, .edu-row .when { text-align: left; }
-    .twocol { grid-template-columns: 1fr; gap: var(--s-2); }
-    .problem-row { grid-template-columns: 1fr; gap: 2px; }
-    .cv-foot { grid-template-columns: 1fr; }
-    .cv-foot .c, .cv-foot .r { text-align: left; }
+    body:not(.measuring) { padding: var(--s-5) 0; }
+    body:not(.measuring) .tool-shell, body:not(.measuring) .tool-bar { width: 100%; }
+    /* .page geometry is deliberately guarded: the two-page auto-fit measures
+       rendered height, and print always uses the wide layout. Letting the
+       narrow-screen rules apply during measurement would inflate the measured
+       height and trim content that would have fitted in the PDF. */
+    body:not(.measuring) .page { width: 100%; padding: var(--s-6) var(--s-5); min-height: auto; box-shadow: none; }
+    body:not(.measuring) .role-bar { grid-template-columns: 1fr; }
+    body:not(.measuring) .role-bar .where { display: none; }
+    body:not(.measuring) .edu-row { grid-template-columns: 1fr; gap: var(--s-2); }
+    body:not(.measuring) .edu-row .school, body:not(.measuring) .edu-row .when { text-align: left; }
+    body:not(.measuring) .twocol { grid-template-columns: 1fr; gap: var(--s-2); }
+    body:not(.measuring) .problem-row { grid-template-columns: 1fr; gap: 2px; }
+    body:not(.measuring) .cv-foot { grid-template-columns: 1fr; }
+    body:not(.measuring) .cv-foot .c, body:not(.measuring) .cv-foot .r { text-align: left; }
   }
 </style>
 </head>
@@ -412,6 +435,7 @@
     </div>
     <label>Keywords targeted from this posting</label>
     <div id="out-keywords" class="keyword-chips"></div>
+    <p class="fitnote" id="out-fitnote" hidden></p>
     <p class="hint">Assembled by selecting from pre-approved content only — the model picks which of your real bullets to show and in what order, and never writes CV prose itself. Give it a final read before sending.</p>
   </div>
 </div>
@@ -574,22 +598,57 @@
     return n;
   }
 
+  /* ---- Two-page auto-fit ----------------------------------------------
+     Hard requirement: a tailored CV must never exceed two pages. Content is
+     measured after render and progressively trimmed until it fits. Bullets are
+     trimmed from the end, so the server-enforced alwaysKeep bullet (which the
+     Worker places first) always survives. */
+  const CSS_IN = 96;
+  const PAGE_MAX = 11 * CSS_IN;
+  // Screen padding is 0.3in top / 0.5in bottom; print is 0.5in/0.5in. Reserve
+  // the difference plus rounding so "fits on screen" also means "fits in PDF".
+  const FIT_SAFETY = 0.32 * CSS_IN;
+
+  function naturalHeight(pageEl) {
+    const prev = pageEl.style.minHeight;
+    pageEl.style.minHeight = '0px';
+    const h = pageEl.getBoundingClientRect().height;
+    pageEl.style.minHeight = prev;
+    return h;
+  }
+  const pageOverflows = (pageEl) => naturalHeight(pageEl) > PAGE_MAX - FIT_SAFETY;
+
+  function roleBlock(r) {
+    const bar = el('div', 'role-bar');
+    bar.appendChild(el('span', 'role', r.role));
+    bar.appendChild(el('span', 'where', r.where));
+    bar.appendChild(el('span', 'when', r.when));
+    const ul = el('ul', 'cv-bullets');
+    r.bullets.forEach((b) => ul.appendChild(el('li', null, b)));
+    return [bar, ul];
+  }
+
+  // Fills page 1 until it would overflow, then spills the remainder to page 2,
+  // rather than assuming a fixed split point.
   function renderRoles(roles) {
     const p1 = $('out-roles-p1'), p2 = $('out-roles-p2');
     p1.innerHTML = ''; p2.innerHTML = '';
-    // Keep the first four roles on page 1, the remainder on page 2 — mirrors
-    // the master CV's split.
-    roles.forEach((r, i) => {
-      const target = i < 4 ? p1 : p2;
-      const bar = el('div', 'role-bar');
-      bar.appendChild(el('span', 'role', r.role));
-      bar.appendChild(el('span', 'where', r.where));
-      bar.appendChild(el('span', 'when', r.when));
-      const ul = el('ul', 'cv-bullets');
-      r.bullets.forEach((b) => ul.appendChild(el('li', null, b)));
-      target.appendChild(bar); target.appendChild(ul);
+    $('sec-roles2').hidden = false;
+    let spilled = false;
+    roles.forEach((r) => {
+      const [bar, ul] = roleBlock(r);
+      if (!spilled) {
+        p1.appendChild(bar); p1.appendChild(ul);
+        if (pageOverflows(page1)) {
+          p1.removeChild(bar); p1.removeChild(ul);
+          spilled = true;
+          p2.appendChild(bar); p2.appendChild(ul);
+        }
+      } else {
+        p2.appendChild(bar); p2.appendChild(ul);
+      }
     });
-    $('sec-roles2').hidden = roles.length <= 4;
+    $('sec-roles2').hidden = p2.children.length === 0;
   }
 
   function renderProblems(problems) {
@@ -678,6 +737,68 @@
     $('lowfit').hidden = !data.lowFit;
     $('lowfit-reason').textContent = data.lowFitReason || '';
     $('keywords-panel').hidden = false;
+  }
+
+  /* Escalating trim plans, least damaging first. Problems never drop below 3 —
+     the spec keeps a minimum of three to preserve the domain-range signal. */
+  const FIT_PLANS = [
+    { bullets: 99, problems: 5, density: '',        project: true  },
+    { bullets: 4,  problems: 5, density: '',        project: true  },
+    { bullets: 4,  problems: 4, density: '',        project: true  },
+    { bullets: 3,  problems: 4, density: '',        project: true  },
+    { bullets: 3,  problems: 3, density: 'compact', project: true  },
+    { bullets: 2,  problems: 3, density: 'compact', project: true  },
+    { bullets: 2,  problems: 3, density: 'compact', project: false },
+  ];
+
+  function applyPlan(data, plan) {
+    document.body.dataset.density = plan.density;
+    renderProblems((data.selectedProblems || []).slice(0, plan.problems));
+    renderRoles((data.roles || []).map((r) => ({ ...r, bullets: r.bullets.slice(0, plan.bullets) })));
+    renderProject(plan.project ? data.project : null);
+  }
+
+  function fitToTwoPages(data) {
+    // Measure against print geometry, never the narrow-screen layout.
+    document.body.classList.add('measuring');
+    try {
+      return fitToTwoPagesInner(data);
+    } finally {
+      document.body.classList.remove('measuring');
+    }
+  }
+
+  function fitToTwoPagesInner(data) {
+    for (let i = 0; i < FIT_PLANS.length; i++) {
+      applyPlan(data, FIT_PLANS[i]);
+      if (!pageOverflows(page1) && !pageOverflows(page2)) {
+        return { plan: FIT_PLANS[i], step: i, fits: true };
+      }
+    }
+    const last = FIT_PLANS[FIT_PLANS.length - 1];
+    return { plan: last, step: FIT_PLANS.length - 1, fits: false };
+  }
+
+  function reportFit(data, fit) {
+    const note = $('out-fitnote');
+    note.classList.toggle('warn', !fit.fits);
+    if (!fit.fits) {
+      note.textContent = 'Could not fit two pages even at maximum compression — review before sending. Consider shortening a bullet in cv-data.json.';
+      note.hidden = false;
+      return;
+    }
+    if (fit.step === 0) {
+      const total = (data.roles || []).reduce((n, r) => n + r.bullets.length, 0);
+      note.textContent = `Fits two pages with no trimming — all ${total} selected bullets shown.`;
+    } else {
+      const bits = [];
+      if (fit.plan.bullets < 99) bits.push(`max ${fit.plan.bullets} bullets per role`);
+      if (fit.plan.problems < 5) bits.push(`${fit.plan.problems} selected problems`);
+      if (fit.plan.density === 'compact') bits.push('compact spacing');
+      if (!fit.plan.project) bits.push('project entry dropped');
+      note.textContent = `Trimmed to hold two pages — ${bits.join(', ')}.`;
+    }
+    note.hidden = false;
   }
 
   function buildAtsText(d) {
@@ -780,10 +901,7 @@
       tagline.hidden = !data.capabilityTagline;
 
       $('out-lede').textContent = data.summary;
-      renderProblems(data.selectedProblems);
-      renderRoles(data.roles);
       renderDissertation(data.dissertation);
-      renderProject(data.project);
       renderEducation(data.education);
       renderLanguages(data.languages);
       $('out-methods').textContent = (data.methods || []).join(', ');
@@ -792,10 +910,19 @@
       $('row-methodsline').hidden = !data.methodsLine;
       $('out-datestamp').textContent = `Curriculum Vitae · ${formatDateStamp()}`;
       renderKeywords(data);
-      lastTailored = data;
 
+      // Pages must be laid out before heights can be measured.
       generator.hidden = true;
       page1.hidden = false; page2.hidden = false;
+      const fit = fitToTwoPages(data);
+      reportFit(data, fit);
+      lastTailored = {
+        ...data,
+        selectedProblems: (data.selectedProblems || []).slice(0, fit.plan.problems),
+        roles: (data.roles || []).map((r) => ({ ...r, bullets: r.bullets.slice(0, fit.plan.bullets) })),
+        project: fit.plan.project ? data.project : null,
+      };
+
       resultBar.hidden = false; savePanel.hidden = false;
       window.scrollTo(0, 0);
     } catch (err) {
@@ -813,6 +940,7 @@
     page1.hidden = true; page2.hidden = true;
     resultBar.hidden = true; savePanel.hidden = true;
     $('keywords-panel').hidden = true;
+    document.body.dataset.density = '';
     lastTailored = null;
     generator.hidden = false;
   });

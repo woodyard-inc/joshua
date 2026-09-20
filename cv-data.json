@@ -136,7 +136,7 @@
   "project": {
     "title": "Independent Project — Monte Carlo Match Simulator, Wimbledon Men's Draw",
     "year": "2026",
-    "body": "Built player \"fingerprints\" from Jeff Sackmann's 2011–2023 point-by-point data to drive head-to-head win-probability simulations. Browser-based deployment."
+    "body": "Built player \"fingerprints\" from IBM Slam Tracker point-level data (2011–2023) — serve, return and pressure characteristics weighted by recency and opponent quality — then ran them head-to-head through an engine that simulates the match point by point. Calibrated and backtested on 908 matches; browser-based deployment."
   },
 
   "education": [

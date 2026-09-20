@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family:"Helvetica"; src:url("../fonts/Helvetica.woff2") format("woff2"); font-weight:400; }
+  @font-face { font-family:"Helvetica"; src:url("../fonts/Helvetica-Bold.woff2") format("woff2"); font-weight:700; }
+  @font-face { font-family:"National"; src:url("../fonts/NationalCodesUniversal.woff2") format("woff2"); font-weight:700; }
+  @font-face { font-family:"Cormorant Garamond"; src:url("../fonts/CormorantGaramond-Light.woff2") format("woff2"); font-weight:300; }
+
+  :root {
+    --paper:#FFFDF8; --ink:#141414; --ink-soft:#3C3A36; --ink-muted:#8A857B;
+    --cobalt:#002FA7; --signal-green:#00BD00;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1200px; height:627px; overflow:hidden; background:var(--paper); }
+
+  .frame { width:1200px; height:627px; display:grid; grid-template-columns:600px 600px; }
+
+  /* ---- Left: ivory panel ---- */
+  .panel {
+    background:var(--paper); padding:40px 44px 36px;
+    display:flex; flex-direction:column;
+    border-right:1px solid var(--ink);
+  }
+  .micro {
+    font-family:"Helvetica",sans-serif; font-size:11px; font-weight:400;
+    letter-spacing:.24em; text-transform:uppercase; color:var(--ink-muted);
+    display:flex; justify-content:space-between;
+    border-bottom:1px solid var(--ink); padding-bottom:10px;
+  }
+  /* National Codes is a caps-only display face with a small cap-height on the
+     em — it needs a big font-size and a crushed line-height to sit right. */
+  .wordmark {
+    font-family:"National",sans-serif; font-weight:700; text-transform:lowercase;
+    font-size:92px; line-height:.42; color:var(--ink);
+    margin:40px 0 0; letter-spacing:normal;
+  }
+  h1 {
+    font-family:"Helvetica",sans-serif; font-weight:700;
+    font-size:42px; line-height:1.1; letter-spacing:-.022em; color:var(--ink);
+    margin-top:30px;
+  }
+  h1 .c { color:var(--cobalt); }
+  .lede {
+    font-family:"Cormorant Garamond",serif; font-weight:300;
+    font-size:23px; line-height:1.35; color:var(--ink-soft);
+    margin-top:18px; max-width:27ch;
+  }
+  .spacer { flex:1 1 auto; }
+  .work-head {
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:"Helvetica",sans-serif; font-size:10px; letter-spacing:.24em;
+    text-transform:uppercase; color:var(--ink-muted);
+    border-top:1px solid var(--ink); padding-top:11px; margin-bottom:13px;
+  }
+  .work { display:flex; flex-direction:column; gap:12px; }
+  .row {
+    display:grid; grid-template-columns:30px 1fr auto; gap:10px;
+    align-items:baseline;
+  }
+  .row .n, .row .y {
+    font-family:"Helvetica",sans-serif; font-size:10px; letter-spacing:.12em;
+    color:var(--ink-muted);
+  }
+  .row .y { text-align:right; }
+  .row .t {
+    font-family:"Helvetica",sans-serif; font-weight:700; font-size:14px;
+    line-height:1.25; letter-spacing:-.01em; color:var(--ink);
+  }
+  .row .s {
+    font-family:"Helvetica",sans-serif; font-size:10px; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink-soft); margin-top:3px;
+  }
+  /* The green square marks the project the painting belongs to. */
+  .dot {
+    display:inline-block; width:7px; height:7px; background:var(--signal-green);
+    margin-left:7px; vertical-align:baseline;
+  }
+
+  /* ---- Right: painting ---- */
+  .art { position:relative; overflow:hidden; }
+  .art .plate {
+    position:absolute; inset:0;
+    background-image:url("./serve-painting.jpg");
+    background-size:1000px 1000px;          /* 2000px source at 0.5 */
+    background-position:-100px -335.5px;    /* crop x200 y671 at 0.5 */
+    background-repeat:no-repeat;
+  }
+  .art svg { position:absolute; inset:0; }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="panel">
+    <div class="micro"><span>Portfolio</span><span>London</span></div>
+
+    <div class="wordmark">joshua woodyard</div>
+
+    <h1><span class="c">Human behaviour</span>, made&nbsp;measurable.</h1>
+    <p class="lede">Six years turning ambiguous questions into evidence.</p>
+
+    <div class="spacer"></div>
+
+    <div class="work-head"><span>Selected work</span><span>2021 &mdash; 2026</span></div>
+    <div class="work">
+      <div class="row">
+        <span class="n">003</span>
+        <div>
+          <div class="t">What Wins on Grass<span class="dot"></span></div>
+          <div class="s">Monte Carlo simulation · Sports analytics</div>
+        </div>
+        <span class="y">2026</span>
+      </div>
+      <div class="row">
+        <span class="n">002</span>
+        <div>
+          <div class="t">Money can&rsquo;t buy happiness but community can</div>
+          <div class="s">Multivariate research · Behavioural economics</div>
+        </div>
+        <span class="y">2024</span>
+      </div>
+      <div class="row">
+        <span class="n">001</span>
+        <div>
+          <div class="t">Four hundred sales, one afternoon</div>
+          <div class="s">Qualitative + sales data · Retail analytics</div>
+        </div>
+        <span class="y">2021</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="art">
+    <div class="plate"></div>
+    <svg width="600" height="627" viewBox="0 0 600 627" fill="none">
+      <!-- tracking marks: ball reticle + subject box corners. Kept to marks
+           that need no reading of the court — the painting takes liberties
+           with its geometry, so no trajectory is drawn across it. -->
+      <circle cx="349" cy="76" r="17" stroke="#00BD00" stroke-width="2.5" fill="none"/>
+      <path d="M349 49 V 59 M349 93 V 103 M322 76 H 332 M366 76 H 376"
+            stroke="#00BD00" stroke-width="2.5"/>
+      <g stroke="#00BD00" stroke-width="2.5" fill="none">
+        <path d="M220 214 V 190 H 244"/>
+        <path d="M328 190 H 352 V 214"/>
+        <path d="M220 580 V 604 H 244"/>
+        <path d="M328 604 H 352 V 580"/>
+      </g>
+    </svg>
+  </div>
+
+</div>
+</body>
+</html>

@@ -257,7 +257,9 @@ ${JSON.stringify(menu.problems, null, 1)}`;
         ? {
             title: cv.dissertation.title,
             institution: cv.dissertation.institution,
-            result: cv.dissertation.result,
+            // Year, not the mark: the mark is a bullet now, and repeating it
+            // in the row squeezed the title column onto two lines.
+            year: cv.dissertation.year,
             bullets: cv.dissertation.bullets || [cv.dissertation.body].filter(Boolean),
           }
         : null,

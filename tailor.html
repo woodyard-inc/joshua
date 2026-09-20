@@ -749,7 +749,7 @@
     // Dissertation + project
     sec = libSection('Research & projects');
     sec.appendChild(libItem('dissertation.title', cv.dissertation.title));
-    sec.appendChild(libItem('dissertation.result', `${cv.dissertation.institution} · ${cv.dissertation.result}`));
+    sec.appendChild(libItem('dissertation.institution', `${cv.dissertation.institution} · ${cv.dissertation.year}`));
     (cv.dissertation.bullets || []).forEach((b, i) => sec.appendChild(libItem(`dissertation.bullets[${i}]`, b)));
     sec.appendChild(libItem('project.title', `${cv.project.title} (${cv.project.year})`));
     (cv.project.bullets || [cv.project.body].filter(Boolean))
@@ -1054,7 +1054,8 @@
     });
     if (d.dissertation) {
       L.push(''); L.push('RESEARCH');
-      L.push(`${d.dissertation.title} — ${d.dissertation.institution} — ${d.dissertation.result}`);
+      // The mark is a bullet now, so it must not repeat in this header line.
+      L.push(`${d.dissertation.title} — ${d.dissertation.institution} — ${d.dissertation.year || ''}`.trim().replace(/—$/, '').trim());
       (d.dissertation.bullets || []).forEach((b) => L.push(`- ${b}`));
     }
     if (d.project) {

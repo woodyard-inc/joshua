@@ -124,11 +124,9 @@
     "title": "MSc Dissertation — Social Capital & Life Satisfaction",
     "institution": "City St. George's, University of London",
     "year": "2024",
-    "result": "Distinction band, 71%",
     "supervisor": "Dr Anke Plagnol",
-    "supervisorNeedsConfirm": true,
     "bullets": [
-      "Graded 71% — a distinction-band mark — supervised by Dr Anke Plagnol.",
+      "Graded 71%, a distinction-band mark, supervised by Dr Anke Plagnol.",
       "Cross-cultural analysis of 11,249 respondents across five countries, applying an underused ISSP 2017 instrument to test social capital as multi-dimensional.",
       "Methods: PCA construct reduction, MICE imputation (country-grouped), pooled OLS with interaction terms, LSmeans with Tukey correction, and VIF and AIC/BIC model comparison.",
       "Trust in fairness was the only universal cross-cultural predictor of life satisfaction; absolute income showed no significant effect, though subjective financial strain did."

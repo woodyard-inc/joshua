@@ -179,6 +179,35 @@ ${JSON.stringify(menu.problems, null, 1)}`;
       (Array.isArray(pick.roles) ? pick.roles : []).map((r) => [r.id, Array.isArray(r.bulletIds) ? r.bulletIds : []])
     );
 
+    // Dissertation gets its own section on the research track only; on a
+    // commercial CV it appears solely as a Key Achievement (via sp-research).
+    const showDissertation = track === "B";
+
+    // ---- Key achievements, resolved first so roles can be de-duplicated ----
+    const problemById = Object.fromEntries(cv.selectedProblems.map((p) => [p.id, p]));
+    const problemAllowed = (p) =>
+      (peopleScience || !p.demoteUnlessPeopleScience) &&
+      // Never state the dissertation twice: if it has its own section, the
+      // matching achievement is dropped.
+      !(showDissertation && p.mirrorsDissertation);
+
+    let problemIds = (Array.isArray(pick.problemIds) ? pick.problemIds : [])
+      .filter((id) => problemById[id] && problemAllowed(problemById[id]));
+    for (const p of cv.selectedProblems) {
+      if (problemIds.length >= 3) break;
+      if (problemIds.includes(p.id) || !problemAllowed(p)) continue;
+      problemIds.push(p.id);
+    }
+    problemIds = problemIds.slice(0, 5);
+    const selectedProblems = problemIds.map((id) => ({
+      label: `${problemById[id].domain} — ${problemById[id].org}`,
+      text: problemById[id].text,
+    }));
+
+    // Every bullet already stated in the achievements band, so it isn't
+    // repeated verbatim a few lines below.
+    const mirrored = new Set(problemIds.flatMap((id) => problemById[id].mirrors || []));
+
     const roles = cv.roles.map((role) => {
       const byId = Object.fromEntries(role.bullets.map((b) => [b.id, b]));
       const whyFor = Object.fromEntries((role.whyBullets || []).map((w) => [w.replaces, w]));
@@ -188,7 +217,12 @@ ${JSON.stringify(menu.problems, null, 1)}`;
       for (const b of role.bullets) {
         if (b.alwaysKeep && !ids.includes(b.id)) ids.unshift(b.id);
       }
-      if (ids.length === 0) ids = role.bullets.slice(0, 2).map((b) => b.id);
+      // Drop duplicates of the achievements band, but never an alwaysKeep bullet.
+      ids = ids.filter((id) => !mirrored.has(id) || byId[id].alwaysKeep);
+      // Backfill so de-duplication can't strip a role bare.
+      const spare = role.bullets.filter((b) => !ids.includes(b.id) && !mirrored.has(b.id));
+      const floor = Math.min(2, ids.length + spare.length);
+      while (ids.length < floor) ids.push(spare.shift().id);
 
       return {
         id: role.id,
@@ -199,20 +233,6 @@ ${JSON.stringify(menu.problems, null, 1)}`;
         bullets: ids.map((id) => (behavioural && whyFor[id] ? whyFor[id].text : byId[id].text)),
       };
     });
-
-    const problemById = Object.fromEntries(cv.selectedProblems.map((p) => [p.id, p]));
-    let problemIds = (Array.isArray(pick.problemIds) ? pick.problemIds : []).filter((id) => problemById[id]);
-    if (!peopleScience) problemIds = problemIds.filter((id) => !problemById[id].demoteUnlessPeopleScience);
-    for (const p of cv.selectedProblems) {
-      if (problemIds.length >= 3) break;
-      if (problemIds.includes(p.id)) continue;
-      if (!peopleScience && p.demoteUnlessPeopleScience) continue;
-      problemIds.push(p.id);
-    }
-    const selectedProblems = problemIds.slice(0, 5).map((id) => ({
-      label: `${problemById[id].domain} — ${problemById[id].org}`,
-      text: problemById[id].text,
-    }));
 
     const keywords = (Array.isArray(pick.keywords_targeted) ? pick.keywords_targeted : [])
       .filter((k) => typeof k === "string")
@@ -231,14 +251,14 @@ ${JSON.stringify(menu.problems, null, 1)}`;
       methodsLine: behavioural ? cv.positioning.methodsLine : null,
       selectedProblems,
       roles,
-      dissertation: {
-        title: cv.dissertation.title,
-        scale: cv.dissertation.scale,
-        institution: cv.dissertation.institution,
-        result: cv.dissertation.result,
-        body: track === "B" || behavioural ? cv.dissertation.body : cv.dissertation.bodyShort,
-        promote: behavioural,
-      },
+      dissertation: showDissertation
+        ? {
+            title: cv.dissertation.title,
+            institution: cv.dissertation.institution,
+            result: cv.dissertation.result,
+            bullets: cv.dissertation.bullets,
+          }
+        : null,
       project: track === "B" ? cv.project : null,
       education: cv.education,
       languages: cv.languages,

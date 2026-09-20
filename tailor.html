@@ -201,6 +201,8 @@
     font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--ink-muted);
   }
+  /* Footer must never wrap: a long month name used to push the year onto a second line. */
+  .cv-foot span { white-space: nowrap; }
   .cv-foot .c { text-align: center; }
   .cv-foot .r { text-align: right; }
 
@@ -378,7 +380,7 @@
     max-width: none;
   }
 
-  /* Selected problems band */
+  /* Key achievements band */
   .problem-row {
     display: grid; grid-template-columns: 190px 1fr; gap: var(--s-4);
     align-items: baseline; padding: 5px 0;
@@ -540,7 +542,7 @@
   <p class="cv-lede" id="out-lede"></p>
 
   <section class="cv-section" id="sec-problems" hidden>
-    <h2>Selected problems solved</h2>
+    <h2>Key achievements</h2>
     <div id="out-problems"></div>
   </section>
 
@@ -733,11 +735,13 @@
     body.appendChild(sec);
 
     // Selected problems
-    sec = libSection('Selected problems solved');
+    sec = libSection('Key achievements');
     cv.selectedProblems.forEach((p) => {
       const flags = [];
       if (p.optional) flags.push({ label: 'optional' });
       if (p.demoteUnlessPeopleScience) flags.push({ label: 'people-science only' });
+      (p.mirrors || []).forEach((m) => flags.push({ label: 'replaces ' + m, kind: 'why' }));
+      if (p.mirrorsDissertation) flags.push({ label: 'replaced by Research section', kind: 'why' });
       sec.appendChild(libItem(p.id, `${p.domain} (${p.org}) — ${p.text}`, flags));
     });
     body.appendChild(sec);
@@ -745,9 +749,8 @@
     // Dissertation + project
     sec = libSection('Research & projects');
     sec.appendChild(libItem('dissertation.title', cv.dissertation.title));
-    sec.appendChild(libItem('dissertation.result', `${cv.dissertation.institution} · ${cv.dissertation.result} · ${cv.dissertation.scale}`));
-    sec.appendChild(libItem('dissertation.body', cv.dissertation.body));
-    sec.appendChild(libItem('dissertation.bodyShort', cv.dissertation.bodyShort));
+    sec.appendChild(libItem('dissertation.result', `${cv.dissertation.institution} · ${cv.dissertation.result}`));
+    (cv.dissertation.bullets || []).forEach((b, i) => sec.appendChild(libItem(`dissertation.bullets[${i}]`, b)));
     sec.appendChild(libItem('project.title', `${cv.project.title} (${cv.project.year})`));
     sec.appendChild(libItem('project.body', cv.project.body));
     body.appendChild(sec);
@@ -888,6 +891,8 @@
   }
 
   function renderDissertation(d) {
+    $('sec-dissertation').hidden = !d;
+    if (!d) return;
     const box = $('out-dissertation');
     box.innerHTML = '';
     const bar = el('div', 'edu-row');
@@ -895,10 +900,8 @@
     bar.appendChild(el('span', 'school', d.institution));
     bar.appendChild(el('span', 'when', d.result));
     box.appendChild(bar);
-    const ul = el('ul', 'edu-meta');
-    ul.appendChild(el('li', null, d.scale));
-    const body = el('li', 'topics'); body.textContent = d.body;
-    ul.appendChild(body);
+    const ul = el('ul', 'cv-bullets');
+    (d.bullets || []).forEach((b) => ul.appendChild(el('li', null, b)));
     box.appendChild(ul);
   }
 
@@ -1034,7 +1037,7 @@
     if (d.capabilityTagline) { L.push(d.capabilityTagline); L.push(''); }
     L.push(d.summary);
     if (d.selectedProblems && d.selectedProblems.length) {
-      L.push(''); L.push('SELECTED PROBLEMS SOLVED');
+      L.push(''); L.push('KEY ACHIEVEMENTS');
       d.selectedProblems.forEach((p) => L.push(`- ${p.label}: ${p.text}`));
     }
     L.push(''); L.push('EXPERIENCE');
@@ -1043,10 +1046,11 @@
       L.push(`${r.role} — ${r.where} — ${r.when}`);
       r.bullets.forEach((b) => L.push(`- ${b}`));
     });
-    L.push(''); L.push('RESEARCH');
-    L.push(`${d.dissertation.title} (${d.dissertation.scale})`);
-    L.push(`${d.dissertation.institution} · ${d.dissertation.result}`);
-    L.push(d.dissertation.body);
+    if (d.dissertation) {
+      L.push(''); L.push('RESEARCH');
+      L.push(`${d.dissertation.title} — ${d.dissertation.institution} — ${d.dissertation.result}`);
+      (d.dissertation.bullets || []).forEach((b) => L.push(`- ${b}`));
+    }
     if (d.project) {
       L.push(''); L.push('PROJECTS');
       L.push(`${d.project.title} (${d.project.year})`);
@@ -1132,7 +1136,7 @@
       $('out-tools').textContent = (data.tools || []).join(', ');
       $('out-methodsline').textContent = data.methodsLine || '';
       $('row-methodsline').hidden = !data.methodsLine;
-      $('out-datestamp').textContent = `Curriculum Vitae · ${formatDateStamp()}`;
+      $('out-datestamp').textContent = `CV · ${formatDateStamp()}`;
       renderKeywords(data);
 
       // Pages must be laid out before heights can be measured.

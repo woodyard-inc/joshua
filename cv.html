@@ -221,6 +221,8 @@
     font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--ink-muted);
   }
+  /* Footer must never wrap: a long month name used to push the year onto a second line. */
+  .cv-foot span { white-space: nowrap; }
   .cv-foot .c { text-align: center; }
   .cv-foot .r { text-align: right; }
 
@@ -516,7 +518,7 @@
 
   <footer class="cv-foot">
     <span class="l">Joshua Woodyard</span>
-    <span class="c">Curriculum Vitae · July 2026</span>
+    <span class="c">CV · July 2026</span>
     <span class="r"><strong style="color:var(--ink);">2 / 2</strong></span>
   </footer>
 </article>

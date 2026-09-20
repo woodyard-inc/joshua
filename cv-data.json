@@ -123,10 +123,12 @@
   "dissertation": {
     "title": "MSc Dissertation — Social Capital & Life Satisfaction",
     "institution": "City St. George's, University of London",
-    "result": "First-class honours, 71%",
+    "year": "2024",
+    "result": "Distinction band, 71%",
     "supervisor": "Dr Anke Plagnol",
     "supervisorNeedsConfirm": true,
     "bullets": [
+      "Graded 71% — a distinction-band mark — supervised by Dr Anke Plagnol.",
       "Cross-cultural analysis of 11,249 respondents across five countries, applying an underused ISSP 2017 instrument to test social capital as multi-dimensional.",
       "Methods: PCA construct reduction, MICE imputation (country-grouped), pooled OLS with interaction terms, LSmeans with Tukey correction, and VIF and AIC/BIC model comparison.",
       "Trust in fairness was the only universal cross-cultural predictor of life satisfaction; absolute income showed no significant effect, though subjective financial strain did."
@@ -134,9 +136,13 @@
   },
 
   "project": {
-    "title": "Independent Project — Monte Carlo Match Simulator, Wimbledon Men's Draw",
+    "title": "Wimbledon Men's Draw, Monte Carlo Match Simulator — Independent Project",
     "year": "2026",
-    "body": "Built player \"fingerprints\" from IBM Slam Tracker point-level data (2011–2023) — serve, return and pressure characteristics weighted by recency and opponent quality — then ran them head-to-head through an engine that simulates the match point by point. Calibrated and backtested on 908 matches; browser-based deployment."
+    "bullets": [
+      "A head-to-head prediction engine that plays a match out one point at a time, built on IBM Slam Tracker data — roughly 48,000 points a season across 2011–2023.",
+      "Every player carries a profile page built only from their own record: serve, return and under-pressure characteristics — how unpredictably they serve, how they hold at break point, how they fade across sets — weighted by recency and opponent quality.",
+      "Two profiles are then run against each other thousands of times. Backtested on 908 matches, each season predicted from prior seasons only."
+    ]
   },
 
   "education": [

@@ -109,7 +109,7 @@
   .cv-bullets { list-style: none; padding: 0; margin: 4px 0 8px; }
   .cv-bullets li {
     font-family: var(--font-body); font-weight: 300;
-    font-size: 12px; line-height: 1.35;
+    font-size: 13px; line-height: 1.4;
     color: var(--ink);
     padding-left: 1.1em;
     position: relative;
@@ -152,8 +152,8 @@
   }
   .edu-meta { list-style: none; padding: 0; margin: 2px 0 6px; }
   .edu-meta li {
-    font-family: var(--font-body); font-weight: 300; font-size: 11.5px;
-    line-height: 1.35; color: var(--ink);
+    font-family: var(--font-body); font-weight: 300; font-size: 12.5px;
+    line-height: 1.4; color: var(--ink);
     padding-left: 1.1em; position: relative; margin-bottom: 1px;
     max-width: none; text-wrap: unset;
   }
@@ -163,7 +163,7 @@
   }
   .edu-meta .topics {
     padding-left: 0; color: var(--ink-soft); font-style: italic;
-    font-size: 11.5px; margin-top: 4px;
+    font-size: 12.5px; margin-top: 4px;
   }
   .edu-meta .topics::before { content: ""; }
   .edu-meta .topics b { font-family: var(--font-sans); font-weight: 700; font-style: normal;
@@ -182,7 +182,7 @@
     color: var(--ink-soft); padding-top: 2px;
   }
   .twocol .v {
-    font-family: var(--font-body); font-weight: 300; font-size: 12.5px; line-height: 1.45;
+    font-family: var(--font-body); font-weight: 300; font-size: 13px; line-height: 1.45;
     color: var(--ink); max-width: none; text-wrap: unset;
   }
   .twocol .v .lang { display: inline-block; margin-right: 16px; }
@@ -221,15 +221,15 @@
   /* Compact density — engaged automatically by the two-page auto-fit when a
      tailored CV would otherwise spill onto a third sheet. */
   body[data-density="compact"] .cv-lede { font-size: 12.5px; line-height: 1.4; }
-  body[data-density="compact"] .cv-bullets li { font-size: 11.5px; line-height: 1.28; margin-bottom: 1px; }
+  body[data-density="compact"] .cv-bullets li { font-size: 12px; line-height: 1.32; margin-bottom: 1px; }
   body[data-density="compact"] .role-bar { padding: 7px 0 2px; }
   body[data-density="compact"] .edu-row { padding: 7px 0 2px; }
-  body[data-density="compact"] .edu-meta li { font-size: 11px; line-height: 1.28; }
+  body[data-density="compact"] .edu-meta li { font-size: 11.5px; line-height: 1.32; }
   body[data-density="compact"] .cv-section { margin-top: 11px; }
   body[data-density="compact"] .problem-row { padding: 3px 0; }
-  body[data-density="compact"] .problem-row .p-text { font-size: 11.5px; line-height: 1.28; }
+  body[data-density="compact"] .problem-row .p-text { font-size: 12px; line-height: 1.32; }
   body[data-density="compact"] .twocol { padding: 4px 0; }
-  body[data-density="compact"] .twocol .v { font-size: 12px; line-height: 1.38; }
+  body[data-density="compact"] .twocol .v { font-size: 12.5px; line-height: 1.38; }
 
   /* ---- Gate + generator UI (not part of the printed CV) ---- */
   .tool-shell { max-width: 8.5in; margin: 0 auto var(--s-6); }
@@ -392,8 +392,8 @@
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
   }
   .problem-row .p-text {
-    font-family: var(--font-body); font-weight: 300; font-size: 12px;
-    line-height: 1.35; color: var(--ink);
+    font-family: var(--font-body); font-weight: 300; font-size: 13px;
+    line-height: 1.4; color: var(--ink);
   }
   .tool-bar button.link {
     background: none; border: none; padding: 0; cursor: pointer;
@@ -752,7 +752,8 @@
     sec.appendChild(libItem('dissertation.result', `${cv.dissertation.institution} · ${cv.dissertation.result}`));
     (cv.dissertation.bullets || []).forEach((b, i) => sec.appendChild(libItem(`dissertation.bullets[${i}]`, b)));
     sec.appendChild(libItem('project.title', `${cv.project.title} (${cv.project.year})`));
-    sec.appendChild(libItem('project.body', cv.project.body));
+    (cv.project.bullets || [cv.project.body].filter(Boolean))
+      .forEach((b, i) => sec.appendChild(libItem(`project.bullets[${i}]`, b)));
     body.appendChild(sec);
 
     // Education
@@ -898,7 +899,10 @@
     const bar = el('div', 'edu-row');
     bar.appendChild(el('span', 'degree', d.title));
     bar.appendChild(el('span', 'school', d.institution));
-    bar.appendChild(el('span', 'when', d.result));
+    // The mark lives in a bullet, not up here — carrying it in the third
+    // column squeezed the title column enough to wrap the title onto two
+    // lines. Fall back to it if an older corpus has no year.
+    bar.appendChild(el('span', 'when', d.year || d.result));
     box.appendChild(bar);
     const ul = el('ul', 'cv-bullets');
     (d.bullets || []).forEach((b) => ul.appendChild(el('li', null, b)));
@@ -915,9 +919,11 @@
     bar.appendChild(el('span', 'school', ''));
     bar.appendChild(el('span', 'when', p.year));
     box.appendChild(bar);
-    const ul = el('ul', 'edu-meta');
-    const body = el('li', 'topics'); body.textContent = p.body;
-    ul.appendChild(body);
+    // Bullets, to match every other entry. Tolerates the older single-body
+    // shape in case a cached corpus is served.
+    const items = p.bullets || [p.body].filter(Boolean);
+    const ul = el('ul', 'cv-bullets');
+    items.forEach((b) => ul.appendChild(el('li', null, b)));
     box.appendChild(ul);
   }
 
@@ -1054,7 +1060,7 @@
     if (d.project) {
       L.push(''); L.push('PROJECTS');
       L.push(`${d.project.title} (${d.project.year})`);
-      L.push(d.project.body);
+      (d.project.bullets || [d.project.body].filter(Boolean)).forEach((b) => L.push(`- ${b}`));
     }
     L.push(''); L.push('EDUCATION');
     (d.education || []).forEach((e) => {

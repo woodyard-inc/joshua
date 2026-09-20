@@ -71,6 +71,12 @@
   --forest:        #01482A;   /* Wimbledon grass green */
   --forest-mid:    #025E36;   /* lighter grass */
   --terracotta:    #D35220;   /* warm complementary accent */
+  /* Signal green — the overlay accent on the portfolio share image, sampled
+     from the artwork itself. Chosen to sit against the painting's clay and
+     dusk tones rather than against paper, so it is deliberately brighter and
+     more saturated than --forest. Use it for marks laid over imagery, not for
+     type or UI on a paper background, where --cobalt remains the accent. */
+  --signal-green:  #00BD00;   /* overlay accent on imagery */
 
   /* Data-viz palette — all in-key. Use IN THIS ORDER. */
   --viz-1: #002FA7;  /* cobalt */

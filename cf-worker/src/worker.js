@@ -179,9 +179,11 @@ ${JSON.stringify(menu.problems, null, 1)}`;
       (Array.isArray(pick.roles) ? pick.roles : []).map((r) => [r.id, Array.isArray(r.bulletIds) ? r.bulletIds : []])
     );
 
-    // Dissertation gets its own section on the research track only; on a
-    // commercial CV it appears solely as a Key Achievement (via sp-research).
-    const showDissertation = track === "B";
+    // Dissertation gets its own section on the research track, and on any role
+    // whose core question is why people behave as they do — it's the strongest
+    // evidence of exactly that, even when the track is otherwise commercial.
+    // On a purely commercial CV it appears solely as a Key Achievement.
+    const showDissertation = track === "B" || behavioural;
 
     // ---- Key achievements, resolved first so roles can be de-duplicated ----
     const problemById = Object.fromEntries(cv.selectedProblems.map((p) => [p.id, p]));

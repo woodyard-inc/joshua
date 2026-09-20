@@ -256,7 +256,7 @@ ${JSON.stringify(menu.problems, null, 1)}`;
             title: cv.dissertation.title,
             institution: cv.dissertation.institution,
             result: cv.dissertation.result,
-            bullets: cv.dissertation.bullets,
+            bullets: cv.dissertation.bullets || [cv.dissertation.body].filter(Boolean),
           }
         : null,
       project: track === "B" ? cv.project : null,

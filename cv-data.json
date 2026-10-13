@@ -12,7 +12,7 @@
   },
 
   "summaries": {
-    "master": "Analytics strategist and behavioural researcher with 6+ years building data infrastructure, governance, and insight functions for global organisations — most recently owning BI delivery for a newly created talent intelligence function at Publicis Groupe. Proven track record standardising practices across large divisions and translating complex data into strategic insight for audiences ranging from C-suite to entry-level staff. Academically specialised in behavioural economics (MSc) and marketing science (BSc). Targeting analytics leadership, behavioural insight, or research roles where human-centred data shapes product or policy decisions.",
+    "master": "Behavioural and market analyst with 6+ years of experience across telecom, QSR, retail, media and workforce analytics. Finds what is actually driving customer and business results, using experimental design, econometrics and behavioural research, and turns it into recommendations stakeholders act on. MSc Behavioural Economics (City St George's, University of London). Hands-on with SQL (T-SQL), Python, R, Snowflake, Nielsen, Mintel and Kantar.",
     "trackA": "Behavioural and market analyst with 6+ years applying statistical method across telecom, QSR, retail, media, and workforce. Specialises in learning an unfamiliar domain quickly, finding what is actually driving results, and turning it into recommendations a room can act on. Grounded in behavioural economics (MSc, City St George's) and marketing science (BSc), with the technical range to build whatever infrastructure the analysis requires.",
     "trackB": "Applied behavioural researcher with 6+ years designing and executing quantitative studies under real organisational constraints. MSc Behavioural Economics (City St George's), with a first-class dissertation applying multivariate methods to 11,249 respondents across five countries. Experienced across the full research pipeline, from study and experimental design through imputation, construct reduction, and regression modelling, and in reporting findings and their limitations to non-specialist audiences."
   },
@@ -20,8 +20,8 @@
   "roles": [
     {
       "id": "publicis",
-      "title": "Sr. Executive — Data & Insights",
-      "titlePeopleScience": "Sr. Executive — Data & Insights (Talent)",
+      "title": "Senior Executive — Data & Insights",
+      "titlePeopleScience": "Senior Executive — Data & Insights (Talent)",
       "company": "Publicis Groupe",
       "where": "London, UK",
       "when": "Jul 2025 – Current",
@@ -39,6 +39,21 @@
       ]
     },
     {
+      "id": "horizon-bi",
+      "title": "Senior Analyst — Analytics BI",
+      "company": "Horizon Media",
+      "where": "New York City, US",
+      "when": "Jan 2022 – Sept 2023",
+      "bullets": [
+        { "id": "hbi-practice", "text": "Co-designed standardised practice for a 129-person division and trained analysts and managers, embedding a repeatable methodology for insight generation." },
+        { "id": "hbi-runtime", "text": "Cut reporting runtime by 13% while improving data quality, freeing analyst time from production toward strategic analysis." },
+        { "id": "hbi-spend", "text": "Consulted on both new and pre-existing clients with spend in the hundreds of millions." },
+        { "id": "hbi-tableau", "text": "Built, updated, and maintained Tableau dashboards and visualisation products for clients." },
+        { "id": "hbi-panel", "text": "Worked on an interview panel dedicated to identifying new analysts for the department and navigated conflicts arising due to candidate preference." }
+      ],
+      "whyBullets": []
+    },
+    {
       "id": "uniqlo",
       "title": "Freelance Researcher (Part-time)",
       "company": "UNIQLO",
@@ -54,28 +69,14 @@
       ]
     },
     {
-      "id": "horizon-bi",
-      "title": "Sr. Analyst — Analytics BI",
-      "company": "Horizon Media",
-      "where": "New York City, US",
-      "when": "Jan 2022 – Sept 2023",
-      "bullets": [
-        { "id": "hbi-practice", "text": "Co-designed standardised practice for a 129-person division and trained analysts and managers, embedding a repeatable methodology for insight generation." },
-        { "id": "hbi-runtime", "text": "Cut reporting runtime by 13% while improving data quality, freeing analyst time from production toward strategic analysis." },
-        { "id": "hbi-spend", "text": "Consulted on both new and pre-existing clients with spend in the hundreds of millions." },
-        { "id": "hbi-tableau", "text": "Built, updated, and maintained Tableau dashboards and visualisation products for clients." },
-        { "id": "hbi-panel", "text": "Worked on an interview panel dedicated to identifying new analysts for the department and navigated conflicts arising due to candidate preference." }
-      ],
-      "whyBullets": []
-    },
-    {
       "id": "petco",
-      "title": "Sr. Analyst — Petco",
+      "title": "Senior Analyst — Petco",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Jul 2020 – Jan 2022",
       "bullets": [
-        { "id": "pet-etl", "text": "Maintained ETL pipelines processing 10,000+ weekly rows (Knime, Snowflake) underpinning multi-channel media reporting for a nine-figure retail client." },
+        { "id": "pet-nielsen", "text": "Reported in-demo audience delivery % against plan using Nielsen data across multi-channel media buys." },
+        { "id": "pet-etl", "text": "Maintained ETL pipelines in SQL (T-SQL), Knime and Snowflake processing 10,000+ rows weekly, underpinning multi-channel media reporting for a nine-figure retail client." },
         { "id": "pet-vendor", "text": "Led vendor relationships and communicated requirements for accurate reporting. Revised processes, reports, and dashboards to accommodate internal team and client needs." }
       ],
       "whyBullets": []
@@ -87,7 +88,7 @@
       "where": "New York City, US",
       "when": "Dec 2019 – Jul 2020",
       "bullets": [
-        { "id": "spr-synth", "text": "Synthesised fragmented campaign data into performance narratives that informed budget allocation in competitive telecom." },
+        { "id": "spr-synth", "text": "Synthesised fragmented campaign data using SQL into performance narratives that informed budget allocation in competitive telecom." },
         { "id": "spr-kantar", "text": "Partnered with Kantar on brand-lift studies and A/B creative tests during a brand relaunch (experimental design, control/exposed comparison), converting results into forward-looking strategy." },
         { "id": "spr-pca", "text": "Collaborated with non-analytics teams to create Post-Campaign Analysis (PCA) reports easily digestible for all." }
       ],
@@ -102,6 +103,8 @@
       "where": "New York City, US",
       "when": "Apr 2019 – Dec 2019",
       "bullets": [
+        { "id": "dun-mintel", "text": "Built a competitive analysis of the QSR segment using Mintel research to inform market strategy." },
+        { "id": "dun-mixplanning", "text": "Applied media mix planning and media research tools (MRI-Simmons, Comscore) to inform channel and budget allocation across Dunkin' markets." },
         { "id": "dun-competitive", "text": "Ran competitive analysis across 40+ markets to identify efficient market entry and share-gain opportunities." },
         { "id": "dun-recs", "text": "Delivered media recommendations that grew sales while cutting costs by tens of thousands." },
         { "id": "dun-ops", "text": "Managed day-to-day media operations including creative trafficking, vendor coordination, plan restructuring, and budget tracking across the busiest Dunkin' markets." }
@@ -114,7 +117,7 @@
 
   "selectedProblems": [
     { "id": "sp-retail", "domain": "Retail", "org": "UNIQLO", "mirrors": ["uni-basket"], "text": "Uncovered a 0.90+ basket correlation across an eight-store sales investigation and turned it into a floor-planning change that moved 40,000+ units through the late-summer tail." },
-    { "id": "sp-qsr", "domain": "QSR / media", "org": "Dunkin', Publicis Media", "mirrors": ["dun-competitive", "dun-recs"], "text": "Competitive analysis across 40+ markets that grew sales while cutting costs by tens of thousands, using syndicated research and market-entry modelling." },
+    { "id": "sp-qsr", "domain": "QSR / media", "org": "Dunkin', Publicis Media", "mirrors": ["dun-competitive", "dun-recs"], "text": "Competitive analysis across 40+ markets that grew sales while cutting costs by tens of thousands, using Mintel research and market-entry modelling." },
     { "id": "sp-measurement", "domain": "Media measurement", "org": "Horizon Media", "mirrors": ["hbi-runtime"], "text": "Redesigned automated data processes to cut reporting runtime by 13% while improving data quality for a nine-figure retail client." },
     { "id": "sp-research", "domain": "Behavioural research", "org": "MSc dissertation", "mirrorsDissertation": true, "text": "Multivariate cross-cultural analysis of 11,249 respondents; identified trust in fairness as the only universal predictor of life satisfaction across five countries, income as non-significant." },
     { "id": "sp-workforce", "domain": "Workforce", "org": "Publicis Groupe", "optional": true, "demoteUnlessPeopleScience": true, "mirrors": ["pub-stalled"], "text": "Built a behavioural-analytics function from scratch across 40+ markets with no predefined scope; flagged operational risk before it escalated." }
@@ -146,35 +149,29 @@
   "education": [
     { "degree": "MSc Behavioural Economics", "school": "City St. George's, University of London", "when": "Sept 2023 – Sept 2024", "meta": ["Graduated with Merit; 67%"], "topics": "Experimental Economics, Game Theory, Cognitive Psychology, Decision Making, Econometrics, Research Methods" },
     { "degree": "BSc Marketing", "school": "DePaul University", "when": "Sept 2015 – Dec 2018", "meta": ["Graduated early with Merit; 3.6 / 4.0", "Minors in German and International Business"], "topics": "Market Research, Predictive Modelling, Psychology, Statistics, Economics, German" },
-    { "degree": "Exchange Programme", "school": "Universität Bonn", "when": "Mar 2017 – Aug 2017", "meta": [], "topics": "German Language; Economy and Trade" },
-    { "degree": "Summer Courses (Postponed)", "school": "London School of Economics and Political Science", "when": "TBD", "meta": [], "topics": "Developmental Economics; Machine Learning" }
+    { "degree": "Exchange Programme", "school": "Universität Bonn", "when": "Mar 2017 – Aug 2017", "meta": [], "topics": "German Language; Economy and Trade" }
   ],
 
   "languages": [
     { "name": "English", "level": "C2" },
     { "name": "German", "level": "B2" },
     { "name": "French", "level": "B2" },
-    { "name": "Cantonese", "level": "spoken only" }
+    { "name": "Cantonese", "level": "spoken" }
   ],
 
-  "methods": [
-    "Experimental design", "A/B testing", "predictive modelling and econometrics",
-    "user research", "behavioural analysis", "research synthesis",
-    "strategic recommendations", "data infrastructure design", "stakeholder discovery",
-    "strategic advisory", "ETL / data pipelines", "dashboard design",
-    "cross-functional training and development"
+  "skills": [
+    { "id": "stats",       "label": "Statistics & modelling",     "text": "Python, R, SPSS; experimental design, A/B testing, predictive modelling, econometrics, multivariate analysis" },
+    { "id": "research",    "label": "Research & market data",     "text": "Nielsen (audience delivery), Mintel, Kantar (brand-lift studies), MRI-Simmons, Comscore; survey research, user research, behavioural analysis, research synthesis" },
+    { "id": "platforms",   "label": "Data platforms",             "text": "SQL (T-SQL), Snowflake, Knime, Alteryx; ETL pipeline design, data modelling, data governance" },
+    { "id": "viz",         "label": "Visualisation & reporting",  "text": "Tableau, Power BI (DAX, Power Query), dashboard design, executive reporting" },
+    { "id": "ai",          "label": "AI tools",                   "text": "ChatGPT, Claude, Claude Code, Microsoft Copilot" },
+    { "id": "stakeholder", "label": "Stakeholder work",           "text": "strategic recommendations, stakeholder discovery, workshop and training delivery, vendor management" }
   ],
 
-  "methodsTrackB": [
-    "Experimental design", "PCA / factor analysis", "MICE imputation",
-    "OLS / regression with interaction terms", "A/B testing",
-    "predictive modelling and econometrics", "behavioural analysis",
-    "research synthesis", "user research", "stakeholder discovery"
-  ],
-
-  "tools": {
-    "master": ["SQL", "R", "Python", "Power Query", "Power BI (DAX)", "Tableau", "Command Line", "Knime", "Alteryx", "SPSS"],
-    "trackA": ["SQL", "Python", "R", "Tableau", "Power BI (DAX)", "Power Query", "Knime", "Alteryx", "SPSS"],
-    "trackB": ["R (mice, lsmeans, emmeans, car)", "Python", "SQL", "SPSS", "Tableau", "Power BI (DAX)"]
+  "_skillOrder": {
+    "_note": "Track orders for the tailored variant. Categories are reordered, never rewritten.",
+    "master": ["stats", "research", "platforms", "viz", "ai", "stakeholder"],
+    "trackA": ["platforms", "viz", "stats", "research", "stakeholder", "ai"],
+    "trackB": ["stats", "research", "platforms", "viz", "stakeholder", "ai"]
   }
 }

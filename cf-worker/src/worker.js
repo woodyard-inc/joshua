@@ -47,6 +47,16 @@ function buildMenu(cv) {
   };
 }
 
+function orderedSkills(cv, track) {
+  const all = cv.skills || [];
+  const order = (cv._skillOrder || {})[track === "B" ? "trackB" : "trackA"];
+  if (!order) return all;
+  const byId = Object.fromEntries(all.map((c) => [c.id, c]));
+  const picked = order.map((id) => byId[id]).filter(Boolean);
+  const rest = all.filter((c) => !order.includes(c.id));
+  return [...picked, ...rest];
+}
+
 export default {
   async fetch(request, env) {
     const origin = request.headers.get("Origin") || "";
@@ -266,8 +276,10 @@ ${JSON.stringify(menu.problems, null, 1)}`;
       project: track === "B" ? cv.project : null,
       education: cv.education,
       languages: cv.languages,
-      methods: track === "B" ? cv.methodsTrackB : cv.methods,
-      tools: track === "B" ? cv.tools.trackB : cv.tools.trackA,
+      // Skill categories, reordered per track. The category text itself is
+      // never rewritten — only the order changes — so the same guarantee that
+      // covers bullets covers skills.
+      skills: orderedSkills(cv, track),
     }, 200, headers);
   },
 };

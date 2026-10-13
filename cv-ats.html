@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Joshua Woodyard CV</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<style>
+  /* ATS variant. Deliberately plain: no custom webfonts (their ToUnicode
+     tables are where ligatures get mangled on extraction), no grid, no flex,
+     no tables, no absolutely positioned bullet glyphs. Everything is ordinary
+     block flow so a parser reads it in the order it is written. The designed
+     CV at cv.html is untouched and remains the one to look at. */
+  @page { margin: 0.6in 0.7in; }
+
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11pt;
+    line-height: 1.38;
+    color: #000;
+    background: #fff;
+    margin: 0 auto;
+    padding: 0.6in 0.7in;
+    max-width: 7.1in;
+    /* No justification and no hyphenation: both can split words across lines
+       in ways that survive into the extracted text. */
+    text-align: left;
+    hyphens: none;
+    -webkit-hyphens: none;
+    font-variant-ligatures: none;
+  }
+
+  h1 {
+    font-size: 16pt;
+    font-weight: bold;
+    letter-spacing: normal;
+    text-transform: none;
+    margin: 0 0 4pt;
+  }
+
+  h2 {
+    font-size: 12pt;
+    font-weight: bold;
+    letter-spacing: normal;
+    text-transform: none;
+    margin: 16pt 0 6pt;
+    border-bottom: 1px solid #000;
+    padding-bottom: 2pt;
+  }
+
+  p { margin: 0 0 8pt; }
+
+  .contact { margin: 0 0 4pt; }
+
+  /* Role header: two plain lines, then the list, with nothing between them. */
+  .role { margin-top: 11pt; }
+  .role-title { font-weight: bold; margin: 0; }
+  .role-meta  { margin: 0 0 3pt; }
+
+  ul { margin: 0 0 8pt; padding-left: 20pt; }
+  li { margin: 0 0 3pt; }
+
+  /* Keep a role's heading lines with its first bullets when a page breaks. */
+  .role, .edu { break-inside: avoid; page-break-inside: avoid; }
+
+  /* A line broken at an existing hyphen ("MRI-Simmons") is rejoined by text
+     extractors without the hyphen, producing "MRISimmons". Hyphenated tokens
+     are therefore held together on one line. */
+  .nb { white-space: nowrap; }
+
+  .loading { color: #666; }
+
+  @media print {
+    body { padding: 0; max-width: none; }
+    .screen-note { display: none; }
+  }
+
+  .screen-note {
+    margin: 0 0 18pt;
+    padding: 8pt 10pt;
+    border: 1px solid #999;
+    font-size: 9pt;
+    color: #444;
+  }
+</style>
+</head>
+<body>
+
+<div class="screen-note">
+  ATS variant &mdash; plain single-column rendering of the same master data
+  (<code>cv-data.json</code>). Print to PDF for submission. The designed CV is
+  at <a href="cv.html">cv.html</a>. This note does not print.
+</div>
+
+<div id="cv"><p class="loading">Loading&hellip;</p></div>
+
+<script>
+(function () {
+  var CONTACT = [
+    'N7, London, England',
+    'woodyardjoshuae@gmail.com',
+    '+44 7714 350869',
+    'linkedin.com/in/joshua-woodyard'
+  ];
+
+  // Key Achievements on the master CV: the domain-spanning ones. The workforce
+  // entry is flagged in the data as people-science-only, so it is left to the
+  // tailored variant rather than shown here by default.
+  function achievementsFor(cv) {
+    return (cv.selectedProblems || []).filter(function (p) {
+      return !p.optional && !p.demoteUnlessPeopleScience;
+    });
+  }
+
+  function setText(node, text) {
+    var esc = String(text)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    node.innerHTML = esc.replace(/\S*\w-\w\S*/g, function (m) {
+      return '<span class="nb">' + m + '</span>';
+    });
+  }
+
+  function el(tag, text, cls) {
+    var n = document.createElement(tag);
+    if (text != null) setText(n, text);
+    if (cls) n.className = cls;
+    return n;
+  }
+
+  function list(items) {
+    var ul = document.createElement('ul');
+    items.forEach(function (t) { ul.appendChild(el('li', t)); });
+    return ul;
+  }
+
+  function section(root, heading) {
+    root.appendChild(el('h2', heading));
+  }
+
+  function render(cv) {
+    var root = document.getElementById('cv');
+    root.innerHTML = '';
+
+    root.appendChild(el('h1', 'Joshua Woodyard'));
+    root.appendChild(el('p', CONTACT.join(' | '), 'contact'));
+
+    section(root, 'Profile');
+    root.appendChild(el('p', cv.summaries.master));
+
+    section(root, 'Key Achievements');
+    root.appendChild(list(achievementsFor(cv).map(function (p) {
+      return p.domain + ': ' + p.text;
+    })));
+
+    section(root, 'Experience');
+    (cv.roles || []).forEach(function (r) {
+      var block = el('div', null, 'role');
+      block.appendChild(el('p', r.title + ', ' + r.company, 'role-title'));
+      block.appendChild(el('p', r.where + ' | ' + r.when, 'role-meta'));
+      block.appendChild(list((r.bullets || []).map(function (b) { return b.text; })));
+      root.appendChild(block);
+    });
+
+    section(root, 'Education');
+    (cv.education || []).forEach(function (e) {
+      var block = el('div', null, 'edu');
+      block.appendChild(el('p', e.degree + ', ' + e.school, 'role-title'));
+      block.appendChild(el('p', e.when, 'role-meta'));
+      var items = (e.meta || []).slice();
+      if (e.topics) items.push('Topics: ' + e.topics);
+      if (items.length) block.appendChild(list(items));
+      root.appendChild(block);
+    });
+
+    section(root, 'Skills & Tools');
+    var order = (cv._skillOrder && cv._skillOrder.master) || null;
+    var byId = {};
+    (cv.skills || []).forEach(function (s) { byId[s.id] = s; });
+    var ordered = order ? order.map(function (id) { return byId[id]; }).filter(Boolean)
+                        : (cv.skills || []);
+    root.appendChild(list(ordered.map(function (s) {
+      return s.label + ': ' + s.text;
+    })));
+
+    section(root, 'Languages');
+    root.appendChild(el('p', (cv.languages || []).map(function (l) {
+      return l.name + ' (' + l.level + ')';
+    }).join(' | ')));
+
+    document.title = 'Joshua Woodyard CV';
+  }
+
+  fetch('cv-data.json', { cache: 'no-store' })
+    .then(function (r) {
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(render)
+    .catch(function (err) {
+      document.getElementById('cv').innerHTML =
+        '<p class="loading">Could not load cv-data.json (' + err.message +
+        '). Serve this page over http:// rather than opening the file directly.</p>';
+    });
+})();
+</script>
+</body>
+</html>

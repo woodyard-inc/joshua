@@ -607,14 +607,7 @@
       <span class="k">Approach</span>
       <div class="v" id="out-methodsline"></div>
     </div>
-    <div class="twocol">
-      <span class="k">Methods &amp; Expertise</span>
-      <div class="v" id="out-methods"></div>
-    </div>
-    <div class="twocol">
-      <span class="k">Languages &amp; Tools</span>
-      <div class="v" id="out-tools"></div>
-    </div>
+    <div id="out-skills"></div>
   </section>
 
   <footer class="cv-foot">
@@ -766,11 +759,12 @@
     body.appendChild(sec);
 
     // Skills
-    sec = libSection('Languages, methods & tools');
+    sec = libSection('Languages & skills');
     sec.appendChild(libItem('languages', cv.languages.map((l) => `${l.name} (${l.level})`).join(', ')));
-    sec.appendChild(libItem('methods', cv.methods.join(', ')));
-    sec.appendChild(libItem('methodsTrackB', cv.methodsTrackB.join(', ')));
-    Object.entries(cv.tools).forEach(([k, v]) => sec.appendChild(libItem('tools.' + k, v.join(', '))));
+    (cv.skills || []).forEach((c) => sec.appendChild(libItem('skills.' + c.id, `${c.label}: ${c.text}`)));
+    Object.entries(cv._skillOrder || {})
+      .filter(([k]) => !k.startsWith('_'))
+      .forEach(([k, v]) => sec.appendChild(libItem('_skillOrder.' + k, v.join(' → '))));
     body.appendChild(sec);
 
     libLoaded = true;
@@ -927,6 +921,19 @@
     box.appendChild(ul);
   }
 
+  // One row per skill category. The Worker decides the order; the categories
+  // themselves are never rewritten, so nothing unapproved can reach the page.
+  function renderSkills(skills) {
+    const box = $('out-skills');
+    box.innerHTML = '';
+    (skills || []).forEach((c) => {
+      const row = el('div', 'twocol');
+      row.appendChild(el('span', 'k', c.label));
+      row.appendChild(el('div', 'v', c.text));
+      box.appendChild(row);
+    });
+  }
+
   function renderEducation(items) {
     const box = $('out-education');
     box.innerHTML = '';
@@ -1073,10 +1080,8 @@
     L.push(''); L.push('LANGUAGES');
     L.push((d.languages || []).map((l) => `${l.name} (${l.level})`).join(', '));
     if (d.methodsLine) { L.push(''); L.push('APPROACH'); L.push(d.methodsLine); }
-    L.push(''); L.push('METHODS & EXPERTISE');
-    L.push((d.methods || []).join(', '));
-    L.push(''); L.push('TOOLS');
-    L.push((d.tools || []).join(', '));
+    L.push(''); L.push('SKILLS & TOOLS');
+    (d.skills || []).forEach((c) => L.push(`${c.label}: ${c.text}`));
     return L.join('\n');
   }
 
@@ -1139,8 +1144,7 @@
       renderDissertation(data.dissertation);
       renderEducation(data.education);
       renderLanguages(data.languages);
-      $('out-methods').textContent = (data.methods || []).join(', ');
-      $('out-tools').textContent = (data.tools || []).join(', ');
+      renderSkills(data.skills);
       $('out-methodsline').textContent = data.methodsLine || '';
       $('row-methodsline').hidden = !data.methodsLine;
       $('out-datestamp').textContent = `CV · ${formatDateStamp()}`;

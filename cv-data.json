@@ -88,7 +88,7 @@
       "where": "New York City, US",
       "when": "Dec 2019 – Jul 2020",
       "bullets": [
-        { "id": "spr-synth", "text": "Synthesised fragmented campaign data using SQL into performance narratives that informed budget allocation in competitive telecom." },
+        { "id": "spr-synth", "text": "Consolidated several vendor feeds, tracking methods and data sources into a single set in SQL, then built the reporting and performance narratives that informed budget allocation in competitive telecom." },
         { "id": "spr-kantar", "text": "Partnered with Kantar on brand-lift studies and A/B creative tests during a brand relaunch (experimental design, control/exposed comparison), converting results into forward-looking strategy." },
         { "id": "spr-pca", "text": "Collaborated with non-analytics teams to create Post-Campaign Analysis (PCA) reports easily digestible for all." }
       ],
@@ -103,9 +103,8 @@
       "where": "New York City, US",
       "when": "Apr 2019 – Dec 2019",
       "bullets": [
-        { "id": "dun-mintel", "text": "Built a competitive analysis of the QSR segment using Mintel research to inform market strategy." },
         { "id": "dun-mixplanning", "text": "Applied media mix planning and media research tools (MRI-Simmons, Comscore) to inform channel and budget allocation across Dunkin' markets." },
-        { "id": "dun-competitive", "text": "Ran competitive analysis across the New England and Midwest markets, including Boston and Chicago, two of the brand's most important, to identify efficient market entry and share-gain opportunities." },
+        { "id": "dun-competitive", "text": "Built a competitive analysis of the QSR segment using Mintel research across the New England and Midwest markets, including Boston and Chicago, to identify efficient market entry and share-gain opportunities." },
         { "id": "dun-recs", "text": "Delivered media recommendations that grew sales while cutting costs by tens of thousands." },
         { "id": "dun-ops", "text": "Managed day-to-day media operations including creative trafficking, vendor coordination, plan restructuring, and budget tracking across the busiest Dunkin' markets." }
       ],

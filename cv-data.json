@@ -105,19 +105,19 @@
       "bullets": [
         { "id": "dun-mintel", "text": "Built a competitive analysis of the QSR segment using Mintel research to inform market strategy." },
         { "id": "dun-mixplanning", "text": "Applied media mix planning and media research tools (MRI-Simmons, Comscore) to inform channel and budget allocation across Dunkin' markets." },
-        { "id": "dun-competitive", "text": "Ran competitive analysis across 40+ markets to identify efficient market entry and share-gain opportunities." },
+        { "id": "dun-competitive", "text": "Ran competitive analysis across the New England and Midwest markets, including Boston and Chicago, two of the brand's most important, to identify efficient market entry and share-gain opportunities." },
         { "id": "dun-recs", "text": "Delivered media recommendations that grew sales while cutting costs by tens of thousands." },
         { "id": "dun-ops", "text": "Managed day-to-day media operations including creative trafficking, vendor coordination, plan restructuring, and budget tracking across the busiest Dunkin' markets." }
       ],
       "whyBullets": [
-        { "id": "dun-why-competitive", "replaces": "dun-competitive", "text": "Analysed why certain markets outperformed across 40+ regions, converting the drivers into media recommendations that grew sales while cutting costs." }
+        { "id": "dun-why-competitive", "replaces": "dun-competitive", "text": "Analysed why certain markets outperformed across New England and the Midwest, converting the drivers into media recommendations that grew sales while cutting costs." }
       ]
     }
   ],
 
   "selectedProblems": [
     { "id": "sp-retail", "domain": "Retail", "org": "UNIQLO", "mirrors": ["uni-basket"], "text": "Uncovered a 0.90+ basket correlation across an eight-store sales investigation and turned it into a floor-planning change that moved 40,000+ units through the late-summer tail." },
-    { "id": "sp-qsr", "domain": "QSR / media", "org": "Dunkin', Publicis Media", "mirrors": ["dun-competitive", "dun-recs"], "text": "Competitive analysis across 40+ markets that grew sales while cutting costs by tens of thousands, using Mintel research and market-entry modelling." },
+    { "id": "sp-qsr", "domain": "QSR / media", "org": "Dunkin', Publicis Media", "mirrors": ["dun-competitive", "dun-recs"], "text": "Competitive analysis across the New England and Midwest markets that grew sales while cutting costs by tens of thousands, using Mintel research and market-entry modelling." },
     { "id": "sp-measurement", "domain": "Media measurement", "org": "Horizon Media", "mirrors": ["hbi-runtime"], "text": "Redesigned automated data processes to cut reporting runtime by 13% while improving data quality for a nine-figure retail client." },
     { "id": "sp-research", "domain": "Behavioural research", "org": "MSc dissertation", "mirrorsDissertation": true, "text": "Multivariate cross-cultural analysis of 11,249 respondents; identified trust in fairness as the only universal predictor of life satisfaction across five countries, income as non-significant." },
     { "id": "sp-workforce", "domain": "Workforce", "org": "Publicis Groupe", "optional": true, "demoteUnlessPeopleScience": true, "mirrors": ["pub-stalled"], "text": "Built a behavioural-analytics function from scratch across 40+ markets with no predefined scope; flagged operational risk before it escalated." }

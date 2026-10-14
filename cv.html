@@ -29,7 +29,7 @@
   }
 
   /* Masthead — plain, monochrome, left-aligned. Mirrors the InDesign master. */
-  .cv-masthead { margin-bottom: 6px; }
+  .cv-masthead { margin-bottom: 3px; }
   /* Continuation sheet: running strip only, with a rule to close it off. */
   .cv-masthead--cont {
     border-bottom: 1px solid var(--ink);
@@ -60,7 +60,7 @@
     font-size: var(--cv-name); letter-spacing: normal;
     color: var(--ink);
     line-height: 1;
-    margin: 6px 0 -8px;
+    margin: 2px 0 -9px;
   }
 
   /* Contact row */
@@ -68,7 +68,7 @@
     font-family: var(--font-sans); font-weight: 400;
     font-size: var(--cv-micro); letter-spacing: 0.02em;
     color: var(--ink);
-    padding: 0 0 8px;
+    padding: 0 0 5px;
     border-bottom: 1px solid var(--ink);
     display: flex; flex-wrap: wrap; align-items: center;
   }
@@ -79,7 +79,7 @@
 
   /* Lede */
   .cv-lede {
-    margin: 10px 0 0;
+    margin: 7px 0 0;
     font-family: var(--font-body); font-weight: 400;
     font-size: var(--cv-body); line-height: 1.18;
     color: var(--ink);
@@ -88,7 +88,7 @@
   }
 
   /* Section headings */
-  .cv-section { margin-top: 9px; }
+  .cv-section { margin-top: 7px; }
   /* ATS-safe tracking. The ceiling turns out to depend on size: 0.10em
      survives extraction at 11px but splits at 10px, so everything that
      prints is capped at 0.08em, verified clean from 9px to 13px. Above it
@@ -113,7 +113,7 @@
      from the entry it belongs to. */
   .role-bar {
     display: block;
-    padding: 3px 0 2px;
+    padding: 2px 0 2px;
   }
   .role-bar .role {
     font-family: var(--font-sans); font-weight: 700;
@@ -139,7 +139,7 @@
   }
   .cv-bullets li {
     font-family: var(--font-body); font-weight: 400;
-    font-size: var(--cv-body); line-height: 1.13;
+    font-size: var(--cv-body); line-height: 1.09;
     color: var(--ink);
     padding-left: 1.1em;
     position: relative;
@@ -162,7 +162,7 @@
   /* Education row — degree left, school centre, dates right */
   .edu-row {
     display: block;
-    padding: 7px 0 2px;
+    padding: 2px 0 2px;
   }
   .edu-row .degree {
     font-family: var(--font-sans); font-weight: 700;
@@ -308,9 +308,9 @@
   @media print {
     .back-link, .save-panel { display: none; }
     body { background: var(--paper); padding: 0; }
-    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 0.45in 0.55in; }
+    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 0.08in 0.06in; }
     .page:not(:last-of-type) { break-after: page; }
-    @page { size: letter; margin: 0; }
+    @page { size: letter; margin: 0.4in 0.5in; }
   }
 
   @media screen and (max-width: 8.5in) {

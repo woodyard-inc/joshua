@@ -87,7 +87,7 @@
         },
         {
           "id": "uni-basket",
-          "text": "Found a basket of around a dozen products among the top 50 sellers that customers consistently bought together (0.90+ correlation) but that were not always given prime floor space; recommended moving them into key positions for peak sales weekends."
+          "text": "Found a basket of around a dozen products among the top 50 sellers that customers consistently bought together (0.90+ correlation across eight stores) but that were not always given prime floor space; recommended moving them into key positions for peak sales weekends."
         }
       ],
       "whyBullets": []
@@ -172,7 +172,7 @@
       "mirrors": [
         "uni-basket"
       ],
-      "text": "Basket analysis of the top-selling range (0.90+ correlation) that informed summer floor layouts and displays."
+      "text": "Basket analysis across eight stores (0.90+ correlation) that informed summer floor layouts and displays."
     },
     {
       "id": "sp-workforce",

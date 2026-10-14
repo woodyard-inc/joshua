@@ -12,7 +12,7 @@
   },
 
   "summaries": {
-    "master": "Behavioural and market analyst with 6+ years of experience across telecom, QSR, retail, media and workforce analytics. Finds what is actually driving customer and business results, using experimental design, econometrics and behavioural research, and turns it into recommendations stakeholders act on. MSc Behavioural Economics (City St George's, University of London). Hands-on with SQL (T-SQL), Python, R, Snowflake, Nielsen, Mintel and Kantar.",
+    "master": "Analytics strategist and behavioural researcher with 6+ years building data infrastructure, governance, and insight functions for global organisations — most recently owning BI delivery for a newly created talent intelligence function at Publicis Groupe. Proven track record standardising practices across large divisions and translating complex data into strategic insight for audiences ranging from C-suite to entry-level staff. Academically specialised in behavioural economics (MSc) and marketing science (BSc). Targeting analytics leadership, behavioural insight, or research roles where human-centred data shapes product or policy decisions.",
     "trackA": "Behavioural and market analyst with 6+ years applying statistical method across telecom, QSR, retail, media, and workforce. Specialises in learning an unfamiliar domain quickly, finding what is actually driving results, and turning it into recommendations a room can act on. Grounded in behavioural economics (MSc, City St George's) and marketing science (BSc), with the technical range to build whatever infrastructure the analysis requires.",
     "trackB": "Applied behavioural researcher with 6+ years designing and executing quantitative studies under real organisational constraints. MSc Behavioural Economics (City St George's), with a first-class dissertation applying multivariate methods to 11,249 respondents across five countries. Experienced across the full research pipeline, from study and experimental design through imputation, construct reduction, and regression modelling, and in reporting findings and their limitations to non-specialist audiences."
   },
@@ -61,11 +61,11 @@
       "when": "May 2021 – May 2023",
       "bullets": [
         { "id": "uni-research", "text": "Designed and executed quantitative and qualitative research with no predefined scope for leadership, combining predictive statistics on sales data with behavioural insight to shape merchandising strategy." },
-        { "id": "uni-basket", "text": "Uncovered a 0.90+ basket correlation across eight stores and translated it into a floor-planning change that moved 40,000+ units." },
+        { "id": "uni-basket", "text": "Uncovered a 0.90+ basket correlation across eight stores and translated it into a floor-planning change for the late-summer tail." },
         { "id": "uni-creative-lab", "text": "Embedded with UNIQLO's Global Creative Lab, researching the topics that shaped brand direction for leadership." }
       ],
       "whyBullets": [
-        { "id": "uni-why-basket", "replaces": "uni-basket", "text": "Investigated why certain products sold together across eight stores — a 0.90+ basket correlation — and translated the behavioural pattern into a floor-planning change that moved 40,000+ units." }
+        { "id": "uni-why-basket", "replaces": "uni-basket", "text": "Investigated why certain products sold together across eight stores — a 0.90+ basket correlation — and translated the behavioural pattern into a floor-planning change." }
       ]
     },
     {
@@ -115,7 +115,7 @@
   ],
 
   "selectedProblems": [
-    { "id": "sp-retail", "domain": "Retail", "org": "UNIQLO", "mirrors": ["uni-basket"], "text": "Uncovered a 0.90+ basket correlation across an eight-store sales investigation and turned it into a floor-planning change that moved 40,000+ units through the late-summer tail." },
+    { "id": "sp-retail", "domain": "Retail", "org": "UNIQLO", "mirrors": ["uni-basket"], "text": "Uncovered a 0.90+ basket correlation across an eight-store sales investigation and turned it into a floor-planning change for the late-summer tail." },
     { "id": "sp-qsr", "domain": "QSR / media", "org": "Dunkin', Publicis Media", "mirrors": ["dun-competitive", "dun-recs"], "text": "Competitive analysis across the New England and Midwest markets that grew sales while cutting costs by tens of thousands, using Mintel research and market-entry modelling." },
     { "id": "sp-measurement", "domain": "Media measurement", "org": "Horizon Media", "mirrors": ["hbi-runtime"], "text": "Redesigned automated data processes to cut reporting runtime by 13% while improving data quality for a nine-figure retail client." },
     { "id": "sp-research", "domain": "Behavioural research", "org": "MSc dissertation", "mirrorsDissertation": true, "text": "Multivariate cross-cultural analysis of 11,249 respondents; identified trust in fairness as the only universal predictor of life satisfaction across five countries, income as non-significant." },

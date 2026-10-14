@@ -816,7 +816,11 @@
         label: `${p.domain} (${p.org})`,
         text: p.text,
       })),
-      dissertation: cv.dissertation,
+      dissertation: {
+        ...cv.dissertation,
+        // Method detail is for research-track CVs; the master is general.
+        bullets: (cv.dissertation.bullets || []).filter((b) => !/^Methods:/.test(b)),
+      },
       project: cv.project,
       education: (cv.education || []).map((e) => {
         const { dissertationSummary, ...rest } = e;

@@ -207,11 +207,12 @@
     "year": "2024",
     "supervisor": "Dr Anke Plagnol",
     "bullets": [
-      "Graded 71%, a distinction-band mark, supervised by Dr Anke Plagnol.",
       "Drivers of life satisfaction across five countries using International Social Survey Programme (ISSP) 2017 data (n = 11,249), analysed in R.",
       "Methods: multiple imputation (MICE, predictive mean matching, grouped by country), PCA-built multi-item constructs, country-level and pooled OLS with interaction terms, Tukey-adjusted pairwise comparisons (LSmeans), and VIF and AIC/BIC model checks.",
-      "Trust in fairness was the only universal cross-cultural predictor of life satisfaction; income was non-significant, though subjective financial strain was not."
-    ]
+      "Trust in fairness was the only universal cross-cultural predictor of life satisfaction; income was non-significant, though subjective financial strain was not.",
+      "Graded 71%, a distinction-band mark, supervised by Dr Anke Plagnol."
+    ],
+    "_note": "Order matters: the two-page fit trims these from the end, so the method and the finding survive a squeeze and the grade is the first thing to go."
   },
   "project": {
     "title": "Wimbledon Men's Draw, Monte Carlo Match Simulator — Independent Project",
@@ -230,8 +231,8 @@
       "meta": [
         "Graduated with Merit; 67%"
       ],
-      "dissertationSummary": "Dissertation (R): drivers of life satisfaction across five countries, ISSP 2017 (n = 11,249). Multiple imputation (MICE, PMM), PCA-built constructs, country-level and pooled OLS with interaction terms, Tukey pairwise comparisons, and VIF and AIC/BIC checks.",
-      "_note": "dissertationSummary prints on the full CV. The tailor omits it when it renders the separate Research section, so the dissertation is never stated twice.",
+      "dissertationSummary": "Dissertation (R): drivers of life satisfaction across five countries, ISSP 2017 (n = 11,249).",
+      "_note": "dissertationSummary prints on every CV. The method detail lives in dissertation.bullets and only reaches a page on the research track, where the Research section replaces this line entirely.",
       "topics": "Experimental Economics, Game Theory, Cognitive Psychology, Decision Making, Econometrics, Research Methods"
     },
     {

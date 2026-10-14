@@ -73,6 +73,30 @@
   --paper-warm:   #F0EBDD;   /* deeper bone for cards/insets */
   --paper-bone:   #FAF7F0;   /* bone white — secondary surface */
   --paper-bright: #FFFDF8;   /* alias — same as --paper */
+  /* ---- CV TYPE SCALE ----
+     Point sizes, because these only ever matter in print. One ladder, used by
+     cv.html, cv-ats.html and the CV Workshop alike, so the three documents
+     cannot drift apart.
+
+       --cv-micro    8pt    eyebrow, two-column keys, Topics label, language levels
+       --cv-meta     9pt    contact line, and the "city | dates" line under a title
+       --cv-heading 10.5pt  section headings — set in caps, bold, over a rule, which
+                            is what carries the hierarchy rather than raw size
+       --cv-body    11.5pt  the reading size: summary, bullets, education detail
+       --cv-entry   12.5pt  role titles and degrees, the only thing above body
+       --cv-name      30pt  the wordmark
+
+     Rules of thumb: nothing between 9pt and 10.5pt (the gap is what separates
+     secondary from structural), and nothing in the body may exceed --cv-entry.
+     Cormorant's x-height is 0.386em, so 11.5pt here reads roughly like 8.5pt of
+     a normal serif — that is why the body sits high in the ladder. */
+  --cv-micro:    8pt;
+  --cv-meta:     9pt;
+  --cv-heading:  10.5pt;
+  --cv-body:     11.5pt;
+  --cv-entry:    12.5pt;
+  --cv-name:     30pt;
+
   --ink:          #141414;   /* off-black, warmer than pure black */
   --ink-soft:     #3C3A36;   /* body copy secondary */
   --ink-muted:    #8A857B;   /* captions, metadata */

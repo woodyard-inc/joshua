@@ -25,10 +25,15 @@
   }
 
   .cv-masthead { margin-bottom: 6px; }
+  /* Continuation sheet: running strip only. */
+  .cv-masthead--cont {
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 6px; margin-bottom: 10px;
+  }
   .cv-eyebrow {
     display: flex; justify-content: space-between; align-items: baseline;
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    font-size: var(--cv-micro); letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--ink);
   }
   .cv-eyebrow .words { color: var(--cobalt); }
@@ -37,7 +42,7 @@
 
   .cv-fullname {
     font-family: var(--font-wordmark); font-weight: 700;
-    font-size: clamp(28px, 5.5vw, 40px); letter-spacing: normal;
+    font-size: var(--cv-name); letter-spacing: normal;
     color: var(--ink);
     line-height: 1;
     margin: 6px 0 -8px;
@@ -45,7 +50,7 @@
 
   .cv-contact {
     font-family: var(--font-sans); font-weight: 400;
-    font-size: 10.5px; letter-spacing: 0.02em;
+    font-size: var(--cv-meta); letter-spacing: 0.02em;
     color: var(--ink);
     padding: 0 0 8px;
     border-bottom: 1px solid var(--ink);
@@ -59,7 +64,7 @@
   .cv-lede {
     margin: 10px 0 0;
     font-family: var(--font-body); font-weight: 400;
-    font-size: 11.5pt; line-height: 1.18;
+    font-size: var(--cv-body); line-height: 1.18;
     color: var(--ink);
     max-width: none;
     text-wrap: pretty;
@@ -68,7 +73,7 @@
   .cv-section { margin-top: 7px; }
   .cv-section > h2 {
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 11px; letter-spacing: 0.08em;
+    font-size: var(--cv-heading); letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--ink);
     padding-bottom: 3px;
     border-bottom: 1.5px solid var(--ink);
@@ -76,7 +81,7 @@
   }
   .cv-section > h2 .cont {
     font-family: var(--font-body); font-style: italic; font-weight: 300;
-    font-size: 11px; letter-spacing: 0; color: var(--ink-muted); text-transform: none;
+    font-size: var(--cv-meta); letter-spacing: 0; color: var(--ink-muted); text-transform: none;
     float: right; padding-top: 2px;
   }
 
@@ -86,15 +91,15 @@
   .role-bar .role { display: block; }
   .entry-meta {
     display: block;
-    font-family: var(--font-body); font-weight: 400;
-    font-size: 11px; letter-spacing: 0.08em;
+    font-family: var(--font-sans); font-weight: 400;
+    font-size: var(--cv-meta); letter-spacing: 0.06em;
     text-transform: uppercase; color: var(--ink-soft);
-    margin-top: 1px;
+    margin-top: 2px;
   }
   .entry-meta .sep { color: var(--ink-muted); margin: 0 6px; }
   .role-bar .role {
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 13px; letter-spacing: -0.005em;
+    font-size: var(--cv-entry); letter-spacing: -0.005em;
     color: var(--ink);
   }
   .role-bar .role em { font-style: normal; }
@@ -103,7 +108,7 @@
   .cv-bullets { list-style: none; padding: 0; margin: 3px 0 5px; }
   .cv-bullets li {
     font-family: var(--font-body); font-weight: 400;
-    font-size: 11.5pt; line-height: 1.16;
+    font-size: var(--cv-body); line-height: 1.16;
     color: var(--ink);
     padding-left: 1.1em;
     position: relative;
@@ -127,18 +132,18 @@
   .edu-row .degree { display: block; }
   .edu-row .degree {
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 13px; letter-spacing: -0.005em;
+    font-size: var(--cv-entry); letter-spacing: -0.005em;
     color: var(--ink);
   }
   /* The institution keeps the body serif it had before the row became a
      single line — it was inheriting Helvetica from .degree. */
   .edu-row .degree em {
-    font-family: var(--font-body); font-weight: 400; font-style: normal;
-    font-size: 13px; color: var(--ink-soft);
+    font-family: var(--font-sans); font-weight: 400; font-style: normal;
+    font-size: var(--cv-entry); color: var(--ink-soft);
   }
   .edu-meta { list-style: none; padding: 0; margin: 2px 0 6px; }
   .edu-meta li {
-    font-family: var(--font-body); font-weight: 400; font-size: 11.5pt;
+    font-family: var(--font-body); font-weight: 400; font-size: var(--cv-body);
     line-height: 1.16; color: var(--ink);
     padding-left: 1.1em; position: relative; margin-bottom: 1px;
     max-width: none; text-wrap: unset;
@@ -153,7 +158,7 @@
   }
   .edu-meta .topics::before { content: ""; }
   .edu-meta .topics b { font-family: var(--font-sans); font-weight: 700; font-style: normal;
-    text-transform: uppercase; letter-spacing: 0.08em; font-size: 9.5px;
+    text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--cv-micro);
     color: var(--ink-soft); margin-right: 6px; }
 
   .twocol {
@@ -164,17 +169,17 @@
   .twocol:last-child { border-bottom: none; }
   .twocol .k {
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+    font-size: var(--cv-micro); letter-spacing: 0.08em; text-transform: uppercase;
     color: var(--ink-soft); padding-top: 2px;
   }
   .twocol .v {
-    font-family: var(--font-body); font-weight: 400; font-size: 11.5pt; line-height: 1.2;
+    font-family: var(--font-body); font-weight: 400; font-size: var(--cv-body); line-height: 1.2;
     color: var(--ink); max-width: none; text-wrap: unset;
   }
   .twocol .v .lang { display: inline-block; margin-right: 16px; }
   .twocol .v .lang .level {
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 9.5px; letter-spacing: 0.08em;
+    font-size: var(--cv-micro); letter-spacing: 0.08em;
     color: var(--cobalt); margin-left: 4px;
   }
 
@@ -207,16 +212,16 @@
      tailored CV would otherwise spill onto a third sheet. */
   /* Compact density tightens leading and spacing only. Type stays at 10pt —
      the floor the CV spec sets — so compression never costs legibility. */
-  body[data-density="compact"] .cv-lede { font-size: 11.5pt; line-height: 1.12; }
-  body[data-density="compact"] .cv-bullets li { font-size: 11.5pt; line-height: 1.12; margin-bottom: 1px; }
+  body[data-density="compact"] .cv-lede { font-size: var(--cv-body); line-height: 1.10; }
+  body[data-density="compact"] .cv-bullets li { font-size: var(--cv-body); line-height: 1.10; margin-bottom: 1px; }
   body[data-density="compact"] .role-bar { padding: 5px 0 2px; }
   body[data-density="compact"] .edu-row { padding: 5px 0 2px; }
-  body[data-density="compact"] .edu-meta li { font-size: 11.5pt; line-height: 1.12; }
+  body[data-density="compact"] .edu-meta li { font-size: var(--cv-body); line-height: 1.10; }
   body[data-density="compact"] .cv-section { margin-top: 9px; }
   body[data-density="compact"] .problem-row { padding: 3px 0; }
-  body[data-density="compact"] .problem-row .p-text { font-size: 11.5pt; line-height: 1.12; }
+  body[data-density="compact"] .problem-row .p-text { font-size: var(--cv-body); line-height: 1.10; }
   body[data-density="compact"] .twocol { padding: 3px 0; }
-  body[data-density="compact"] .twocol .v { font-size: 11.5pt; line-height: 1.12; }
+  body[data-density="compact"] .twocol .v { font-size: var(--cv-body); line-height: 1.10; }
 
   /* ---- Gate + generator UI (not part of the printed CV) ---- */
   .tool-shell { max-width: 8.5in; margin: 0 auto var(--s-6); }
@@ -375,11 +380,11 @@
   }
   .problem-row:last-child { border-bottom: none; }
   .problem-row .p-label {
-    font-family: var(--font-sans); font-weight: 700; font-size: 9.5px;
+    font-family: var(--font-sans); font-weight: 700; font-size: var(--cv-micro);
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
   }
   .problem-row .p-text {
-    font-family: var(--font-body); font-weight: 400; font-size: 11.5pt;
+    font-family: var(--font-body); font-weight: 400; font-size: var(--cv-body);
     line-height: 1.16; color: var(--ink);
   }
   .tool-bar button.link {
@@ -511,7 +516,7 @@
       <span class="words">Analytics<span class="sep">|</span>Market Research<span class="sep">|</span>Human Behaviour</span>
       <span class="page-no"><span id="out-datestamp">Curriculum Vitae</span><span class="sep">|</span>1 / 2</span>
     </div>
-    <h1 class="cv-fullname">Joshua Woodyard</h1>
+    <h1 class="cv-fullname">joshua woodyard</h1>
     <div class="cv-contact">
       <span class="item">N7, London, England</span>
       <span class="sep">|</span>
@@ -540,20 +545,10 @@
 
 <!-- PAGE 2 -->
 <article class="page" id="page2" hidden>
-  <header class="cv-masthead">
+  <header class="cv-masthead cv-masthead--cont">
     <div class="cv-eyebrow">
       <span class="words">Analytics<span class="sep">|</span>Market Research<span class="sep">|</span>Human Behaviour</span>
-      <span class="page-no"><span id="out-datestamp2">Curriculum Vitae</span><span class="sep">|</span>2 / 2</span>
-    </div>
-    <h1 class="cv-fullname">Joshua Woodyard</h1>
-    <div class="cv-contact">
-      <span class="item">N7, London, England</span>
-      <span class="sep">|</span>
-      <span class="item"><a href="mailto:woodyardjoshuae@gmail.com">woodyardjoshuae@gmail.com</a></span>
-      <span class="sep">|</span>
-      <span class="item"><a href="tel:+447714350869">+44 7714 350869</a></span>
-      <span class="sep">|</span>
-      <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
+      <span class="page-no">joshua woodyard<span class="sep">|</span><span id="out-datestamp2">Curriculum Vitae</span><span class="sep">|</span>2 / 2</span>
     </div>
   </header>
 

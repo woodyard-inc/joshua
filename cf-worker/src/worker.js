@@ -274,7 +274,14 @@ ${JSON.stringify(menu.problems, null, 1)}`;
           }
         : null,
       project: track === "B" ? cv.project : null,
-      education: cv.education,
+      // The dissertation summary is part of the Education entry on the full CV.
+      // When the tailored CV also renders a Research section it would be the
+      // same text twice, so it is dropped here instead.
+      education: cv.education.map((e) =>
+        showDissertation && e.dissertationSummary
+          ? { ...e, dissertationSummary: undefined }
+          : e
+      ),
       languages: cv.languages,
       // Skill categories, reordered per track. The category text itself is
       // never rewritten — only the order changes — so the same guarantee that

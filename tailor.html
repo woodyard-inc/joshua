@@ -9,6 +9,7 @@
 <link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramond-Light.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramond-Bold.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/NationalCodesUniversal.woff2" crossorigin>
 <link rel="stylesheet" href="foundations.css">
 <style>
@@ -28,7 +29,7 @@
   .cv-eyebrow {
     display: flex; justify-content: space-between; align-items: baseline;
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--ink);
   }
   .cv-eyebrow .words { color: var(--cobalt); }
@@ -59,20 +60,20 @@
   .cv-lede {
     margin: 10px 0 0;
     font-family: var(--font-body); font-weight: 300;
-    font-size: 13px; line-height: 1.45;
+    font-size: 12.5px; line-height: 1.36;
     color: var(--ink);
     max-width: none;
     text-wrap: pretty;
   }
 
-  .cv-section { margin-top: 16px; }
+  .cv-section { margin-top: 7px; }
   .cv-section > h2 {
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 11px; letter-spacing: 0.24em;
+    font-size: 11px; letter-spacing: 0.1em;
     text-transform: uppercase; color: var(--ink);
-    padding-bottom: 4px;
+    padding-bottom: 3px;
     border-bottom: 1.5px solid var(--ink);
-    margin: 0 0 4px;
+    margin: 0 0 3px;
   }
   .cv-section > h2 .cont {
     font-family: var(--font-body); font-style: italic; font-weight: 300;
@@ -80,36 +81,30 @@
     float: right; padding-top: 2px;
   }
 
-  .role-bar {
-    display: grid;
-    grid-template-columns: 1fr auto auto;
-    gap: var(--s-4);
-    align-items: baseline;
-    padding: 10px 0 2px;
+  /* Single column: title + company, then "location | dates" directly beneath.
+     Matches cv.html — no right-hand date column. */
+  .role-bar { display: block; padding: 4px 0 2px; }
+  .role-bar .role { display: block; }
+  .entry-meta {
+    display: block;
+    font-family: var(--font-body); font-weight: 400;
+    font-size: 11px; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-soft);
+    margin-top: 1px;
   }
+  .entry-meta .sep { color: var(--ink-muted); margin: 0 6px; }
   .role-bar .role {
     font-family: var(--font-sans); font-weight: 700;
     font-size: 13px; letter-spacing: -0.005em;
     color: var(--ink);
   }
   .role-bar .role em { font-style: normal; }
-  .role-bar .where {
-    font-family: var(--font-body); font-weight: 400;
-    font-size: 11px; letter-spacing: 0.1em;
-    text-transform: uppercase; color: var(--ink-soft);
-    white-space: nowrap;
-  }
-  .role-bar .when {
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: 10px; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--ink);
-    white-space: nowrap;
-  }
 
-  .cv-bullets { list-style: none; padding: 0; margin: 4px 0 8px; }
+
+  .cv-bullets { list-style: none; padding: 0; margin: 3px 0 5px; }
   .cv-bullets li {
     font-family: var(--font-body); font-weight: 300;
-    font-size: 13px; line-height: 1.4;
+    font-size: 11.3px; line-height: 1.20;
     color: var(--ink);
     padding-left: 1.1em;
     position: relative;
@@ -129,31 +124,23 @@
     color: var(--cobalt);
   }
 
-  .edu-row {
-    display: grid; grid-template-columns: 1fr auto auto;
-    gap: var(--s-4); align-items: baseline;
-    padding: 10px 0 2px;
-  }
+  .edu-row { display: block; padding: 4px 0 2px; }
+  .edu-row .degree { display: block; }
   .edu-row .degree {
     font-family: var(--font-sans); font-weight: 700;
     font-size: 13px; letter-spacing: -0.005em;
     color: var(--ink);
   }
-  .edu-row .school {
+  /* The institution keeps the body serif it had before the row became a
+     single line — it was inheriting Helvetica from .degree. */
+  .edu-row .degree em {
     font-family: var(--font-body); font-weight: 400; font-style: normal;
     font-size: 13px; color: var(--ink-soft);
-    white-space: nowrap;
-  }
-  .edu-row .school em { font-style: italic; color: var(--ink-muted); }
-  .edu-row .when {
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--ink); white-space: nowrap;
   }
   .edu-meta { list-style: none; padding: 0; margin: 2px 0 6px; }
   .edu-meta li {
-    font-family: var(--font-body); font-weight: 300; font-size: 12.5px;
-    line-height: 1.4; color: var(--ink);
+    font-family: var(--font-body); font-weight: 300; font-size: 11px;
+    line-height: 1.25; color: var(--ink);
     padding-left: 1.1em; position: relative; margin-bottom: 1px;
     max-width: none; text-wrap: unset;
   }
@@ -163,11 +150,11 @@
   }
   .edu-meta .topics {
     padding-left: 0; color: var(--ink-soft); font-style: italic;
-    font-size: 12.5px; margin-top: 4px;
+    font-size: 11px; margin-top: 4px;
   }
   .edu-meta .topics::before { content: ""; }
   .edu-meta .topics b { font-family: var(--font-sans); font-weight: 700; font-style: normal;
-    text-transform: uppercase; letter-spacing: 0.18em; font-size: 9.5px;
+    text-transform: uppercase; letter-spacing: 0.1em; font-size: 9.5px;
     color: var(--ink-soft); margin-right: 6px; }
 
   .twocol {
@@ -178,19 +165,23 @@
   .twocol:last-child { border-bottom: none; }
   .twocol .k {
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--ink-soft); padding-top: 2px;
   }
   .twocol .v {
-    font-family: var(--font-body); font-weight: 300; font-size: 13px; line-height: 1.45;
+    font-family: var(--font-body); font-weight: 300; font-size: 11.8px; line-height: 1.32;
     color: var(--ink); max-width: none; text-wrap: unset;
   }
   .twocol .v .lang { display: inline-block; margin-right: 16px; }
   .twocol .v .lang .level {
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 9.5px; letter-spacing: 0.14em;
+    font-size: 9.5px; letter-spacing: 0.1em;
     color: var(--cobalt); margin-left: 4px;
   }
+
+  /* Hyphenated tokens stay on one line: extractors drop a hyphen that a
+     line break lands on ("nine-figure" -> "ninefigure"). */
+  .nb { white-space: nowrap; }
 
   .cv-foot {
     margin-top: auto;
@@ -198,7 +189,7 @@
     border-top: 1px solid var(--ink);
     display: grid; grid-template-columns: 1fr 1fr 1fr;
     font-family: var(--font-sans); font-weight: 700;
-    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+    font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
     color: var(--ink-muted);
   }
   /* Footer must never wrap: a long month name used to push the year onto a second line. */
@@ -389,11 +380,11 @@
   .problem-row:last-child { border-bottom: none; }
   .problem-row .p-label {
     font-family: var(--font-sans); font-weight: 700; font-size: 9.5px;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft);
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
   }
   .problem-row .p-text {
-    font-family: var(--font-body); font-weight: 300; font-size: 13px;
-    line-height: 1.4; color: var(--ink);
+    font-family: var(--font-body); font-weight: 300; font-size: 11.3px;
+    line-height: 1.20; color: var(--ink);
   }
   .tool-bar button.link {
     background: none; border: none; padding: 0; cursor: pointer;
@@ -813,10 +804,19 @@
 
   // All CV text below arrives already resolved from the approved corpus by the
   // Worker. It is injected with textContent, never innerHTML.
+  // A line broken at an existing hyphen is rejoined by text extractors without
+  // the hyphen ("nine-figure" -> "ninefigure"), so hyphenated tokens are held
+  // together on one line.
+  function setText(node, text) {
+    const esc = String(text)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    node.innerHTML = esc.replace(/\S*\w-\w\S*/g, (m) => `<span class="nb">${m}</span>`);
+  }
+
   function el(tag, cls, text) {
     const n = document.createElement(tag);
     if (cls) n.className = cls;
-    if (text !== undefined) n.textContent = text;
+    if (text !== undefined) setText(n, text);
     return n;
   }
 
@@ -843,8 +843,11 @@
   function roleBlock(r) {
     const bar = el('div', 'role-bar');
     bar.appendChild(el('span', 'role', r.role));
-    bar.appendChild(el('span', 'where', r.where));
-    bar.appendChild(el('span', 'when', r.when));
+    const meta = el('span', 'entry-meta');
+    meta.appendChild(document.createTextNode(r.where));
+    meta.appendChild(el('span', 'sep', '|'));
+    meta.appendChild(document.createTextNode(r.when));
+    bar.appendChild(meta);
     const ul = el('ul', 'cv-bullets');
     r.bullets.forEach((b) => ul.appendChild(el('li', null, b)));
     return [bar, ul];
@@ -876,12 +879,17 @@
   function renderProblems(problems) {
     const box = $('out-problems');
     box.innerHTML = '';
+    const ul = el('ul', 'cv-bullets');
     (problems || []).forEach((p) => {
-      const row = el('div', 'problem-row');
-      row.appendChild(el('span', 'p-label', p.label));
-      row.appendChild(el('span', 'p-text', p.text));
-      box.appendChild(row);
+      const li = el('li');
+      li.appendChild(el('strong', null, `${p.label}:`));
+      li.appendChild(document.createTextNode(' '));
+      const span = el('span');
+      setText(span, p.text);
+      li.appendChild(span);
+      ul.appendChild(li);
     });
+    if ((problems || []).length) box.appendChild(ul);
     $('sec-problems').hidden = !problems || problems.length === 0;
   }
 
@@ -891,12 +899,12 @@
     const box = $('out-dissertation');
     box.innerHTML = '';
     const bar = el('div', 'edu-row');
-    bar.appendChild(el('span', 'degree', d.title));
-    bar.appendChild(el('span', 'school', d.institution));
+    bar.appendChild(el('span', 'degree', `${d.title}, `)).appendChild(
+      el('em', null, d.institution));
     // The mark lives in a bullet, not up here — carrying it in the third
     // column squeezed the title column enough to wrap the title onto two
     // lines. Fall back to it if an older corpus has no year.
-    bar.appendChild(el('span', 'when', d.year || d.result));
+    bar.appendChild(el('span', 'entry-meta', d.year || d.result));
     box.appendChild(bar);
     const ul = el('ul', 'cv-bullets');
     (d.bullets || []).forEach((b) => ul.appendChild(el('li', null, b)));
@@ -910,8 +918,7 @@
     box.innerHTML = '';
     const bar = el('div', 'edu-row');
     bar.appendChild(el('span', 'degree', p.title));
-    bar.appendChild(el('span', 'school', ''));
-    bar.appendChild(el('span', 'when', p.year));
+    bar.appendChild(el('span', 'entry-meta', p.year));
     box.appendChild(bar);
     // Bullets, to match every other entry. Tolerates the older single-body
     // shape in case a cached corpus is served.
@@ -934,18 +941,19 @@
     });
   }
 
-  function renderEducation(items) {
+  function renderEducation(items, showTopics = true) {
     const box = $('out-education');
     box.innerHTML = '';
     (items || []).forEach((e) => {
       const bar = el('div', 'edu-row');
-      bar.appendChild(el('span', 'degree', e.degree));
-      bar.appendChild(el('span', 'school', e.school));
-      bar.appendChild(el('span', 'when', e.when));
+      bar.appendChild(el('span', 'degree', `${e.degree}, `)).appendChild(
+        el('em', null, e.school));
+      bar.appendChild(el('span', 'entry-meta', e.when));
       box.appendChild(bar);
       const ul = el('ul', 'edu-meta');
       (e.meta || []).forEach((m) => ul.appendChild(el('li', null, m)));
-      if (e.topics) {
+      if (e.dissertationSummary) ul.appendChild(el('li', null, e.dissertationSummary));
+      if (e.topics && showTopics) {
         const t = el('li', 'topics');
         t.appendChild(el('b', null, 'Topics'));
         t.appendChild(document.createTextNode(e.topics));
@@ -979,23 +987,68 @@
     $('keywords-panel').hidden = false;
   }
 
-  /* Escalating trim plans, least damaging first. Problems never drop below 3 —
-     the spec keeps a minimum of three to preserve the domain-range signal. */
+  /* Escalating trim plans, least damaging first.
+
+     Order of sacrifice, cheapest first:
+       1. density  — tighter type, no content lost at all
+       2. topics   — course module lists, the least load-bearing lines here
+       3. project  — the independent project section
+       4. diss     — dissertation detail, methods bullets before findings
+       5. problems — key achievements, never below 3 (domain-range signal)
+       6. bullets  — role evidence, the last thing to give up
+     Role bullets used to be cut first, which was backwards: a module list was
+     surviving while the evidence a reader actually weighs was being dropped. */
   const FIT_PLANS = [
-    { bullets: 99, problems: 5, density: '',        project: true  },
-    { bullets: 4,  problems: 5, density: '',        project: true  },
-    { bullets: 4,  problems: 4, density: '',        project: true  },
-    { bullets: 3,  problems: 4, density: '',        project: true  },
-    { bullets: 3,  problems: 3, density: 'compact', project: true  },
-    { bullets: 2,  problems: 3, density: 'compact', project: true  },
-    { bullets: 2,  problems: 3, density: 'compact', project: false },
+    { bullets: 999, problems: 5, density: '',        project: true,  diss: 99, topics: true  },
+    { bullets: 999, problems: 5, density: 'compact', project: true,  diss: 99, topics: true  },
+    { bullets: 999, problems: 5, density: 'compact', project: true,  diss: 99, topics: false },
+    { bullets: 999, problems: 5, density: 'compact', project: false, diss: 99, topics: false },
+    { bullets: 999, problems: 5, density: 'compact', project: false, diss: 3,  topics: false },
+    { bullets: 999, problems: 4, density: 'compact', project: false, diss: 3,  topics: false },
+    { bullets: 999, problems: 4, density: 'compact', project: false, diss: 2,  topics: false },
+    { bullets: 999, problems: 3, density: 'compact', project: false, diss: 2,  topics: false },
+    { bullets: 18,  problems: 3, density: 'compact', project: false, diss: 2,  topics: false },
+    { bullets: 15,  problems: 3, density: 'compact', project: false, diss: 2,  topics: false },
+    { bullets: 12,  problems: 3, density: 'compact', project: false, diss: 2,  topics: false },
+    { bullets: 10,  problems: 3, density: 'compact', project: false, diss: 1,  topics: false },
+    // Last resort: drop the Research section outright rather than run to a
+    // third page. The dissertation still appears as a key achievement.
+    { bullets: 10,  problems: 3, density: 'compact', project: false, diss: 0,  topics: false },
   ];
+
+  /* plan.bullets is a budget for the whole CV, not a cap per role.
+
+     Slicing every role to the same number threw away a strong role's fourth
+     bullet while keeping a weak role's second. The Worker already returns each
+     role's bullets in the order it judged most relevant to the job, so the last
+     bullet of a role is its weakest. This spends the budget by repeatedly
+     dropping that weakest bullet from whichever role is currently fattest,
+     oldest role first on a tie, and never empties a role. A role the Worker
+     thought mattered keeps its depth; a thin one gives ground first. */
+  function trimRoles(roles, budget) {
+    const out = (roles || []).map((r) => ({ ...r, bullets: r.bullets.slice() }));
+    let total = out.reduce((a, r) => a + r.bullets.length, 0);
+    while (total > budget) {
+      let idx = -1, most = 1;
+      out.forEach((r, i) => { if (r.bullets.length >= most) { most = r.bullets.length; idx = i; } });
+      if (idx < 0 || out[idx].bullets.length <= 1) break;
+      out[idx].bullets.pop();
+      total -= 1;
+    }
+    return out;
+  }
 
   function applyPlan(data, plan) {
     document.body.dataset.density = plan.density;
     renderProblems((data.selectedProblems || []).slice(0, plan.problems));
-    renderRoles((data.roles || []).map((r) => ({ ...r, bullets: r.bullets.slice(0, plan.bullets) })));
+    renderRoles(trimRoles(data.roles, plan.bullets));
     renderProject(plan.project ? data.project : null);
+    renderEducation(data.education, plan.topics);
+    renderDissertation(
+      data.dissertation && plan.diss > 0
+        ? { ...data.dissertation, bullets: (data.dissertation.bullets || []).slice(0, plan.diss) }
+        : null
+    );
   }
 
   function fitToTwoPages(data) {
@@ -1027,15 +1080,22 @@
       note.hidden = false;
       return;
     }
+    const total = (data.roles || []).reduce((n, r) => n + r.bullets.length, 0);
     if (fit.step === 0) {
-      const total = (data.roles || []).reduce((n, r) => n + r.bullets.length, 0);
       note.textContent = `Fits two pages with no trimming — all ${total} selected bullets shown.`;
     } else {
+      const kept = trimRoles(data.roles, fit.plan.bullets)
+        .reduce((n, r) => n + r.bullets.length, 0);
       const bits = [];
-      if (fit.plan.bullets < 99) bits.push(`max ${fit.plan.bullets} bullets per role`);
-      if (fit.plan.problems < 5) bits.push(`${fit.plan.problems} selected problems`);
       if (fit.plan.density === 'compact') bits.push('compact spacing');
+      if (!fit.plan.topics) bits.push('course topics dropped');
       if (!fit.plan.project) bits.push('project entry dropped');
+      if (fit.plan.diss < 99) {
+        bits.push(fit.plan.diss === 0 ? 'research section dropped'
+                                      : `${fit.plan.diss} dissertation bullets`);
+      }
+      if (fit.plan.problems < 5) bits.push(`${fit.plan.problems} key achievements`);
+      if (kept < total) bits.push(`${kept} of ${total} role bullets, weakest dropped first`);
       note.textContent = `Trimmed to hold two pages — ${bits.join(', ')}.`;
     }
     note.hidden = false;
@@ -1141,8 +1201,6 @@
       tagline.hidden = !data.capabilityTagline;
 
       $('out-lede').textContent = data.summary;
-      renderDissertation(data.dissertation);
-      renderEducation(data.education);
       renderLanguages(data.languages);
       renderSkills(data.skills);
       $('out-methodsline').textContent = data.methodsLine || '';
@@ -1158,7 +1216,7 @@
       lastTailored = {
         ...data,
         selectedProblems: (data.selectedProblems || []).slice(0, fit.plan.problems),
-        roles: (data.roles || []).map((r) => ({ ...r, bullets: r.bullets.slice(0, fit.plan.bullets) })),
+        roles: trimRoles(data.roles, fit.plan.bullets),
         project: fit.plan.project ? data.project : null,
       };
 

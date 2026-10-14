@@ -11,18 +11,18 @@
      no tables, no absolutely positioned bullet glyphs. Everything is ordinary
      block flow so a parser reads it in the order it is written. The designed
      CV at cv.html is untouched and remains the one to look at. */
-  @page { margin: 0.6in 0.7in; }
+  @page { size: A4; margin: 13mm 15mm; }
 
   html { -webkit-text-size-adjust: 100%; }
   body {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 11pt;
-    line-height: 1.38;
+    font-size: 9.5pt;
+    line-height: 1.28;
     color: #000;
     background: #fff;
     margin: 0 auto;
-    padding: 0.6in 0.7in;
-    max-width: 7.1in;
+    padding: 13mm 15mm;
+    max-width: 180mm;
     /* No justification and no hyphenation: both can split words across lines
        in ways that survive into the extracted text. */
     text-align: left;
@@ -32,7 +32,7 @@
   }
 
   h1 {
-    font-size: 16pt;
+    font-size: 15pt;
     font-weight: bold;
     letter-spacing: normal;
     text-transform: none;
@@ -40,26 +40,26 @@
   }
 
   h2 {
-    font-size: 12pt;
+    font-size: 11.5pt;
     font-weight: bold;
     letter-spacing: normal;
     text-transform: none;
-    margin: 16pt 0 6pt;
+    margin: 11pt 0 4pt;
     border-bottom: 1px solid #000;
     padding-bottom: 2pt;
   }
 
-  p { margin: 0 0 8pt; }
+  p { margin: 0 0 6pt; }
 
   .contact { margin: 0 0 4pt; }
 
   /* Role header: two plain lines, then the list, with nothing between them. */
-  .role { margin-top: 11pt; }
+  .role { margin-top: 8pt; }
   .role-title { font-weight: bold; margin: 0; }
   .role-meta  { margin: 0 0 3pt; }
 
-  ul { margin: 0 0 8pt; padding-left: 20pt; }
-  li { margin: 0 0 3pt; }
+  ul { margin: 0 0 6pt; padding-left: 16pt; }
+  li { margin: 0 0 2pt; }
 
   /* Keep a role's heading lines with its first bullets when a page breaks. */
   .role, .edu { break-inside: avoid; page-break-inside: avoid; }
@@ -89,27 +89,33 @@
 
 <div class="screen-note">
   ATS variant &mdash; plain single-column rendering of the same master data
-  (<code>cv-data.json</code>). Print to PDF for submission. The designed CV is
-  at <a href="cv.html">cv.html</a>. This note does not print.
+  (<code>cv-data.json</code>), sized for A4. Print to PDF for submission. The
+  designed CV is at <a href="cv.html">cv.html</a>. This note does not print.
 </div>
 
 <div id="cv"><p class="loading">Loading&hellip;</p></div>
 
 <script>
 (function () {
-  var CONTACT = [
-    'N7, London, England',
-    'woodyardjoshuae@gmail.com',
-    '+44 7714 350869',
-    'linkedin.com/in/joshua-woodyard'
-  ];
+  // Set to true only if the export runs over two pages. Drops bullets the
+  // master data marks droppableForLength (the Tableau one on Horizon
+  // Analytics & BI), which is the agreed first cut.
+  var TRIM_FOR_LENGTH = false;
 
-  // Key Achievements on the master CV: the domain-spanning ones. The workforce
-  // entry is flagged in the data as people-science-only, so it is left to the
-  // tailored variant rather than shown here by default.
+  function contactLine(cv) {
+    var c = cv.contact || {};
+    return [c.location, c.email, c.phone, c.linkedin].filter(Boolean).join(' | ');
+  }
+
   function achievementsFor(cv) {
     return (cv.selectedProblems || []).filter(function (p) {
       return !p.optional && !p.demoteUnlessPeopleScience;
+    });
+  }
+
+  function bulletsFor(role) {
+    return (role.bullets || []).filter(function (b) {
+      return !(TRIM_FOR_LENGTH && b.droppableForLength);
     });
   }
 
@@ -143,7 +149,7 @@
     root.innerHTML = '';
 
     root.appendChild(el('h1', 'Joshua Woodyard'));
-    root.appendChild(el('p', CONTACT.join(' | '), 'contact'));
+    root.appendChild(el('p', contactLine(cv), 'contact'));
 
     section(root, 'Profile');
     root.appendChild(el('p', cv.summaries.master));
@@ -158,7 +164,7 @@
       var block = el('div', null, 'role');
       block.appendChild(el('p', r.title + ', ' + r.company, 'role-title'));
       block.appendChild(el('p', r.where + ' | ' + r.when, 'role-meta'));
-      block.appendChild(list((r.bullets || []).map(function (b) { return b.text; })));
+      block.appendChild(list(bulletsFor(r).map(function (b) { return b.text; })));
       root.appendChild(block);
     });
 
@@ -168,6 +174,7 @@
       block.appendChild(el('p', e.degree + ', ' + e.school, 'role-title'));
       block.appendChild(el('p', e.when, 'role-meta'));
       var items = (e.meta || []).slice();
+      if (e.dissertationSummary) items.push(e.dissertationSummary);
       if (e.topics) items.push('Topics: ' + e.topics);
       if (items.length) block.appendChild(list(items));
       root.appendChild(block);

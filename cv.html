@@ -118,7 +118,7 @@
     display: block;
     font-family: var(--font-body); font-weight: 400;
     font-size: var(--cv-meta); letter-spacing: normal;
-    color: var(--ink-soft);
+    line-height: 1.2; color: var(--ink-soft);
     margin-top: 1px;
   }
   .entry-meta .sep { color: var(--ink-muted); margin: 0 6px; }
@@ -162,10 +162,6 @@
   }
   /* The institution keeps the body serif it had before the row became a
      single line — it was inheriting Helvetica from .degree. */
-  .edu-row .degree em {
-    font-family: var(--font-sans); font-weight: 400; font-style: normal;
-    font-size: var(--cv-entry); color: var(--ink-soft);
-  }
   .edu-row .degree { display: block; }
   .edu-meta {
     list-style: none; padding: 0; margin: 2px 0 6px;
@@ -395,8 +391,8 @@
 
   <header class="cv-masthead cv-masthead--cont">
     <div class="cv-eyebrow">
-      <span class="words">Analytics<span class="sep">|</span>Market Research<span class="sep">|</span>Human Behaviour</span>
-      <span class="page-no">joshua woodyard<span class="sep">|</span>CV &middot; October 2026<span class="sep">|</span>2 / 2</span>
+      <span class="words">joshua woodyard</span>
+      <span class="page-no">CV &middot; October 2026<span class="sep">|</span>2 / 2</span>
     </div>
   </header>
 
@@ -429,8 +425,8 @@
     <h2>Education</h2>
 
     <div class="edu-row">
-      <span class="degree">MSc Behavioural Economics, <em>City St George's, University of London</em></span>
-      <span class="entry-meta">Sept 2023 – Sept 2024</span>
+      <span class="degree">MSc Behavioural Economics</span>
+      <span class="entry-meta">City St George's, University of London<span class="sep">|</span>Sept 2023 – Sept 2024</span>
     </div>
     <ul class="edu-meta">
       <li>Graduated with Merit; 67%</li>
@@ -439,8 +435,8 @@
     </ul>
 
     <div class="edu-row">
-      <span class="degree">Bachelor of Science in Business (Marketing), <em>DePaul University</em></span>
-      <span class="entry-meta">Sept 2015 – Dec 2018</span>
+      <span class="degree">Bachelor of Science in Business (Marketing)</span>
+      <span class="entry-meta">DePaul University<span class="sep">|</span>Sept 2015 – Dec 2018</span>
     </div>
     <ul class="edu-meta">
       <li>Graduated early with Merit; 3.6 / 4.0</li>
@@ -449,8 +445,8 @@
     </ul>
 
     <div class="edu-row">
-      <span class="degree">Exchange Programme, <em>Universität Bonn</em></span>
-      <span class="entry-meta">Mar 2017 – Aug 2017</span>
+      <span class="degree">Exchange Programme</span>
+      <span class="entry-meta">Universität Bonn<span class="sep">|</span>Mar 2017 – Aug 2017</span>
     </div>
     <ul class="edu-meta">
       <li class="topics"><b>Topics</b>German Language; Economy and Trade</li>

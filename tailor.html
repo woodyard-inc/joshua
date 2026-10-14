@@ -93,7 +93,7 @@
     display: block;
     font-family: var(--font-body); font-weight: 400;
     font-size: var(--cv-meta); letter-spacing: normal;
-    color: var(--ink-soft);
+    line-height: 1.2; color: var(--ink-soft);
     margin-top: 1px;
   }
   .entry-meta .sep { color: var(--ink-muted); margin: 0 6px; }
@@ -137,10 +137,6 @@
   }
   /* The institution keeps the body serif it had before the row became a
      single line — it was inheriting Helvetica from .degree. */
-  .edu-row .degree em {
-    font-family: var(--font-sans); font-weight: 400; font-style: normal;
-    font-size: var(--cv-entry); color: var(--ink-soft);
-  }
   .edu-meta { list-style: none; padding: 0; margin: 2px 0 6px; }
   .edu-meta li {
     font-family: var(--font-body); font-weight: 400; font-size: var(--cv-body);
@@ -547,8 +543,8 @@
 <article class="page" id="page2" hidden>
   <header class="cv-masthead cv-masthead--cont">
     <div class="cv-eyebrow">
-      <span class="words">Analytics<span class="sep">|</span>Market Research<span class="sep">|</span>Human Behaviour</span>
-      <span class="page-no">joshua woodyard<span class="sep">|</span><span id="out-datestamp2">Curriculum Vitae</span><span class="sep">|</span>2 / 2</span>
+      <span class="words">joshua woodyard</span>
+      <span class="page-no"><span id="out-datestamp2">Curriculum Vitae</span><span class="sep">|</span>2 / 2</span>
     </div>
   </header>
 
@@ -878,12 +874,15 @@
     const box = $('out-dissertation');
     box.innerHTML = '';
     const bar = el('div', 'edu-row');
-    bar.appendChild(el('span', 'degree', `${d.title}, `)).appendChild(
-      el('em', null, d.institution));
+    bar.appendChild(el('span', 'degree', d.title));
     // The mark lives in a bullet, not up here — carrying it in the third
     // column squeezed the title column enough to wrap the title onto two
     // lines. Fall back to it if an older corpus has no year.
-    bar.appendChild(el('span', 'entry-meta', d.year || d.result));
+    const dmeta = el('span', 'entry-meta');
+    dmeta.appendChild(document.createTextNode(d.institution));
+    dmeta.appendChild(el('span', 'sep', '|'));
+    dmeta.appendChild(document.createTextNode(d.year || d.result || ''));
+    bar.appendChild(dmeta);
     box.appendChild(bar);
     const ul = el('ul', 'cv-bullets');
     (d.bullets || []).forEach((b) => ul.appendChild(el('li', null, b)));
@@ -925,9 +924,12 @@
     box.innerHTML = '';
     (items || []).forEach((e) => {
       const bar = el('div', 'edu-row');
-      bar.appendChild(el('span', 'degree', `${e.degree}, `)).appendChild(
-        el('em', null, e.school));
-      bar.appendChild(el('span', 'entry-meta', e.when));
+      bar.appendChild(el('span', 'degree', e.degree));
+      const meta = el('span', 'entry-meta');
+      meta.appendChild(document.createTextNode(e.school));
+      meta.appendChild(el('span', 'sep', '|'));
+      meta.appendChild(document.createTextNode(e.when));
+      bar.appendChild(meta);
       box.appendChild(bar);
       const ul = el('ul', 'edu-meta');
       (e.meta || []).forEach((m) => ul.appendChild(el('li', null, m)));

@@ -92,13 +92,11 @@
        1.00x  serif, reading size    — summary, bullets, Topics text, and the
                                        "city | dates" line, which differs from
                                        body copy by colour alone, not by size
-       1.08x  sans bold              — role titles and degrees, the largest text
-                                       in the body: on a CV the job you held
-                                       outranks the word "Experience"
-       0.96x  sans bold CAPS          — section headings, set over a rule. Caps
-                                       read larger than their point size, so at
-                                       8pt they still scan as structure without
-                                       competing with the titles beneath them
+       1.08x  sans bold, structural  — section headings AND role titles, which
+                                       share one size on purpose. Headings are
+                                       set in caps over a rule; titles are mixed
+                                       case. A heading must never be smaller
+                                       than the titles beneath it.
 
      The wordmark is the one element that ignores the tiers. It is a brand mark,
      not text in a hierarchy, so it is the same size on both sheets — matching
@@ -111,7 +109,7 @@
   --cv-micro:    7.5pt;    /* 0.90x — sans caps */
   --cv-body:     11.5pt;   /* 1.00x — the anchor */
   --cv-entry:    9pt;      /* 1.08x — sans bold */
-  --cv-heading:  8pt;      /* 0.96x — sans bold caps, over a rule */
+  --cv-heading:  9pt;      /* 1.08x — sans bold caps, over a rule */
   --cv-name:     30pt;
 
   --ink:          #141414;   /* off-black, warmer than pure black */

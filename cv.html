@@ -16,10 +16,10 @@
   body { background: var(--paper-warm); padding: var(--s-7) 0; }
 
   .page {
-    width: 210mm; min-height: 297mm;
+    width: 8.5in; min-height: 11in;
     margin: 0 auto var(--s-6);
     background: var(--paper);
-    padding: 10mm 15mm 14mm;
+    padding: 0.35in 0.55in 0.45in;
     box-shadow: 0 8px 40px -16px #14141433;
     /* Disables ligature glyph substitution (fi/fl/ffi/etc.) everywhere in the
        CV. Some PDF export paths don't map ligature glyphs back to their plain
@@ -139,7 +139,7 @@
   }
   .cv-bullets li {
     font-family: var(--font-body); font-weight: 400;
-    font-size: var(--cv-body); line-height: 1.17;
+    font-size: var(--cv-body); line-height: 1.13;
     color: var(--ink);
     padding-left: 1.1em;
     position: relative;
@@ -308,9 +308,9 @@
   @media print {
     .back-link, .save-panel { display: none; }
     body { background: var(--paper); padding: 0; }
-    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 14mm 15mm; }
+    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 0.45in 0.55in; }
     .page:not(:last-of-type) { break-after: page; }
-    @page { size: A4; margin: 0; }
+    @page { size: letter; margin: 0; }
   }
 
   @media screen and (max-width: 8.5in) {

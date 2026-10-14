@@ -16,10 +16,10 @@
   body { background: var(--paper-warm); padding: var(--s-7) 0; }
 
   .page {
-    width: 210mm; min-height: 297mm;
+    width: 8.5in; min-height: 11in;
     margin: 0 auto var(--s-6);
     background: var(--paper);
-    padding: 10mm 15mm 14mm;
+    padding: 0.35in 0.55in 0.45in;
     box-shadow: 0 8px 40px -16px #14141433;
     font-variant-ligatures: none;
   }
@@ -117,7 +117,7 @@
   .cv-bullets { list-style: none; padding: 0; margin: 3px 0 5px; }
   .cv-bullets li {
     font-family: var(--font-body); font-weight: 400;
-    font-size: var(--cv-body); line-height: 1.17;
+    font-size: var(--cv-body); line-height: 1.13;
     color: var(--ink);
     padding-left: 1.1em;
     position: relative;
@@ -422,9 +422,9 @@
   @media print {
     .back-link, .save-panel, .tool-shell, .tool-bar { display: none; }
     body { background: var(--paper); padding: 0; }
-    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 14mm 15mm; }
+    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 0.45in 0.55in; }
     .page:not(:last-of-type) { break-after: page; }
-    @page { size: A4; margin: 0; }
+    @page { size: letter; margin: 0; }
   }
 
   @media screen and (max-width: 8.5in) {
@@ -885,11 +885,11 @@
      measured after render and progressively trimmed until it fits. Bullets are
      trimmed from the end, so the server-enforced alwaysKeep bullet (which the
      Worker places first) always survives. */
-  const CSS_MM = 96 / 25.4;
-  const PAGE_MAX = 297 * CSS_MM;                 // A4 height
-  // Screen padding is 10mm top / 14mm bottom; print is 14mm/14mm. Reserve the
-  // difference plus rounding so "fits on screen" also means "fits in PDF".
-  const FIT_SAFETY = 8 * CSS_MM;
+  const CSS_IN = 96;
+  const PAGE_MAX = 11 * CSS_IN;                  // US Letter height
+  // Screen padding is 0.4in top / 0.5in bottom; print is 0.5in/0.5in. Reserve
+  // the difference plus rounding so "fits on screen" also means "fits in PDF".
+  const FIT_SAFETY = 0.32 * CSS_IN;
 
   function naturalHeight(pageEl) {
     const prev = pageEl.style.minHeight;

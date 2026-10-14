@@ -11,18 +11,18 @@
      no tables, no absolutely positioned bullet glyphs. Everything is ordinary
      block flow so a parser reads it in the order it is written. The designed
      CV at cv.html is untouched and remains the one to look at. */
-  @page { size: A4; margin: 13mm 15mm; }
+  @page { size: letter; margin: 0.45in 0.55in; }
 
   html { -webkit-text-size-adjust: 100%; }
   body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 10pt;
-    line-height: 1.3;
+    line-height: 1.25;
     color: #000;
     background: #fff;
     margin: 0 auto;
-    padding: 13mm 15mm;
-    max-width: 180mm;
+    padding: 0.45in 0.55in;
+    max-width: 7.3in;
     /* No justification and no hyphenation: both can split words across lines
        in ways that survive into the extracted text. */
     text-align: left;
@@ -89,7 +89,7 @@
 
 <div class="screen-note">
   ATS variant &mdash; plain single-column rendering of the same master data
-  (<code>cv-data.json</code>), sized for A4. Print to PDF for submission. The
+  (<code>cv-data.json</code>), sized for US Letter. Print to PDF for submission. The
   designed CV is at <a href="cv.html">cv.html</a>. This note does not print.
 </div>
 

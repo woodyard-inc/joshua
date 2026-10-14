@@ -241,6 +241,38 @@
   }
   .back-link:hover { color: var(--ink); }
 
+  /* The tools panel is held behind the same password as the CV Workshop. This
+     keeps it out of the way of casual visitors; it is not a security boundary,
+     and the contact details in this page's source are public either way. */
+  .lock-tab {
+    position: fixed; right: 0; bottom: 0; z-index: 40;
+    background: var(--ink); color: var(--paper);
+    border: none; cursor: pointer;
+    padding: 10px 14px;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  }
+  body[data-unlocked="yes"] .lock-tab { display: none; }
+  .lock-form {
+    position: fixed; right: 0; bottom: 0; z-index: 41;
+    background: var(--ink); padding: 12px 14px;
+    display: none; gap: 6px; align-items: center;
+  }
+  body[data-locking="yes"] .lock-form { display: flex; }
+  body[data-locking="yes"] .lock-tab { display: none; }
+  .lock-form input {
+    background: transparent; border: 1px solid rgba(250,247,240,0.35);
+    color: var(--paper); padding: 6px 8px; font-size: 11px; width: 130px;
+  }
+  .lock-form button {
+    background: none; border: 1px solid rgba(250,247,240,0.35); color: var(--paper);
+    padding: 6px 10px; cursor: pointer;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .lock-form .err { color: #ff9a8a; font-size: 10px; }
+  @media print { .lock-tab, .lock-form { display: none !important; } }
+
   /* Save panel */
   .save-panel {
     position: fixed; bottom: 24px; right: 24px; z-index: 50;
@@ -250,6 +282,7 @@
     display: flex; flex-direction: column; gap: 10px; align-items: flex-start;
     box-shadow: 0 8px 32px -8px #14141466;
   }
+  body:not([data-unlocked="yes"]) .save-panel { display: none; }
   .save-panel .sp-label { color: rgba(250,247,240,0.5); }
   .save-panel .sp-row { display: flex; gap: 6px; width: 100%; }
   .save-panel button, .save-panel a.sp-link {
@@ -513,6 +546,13 @@
 
 
 
+<button class="lock-tab" onclick="openLock()">Tools</button>
+<form class="lock-form" onsubmit="return unlock(event)">
+  <input type="password" id="lock-pw" placeholder="Password" autocomplete="off">
+  <button type="submit">Unlock</button>
+  <span class="err" id="lock-err"></span>
+</form>
+
 <div class="save-panel">
   <span class="sp-label">Joshua Woodyard · CV</span>
   <div class="sp-row">
@@ -529,6 +569,37 @@
   <a class="sp-link" href="tailor.html">CV Workshop →</a>
 </div>
 <script>
+  const WORKER_URL = "https://joshua-cv-tailor.woodyardjoshuae.workers.dev";
+
+  function openLock() {
+    document.body.dataset.locking = 'yes';
+    document.getElementById('lock-pw').focus();
+  }
+
+  async function unlock(e) {
+    e.preventDefault();
+    const pw = document.getElementById('lock-pw').value;
+    const err = document.getElementById('lock-err');
+    err.textContent = '';
+    try {
+      const res = await fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pw, action: 'verify' }),
+      });
+      if (!res.ok) { err.textContent = 'No'; return false; }
+      sessionStorage.setItem('cv-tailor-pw', pw);
+      document.body.dataset.unlocked = 'yes';
+      document.body.dataset.locking = '';
+    } catch {
+      err.textContent = 'Offline';
+    }
+    return false;
+  }
+
+  // Unlocking the Workshop in this session unlocks the panel here too.
+  if (sessionStorage.getItem('cv-tailor-pw')) document.body.dataset.unlocked = 'yes';
+
   function setContact(mode) {
     document.body.dataset.contact = mode;
     document.getElementById('btn-c-private').classList.toggle('active', mode === 'private');

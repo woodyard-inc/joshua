@@ -74,6 +74,12 @@ export default {
     if (!timingSafeEqual(password, env.CV_PASSWORD)) {
       return jsonResponse({ error: "Incorrect password" }, 401, headers);
     }
+    // Password-only check, used by the CV page to unlock its tools panel.
+    // Costs nothing: it returns before any model call.
+    if (body.action === "verify") {
+      return jsonResponse({ ok: true }, 200, headers);
+    }
+
     if (typeof jobDescription !== "string" || jobDescription.trim().length < MIN_JD_LENGTH) {
       return jsonResponse({ error: "Paste the full job description first." }, 400, headers);
     }

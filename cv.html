@@ -16,10 +16,10 @@
   body { background: var(--paper-warm); padding: var(--s-7) 0; }
 
   .page {
-    width: 8.5in; min-height: 11in;
+    width: 210mm; min-height: 297mm;
     margin: 0 auto var(--s-6);
     background: var(--paper);
-    padding: 0.3in 0.55in 0.5in;
+    padding: 10mm 15mm 14mm;
     box-shadow: 0 8px 40px -16px #14141433;
     /* Disables ligature glyph substitution (fi/fl/ffi/etc.) everywhere in the
        CV. Some PDF export paths don't map ligature glyphs back to their plain
@@ -43,7 +43,7 @@
 
   .cv-fullname {
     font-family: var(--font-wordmark); font-weight: 700;
-    font-size: clamp(28px, 5.5vw, 40px); letter-spacing: normal; text-transform: lowercase;
+    font-size: clamp(28px, 5.5vw, 40px); letter-spacing: normal;
     color: var(--ink);
     line-height: 1;
     margin: 6px 0 -8px;
@@ -66,8 +66,8 @@
   /* Lede */
   .cv-lede {
     margin: 10px 0 0;
-    font-family: var(--font-body); font-weight: 300;
-    font-size: 12.5px; line-height: 1.36;
+    font-family: var(--font-body); font-weight: 400;
+    font-size: 11.5pt; line-height: 1.18;
     color: var(--ink);
     max-width: none;
     text-wrap: pretty;
@@ -112,7 +112,7 @@
   .entry-meta {
     display: block;
     font-family: var(--font-body); font-weight: 400;
-    font-size: 11px; letter-spacing: 0.08em;
+    font-size: 11.5pt; letter-spacing: 0.08em;
     text-transform: uppercase; color: var(--ink-soft);
     margin-top: 1px;
   }
@@ -124,8 +124,8 @@
     list-style: none; padding: 0; margin: 3px 0 5px;
   }
   .cv-bullets li {
-    font-family: var(--font-body); font-weight: 300;
-    font-size: 11.3px; line-height: 1.19;
+    font-family: var(--font-body); font-weight: 400;
+    font-size: 11.5pt; line-height: 1.16;
     color: var(--ink);
     padding-left: 1.1em;
     position: relative;
@@ -166,8 +166,8 @@
     list-style: none; padding: 0; margin: 2px 0 6px;
   }
   .edu-meta li {
-    font-family: var(--font-body); font-weight: 300; font-size: 11px;
-    line-height: 1.25; color: var(--ink);
+    font-family: var(--font-body); font-weight: 400; font-size: 11.5pt;
+    line-height: 1.16; color: var(--ink);
     padding-left: 1.1em; position: relative; margin-bottom: 1px;
     max-width: none; text-wrap: unset;
   }
@@ -177,7 +177,7 @@
   }
   .edu-meta .topics {
     padding-left: 0; color: var(--ink-soft); font-style: italic;
-    font-size: 11px; margin-top: 4px;
+    font-size: 10pt; margin-top: 4px;
   }
   .edu-meta .topics::before { content: ""; }
   .edu-meta .topics b { font-family: var(--font-sans); font-weight: 700; font-style: normal;
@@ -197,7 +197,7 @@
     color: var(--ink-soft); padding-top: 2px;
   }
   .twocol .v {
-    font-family: var(--font-body); font-weight: 300; font-size: 11.8px; line-height: 1.32;
+    font-family: var(--font-body); font-weight: 400; font-size: 11.8px; line-height: 1.32;
     color: var(--ink); max-width: none; text-wrap: unset;
   }
   .twocol .v .lang { display: inline-block; margin-right: 16px; }
@@ -265,9 +265,9 @@
   @media print {
     .back-link, .save-panel { display: none; }
     body { background: var(--paper); padding: 0; }
-    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 0.5in 0.55in; }
+    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 14mm 15mm; }
     .page:not(:last-of-type) { break-after: page; }
-    @page { size: letter; margin: 0; }
+    @page { size: A4; margin: 0; }
   }
 
   @media screen and (max-width: 8.5in) {
@@ -326,17 +326,17 @@
   </header>
 
   <p class="cv-lede">
-    Analytics strategist and behavioural researcher with <strong>6+ years</strong> building data infrastructure, governance, and insight functions for global organisations — most recently owning BI delivery for a newly created talent intelligence function at Publicis Groupe. Proven track record standardising practices across large divisions and translating complex data into strategic insight for audiences ranging from <span class="nb">C-suite</span> to <span class="nb">entry-level</span> staff. Academically specialised in behavioural economics (MSc) and marketing (BSc). <span class="nb">Hands-on</span> with SQL <span class="nb">(T-SQL),</span> Python, R, Snowflake, Nielsen, Mintel and Kantar. Targeting analytics leadership, behavioural insight, or research roles where <span class="nb">human-centred</span> data shapes product or policy decisions.
+    Behavioural researcher and analyst with <strong>6+ years</strong> across telecom, QSR, retail, media and workforce analytics. Uses experimental design, econometrics and behavioural research to find what actually drives customer and business results, and turns it into recommendations leaders act on. MSc Behavioural Economics (City St George's, University of London). <span class="nb">Hands-on</span> with SQL, Python, R, Snowflake, Nielsen, Mintel and Kantar.
   </p>
 
   <!-- KEY ACHIEVEMENTS -->
   <section class="cv-section">
     <h2>Key achievements</h2>
     <ul class="cv-bullets">
-      <li><strong>Retail (UNIQLO):</strong> Turned basket analysis of <span class="nb">summer-sale</span> purchases into a <span class="nb">floor-layout</span> change for the <span class="nb">late-summer</span> tail.</li>
-      <li><strong>Workforce analytics (Publicis Groupe):</strong> Ran the analytics for 11 global workforce transitions (~3,500 roles) and led 2 to completion with full contractual staffing compliance.</li>
-      <li><strong>Media analytics (Horizon Media):</strong> Rebuilt data cleaning into one standardised, <span class="nb">QA-checked</span> process across all audited accounts, cutting reporting runtime by 13%.</li>
-      <li><strong>Behavioural research (MSc):</strong> Regression and moderation analysis of 11,249 respondents across five countries; trust in fairness was the only universal predictor of life satisfaction, and income was <span class="nb">non-significant.</span></li>
+      <li><strong>Retail (UNIQLO):</strong> Basket analysis across eight stores (0.90+ correlation) that informed summer floor layouts and displays.</li>
+      <li><strong>Workforce analytics (Publicis Groupe):</strong> Ran the analytics for 11 global workforce transitions (~3,500 roles); led 2 to full contractual staffing compliance.</li>
+      <li><strong>Media analytics (Horizon Media):</strong> Standardised data cleaning and QA across all audited accounts, cutting reporting runtime by 13%.</li>
+      <li><strong>Behavioural research (MSc):</strong> Analysis of 11,249 respondents across five countries found trust in fairness, not income, was the only universal predictor of life satisfaction.</li>
     </ul>
   </section>
 
@@ -349,10 +349,9 @@
       <span class="entry-meta">London, UK<span class="sep">|</span>Jul 2025 – Current</span>
     </div>
     <ul class="cv-bullets">
-      <li>Dropped into a new domain with no existing analytics function or defined scope; built the data models, governance and reporting from scratch, with <span class="nb">plain-language</span> summaries that let <span class="nb">non-technical</span> leaders <span class="nb">self-serve.</span></li>
-      <li>Provided the analytics function for <strong>11 global workforce transitions</strong> (~3,500 roles, <span class="nb">90-day</span> targets), building Power BI dashboards and <span class="nb">rule-based</span> status checks across 40+ markets that flagged staffing delays early and showed where stalled roles clustered.</li>
-      <li>Led 2 transitions to completion with full contractual staffing compliance, including one under a <span class="nb">role-by-role</span> client audit of the staffing roster across <strong>23 markets</strong>, from Nigeria to the Philippines and Belgium, that met a 100% staffing commitment.</li>
-      <li>Defined data standards and taxonomy, and harmonised organisational structures for incoming client workforces, preserving historical comparability while improving reporting consistency and auditability.</li>
+      <li>Built an analytics function from scratch for a new domain with no defined scope, including data models, governance, taxonomy and data standards for incoming client workforces, and <span class="nb">plain-language</span> reporting for <span class="nb">non-technical</span> leaders.</li>
+      <li>Ran analytics for <strong>11 global workforce transitions</strong> (~3,500 roles, <span class="nb">90-day</span> targets) across 40+ markets, using Power BI dashboards and <span class="nb">rule-based</span> checks to flag delays early and pinpoint clusters of stalled roles.</li>
+      <li>Led 2 transitions to full contractual staffing compliance, including one under a <span class="nb">role-by-role</span> client audit across <strong>23 markets</strong>, from Nigeria to the Philippines, that met a 100% staffing commitment.</li>
     </ul>
 
     <div class="role-bar">
@@ -360,11 +359,9 @@
       <span class="entry-meta">New York City, US<span class="sep">|</span>Jan 2022 – Sept 2023</span>
     </div>
     <ul class="cv-bullets">
-      <li><span class="nb">Co-designed</span> standardised practice for a <strong><span class="nb">129-person</span> division</strong> and trained analysts and managers, embedding a repeatable methodology for insight generation.</li>
-      <li>Built standardised Knime modules for data cleaning and ID matching across all audited accounts, replacing scattered <span class="nb">one-off</span> fixes with a single process where <span class="nb">account-specific</span> rules are changed in one place. Added automated QA checks that stopped errors reaching final datasets and cut reporting runtime by <strong>13%</strong>.</li>
-      <li>Consulted on both new and <span class="nb">pre-existing</span> clients with spend in the <strong>hundreds of millions</strong>.</li>
-      <li>Built, updated, and maintained Tableau dashboards and visualisation products for clients.</li>
-      <li>Sat on the hiring panel for new analysts, assessing candidates and helping the panel reach hiring decisions.</li>
+      <li><span class="nb">Co-designed</span> the analytics practice for a <strong><span class="nb">129-person</span> division</strong>, trained its analysts and managers in a repeatable insight methodology, and sat on the hiring panel for new analysts.</li>
+      <li>Built standardised Knime modules for data cleaning, ID matching and automated QA across all audited accounts, replacing <span class="nb">one-off</span> fixes with one maintainable process and cutting reporting runtime by <strong>13%</strong>.</li>
+      <li>Advised new and existing clients with media spend in the <strong>hundreds of millions</strong>, building and maintaining their Tableau dashboards and visualisation products.</li>
     </ul>
 
     <div class="role-bar">
@@ -372,9 +369,8 @@
       <span class="entry-meta">New York City, US<span class="sep">|</span>May 2021 – May 2023</span>
     </div>
     <ul class="cv-bullets">
-      <li>Designed and executed quantitative and qualitative research with no predefined scope for leadership, combining predictive statistics on sales data with behavioural insight to shape merchandising strategy.</li>
-      <li>Found a <strong>0.90+ purchase correlation</strong> across eight stores between four <span class="nb">summer-sale</span> lines (biker shorts, U heavyweight tees, Supima tees, men's boxers), while prime floor space went to <span class="nb">full-outfit</span> mannequins promoting unrelated looks. Recommended moving the correlated lines into key floor positions and weekend and <span class="nb">hot-weather</span> displays.</li>
-      <li>Embedded with UNIQLO's Global Creative Lab, researching the topics that shaped brand direction for leadership.</li>
+      <li>Designed <span class="nb">open-brief</span> quantitative and qualitative research for leadership, including with UNIQLO's Global Creative Lab, combining predictive statistics on sales data with behavioural insight to shape merchandising and brand direction.</li>
+      <li>Found that four <span class="nb">summer-sale</span> lines were bought together (<strong>0.90+ correlation</strong> across eight stores) while prime floor space promoted unrelated outfits; recommended placing the correlated lines in key positions and weekend and <span class="nb">hot-weather</span> displays.</li>
     </ul>
 
     <div class="role-bar">
@@ -382,9 +378,8 @@
       <span class="entry-meta">New York City, US<span class="sep">|</span>Jul 2020 – Jan 2022</span>
     </div>
     <ul class="cv-bullets">
-      <li>Reported audience delivery against the target demographic <span class="nb">(in-demo</span> %) versus plan using Nielsen data across <span class="nb">multi-channel</span> media buys.</li>
-      <li>Maintained ETL pipelines in SQL <span class="nb">(T-SQL),</span> Knime and Snowflake processing <strong>10,000+ rows weekly</strong>, underpinning <span class="nb">multi-channel</span> media reporting for a <span class="nb">nine-figure</span> retail client.</li>
-      <li>Led vendor relationships and communicated requirements for accurate reporting. Revised processes, reports, and dashboards to accommodate internal team and client needs.</li>
+      <li>Reported audience delivery to the target demographic against plan, using Nielsen data across <span class="nb">multi-channel</span> media buys.</li>
+      <li>Maintained ETL pipelines <span class="nb">(T-SQL,</span> Knime, Snowflake) processing <strong>10,000+ rows weekly</strong> for a <span class="nb">nine-figure</span> retail client's media reporting, managing data vendors and adapting dashboards to client and team needs.</li>
     </ul>
   </section>
 
@@ -419,9 +414,8 @@
       <span class="entry-meta">New York City, US<span class="sep">|</span>Dec 2019 – Jul 2020</span>
     </div>
     <ul class="cv-bullets">
-      <li>Consolidated several vendor feeds, tracking methods and data sources into a single set in SQL, then built the reporting and performance narratives that informed budget allocation in competitive telecom.</li>
-      <li>Partnered with Kantar on <span class="nb">brand-lift</span> studies and A/B creative tests during a brand relaunch (experimental design, control/exposed comparison), converting results into <span class="nb">forward-looking</span> strategy.</li>
-      <li>Collaborated with <span class="nb">non-analytics</span> teams to create <span class="nb">Post-Campaign</span> Analysis (PCA) reports easily digestible for all.</li>
+      <li>Consolidated multiple vendor feeds and tracking sources into one SQL dataset, then built the reporting and <span class="nb">post-campaign</span> analyses, <span class="nb">co-created</span> with <span class="nb">non-analytics</span> teams, that informed budget allocation.</li>
+      <li>Partnered with Kantar on <span class="nb">brand-lift</span> studies and A/B creative tests (control vs exposed) during a brand relaunch, turning results into strategy recommendations.</li>
     </ul>
 
     <div class="role-bar">
@@ -429,9 +423,9 @@
       <span class="entry-meta">New York City, US<span class="sep">|</span>Apr 2019 – Dec 2019</span>
     </div>
     <ul class="cv-bullets">
-      <li>Built a competitive analysis of the QSR segment using Mintel research across the New England and Midwest markets, including Boston and Chicago, to identify efficient market entry and <span class="nb">share-gain</span> opportunities.</li>
-      <li>Used media mix planning and audience data <span class="nb">(MRI-Simmons,</span> Comscore) to audit outdated media sponsorships and shift spend from concentrated urban buys to <span class="nb">broader-reach</span> coverage, growing sales while cutting costs by <strong>~$15K</strong>.</li>
-      <li>Managed <span class="nb">day-to-day</span> media operations including creative trafficking, vendor coordination, plan restructuring, and budget tracking across the busiest Dunkin' markets.</li>
+      <li>Built a <span class="nb">Mintel-based</span> competitive analysis of QSR in New England and the Midwest, including Boston and Chicago, identifying <span class="nb">market-entry</span> and <span class="nb">share-gain</span> opportunities.</li>
+      <li>Used media mix planning and audience data <span class="nb">(MRI-Simmons,</span> Comscore) to shift spend from outdated sponsorships and concentrated urban buys to broader reach, cutting costs by <strong>~$15K</strong> while growing sales.</li>
+      <li>Ran <span class="nb">day-to-day</span> media operations (trafficking, vendors, plans, budgets) across Dunkin's busiest markets.</li>
     </ul>
   </section>
 
@@ -445,7 +439,7 @@
     </div>
     <ul class="edu-meta">
       <li>Graduated with Merit; 67%</li>
-      <li>Dissertation: drivers of life satisfaction across five countries using International Social Survey Programme (ISSP) 2017 data (n = 11,249), analysed in R. Multiple imputation (MICE, predictive mean matching, grouped by country), <span class="nb">PCA-built</span> <span class="nb">multi-item</span> constructs, <span class="nb">country-level</span> and pooled OLS with interaction terms, <span class="nb">Tukey-adjusted</span> pairwise comparisons (LSmeans), and VIF and AIC/BIC model checks.</li>
+      <li>Dissertation (R): drivers of life satisfaction across five countries, ISSP 2017 (n = 11,249). Multiple imputation (MICE, PMM), <span class="nb">PCA-built</span> constructs, <span class="nb">country-level</span> and pooled OLS with interaction terms, Tukey pairwise comparisons, and VIF and AIC/BIC checks.</li>
       <li class="topics"><b>Topics</b>Experimental Economics, Game Theory, Cognitive Psychology, Decision Making, Econometrics, Research Methods</li>
     </ul>
 

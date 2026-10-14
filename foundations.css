@@ -74,37 +74,36 @@
   --paper-bone:   #FAF7F0;   /* bone white — secondary surface */
   --paper-bright: #FFFDF8;   /* alias — same as --paper */
   /* ---- CV TYPE SCALE ----
-     Sizes are matched by X-HEIGHT, not by point size, because the CV mixes two
-     typefaces whose proportions are nothing alike:
+     Sizes are matched by X-HEIGHT, not by point size, because the CV mixes
+     three typefaces whose proportions are nothing alike:
 
          Cormorant Garamond   x-height 0.386em
          Helvetica            x-height 0.532em   (38% larger at the same pt)
+         National Codes       cap      0.288em   (a caps face, tiny on the em)
 
      Point size measures the em box, which is an arbitrary container — two faces
      set at the same points can differ by half again in the size the eye reads.
-     So the sans numbers below look small next to the serif ones on purpose:
-     9pt Helvetica and 11.5pt Cormorant have almost the same x-height, and
-     therefore the same apparent size.
+     The sans numbers therefore look small beside the serif ones on purpose.
 
-     The anchor is --cv-body. Everything else is set as a ratio of its x-height:
+     There are only THREE optical tiers on the page, all relative to --cv-body:
 
-       --cv-micro    7.5pt  sans caps labels — Topics, skill keys, eyebrow (0.65x)
-       --cv-meta      11pt  serif, "city | dates" under a title            (0.96x)
-       --cv-body    11.5pt  the reading size: summary, bullets, detail     (1.00x)
-       --cv-entry      9pt  sans bold, role titles and degrees             (1.08x)
-       --cv-heading    9pt  sans bold CAPS over a rule — same size as an entry
-                            title; set in caps it reads larger, which is the
-                            hierarchy, so it needs no extra points
-       --cv-name      30pt  the wordmark
+       0.90x  sans caps, secondary   — contact line, skill keys, Topics labels,
+                                       the running strip on the continuation sheet
+       1.00x  serif, reading size    — summary, bullets, Topics text, and the
+                                       "city | dates" line, which differs from
+                                       body copy by colour alone, not by size
+       1.08x  sans bold, structural  — role titles, degrees, section headings
 
-     Hierarchy here comes from weight, case and colour rather than from size.
-     Nothing in the body may exceed --cv-body by more than about 10% optically:
-     a role title that towers over its own bullets is the error this replaced. */
-  --cv-micro:    7.5pt;
-  --cv-meta:     11pt;
-  --cv-body:     11.5pt;
-  --cv-entry:    9pt;
-  --cv-heading:  9pt;
+     --cv-mark-run sets National to the cap height of the 0.90x tier, so the
+     wordmark on the continuation sheet sits level with the type beside it.
+
+     Hierarchy comes from weight, case and colour, never from size alone. A role
+     title that towers over its own bullets is the error this replaced. */
+  --cv-micro:    7.5pt;    /* 0.90x — sans caps */
+  --cv-body:     11.5pt;   /* 1.00x — the anchor */
+  --cv-entry:    9pt;      /* 1.08x — sans bold */
+  --cv-heading:  9pt;      /* 1.08x — sans bold caps, over a rule */
+  --cv-mark-run: 18.5pt;   /* National, optically level with 0.90x */
   --cv-name:     30pt;
 
   --ink:          #141414;   /* off-black, warmer than pure black */

@@ -43,6 +43,15 @@
     color: var(--ink);
   }
   .cv-eyebrow .words { color: var(--cobalt); }
+  /* Continuation sheet carries the wordmark itself rather than the tagline.
+     National is a caps face at 0.288em, so it needs far more points than the
+     Helvetica beside it to sit at the same cap height. */
+  .cv-eyebrow .words--mark {
+    font-family: var(--font-wordmark); font-weight: 700;
+    font-size: var(--cv-mark-run); letter-spacing: normal;
+    text-transform: lowercase; line-height: 1;
+    color: var(--ink);
+  }
   .cv-eyebrow .sep { color: var(--ink-muted); margin: 0 8px; font-weight: 400; }
   .cv-eyebrow .page-no { color: var(--ink-muted); font-weight: 400; letter-spacing: 0.08em; }
 
@@ -57,7 +66,7 @@
   /* Contact row */
   .cv-contact {
     font-family: var(--font-sans); font-weight: 400;
-    font-size: var(--cv-meta); letter-spacing: 0.02em;
+    font-size: var(--cv-micro); letter-spacing: 0.02em;
     color: var(--ink);
     padding: 0 0 8px;
     border-bottom: 1px solid var(--ink);
@@ -94,7 +103,7 @@
   }
   .cv-section > h2 .cont {
     font-family: var(--font-body); font-style: italic; font-weight: 300;
-    font-size: var(--cv-meta); letter-spacing: 0; color: var(--ink-muted); text-transform: none;
+    font-size: var(--cv-micro); letter-spacing: 0; color: var(--ink-muted); text-transform: none;
     float: right; padding-top: 2px;
   }
 
@@ -117,7 +126,7 @@
   .entry-meta {
     display: block;
     font-family: var(--font-body); font-weight: 400;
-    font-size: var(--cv-meta); letter-spacing: normal;
+    font-size: var(--cv-body); letter-spacing: normal;
     line-height: 1.2; color: var(--ink-soft);
     margin-top: 1px;
   }
@@ -391,7 +400,7 @@
 
   <header class="cv-masthead cv-masthead--cont">
     <div class="cv-eyebrow">
-      <span class="words">joshua woodyard</span>
+      <span class="words words--mark">joshua woodyard</span>
       <span class="page-no">CV &middot; October 2026<span class="sep">|</span>2 / 2</span>
     </div>
   </header>

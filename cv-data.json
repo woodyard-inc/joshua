@@ -37,7 +37,7 @@
         },
         {
           "id": "pub-transitions",
-          "text": "Ran analytics for 11 global workforce transitions (~3,500 roles, 90-day targets) across 40+ markets, using Power BI dashboards and rule-based checks to flag delays early and pinpoint clusters of stalled roles."
+          "text": "Ran the staffing analytics for 11 global new-business transitions (~3,500 roles, 90-day targets) across 40+ markets, using Power BI dashboards and rule-based checks to flag delays early and pinpoint clusters of stalled roles."
         },
         {
           "id": "pub-compliance",
@@ -48,7 +48,7 @@
         {
           "id": "pub-why-transitions",
           "replaces": "pub-transitions",
-          "text": "Diagnosed why roles were stalling across 40+ markets during 11 global workforce transitions (~3,500 roles), using Power BI dashboards and rule-based status checks that showed where the delays clustered rather than only that they existed."
+          "text": "Diagnosed why roles were stalling across 40+ markets during 11 global new-business transitions (~3,500 roles), using Power BI dashboards and rule-based status checks that showed where the delays clustered rather than only that they existed."
         }
       ]
     },
@@ -176,13 +176,13 @@
     },
     {
       "id": "sp-workforce",
-      "domain": "Workforce analytics",
+      "domain": "Staffing analytics",
       "org": "Publicis Groupe",
       "mirrors": [
         "pub-transitions",
         "pub-compliance"
       ],
-      "text": "Ran the analytics for 11 global workforce transitions (~3,500 roles); led 2 to full contractual staffing compliance."
+      "text": "Ran the analytics for 11 global new-business transitions (~3,500 roles); led 2 to full contractual staffing compliance."
     },
     {
       "id": "sp-measurement",

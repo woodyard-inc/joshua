@@ -76,11 +76,6 @@
   .cv-contact .sep { color: var(--ink-muted); margin: 0 10px; }
   .cv-contact a { color: var(--ink); border: none; }
   .cv-contact a:hover { color: var(--ink-soft); text-decoration: underline; }
-  /* The public page shows placeholders; the panel swaps in the real details
-     for printing. Both sit in the markup so the swap needs no page reload. */
-  .cv-contact .item--full { display: none; }
-  body[data-contact="full"] .cv-contact .item--private { display: none; }
-  body[data-contact="full"] .cv-contact .item--full { display: inline-flex; }
 
   /* Lede */
   .cv-lede {
@@ -365,11 +360,9 @@
     <div class="cv-contact">
       <span class="item">N7, London, England</span>
       <span class="sep">|</span>
-      <span class="item item--private">Email on request</span>
-      <span class="item item--full"><a href="mailto:woodyardjoshuae@gmail.com">woodyardjoshuae@gmail.com</a></span>
+      <span class="item">Email on request</span>
       <span class="sep">|</span>
-      <span class="item item--private">Phone on request</span>
-      <span class="item item--full"><a href="tel:+447714350869">+44 7714 350869</a></span>
+      <span class="item">Phone on request</span>
       <span class="sep">|</span>
       <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
     </div>
@@ -559,14 +552,10 @@
     <button class="active" id="btn-colour" onclick="setColour('colour')">Colour</button>
     <button id="btn-grey" onclick="setColour('grey')">Greyscale</button>
   </div>
-  <span class="sp-label">Contact details</span>
-  <div class="sp-row">
-    <button class="active" id="btn-c-private" onclick="setContact('private')">On request</button>
-    <button id="btn-c-full" onclick="setContact('full')">Email &amp; phone</button>
-  </div>
   <button onclick="window.print()">Save as PDF →</button>
   <a class="sp-link" href="cv-ats.html">ATS version →</a>
   <a class="sp-link" href="tailor.html">CV Workshop →</a>
+  <span class="sp-label" style="margin-top:2px;">Full contact details are in the Workshop</span>
 </div>
 <script>
   const WORKER_URL = "https://joshua-cv-tailor.woodyardjoshuae.workers.dev";
@@ -599,12 +588,6 @@
 
   // Unlocking the Workshop in this session unlocks the panel here too.
   if (sessionStorage.getItem('cv-tailor-pw')) document.body.dataset.unlocked = 'yes';
-
-  function setContact(mode) {
-    document.body.dataset.contact = mode;
-    document.getElementById('btn-c-private').classList.toggle('active', mode === 'private');
-    document.getElementById('btn-c-full').classList.toggle('active', mode === 'full');
-  }
 
   function setColour(mode) {
     document.body.dataset.colour = mode;

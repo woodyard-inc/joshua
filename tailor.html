@@ -463,6 +463,7 @@
   <!-- GENERATOR -->
   <div class="viewnav" id="viewnav" hidden>
     <button class="vn active" id="nav-tailor">Tailor a CV</button>
+    <button class="vn" id="nav-master">Master CV</button>
     <button class="vn" id="nav-library">Content library</button>
   </div>
 
@@ -496,6 +497,13 @@
 <div class="tool-bar" id="result-bar" hidden>
   <span id="result-status">Tailored for this job description</span>
   <button class="link" id="start-over">← New job description</button>
+</div>
+
+<!-- Master CV: the untailored corpus, rendered here so the full contact
+     details stay behind the gate rather than sitting in the public page. -->
+<div class="tool-bar" id="master-bar" hidden>
+  <span>Master CV &mdash; full contact details</span>
+  <button class="link" id="btn-master-print">Save as PDF →</button>
 </div>
 <div class="tool-shell" id="keywords-panel" hidden>
   <div class="tool-panel keywords-box">
@@ -746,16 +754,84 @@
   }
 
   function setView(which) {
-    const tailorView = which === 'tailor';
-    $('nav-tailor').classList.toggle('active', tailorView);
-    $('nav-library').classList.toggle('active', !tailorView);
-    library.hidden = tailorView;
+    $('nav-tailor').classList.toggle('active', which === 'tailor');
+    $('nav-master').classList.toggle('active', which === 'master');
+    $('nav-library').classList.toggle('active', which === 'library');
+
+    library.hidden = which !== 'library';
+    $('master-bar').hidden = which !== 'master';
     // Only show the generator when nothing has been rendered yet.
-    generator.hidden = !tailorView || !!lastTailored;
-    if (!tailorView) loadLibrary(false);
+    generator.hidden = which !== 'tailor' || !!lastTailored;
+    if (which === 'tailor') {
+      resultBar.hidden = !lastTailored;
+      savePanel.hidden = !lastTailored;
+      page1.hidden = !lastTailored; page2.hidden = !lastTailored;
+      if (lastTailored) renderPayload(lastTailored);
+    } else if (which === 'master') {
+      resultBar.hidden = true; savePanel.hidden = true;
+      renderMaster();
+    } else {
+      resultBar.hidden = true; savePanel.hidden = true;
+      page1.hidden = true; page2.hidden = true;
+      loadLibrary(false);
+    }
+  }
+
+  /* Lays out one CV payload and fits it to two pages. Shared by the tailored
+     view and the master view so neither can drift from the other. */
+  function renderPayload(data) {
+    const tagline = $('out-tagline');
+    tagline.textContent = data.capabilityTagline || '';
+    tagline.hidden = !data.capabilityTagline;
+
+    $('out-lede').textContent = data.summary;
+    renderLanguages(data.languages);
+    renderSkills(data.skills);
+    $('out-methodsline').textContent = data.methodsLine || '';
+    $('row-methodsline').hidden = !data.methodsLine;
+    const stamp = `CV · ${formatDateStamp()}`;
+    $('out-datestamp').textContent = stamp;
+    $('out-datestamp2').textContent = stamp;
+
+    // Pages must be laid out before heights can be measured.
+    page1.hidden = false; page2.hidden = false;
+    return fitToTwoPages(data);
+  }
+
+  // Builds the same shape the Worker returns, but untailored: every approved
+  // bullet, every achievement, no track filtering and no model call.
+  async function renderMaster() {
+    const cv = await (await fetch('cv-data.json', { cache: 'no-store' })).json();
+    const payload = {
+      summary: cv.summaries.master,
+      capabilityTagline: null,
+      methodsLine: null,
+      roles: (cv.roles || []).map((r) => ({
+        role: `${r.title}, ${r.company}`,
+        where: r.where,
+        when: r.when,
+        bullets: (r.bullets || []).map((b) => b.text),
+      })),
+      selectedProblems: (cv.selectedProblems || []).map((p) => ({
+        label: `${p.domain} (${p.org})`,
+        text: p.text,
+      })),
+      dissertation: cv.dissertation,
+      project: cv.project,
+      education: (cv.education || []).map((e) => {
+        const { dissertationSummary, ...rest } = e;
+        return rest;                       // the Research section covers it
+      }),
+      languages: cv.languages,
+      skills: cv.skills,
+    };
+    renderPayload(payload);
+    page1.hidden = false; page2.hidden = false;
   }
 
   $('nav-tailor').addEventListener('click', () => setView('tailor'));
+  $('nav-master').addEventListener('click', () => setView('master'));
+  $('btn-master-print').addEventListener('click', () => window.print());
   $('nav-library').addEventListener('click', () => setView('library'));
   $('lib-reload').addEventListener('click', () => loadLibrary(true));
   $('lib-copy').addEventListener('click', async () => {
@@ -1186,24 +1262,9 @@
         throw new Error(data.error || 'Something went wrong.');
       }
 
-      const tagline = $('out-tagline');
-      tagline.textContent = data.capabilityTagline || '';
-      tagline.hidden = !data.capabilityTagline;
-
-      $('out-lede').textContent = data.summary;
-      renderLanguages(data.languages);
-      renderSkills(data.skills);
-      $('out-methodsline').textContent = data.methodsLine || '';
-      $('row-methodsline').hidden = !data.methodsLine;
-      const stamp = `CV · ${formatDateStamp()}`;
-      $('out-datestamp').textContent = stamp;
-      $('out-datestamp2').textContent = stamp;
-      renderKeywords(data);
-
-      // Pages must be laid out before heights can be measured.
       generator.hidden = true;
-      page1.hidden = false; page2.hidden = false;
-      const fit = fitToTwoPages(data);
+      renderKeywords(data);
+      const fit = renderPayload(data);
       reportFit(data, fit);
       lastTailored = {
         ...data,

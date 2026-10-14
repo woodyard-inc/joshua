@@ -37,7 +37,7 @@
         },
         {
           "id": "pub-transitions",
-          "text": "Ran the staffing analytics for 11 global new-business transitions (~3,500 roles, 90-day targets) across 40+ markets, using Power BI dashboards and rule-based checks to flag delays early and pinpoint clusters of stalled roles."
+          "text": "Ran the staffing analytics for 11 global new-business transitions (~3,500 roles, 90-day targets, 40+ markets), using Power BI dashboards and rule-based checks to surface delays and stalled roles."
         },
         {
           "id": "pub-compliance",
@@ -83,7 +83,7 @@
       "bullets": [
         {
           "id": "uni-research",
-          "text": "Embedded with UNIQLO's Global Creative Lab, running open-brief qualitative and quantitative research into brand direction and presenting to leadership on the social issues facing the industry, often at short notice."
+          "text": "Embedded with UNIQLO's Global Creative Lab, running open-brief qualitative and quantitative research into brand direction, often at short notice."
         },
         {
           "id": "uni-basket",
@@ -101,7 +101,7 @@
       "bullets": [
         {
           "id": "pet-nielsen",
-          "text": "Reported audience delivery against the target demographic across every vendor and sponsorship in the buy, integrating Nielsen and partner data and applying last-touch attribution at line level."
+          "text": "Consolidated all digital vendors and media buys into a single placement-level reporting set, integrating Nielsen audience data for digital TV and switchable attribution models, giving the client one view of performance across the full buy."
         },
         {
           "id": "pet-etl",

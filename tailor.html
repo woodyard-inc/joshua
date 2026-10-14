@@ -37,12 +37,12 @@
     color: var(--ink);
   }
   .cv-eyebrow .words { color: var(--cobalt); }
-  /* Continuation sheet carries the wordmark itself rather than the tagline.
-     National is a caps face at 0.288em, so it needs far more points than the
-     Helvetica beside it to sit at the same cap height. */
+  /* Continuation sheet carries the wordmark itself rather than the tagline,
+     at the same size it has on page one — a brand mark does not resize to fit
+     the row it happens to sit in. */
   .cv-eyebrow .words--mark {
     font-family: var(--font-wordmark); font-weight: 700;
-    font-size: var(--cv-mark-run); letter-spacing: normal;
+    font-size: var(--cv-name); letter-spacing: normal;
     text-transform: lowercase; line-height: 1;
     color: var(--ink);
   }

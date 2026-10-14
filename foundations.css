@@ -94,8 +94,11 @@
                                        body copy by colour alone, not by size
        1.08x  sans bold, structural  — role titles, degrees, section headings
 
-     --cv-mark-run sets National to the cap height of the 0.90x tier, so the
-     wordmark on the continuation sheet sits level with the type beside it.
+     The wordmark is the one element that ignores the tiers. It is a brand mark,
+     not text in a hierarchy, so it is the same size on both sheets — matching
+     its cap height to the row it sits in made it read as a label rather than a
+     signature. National is a caps face at 0.288em, so 30pt gives an 8.6pt cap:
+     larger than anything around it, which is the point.
 
      Hierarchy comes from weight, case and colour, never from size alone. A role
      title that towers over its own bullets is the error this replaced. */
@@ -103,7 +106,6 @@
   --cv-body:     11.5pt;   /* 1.00x — the anchor */
   --cv-entry:    9pt;      /* 1.08x — sans bold */
   --cv-heading:  9pt;      /* 1.08x — sans bold caps, over a rule */
-  --cv-mark-run: 18.5pt;   /* National, optically level with 0.90x */
   --cv-name:     30pt;
 
   --ink:          #141414;   /* off-black, warmer than pure black */

@@ -83,11 +83,11 @@
       "bullets": [
         {
           "id": "uni-research",
-          "text": "Designed open-brief quantitative and qualitative research for leadership, including with UNIQLO's Global Creative Lab, combining predictive statistics on sales data with behavioural insight to shape merchandising and brand direction."
+          "text": "Embedded with UNIQLO's Global Creative Lab on open-brief qualitative research, presenting to leadership on the social issues shaping the fashion industry and brand direction, often to tight deadlines."
         },
         {
           "id": "uni-basket",
-          "text": "Found that four summer-sale lines were bought together (0.90+ correlation across eight stores) while prime floor space promoted unrelated outfits; recommended placing the correlated lines in key positions and weekend and hot-weather displays."
+          "text": "Found a basket of around a dozen products among the top 50 sellers that customers consistently bought together (0.90+ correlation) but that were not always given prime floor space; recommended moving them into key positions for peak sales weekends."
         }
       ],
       "whyBullets": []
@@ -101,7 +101,7 @@
       "bullets": [
         {
           "id": "pet-nielsen",
-          "text": "Reported audience delivery to the target demographic against plan, using Nielsen data across multi-channel media buys."
+          "text": "Reported audience delivery against the target demographic across every vendor and sponsorship in the buy, integrating Nielsen and partner data and applying last-touch attribution at line level."
         },
         {
           "id": "pet-etl",
@@ -119,7 +119,7 @@
       "bullets": [
         {
           "id": "spr-synth",
-          "text": "Consolidated multiple vendor feeds and tracking sources into one SQL dataset, then built the reporting and post-campaign analyses, co-created with non-analytics teams, that informed budget allocation."
+          "text": "Consolidated multiple vendor feeds and tracking sources into one SQL dataset, then prepared the weekly reporting and the quarterly post-campaign analyses that steered budget allocation."
         },
         {
           "id": "spr-kantar",
@@ -143,11 +143,11 @@
       "bullets": [
         {
           "id": "dun-competitive",
-          "text": "Built a Mintel-based competitive analysis of QSR in New England and the Midwest, including Boston and Chicago, identifying market-entry and share-gain opportunities."
+          "text": "Prepared a competitive rundown of the QSR segment from several syndicated research sources, including Mintel, to support a broad strategy reset across the New England and Midwest markets."
         },
         {
           "id": "dun-mixplanning",
-          "text": "Used media mix planning and audience data (MRI-Simmons, Comscore) to shift spend from outdated sponsorships and concentrated urban buys to broader reach, cutting costs by ~$15K while growing sales."
+          "text": "Used media mix planning and audience data (MRI-Simmons, Comscore) to shift spend out of outdated sponsorships and concentrated urban buys, holding reach while cutting ~$15K from the budget."
         },
         {
           "id": "dun-ops",
@@ -159,7 +159,7 @@
         {
           "id": "dun-why-competitive",
           "replaces": "dun-competitive",
-          "text": "Analysed why certain markets outperformed across New England and the Midwest, converting the drivers into media recommendations that grew sales while cutting costs."
+          "text": "Analysed why certain markets outperformed across New England and the Midwest, converting the drivers into media recommendations that held reach on less spend."
         }
       ]
     }
@@ -172,7 +172,7 @@
       "mirrors": [
         "uni-basket"
       ],
-      "text": "Basket analysis across eight stores (0.90+ correlation) that informed summer floor layouts and displays."
+      "text": "Basket analysis of the top-selling range (0.90+ correlation) that informed summer floor layouts and displays."
     },
     {
       "id": "sp-workforce",

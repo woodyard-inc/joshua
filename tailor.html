@@ -369,29 +369,6 @@
   }
   .lowfit strong { display: block; letter-spacing: 0.04em; }
 
-  /* Capability tagline — only present when the behavioural layer is active */
-  .cv-tagline {
-    margin: 10px 0 0;
-    font-family: var(--font-body); font-style: italic; font-weight: 300;
-    font-size: 13.5px; line-height: 1.4; color: var(--cobalt);
-    max-width: none;
-  }
-
-  /* Key achievements band */
-  .problem-row {
-    display: grid; grid-template-columns: 190px 1fr; gap: var(--s-4);
-    align-items: baseline; padding: 5px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .problem-row:last-child { border-bottom: none; }
-  .problem-row .p-label {
-    font-family: var(--font-sans); font-weight: 700; font-size: var(--cv-micro);
-    letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft);
-  }
-  .problem-row .p-text {
-    font-family: var(--font-body); font-weight: 400; font-size: var(--cv-body);
-    line-height: 1.16; color: var(--ink);
-  }
   .tool-bar button.link {
     background: none; border: none; padding: 0; cursor: pointer;
     font: inherit; letter-spacing: inherit; color: var(--ink-muted);
@@ -526,7 +503,7 @@
 <article class="page" id="page1" hidden>
   <header class="cv-masthead">
     <div class="cv-eyebrow">
-      <span class="words">Analytics<span class="sep">|</span>Market Research<span class="sep">|</span>Human Behaviour</span>
+      <span class="words" id="out-eyebrow">Behavioural Science<span class="sep">|</span>Data Analytics<span class="sep">|</span>Market Research</span>
       <span class="page-no"><span id="out-datestamp">Curriculum Vitae</span><span class="sep">|</span>1 / 2</span>
     </div>
     <h1 class="cv-fullname">joshua woodyard</h1>
@@ -541,13 +518,7 @@
     </div>
   </header>
 
-  <p class="cv-tagline" id="out-tagline" hidden></p>
   <p class="cv-lede" id="out-lede"></p>
-
-  <section class="cv-section" id="sec-problems" hidden>
-    <h2>Key achievements</h2>
-    <div id="out-problems"></div>
-  </section>
 
   <section class="cv-section">
     <h2>Experience</h2>
@@ -586,16 +557,12 @@
   </section>
 
   <section class="cv-section">
-    <h2>Languages &amp; Competencies</h2>
+    <h2>Skills &amp; Languages</h2>
+    <div id="out-skills"></div>
     <div class="twocol">
       <span class="k">Languages</span>
       <div class="v" id="out-languages"></div>
     </div>
-    <div class="twocol" id="row-methodsline" hidden>
-      <span class="k">Approach</span>
-      <div class="v" id="out-methodsline"></div>
-    </div>
-    <div id="out-skills"></div>
   </section>
 
 </article>
@@ -681,8 +648,8 @@
     // Positioning
     let sec = libSection('Positioning');
     sec.appendChild(libItem('thesis', cv.positioning.thesis));
-    sec.appendChild(libItem('capabilityTagline', cv.positioning.capabilityTagline));
-    sec.appendChild(libItem('methodsLine', cv.positioning.methodsLine));
+    sec.appendChild(libItem('capabilityTagline', cv.positioning.capabilityTagline, [{ label: 'not used on CVs' }]));
+    sec.appendChild(libItem('methodsLine', cv.positioning.methodsLine, [{ label: 'not used on CVs' }]));
     body.appendChild(sec);
 
     // Summaries
@@ -705,13 +672,13 @@
         sec.appendChild(libItem(b.id, b.text, flags));
       });
       (r.whyBullets || []).forEach((w) => {
-        sec.appendChild(libItem(w.id, w.text, [{ label: 'why-variant → ' + w.replaces, kind: 'why' }]));
+        sec.appendChild(libItem(w.id, w.text, [{ label: 'why-variant → ' + w.replaces + ', not used on CVs', kind: 'why' }]));
       });
     });
     body.appendChild(sec);
 
     // Selected problems
-    sec = libSection('Key achievements');
+    sec = libSection('Key achievements (retired: not on the CV or tailored CVs)');
     cv.selectedProblems.forEach((p) => {
       const flags = [];
       if (p.optional) flags.push({ label: 'optional' });
@@ -780,15 +747,10 @@
   /* Lays out one CV payload and fits it to two pages. Shared by the tailored
      view and the master view so neither can drift from the other. */
   function renderPayload(data) {
-    const tagline = $('out-tagline');
-    tagline.textContent = data.capabilityTagline || '';
-    tagline.hidden = !data.capabilityTagline;
-
+    renderTagline(data.tagline);
     $('out-lede').textContent = data.summary;
     renderLanguages(data.languages);
     renderSkills(data.skills);
-    $('out-methodsline').textContent = data.methodsLine || '';
-    $('row-methodsline').hidden = !data.methodsLine;
     const stamp = `CV · ${formatDateStamp()}`;
     $('out-datestamp').textContent = stamp;
     $('out-datestamp2').textContent = stamp;
@@ -803,18 +765,15 @@
   async function renderMaster() {
     const cv = await (await fetch('cv-data.json', { cache: 'no-store' })).json();
     const payload = {
+      tagline: cv.variants.master.tagline,
       summary: cv.summaries.master,
-      capabilityTagline: null,
-      methodsLine: null,
       roles: (cv.roles || []).map((r) => ({
         role: `${r.title} | ${r.company}`,
         where: r.where,
         when: r.when,
         bullets: (r.bullets || []).map((b) => b.text),
       })),
-      // The master CV carries no Key Achievements (they parsed as a blank job)
-      // and no project section; the Research section keeps its methods.
-      selectedProblems: [],
+      // The master CV has no project section; the Research section keeps its methods.
       dissertation: cv.dissertation,
       project: null,
       education: (cv.education || []).map((e) => {
@@ -935,21 +894,17 @@
     $('sec-roles2').hidden = p2.children.length === 0;
   }
 
-  function renderProblems(problems) {
-    const box = $('out-problems');
+  // The tagline sits in the page-one eyebrow, as on the CV: the Worker picks
+  // the consumer-insights or master variant by track.
+  function renderTagline(text) {
+    const box = $('out-eyebrow');
+    const parts = String(text || 'Behavioural Science | Data Analytics | Market Research')
+      .split('|').map((t) => t.trim()).filter(Boolean);
     box.innerHTML = '';
-    const ul = el('ul', 'cv-bullets');
-    (problems || []).forEach((p) => {
-      const li = el('li');
-      li.appendChild(el('strong', null, `${p.label}:`));
-      li.appendChild(document.createTextNode(' '));
-      const span = el('span');
-      setText(span, p.text);
-      li.appendChild(span);
-      ul.appendChild(li);
+    parts.forEach((t, i) => {
+      if (i) box.appendChild(el('span', 'sep', '|'));
+      box.appendChild(document.createTextNode(t));
     });
-    if ((problems || []).length) box.appendChild(ul);
-    $('sec-problems').hidden = !problems || problems.length === 0;
   }
 
   function renderDissertation(d) {
@@ -959,9 +914,7 @@
     box.innerHTML = '';
     const bar = el('div', 'edu-row');
     bar.appendChild(el('span', 'degree', d.title));
-    // The mark lives in a bullet, not up here — carrying it in the third
-    // column squeezed the title column enough to wrap the title onto two
-    // lines. Fall back to it if an older corpus has no year.
+    // institution | year | mark, as on the CV.
     const dmeta = el('span', 'entry-meta');
     dmeta.appendChild(document.createTextNode(d.institution));
     dmeta.appendChild(el('span', 'sep', '|'));
@@ -1035,11 +988,7 @@
   function renderLanguages(langs) {
     const box = $('out-languages');
     box.innerHTML = '';
-    (langs || []).forEach((l) => {
-      const span = el('span', 'lang', l.name);
-      span.appendChild(el('span', 'level', l.level));
-      box.appendChild(span);
-    });
+    box.textContent = (langs || []).map((l) => `${l.name} (${l.level})`).join(', ');
   }
 
   function renderKeywords(data) {
@@ -1062,27 +1011,21 @@
        1. density  — tighter type, no content lost at all
        2. topics   — course module lists, the least load-bearing lines here
        3. project  — the independent project section
-       4. diss     — dissertation detail, methods bullets before findings
-       5. problems — key achievements, never below 3 (domain-range signal)
-       6. bullets  — role evidence, the last thing to give up
-     Role bullets used to be cut first, which was backwards: a module list was
-     surviving while the evidence a reader actually weighs was being dropped. */
+       4. diss     — dissertation detail, policy and later findings first; the
+                     Research section itself always stays, as on the CV
+       5. bullets  — role evidence, the last thing to give up */
   const FIT_PLANS = [
-    { bullets: 999, problems: 5, density: '',        project: true,  diss: 99, topics: true  },
-    { bullets: 999, problems: 5, density: 'compact', project: true,  diss: 99, topics: true  },
-    { bullets: 999, problems: 5, density: 'compact', project: true,  diss: 99, topics: false },
-    { bullets: 999, problems: 5, density: 'compact', project: false, diss: 99, topics: false },
-    { bullets: 999, problems: 5, density: 'compact', project: false, diss: 3,  topics: false },
-    { bullets: 999, problems: 4, density: 'compact', project: false, diss: 3,  topics: false },
-    { bullets: 999, problems: 4, density: 'compact', project: false, diss: 2,  topics: false },
-    { bullets: 999, problems: 3, density: 'compact', project: false, diss: 2,  topics: false },
-    { bullets: 18,  problems: 3, density: 'compact', project: false, diss: 2,  topics: false },
-    { bullets: 15,  problems: 3, density: 'compact', project: false, diss: 2,  topics: false },
-    { bullets: 12,  problems: 3, density: 'compact', project: false, diss: 2,  topics: false },
-    { bullets: 10,  problems: 3, density: 'compact', project: false, diss: 1,  topics: false },
-    // Last resort: drop the Research section outright rather than run to a
-    // third page. The dissertation still appears as a key achievement.
-    { bullets: 10,  problems: 3, density: 'compact', project: false, diss: 0,  topics: false },
+    { bullets: 999, density: '',        project: true,  diss: 99, topics: true  },
+    { bullets: 999, density: 'compact', project: true,  diss: 99, topics: true  },
+    { bullets: 999, density: 'compact', project: true,  diss: 99, topics: false },
+    { bullets: 999, density: 'compact', project: false, diss: 99, topics: false },
+    { bullets: 999, density: 'compact', project: false, diss: 4,  topics: false },
+    { bullets: 999, density: 'compact', project: false, diss: 3,  topics: false },
+    { bullets: 999, density: 'compact', project: false, diss: 2,  topics: false },
+    { bullets: 18,  density: 'compact', project: false, diss: 2,  topics: false },
+    { bullets: 15,  density: 'compact', project: false, diss: 2,  topics: false },
+    { bullets: 12,  density: 'compact', project: false, diss: 2,  topics: false },
+    { bullets: 10,  density: 'compact', project: false, diss: 1,  topics: false },
   ];
 
   /* plan.bullets is a budget for the whole CV, not a cap per role.
@@ -1109,12 +1052,11 @@
 
   function applyPlan(data, plan) {
     document.body.dataset.density = plan.density;
-    renderProblems((data.selectedProblems || []).slice(0, plan.problems));
     renderRoles(trimRoles(data.roles, plan.bullets));
     renderProject(plan.project ? data.project : null);
     renderEducation(data.education, plan.topics);
     renderDissertation(
-      data.dissertation && plan.diss > 0
+      data.dissertation
         ? { ...data.dissertation, bullets: (data.dissertation.bullets || []).slice(0, plan.diss) }
         : null
     );
@@ -1159,58 +1101,50 @@
       if (fit.plan.density === 'compact') bits.push('compact spacing');
       if (!fit.plan.topics) bits.push('course topics dropped');
       if (!fit.plan.project) bits.push('project entry dropped');
-      if (fit.plan.diss < 99) {
-        bits.push(fit.plan.diss === 0 ? 'research section dropped'
-                                      : `${fit.plan.diss} dissertation bullets`);
-      }
-      if (fit.plan.problems < 5) bits.push(`${fit.plan.problems} key achievements`);
+      if (fit.plan.diss < 99) bits.push(`${fit.plan.diss} dissertation bullets`);
       if (kept < total) bits.push(`${kept} of ${total} role bullets, weakest dropped first`);
       note.textContent = `Trimmed to hold two pages — ${bits.join(', ')}.`;
     }
     note.hidden = false;
   }
 
+  // Plain text in the same layout as the ATS CV (cv-ats.html).
   function buildAtsText(d) {
     const L = [];
-    L.push('JOSHUA WOODYARD');
-    L.push('Analytics | Market Research | Human Behaviour');
+    L.push('Joshua Woodyard');
+    L.push(d.tagline || 'Behavioural Science | Data Analytics | Market Research');
     L.push('London, United Kingdom | woodyardjoshuae@gmail.com | +44 7714 350869 | linkedin.com/in/joshua-woodyard');
-    L.push('');
-    if (d.capabilityTagline) { L.push(d.capabilityTagline); L.push(''); }
+    L.push(''); L.push('PROFILE');
     L.push(d.summary);
-    if (d.selectedProblems && d.selectedProblems.length) {
-      L.push(''); L.push('KEY ACHIEVEMENTS');
-      d.selectedProblems.forEach((p) => L.push(`- ${p.label}: ${p.text}`));
-    }
     L.push(''); L.push('EXPERIENCE');
     d.roles.forEach((r) => {
       L.push('');
-      L.push(`${r.role} — ${r.where} — ${r.when}`);
+      L.push(r.role);
+      L.push(`${r.where} | ${r.when}`);
       r.bullets.forEach((b) => L.push(`- ${b}`));
     });
     if (d.dissertation) {
       L.push(''); L.push('RESEARCH');
-      // The mark is a bullet now, so it must not repeat in this header line.
-      L.push(`${d.dissertation.title} — ${d.dissertation.institution} — ${d.dissertation.year || ''}`.trim().replace(/—$/, '').trim());
+      L.push(d.dissertation.title);
+      L.push([d.dissertation.institution, d.dissertation.year, d.dissertation.mark].filter(Boolean).join(' | '));
       (d.dissertation.bullets || []).forEach((b) => L.push(`- ${b}`));
     }
     if (d.project) {
       L.push(''); L.push('PROJECTS');
-      L.push(`${d.project.title} (${d.project.year})`);
+      L.push(`${d.project.title} | ${d.project.year}`);
       (d.project.bullets || [d.project.body].filter(Boolean)).forEach((b) => L.push(`- ${b}`));
     }
     L.push(''); L.push('EDUCATION');
     (d.education || []).forEach((e) => {
       L.push('');
-      L.push(`${e.degree} — ${e.school} — ${e.when}`);
+      L.push(e.degree);
+      L.push(`${e.school} | ${e.when}`);
       (e.meta || []).forEach((m) => L.push(`- ${m}`));
       if (e.topics) L.push(`Topics: ${e.topics}`);
     });
-    L.push(''); L.push('LANGUAGES');
-    L.push((d.languages || []).map((l) => `${l.name} (${l.level})`).join(', '));
-    if (d.methodsLine) { L.push(''); L.push('APPROACH'); L.push(d.methodsLine); }
-    L.push(''); L.push('SKILLS & TOOLS');
+    L.push(''); L.push('SKILLS & LANGUAGES');
     (d.skills || []).forEach((c) => L.push(`${c.label}: ${c.text}`));
+    L.push('Languages: ' + (d.languages || []).map((l) => `${l.name} (${l.level})`).join(', '));
     return L.join('\n');
   }
 
@@ -1271,7 +1205,6 @@
       reportFit(data, fit);
       lastTailored = {
         ...data,
-        selectedProblems: (data.selectedProblems || []).slice(0, fit.plan.problems),
         roles: trimRoles(data.roles, fit.plan.bullets),
         project: fit.plan.project ? data.project : null,
       };

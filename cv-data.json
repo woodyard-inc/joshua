@@ -10,30 +10,30 @@
     "methodsLine": "Behavioural investigation — designing research and experiments to explain why people, users, and markets behave as they do, and translating findings into decisions."
   },
   "contact": {
-    "location": "N7, London, England",
+    "location": "London, United Kingdom",
     "email": "woodyardjoshuae@gmail.com",
     "phone": "+44 7714 350869",
     "linkedin": "linkedin.com/in/joshua-woodyard"
   },
   "summaries": {
-    "master": "Behavioural researcher and analyst with 6+ years across telecom, QSR, retail, media and workforce analytics. Uses experimental design, econometrics and behavioural research to find what actually drives customer and business results, and turns it into recommendations leaders act on. MSc Behavioural Economics (City St George's, University of London). Hands-on with SQL, Python, R, Snowflake, Nielsen, Mintel and Kantar.",
+    "master": "Behavioural researcher and analyst with 6+ years in consumer insights and analytics across telecom, QSR, retail, media and workforce. Uses experimental design, econometrics and behavioural science to find what actually drives customer and business results, and turns it into recommendations leaders act on. Most recently ran the staffing analytics for 11 global new-business transitions (~3,500 roles) at Publicis Groupe. MSc Behavioural Economics (City St George's, University of London). Hands-on with SQL, Python, R, Snowflake, Nielsen, Mintel and Kantar.",
     "trackA": "Analytics strategist with 6+ years building data infrastructure, governance, and reporting functions for global organisations — most recently standing up analytics for a newly created function at Publicis Groupe from nothing. Proven track record standardising practice across large divisions and turning complex data into decisions non-specialists can act on. Hands-on with SQL (T-SQL), Python, R, Snowflake, Tableau and Power BI.",
     "trackB": "Behavioural researcher with 6+ years designing and executing quantitative studies under real organisational constraints, anchored by a distinction-band MSc dissertation applying multivariate methods to 11,249 cross-cultural respondents. My domain is method and human behaviour rather than a sector — the same statistical toolkit has travelled across five unrelated industries. Comfortable across the full pipeline: instrument and experimental design, imputation and construct reduction, regression and interaction modelling, and honest reporting of what the data cannot support."
   },
   "roles": [
     {
       "id": "publicis",
-      "title": "Senior Executive — Data & Insights",
-      "titlePeopleScience": "Senior Executive — Data & Insights (Talent)",
+      "title": "Senior Executive, Data & Insights",
+      "titlePeopleScience": "Senior Executive, Data & Insights (Talent)",
       "company": "Publicis Groupe",
       "where": "London, UK",
-      "when": "Jul 2025 – Current",
+      "when": "Jul 2025 – Present",
       "demoteUnlessPeopleScience": true,
       "bullets": [
         {
           "id": "pub-cold",
           "alwaysKeep": true,
-          "text": "Built an analytics function from scratch for a new domain with no defined scope, including data models, governance, taxonomy and data standards for incoming client workforces, and plain-language reporting for non-technical leaders."
+          "text": "Built an analytics function from scratch for a new domain with no defined scope: data models, governance, taxonomy and standards for incoming client workforces, and plain-language reporting for non-technical leaders."
         },
         {
           "id": "pub-transitions",
@@ -54,10 +54,10 @@
     },
     {
       "id": "horizon-bi",
-      "title": "Senior Analyst — Analytics & BI",
+      "title": "Senior Analyst, Analytics & Business Intelligence",
       "company": "Horizon Media",
       "where": "New York City, US",
-      "when": "Jan 2022 – Sept 2023",
+      "when": "Jan 2022 – Sep 2023",
       "bullets": [
         {
           "id": "hbi-practice",
@@ -83,25 +83,25 @@
       "bullets": [
         {
           "id": "uni-research",
-          "text": "Embedded with UNIQLO's Global Creative Lab, running open-brief qualitative and quantitative research into brand direction, often at short notice."
+          "text": "Embedded with UNIQLO's Global Creative Lab, running fast-turnaround, open-brief qualitative and quantitative research into brand direction."
         },
         {
           "id": "uni-basket",
-          "text": "On the quantitative side, found around a dozen top-50 products that customers bought together (0.90+ correlation across eight stores) but that rarely held prime floor space, and recommended moving them into key positions for peak sales weekends."
+          "text": "In one sales study, found around a dozen top-50 products customers bought together (0.90+ correlation across eight stores) that rarely held prime floor space; recommended moving them to key positions for peak weekends."
         }
       ],
       "whyBullets": []
     },
     {
       "id": "petco",
-      "title": "Senior Analyst — Petco",
+      "title": "Senior Analyst, Petco account",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Jul 2020 – Jan 2022",
       "bullets": [
         {
           "id": "pet-nielsen",
-          "text": "Consolidated all digital vendors and media buys into a single placement-level reporting set, integrating Nielsen audience data for digital TV and switchable attribution models, giving the client one view of performance across the full buy."
+          "text": "Consolidated all digital vendors and media buys, including Google and Meta, into a single placement-level reporting set, integrating Nielsen audience data for digital TV and switchable attribution models, giving the client one view of performance across the full buy."
         },
         {
           "id": "pet-etl",
@@ -112,14 +112,14 @@
     },
     {
       "id": "sprint-boost",
-      "title": "Analyst — Sprint & Boost Mobile",
+      "title": "Analyst, Sprint & Boost Mobile account",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Dec 2019 – Jul 2020",
       "bullets": [
         {
           "id": "spr-synth",
-          "text": "Consolidated multiple vendor feeds and tracking sources into one SQL dataset, then prepared the weekly reporting and the quarterly post-campaign analyses that steered budget allocation."
+          "text": "Consolidated vendor feeds from Google, Meta and other platforms into one SQL dataset, then prepared the weekly reporting and the quarterly post-campaign analyses that steered budget allocation."
         },
         {
           "id": "spr-kantar",
@@ -136,7 +136,7 @@
     },
     {
       "id": "dunkin",
-      "title": "Strategy Associate — Dunkin'",
+      "title": "Strategy Associate, Dunkin' account",
       "company": "Publicis Media",
       "where": "New York City, US",
       "when": "Apr 2019 – Dec 2019",
@@ -147,7 +147,7 @@
         },
         {
           "id": "dun-mixplanning",
-          "text": "Used media mix planning and audience data (MRI-Simmons, Comscore) to shift spend out of outdated sponsorships and concentrated urban buys, holding reach while cutting ~$15K from the budget."
+          "text": "Used media mix planning and audience data (MRI-Simmons consumer research, Comscore) to shift spend out of outdated sponsorships and concentrated urban buys, holding reach while cutting ~$15K from the budget."
         },
         {
           "id": "dun-ops",
@@ -198,21 +198,23 @@
       "domain": "Behavioural research",
       "org": "MSc",
       "mirrorsDissertation": true,
-      "text": "Analysis of 11,249 respondents across five countries found trust in fairness, not income, was the only universal predictor of life satisfaction."
+      "text": "Analysis of 11,249 respondents across five countries found perceived institutional fairness, not income, was the most consistent cross-cultural predictor of life satisfaction."
     }
   ],
   "dissertation": {
-    "title": "MSc Dissertation — Social Capital & Life Satisfaction",
+    "title": "Social Capital & Life Satisfaction",
     "institution": "City St George's, University of London",
     "year": "2024",
+    "mark": "Dissertation mark: 71%",
     "supervisor": "Dr Anke Plagnol",
+    "_note": "Order matters: the two-page fit trims from the end, so the policy bullet goes first and the methods survive.",
     "bullets": [
-      "Drivers of life satisfaction across five countries using International Social Survey Programme (ISSP) 2017 data (n = 11,249), analysed in R.",
-      "Methods: multiple imputation (MICE, predictive mean matching, grouped by country), PCA-built multi-item constructs, country-level and pooled OLS with interaction terms, Tukey-adjusted pairwise comparisons (LSmeans), and VIF and AIC/BIC model checks.",
-      "Trust in fairness was the only universal cross-cultural predictor of life satisfaction; income was non-significant, though subjective financial strain was not.",
-      "Graded 71%, a distinction-band mark, supervised by Dr Anke Plagnol."
-    ],
-    "_note": "Order matters: the two-page fit trims these from the end, so the method and the finding survive a squeeze and the grade is the first thing to go."
+      "Modelled the link between social capital and life satisfaction across five countries in R, using the International Social Survey Programme (ISSP) 2017 module (n = 11,249) as one instrument for all three of Putnam's dimensions.",
+      "Methods: multiple imputation (MICE), PCA-built constructs, country-level and pooled OLS with interaction terms, Tukey pairwise comparisons, and AIC/BIC model comparison.",
+      "Perceived institutional fairness was the most consistent cross-cultural predictor of life satisfaction. Relative income (within-country brackets) had no significant main effect, but as income rose, the links between life satisfaction and trust, daily contact and organisational contact weakened.",
+      "Social capital mattered more where state capacity was weaker (lower human development, fewer government resources, more corruption), while better governance had its own positive effect on life satisfaction.",
+      "Made policy recommendations on institutional transparency, civic infrastructure and bridging social capital."
+    ]
   },
   "project": {
     "title": "Wimbledon Men's Draw, Monte Carlo Match Simulator — Independent Project",
@@ -225,20 +227,18 @@
   },
   "education": [
     {
-      "degree": "MSc Behavioural Economics",
+      "degree": "Master of Science (MSc), Behavioural Economics",
       "school": "City St George's, University of London",
-      "when": "Sept 2023 – Sept 2024",
+      "when": "Sep 2023 – Sep 2024",
       "meta": [
         "Graduated with Merit; 67%"
       ],
-      "dissertationSummary": "Dissertation (R): drivers of life satisfaction across five countries, ISSP 2017 (n = 11,249).",
-      "_note": "dissertationSummary prints on every CV. The method detail lives in dissertation.bullets and only reaches a page on the research track, where the Research section replaces this line entirely.",
       "topics": "Experimental Economics, Game Theory, Cognitive Psychology, Decision Making, Econometrics, Research Methods"
     },
     {
       "degree": "Bachelor of Science in Business (Marketing)",
       "school": "DePaul University",
-      "when": "Sept 2015 – Dec 2018",
+      "when": "Sep 2015 – Dec 2018",
       "meta": [
         "Graduated early with Merit; 3.6 / 4.0",
         "Minors in German and International Business"
@@ -275,51 +275,108 @@
     {
       "id": "methods",
       "label": "Methods",
-      "text": "experimental design, A/B testing, OLS regression with interaction and moderation terms, multiple imputation (MICE), PCA, model comparison (AIC/BIC), econometrics, predictive modelling, survey and user research"
+      "text": "Behavioural Science, Behavioural Economics, Experimental Design, A/B Testing, Regression Analysis, Econometrics, Statistical Modelling, Predictive Modelling, PCA, Multiple Imputation, Survey Research, Quantitative Research, Qualitative Research"
+    },
+    {
+      "id": "insights",
+      "label": "Insights & Strategy",
+      "text": "Consumer Insights, Consumer Behaviour, Shopper Insights, Audience Analysis, Competitive Analysis, Marketing Effectiveness, Attribution, Stakeholder Management"
     },
     {
       "id": "programming",
-      "label": "Programming & data",
-      "text": "Python, R, SQL (T-SQL), SPSS, Snowflake, Knime, Alteryx"
+      "label": "Programming & Data",
+      "text": "Data Analysis, Python, R, SQL, T-SQL, SPSS, Snowflake, KNIME, Alteryx, ETL, Data Modelling, Data Governance, Data Quality"
     },
     {
       "id": "platforms",
-      "label": "Research platforms",
-      "text": "Nielsen, Mintel, Kantar, MRI-Simmons, Comscore"
+      "label": "Research Platforms",
+      "text": "Nielsen, Kantar, Mintel, MRI-Simmons (consumer research), Comscore"
+    },
+    {
+      "id": "adplatforms",
+      "label": "Ad Platforms",
+      "text": "Google and Meta ad platforms, digital media vendor reporting, platform data extraction"
     },
     {
       "id": "viz",
-      "label": "Visualisation",
-      "text": "Tableau, Power BI"
+      "label": "Visualisation & BI",
+      "text": "Tableau, Power BI, Microsoft Excel, Business Intelligence, Data Visualisation, Dashboards"
     },
     {
       "id": "ai",
-      "label": "AI tools",
+      "label": "AI Tools",
       "text": "ChatGPT, Claude, Claude Code, Microsoft Copilot"
     }
   ],
   "_skillOrder": {
-    "_note": "Track orders for the tailored variant. Categories are reordered, never rewritten.",
+    "_note": "Track orders for the tailored variant. Rows are reordered, never rewritten. \"languages\" renders cv.languages as a row.",
     "master": [
       "methods",
+      "insights",
       "programming",
       "platforms",
+      "adplatforms",
       "viz",
-      "ai"
+      "ai",
+      "languages"
     ],
     "trackA": [
       "programming",
       "viz",
+      "insights",
       "platforms",
       "methods",
-      "ai"
+      "adplatforms",
+      "ai",
+      "languages"
     ],
     "trackB": [
       "methods",
       "platforms",
+      "insights",
       "programming",
       "viz",
-      "ai"
+      "adplatforms",
+      "ai",
+      "languages"
     ]
+  },
+  "variants": {
+    "master": {
+      "label": "Master",
+      "tagline": "Behavioural Science | Data Analytics | Market Research",
+      "skillOrder": [
+        "methods",
+        "insights",
+        "programming",
+        "platforms",
+        "adplatforms",
+        "viz",
+        "ai",
+        "languages"
+      ]
+    },
+    "consumer-insights": {
+      "label": "Consumer Insights",
+      "tagline": "Consumer Insights | Behavioural Science | Data Analytics",
+      "skillOrder": [
+        "insights",
+        "platforms",
+        "methods",
+        "programming",
+        "adplatforms",
+        "viz",
+        "ai",
+        "languages"
+      ]
+    }
+  },
+  "_layout": {
+    "_note": "Read by scripts/build_cv.py and cv-ats.html. page1Roles = roles before \"Experience (continued)\". omit = bullets the designed CV drops to hold two A4 pages (role-bullet id, or \"research:<opening words>\"). eduResultInMeta = set each degree's result on its school | dates line (designed CV only). atsOmit = like omit, for the ATS export, which only cuts if it runs over itself.",
+    "page1Roles": 5,
+    "lineHeight": 1.305,
+    "omit": [],
+    "eduResultInMeta": false,
+    "atsOmit": []
   }
 }

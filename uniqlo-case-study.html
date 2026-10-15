@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Four hundred sales, one afternoon · Joshua Woodyard</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="A sales-data investigation across eight NY metro UNIQLO stores that uncovered a tightly-correlated summer basket and turned it into a floor-planning recommendation. Joshua Woodyard, behavioural researcher.">
+<meta name="description" content="Basket analysis and floor layout for UNIQLO: around a dozen top-50 products bought together across eight NY metro stores, and a recommendation to give them prime floor space. Joshua Woodyard, behavioural researcher.">
 <meta name="theme-color" content="#FFFDF8">
 <link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramond-Light.woff2" crossorigin>
@@ -281,9 +281,9 @@
     </div>
     <div class="meta">
       <span class="k">Client</span><span class="v">UNIQLO · NYC</span>
-      <span class="k">Role</span><span class="v">Freelance researcher</span>
+      <span class="k">Role</span><span class="v">Freelance Researcher (Part-time)</span>
       <span class="k">Duration</span><span class="v">8 weeks · SS 2021</span>
-      <span class="k">Partners</span><span class="v">Merch director · Store ops</span>
+      <span class="k">Team</span><span class="v">Global Creative Lab</span>
     </div>
   </section>
 
@@ -291,7 +291,7 @@
   <section class="deck-block">
     <div class="side">
       <span class="label--micro">In short</span>
-      <p class="sumline">A sales-data investigation across eight NY metro stores that uncovered a tightly-correlated summer basket — tees and biker shorts — and turned it into a floor-planning recommendation for the late-summer tail.</p>
+      <p class="sumline">A sales-data investigation across eight NY metro stores. During the summer sale, around a dozen top-50 products were bought together (0.90+ correlation), yet prime floor space went elsewhere. The recommendation: put the products shoppers were choosing where they would see them first.</p>
     </div>
     <p class="standfirst">The sales data couldn't tell me <em>who</em> was buying. But it could tell me <em>what</em> was being bought together — and on a hot Saturday in SOHO, the floor told me the rest.</p>
   </section>
@@ -327,31 +327,32 @@
     <div class="leftnotes">
       <span class="label--micro">Contents</span>
       <nav class="toc">
-        <a href="#brief"><span class="n">01</span>The brief</a>
-        <a href="#method"><span class="n">02</span>Method</a>
-        <a href="#visit"><span class="n">03</span>The store visit</a>
-        <a href="#why"><span class="n">04</span>The why</a>
-        <a href="#reco"><span class="n">05</span>Recommendation</a>
-        <a href="#outcome"><span class="n">06</span>Outcome</a>
-        <a href="#reflect"><span class="n">07</span>What I'd change</a>
+        <a href="#context"><span class="n">01</span>Context</a>
+        <a href="#problem"><span class="n">02</span>Problem</a>
+        <a href="#approach"><span class="n">03</span>Approach &amp; methods</a>
+        <a href="#result"><span class="n">04</span>Result</a>
+        <a href="#next"><span class="n">05</span>What I'd do next</a>
       </nav>
     </div>
 
     <!-- CENTER: body -->
     <div>
-      <h2 id="brief">The brief <span class="section-num">§ 01</span></h2>
-      <p class="lead">My manager mentioned that UNIQLO houses all of its sales in one database — segmented only by day and by product, never by customer — and had a suspicion that it contained truths nobody had bothered to look for.</p>
-      <p style="font-size: 22px;">He wasn't technical, but he trusted the instinct: <em style="font-size: 22px;">something is in there</em>. He gave me room to experiment and shape a project around whatever I found. Eight weeks, Excel and R, and a brief I was allowed to write myself.</p>
+      <h2 id="context">Context <span class="section-num">§ 01</span></h2>
+      <p class="lead">I was a part-time freelance researcher embedded with UNIQLO's Global Creative Lab, running open-brief qualitative and quantitative research for leadership.</p>
+      <p>This study started from the sales data. UNIQLO's sales sat in one database, segmented by day and by product but never by customer, and the question was what it could show that nobody had looked for.</p>
 
       <blockquote>
         <p>A critical tool he brought to his role here is a set of strong analytical skills. He has proved himself to be trustworthy and dependable, consistently delivering at high levels.</p>
         <span class="attrib">— Director of Brand Strategy, UNIQLO</span>
       </blockquote>
 
-      <h2 id="method">Method <span class="section-num">§ 02</span></h2>
-      <p>First, a lot of cleaning. The sales system was manual and messy; before any analysis I had to wrestle it into something a correlation matrix could read. Excel for the wrangling, R for the statistics.</p>
-      <p>Then I drilled into SS 2021 — the season UNIQLO was promoting LifeWear: jackets and coats, jeans, sweaters, Airism, shirts and blouses, and t-shirts. Looking at the eight NY-metro stores, a pattern emerged: Saturdays and Sundays were peak sales days, with different products taking the top slot each day.</p>
-      <p>The high-volume items were consistent: Uniqlo U heavyweight tees, Supima tees, and Hoodies. When I ran correlations across products, one cluster lit up — the U tees, Supima tees, women's biker shorts, and men's boxers moved with 0.90+ correlation, even though boxers were a low-volume item.</p>
+      <h2 id="problem">Problem <span class="section-num">§ 02</span></h2>
+      <p>During the summer sale, around a dozen top-50 products were bought together, with 0.90+ correlation across eight stores. Examples included biker shorts, the U heavyweight tee, the Supima tee and men's boxers.</p>
+      <p>Yet prime floor space went to full-outfit mannequins and products unrelated to the correlated basket, promoting LifeWear outfits that had little to do with what was actually selling.</p>
+
+      <h2 id="approach">Approach &amp; methods <span class="section-num">§ 03</span></h2>
+      <p>First, a lot of cleaning. The sales system was manual and messy, so before any analysis I wrestled it into something a correlation matrix could read: Excel for the wrangling, R for the statistics.</p>
+      <p>Then I drilled into SS 2021, the season UNIQLO was promoting LifeWear. Across the eight NY metro stores, Saturdays and Sundays were peak sales days, and when I ran correlations across products, around a dozen top-50 products moved together at 0.90+, even where one of them, like men's boxers, was a low-volume item.</p>
 
       <div class="figure" style="grid-column: 1 / -1; margin-left: 0;">
         <div class="fh"><h4>Product-to-product correlation · SS 2021</h4><span class="n">Fig. 01</span></div>
@@ -362,10 +363,10 @@
         <div class="chart-row"><span class="lbl">Hoodies <em>Avg. ~600 daily volume<br></em></span><div class="tr"><div class="f" style="width: 58%;"></div></div><span class="val">0.58</span></div>
         <div class="chart-row"><span class="lbl">Easy Wide Fit Shorts<em>Avg. ~600 daily volume<br></em></span><div class="tr"><div class="f" style="width: 44%;"></div></div><span class="val">0.44</span></div>
         <div class="chart-row"><span class="lbl">Trench Coat<em>Avg. ~100 daily volume</em></span><div class="tr"><div class="f" style="width: 12%;"></div></div><span class="val">0.12</span></div>
-        <p class="fc">Pairwise Pearson correlation to the U-tee time series across eight NY-metro stores, weekly sales, SS 2021. Four products form a single cluster at 0.90+ despite differing volumes. n = 26 weeks.</p>
+        <p class="fc">Pairwise Pearson correlation to the U-tee time series across eight NY-metro stores, weekly sales, SS 2021. Four of the around a dozen top-50 products in the correlated basket, at 0.90+, against lower-correlated products for comparison. n = 26 weeks.</p>
       </div>
 
-      <h2 id="visit">The store visit <span class="section-num">§ 03</span></h2>
+      <h3 id="visit" style="font-family: var(--font-display); font-size: 15px; font-weight: 700; margin: var(--s-5) 0 var(--s-2);">The store visit</h3>
       <figure class="figure-pair" style="grid-column: 1 / -1; margin: var(--s-5) 0 var(--s-6); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); align-items: start;">
         <picture>
           <source type="image/webp" srcset="images/soho-street-640.webp 640w, images/soho-street-1200.webp 1200w" sizes="(max-width: 700px) 100vw, 540px">
@@ -391,11 +392,11 @@
       </figure>
 
       <p>Data gets you a hypothesis; a floor gets you an explanation. On a 90°F August Saturday afternoon, I went to the SOHO store to see the correlation in the wild.</p>
-      <p>In one afternoon I watched roughly four hundred transactions — the same volume pattern the dataset had been showing me at the weekly level — unfold in real time. Biker shorts and tees were everywhere in the baskets, though rarely bought together in the same transaction. The correlation wasn't that customers were buying them <em>as a set</em>; it was that they were being bought by the same kind of person on the same kind of day.</p>
+      <p>In one afternoon I watched roughly four hundred transactions unfold, the same volume pattern the dataset had been showing me at the weekly level. Biker shorts and tees were everywhere in the baskets.</p>
       <p>I also noticed what was getting in the way: rain jackets and full-outfit mannequins occupying prime floor space, promoting LifeWear staples that had nothing to do with what was actually selling that afternoon.</p>
 
-      <h2 id="why">The why <span class="section-num">§ 04</span></h2>
-      <p>Back at my desk, I chased the correlation across four directions.</p>
+      <h3 style="font-family: var(--font-display); font-size: 15px; font-weight: 700; margin: var(--s-5) 0 var(--s-2);">The why</h3>
+      <p>Back at my desk, I chased the correlation in four directions.</p>
       <ul>
         <li><span class="tag">Social &amp; ads</span><span>UNIQLO's own channels weren't pushing these specific items. The demand was coming from somewhere else.</span></li>
         <li><span class="tag">Weather</span><span>The biggest sales days followed weeks of 90°F+ highs. Heat was a reliable leading indicator.</span></li>
@@ -403,16 +404,12 @@
         <li><span class="tag">Pricing</span><span>A competitive sweep showed our best-selling tees at roughly half the price of competitors — with review scores as good or better. That combination was winning on hot weekend days almost violently. The biker shorts didn't have the same price advantage, but quality plus cultural salience carried them.</span></li>
       </ul>
 
+      <h2 id="result">Result <span class="section-num">§ 04</span></h2>
+      <p class="lead">Move the data-driven products into key floor positions, and feature them in displays on weekends and hot-weather weeks.</p>
+      <p>The reasoning is behavioural. It is a salience and choice-architecture intervention: align what shoppers see first with what they are actually choosing, instead of with what the seasonal campaign says they should choose.</p>
 
-
-      <h2 id="reco">Recommendation <span class="section-num">§ 05</span></h2>
-      <p>On peak summer weekends, merchandise the basket that is actually moving, not the one the seasonal campaign says <em>should</em> be moving. Put the U tee, the Supima tee, and the biker shorts in prime floor positions, in coordinated looks that reflected what customers were already building for themselves. Pull the rain-jacket mannequins out of the hottest real estate; they were paying rent and earning nothing.</p>
-
-      <h2 id="outcome">Outcome <span class="section-num">§ 06</span></h2>
-      <p>The floor strategy shifted. Across August and September, peak-weekend sell-through on the tee basket ran ahead of a matched pre-change baseline, and the correlated basket held its grouping well past the original study window. I never tested that difference for significance, so I read it as consistent with the recommendation rather than proof of it.</p>
-
-      <h2 id="reflect">What I'd change <span class="section-num">§ 07</span></h2>
-      <p>I'd vie harder, earlier, for customer-level data. The correlation was the ceiling of what product-only data could tell me — it could show me what moved together and hint at when, but it couldn't tell me who was walking in. A single customer identifier would have turned a strong hypothesis into a testable segment, and the floor-planning recommendation into a repeatable system.</p>
+      <h2 id="next">What I'd do next <span class="section-num">§ 05</span></h2>
+      <p>I'd push harder, earlier, for customer-level data. The correlation was the ceiling of what product-only data could tell me: it showed what moved together and hinted at when, but not who was walking in. A single customer identifier would turn a strong hypothesis into a testable segment, and the floor recommendation into a repeatable system.</p>
     </div>
 
     <!-- RIGHT: marginalia -->
@@ -423,15 +420,9 @@
       </aside>
 
       <aside>
-        <span class="label--micro">What surprised me</span>
-        The correlated items weren't being bought together in one transaction — the correlation was a signal about <em>who</em> was in the store, not <em>what</em> was in the basket.
+        <span class="label--micro">The behavioural lens</span>
+        Salience and choice architecture: what shoppers see first shapes what they choose, so the floor should lead with what they already choose.
       </aside>
-
-      <aside>
-        <span class="label--micro">Quietly proud of</span>
-        Turning a non-technical manager's hunch into a floor-planning change the director could act on.
-      </aside>
-
     </div>
 
     <!-- METHODS -->

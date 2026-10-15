@@ -531,7 +531,7 @@
     </div>
     <h1 class="cv-fullname">joshua woodyard</h1>
     <div class="cv-contact">
-      <span class="item">N7, London, England</span>
+      <span class="item">London, United Kingdom</span>
       <span class="sep">|</span>
       <span class="item"><a href="mailto:woodyardjoshuae@gmail.com">woodyardjoshuae@gmail.com</a></span>
       <span class="sep">|</span>
@@ -807,21 +807,16 @@
       capabilityTagline: null,
       methodsLine: null,
       roles: (cv.roles || []).map((r) => ({
-        role: `${r.title}, ${r.company}`,
+        role: `${r.title} | ${r.company}`,
         where: r.where,
         when: r.when,
         bullets: (r.bullets || []).map((b) => b.text),
       })),
-      selectedProblems: (cv.selectedProblems || []).map((p) => ({
-        label: `${p.domain} (${p.org})`,
-        text: p.text,
-      })),
-      dissertation: {
-        ...cv.dissertation,
-        // Method detail is for research-track CVs; the master is general.
-        bullets: (cv.dissertation.bullets || []).filter((b) => !/^Methods:/.test(b)),
-      },
-      project: cv.project,
+      // The master CV carries no Key Achievements (they parsed as a blank job)
+      // and no project section; the Research section keeps its methods.
+      selectedProblems: [],
+      dissertation: cv.dissertation,
+      project: null,
       education: (cv.education || []).map((e) => {
         const { dissertationSummary, ...rest } = e;
         return rest;                       // the Research section covers it
@@ -971,6 +966,10 @@
     dmeta.appendChild(document.createTextNode(d.institution));
     dmeta.appendChild(el('span', 'sep', '|'));
     dmeta.appendChild(document.createTextNode(d.year || d.result || ''));
+    if (d.mark) {
+      dmeta.appendChild(el('span', 'sep', '|'));
+      dmeta.appendChild(document.createTextNode(d.mark));
+    }
     bar.appendChild(dmeta);
     box.appendChild(bar);
     const ul = el('ul', 'cv-bullets');
@@ -1175,7 +1174,7 @@
     const L = [];
     L.push('JOSHUA WOODYARD');
     L.push('Analytics | Market Research | Human Behaviour');
-    L.push('N7, London, England | woodyardjoshuae@gmail.com | +44 7714 350869 | linkedin.com/in/joshua-woodyard');
+    L.push('London, United Kingdom | woodyardjoshuae@gmail.com | +44 7714 350869 | linkedin.com/in/joshua-woodyard');
     L.push('');
     if (d.capabilityTagline) { L.push(d.capabilityTagline); L.push(''); }
     L.push(d.summary);

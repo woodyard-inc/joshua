@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Money can't buy happiness — but community can · Joshua Woodyard</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="A cross-cultural analysis of 11,249 respondents across five countries — MSc dissertation, City, University of London. Joshua Woodyard.">
+<meta name="description" content="Social Capital &amp; Life Satisfaction: a cross-cultural analysis of 11,249 respondents across five countries. MSc dissertation, City St George's, University of London. Joshua Woodyard.">
 <meta name="theme-color" content="#FFFDF8">
 <link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramond-Light.woff2" crossorigin>
@@ -315,6 +315,36 @@
   }
   .country-card .finding strong { color: var(--cobalt); font-weight: 700; }
 
+  /* Headline findings (top of page) */
+  .headlines {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--ink);
+  }
+  .headlines .f { padding: var(--s-6) var(--s-5); border-right: 1px solid var(--rule-strong); }
+  .headlines .f:first-child { padding-left: 0; }
+  .headlines .f:last-child { padding-right: 0; border-right: none; }
+  .headlines .f .k { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cobalt); }
+  .headlines .f p { font-family: var(--font-body); font-size: 18px; line-height: 1.45; color: var(--ink); margin-top: var(--s-3); }
+
+  /* Lists of findings: tag | text */
+  .article ul.facts { font-family: var(--font-body); font-size: 17px; line-height: 1.55; color: var(--ink); padding-left: 0; list-style: none; margin: 0 0 1em 0; }
+  .article ul.facts li { padding: var(--s-3) 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 130px 1fr; gap: var(--s-4); }
+  .article ul.facts li:first-child { border-top: 1px solid var(--ink); }
+  .article ul.facts li:last-child { border-bottom: 1px solid var(--rule); }
+  .article ul.facts li .tag { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cobalt); padding-top: 4px; }
+
+  /* Moderation table */
+  .mod-table { grid-column: 1 / -1; margin: var(--s-4) 0 var(--s-6); }
+  .mod-table table { width: 100%; border-collapse: collapse; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .mod-table caption { caption-side: top; text-align: left; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--ink-muted); padding-bottom: var(--s-3); }
+  .mod-table caption .figno { color: var(--cobalt); letter-spacing: 0.16em; text-transform: uppercase; margin-right: var(--s-3); }
+  .mod-table th { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); text-align: left; padding: var(--s-3) var(--s-4) var(--s-3) 0; border-bottom: 1px solid var(--ink); font-weight: 700; }
+  .mod-table td { font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: var(--ink); vertical-align: top; padding: var(--s-3) var(--s-4) var(--s-3) 0; border-bottom: 1px solid var(--rule); }
+  .mod-table td:first-child { font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; width: 18%; }
+  .mod-table td:nth-child(2) { width: 47%; }
+  .mod-table td:last-child { color: var(--ink-soft); font-style: italic; padding-right: 0; }
+  .mod-table tr:last-child td { border-bottom: none; }
+
   /* Methods grid */
   .methods {
     grid-column: 1 / -1;
@@ -379,6 +409,11 @@
     .article .leftnotes { grid-column: auto; }
     .article .marg-col { margin-top: var(--s-5); }
     .hyp { grid-template-columns: 1fr; }
+    .headlines { grid-template-columns: 1fr; }
+    .headlines .f { border-right: none; border-bottom: 1px solid var(--rule-strong); padding: var(--s-5) 0; }
+    .headlines .f:last-child { border-bottom: none; }
+    .mod-table { overflow-x: auto; }
+    .mod-table table { min-width: 620px; }
     .hyp .h { border-right: none; border-bottom: 1px solid var(--rule-strong); }
     .hyp .h:nth-child(2n) { border-right: none; }
     .hyp .h:last-child { border-bottom: none; }
@@ -399,6 +434,7 @@
     .chart-row { grid-template-columns: 1fr 60px; gap: 6px; }
     .chart-row .tr { grid-column: 1 / -1; order: 3; }
     .chart-row .lbl { font-size: 11px; }
+    .article ul.facts li { grid-template-columns: 1fr; gap: var(--s-2); }
     .colophon { grid-template-columns: 1fr; gap: 4px; }
     .colophon .c, .colophon .r { text-align: left; }
   }
@@ -433,22 +469,22 @@
   </div>
 
   <nav class="crumb">
-    <a href="index.html#work">Work</a><span>/</span><span>Case Study 002</span><span>/</span><span class="now">Dissertation · City, University of London</span>
+    <a href="index.html#work">Work</a><span>/</span><span>Case Study 002</span><span>/</span><span class="now">Dissertation · City St George's, University of London</span>
   </nav>
 
   <!-- TITLE -->
   <section class="title-block">
     <div>
-      <span class="eyebrow">Case Study · 002 · 2024</span>
+      <span class="eyebrow">Case Study · 002 · 2024 · Social Capital &amp; Life Satisfaction</span>
       <h1>Money can't buy happiness<em>— but community can</em></h1>
     </div>
     <div class="meta">
-      <span class="k">Institution</span><span class="v">City, University of London</span>
+      <span class="k">Institution</span><span class="v">City St George's, University of London</span>
       <span class="k">Programme</span><span class="v">MSc Behavioural Economics</span>
       <span class="k">Role</span><span class="v">Lead researcher &amp; author</span>
       <span class="k">Duration</span><span class="v">~6 months · 2024</span>
       <span class="k">Supervisor</span><span class="v">Dr Anke Plagnol</span>
-      <span class="k">Result</span><span class="v">First-class honours · 71%</span>
+      <span class="k">Result</span><span class="v">Dissertation mark: 71% · with Merit</span>
     </div>
   </section>
 
@@ -456,32 +492,24 @@
   <section class="deck-block">
     <div class="side">
       <span class="label--micro">In short</span>
-      <p class="sumline">A cross-cultural analysis of 11,249 respondents across Austria, China, Russia, the United States, and South Africa found that social capital is positively associated with life satisfaction in every country studied — but which dimensions matter, and how much, is moderated by cultural values, corruption, human development, and natural disaster risk. Income, notably, showed no significant main effect.</p>
+      <p class="sumline">Social Capital &amp; Life Satisfaction. A cross-cultural analysis of 11,249 respondents across Austria, China, Russia, South Africa and the United States, using the ISSP 2017 module as a single instrument for all three of Putnam's social capital dimensions.</p>
     </div>
-    <p class="standfirst">Wellbeing research often tries to define a "happy life". This dissertation goes at it with a dataset most of the field has overlooked — and finds the answer changes depending on where you live.</p>
+    <p class="standfirst">Does social capital make lives better everywhere, or does it depend on where you live?</p>
   </section>
 
-  <!-- STATS -->
-  <section class="stat-row">
-    <div class="s">
-      <span class="k">Respondents</span>
-      <div class="v">11,249</div>
-      <p class="n">Across five culturally diverse countries, ISSP 2017 Social Networks module.</p>
+  <!-- HEADLINE FINDINGS -->
+  <section class="headlines" aria-label="Headline findings">
+    <div class="f">
+      <span class="k">Finding 01</span>
+      <p>Social capital is positively associated with life satisfaction across all five countries, but the relationship is not uniform. It is shaped by culture, institutions and environment.</p>
     </div>
-    <div class="s">
-      <span class="k">Trust in fairness</span>
-      <div class="v v--cobalt v--small">5 of 5</div>
-      <p class="n">Significant and positive in every country — the most consistent cross-cultural predictor.</p>
+    <div class="f">
+      <span class="k">Finding 02</span>
+      <p>Perceived institutional fairness was the most consistent cross-cultural predictor of life satisfaction, while relative income had no significant main effect.</p>
     </div>
-    <div class="s">
-      <span class="k">Income effect</span>
-      <div class="v v--small">None</div>
-      <p class="n">No significant main effect on life satisfaction, after controls.</p>
-    </div>
-    <div class="s">
-      <span class="k">Variance explained</span>
-      <div class="v">R²&nbsp;0.22</div>
-      <p class="n">Pooled model, 67 predictors and moderators; typical for life-satisfaction research.</p>
+    <div class="f">
+      <span class="k">Finding 03</span>
+      <p>Social capital carries more of the weight where the state does less: its associations weakened as human development, government resources and governance quality rose. Trust and fairness, however, remained consistently associated.</p>
     </div>
   </section>
 
@@ -492,180 +520,63 @@
     <div class="leftnotes">
       <span class="label--micro">Contents</span>
       <nav class="toc">
-        <a href="#question"><span class="n">01</span>The question</a>
-        <a href="#instrument"><span class="n">02</span>Instrument &amp; sample</a>
-        <a href="#findings"><span class="n">03</span>What the data said</a>
-        <a href="#limits"><span class="n">04</span>What it couldn't say</a>
-        <a href="#reco"><span class="n">05</span>Recommendation</a>
-        <a href="#outcome"><span class="n">06</span>Outcome</a>
-        <a href="#reflect"><span class="n">07</span>What I'd change</a>
+        <a href="#context"><span class="n">01</span>Context</a>
+        <a href="#problem"><span class="n">02</span>Problem</a>
+        <a href="#approach"><span class="n">03</span>Approach &amp; methods</a>
+        <a href="#results"><span class="n">04</span>Results</a>
+        <a href="#implications"><span class="n">05</span>Implications</a>
+        <a href="#next"><span class="n">06</span>What I'd do next</a>
       </nav>
     </div>
 
     <!-- CENTER: body -->
     <div>
-      <h2 id="question">The question <span class="section-num">§ 01</span></h2>
-      <p class="lead" style="" data-cc-id="cc-5">Three literatures sit near each other without talking: Putnam's social capital framework, Hofstede's cross-cultural values, and the subjective wellbeing tradition running from Easterlin to Diener. Each topic looks to define the structural conditions, beyond individual wealth or circumstance, that make human life go well.</p>
-      <p style="font-size: 22px;" data-cc-id="cc-4">Studies using the World Values Survey typically measure trust <em>or</em> social networks, rarely both, and almost never the full Putnam triad — networks, trust, norms of reciprocity. The 2017 ISSP Social Networks module had just been released, contained items for all three dimensions, and had barely been touched in the published literature.</p>
-      <p style="font-size: 22px;" data-cc-id="cc-6">The question was whether treating social capital as genuinely multi-dimensional, across genuinely different national contexts, would produce findings the single-dimension studies couldn't see.</p>
+      <h2 id="context">Context <span class="section-num">§ 01</span></h2>
+      <p class="lead">Does social capital make lives better everywhere, or does it depend on where you live? I tested it across five countries: Austria, China, Russia, South Africa and the United States.</p>
+      <p>Submitted for the MSc Behavioural Economics, City St George's, University of London. Dissertation mark: 71%, with Merit.</p>
 
       <blockquote>
         <p>Overall, this is a very comprehensive study of the relationship between life satisfaction and social capital in various national contexts. It was a pleasure to read this thoughtful analysis.</p>
         <span class="attrib">— Dr Anke Plagnol · supervisor</span>
       </blockquote>
 
-      <h2 id="instrument">Instrument &amp; sample <span class="section-num">§ 02</span></h2>
-      <p>The dependent variable was life satisfaction, measured on the ISSP's single-item 7-point Likert scale. Social capital was operationalised through nine constructs: trust in society, trust in fairness, organisational trust, social networks (Lin's position generator, weighted by ISEI occupational status), personal and organisational support resources (Van der Gaag &amp; Snijders' resource generator, adapted by the ISSP team), norms of reciprocity (three: elder care, family first, societal care), and contact frequency (daily and organisational). Multi-item constructs were reduced via PCA with reliability checks (most α ≥ 0.71).</p>
-      <p>Five countries were selected for maximum cross-cultural variance on development, governance, and cultural values: <em>Austria, China, Russia, the United States, South Africa</em>. National-level moderators came from Hofstede's cultural dimensions, HDI, Social Progress Index, Corruption Perception Index, INFORM natural-hazard risk, and within-country income percentiles.</p>
-      <p>Controls: age, partner status, ISCO-08 skill level, household financial ease. Missing data (3,968 of 15,217 rows had at least one missing value) were handled via MICE with predictive mean matching, imputed within country to preserve national characteristics.</p>
-      <h2 id="findings">What the data said <span class="section-num">§ 03</span></h2>
-      <p style="font-size: 18px;" data-cc-id="cc-3">Four hypotheses, four findings.</p>
-    </div>
+      <h2 id="problem">Problem <span class="section-num">§ 02</span></h2>
+      <p>Social capital research often treats its link with life satisfaction as uniform, and measures its dimensions with separate instruments.</p>
+      <p>My contribution was to use the underused ISSP 2017 module as a single instrument measuring all three of Putnam's social capital dimensions at once. National indices then served as moderators: human development, government resources, corruption, natural disaster risk, Hofstede's cultural values and relative income.</p>
+      <p>This gives a point of empirical comparison across national contexts, and it is the most portable part of the work.</p>
 
-    <div class="hyp">
-        <div class="h">
-          <span class="code">H1a · Within</span>
-          <p class="q">Social capital is positively associated with life satisfaction within each country.</p>
-          <span class="verdict"><strong>Supported.</strong></span>
-          <p class="body">Trust in fairness was significant and positive in all five countries (β = 0.09 to 0.29, p&nbsp;&lt;&nbsp;.01). Organisational trust, likewise. Other dimensions produced country-specific patterns rather than universal effects.</p>
-          <div class="scorecard">
-            <span class="lens">Trust dimension significance, by country</span>
-            <div class="matrix">
-              <span class="corner"></span>
-              <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
-              <span class="row-head">Society</span>
-              <span class="cell" data-tier="0" title="US — not significant"></span>
-              <span class="cell" data-tier="2" title="AT"></span>
-              <span class="cell" data-tier="3" title="ZA β=0.17"></span>
-              <span class="cell" data-tier="4" title="RU β=0.19"></span>
-              <span class="cell" data-tier="2" title="CN"></span>
-              <span class="row-head">Fairness</span>
-              <span class="cell" data-tier="3" title="US"></span>
-              <span class="cell" data-tier="4" title="AT β=0.29, strongest in sample"></span>
-              <span class="cell" data-tier="2" title="ZA"></span>
-              <span class="cell" data-tier="2" title="RU"></span>
-              <span class="cell" data-tier="2" title="CN"></span>
-              <span class="row-head">Organisational</span>
-              <span class="cell" data-tier="2" title="US"></span>
-              <span class="cell" data-tier="2" title="AT"></span>
-              <span class="cell" data-tier="2" title="ZA β=0.083"></span>
-              <span class="cell" data-tier="3" title="RU"></span>
-              <span class="cell" data-tier="4" title="CN β=0.117, strongest in sample"></span>
-            </div>
-            <div class="gradient-key"><span>weaker</span><span class="bar"></span><span>stronger coefficient</span></div>
-          </div>
-        </div>
-        <div class="h">
-          <span class="code">H1b · Between</span>
-          <p class="q">The relationship between social capital and life satisfaction varies across countries.</p>
-          <span class="verdict"><strong>Supported.</strong></span>
-          <p class="body">With social capital held at its sample mean, satisfaction differs significantly between almost every country pair (8 of 10, Tukey p&nbsp;&lt;&nbsp;.001). Ranking: US ≈ AT &gt; ZA ≈ RU &gt; CN — consistent with the guanxi literature, where Chinese social capital functions as economic necessity rather than enrichment.</p>
-          <div class="scorecard">
-            <span class="lens">Life satisfaction at mean social capital · 1–7 Likert</span>
-            <div class="matrix">
-              <span class="corner"></span>
-              <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
-              <span class="row-head">LS&nbsp;mean</span>
-              <span class="cell" data-tier="4" title="5.22"></span>
-              <span class="cell" data-tier="4" title="5.14"></span>
-              <span class="cell" data-tier="2" title="4.38"></span>
-              <span class="cell" data-tier="2" title="4.26"></span>
-              <span class="cell" data-tier="0" title="3.71"></span>
-              <span class="corner"></span>
-              <span class="cell-val">5.22</span>
-              <span class="cell-val">5.14</span>
-              <span class="cell-val">4.38</span>
-              <span class="cell-val">4.26</span>
-              <span class="cell-val">3.71</span>
-            </div>
-          </div>
-        </div>
-        <div class="h">
-          <span class="code">H2a · Implicit</span>
-          <p class="q">Implicit national factors — natural-disaster risk and Hofstede cultural values — moderate the relationship.</p>
-          <span class="verdict"><strong>Supported,</strong> with nuance.</span>
-          <p class="body">Higher natural-disaster risk weakened the trust-to-satisfaction link but strengthened the societal-care-to-satisfaction link — in vulnerable environments, community becomes compensatory. Individualism amplified the effect of social networks; collectivism amplified the effect of organisational support.</p>
-          <div class="scorecard">
-            <span class="lens">Implicit moderators · INFORM hazard + Hofstede dimensions</span>
-            <span class="lens" style="margin-top: -4px; text-transform: none; letter-spacing: 0; font-style: italic; font-family: var(--font-body); font-size: 12px; line-height: 1.4;">INFORM&nbsp;= 2024 natural-hazard exposure (0–10) · Hofstede dimensions on 0–10 (Power Distance, Masculinity, Individualism)</span>
-            <div class="matrix">
-              <span class="corner"></span>
-              <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
-              <span class="row-head">Natural&nbsp;hazard</span>
-              <span class="cell" data-tier="3" title="INFORM 6.9"></span>
-              <span class="cell" data-tier="0" title="INFORM 2.5"></span>
-              <span class="cell" data-tier="1" title="INFORM 4.2"></span>
-              <span class="cell" data-tier="2" title="INFORM 5.1"></span>
-              <span class="cell" data-tier="4" title="INFORM 7.8, highest in sample"></span>
-              <span class="row-head">Power&nbsp;distance</span>
-              <span class="cell" data-tier="1" title="Hofstede PDI 4.0"></span>
-              <span class="cell" data-tier="0" title="Hofstede PDI 1.1"></span>
-              <span class="cell" data-tier="2" title="Hofstede PDI 4.9"></span>
-              <span class="cell" data-tier="4" title="Hofstede PDI 9.3, highest in sample"></span>
-              <span class="cell" data-tier="3" title="Hofstede PDI 8.0"></span>
-              <span class="row-head">Masculinity</span>
-              <span class="cell" data-tier="1" title="Hofstede M-F 6.2"></span>
-              <span class="cell" data-tier="4" title="Hofstede M-F 7.9, highest in sample"></span>
-              <span class="cell" data-tier="2" title="Hofstede M-F 6.3"></span>
-              <span class="cell" data-tier="0" title="Hofstede M-F 3.6 (most feminine)"></span>
-              <span class="cell" data-tier="3" title="Hofstede M-F 6.6"></span>
-              <span class="row-head">Individualism</span>
-              <span class="cell" data-tier="4" title="Hofstede C-I 9.1, highest in sample"></span>
-              <span class="cell" data-tier="2" title="Hofstede C-I 5.5"></span>
-              <span class="cell" data-tier="3" title="Hofstede C-I 6.5"></span>
-              <span class="cell" data-tier="1" title="Hofstede C-I 3.9"></span>
-              <span class="cell" data-tier="0" title="Hofstede C-I 2.0 (most collectivist)"></span>
-            </div>
-            <div class="gradient-key"><span>lower</span><span class="bar"></span><span>higher in sample</span></div>
-          </div>
-        </div>
-        <div class="h">
-          <span class="code">H2b · Explicit</span>
-          <p class="q">Explicit national factors — HDI, SPI, corruption, income — moderate the relationship.</p>
-          <span class="verdict"><strong>Supported.</strong></span>
-          <p class="body">As state capacity rose — better HDI, higher SPI, lower corruption — the marginal effect of most social capital dimensions on life satisfaction decreased. Governance substitutes, partially, for what communities used to do.</p>
-          <div class="scorecard">
-            <span class="lens">Explicit moderators · governance, development, integrity</span>
-            <span class="lens" style="margin-top: -4px; text-transform: none; letter-spacing: 0; font-style: italic; font-family: var(--font-body); font-size: 12px; line-height: 1.4;">HDI&nbsp;= UN Human Development Index · SPI&nbsp;= Social Progress Index · CPI&nbsp;= Corruption Perception Index</span>
-            <div class="matrix">
-              <span class="corner"></span>
-              <span class="col-head">US</span><span class="col-head">AT</span><span class="col-head">ZA</span><span class="col-head">RU</span><span class="col-head">CN</span>
-              <span class="row-head">HDI</span>
-              <span class="cell" data-tier="4" title="HDI 0.924, highest in sample"></span>
-              <span class="cell" data-tier="3" title="HDI 0.916"></span>
-              <span class="cell" data-tier="0" title="HDI 0.72"></span>
-              <span class="cell" data-tier="2" title="HDI 0.833"></span>
-              <span class="cell" data-tier="1" title="HDI 0.747"></span>
-              <span class="row-head">SPI</span>
-              <span class="cell" data-tier="3" title="Social Progress 8.643"></span>
-              <span class="cell" data-tier="4" title="Social Progress 8.798, highest in sample"></span>
-              <span class="cell" data-tier="2" title="Social Progress 6.725"></span>
-              <span class="cell" data-tier="1" title="Social Progress 6.717"></span>
-              <span class="cell" data-tier="0" title="Social Progress 6.372"></span>
-              <span class="row-head">CPI</span>
-              <span class="cell" data-tier="4" title="Corruption Perception 7.5 (clean)"></span>
-              <span class="cell" data-tier="4" title="Corruption Perception 7.5 (clean)"></span>
-              <span class="cell" data-tier="2" title="Corruption Perception 4.3"></span>
-              <span class="cell" data-tier="0" title="Corruption Perception 2.9, lowest integrity"></span>
-              <span class="cell" data-tier="1" title="Corruption Perception 4.1"></span>
-            </div>
-            <div class="gradient-key"><span>lower</span><span class="bar"></span><span>higher in sample</span></div>
-          </div>
-        </div>
-    </div>
+      <h2 id="approach">Approach &amp; methods <span class="section-num">§ 03</span></h2>
+      <ul class="facts">
+        <li><span class="tag">Data</span><span>ISSP 2017, n = 11,249, analysed in R.</span></li>
+        <li><span class="tag">H1a</span><span>Social capital and life satisfaction.</span></li>
+        <li><span class="tag">H1b</span><span>Differences across countries.</span></li>
+        <li><span class="tag">H2a</span><span>Implicit circumstances: natural disaster risk and culture.</span></li>
+        <li><span class="tag">H2b</span><span>Explicit national circumstances: human development, government resources, corruption and income.</span></li>
+        <li><span class="tag">Methods</span><span>Multiple imputation (MICE, predictive mean matching, grouped by country); PCA for multi-item constructs; country-level and pooled OLS with interaction terms; LSmeans with Tukey pairwise comparisons; VIF multicollinearity checks; AIC/BIC for comparing moderator models.</span></li>
+      </ul>
+      <p>Life satisfaction was the ISSP's single 7-point item. Social capital was measured through nine constructs covering trust, social networks, support resources, norms of reciprocity and contact frequency, with multi-item constructs reduced by PCA (most α ≥ 0.71). Controls were age, partner status, ISCO-08 skill level and household financial ease.</p>
 
-    <div class="article-body-resume">
-      <h2 id="limits">What the data couldn't say <span class="section-num">§ 04</span></h2>
-      <p>Three honest limits.</p>
-      <p>The design is cross-sectional, so <em>association</em> is the correct verb throughout — not <em>effect</em>, not <em>impact</em>. Any of the relationships I found could reflect reverse causation (satisfied people invest more in community) or a third variable (personality, which the ISSP doesn't measure).</p>
-      <p>R² around 0.22 means the model explains roughly a fifth of variance in life satisfaction. That's within the normal range for this literature, but it means four-fifths of what determines whether someone reports being satisfied with their life is not in this model.</p>
-      <p>The "moderation by income" finding needs a specific caveat. Absolute income showed no significant main effect in the full model — but <em>household financial ease</em>, a subjective measure of making ends meet, was one of the strongest predictors throughout. The Easterlin-style reading ("money doesn't matter") is therefore only partly right: absolute income didn't predict satisfaction, but felt financial strain absolutely did.</p>
+      <h2 id="results">Results <span class="section-num">§ 04</span></h2>
+      <p>The data are cross-sectional, so every result below is an association, not an effect.</p>
+
+      <h3>Overall <em>— H1a</em></h3>
+      <p>Social capital was positively associated with life satisfaction, extending Putnam (2000) internationally: support and trust are linked to better lives.</p>
+      <p>The surprise: organisational support resources were negatively associated with life satisfaction, suggesting citizens may dislike relying on government for resources.</p>
+
+      <h3>By country <em>— H1b</em></h3>
+      <ul class="facts">
+        <li><span class="tag">Trust</span><span>Trust measures were significant in almost all countries; social networks in South Africa; societal norms and resources in China.</span></li>
+        <li><span class="tag">Fairness</span><span>Fairness was a fundamental variable in every country, and Austria's coefficient was almost double the others'. Austria's trust in fairness and organisational trust differed significantly from the rest of the sample, consistent with the “warm glow” of trust in highly developed countries (Bjørnskov, 2003b).</span></li>
+        <li><span class="tag">Russia, South Africa</span><span>Both still working towards the highest levels of human development, they showed a particular dependence on trust in society. Stable social relations may matter more under geopolitical uncertainty.</span></li>
+        <li><span class="tag">China</span><span>Positive associations with organisational support resources and societal care norms, reflecting a cultural value placed on cohesion and harmony.</span></li>
+        <li><span class="tag">Tukey</span><span>At average social capital, every country had significantly different life satisfaction. China was lowest, which may be explained by guanxi (關係), where networks also carry economic opportunity (He &amp; Gebhardt, 2015).</span></li>
+      </ul>
     </div>
 
     <section class="country-strip">
       <div class="strip-head">
         <div class="strip-title"><span class="figno">Fig. 01</span><span class="strip-name">Life satisfaction at mean social capital, by country</span></div>
-        <p class="lede">Before the recommendations, a recap. Even when people have similar levels of social connection, where you live still shapes how happy you feel — and by a meaningful margin. The gaps between clusters are large enough that they almost certainly reflect something structural — cultural values, institutions, or how social connection is experienced — rather than just measurement noise.</p>
+        <p class="lede">At average social capital, every country had significantly different life satisfaction, and China was lowest. Where you live still shapes how satisfied you are, even at the same level of social connection.</p>
       </div>
       <div class="country-cards">
 
@@ -755,31 +666,80 @@
         </article>
 
       </div>
-      <p class="fc" style="font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; padding: var(--s-4) var(--s-4) var(--s-4); border-top: 1px solid var(--rule); margin: 0;">LSmeans estimates on a 1–7 Likert scale, social capital held at its sample mean. Tukey pairwise tests separate 8 of 10 country pairs at p&nbsp;&lt;&nbsp;.001. Cobalt cards mark the high-HDI comparison group. Indicator bars: HDI (UN Human Development Index, 0–1); Individualism (Hofstede Collectivism–Individualism, 1 = most collectivist, 10 = most individualistic); Hazard (INFORM 2024 natural-hazard exposure, 0–10); n is the imputed respondent count.</p>
+      <p class="fc" style="font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; padding: var(--s-4) var(--s-4) var(--s-4); border-top: 1px solid var(--rule); margin: 0;">LSmeans estimates on a 1–7 Likert scale, social capital held at its sample mean. Cobalt cards mark the high-HDI comparison group. Indicator bars: HDI (UN Human Development Index, 0–1); Individualism (Hofstede Collectivism–Individualism, 1 = most collectivist, 10 = most individualistic); Hazard (INFORM 2024 natural-hazard exposure, 0–10); n is the imputed respondent count.</p>
     </section>
 
     <div class="article-body-resume">
-      <h2 id="reco">Recommendation <span class="section-num">§ 05</span></h2>
-      <p class="lead">For policy-makers and development institutions in already-developed economies, the finding that matters is the interaction between state capacity and social capital. Once a country crosses a threshold of human development, further gains in life satisfaction appear to come more reliably from investments that build trust, fairness, and community participation than from investments that raise GDP.</p>
+      <h3>Moderation <em>— H2a and H2b</em></h3>
+    </div>
 
-      <h3>In high-risk environments <em>— natural disaster, conflict</em></h3>
-      <p>Community emergency planning and regular civic events are a low-cost wellbeing intervention. Social capital is one of the few things that survives when infrastructure doesn't.</p>
+    <div class="mod-table">
+      <table>
+        <caption><span class="figno">Table 01</span>How national circumstances changed the link between social capital and life satisfaction</caption>
+        <thead>
+          <tr><th scope="col">Moderator</th><th scope="col">What changed</th><th scope="col">Interpretation</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Natural disaster risk</td>
+            <td>The positive associations of trust and social networks weakened in riskier areas, while societal care strengthened. Natural risk had no positive significant association with life satisfaction.</td>
+            <td>Preventive infrastructure alone does not improve lives; community development does (Aldrich &amp; Meyer, 2014; Sato et al., 2020; Toya &amp; Skidmore, 2014).</td>
+          </tr>
+          <tr>
+            <td>Power distance</td>
+            <td>Higher power distance strengthened the association of organisational support resources and weakened that of social networks. Power distance itself was negatively associated with life satisfaction.</td>
+            <td>Hierarchy increases reliance on institutions and limits network interaction.</td>
+          </tr>
+          <tr>
+            <td>Masculinity</td>
+            <td>As masculinity rose, the association of trust in society weakened and trust in fairness strengthened. The elder care norm mattered more in feminine cultures.</td>
+            <td>Competitive cultures lean on fair systems to keep cohesion.</td>
+          </tr>
+          <tr>
+            <td>Individualism vs collectivism</td>
+            <td>Social network value mattered more in individualistic cultures. Societal care, organisational contact and organisational support mattered more in collectivist cultures.</td>
+            <td>Bridging social capital in individualistic cultures (Putnam, 2000); in-group expectations of care in collectivist ones.</td>
+          </tr>
+          <tr>
+            <td>Human development, government resources, lower corruption</td>
+            <td>Each weakened the positive association between social capital and life satisfaction, while governance quality had its own significant positive main effect (less corruption: β = .167, p &lt; .001). As perceived corruption fell, the associations weakened for trust in society (β = −.019, p &lt; .05), social networks (β = −.019, p &lt; .01), organisational support resources (β = −.023, p &lt; .001) and organisational contact (β = −.013, p &lt; .01).</td>
+            <td>When the state provides better resources, citizens are less burdened and draw life satisfaction from a wider range of sources (Bjørnskov, 2003a; Lambsdorff, 2003; Özcan &amp; Bjørnskov, 2011).</td>
+          </tr>
+          <tr>
+            <td>Relative income (within-country brackets)</td>
+            <td>No significant main effect. As income rose, the associations weakened for trust in society (β = −.014, p &lt; .01), daily contact (β = −.001, p &lt; .001) and organisational contact (β = −.013, p &lt; .01), while societal care strengthened (β = .016, p &lt; .001).</td>
+            <td>Consistent with Easterlin (2015). Higher earners may be more conservative in their social relations, or may draw utility from pro-sociality rather than income (Aknin et al., 2013).</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-      <h3>In individualistic cultures</h3>
-      <p>The scarce resource is <em>bridging</em> social capital, not bonding. Subsidise the third places — parks, pubs, employment centres, national sporting events — that create weak ties across groups.</p>
+    <div class="article-body-resume">
+      <p>One caveat on income: household financial ease, a control for making ends meet, was one of the strongest predictors throughout. Relative income did not predict satisfaction, but felt financial strain did.</p>
 
-      <h3>In all contexts</h3>
-      <p>Perceived fairness of institutions is the most consistent cross-cultural predictor, which argues for transparency, judicial quality, and progressive taxation as <em>wellbeing</em> policy, not only economic policy.</p>
+      <h2 id="implications">Implications <span class="section-num">§ 05</span></h2>
+      <p class="lead">The relationship between social capital and life satisfaction depends on context, so culture and existing institutions need to be analysed before any intervention. Most social capital associations weaken as state capacity grows, but trust and fairness stay consistently linked to life satisfaction, and income shows no significant effect. In developed societies, strategies that build community trust and fair institutions may achieve more than economic promises.</p>
 
-      <h2 id="outcome">Outcome <span class="section-num">§ 06</span></h2>
-      <p>Submitted as dissertation for MSc Behavioural Economics at City, University of London. Awarded a first-class honours (71%)."</p>
-      <p>The methodological contribution — treating the underused ISSP 2017 module as a single instrument capable of measuring all three Putnam dimensions simultaneously — is the part I think is most portable to further work.</p>
+      <h3>Recommendations</h3>
+      <ul class="facts">
+        <li><span class="tag">High disaster risk</span><span>Community emergency action plans and regular community events. These strengthen trust and organisational support, protect citizens in a disaster, and cost little compared with large-scale infrastructure.</span></li>
+        <li><span class="tag">All contexts</span><span>Especially in advanced democracies, prioritise justice (even for petty crimes), fair wage distribution and social benefits, through transparent institutions, expanded social resource services and progressive taxation. Where trust in institutions and in each other erodes, life satisfaction falls and civil unrest becomes more likely.</span></li>
+        <li><span class="tag">Individualistic cultures</span><span>Subsidise or create “network drivers” that build bridging ties, informal (parks, pubs) and formal (employment resource centres, national sporting events), and teach tolerance and inclusivity from a young age.</span></li>
+      </ul>
+      <p>Theoretical implication: significant interactions suggest limits to what institutions alone can do for wellbeing, because culture and physical environment shape how citizens interact.</p>
 
-      <h2 id="reflect">What I'd change <span class="section-num">§ 07</span></h2>
-      <p>Three moves I'd make with the project again.</p>
-      <p><strong>The design.</strong> A longitudinal panel — even two waves — would let me separate "social capital leads to satisfaction" from "satisfied people build social capital." Every cross-sectional wellbeing study eventually hits this wall; I'd rather hit it earlier.</p>
-      <p><strong>The instrument.</strong> The ISSP norms items are three questions doing the work of a construct that really wants ten. The norms-of-reciprocity finding was the weakest in the paper, and I think the scale is why — not the phenomenon.</p>
-      <p><strong>Personality.</strong> Tulin, Lancee and Volker (2018) show personality traits predict social capital forms, and the ISSP doesn't measure them. A Big Five module bolted onto a wellbeing survey would tell us how much of what I'm calling <em>national variation</em> is actually <em>personality distributions varying by country</em>.</p>
+      <h2 id="next">What I'd do next <span class="section-num">§ 06</span></h2>
+      <ul class="facts">
+        <li><span class="tag">Wider sample</span><span>Five countries is diverse but not globally representative. A wider sample would test generalisability and give a measured point of comparison for adapting development ideas across cultures.</span></li>
+        <li><span class="tag">Personality</span><span>Personal characteristics and personality traits may mediate or moderate the relationship; a dedicated dataset could test this. Tulin, Lancee and Volker (2018) show personality traits predict forms of social capital, and the ISSP doesn't measure them.</span></li>
+        <li><span class="tag">Better norms</span><span>Norms need better proxies. A dedicated questionnaire polling a truly worldwide sample would help.</span></li>
+        <li><span class="tag">Design</span><span>A longitudinal panel, even two waves, would separate “social capital leads to satisfaction” from “satisfied people build social capital”.</span></li>
+        <li><span class="tag">Future research</span><span>The multidimensional nature of social capital, its long-term consequences, which promotion strategies work, and the critical circumstances where it matters most.</span></li>
+      </ul>
+
+      <blockquote>
+        <p>Better social capital will lead to better lives.</p>
+      </blockquote>
     </div>
 
     <!-- RIGHT: marginalia -->

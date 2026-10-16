@@ -30,6 +30,10 @@ MUST_NOT = ["Key Achievements", "Sept", "only universal", "40,000", "NielsenIQ",
 
 CAP = {"CormorantGaramondCV": 0.625, "Helvetica-Bold": 0.720, "Helvetica": 0.717,
        "Arial-BoldMT": 0.716, "ArialMT": 0.716, "NationalCodes": 0.288}
+# Top of the tallest ink, as a fraction of the em: what the CV's spacing is
+# measured to (cv.css trims Cormorant at its ascent, Helvetica at cap height).
+INK = {"CormorantGaramondCV": 0.738, "Helvetica-Bold": 0.720, "Helvetica": 0.717,
+       "Arial-BoldMT": 0.716, "ArialMT": 0.716, "NationalCodes": 0.296}
 
 SECTION_HEADS = ["EXPERIENCE", "RESEARCH", "PROJECTS", "EDUCATION", "SKILLS&LANGUAGES"]
 
@@ -68,9 +72,9 @@ def info(pdf, key):
     return m.group(1).strip() if m else ""
 
 
-def cap_ratio(fontname):
+def cap_ratio(fontname, table=CAP):
     base = fontname.split("+", 1)[-1]
-    for k, v in CAP.items():
+    for k, v in table.items():
         if base.startswith(k):
             return v
     return 0.70
@@ -88,7 +92,9 @@ def lines_of(page):
     for base, chars in sorted(rows.items()):
         chars.sort(key=lambda c: c["x0"])
         cap_top = min(base - cap_ratio(c["fontname"]) * c["size"] for c in chars)
-        out.append({"base": base, "cap_top": cap_top, "text": "".join(c["text"] for c in chars)})
+        ink_top = min(base - cap_ratio(c["fontname"], INK) * c["size"] for c in chars)
+        out.append({"base": base, "cap_top": cap_top, "ink_top": ink_top,
+                    "text": "".join(c["text"] for c in chars)})
     return out
 
 
@@ -106,13 +112,14 @@ def gaps(pdf):
             for r in rules:
                 # only rules that sit directly under a section heading
                 above = [l for l in lines if l["base"] < r["top"] and r["top"] - l["base"] < 12]
-                if not above or not any(above[-1]["text"].replace(" ", "").startswith(h)
-                                        for h in SECTION_HEADS):
+                if not above or above[-1]["text"].replace(" ", "") not in SECTION_HEADS + [
+                        "EXPERIENCE(CONTINUED)"]:
                     continue
                 below = [l for l in lines if l["cap_top"] > r["bottom"] - 0.5]
                 if below:
                     nxt = min(below, key=lambda l: l["cap_top"])
-                    rule_gaps.append((above[-1]["text"][:22], round(nxt["cap_top"] - r["bottom"], 2)))
+                    rule_gaps.append((above[-1]["text"][:22], round(nxt["ink_top"] - r["bottom"], 2),
+                                      round(nxt["cap_top"] - r["bottom"], 2)))
             for i, l in enumerate(lines[:-1]):
                 if l["text"].replace(" ", "") in {t.replace(" ", "") for t in titles}:
                     title_gaps.append((l["text"][:30], round(lines[i + 1]["cap_top"] - l["base"], 2)))
@@ -183,11 +190,11 @@ def verify(pdf, designed):
     if designed:
         rg, tg = gaps(pdf)
         if rg:
-            spread = max(g for _, g in rg) - min(g for _, g in rg)
-            check(spread <= 0.5, f"rule -> cap gap consistent ({len(rg)} rules)",
-                  f"{min(g for _,g in rg):.2f}–{max(g for _,g in rg):.2f}pt, spread {spread:.2f}")
-            for lbl, g in rg:
-                print(f"         {lbl:<24} {g:.2f}pt")
+            spread = max(g for _, g, _c in rg) - min(g for _, g, _c in rg)
+            check(spread <= 0.5, f"rule -> ink gap consistent ({len(rg)} rules)",
+                  f"{min(g for _,g,_c in rg):.2f}–{max(g for _,g,_c in rg):.2f}pt, spread {spread:.2f}")
+            for lbl, g, c in rg:
+                print(f"         {lbl:<24} ink {g:.2f}pt   cap {c:.2f}pt")
         if tg:
             spread = max(g for _, g in tg) - min(g for _, g in tg)
             check(spread <= 0.5, f"title -> dates gap consistent ({len(tg)} titles)",

@@ -223,7 +223,7 @@
     "bullets": [
       "A head-to-head prediction engine that plays a match out one point at a time, built on IBM Slam Tracker data — roughly 48,000 points a season across 2011–2023.",
       "Every player carries a profile page built only from their own record: serve, return and under-pressure characteristics — how unpredictably they serve, how they hold at break point, how they fade across sets — weighted by recency and opponent quality.",
-      "Two profiles are then run against each other thousands of times. Backtested on 908 matches, each season predicted from prior seasons only."
+      "Two profiles are then run against each other thousands of times. Backtested on 827 matches (2014–2023), each season predicted from prior seasons only."
     ]
   },
   "education": [

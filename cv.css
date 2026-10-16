@@ -34,22 +34,26 @@
   --font-sans:     "Helvetica CV", Arial, sans-serif;
   --font-wordmark: "National CV", "Helvetica CV", Arial, sans-serif;
 
-  /* Spacing. Every gap on the page is one of these; nothing is nudged by
-     a one-off margin. Headings, titles and meta lines are trimmed to their
-     cap height and baseline (text-box), so a token is the distance from
-     ink to ink, not from one invisible line box to another.
+  /* Spacing: one scale on a 4px (3pt) unit. Every gap on the page is one
+     of these, measured ink to ink: from the baseline of the line above to
+     the top of the tallest letter below. Text blocks are trimmed to their
+     ink (see .trim) so a token means what it says, whatever the font.
 
-     Each value is a whole CSS pixel (1px = 0.75pt). Chrome snaps painted
-     rules to the pixel grid but sets text at fractional positions, so any
-     fractional height above a section rule moves that rule against the text
-     below it by up to 0.75pt. Keeping every block a whole number of pixels
-     keeps each rule-to-text gap identical. Hence 9.75pt and 15.75pt rather
-     than 10pt and 16pt, which are 13.33px and 21.33px. */
+       xs   4px  heading text to its rule; rule to text inside a table row
+       s    8px  between the lines of one entry: title, dates, bullets
+       m   16px  between entries
+       l   24px  between sections
+
+     Inside a paragraph the body leading (20px baseline to baseline) gives
+     about 8.7px of ink gap, so bullets and the lines of an entry run at one
+     even rhythm. All values are whole CSS pixels: Chrome snaps painted rules
+     to the pixel grid, so whole-pixel blocks keep every rule-to-text gap
+     identical. */
   --space-2xs: 1.5pt;    /*  2px */
   --space-xs:  3pt;      /*  4px */
   --space-s:   6pt;      /*  8px */
-  --space-m:   9.75pt;   /* 13px */
-  --space-l:   15.75pt;  /* 21px */
+  --space-m:   12pt;     /* 16px */
+  --space-l:   18pt;     /* 24px */
 
   /* Leading. Unitless, never "normal". The body value (cv-data.json,
      _layout.lineHeight) is 1.305: exactly 20px at 11.5pt on screen and in
@@ -72,19 +76,33 @@
   position: relative;
 }
 
-/* Text that should sit exactly on its ink: top at cap height, bottom on
-   the baseline. Applied to every single-line structural element. */
-.trim { text-box: trim-both cap alphabetic; }
-/* A trimmed single line is exactly one cap height tall, which is rarely a
-   whole pixel; round it up so nothing below it starts on a fractional y. */
-.trim-line { box-sizing: content-box; block-size: round(up, 1cap, 1px); }
-/* The same for a trimmed block of several lines: with a whole-pixel line
-   height, (lines - 1) x leading + cap is whole once the cap is rounded up.
-   The extra 1/64px offsets Chrome truncating the cap to its layout unit. */
-.trim-block { box-sizing: content-box; padding-bottom: calc(round(up, 1cap, 1px) - 1cap + 1px / 64); }
+/* Text trimmed to its ink: top at the tallest letter (the font's ascent,
+   which the corrected metrics set to the real ink height), bottom on the
+   baseline. Descenders hang into the gap below, as they do in print. Lists
+   and the profile are trimmed the same way, so every gap on the page is
+   measured from ink.
+
+   Chrome rounds a font's ascent to whole pixels, so a trimmed line is a
+   whole number of pixels tall and, with the 20px body leading, so is any
+   trimmed block. Nothing below ever starts on a fractional y, which keeps
+   rule-to-text gaps identical. (Trimming to cap height instead needed
+   rounding padding, because cap height is not rounded.) */
+.trim, .cv-lede, .cv-bullets { text-box: trim-both text alphabetic; }
+
+/* Helvetica is the exception. Chrome takes the "text" edge from the font's
+   own ascent (0.88em, far above any letter) and ignores the CSS
+   ascent-override, and the licence rules out correcting the file itself.
+   Its letters reach only 0.02em above its cap height, so it is trimmed at
+   cap height instead, which is its ink to within a quarter-pixel. Cap height
+   is not rounded the way ascent is, so these single lines are rounded up to
+   a whole pixel. */
+.cv-tagline, .cv-stamp, .cv-section > h2, .entry-title, .skill-row .k { text-box-edge: cap alphabetic; }
+.cv-tagline, .cv-section > h2, .entry-title { box-sizing: content-box; block-size: round(up, 1cap, 1px); }
+/* (The Skills label needs no rounding: it sits on the value's baseline, so
+   the value sets the row height.) */
 
 /* ---- Masthead (page 1) ------------------------------------------------ */
-.cv-masthead { position: relative; margin: 0 0 var(--space-m); }
+.cv-masthead { position: relative; margin: 0 0 var(--space-m); }   /* rule to profile: m */
 .cv-tagline {
   font-family: var(--font-sans); font-weight: 700;
   font-size: var(--cv-micro); line-height: var(--lh-single);
@@ -101,18 +119,20 @@
   font-size: var(--cv-name); line-height: 1;
   text-transform: lowercase;   /* National's lowercase forms are the mark */
   letter-spacing: normal; color: var(--ink);
-  margin: var(--space-m) 0 0;
+  margin: var(--space-s) 0 0;
 }
+/* Contact details are information, so they take the information style the
+   rest of the CV uses for places and dates: the body serif, soft ink. */
 .cv-contact {
-  font-family: var(--font-sans); font-weight: 400;
-  font-size: var(--cv-micro); line-height: var(--lh-single);
-  letter-spacing: 0.02em; color: var(--ink);
-  margin: var(--space-m) 0 0;
+  font-family: var(--font-body); font-weight: 400;
+  font-size: var(--cv-body); line-height: var(--lh-single);
+  letter-spacing: normal; color: var(--ink-soft);
+  margin: var(--space-s) 0 0;
   padding-bottom: var(--space-s);
   border-bottom: 1px solid var(--ink);
   max-width: none;
 }
-.cv-contact a { color: var(--ink); border: none; }
+.cv-contact a { color: var(--ink-soft); border: none; }
 /* Date stamp and page marker. In the source it follows the contact line so
    a parser never reads it in the middle of the contact details; it is
    placed top-right visually. */
@@ -171,33 +191,36 @@
   font-family: var(--font-body); font-weight: 400;
   font-size: var(--cv-body); line-height: var(--lh-single);
   color: var(--ink-soft);
-  margin: var(--space-xs) 0 0; max-width: none;
+  margin: var(--space-s) 0 0; max-width: none;
 }
 
+/* Bullets run on the body leading with no extra space between them, so the
+   lines of an entry keep one even rhythm; the marker separates them. */
 .cv-bullets {
-  list-style: none; padding: 0; margin: var(--space-xs) 0 0;
+  list-style: none; padding: 0; margin: var(--space-s) 0 0;
+  font-family: var(--font-body); font-size: var(--cv-body); line-height: var(--lh-body);
 }
 .cv-bullets li {
   font-family: var(--font-body); font-weight: 400;
   font-size: var(--cv-body); line-height: var(--lh-body);
   color: var(--ink);
-  padding-left: 1.1em; position: relative;
-  margin: 0 0 var(--space-2xs);
+  padding-left: 1.1em;
+  margin: 0;
   max-width: none; text-wrap: unset;
 }
-.cv-bullets li:last-child { margin-bottom: 0; }
+/* The marker sits in the first line as hanging inline text, so it shares
+   that line's baseline however the list is trimmed. */
 .cv-bullets li::before {
   content: "\2022";
-  position: absolute; left: 0.15em; top: 0;
+  display: inline-block; box-sizing: border-box;
+  width: 1.1em; margin-left: -1.1em; padding-left: 0.15em;
   font-family: var(--font-body); font-weight: 700;
-  line-height: var(--lh-body);
   color: var(--cobalt);
 }
 .cv-bullets li strong { font-weight: 700; color: var(--cobalt); }
 .edu-bullets li::before { color: var(--ink); }
 .cv-bullets li.topics {
   padding-left: 0; color: var(--ink-soft); font-style: italic;
-  margin-top: var(--space-xs);
 }
 .cv-bullets li.topics::before { content: none; }
 .cv-bullets li.topics b {
@@ -207,14 +230,14 @@
 }
 
 /* ---- Skills & Languages ------------------------------------------------ */
-/* Label and value are both trimmed to cap height and baseline, so the
-   padding is measured from ink: rule to cap is --space-xs; baseline to
-   rule is 6px, which clears the deepest descender (0.283em, 4.3px). The
-   label column is wide enough that no label wraps. */
+/* Label and value share a baseline. Rule to the tallest letter below is
+   xs; baseline to the rule is s, which leaves the deepest descender
+   (0.283em, 4.3px) about as far from the rule as the text above it, so a
+   row reads evenly. The label column is wide enough that no label wraps. */
 .skill-row {
-  display: grid; grid-template-columns: 37mm 1fr; column-gap: var(--space-m);
-  align-items: start;
-  padding: var(--space-xs) 0 calc(var(--space-xs) + var(--space-2xs));
+  display: grid; grid-template-columns: 37mm 1fr; column-gap: 13px;
+  align-items: baseline;
+  padding: var(--space-xs) 0 var(--space-s);
   border-bottom: 1px solid var(--rule);
 }
 .skill-row:first-of-type { padding-top: 0; }

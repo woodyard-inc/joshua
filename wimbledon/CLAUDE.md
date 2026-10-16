@@ -2,7 +2,12 @@
 
 ## What this is
 
-A portfolio project by Joshua Woodyard: a static single-page site that lets users explore Wimbledon men's draw player fingerprints (2011-2024) and run head-to-head Monte Carlo match simulations in the browser. The site is served via `python3 -m http.server 3400 --directory joshua/wimbledon` from the parent directory.
+A portfolio project by Joshua Woodyard: a static single-page site that lets users explore Wimbledon men's draw player fingerprints (2011–2023) and run head-to-head Monte Carlo match simulations in the browser. The site is served via `python3 -m http.server 3400 --directory joshua/wimbledon` from the parent directory.
+
+### Date scope — read before quoting any range or figure
+
+- **Public scope is 2011–2023.** The site, the CV and the portfolio describe the data as 2011–2023: those are the editions players can be explored for, and the site's published backtest (`data/model_metrics.json`, the metrics block in `app.js`) is 2014–2023 leave-one-year-out: **827 matches, 68.4% accuracy, Brier 0.2075**. Quote these.
+- **2024 is development-only.** The raw point-by-point files include 2024, and the development backtests below also predict the 2024 tournament (2014–2024, **908 matches**). Those figures describe the engine's tuning runs; they are not the public scope and should not be quoted on the site, CV or portfolio.
 
 ## Architecture
 
@@ -21,7 +26,7 @@ joshua/wimbledon/
 │   ├── ablation_study.py   # Feature ablation testing framework
 │   └── ... (25+ pipeline scripts)
 ├── data/
-│   ├── raw/                # Jeff Sackmann's Slam PBP CSVs (2011-2024)
+│   ├── raw/                # Jeff Sackmann's Slam PBP CSVs (2011–2023, plus 2024 used only as a development test year)
 │   │   └── {year}-wimbledon-{points,matches}.csv
 │   ├── processed/          # Pipeline output
 │   │   └── {year}_{fingerprints,grass_profiles,archetypes}.json
@@ -73,7 +78,7 @@ These were grid-searched with leave-one-year-out CV on 908 matches.
 
 ## Backtesting methodology
 
-`backtest_fingerprints.py` runs leave-one-year-out: predict year Y using fingerprints built from year Y-1 data only. No data leakage. Tests 2014-2024 (skip 2020, no tournament). 908 total matches where both players have prior-year fingerprints.
+`backtest_fingerprints.py` runs leave-one-year-out: predict year Y using fingerprints built from year Y-1 data only. No data leakage. Development runs test 2014–2024 (skip 2020, no tournament): 908 total matches where both players have prior-year fingerprints. The published figures are the 2014–2023 run: 827 matches (see Date scope above). The 908-match figures in this file are development numbers.
 
 ### Current performance (v12.1, as of 2026-05-16)
 

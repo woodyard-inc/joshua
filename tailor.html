@@ -444,7 +444,8 @@
     sec = libSection('Research & projects');
     sec.appendChild(libItem('dissertation.title', cv.dissertation.title));
     sec.appendChild(libItem('dissertation.institution', `${cv.dissertation.institution} · ${cv.dissertation.year}`));
-    (cv.dissertation.bullets || []).forEach((b, i) => sec.appendChild(libItem(`dissertation.bullets[${i}]`, b)));
+    (cv.dissertation.short || []).forEach((b, i) => sec.appendChild(libItem(`dissertation.short[${i}]`, b, [{ label: 'every CV' }])));
+    (cv.dissertation.bullets || []).forEach((b, i) => sec.appendChild(libItem(`dissertation.bullets[${i}]`, b, [{ label: 'research track' }])));
     sec.appendChild(libItem('project.title', `${cv.project.title} (${cv.project.year})`));
     (cv.project.bullets || [cv.project.body].filter(Boolean))
       .forEach((b, i) => sec.appendChild(libItem(`project.bullets[${i}]`, b)));
@@ -523,7 +524,7 @@
         when: r.when,
         bullets: (r.bullets || []).filter((b) => !omit.includes(b.id)).map((b) => b.text),
       })),
-      dissertation: cv.dissertation,
+      dissertation: { ...cv.dissertation, bullets: cv.dissertation.short || cv.dissertation.bullets },
       project: cv.project ? { ...cv.project, full: false } : null,
       education: cv.education || [],
       languages: cv.languages,

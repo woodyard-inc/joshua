@@ -97,7 +97,9 @@ def role_html(r, omit):
 
 
 def research_html(d, omit):
-    bullets = [b for b in d["bullets"]
+    # Every CV carries the condensed version; the full one is for research
+    # roles and is chosen by the Workshop.
+    bullets = [b for b in (d.get("short") or d["bullets"])
                if not any(b.startswith(o.split(":", 1)[1]) for o in omit if o.startswith("research:"))]
     li = "\n".join(f"      <li>{body(b, emphasise=False)}</li>" for b in bullets)
     meta = piped([esc(d["institution"]), esc(d["year"]), esc(d["mark"])])

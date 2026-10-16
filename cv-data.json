@@ -200,12 +200,17 @@
     }
   ],
   "dissertation": {
-    "title": "Social Capital & Life Satisfaction",
+    "title": "Money can't buy happiness: The cross-cultural relationships between social capital and life satisfaction",
     "institution": "City St George's, University of London",
     "year": "2024",
     "mark": "Dissertation mark: 71% (Distinction)",
     "supervisor": "Dr Anke Plagnol",
-    "_note": "Order matters: the two-page fit trims from the end, so the policy bullet goes first and the methods survive.",
+    "short": [
+      "Analysed 11,249 people in five countries (ISSP 2017, OLS in R): does social connection go with happier lives?",
+      "Trust in fair institutions predicted satisfaction most consistently; relative income had no significant effect.",
+      "Social capital mattered most where governments did least, shifting with culture and natural-disaster risk."
+    ],
+    "_note": "short = the condensed version on every CV and on commercial (track A) tailored CVs. bullets = the full research version, used on research-track (track B) tailored CVs.",
     "bullets": [
       "Modelled the link between social capital and life satisfaction across five countries in R, using the International Social Survey Programme (ISSP) 2017 module (n = 11,249) as one instrument for all three of Putnam's dimensions.",
       "Methods: multiple imputation (MICE), PCA-built constructs, country-level and pooled OLS with interaction terms, Tukey pairwise comparisons, and AIC/BIC model comparison.",

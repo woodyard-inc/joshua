@@ -167,7 +167,9 @@
     var rb = el('div', null, 'role');
     rb.appendChild(el('p', d.title, 'role-title'));
     rb.appendChild(el('p', [d.institution, d.year, d.mark].join(' | '), 'role-meta'));
-    rb.appendChild(list(d.bullets.filter(function (t) { return keepResearch(t, omit); })));
+    // Every CV carries the condensed research bullets; the full set is for
+    // research roles, chosen in the Workshop.
+    rb.appendChild(list((d.short || d.bullets).filter(function (t) { return keepResearch(t, omit); })));
     root.appendChild(rb);
 
     // The short, one-bullet project entry carried on every CV.

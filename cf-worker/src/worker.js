@@ -240,7 +240,9 @@ ${JSON.stringify(menu.roles, null, 1)}`;
         institution: cv.dissertation.institution,
         year: cv.dissertation.year,
         mark: cv.dissertation.mark,
-        bullets: cv.dissertation.bullets || [],
+        // Research roles get the full research entry; every other CV gets the
+        // condensed one that the master CV carries.
+        bullets: (track === "B" ? cv.dissertation.bullets : cv.dissertation.short || cv.dissertation.bullets) || [],
       },
       // Every CV carries the one-line project entry; the full entry is used
       // when the model judged the job suits it (the Workshop falls back to the

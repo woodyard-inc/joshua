@@ -226,11 +226,14 @@ def verify(pdf, designed):
                     if "Cormorant" in ch["fontname"] and ch["text"].strip():
                         k = (ch["fontname"].split("+", 1)[-1], round(ch["size"], 2))
                         styles[k] = styles.get(k, 0) + 1
+        # Topics lines (LightItalic) are set at the meta size too.
         body = [k for k in styles if abs(k[1] - meta_pt) > 0.05]
+        check(all(abs(sz - meta_pt) <= 0.05 for f, sz in styles if f.endswith("LightItalic")),
+              "Topics lines at the meta size")
         sizes = {k[1] for k in body}
         faces = {k[0] for k in body}
         # LightItalic is allowed for the Education Topics lines only (the one
-        # styled exception in cv.css), still at the body size.
+        # styled exception in cv.css).
         check(len(sizes) == 1 and faces <= {"CormorantGaramondCV-Regular", "CormorantGaramondCV-Bold",
                                             "CormorantGaramondCV-LightItalic"},
               "paragraph text one size and style",

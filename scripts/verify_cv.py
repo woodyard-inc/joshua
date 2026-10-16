@@ -215,6 +215,24 @@ def verify(pdf, designed):
     check(re.search(r"–\s*Current\b", flat) is None, '"Current" not used as an end date')
 
     if designed:
+        # Brand rule (cv.css): all paragraph text is Cormorant Garamond CV
+        # Regular (or Bold, for the cobalt figures) at one size. The only
+        # other Cormorant size allowed is the company / place / dates line.
+        meta_pt = 10.25
+        with pdfplumber.open(pdf) as doc:
+            styles = {}
+            for page in doc.pages:
+                for ch in page.chars:
+                    if "Cormorant" in ch["fontname"] and ch["text"].strip():
+                        k = (ch["fontname"].split("+", 1)[-1], round(ch["size"], 2))
+                        styles[k] = styles.get(k, 0) + 1
+        body = [k for k in styles if abs(k[1] - meta_pt) > 0.05]
+        sizes = {k[1] for k in body}
+        faces = {k[0] for k in body}
+        check(len(sizes) == 1 and faces <= {"CormorantGaramondCV-Regular", "CormorantGaramondCV-Bold"},
+              "paragraph text one size and style",
+              ", ".join(f"{f} {sz}pt x{n}" for (f, sz), n in sorted(styles.items())))
+
         rg, tg, eg = gaps(pdf)
         if rg:
             spread = max(g for _, g, _c in rg) - min(g for _, g, _c in rg)

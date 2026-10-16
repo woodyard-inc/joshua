@@ -61,6 +61,11 @@
     box-sizing: border-box;
   }
   .tool-panel textarea { min-height: 260px; resize: vertical; line-height: 1.4; }
+  .tool-panel .add-select, .tool-panel .add-input {
+    width: 100%; font-family: var(--font-sans); font-size: 13px; color: var(--ink);
+    background: var(--paper-bone); border: 1px solid var(--rule-strong);
+    padding: 8px 10px; box-sizing: border-box; margin-bottom: 6px;
+  }
   .tool-panel .field { margin-bottom: var(--s-4); }
   .tool-panel button.primary {
     font-family: var(--font-sans); font-weight: 700; font-size: 11px;
@@ -246,8 +251,18 @@
       <textarea id="jd" placeholder="Paste the full job description here…"></textarea>
     </div>
     <div class="field">
-      <label for="extra">Additional real skills or experience not yet on your CV (optional)</label>
-      <textarea id="extra" style="min-height:90px" placeholder="e.g. a cert, a tool you've used recently, a skill you have that this role wants but your CV doesn't mention yet…"></textarea>
+      <label for="extra">Context for the AI (optional, never printed)</label>
+      <textarea id="extra" style="min-height:70px" placeholder="e.g. what this role cares about most, or experience to weigh more heavily. It helps the AI rank your bullets; it does not add text to the CV."></textarea>
+    </div>
+    <div class="field">
+      <label for="add-role">Add bullets to this CV only (optional, printed exactly as written)</label>
+      <select id="add-role" class="add-select"></select>
+      <textarea id="add-bullets" style="min-height:70px" placeholder="One bullet per line. Added to the role above for this tailored CV only, and always kept. To make one permanent, add it to cv-data.json."></textarea>
+    </div>
+    <div class="field">
+      <label for="add-skill-row">Add skills to this CV only (optional)</label>
+      <select id="add-skill-row" class="add-select"></select>
+      <input type="text" id="add-skills" class="add-input" placeholder="Comma-separated, e.g. Looker Studio, dbt">
     </div>
     <button class="primary" id="generate">Generate tailored CV</button>
     <p class="error" id="gen-error" hidden></p>
@@ -348,6 +363,43 @@
     gate.hidden = true;
     viewnav.hidden = false;
     generator.hidden = false;
+    fillAddSelects();
+  }
+
+  // The "add to this CV" pickers list the roles and Skills rows from the corpus.
+  async function fillAddSelects() {
+    const roleSel = $('add-role'), skillSel = $('add-skill-row');
+    if (roleSel.options.length) return;
+    try {
+      const cv = await (await fetch('cv-data.json', { cache: 'no-store' })).json();
+      (cv.roles || []).forEach((r) => roleSel.add(new Option(`${r.title} | ${r.company} (${r.when})`, r.id)));
+      (cv.skills || []).forEach((k) => skillSel.add(new Option(k.label, k.id)));
+    } catch { /* the form still works without additions */ }
+  }
+
+  /* Joshua's own additions for this CV only. They are printed verbatim (the
+     AI still never writes CV text): bullets join the chosen role right after
+     the AI's core bullets and count as core, so the fit never drops them;
+     skills are appended to the chosen row. */
+  function readAdditions() {
+    const bullets = $('add-bullets').value.split('\n').map((l) => l.replace(/^[\s•\-–*]+/, '').trim()).filter(Boolean);
+    const skills = $('add-skills').value.split(',').map((x) => x.trim()).filter(Boolean);
+    return { roleId: $('add-role').value, bullets, skillId: $('add-skill-row').value, skills };
+  }
+  function applyAdditions(data, add) {
+    if (add.bullets.length) {
+      const r = (data.roles || []).find((x) => x.id === add.roleId);
+      if (r) {
+        const at = Number.isFinite(r.core) ? r.core : r.bullets.length;
+        r.bullets = [...r.bullets.slice(0, at), ...add.bullets, ...r.bullets.slice(at)];
+        r.core = at + add.bullets.length;
+      }
+    }
+    if (add.skills.length) {
+      const k = (data.skills || []).find((x) => x.id === add.skillId);
+      if (k) k.text = `${k.text}, ${add.skills.join(', ')}`;
+    }
+    return data;
   }
 
   /* ---- Read-only content library ------------------------------------
@@ -712,10 +764,11 @@
   /* Two-page fit: start from everything and give ground in this order.
 
        1. topics   — course module lists
-       2. bullets  — non-core role bullets, lowest-ranked first (the Worker
+       2. project  — the full Wimbledon entry falls back to the short one
+                     (role experience outranks project detail)
+       3. bullets  — non-core role bullets, lowest-ranked first (the Worker
                      ranks every bullet by relevance and marks 2-4 per role
-                     as core for this job)
-       3. project  — the full Wimbledon entry falls back to the short one
+                     as core for this job; Joshua's own additions are core)
        4. diss     — research detail, later bullets first; the Research
                      section itself always stays, as on the CV
        5. bullets  — core bullets last, never below one per role
@@ -725,7 +778,7 @@
      most relevant bullet rather than left empty. */
   const STAGES = [
     { topics: true,  projectFull: true,  diss: 99, floor: 'all'  },
-    { topics: false, projectFull: true,  diss: 99, floor: 'core' },
+    { topics: false, projectFull: true,  diss: 99, floor: 'all'  },
     { topics: false, projectFull: false, diss: 99, floor: 'core' },
     { topics: false, projectFull: false, diss: 3,  floor: 'core' },
     { topics: false, projectFull: false, diss: 2,  floor: 'one'  },
@@ -909,6 +962,7 @@
     }
     genButton.disabled = true;
     genButton.textContent = 'Tailoring…';
+    const add = readAdditions();
     try {
       const res = await fetch(WORKER_URL, {
         method: 'POST',
@@ -916,10 +970,15 @@
         body: JSON.stringify({
           password: getPassword(),
           jobDescription,
-          extraSkills: extraInput ? extraInput.value.trim() : ''
+          extraSkills: [
+            extraInput ? extraInput.value.trim() : '',
+            add.bullets.length ? 'Bullets Joshua is adding to this CV:\n' + add.bullets.join('\n') : '',
+            add.skills.length ? 'Skills Joshua is adding: ' + add.skills.join(', ') : '',
+          ].filter(Boolean).join('\n\n').slice(0, 3000)
         }),
       });
       const data = await res.json();
+      if (res.ok) applyAdditions(data, add);
       if (!res.ok) {
         if (res.status === 401) {
           sessionStorage.removeItem('cv-tailor-pw');

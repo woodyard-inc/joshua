@@ -35,6 +35,7 @@ CAP = {"CormorantGaramondCV": 0.625, "Helvetica-Bold": 0.720, "Helvetica": 0.717
 INK = {"CormorantGaramondCV": 0.738, "Helvetica-Bold": 0.720, "Helvetica": 0.717,
        "Arial-BoldMT": 0.716, "ArialMT": 0.716, "NationalCodes": 0.296}
 
+CLIENTS = ["Petco", "Sprint", "Boost Mobile", "Dunkin'"]
 SECTION_HEADS = ["EXPERIENCE", "RESEARCH", "PROJECTS", "EDUCATION", "SKILLS&LANGUAGES"]
 
 failures = []
@@ -100,8 +101,8 @@ def lines_of(page):
 
 def gaps(pdf):
     """Section rule -> cap top below it; title baseline -> dates cap top."""
-    rule_gaps, title_gaps = [], []
-    titles = {f"{r['title']} | {r['company']}" for r in CV["roles"]}
+    rule_gaps, title_gaps, entry_gaps = [], [], []
+    titles = {r["title"] for r in CV["roles"]}
     with pdfplumber.open(pdf) as doc:
         for page in doc.pages:
             lines = lines_of(page)
@@ -123,7 +124,10 @@ def gaps(pdf):
             for i, l in enumerate(lines[:-1]):
                 if l["text"].replace(" ", "") in {t.replace(" ", "") for t in titles}:
                     title_gaps.append((l["text"][:30], round(lines[i + 1]["cap_top"] - l["base"], 2)))
-    return rule_gaps, title_gaps
+                    prev = lines[i - 1] if i else None
+                    if prev and not any(prev["text"].replace(" ", "").startswith(h) for h in SECTION_HEADS):
+                        entry_gaps.append((l["text"][:30], round(l["cap_top"] - prev["base"], 2)))
+    return rule_gaps, title_gaps, entry_gaps
 
 
 def verify(pdf, designed):
@@ -148,26 +152,41 @@ def verify(pdf, designed):
     prof = CV["summaries"]["master"]
     tail = prof[-40:]
     after = flat[flat.find(tail) + len(tail):].strip() if tail in flat else ""
-    r0 = CV["roles"][0]
-    first = f"{r0['title']} | {r0['company']}" if designed else (r0.get("ats") or {}).get("title", r0["title"])
+    first = CV["roles"][0]["title"]
     check(re.match(r"(?i)^experience\b", after) is not None, "Experience heading directly after Profile",
           after[:40])
     check(after.lower().startswith("experience " + first.lower()), "then the Publicis title line", first)
 
     lines = [l.strip() for l in t.splitlines() if l.strip()]
+    # Every Experience entry: the title alone, then "Company | City, Country | Dates".
     for r in CV["roles"]:
-        if designed:
-            tl = f"{r['title']} | {r['company']}"
-            follow = [f"{r['where']} | {r['when']}"]
-        else:
-            # ATS: title (no commas or parentheses) / employer, location / dates
-            a = r.get("ats") or {}
-            tl = a.get("title", r["title"])
-            follow = [f"{r['company']}, {a.get('location', r['where'])}", r["when"]]
-            check(not any(ch in tl for ch in ",&()"), f"ATS title has no comma, ampersand or parenthesis: {r['id']}", tl)
+        tl, follow = r["title"], f"{r['company']} | {r['where']} | {r['when']}"
         idx = [i for i, l in enumerate(lines) if l == tl]
-        ok = bool(idx) and lines[idx[0] + 1: idx[0] + 1 + len(follow)] == follow
-        check(ok, f"title then its own employer/dates: {r['id']}", " / ".join(follow))
+        ok = bool(idx) and lines[idx[0] + 1] == follow
+        check(ok, f"title then company line: {r['id']}", f"{tl} / {follow}")
+        bad = [x for x in ["–", "|"] + CLIENTS if x in tl]
+        check(not bad, f"title line clean (no en dash, pipe or client): {r['id']}", ", ".join(bad) or tl)
+
+    # Company names: three Horizon Media jobs, one Publicis Groupe, one Publicis Media.
+    company_lines = [l for l in lines if any(l.startswith(c + " | ") for c in ("Horizon Media", "Publicis Groupe", "Publicis Media", "UNIQLO"))]
+    for co, n in (("Horizon Media", 3), ("Publicis Groupe", 1), ("Publicis Media", 1)):
+        on_lines = sum(l.startswith(co + " | ") for l in company_lines)
+        anywhere = flat.count(co)
+        check(on_lines == n, f'"{co}" on {n} company line(s)', f"{on_lines} on company lines, {anywhere} in the whole text")
+
+    # Client names only inside bullets: every line that names a client must be
+    # part of a bullet's text, and never a title or company line.
+    bullets_flat = re.sub(r"\s+", " ", " ".join(b["text"] for r in CV["roles"] for b in r["bullets"]))
+    for cl in CLIENTS:
+        hits = [l for l in lines if cl in l]
+        stray = [l for l in hits if l.lstrip("• ").strip() not in bullets_flat]
+        check(hits and not stray, f'"{cl}" only inside bullets', f"{len(hits)} line(s)" + (f"; stray: {stray[0][:50]}" if stray else ""))
+
+    if designed:
+        p2 = [l.strip() for l in subprocess.run(["pdftotext", "-f", "2", "-l", "2", str(pdf), "-"],
+                                                capture_output=True, text=True).stdout.splitlines() if l.strip()]
+        check(bool(p2) and p2[0].lower() == "experience (continued)", "page 2 opens with Experience (continued)",
+              p2[0] if p2 else "(empty)")
 
     source = rendered_text()
     for w in ["Universität", "St George's", "–", "—"]:
@@ -180,8 +199,7 @@ def verify(pdf, designed):
     for w in MUST:
         check(w in flat, f"present: {w}")
     horizon = next(r for r in CV["roles"] if r["id"] == "horizon-bi")
-    htitle = (f"{horizon['title']} | {horizon['company']}" if designed
-              else (horizon.get("ats") or {}).get("title", horizon["title"]))
+    htitle = horizon["title"]
     check("Business Intelligence" in htitle and htitle in t, "Business Intelligence in the Horizon title line")
     start = flat.find(first)
     exp = flat[start:flat.find(CV["dissertation"]["title"], start)]
@@ -197,7 +215,7 @@ def verify(pdf, designed):
     check(re.search(r"–\s*Current\b", flat) is None, '"Current" not used as an end date')
 
     if designed:
-        rg, tg = gaps(pdf)
+        rg, tg, eg = gaps(pdf)
         if rg:
             spread = max(g for _, g, _c in rg) - min(g for _, g, _c in rg)
             check(spread <= 0.5, f"rule -> ink gap consistent ({len(rg)} rules)",
@@ -206,8 +224,12 @@ def verify(pdf, designed):
                 print(f"         {lbl:<24} ink {g:.2f}pt   cap {c:.2f}pt")
         if tg:
             spread = max(g for _, g in tg) - min(g for _, g in tg)
-            check(spread <= 0.5, f"title -> dates gap consistent ({len(tg)} titles)",
+            check(spread <= 0.5, f"title -> company line gap consistent ({len(tg)} titles)",
                   f"{min(g for _,g in tg):.2f}–{max(g for _,g in tg):.2f}pt, spread {spread:.2f}")
+        if tg and eg:
+            check(max(g for _, g in tg) * 2 < min(g for _, g in eg),
+                  "title -> company gap clearly smaller than the gap between entries",
+                  f"title -> company {max(g for _,g in tg):.2f}pt vs entry -> entry {min(g for _,g in eg):.2f}–{max(g for _,g in eg):.2f}pt")
 
 
 def main():

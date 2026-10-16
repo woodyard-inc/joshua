@@ -217,8 +217,8 @@ ${JSON.stringify(menu.roles, null, 1)}`;
         when: role.when,
         bullets: ids.map((id) => byId[id].text),
         core,
+        title: peopleScience && role.titlePeopleScience ? role.titlePeopleScience : role.title,
         company: role.company,
-        ats: role.ats || null,   // parser-safe title, account and location
       };
     });
 

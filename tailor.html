@@ -310,12 +310,8 @@
 
 <!-- PAGE 2 -->
 <article class="page" id="page2" hidden>
-  <header class="cv-runhead">
-    <p class="cv-runmark trim trim-line">Joshua Woodyard</p>
-    <p class="cv-stamp trim" id="out-stamp2"></p>
-  </header>
-
   <div id="out-p2"></div>
+  <p class="cv-pagefoot trim">2 / 2</p>
 </article>
 
 <div class="save-panel" id="save-panel" hidden>
@@ -517,7 +513,6 @@
     $('out-lede').innerHTML = body(data.summary);
     const month = esc(formatDateStamp());
     $('out-stamp1').innerHTML = piped([`CV &middot; ${month}`, '1 / 2']);
-    $('out-stamp2').innerHTML = piped([`CV &middot; ${month}`, '2 / 2']);
     // Pages must be laid out before heights can be measured.
     page1.hidden = false; page2.hidden = false;
     return fitToTwoPages(data);
@@ -531,8 +526,8 @@
       summary: cv.summaries.master,
       roles: (cv.roles || []).map((r) => ({
         role: `${r.title} | ${r.company}`,
+        title: r.title,
         company: r.company,
-        ats: r.ats || null,
         where: r.where,
         when: r.when,
         bullets: (r.bullets || []).filter((b) => !omit.includes(b.id)).map((b) => b.text),
@@ -636,12 +631,14 @@
       `<p class="entry-meta trim trim-line">${metaHtml}</p>` +
       (li ? `<ul class="${ulClass}">${li}</ul>` : '') + '</div>';
   }
+  // Two lines, as on cv.html: the job title alone, then
+  // "Company | City, Country | Dates", company first.
   function roleHtml(r) {
     const i = r.role.indexOf(' | ');
-    const title = i < 0 ? r.role : r.role.slice(0, i);
-    const company = i < 0 ? '' : r.role.slice(i + 3);
-    return entry(piped([`<span class="role-name">${nb(esc(title))}</span>`, esc(company)].filter(Boolean)),
-      piped([esc(r.where), esc(r.when)]), r.bullets.map((b) => body(b)));
+    const title = r.title || (i < 0 ? r.role : r.role.slice(0, i));
+    const company = r.company || (i < 0 ? '' : r.role.slice(i + 3));
+    return entry(nb(esc(title)), piped([esc(company), esc(r.where), esc(r.when)].filter(Boolean)),
+      r.bullets.map((b) => body(b)));
   }
   function researchHtml(d) {
     return entry(esc(d.title), piped([d.institution, d.year, d.mark].filter(Boolean).map(esc)),
@@ -844,16 +841,13 @@
     L.push(''); L.push('PROFILE');
     L.push(d.summary);
     L.push(''); L.push('EXPERIENCE');
-    // One field per line, as in the ATS CV: title (no commas or parentheses,
-    // which parsers split on), employer and location, dates, then the account.
+    // Two lines per job, as in the ATS CV: the title alone, then
+    // "Company | City, Country | Dates".
     d.roles.forEach((r) => {
-      const a = r.ats || {};
       const company = r.company || (r.role.split(' | ')[1] || '');
       L.push('');
-      L.push(a.title || r.role.split(' | ')[0]);
-      L.push(`${company}, ${a.location || r.where}`);
-      L.push(r.when);
-      if (a.account) L.push(`Account: ${a.account}`);
+      L.push(r.title || r.role.split(' | ')[0]);
+      L.push([company, r.where, r.when].join(' | '));
       r.bullets.forEach((b) => L.push(`- ${b}`));
     });
     if (d.dissertation) {

@@ -93,14 +93,13 @@ def omitted(cv):
 
 def role_html(r, omit):
     bullets = [b for b in r["bullets"] if b["id"] not in omit]
-    # The title is one unit (role: team or account), set slightly tighter so
-    # it reads, and parses, as one item before the separator.
-    role_name = '<span class="role-name">' + nb(esc(r["title"])) + "</span>"
+    # Two lines a parser can't misread: the job title alone (no company or
+    # client), then "Company | City, Country | Dates", company first.
     li = "\n".join(f"      <li>{body(b['text'])}</li>" for b in bullets)
     return (
         '    <div class="entry">\n'
-        f'      <p class="entry-title trim trim-line">{piped([role_name, esc(r["company"])])}</p>\n'
-        f'      <p class="entry-meta trim trim-line">{piped([esc(r["where"]), esc(r["when"])])}</p>\n'
+        f'      <p class="entry-title trim trim-line">{nb(esc(r["title"]))}</p>\n'
+        f'      <p class="entry-meta trim trim-line">{piped([esc(r["company"]), esc(r["where"]), esc(r["when"])])}</p>\n'
         f'      <ul class="cv-bullets">\n{li}\n      </ul>\n'
         "    </div>"
     )
@@ -209,7 +208,6 @@ def build(cv, variant_id, private):
         "TAGLINE": piped([esc(p) for p in tagline_parts]),
         "CONTACT": contact(cv, private),
         "STAMP_1": stamp(cv, 1),
-        "STAMP_2": stamp(cv, 2),
         "PROFILE": body(cv["summaries"]["master"]),
         "PAGE1_SECTIONS": page1,
         "PAGE2_SECTIONS": "\n\n".join(page2),

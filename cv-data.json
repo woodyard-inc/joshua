@@ -21,14 +21,11 @@
   "roles": [
     {
       "id": "publicis",
-      "title": "Senior Executive – Data and Insights",
-      "titlePeopleScience": "Senior Executive – Talent Data and Insights",
+      "title": "Senior Executive, Data and Insights",
+      "titlePeopleScience": "Senior Executive, Data and Insights (Talent)",
       "company": "Publicis Groupe",
       "where": "London, UK",
       "when": "Jul 2025 – Present",
-      "ats": {
-        "location": "London, United Kingdom"
-      },
       "demoteUnlessPeopleScience": true,
       "bullets": [
         {
@@ -59,13 +56,10 @@
     },
     {
       "id": "horizon-bi",
-      "title": "Senior Analyst – Analytics and Business Intelligence",
+      "title": "Senior Analyst, Analytics and Business Intelligence",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Jan 2022 – Sep 2023",
-      "ats": {
-        "location": "New York, NY"
-      },
       "bullets": [
         {
           "id": "hbi-practice",
@@ -84,13 +78,10 @@
     },
     {
       "id": "uniqlo",
-      "title": "Part-time Freelance Researcher",
+      "title": "Freelance Researcher (Part-time)",
       "company": "UNIQLO",
       "where": "New York City, US",
       "when": "May 2021 – May 2023",
-      "ats": {
-        "location": "New York, NY"
-      },
       "bullets": [
         {
           "id": "uni-research",
@@ -105,17 +96,14 @@
     },
     {
       "id": "petco",
-      "title": "Senior Analyst – Petco account",
+      "title": "Senior Analyst",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Jul 2020 – Jan 2022",
-      "ats": {
-        "location": "New York, NY"
-      },
       "bullets": [
         {
           "id": "pet-nielsen",
-          "text": "Consolidated all digital vendors and media buys, including Google and Meta, into a single placement-level reporting set, integrating Nielsen audience data for digital TV and switchable attribution models, giving the client one view of performance across the full buy."
+          "text": "On the Petco account, consolidated all digital vendors and media buys, including Google and Meta, into a single placement-level reporting set, integrating Nielsen audience data for digital TV and switchable attribution models, giving the client one view of performance across the full buy."
         },
         {
           "id": "pet-etl",
@@ -126,17 +114,14 @@
     },
     {
       "id": "sprint-boost",
-      "title": "Analyst – Sprint and Boost Mobile account",
+      "title": "Analyst",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Dec 2019 – Jul 2020",
-      "ats": {
-        "location": "New York, NY"
-      },
       "bullets": [
         {
           "id": "spr-synth",
-          "text": "Consolidated vendor feeds from Google, Meta and other platforms into one SQL dataset, then prepared the weekly reporting and the quarterly post-campaign analyses that steered budget allocation."
+          "text": "On the Sprint and Boost Mobile accounts, consolidated vendor feeds from Google, Meta and other platforms into one SQL dataset, then prepared the weekly reporting and the quarterly post-campaign analyses that steered budget allocation."
         },
         {
           "id": "spr-kantar",
@@ -153,17 +138,14 @@
     },
     {
       "id": "dunkin",
-      "title": "Strategy Associate – Dunkin' account",
+      "title": "Strategy Associate",
       "company": "Publicis Media",
       "where": "New York City, US",
       "when": "Apr 2019 – Dec 2019",
-      "ats": {
-        "location": "New York, NY"
-      },
       "bullets": [
         {
           "id": "dun-competitive",
-          "text": "Prepared a competitive rundown of the QSR segment from several syndicated research sources to support a broad strategy reset across the New England and Midwest markets."
+          "text": "On the Dunkin' account, prepared a competitive analysis of the QSR segment from several syndicated research sources to support a broad strategy reset across the New England and Midwest markets."
         },
         {
           "id": "dun-mixplanning",
@@ -412,5 +394,5 @@
     "eduResultInMeta": false,
     "atsOmit": []
   },
-  "_README_ats": "Titles use an en dash between role and team or account, spell out 'and', and never use a comma, ampersand or parentheses: ATS parsers split titles on those. roles[].ats.location and education[].degreeAts are the parser-safe forms the ATS export uses."
+  "_README_ats": "Experience entries are two lines: the job title alone (specialism after a comma), then 'Company | City, Country | Dates'. Client names live in the bullets, never in a title line, so parsers take the company from line 2. education[].degreeAts is the ATS form of a degree."
 }

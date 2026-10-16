@@ -112,7 +112,7 @@
   color: var(--cobalt); margin: 0;
   max-width: none;
 }
-.cv-tagline .sep, .cv-contact .sep, .cv-stamp .sep, .entry-title .sep, .entry-meta .sep {
+.cv-tagline .sep, .cv-contact .sep, .cv-stamp .sep, .entry-meta .sep {
   color: var(--ink-muted); font-weight: 400;
 }
 /* Not ".cv-name": foundations.css forces negative tracking on that class. */
@@ -145,6 +145,15 @@
   letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--ink-muted);
   max-width: none;
+}
+
+/* ---- Page-2 page number: at the foot, outside the flow ----------------- */
+.cv-pagefoot {
+  position: absolute; right: 14mm; bottom: 6mm; margin: 0;
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: var(--cv-micro); line-height: var(--lh-single);
+  letter-spacing: 0.08em; color: var(--ink-muted);
+  text-box-edge: cap alphabetic;
 }
 
 /* ---- Running header (page 2): no rule under it ------------------------ */
@@ -189,18 +198,17 @@
   letter-spacing: -0.005em; color: var(--ink);
   margin: 0; max-width: none;
 }
-/* A role line is two items: the title (role: team or account) and the
-   employer. The title is set a little tighter so it reads as one unit; the
-   separator is bold, dark and given extra room so the employer reads as a
-   separate item, to people and to parsers alike. */
-.entry-title .role-name { word-spacing: -0.1em; }
-.entry-title .sep { font-weight: 700; color: var(--ink); padding: 0 0.3em; }
-
+/* The title and its company / place / dates line are one block: the gap
+   between them (xs, about 3pt to the letters) is well under the gap between
+   entries (m, 12pt), which is how a parser tells where an entry ends. */
+/* 9.25pt, within a hair of the 9pt title: text extractors start a new block
+   when the type size jumps, so at the body size (11.5pt) the company line
+   was read as a separate item from its title. */
 .entry-meta {
   font-family: var(--font-body); font-weight: 400;
-  font-size: var(--cv-body); line-height: var(--lh-single);
+  font-size: 9.25pt; line-height: var(--lh-single);
   color: var(--ink-soft);
-  margin: var(--space-s) 0 0; max-width: none;
+  margin: var(--space-xs) 0 0; max-width: none;
 }
 
 /* Bullets run on the body leading with no extra space between them, so the
@@ -287,6 +295,7 @@ body[data-colour="grey"] {
   .page { box-shadow: none; margin: 0; width: 210mm; min-height: auto;
           padding: 46px 51px; background: none; }
   .page:not(:last-of-type) { break-after: page; }
+  .cv-pagefoot { right: 51px; bottom: 18px; }
   /* Section rules are painted, and Chrome's print dialog leaves "Background
      graphics" off by default; this keeps them (and the colours) either way. */
   .page, .page * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }

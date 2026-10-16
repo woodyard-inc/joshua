@@ -57,6 +57,9 @@
   /* Entry header: title, employer and location, dates (and account), one
      field per line, then the list. */
   .role, .edu { margin-top: 7pt; }
+  /* A job's two header lines sit tight (single leading, ~3pt apart); jobs
+     are 12pt apart, so a parser sees where one entry ends. */
+  .role--job { margin-top: 12pt; }
   .role-title { font-weight: bold; margin: 0; }
   .role-line  { margin: 0; }
   .role-meta  { margin: 0; }
@@ -155,18 +158,14 @@
     section(root, 'Profile');
     root.appendChild(el('p', cv.summaries.master));
 
-    // One field per line, in the order parsers expect: job title, then
-    // employer and location, then dates. Titles carry no commas or
-    // parentheses (parsers split on them), so a client account sits on its
-    // own line beneath the dates and is read as part of the description.
+    // Two lines a parser can't misread: the job title alone, then
+    // "Company | City, Country | Dates", company first. Client names are in
+    // the bullets, never on these lines.
     section(root, 'Experience');
     (cv.roles || []).forEach(function (r) {
-      var a = r.ats || {};
-      var block = el('div', null, 'role');
-      block.appendChild(el('p', a.title || r.title, 'role-title'));
-      block.appendChild(el('p', r.company + ', ' + (a.location || r.where), 'role-line'));
-      block.appendChild(el('p', r.when, 'role-meta'));
-      if (a.account) block.appendChild(el('p', 'Account: ' + a.account, 'role-meta'));
+      var block = el('div', null, 'role role--job');
+      block.appendChild(el('p', r.title, 'role-title'));
+      block.appendChild(el('p', [r.company, r.where, r.when].join(' | '), 'role-meta'));
       block.appendChild(list(r.bullets.filter(function (b) { return keepRole(b, omit); })
                                       .map(function (b) { return b.text; })));
       root.appendChild(block);

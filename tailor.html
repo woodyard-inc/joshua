@@ -373,6 +373,9 @@
     try {
       const cv = await (await fetch('cv-data.json', { cache: 'no-store' })).json();
       (cv.roles || []).forEach((r) => roleSel.add(new Option(`${r.title} | ${r.company} (${r.when})`, r.id)));
+      // No default row: a skill typed without choosing one would otherwise
+      // land silently at the end of Methods.
+      skillSel.add(new Option('Choose a Skills row…', ''));
       (cv.skills || []).forEach((k) => skillSel.add(new Option(k.label, k.id)));
     } catch { /* the form still works without additions */ }
   }
@@ -399,6 +402,13 @@
       const k = (data.skills || []).find((x) => x.id === add.skillId);
       if (k) k.text = `${k.text}, ${add.skills.join(', ')}`;
     }
+    // Remembered so the result note can say where each addition went.
+    const role = (data.roles || []).find((x) => x.id === add.roleId);
+    const row = (data.skills || []).find((x) => x.id === add.skillId);
+    data._added = [
+      add.bullets.length && role ? `${add.bullets.length} bullet${add.bullets.length > 1 ? 's' : ''} → ${role.company}` : '',
+      add.skills.length && row ? `${add.skills.join(', ')} → ${row.label}` : '',
+    ].filter(Boolean);
     return data;
   }
 
@@ -880,9 +890,10 @@
     if (fit.plan.diss < 99) bits.push(`${fit.plan.diss} dissertation bullets`);
     const kept = totalBullets(trimRoles(data.roles, fit.plan.bullets, fit.plan.floor));
     if (kept < total) bits.push(`${kept} of ${total} role bullets, least relevant dropped first`);
-    note.textContent = bits.length
+    note.textContent = (bits.length
       ? `Trimmed to hold two pages: ${bits.join(', ')}.`
-      : `Fits two pages with no trimming: all ${total} bullets shown, most relevant first.`;
+      : `Fits two pages with no trimming: all ${total} bullets shown, most relevant first.`)
+      + (data._added && data._added.length ? ` Your additions: ${data._added.join('; ')}.` : '');
     note.hidden = false;
   }
 
@@ -963,6 +974,14 @@
     genButton.disabled = true;
     genButton.textContent = 'Tailoring…';
     const add = readAdditions();
+    if (add.skills.length && !add.skillId) {
+      genError.textContent = 'Choose which Skills row to add ' + add.skills.join(', ') + ' to.';
+      genError.hidden = false;
+      genButton.disabled = false;
+      genButton.textContent = 'Generate tailored CV';
+      $('add-skill-row').focus();
+      return;
+    }
     try {
       const res = await fetch(WORKER_URL, {
         method: 'POST',

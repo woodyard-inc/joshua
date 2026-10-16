@@ -26,6 +26,10 @@
       "company": "Publicis Groupe",
       "where": "London, UK",
       "when": "Jul 2025 – Present",
+      "ats": {
+        "title": "Data & Insights Senior Executive",
+        "location": "London, United Kingdom"
+      },
       "demoteUnlessPeopleScience": true,
       "bullets": [
         {
@@ -56,6 +60,10 @@
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Jan 2022 – Sep 2023",
+      "ats": {
+        "title": "Analytics & Business Intelligence Senior Analyst",
+        "location": "New York, NY"
+      },
       "bullets": [
         {
           "id": "hbi-practice",
@@ -78,6 +86,10 @@
       "company": "UNIQLO",
       "where": "New York City, US",
       "when": "May 2021 – May 2023",
+      "ats": {
+        "title": "Part-time Freelance Researcher",
+        "location": "New York, NY"
+      },
       "bullets": [
         {
           "id": "uni-research",
@@ -96,6 +108,11 @@
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Jul 2020 – Jan 2022",
+      "ats": {
+        "title": "Senior Analyst",
+        "account": "Petco",
+        "location": "New York, NY"
+      },
       "bullets": [
         {
           "id": "pet-nielsen",
@@ -114,6 +131,11 @@
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Dec 2019 – Jul 2020",
+      "ats": {
+        "title": "Analyst",
+        "account": "Sprint & Boost Mobile",
+        "location": "New York, NY"
+      },
       "bullets": [
         {
           "id": "spr-synth",
@@ -138,6 +160,11 @@
       "company": "Publicis Media",
       "where": "New York City, US",
       "when": "Apr 2019 – Dec 2019",
+      "ats": {
+        "title": "Strategy Associate",
+        "account": "Dunkin'",
+        "location": "New York, NY"
+      },
       "bullets": [
         {
           "id": "dun-competitive",
@@ -239,6 +266,7 @@
   "education": [
     {
       "degree": "Master of Science (MSc), Behavioural Economics",
+      "degreeAts": "Master of Science in Behavioural Economics",
       "school": "City St George's, University of London",
       "when": "Sep 2023 – Sep 2024",
       "meta": [
@@ -388,5 +416,6 @@
     "omit": [],
     "eduResultInMeta": false,
     "atsOmit": []
-  }
+  },
+  "_README_ats": "roles[].ats and education[].degreeAts are the parser-safe forms used by the ATS export, the Workshop's plain-text copy and the Worker: titles without commas or parentheses (ATS parsers split on them), the client account on its own line, and locations in a form parsers recognise."
 }

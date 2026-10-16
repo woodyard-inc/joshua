@@ -148,18 +148,26 @@ def verify(pdf, designed):
     prof = CV["summaries"]["master"]
     tail = prof[-40:]
     after = flat[flat.find(tail) + len(tail):].strip() if tail in flat else ""
-    first = f"{CV['roles'][0]['title']} | {CV['roles'][0]['company']}"
+    r0 = CV["roles"][0]
+    first = f"{r0['title']} | {r0['company']}" if designed else (r0.get("ats") or {}).get("title", r0["title"])
     check(re.match(r"(?i)^experience\b", after) is not None, "Experience heading directly after Profile",
           after[:40])
     check(after.lower().startswith("experience " + first.lower()), "then the Publicis title line", first)
 
     lines = [l.strip() for l in t.splitlines() if l.strip()]
     for r in CV["roles"]:
-        tl = f"{r['title']} | {r['company']}"
-        meta = f"{r['where']} | {r['when']}"
+        if designed:
+            tl = f"{r['title']} | {r['company']}"
+            follow = [f"{r['where']} | {r['when']}"]
+        else:
+            # ATS: title (no commas or parentheses) / employer, location / dates
+            a = r.get("ats") or {}
+            tl = a.get("title", r["title"])
+            follow = [f"{r['company']}, {a.get('location', r['where'])}", r["when"]]
+            check("," not in tl and "(" not in tl, f"ATS title has no comma or parenthesis: {r['id']}", tl)
         idx = [i for i, l in enumerate(lines) if l == tl]
-        ok = bool(idx) and lines[idx[0] + 1] == meta
-        check(ok, f"title then its own dates: {r['id']}", meta)
+        ok = bool(idx) and lines[idx[0] + 1: idx[0] + 1 + len(follow)] == follow
+        check(ok, f"title then its own employer/dates: {r['id']}", " / ".join(follow))
 
     source = rendered_text()
     for w in ["Universität", "St George's", "–", "—"]:
@@ -172,8 +180,9 @@ def verify(pdf, designed):
     for w in MUST:
         check(w in flat, f"present: {w}")
     horizon = next(r for r in CV["roles"] if r["id"] == "horizon-bi")
-    check("Business Intelligence" in f"{horizon['title']} | {horizon['company']}" and
-          f"{horizon['title']} | {horizon['company']}" in t, "Business Intelligence in the Horizon title line")
+    htitle = (f"{horizon['title']} | {horizon['company']}" if designed
+              else (horizon.get("ats") or {}).get("title", horizon["title"]))
+    check("Business Intelligence" in htitle and htitle in t, "Business Intelligence in the Horizon title line")
     start = flat.find(first)
     exp = flat[start:flat.find(CV["dissertation"]["title"], start)]
     for w in ["Meta", "Google"]:

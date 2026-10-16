@@ -17,7 +17,7 @@
   body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 10pt;
-    line-height: 1.3;
+    line-height: 1.2;
     color: #000;
     background: #fff;
     margin: 0 auto;
@@ -44,7 +44,7 @@
     font-weight: bold;
     letter-spacing: normal;
     text-transform: none;
-    margin: 11pt 0 4pt;
+    margin: 10pt 0 3pt;
     border-bottom: 1px solid #000;
     padding-bottom: 2pt;
   }
@@ -54,18 +54,21 @@
   .tagline { margin: 0 0 2pt; }
   .contact { margin: 0 0 4pt; }
 
-  /* Role header: two plain lines, then the list, with nothing between them. */
-  .role { margin-top: 8pt; }
+  /* Entry header: title, employer and location, dates (and account), one
+     field per line, then the list. */
+  .role, .edu { margin-top: 7pt; }
   .role-title { font-weight: bold; margin: 0; }
-  .role-meta  { margin: 0 0 3pt; }
+  .role-line  { margin: 0; }
+  .role-meta  { margin: 0; }
+  .role ul, .edu ul { margin-top: 3pt; }
 
-  ul { margin: 0 0 6pt; padding-left: 16pt; }
-  li { margin: 0 0 2pt; }
+  ul { margin: 0; padding-left: 16pt; }
+  li { margin: 0 0 1pt; }
 
   /* A role may run across a page break, but its title and dates always stay
      with its first bullet, and no bullet is split. Holding whole roles
      together left most of a page empty when one didn't fit. */
-  .role-title, .role-meta, h2 { break-after: avoid; page-break-after: avoid; }
+  .role-title, .role-line, .role-meta, h2 { break-after: avoid; page-break-after: avoid; }
   li { break-inside: avoid; page-break-inside: avoid; }
   .edu { break-inside: avoid; page-break-inside: avoid; }
 
@@ -152,11 +155,18 @@
     section(root, 'Profile');
     root.appendChild(el('p', cv.summaries.master));
 
+    // One field per line, in the order parsers expect: job title, then
+    // employer and location, then dates. Titles carry no commas or
+    // parentheses (parsers split on them), so a client account sits on its
+    // own line beneath the dates and is read as part of the description.
     section(root, 'Experience');
     (cv.roles || []).forEach(function (r) {
+      var a = r.ats || {};
       var block = el('div', null, 'role');
-      block.appendChild(el('p', r.title + ' | ' + r.company, 'role-title'));
-      block.appendChild(el('p', r.where + ' | ' + r.when, 'role-meta'));
+      block.appendChild(el('p', a.title || r.title, 'role-title'));
+      block.appendChild(el('p', r.company + ', ' + (a.location || r.where), 'role-line'));
+      block.appendChild(el('p', r.when, 'role-meta'));
+      if (a.account) block.appendChild(el('p', 'Account: ' + a.account, 'role-meta'));
       block.appendChild(list(r.bullets.filter(function (b) { return keepRole(b, omit); })
                                       .map(function (b) { return b.text; })));
       root.appendChild(block);
@@ -166,7 +176,9 @@
     var d = cv.dissertation;
     var rb = el('div', null, 'role');
     rb.appendChild(el('p', d.title, 'role-title'));
-    rb.appendChild(el('p', [d.institution, d.year, d.mark].join(' | '), 'role-meta'));
+    rb.appendChild(el('p', d.institution, 'role-line'));
+    rb.appendChild(el('p', d.year, 'role-meta'));
+    rb.appendChild(el('p', d.mark, 'role-meta'));
     // Every CV carries the condensed research bullets; the full set is for
     // research roles, chosen in the Workshop.
     rb.appendChild(list((d.short || d.bullets).filter(function (t) { return keepResearch(t, omit); })));
@@ -178,7 +190,8 @@
       section(root, 'Projects');
       var pb = el('div', null, 'role');
       pb.appendChild(el('p', pj.title, 'role-title'));
-      pb.appendChild(el('p', [pj.label, pj.year].join(' | '), 'role-meta'));
+      pb.appendChild(el('p', pj.label, 'role-line'));
+      pb.appendChild(el('p', pj.year, 'role-meta'));
       pb.appendChild(list([].concat(pj.short)));
       root.appendChild(pb);
     }
@@ -186,8 +199,9 @@
     section(root, 'Education');
     (cv.education || []).forEach(function (e) {
       var block = el('div', null, 'edu');
-      block.appendChild(el('p', e.degree, 'role-title'));
-      block.appendChild(el('p', e.school + ' | ' + e.when, 'role-meta'));
+      block.appendChild(el('p', e.degreeAts || e.degree, 'role-title'));
+      block.appendChild(el('p', e.school, 'role-line'));
+      block.appendChild(el('p', e.when, 'role-meta'));
       var items = (e.meta || []).slice();
       if (e.topics) items.push('Topics: ' + e.topics);
       if (items.length) block.appendChild(list(items));

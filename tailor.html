@@ -531,6 +531,8 @@
       summary: cv.summaries.master,
       roles: (cv.roles || []).map((r) => ({
         role: `${r.title} | ${r.company}`,
+        company: r.company,
+        ats: r.ats || null,
         where: r.where,
         when: r.when,
         bullets: (r.bullets || []).filter((b) => !omit.includes(b.id)).map((b) => b.text),
@@ -838,29 +840,39 @@
     L.push(''); L.push('PROFILE');
     L.push(d.summary);
     L.push(''); L.push('EXPERIENCE');
+    // One field per line, as in the ATS CV: title (no commas or parentheses,
+    // which parsers split on), employer and location, dates, then the account.
     d.roles.forEach((r) => {
+      const a = r.ats || {};
+      const company = r.company || (r.role.split(' | ')[1] || '');
       L.push('');
-      L.push(r.role);
-      L.push(`${r.where} | ${r.when}`);
+      L.push(a.title || r.role.split(' | ')[0]);
+      L.push(`${company}, ${a.location || r.where}`);
+      L.push(r.when);
+      if (a.account) L.push(`Account: ${a.account}`);
       r.bullets.forEach((b) => L.push(`- ${b}`));
     });
     if (d.dissertation) {
       L.push(''); L.push('RESEARCH');
       L.push(d.dissertation.title);
-      L.push([d.dissertation.institution, d.dissertation.year, d.dissertation.mark].filter(Boolean).join(' | '));
+      L.push(d.dissertation.institution);
+      L.push(d.dissertation.year);
+      if (d.dissertation.mark) L.push(d.dissertation.mark);
       (d.dissertation.bullets || []).forEach((b) => L.push(`- ${b}`));
     }
     if (d.project) {
       L.push(''); L.push('PROJECTS');
       L.push(d.project.title);
-      L.push([d.project.label, d.project.year].filter(Boolean).join(' | '));
+      L.push(d.project.label);
+      L.push(d.project.year);
       (d.project.full ? d.project.bullets : [].concat(d.project.short)).forEach((b) => L.push(`- ${b}`));
     }
     L.push(''); L.push('EDUCATION');
     (d.education || []).forEach((e) => {
       L.push('');
-      L.push(e.degree);
-      L.push(`${e.school} | ${e.when}`);
+      L.push(e.degreeAts || e.degree);
+      L.push(e.school);
+      L.push(e.when);
       (e.meta || []).forEach((m) => L.push(`- ${m}`));
       if (e.topics) L.push(`Topics: ${e.topics}`);
     });

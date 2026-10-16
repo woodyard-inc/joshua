@@ -1,0 +1,112 @@
+{
+  "_README": "Every number shown on dissertation-case-study.html comes from this file (scripts/build_dissertation.py renders the page and fails if a number on it is not traced here). Sources are Joshua Woodyard, 'Money can't buy happiness: The cross-cultural relationships between social capital and life satisfaction', MSc dissertation, City St George's, University of London, 2024 (cited below as 'Diss.'), plus values carried over from the previous version of the page ('page').",
+  "_significance": "The dissertation's regression tables print stargazer's default stars (* p<0.1, ** p<0.05, *** p<0.01) under a note that says *p<0.05, **p<0.01, ***p<0.001. Recomputing p from beta and SE confirms the defaults (e.g. Table A10 HDI x Trust in Fairness 0.318*, SE 0.183, t = 1.74, p = .08). This file keeps the published stars; the page counts ** and *** as significant at p < .05 and reports *** as p < .01.",
+
+  "meta": {
+    "case_number": "002",
+    "year": 2024,
+    "duration": "~6 months",
+    "mark_pct": 71,
+    "issp_doc_page": 279,
+    "hypotheses_total": 4,
+    "hypotheses_supported": 4,
+    "_sources": "mark: transcript and page; issp_doc_page: page ('Quietly proud of' note); hypotheses: Diss. Results (H1a, H1b, H2a with nuance, H2b all supported)"
+  },
+
+  "sample": {
+    "n_total": 11249,
+    "n_model_pooled": 11179,
+    "missing_rows": 3968,
+    "issp_year": 2017,
+    "likert_min": 1,
+    "likert_max": 7,
+    "pca_alpha_min": 0.71,
+    "ci_level_pct": 95,
+    "ci_z": 1.96,
+    "scale_hdi": "0–1",
+    "scale_index": "0–10",
+    "_sources": "Diss. pp. 18-19 and Table 2; n_model_pooled: Table A3 observations"
+  },
+
+  "countries": [
+    { "code": "US", "name": "United States", "n": 1173, "hdi": 0.924, "individualism": 9.1, "hazard": 6.9, "power_distance": 4.0, "masculinity": 6.2, "cpi": 7.5, "spi": 8.643,
+      "emm": { "mean": 5.34, "se": 0.043, "lo": 5.25, "hi": 5.42 }, "r2": 0.183 },
+    { "code": "AT", "name": "Austria", "n": 1120, "n_table2": 1200, "hdi": 0.916, "individualism": 5.5, "hazard": 2.5, "power_distance": 1.1, "masculinity": 7.9, "cpi": 7.5, "spi": 8.798,
+      "emm": { "mean": 5.19, "se": 0.053, "lo": 5.08, "hi": 5.29 }, "r2": 0.217 },
+    { "code": "ZA", "name": "South Africa", "n": 3098, "hdi": 0.72, "individualism": 6.5, "hazard": 4.2, "power_distance": 4.9, "masculinity": 6.3, "cpi": 4.3, "spi": 6.725,
+      "emm": { "mean": 4.81, "se": 0.027, "lo": 4.76, "hi": 4.87 }, "r2": 0.148 },
+    { "code": "RU", "name": "Russia", "n": 1559, "hdi": 0.833, "individualism": 3.9, "hazard": 5.1, "power_distance": 9.3, "masculinity": 3.6, "cpi": 2.9, "spi": 6.717,
+      "emm": { "mean": 4.85, "se": 0.04, "lo": 4.78, "hi": 4.93 }, "r2": 0.149 },
+    { "code": "CN", "name": "China", "n": 4219, "hdi": 0.747, "individualism": 2.0, "hazard": 7.8, "power_distance": 8.0, "masculinity": 6.6, "cpi": 4.1, "spi": 6.372,
+      "emm": { "mean": 4.59, "se": 0.03, "lo": 4.53, "hi": 4.65 }, "r2": 0.211 }
+  ],
+  "_countries_sources": "n: Diss. p. 18 text (Austria 1,120 there, but 1,200 in Table 2 and Table A2; 1,200 makes the five sum to 11,249 — TODO_DATA). Indices: Table 1 (hazard = INFORM natural risk 0-10; individualism, power distance, masculinity = Hofstede 0-10; CPI and SPI 0-10; HDI 0-1). emm: Table A4 (estimated marginal means of life satisfaction at mean social capital, 95% CI), rows matched to countries via the Table A5 contrasts. r2: Table 3.",
+
+  "tukey": {
+    "ns_pairs": [ { "a": "US", "b": "AT", "p": 0.14 }, { "a": "RU", "b": "ZA", "p": 0.87 } ],
+    "_source": "Table A5 (AT-US p = 0.1413; RU-ZA p = 0.8682); all other pairs p < .0001"
+  },
+
+  "constructs": [
+    { "id": "trust_society",   "label": "Trust in society",               "short": "Trust: society",    "group": "Trust" },
+    { "id": "trust_fairness",  "label": "Trust in fairness",              "short": "Trust: fairness",   "group": "Trust" },
+    { "id": "org_trust",       "label": "Organisational trust",           "short": "Trust: organisations", "group": "Trust" },
+    { "id": "social_network",  "label": "Social networks",                "short": "Networks",          "group": "Networks" },
+    { "id": "personal_support","label": "Personal support resources",     "short": "Support: personal", "group": "Support resources" },
+    { "id": "org_support",     "label": "Organisational support resources","short": "Support: organisational", "group": "Support resources" },
+    { "id": "elder_care",      "label": "Elder care norm",                "short": "Norm: elder care",  "group": "Reciprocity norms" },
+    { "id": "family_first",    "label": "Family first norm",              "short": "Norm: family first","group": "Reciprocity norms" },
+    { "id": "societal_care",   "label": "Societal care norm",             "short": "Norm: societal care","group": "Reciprocity norms" },
+    { "id": "daily_contact",   "label": "Daily contact",                  "short": "Contact: daily",    "group": "Contact", "per_person": true },
+    { "id": "org_contact",     "label": "Organisational contact",         "short": "Contact: organisations", "group": "Contact" }
+  ],
+
+  "country_models": {
+    "_source": "Diss. Table 3, country-level OLS; each cell [beta, SE, published stars]",
+    "US": { "trust_society": [0.065, 0.045, ""], "trust_fairness": [0.094, 0.043, "**"], "org_trust": [0.116, 0.034, "***"], "social_network": [-0.029, 0.037, ""], "personal_support": [0.080, 0.068, ""], "org_support": [-0.100, 0.034, "***"], "elder_care": [0.089, 0.032, "***"], "family_first": [0.045, 0.035, ""], "societal_care": [0.012, 0.034, ""], "daily_contact": [0.001, 0.001, ""], "org_contact": [0.029, 0.029, ""] },
+    "AT": { "trust_society": [0.088, 0.036, "**"], "trust_fairness": [0.290, 0.037, "***"], "org_trust": [0.112, 0.029, "***"], "social_network": [0.039, 0.032, ""], "personal_support": [-0.033, 0.038, ""], "org_support": [-0.092, 0.026, "***"], "elder_care": [0.015, 0.021, ""], "family_first": [-0.008, 0.028, ""], "societal_care": [0.0003, 0.026, ""], "daily_contact": [0.004, 0.001, "***"], "org_contact": [0.075, 0.025, "***"] },
+    "ZA": { "trust_society": [0.173, 0.032, "***"], "trust_fairness": [0.122, 0.028, "***"], "org_trust": [0.083, 0.026, "***"], "social_network": [0.144, 0.029, "***"], "personal_support": [0.028, 0.031, ""], "org_support": [-0.062, 0.028, "**"], "elder_care": [0.013, 0.028, ""], "family_first": [0.075, 0.036, "**"], "societal_care": [-0.029, 0.029, ""], "daily_contact": [0.001, 0.001, ""], "org_contact": [0.077, 0.022, "***"] },
+    "RU": { "trust_society": [0.189, 0.039, "***"], "trust_fairness": [0.118, 0.038, "***"], "org_trust": [0.091, 0.028, "***"], "social_network": [0.089, 0.033, "***"], "personal_support": [0.023, 0.021, ""], "org_support": [-0.042, 0.029, ""], "elder_care": [0.060, 0.042, ""], "family_first": [0.021, 0.037, ""], "societal_care": [0.007, 0.028, ""], "daily_contact": [0.003, 0.002, ""], "org_contact": [0.101, 0.035, "***"] },
+    "CN": { "trust_society": [0.092, 0.020, "***"], "trust_fairness": [0.132, 0.023, "***"], "org_trust": [0.117, 0.015, "***"], "social_network": [-0.019, 0.016, ""], "personal_support": [0.009, 0.018, ""], "org_support": [-0.016, 0.017, ""], "elder_care": [0.056, 0.028, "**"], "family_first": [0.039, 0.026, ""], "societal_care": [0.071, 0.016, "***"], "daily_contact": [0.002, 0.001, "**"], "org_contact": [0.088, 0.021, "***"] }
+  },
+
+  "controls": {
+    "financial_ease": { "min": 0.225, "max": 0.381, "stars": "***", "_source": "Table 3, Household Financial Ease, all five countries" }
+  },
+
+  "pooled": {
+    "r2": 0.219,
+    "predictors": 67,
+    "_source": "Table A3: R2 0.219, F df = 67; 11,111"
+  },
+
+  "moderators": [
+    { "id": "hazard", "group": "given", "label": "Natural-disaster risk",
+      "main": [-0.053, ""],
+      "terms": [ ["Trust in society", -0.022, "***"], ["Trust in fairness", -0.019, "**"], ["Social networks", -0.025, "***"], ["Societal care norm", 0.025, "***"] ],
+      "_source": "Table A6 (Natural Risk x Organisational Support Resources 0.011* is p < .10 and is left out)" },
+    { "id": "power_distance", "group": "given", "label": "Power distance",
+      "main": [-0.105, "***"],
+      "terms": [ ["Organisational support resources", 0.015, "***"] ],
+      "_source": "Table A7 (x Social Network -0.008* and x Societal Care Norm 0.008* are p < .10 and are left out)" },
+    { "id": "masculinity", "group": "given", "label": "Masculinity",
+      "main": [0.142, "*"],
+      "terms": [ ["Trust in fairness", 0.029, "**"], ["Elder care norm", -0.040, "***"] ],
+      "_source": "Table A8 (main 0.142*, and x Trust in Society, x Organisational Trust, x Social Network, are p < .10)" },
+    { "id": "individualism", "group": "given", "label": "Individualism vs collectivism",
+      "main": [0.122, "***"],
+      "terms": [ ["Social networks", 0.017, "***"], ["Societal care norm", -0.019, "***"], ["Organisational contact", -0.013, "**"] ],
+      "_source": "Table A9 (x Organisational Support Resources -0.009* is p < .10)" },
+    { "id": "state", "group": "governed", "label": "Human development, government resources, corruption",
+      "blocks": [
+        { "label": "HDI", "main": [2.749, "**"], "terms": [ ["Social networks", -0.370, "**"] ] },
+        { "label": "SPI", "main": [0.303, "***"], "terms": [ ["Organisational support resources", -0.035, "***"], ["Organisational contact", -0.030, "**"] ] },
+        { "label": "CPI", "main": [0.167, "***"], "terms": [ ["Social networks", -0.019, "**"], ["Organisational support resources", -0.023, "***"] ] }
+      ],
+      "_source": "Tables A10-A12. HDI is on a 0-1 scale, hence its larger coefficients. Terms at p < .10 only (HDI x Trust in Fairness 0.318*, HDI x Org Support -0.253*, HDI x Org Contact -0.233*, CPI x Trust in Society -0.019*, CPI x Org Contact -0.013*) are left out." },
+    { "id": "income", "group": "governed", "label": "Relative income",
+      "main": [0.068, ""],
+      "terms": [ ["Trust in society", -0.014, "**"], ["Daily contact", -0.001, "***"], ["Organisational contact", -0.013, "**"], ["Societal care norm", 0.016, "***"] ],
+      "_source": "Table A13" }
+  ]
+}

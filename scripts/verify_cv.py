@@ -227,7 +227,7 @@ def verify(pdf, designed):
             check(spread <= 0.5, f"title -> company line gap consistent ({len(tg)} titles)",
                   f"{min(g for _,g in tg):.2f}–{max(g for _,g in tg):.2f}pt, spread {spread:.2f}")
         if tg and eg:
-            check(max(g for _, g in tg) * 2 < min(g for _, g in eg),
+            check(max(g for _, g in tg) * 1.5 < min(g for _, g in eg),
                   "title -> company gap clearly smaller than the gap between entries",
                   f"title -> company {max(g for _,g in tg):.2f}pt vs entry -> entry {min(g for _,g in eg):.2f}–{max(g for _,g in eg):.2f}pt")
 

@@ -34,6 +34,14 @@
   --font-sans:     "Helvetica CV", Arial, sans-serif;
   --font-wordmark: "National CV", "Helvetica CV", Arial, sans-serif;
 
+  /* Section headings and entry titles share one size (titles are never
+     larger than headings), and the line under a title sits a quarter point
+     above it: text extractors keep two lines in one block only when their
+     sizes are that close, which is how a title stays with its company line. */
+  --cv-heading:    10pt;
+  --cv-entry:      10pt;
+  --cv-entry-meta: 10.25pt;
+
   /* Spacing: one scale on a 4px (3pt) unit. Every gap on the page is one
      of these, measured ink to ink: from the baseline of the line above to
      the top of the tallest letter below. Text blocks are trimmed to their
@@ -199,16 +207,15 @@
   margin: 0; max-width: none;
 }
 /* The title and its company / place / dates line are one block: the gap
-   between them (xs, about 3pt to the letters) is well under the gap between
-   entries (m, 12pt), which is how a parser tells where an entry ends. */
-/* 9.25pt, within a hair of the 9pt title: text extractors start a new block
-   when the type size jumps, so at the body size (11.5pt) the company line
-   was read as a separate item from its title. */
+   between them (s) is well under the gap between entries (m, 12pt), which is
+   how a parser tells where an entry ends. */
+/* Within a quarter point of the title (see --cv-entry-meta): at the body
+   size the company line was read as a separate item from its title. */
 .entry-meta {
   font-family: var(--font-body); font-weight: 400;
-  font-size: 9.25pt; line-height: var(--lh-single);
+  font-size: var(--cv-entry-meta); line-height: var(--lh-single);
   color: var(--ink-soft);
-  margin: var(--space-xs) 0 0; max-width: none;
+  margin: var(--space-s) 0 0; max-width: none;
 }
 
 /* Bullets run on the body leading with no extra space between them, so the

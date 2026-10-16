@@ -164,7 +164,7 @@ def verify(pdf, designed):
             a = r.get("ats") or {}
             tl = a.get("title", r["title"])
             follow = [f"{r['company']}, {a.get('location', r['where'])}", r["when"]]
-            check("," not in tl and "(" not in tl, f"ATS title has no comma or parenthesis: {r['id']}", tl)
+            check(not any(ch in tl for ch in ",&()"), f"ATS title has no comma, ampersand or parenthesis: {r['id']}", tl)
         idx = [i for i, l in enumerate(lines) if l == tl]
         ok = bool(idx) and lines[idx[0] + 1: idx[0] + 1 + len(follow)] == follow
         check(ok, f"title then its own employer/dates: {r['id']}", " / ".join(follow))

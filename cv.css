@@ -193,7 +193,7 @@
    employer. The title is set a little tighter so it reads as one unit; the
    separator is bold, dark and given extra room so the employer reads as a
    separate item, to people and to parsers alike. */
-.entry-title .role-name { word-spacing: -0.06em; }
+.entry-title .role-name { word-spacing: -0.1em; }
 .entry-title .sep { font-weight: 700; color: var(--ink); padding: 0 0.3em; }
 
 .entry-meta {

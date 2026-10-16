@@ -21,8 +21,8 @@
   "roles": [
     {
       "id": "publicis",
-      "title": "Senior Executive: Data & Insights",
-      "titlePeopleScience": "Senior Executive: Talent Data & Insights",
+      "title": "Senior Executive – Data and Insights",
+      "titlePeopleScience": "Senior Executive – Talent Data and Insights",
       "company": "Publicis Groupe",
       "where": "London, UK",
       "when": "Jul 2025 – Present",
@@ -55,7 +55,7 @@
     },
     {
       "id": "horizon-bi",
-      "title": "Senior Analyst: Analytics & Business Intelligence",
+      "title": "Senior Analyst – Analytics and Business Intelligence",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Jan 2022 – Sep 2023",
@@ -101,7 +101,7 @@
     },
     {
       "id": "petco",
-      "title": "Senior Analyst: Petco account",
+      "title": "Senior Analyst – Petco account",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Jul 2020 – Jan 2022",
@@ -122,7 +122,7 @@
     },
     {
       "id": "sprint-boost",
-      "title": "Analyst: Sprint & Boost Mobile account",
+      "title": "Analyst – Sprint and Boost Mobile account",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Dec 2019 – Jul 2020",
@@ -149,7 +149,7 @@
     },
     {
       "id": "dunkin",
-      "title": "Strategy Associate: Dunkin' account",
+      "title": "Strategy Associate – Dunkin' account",
       "company": "Publicis Media",
       "where": "New York City, US",
       "when": "Apr 2019 – Dec 2019",
@@ -408,5 +408,5 @@
     "eduResultInMeta": false,
     "atsOmit": []
   },
-  "_README_ats": "Titles use a colon, never a comma or parentheses, between role and team or account: ATS parsers split on commas and parentheses. roles[].ats.location and education[].degreeAts are the parser-safe forms the ATS export uses."
+  "_README_ats": "Titles use an en dash between role and team or account, spell out 'and', and never use a comma, ampersand or parentheses: ATS parsers split titles on those. roles[].ats.location and education[].degreeAts are the parser-safe forms the ATS export uses."
 }

@@ -43,6 +43,10 @@
         {
           "id": "pub-compliance",
           "text": "Led 2 transitions to full contractual staffing compliance, including one under a role-by-role client audit across 23 markets, from Nigeria to the Philippines, that met a 100% staffing commitment."
+        },
+        {
+          "id": "pub-ai",
+          "text": "Use AI tools daily across the analytics workflow, for data validation and inconsistency detection, role classification, Power Query development, leadership summaries and documentation, keeping staffing and governance decisions with people rather than the model."
         }
       ],
       "whyBullets": [

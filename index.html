@@ -151,8 +151,9 @@
     border-right: 1px solid var(--rule-strong);
   }
   .stats .s-cell:last-child { border-right: none; }
-  .stats .s-cell .k { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); }
-  .stats .s-cell .v { font-family: var(--font-display); font-size: 64px; line-height: 0.95; font-weight: 700; letter-spacing: -0.04em; color: var(--ink); margin-top: var(--s-3); font-variant-numeric: tabular-nums; }
+  .stats .s-cell .k { display: block; line-height: 1.5; font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); }
+  .stats .s-cell .v { font-family: var(--font-display); font-size: 64px; line-height: 0.95; font-weight: 700; letter-spacing: 0; color: var(--ink); margin-top: var(--s-3); font-variant-numeric: tabular-nums; }
+  .stats .s-cell .v .unit { font-size: 36px; }
   .stats .s-cell .v--cobalt { color: var(--cobalt); }
   .stats .s-cell .n { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.4; margin-top: var(--s-3); }
 
@@ -260,7 +261,9 @@
     .hero .hero-meta .lede { font-size: 19px; }
     .work-row .t { font-size: 24px; }
     .work-row .sub { font-size: 10px; letter-spacing: 0.14em; }
-    .stats .s-cell .v { font-size: 48px; }
+    .stats .s-cell { padding: var(--s-5) var(--s-4); }
+    .stats .s-cell .v { font-size: 40px; }
+    .stats .s-cell .v .unit { font-size: 26px; }
     .contact-block { padding: var(--s-7) var(--s-5); }
     .contact-block h3 { font-size: 32px; }
     .contact-block .right { text-align: left; }
@@ -347,28 +350,59 @@
   </section>
 
   <!-- STATS -->
-  <section class="stats" aria-label="Career highlights">
+  <section class="stats" aria-label="Highlights">
+    <div class="s-cell">
+      <span class="k">Languages spoken</span>
+      <div class="v" id="stat-langs">4</div>
+      <p class="n" id="stat-langs-n">English, German, French and Cantonese.</p>
+    </div>
+    <div class="s-cell">
+      <span class="k">Match accuracy</span>
+      <div class="v v--cobalt">68.4<span class="unit">%</span></div>
+      <p class="n">What Wins on Grass, backtested on 827 Wimbledon matches.</p>
+    </div>
+    <div class="s-cell">
+      <span class="k">People analysed</span>
+      <div class="v">11,249</div>
+      <p class="n">Across five countries for my MSc dissertation, awarded a Distinction.</p>
+    </div>
     <div class="s-cell">
       <span class="k">Years in practice</span>
-      <div class="v">6</div>
-      <p class="n">Analytics, research, advisory across three agencies.</p>
-    </div>
-    <div class="s-cell">
-      <span class="k">Markets served</span>
-      <div class="v">40<span style="font-size: 36px;">+</span></div>
-      <p class="n">During a 90-day global staffing transition at Publicis.</p>
-    </div>
-    <div class="s-cell">
-      <span class="k">Runtime reduced</span>
-      <div class="v v--cobalt">−13%</div>
-      <p class="n">On a $120M retail client's reporting stack at Horizon.</p>
-    </div>
-    <div class="s-cell">
-      <span class="k">Department trained</span>
-      <div class="v">129</div>
-      <p class="n">Analysts &amp; managers onboarded to new standard practice.</p>
+      <div class="v" id="stat-years">6<span class="unit">+</span></div>
+      <p class="n" id="stat-years-n">Analytics, research and advisory since 2019, not counting my MSc year.</p>
     </div>
   </section>
+  <script>
+    /* Years in practice and languages are read from the CV's own data, so
+       the page stays in step with it: years run from the first role's start
+       to today, less the MSc year; languages are the CV's list. The figures
+       above are the no-script fallback. */
+    (async () => {
+      try {
+        const cv = await (await fetch('cv-data.json', { cache: 'no-cache' })).json();
+        const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+        const month = (t) => { const m = /([A-Z][a-z]{2}) (\d{4})/.exec(t); return m ? (+m[2]) * 12 + MON.indexOf(m[1]) : NaN; };
+        const span = (when) => { const [a, b] = when.split(/\s+[–-]\s+/); return [month(a), /present/i.test(b) ? null : month(b)]; };
+        const now = new Date(), today = now.getFullYear() * 12 + now.getMonth();
+        const starts = cv.roles.map((r) => span(r.when)[0]).filter(Number.isFinite);
+        const msc = cv.education.find((e) => /^Master/.test(e.degree));
+        const [ms, me] = msc ? span(msc.when) : [0, 0];
+        const months = today - Math.min(...starts) - (Number.isFinite(ms) && Number.isFinite(me) ? me - ms : 0);
+        if (Number.isFinite(months) && months > 0) {
+          const years = Math.floor(months / 12);
+          document.getElementById('stat-years').innerHTML = years + (months % 12 ? '<span class="unit">+</span>' : '');
+          document.getElementById('stat-years-n').textContent =
+            `Analytics, research and advisory since ${Math.floor(Math.min(...starts) / 12)}, not counting my MSc year.`;
+        }
+        const langs = (cv.languages || []).map((l) => l.name);
+        if (langs.length) {
+          document.getElementById('stat-langs').textContent = langs.length;
+          document.getElementById('stat-langs-n').textContent =
+            (langs.length > 1 ? langs.slice(0, -1).join(', ') + ' and ' + langs.at(-1) : langs[0]) + '.';
+        }
+      } catch { /* keep the fallback figures */ }
+    })();
+  </script>
 
   <!-- WORK INDEX -->
   <section id="work">

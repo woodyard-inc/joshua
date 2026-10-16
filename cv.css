@@ -32,9 +32,11 @@
 /* ---- Brand rule: one paragraph style ------------------------------------
    Every piece of paragraph text on the CV is set the same way: Cormorant
    Garamond CV Regular, --cv-body (11.5pt), --lh-body, ink. That covers the
-   profile, every bullet (roles, Research, Projects, Education, including the
-   Topics lines) and the Skills & Languages values. Only the cobalt figures
-   in bullets change, and only in weight. Never set paragraph text smaller,
+   profile, every bullet (roles, Research, Projects, Education) and the
+   Skills & Languages values. Only the cobalt figures in bullets change, and
+   only in weight. One deliberate exception: the Education Topics lines are
+   italic in ink-soft (same size and leading), so the course list reads as a
+   quiet aside under each degree. Otherwise never set paragraph text smaller,
    larger, italic, lighter or in another colour: mixed sizes and styles read
    as inconsistent branding. Labels (section heads, titles, the company /
    place / dates lines, Skills labels) are not paragraph text.
@@ -253,7 +255,9 @@
   color: var(--ink);
 }
 .cv-bullets li strong { font-weight: 700; color: var(--cobalt); }
-.cv-bullets li.topics { padding-left: 0; }   /* paragraph text: see the rule at the top */
+.cv-bullets li.topics {   /* the one styled exception: see the rule at the top */
+  padding-left: 0; color: var(--ink-soft); font-style: italic;
+}
 .cv-bullets li.topics::before { content: none; }
 .cv-bullets li.topics b {
   font-family: var(--font-sans); font-weight: 700; font-style: normal;

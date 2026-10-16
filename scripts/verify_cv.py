@@ -229,7 +229,10 @@ def verify(pdf, designed):
         body = [k for k in styles if abs(k[1] - meta_pt) > 0.05]
         sizes = {k[1] for k in body}
         faces = {k[0] for k in body}
-        check(len(sizes) == 1 and faces <= {"CormorantGaramondCV-Regular", "CormorantGaramondCV-Bold"},
+        # LightItalic is allowed for the Education Topics lines only (the one
+        # styled exception in cv.css), still at the body size.
+        check(len(sizes) == 1 and faces <= {"CormorantGaramondCV-Regular", "CormorantGaramondCV-Bold",
+                                            "CormorantGaramondCV-LightItalic"},
               "paragraph text one size and style",
               ", ".join(f"{f} {sz}pt x{n}" for (f, sz), n in sorted(styles.items())))
 

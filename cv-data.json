@@ -387,6 +387,76 @@
       ]
     }
   },
+  "taglineTerms": {
+    "_note": "Approved headline terms. A tailored CV's headline is three of these, chosen and ordered against the job's keywords; each is backed by the evidence noted. Add a term only with real evidence on the CV.",
+    "terms": [
+      {
+        "id": "consumer-insights",
+        "text": "Consumer Insights",
+        "evidence": "Insights & Strategy row; Petco, Sprint and UNIQLO bullets"
+      },
+      {
+        "id": "market-research",
+        "text": "Market Research",
+        "evidence": "Nielsen, Kantar, Mintel, MRI-Simmons; BSc Marketing"
+      },
+      {
+        "id": "market-intelligence",
+        "text": "Market Intelligence",
+        "evidence": "competitive analysis bullets (Dunkin', Sprint), syndicated research"
+      },
+      {
+        "id": "behavioural-science",
+        "text": "Behavioural Science",
+        "evidence": "MSc Behavioural Economics; Methods row"
+      },
+      {
+        "id": "behavioural-economics",
+        "text": "Behavioural Economics",
+        "evidence": "MSc Behavioural Economics"
+      },
+      {
+        "id": "consumer-behaviour",
+        "text": "Consumer Behaviour",
+        "evidence": "Insights & Strategy row; UNIQLO research"
+      },
+      {
+        "id": "quant-qual",
+        "text": "Quantitative & Qualitative Research",
+        "evidence": "Survey Research and Qualitative Research (Methods); UNIQLO fieldwork"
+      },
+      {
+        "id": "survey-research",
+        "text": "Survey Research",
+        "evidence": "Methods row; ISSP survey analysis"
+      },
+      {
+        "id": "statistical-modelling",
+        "text": "Statistical Modelling",
+        "evidence": "Methods row; dissertation OLS; Wimbledon simulator"
+      },
+      {
+        "id": "experimental-design",
+        "text": "Experimental Design",
+        "evidence": "Methods row; MSc Experimental Economics"
+      },
+      {
+        "id": "data-analytics",
+        "text": "Data Analytics",
+        "evidence": "every role; Programming & Data row"
+      },
+      {
+        "id": "business-intelligence",
+        "text": "Business Intelligence",
+        "evidence": "Horizon Media BI role; Visualisation & BI row"
+      },
+      {
+        "id": "people-analytics",
+        "text": "People Analytics",
+        "evidence": "Publicis talent data (People Science roles only)"
+      }
+    ]
+  },
   "_layout": {
     "_note": "Read by scripts/build_cv.py and cv-ats.html. page1Roles = roles before \"Experience (continued)\". omit = bullets the designed CV drops to hold two A4 pages (role-bullet id, or \"research:<opening words>\"). eduResultInMeta = set each degree's result on its school | dates line (designed CV only). atsOmit = like omit, for the ATS export, which only cuts if it runs over itself.",
     "page1Roles": 5,

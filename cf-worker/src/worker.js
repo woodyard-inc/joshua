@@ -39,6 +39,7 @@ function buildMenu(cv) {
       bullets: r.bullets.map((b) => ({ id: b.id, alwaysKeep: !!b.alwaysKeep, text: b.text })),
     })),
     skills: (cv.skills || []).map((k) => ({ id: k.id, label: k.label, text: k.text })),
+    headline: ((cv.taglineTerms || {}).terms || []).map((t) => ({ id: t.id, text: t.text, evidence: t.evidence })),
   };
 }
 
@@ -153,12 +154,14 @@ Two failure modes you must actively avoid:
 2. Framing any single sector — especially talent/workforce — as the identity. The Publicis role is the most recent proof point, never the headline, UNLESS this is a People Science / People Data role.
 
 TRACK CLASSIFICATION (pick the dominant signal):
-- Track "A" — Insights / Markets / Strategy: market intelligence, competitive analysis, consumer/customer insight, growth strategy, commercial decision support.
-- Track "B" — Applied Research / Behavioural Science: applied/research scientist, behavioural scientist, quantitative UXR, people or behavioural data science, government behavioural units.
+- Track "A" — Insights / Markets / Strategy: market intelligence, competitive analysis, consumer/customer insight, growth strategy, commercial decision support. This includes consumer, market, shopper and customer RESEARCHER roles (insights researcher, market researcher, consumer research manager), even when they ask for statistical modelling or quantitative and qualitative studies: the subject is the market and the consumer.
+- Track "B" — Applied Research / Behavioural Science: applied/research scientist, behavioural scientist, quantitative UXR, people or behavioural data science, government behavioural units. The word "research" alone does not make a role Track B.
 
 PEOPLE SCIENCE SUB-LANE (boolean, independent of track): true only when the role is genuinely about people/workforce/HR data (e.g. "People Data Analytics", workforce-behavioural teams). This is the ONE case where the Publicis workforce experience should lead rather than be demoted.
 
 BEHAVIOURAL LAYER (boolean, independent of track): true when the JD's core is explaining WHY people/users/customers behave as they do. Signals: "why", "behaviour/behavioural", "understand users/customers", "experiment", "drivers of", "motivation", product analytics, UX research, behavioural science. This is an emphasis layer applied on top of A or B — never a third track.
+
+HEADLINE ("taglineIds"): the line under Joshua's name. Choose exactly 3 ids from HEADLINE TERMS below, ordered by weight in this JD: the first is the term closest to the job's core (its title and most repeated requirement), then the next strongest. Prefer terms that match keywords_targeted in meaning. Keep one behavioural term (behavioural-science or behavioural-economics) only when the JD values understanding why people behave as they do; it is his differentiator, not a requirement. Never pick two terms that say the same thing (e.g. quant-qual and survey-research). people-analytics only when peopleScience is true.
 
 PROJECT (boolean "projectFull"): every CV carries a short entry for Joshua's independent project "What Wins on Grass", built with Claude Code: player fingerprints from IBM Slam Tracker data, shown as interactive charts, with matchups simulated point by point from two fingerprints. Set projectFull true when the full entry would genuinely help: the role values programming (especially Python), AI-assisted development, statistical modelling, simulation or forecasting, data science or machine learning, data visualisation, sports analytics, or applied research. Otherwise false.
 
@@ -181,6 +184,7 @@ Output ONLY valid JSON, no code fences, no commentary:
   "lowFitReason": string,
   "rationale": string,
   "keywords_targeted": string[],
+  "taglineIds": string[],
   "roles": [ { "id": string, "bulletIds": string[], "core": number } ]
 }
 
@@ -201,6 +205,9 @@ Rank every kept bullet amendment inside its role's bulletIds alongside the appro
 
 ROLES (choose bulletIds from these):
 ${JSON.stringify(menu.roles, null, 1)}
+
+HEADLINE TERMS (taglineIds):
+${JSON.stringify(menu.headline, null, 1)}
 
 SKILLS ROWS (rowId for skill amendments):
 ${JSON.stringify(menu.skills, null, 1)}
@@ -315,8 +322,14 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
 
     // Insights / strategy roles take the consumer-insights tagline; research
     // roles take the master tagline. Both are approved variants in cv-data.
+    // The headline is three approved terms the model ordered for this job;
+    // without a valid three, the track's approved tagline is used.
     const variants = cv.variants || {};
-    const tagline = ((track === "A" ? variants["consumer-insights"] : variants.master) || variants.master || {}).tagline || "";
+    const trackTagline = ((track === "A" ? variants["consumer-insights"] : variants.master) || variants.master || {}).tagline || "";
+    const termById = Object.fromEntries(menu.headline.map((t) => [t.id, t.text]));
+    const termIds = [...new Set((Array.isArray(pick.taglineIds) ? pick.taglineIds : [])
+      .filter((id) => termById[id] && (id !== "people-analytics" || peopleScience)))].slice(0, 3);
+    const tagline = termIds.length === 3 ? termIds.map((id) => termById[id]).join(" | ") : trackTagline;
 
     return jsonResponse({
       track,

@@ -348,6 +348,8 @@
     gate.hidden = true;
     viewnav.hidden = false;
     generator.hidden = false;
+    // Warm the master view: its data and fonts are ready before the first click.
+    cvData().catch(() => {}); loadCvFonts();
   }
 
   /* ---- Read-only content library ------------------------------------
@@ -468,7 +470,28 @@
     libLoaded = true;
   }
 
+  /* Switching views is instant: cv-data.json is fetched once per visit,
+     and each view's finished pages are kept after its first two-page fit
+     and put back on later switches instead of being laid out again. */
+  let cvDataPromise = null;
+  function cvData() {
+    if (!cvDataPromise) {
+      cvDataPromise = fetch('cv-data.json', { cache: 'no-store' }).then((r) => r.json())
+        .catch((e) => { cvDataPromise = null; throw e; });
+    }
+    return cvDataPromise;
+  }
+  const PAGE_PARTS = ['out-eyebrow', 'out-lede', 'out-stamp1', 'out-p1', 'out-p2'];
+  const rendered = { master: null, tailored: null };
+  const snapshot = () => Object.fromEntries(PAGE_PARTS.map((id) => [id, $(id).innerHTML]));
+  function restore(snap) {
+    PAGE_PARTS.forEach((id) => { $(id).innerHTML = snap[id]; });
+    page1.hidden = false; page2.hidden = false;
+  }
+  let currentView = 'tailor';
+
   function setView(which) {
+    currentView = which;
     $('nav-tailor').classList.toggle('active', which === 'tailor');
     $('nav-master').classList.toggle('active', which === 'master');
     $('nav-library').classList.toggle('active', which === 'library');
@@ -481,10 +504,15 @@
       resultBar.hidden = !lastTailored;
       savePanel.hidden = !lastTailored;
       page1.hidden = !lastTailored; page2.hidden = !lastTailored;
-      if (lastTailored) loadCvFonts().then(() => renderPayload(lastTailored));
+      if (lastTailored && rendered.tailored) restore(rendered.tailored);
+      else if (lastTailored) loadCvFonts().then(() => {
+        if (currentView !== 'tailor') return;
+        renderPayload(lastTailored); rendered.tailored = snapshot();
+      });
     } else if (which === 'master') {
       resultBar.hidden = true; savePanel.hidden = true;
-      renderMaster();
+      if (rendered.master) restore(rendered.master);
+      else { page1.hidden = true; page2.hidden = true; renderMaster(); }
     } else {
       resultBar.hidden = true; savePanel.hidden = true;
       page1.hidden = true; page2.hidden = true;
@@ -519,7 +547,7 @@
   }
 
   async function renderMaster() {
-    const cv = await (await fetch('cv-data.json', { cache: 'no-store' })).json();
+    const cv = await cvData();
     const omit = (cv._layout || {}).omit || [];
     const payload = {
       tagline: cv.variants.master.tagline,
@@ -540,7 +568,9 @@
       skills: cv.skills,
     };
     await loadCvFonts();
+    if (currentView !== 'master') return;   // switched away while loading
     renderPayload(payload);
+    rendered.master = snapshot();
   }
 
   $('nav-tailor').addEventListener('click', () => setView('tailor'));
@@ -953,6 +983,7 @@
       renderKeywords(data);
       await loadCvFonts();
       const fit = renderPayload(data);
+      rendered.tailored = snapshot();
       reportFit(data, fit);
       lastTailored = {
         ...data,
@@ -978,7 +1009,7 @@
     resultBar.hidden = true; savePanel.hidden = true;
     $('keywords-panel').hidden = true;
     setView('tailor');
-    lastTailored = null;
+    lastTailored = null; rendered.tailored = null;
     generator.hidden = false;
   });
 </script>

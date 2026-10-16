@@ -1,0 +1,265 @@
+/* ============================================================
+ CV — shared type and layout
+ Used by the generated CV pages (cv.html, cv-consumer-insights.html, built
+ from templates/cv.template.html) and by the CV Workshop (tailor.html), so a
+ tailored CV is set exactly like the master. Loaded after foundations.css.
+ Page chrome (save panel, lock tab, back link) stays with each page.
+ ============================================================ */
+
+/* ---- CV faces --------------------------------------------------------
+   Line metrics are corrected so a line box matches the ink it contains.
+   Cormorant Garamond CV is modified at the source by
+   scripts/fix_font_metrics.py (SIL OFL, see fonts/OFL.txt). Helvetica and
+   National Codes are not ours to modify, so the same correction is made
+   here with *-override descriptors, using that script's measurements. */
+@font-face { font-family: "Cormorant Garamond CV"; src: url("fonts/CormorantGaramondCV-Regular.woff2") format("woff2");
+             font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond CV"; src: url("fonts/CormorantGaramondCV-Bold.woff2") format("woff2");
+             font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "Cormorant Garamond CV"; src: url("fonts/CormorantGaramondCV-LightItalic.woff2") format("woff2");
+             font-weight: 300 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Helvetica CV"; src: url("fonts/Helvetica.woff2") format("woff2");
+             font-weight: 400; font-display: swap;
+             ascent-override: 73.7%; descent-override: 22.1%; line-gap-override: 0%; }
+@font-face { font-family: "Helvetica CV"; src: url("fonts/Helvetica-Bold.woff2") format("woff2");
+             font-weight: 700; font-display: swap;
+             ascent-override: 74.3%; descent-override: 21.8%; line-gap-override: 0%; }
+@font-face { font-family: "National CV"; src: url("fonts/NationalCodesUniversal.woff2") format("woff2");
+             font-weight: 700; font-display: swap;
+             unicode-range: U+0020, U+0041-005A, U+0061-007A, U+00A0;
+             ascent-override: 29.6%; descent-override: 3.6%; line-gap-override: 0%; }
+
+:root {
+  --font-body:     "Cormorant Garamond CV", Georgia, serif;
+  --font-sans:     "Helvetica CV", Arial, sans-serif;
+  --font-wordmark: "National CV", "Helvetica CV", Arial, sans-serif;
+
+  /* Spacing. Every gap on the page is one of these; nothing is nudged by
+     a one-off margin. Headings, titles and meta lines are trimmed to their
+     cap height and baseline (text-box), so a token is the distance from
+     ink to ink, not from one invisible line box to another.
+
+     Each value is a whole CSS pixel (1px = 0.75pt). Chrome snaps painted
+     rules to the pixel grid but sets text at fractional positions, so any
+     fractional height above a section rule moves that rule against the text
+     below it by up to 0.75pt. Keeping every block a whole number of pixels
+     keeps each rule-to-text gap identical. Hence 9.75pt and 15.75pt rather
+     than 10pt and 16pt, which are 13.33px and 21.33px. */
+  --space-2xs: 1.5pt;    /*  2px */
+  --space-xs:  3pt;      /*  4px */
+  --space-s:   6pt;      /*  8px */
+  --space-m:   9.75pt;   /* 13px */
+  --space-l:   15.75pt;  /* 21px */
+
+  /* Leading. Unitless, never "normal". The body value (cv-data.json,
+     _layout.lineHeight) is 1.305: exactly 20px at 11.5pt on screen and in
+     print. Chrome truncates line heights to 1/64px and, when printing,
+     stores 11.5pt a hair under 15.333px, so 1.3 or even 1.30435 comes out
+     at 19.984px and the 0.016px lost on every line drifts each rule off
+     the text below it. */
+  --lh-body:   1.305;
+  --lh-single: 1.2;
+}
+
+
+.page {
+  width: 210mm; min-height: 297mm;
+  margin: 0 auto var(--s-6);
+  background: var(--paper);
+  padding: 12mm 14mm;
+  box-shadow: 0 8px 40px -16px #14141433;
+  font-variant-ligatures: none;   /* ligature glyphs can extract as garbage */
+  position: relative;
+}
+
+/* Text that should sit exactly on its ink: top at cap height, bottom on
+   the baseline. Applied to every single-line structural element. */
+.trim { text-box: trim-both cap alphabetic; }
+/* A trimmed single line is exactly one cap height tall, which is rarely a
+   whole pixel; round it up so nothing below it starts on a fractional y. */
+.trim-line { box-sizing: content-box; block-size: round(up, 1cap, 1px); }
+/* The same for a trimmed block of several lines: with a whole-pixel line
+   height, (lines - 1) x leading + cap is whole once the cap is rounded up.
+   The extra 1/64px offsets Chrome truncating the cap to its layout unit. */
+.trim-block { box-sizing: content-box; padding-bottom: calc(round(up, 1cap, 1px) - 1cap + 1px / 64); }
+
+/* ---- Masthead (page 1) ------------------------------------------------ */
+.cv-masthead { position: relative; margin: 0 0 var(--space-m); }
+.cv-tagline {
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: var(--cv-micro); line-height: var(--lh-single);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--cobalt); margin: 0;
+  max-width: none;
+}
+.cv-tagline .sep, .cv-contact .sep, .cv-stamp .sep, .entry-title .sep, .entry-meta .sep {
+  color: var(--ink-muted); font-weight: 400;
+}
+/* Not ".cv-name": foundations.css forces negative tracking on that class. */
+.cv-fullname {
+  font-family: var(--font-wordmark); font-weight: 700;
+  font-size: var(--cv-name); line-height: 1;
+  text-transform: lowercase;   /* National's lowercase forms are the mark */
+  letter-spacing: normal; color: var(--ink);
+  margin: var(--space-m) 0 0;
+}
+.cv-contact {
+  font-family: var(--font-sans); font-weight: 400;
+  font-size: var(--cv-micro); line-height: var(--lh-single);
+  letter-spacing: 0.02em; color: var(--ink);
+  margin: var(--space-m) 0 0;
+  padding-bottom: var(--space-s);
+  border-bottom: 1px solid var(--ink);
+  max-width: none;
+}
+.cv-contact a { color: var(--ink); border: none; }
+/* Date stamp and page marker. In the source it follows the contact line so
+   a parser never reads it in the middle of the contact details; it is
+   placed top-right visually. */
+.cv-stamp {
+  position: absolute; top: 0; right: 0; margin: 0;
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: var(--cv-micro); line-height: var(--lh-single);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-muted);
+  max-width: none;
+}
+
+/* ---- Running header (page 2): no rule under it ------------------------ */
+.cv-runhead { position: relative; margin: 0 0 var(--space-l); }
+.cv-runmark {
+  font-family: var(--font-wordmark); font-weight: 700;
+  font-size: var(--cv-name); line-height: 1;
+  text-transform: lowercase; letter-spacing: normal;
+  color: var(--ink); margin: 0;
+}
+.cv-runhead .cv-stamp { top: 50%; transform: translateY(-50%); }
+
+/* ---- Profile ----------------------------------------------------------- */
+.cv-lede {
+  font-family: var(--font-body); font-weight: 400;
+  font-size: var(--cv-body); line-height: var(--lh-body);
+  color: var(--ink); margin: 0;
+  max-width: none; text-wrap: pretty;
+}
+
+/* ---- Sections ---------------------------------------------------------- */
+.cv-section { margin-top: var(--space-l); }
+.cv-section > h2 {
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: var(--cv-heading); line-height: var(--lh-single);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink);
+  margin: 0 0 var(--space-s);
+  padding-bottom: var(--space-xs);
+  /* The rule is painted as a gradient rather than a border. Chrome snaps
+     borders to whole pixels but sets text at fractional positions, so a
+     border rule lands up to 1px (0.75pt) off depending on where the section
+     happens to start. A painted line is drawn exactly where it is placed. */
+  background: linear-gradient(var(--ink), var(--ink)) left bottom / 100% 1.1pt no-repeat;
+}
+
+/* ---- Entries: roles, research, education ------------------------------ */
+.entry + .entry { margin-top: var(--space-m); }
+.entry-title {
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: var(--cv-entry); line-height: var(--lh-single);
+  letter-spacing: -0.005em; color: var(--ink);
+  margin: 0; max-width: none;
+}
+.entry-meta {
+  font-family: var(--font-body); font-weight: 400;
+  font-size: var(--cv-body); line-height: var(--lh-single);
+  color: var(--ink-soft);
+  margin: var(--space-xs) 0 0; max-width: none;
+}
+
+.cv-bullets {
+  list-style: none; padding: 0; margin: var(--space-xs) 0 0;
+}
+.cv-bullets li {
+  font-family: var(--font-body); font-weight: 400;
+  font-size: var(--cv-body); line-height: var(--lh-body);
+  color: var(--ink);
+  padding-left: 1.1em; position: relative;
+  margin: 0 0 var(--space-2xs);
+  max-width: none; text-wrap: unset;
+}
+.cv-bullets li:last-child { margin-bottom: 0; }
+.cv-bullets li::before {
+  content: "\2022";
+  position: absolute; left: 0.15em; top: 0;
+  font-family: var(--font-body); font-weight: 700;
+  line-height: var(--lh-body);
+  color: var(--cobalt);
+}
+.cv-bullets li strong { font-weight: 700; color: var(--cobalt); }
+.edu-bullets li::before { color: var(--ink); }
+.cv-bullets li.topics {
+  padding-left: 0; color: var(--ink-soft); font-style: italic;
+  margin-top: var(--space-xs);
+}
+.cv-bullets li.topics::before { content: none; }
+.cv-bullets li.topics b {
+  font-family: var(--font-sans); font-weight: 700; font-style: normal;
+  font-size: var(--cv-micro); letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-soft); margin-right: var(--space-s);
+}
+
+/* ---- Skills & Languages ------------------------------------------------ */
+/* Label and value are both trimmed to cap height and baseline, so the
+   padding is measured from ink: rule to cap is --space-xs; baseline to
+   rule is 6px, which clears the deepest descender (0.283em, 4.3px). The
+   label column is wide enough that no label wraps. */
+.skill-row {
+  display: grid; grid-template-columns: 37mm 1fr; column-gap: var(--space-m);
+  align-items: start;
+  padding: var(--space-xs) 0 calc(var(--space-xs) + var(--space-2xs));
+  border-bottom: 1px solid var(--rule);
+}
+.skill-row:first-of-type { padding-top: 0; }
+.skill-row:last-child { border-bottom: none; padding-bottom: 0; }
+.skill-row .k {
+  font-family: var(--font-sans); font-weight: 700;
+  font-size: var(--cv-micro); line-height: var(--lh-single);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink-soft); margin: 0;
+}
+.skill-row .v {
+  font-family: var(--font-body); font-weight: 400;
+  font-size: var(--cv-body); line-height: var(--lh-body);
+  color: var(--ink); margin: 0; max-width: none;
+}
+
+/* Hyphenated tokens stay on one line: extractors drop a hyphen a line
+   break lands on ("MRI-Simmons" -> "MRISimmons"). */
+.nb { white-space: nowrap; }
+
+/* Greyscale swaps colour values rather than filtering: print engines drop
+   CSS filters. The warm inks are neutralised too, or they read as parchment. */
+body[data-colour="grey"] {
+  --cobalt:     var(--ink);
+  --ink-soft:   #3A3A3A;
+  --ink-muted:  #878787;
+}
+
+/* ---- Print: A4 --------------------------------------------------------
+   The margin lives in @page, with almost no page padding behind it, so a
+   browser printing with its own "Default" margins lands on ours rather than
+   stacking a second margin on top. */
+@media print {
+  .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 4px 2px; }
+  .page:not(:last-of-type) { break-after: page; }
+  @page { size: A4; margin: 31.5pt 36.75pt; }   /* 42px x 49px, ~11mm x 13mm */
+}
+
+@media screen and (max-width: 210mm) {
+  .page { width: 100%; padding: var(--s-6) var(--s-5); min-height: auto; box-shadow: none; }
+  .skill-row { grid-template-columns: 1fr; row-gap: var(--space-xs); }
+  .cv-stamp { position: static; margin-top: var(--space-s); transform: none; }
+}
+
+@media screen and (max-width: 600px) {
+  .page { padding: var(--s-5) var(--s-4); margin-bottom: var(--s-5); }
+  .cv-fullname, .cv-runmark { font-size: 26px; }
+}

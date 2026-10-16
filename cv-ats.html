@@ -62,8 +62,12 @@
   ul { margin: 0 0 6pt; padding-left: 16pt; }
   li { margin: 0 0 2pt; }
 
-  /* Keep a role's heading lines with its first bullets when a page breaks. */
-  .role, .edu { break-inside: avoid; page-break-inside: avoid; }
+  /* A role may run across a page break, but its title and dates always stay
+     with its first bullet, and no bullet is split. Holding whole roles
+     together left most of a page empty when one didn't fit. */
+  .role-title, .role-meta, h2 { break-after: avoid; page-break-after: avoid; }
+  li { break-inside: avoid; page-break-inside: avoid; }
+  .edu { break-inside: avoid; page-break-inside: avoid; }
 
   /* A line broken at an existing hyphen ("MRI-Simmons") is rejoined by text
      extractors without the hyphen, producing "MRISimmons". Hyphenated tokens
@@ -165,6 +169,17 @@
     rb.appendChild(el('p', [d.institution, d.year, d.mark].join(' | '), 'role-meta'));
     rb.appendChild(list(d.bullets.filter(function (t) { return keepResearch(t, omit); })));
     root.appendChild(rb);
+
+    // The short, one-bullet project entry carried on every CV.
+    var pj = cv.project;
+    if (pj && pj.short) {
+      section(root, 'Projects');
+      var pb = el('div', null, 'role');
+      pb.appendChild(el('p', pj.title, 'role-title'));
+      pb.appendChild(el('p', [pj.label, pj.year].join(' | '), 'role-meta'));
+      pb.appendChild(list([pj.short]));
+      root.appendChild(pb);
+    }
 
     section(root, 'Education');
     (cv.education || []).forEach(function (e) {

@@ -99,7 +99,7 @@
       "bullets": [
         {
           "id": "pet-nielsen",
-          "text": "Consolidated all digital vendors and media buys, including Google and Meta, into a single placement-level reporting set, integrating Nielsen audience data for digital TV and switchable attribution models, giving the client one view of performance across the full buy."
+          "text": "Consolidated all digital vendors and media buys, including Google and Meta, into one placement-level reporting set with Nielsen audience data for digital TV and switchable attribution, giving one view of the full buy."
         },
         {
           "id": "pet-etl",
@@ -121,7 +121,7 @@
         },
         {
           "id": "spr-kantar",
-          "text": "Partnered with Kantar on brand-lift studies and A/B creative tests (control vs exposed) during a brand relaunch, turning results into strategy recommendations."
+          "text": "Partnered with Kantar on brand-lift studies and A/B creative tests (control vs exposed) during a brand relaunch."
         }
       ],
       "whyBullets": [
@@ -203,7 +203,7 @@
     "title": "Social Capital & Life Satisfaction",
     "institution": "City St George's, University of London",
     "year": "2024",
-    "mark": "Dissertation mark: 71%",
+    "mark": "Dissertation mark: 71% (Distinction)",
     "supervisor": "Dr Anke Plagnol",
     "_note": "Order matters: the two-page fit trims from the end, so the policy bullet goes first and the methods survive.",
     "bullets": [
@@ -215,8 +215,11 @@
     ]
   },
   "project": {
-    "title": "Wimbledon Men's Draw, Monte Carlo Match Simulator — Independent Project",
+    "_note": "short = the one-bullet version on every CV (cv.html, ATS, Workshop). bullets = the full entry the Workshop uses when the job description suits it.",
+    "title": "Wimbledon Men's Draw, Monte Carlo Match Simulator",
+    "label": "Independent project",
     "year": "2026",
+    "short": "Personal project: a Python Monte Carlo engine that plays Wimbledon matches out point by point from IBM Slam Tracker data (2011–2023), profiling each player's serve, return and under-pressure play.",
     "bullets": [
       "A head-to-head prediction engine that plays a match out one point at a time, built on IBM Slam Tracker data — roughly 48,000 points a season across 2011–2023.",
       "Every player carries a profile page built only from their own record: serve, return and under-pressure characteristics — how unpredictably they serve, how they hold at break point, how they fade across sets — weighted by recency and opponent quality.",
@@ -371,8 +374,7 @@
   },
   "_layout": {
     "_note": "Read by scripts/build_cv.py and cv-ats.html. page1Roles = roles before \"Experience (continued)\". omit = bullets the designed CV drops to hold two A4 pages (role-bullet id, or \"research:<opening words>\"). eduResultInMeta = set each degree's result on its school | dates line (designed CV only). atsOmit = like omit, for the ATS export, which only cuts if it runs over itself.",
-    "page1Roles": 5,
-    "lineHeight": 1.305,
+    "page1Roles": 6,
     "omit": [],
     "eduResultInMeta": false,
     "atsOmit": []

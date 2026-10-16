@@ -113,6 +113,8 @@ PEOPLE SCIENCE SUB-LANE (boolean, independent of track): true only when the role
 
 BEHAVIOURAL LAYER (boolean, independent of track): true when the JD's core is explaining WHY people/users/customers behave as they do. Signals: "why", "behaviour/behavioural", "understand users/customers", "experiment", "drivers of", "motivation", product analytics, UX research, behavioural science. This is an emphasis layer applied on top of A or B — never a third track.
 
+PROJECT (boolean "projectFull"): every CV carries a one-line entry for Joshua's independent project, a Python Monte Carlo simulator that predicts Wimbledon matches point by point from IBM Slam Tracker data. Set projectFull true when the full three-bullet entry would genuinely help: the role values programming (especially Python), statistical modelling, simulation or forecasting, data science or machine learning, sports analytics, or applied research. Otherwise false.
+
 LOW FIT FLAG: set lowFit true if the JD requires (not merely prefers) a PhD with no industry-portfolio alternative, or demands core methods with no evidence in the menu below (causal inference, Bayesian, SEM). Never pretend evidence exists.
 
 SELECTION RULES:
@@ -127,6 +129,7 @@ Output ONLY valid JSON, no code fences, no commentary:
   "track": "A" | "B",
   "peopleScience": boolean,
   "behaviouralLayer": boolean,
+  "projectFull": boolean,
   "lowFit": boolean,
   "lowFitReason": string,
   "rationale": string,
@@ -239,7 +242,19 @@ ${JSON.stringify(menu.roles, null, 1)}`;
         mark: cv.dissertation.mark,
         bullets: cv.dissertation.bullets || [],
       },
-      project: track === "B" ? cv.project : null,
+      // Every CV carries the one-line project entry; the full entry is used
+      // when the model judged the job suits it (the Workshop falls back to the
+      // short one if the full one won't fit two pages).
+      project: cv.project
+        ? {
+            title: cv.project.title,
+            label: cv.project.label,
+            year: cv.project.year,
+            short: cv.project.short,
+            bullets: cv.project.bullets || [],
+            full: !!pick.projectFull,
+          }
+        : null,
       education: cv.education,
       languages: cv.languages,
       // Skill categories, reordered per track. The category text itself is

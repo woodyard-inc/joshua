@@ -9,13 +9,21 @@
    and bold top-line headlines — never for body, never with punctuation,
    never with digits other than 1. Helvetica is the workhorse for everything
    else; Cormorant Garamond is the editorial serif for reading and italic
-   pull quotes. */
+   pull quotes.
+
+   Line metrics are corrected so a line box matches the ink it holds (the same
+   type as the CV). Cormorant Garamond is served as the metric-corrected
+   "CV" files built by scripts/fix_font_metrics.py (SIL OFL, see
+   fonts/OFL.txt). Helvetica and National are not ours to modify, so they are
+   corrected here with ascent/descent/line-gap overrides measured by that
+   script. */
 @font-face {
   font-family: "Helvetica";
   src: url("./fonts/Helvetica.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  ascent-override: 73.7%; descent-override: 22.1%; line-gap-override: 0%;
 }
 @font-face {
   font-family: "Helvetica";
@@ -23,17 +31,18 @@
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+  ascent-override: 74.3%; descent-override: 21.8%; line-gap-override: 0%;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("./fonts/CormorantGaramond-Light.woff2") format("woff2");
+  src: url("./fonts/CormorantGaramondCV-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("./fonts/CormorantGaramond-LightItalic.woff2") format("woff2");
+  src: url("./fonts/CormorantGaramondCV-LightItalic.woff2") format("woff2");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -43,14 +52,14 @@
    which is especially visible in print. */
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("./fonts/CormorantGaramond-Regular.woff2") format("woff2");
+  src: url("./fonts/CormorantGaramondCV-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Cormorant Garamond";
-  src: url("./fonts/CormorantGaramond-Bold.woff2") format("woff2");
+  src: url("./fonts/CormorantGaramondCV-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -63,6 +72,7 @@
   font-display: swap;
   /* Restrict usage — font only contains these codepoints. */
   unicode-range: U+0020, U+0031, U+0041-005A, U+0061-007A, U+00A0;
+  ascent-override: 29.6%; descent-override: 3.6%; line-gap-override: 0%;
 }
 
 :root {

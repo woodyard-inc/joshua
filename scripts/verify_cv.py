@@ -31,7 +31,7 @@ MUST_NOT = ["Key Achievements", "Sept", "only universal", "40,000", "NielsenIQ",
 CAP = {"CormorantGaramondCV": 0.625, "Helvetica-Bold": 0.720, "Helvetica": 0.717,
        "Arial-BoldMT": 0.716, "ArialMT": 0.716, "NationalCodes": 0.288}
 
-SECTION_HEADS = ["EXPERIENCE", "RESEARCH", "EDUCATION", "SKILLS&LANGUAGES"]
+SECTION_HEADS = ["EXPERIENCE", "RESEARCH", "PROJECTS", "EDUCATION", "SKILLS&LANGUAGES"]
 
 failures = []
 

@@ -12,7 +12,6 @@ Outputs (private, gitignored under build/private/):
 
 Layout knobs live in cv-data.json under "_layout":
     page1Roles   how many roles sit on page one before "Experience (continued)"
-    lineHeight   unitless body leading
     omit         bullets removed to hold two pages, matched by id (roles) or
                  by opening words (research bullets)
     eduResultInMeta
@@ -111,6 +110,17 @@ def research_html(d, omit):
     )
 
 
+def project_html(p):
+    """The short, one-bullet project entry carried on every CV."""
+    return (
+        '    <div class="entry">\n'
+        f'      <p class="entry-title trim trim-line">{esc(p["title"])}</p>\n'
+        f'      <p class="entry-meta trim trim-line">{piped([esc(p["label"]), esc(p["year"])])}</p>\n'
+        f'      <ul class="cv-bullets">\n      <li>{body(p["short"], emphasise=False)}</li>\n      </ul>\n'
+        "    </div>"
+    )
+
+
 def edu_html(e, result_in_meta=False):
     meta = list(e.get("meta", []))
     line = [esc(e["school"]), esc(e["when"])]
@@ -171,6 +181,8 @@ def build(cv, variant_id, private):
     if roles[k:]:
         page2.append(section("Experience (continued)", "\n".join(role_html(r, omit) for r in roles[k:])))
     page2.append(section("Research", research_html(cv["dissertation"], omit)))
+    if cv.get("project", {}).get("short"):
+        page2.append(section("Projects", project_html(cv["project"])))
     in_meta = layout.get("eduResultInMeta", False)
     page2.append(section("Education", "\n".join(edu_html(e, in_meta) for e in cv["education"])))
     page2.append(section("Skills &amp; Languages", skills_html(cv, v["skillOrder"])))
@@ -195,7 +207,6 @@ def build(cv, variant_id, private):
         "VARIANT_LABEL": esc(v["label"]),
         "VARIANT_LINKS": links,
         "ATS_HREF": "{{ROOT}}" + ats,
-        "LH_BODY": str(layout.get("lineHeight", 1.3)),
     }
     out = TEMPLATE.read_text(encoding="utf-8")
     for key, val in fills.items():

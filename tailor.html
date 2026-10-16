@@ -8,228 +8,36 @@
 <meta name="theme-color" content="#F0EBDD">
 <link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramond-Light.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramond-Bold.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramondCV-Regular.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramondCV-Bold.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/NationalCodesUniversal.woff2" crossorigin>
 <link rel="stylesheet" href="foundations.css">
+<link rel="stylesheet" href="cv.css">
 <style>
   body { background: var(--paper-warm); padding: var(--s-7) 0; }
 
-  .page {
-    width: 8.5in; min-height: 11in;
-    margin: 0 auto var(--s-6);
-    background: var(--paper);
-    padding: 0.35in 0.55in 0.45in;
-    box-shadow: 0 8px 40px -16px #14141433;
-    font-variant-ligatures: none;
-  }
+  /* CV type and layout come from cv.css, shared with cv.html, so a tailored
+     CV is set exactly like the master. This block is the Workshop's own UI.
 
-  .cv-masthead { margin-bottom: 6px; }
-  /* Continuation sheet: running strip only. */
-  .cv-masthead--cont {
-    border-bottom: 1px solid var(--ink);
-    padding-bottom: 6px; margin-bottom: 10px;
-  }
-  .cv-eyebrow {
-    display: flex; justify-content: space-between; align-items: baseline;
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: var(--cv-micro); letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ink);
-  }
-  .cv-eyebrow .words { color: var(--cobalt); }
-  /* Continuation sheet carries the wordmark itself rather than the tagline,
-     at the same size it has on page one — a brand mark does not resize to fit
-     the row it happens to sit in. */
-  .cv-eyebrow .words--mark {
-    font-family: var(--font-wordmark); font-weight: 700;
-    font-size: var(--cv-name); letter-spacing: normal;
-    text-transform: lowercase; line-height: 1;
-    color: var(--ink);
-  }
-  .cv-eyebrow .sep { color: var(--ink-muted); margin: 0 8px; font-weight: 400; }
-  .cv-eyebrow .page-no { color: var(--ink-muted); font-weight: 700; letter-spacing: 0.08em; }
-
-  .cv-fullname {
-    font-family: var(--font-wordmark); font-weight: 700;
-    font-size: var(--cv-name); letter-spacing: normal;
-    color: var(--ink);
-    line-height: 1;
-    margin: 6px 0 -8px;
-  }
-
-  .cv-contact {
-    font-family: var(--font-sans); font-weight: 400;
-    font-size: var(--cv-micro); letter-spacing: 0.02em;
-    color: var(--ink);
-    padding: 0 0 8px;
-    border-bottom: 1px solid var(--ink);
-    display: flex; flex-wrap: wrap; align-items: center;
-  }
-  .cv-contact .item { display: inline-flex; align-items: center; }
-  .cv-contact .sep { color: var(--ink-muted); margin: 0 10px; }
-  .cv-contact a { color: var(--ink); border: none; }
-  .cv-contact a:hover { color: var(--ink-soft); text-decoration: underline; }
-
-  .cv-lede {
-    margin: 10px 0 0;
-    font-family: var(--font-body); font-weight: 400;
-    font-size: var(--cv-body); line-height: 1.18;
-    color: var(--ink);
-    max-width: none;
-    text-wrap: pretty;
-  }
-
-  .cv-section { margin-top: 7px; }
-  .cv-section > h2 {
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: var(--cv-heading); letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--ink);
-    padding-bottom: 3px;
-    border-bottom: 1.5px solid var(--ink);
-    margin: 0 0 3px;
-  }
-  .cv-section > h2 .cont {
-    font-family: var(--font-body); font-style: italic; font-weight: 300;
-    font-size: var(--cv-micro); letter-spacing: 0; color: var(--ink-muted); text-transform: none;
-    float: right; padding-top: 2px;
-  }
-
-  /* Single column: title + company, then "location | dates" directly beneath.
-     Matches cv.html — no right-hand date column. */
-  .role-bar { display: block; padding: 4px 0 2px; }
-  .role-bar .role { display: block; }
-  .entry-meta {
-    display: block;
-    font-family: var(--font-body); font-weight: 400;
-    font-size: var(--cv-body); letter-spacing: normal;
-    line-height: 1.2; color: var(--ink-soft);
-    margin-top: 1px;
-  }
-  .entry-meta .sep { color: var(--ink-muted); margin: 0 6px; }
-  .role-bar .role {
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: var(--cv-entry); letter-spacing: -0.005em;
-    color: var(--ink);
-  }
-  .role-bar .role em { font-style: normal; }
-
-
-  .cv-bullets { list-style: none; padding: 0; margin: 3px 0 5px; }
-  .cv-bullets li {
-    font-family: var(--font-body); font-weight: 400;
-    font-size: var(--cv-body); line-height: 1.13;
-    color: var(--ink);
-    padding-left: 1.1em;
-    position: relative;
-    margin: 0 0 2px;
-    max-width: none;
-    text-wrap: unset;
-  }
-  .cv-bullets li::before {
-    content: "•";
-    position: absolute; left: 2px; top: 0;
-    color: var(--cobalt);
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: 13px; line-height: 1.3;
-  }
-  .cv-bullets li strong {
-    font-family: var(--font-body); font-weight: 700; font-style: normal;
-    color: var(--cobalt);
-  }
-
-  .edu-row { display: block; padding: 4px 0 2px; }
-  .edu-row .degree { display: block; }
-  .edu-row .degree {
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: var(--cv-entry); letter-spacing: -0.005em;
-    color: var(--ink);
-  }
-  /* The institution keeps the body serif it had before the row became a
-     single line — it was inheriting Helvetica from .degree. */
-  .edu-meta { list-style: none; padding: 0; margin: 2px 0 6px; }
-  .edu-meta li {
-    font-family: var(--font-body); font-weight: 400; font-size: var(--cv-body);
-    line-height: 1.16; color: var(--ink);
-    padding-left: 1.1em; position: relative; margin-bottom: 1px;
-    max-width: none; text-wrap: unset;
-  }
-  .edu-meta li::before {
-    content: "•"; position: absolute; left: 2px; top: 0;
-    color: var(--ink); font-weight: 700;
-  }
-  .edu-meta .topics {
-    padding-left: 0; color: var(--ink-soft); font-style: italic;
-    font-size: 11px; margin-top: 4px;
-  }
-  .edu-meta .topics::before { content: ""; }
-  .edu-meta .topics b { font-family: var(--font-sans); font-weight: 700; font-style: normal;
-    text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--cv-micro);
-    color: var(--ink-soft); margin-right: 6px; }
-
-  .twocol {
-    display: grid; grid-template-columns: 180px 1fr; gap: var(--s-5);
-    padding: 6px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .twocol:last-child { border-bottom: none; }
-  .twocol .k {
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: var(--cv-micro); letter-spacing: 0.08em; text-transform: uppercase;
-    color: var(--ink-soft); padding-top: 2px;
-  }
-  .twocol .v {
-    font-family: var(--font-body); font-weight: 400; font-size: var(--cv-body); line-height: 1.2;
-    color: var(--ink); max-width: none; text-wrap: unset;
-  }
-  .twocol .v .lang { display: inline-block; margin-right: 16px; }
-  .twocol .v .lang .level {
-    font-family: var(--font-sans); font-weight: 700;
-    font-size: var(--cv-micro); letter-spacing: 0.08em;
-    color: var(--cobalt); margin-left: 4px;
-  }
-
-  /* Hyphenated tokens stay on one line: extractors drop a hyphen that a
-     line break lands on ("nine-figure" -> "ninefigure"). */
-  .nb { white-space: nowrap; }
-
+     While the two-page fit measures, pages take their A4 print geometry
+     (210mm less the 36.75pt side margins, 4px 2px padding) whatever the
+     screen width, so "fits here" means "fits in the PDF". */
+  body.measuring .page { width: calc(210mm - 73.5pt) !important; padding: 4px 2px !important;
+                         min-height: 0 !important; margin: 0 auto !important; }
+  body.measuring .skill-row { grid-template-columns: 37mm 1fr !important; }
+  body.measuring .cv-masthead .cv-stamp { position: absolute !important; margin: 0 !important; }
+  body.measuring .cv-runhead .cv-stamp { position: absolute !important; margin: 0 !important;
+                                         transform: translateY(-50%) !important; }
 
   .back-link {
-    display: block; max-width: 8.5in; margin: 0 auto var(--s-4);
+    display: block; max-width: 210mm; margin: 0 auto var(--s-4);
     font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
     color: var(--ink-muted); border: none; padding: 0;
   }
   .back-link:hover { color: var(--ink); }
 
-  /* Greyscale mode — swaps the actual colour value rather than a filter,
-     since print/PDF engines (Chrome's included) frequently drop CSS filter
-     effects on the print path even though they render fine on screen. */
-  /* Greyscale swaps the actual colour values rather than using a filter, since
-     print engines frequently drop CSS filters on the print path. The muted and
-     soft inks are warm, which reads as parchment once nothing else is
-     coloured, so they are neutralised here too. */
-  body[data-colour="grey"] {
-    --cobalt:     var(--ink);
-    --ink-soft:   #3A3A3A;
-    --ink-muted:  #878787;
-  }
-
-  /* Compact density — engaged automatically by the two-page auto-fit when a
-     tailored CV would otherwise spill onto a third sheet. */
-  /* Compact density tightens leading and spacing only. Type stays at 10pt —
-     the floor the CV spec sets — so compression never costs legibility. */
-  body[data-density="compact"] .cv-lede { font-size: var(--cv-body); line-height: 1.10; }
-  body[data-density="compact"] .cv-bullets li { font-size: var(--cv-body); line-height: 1.10; margin-bottom: 1px; }
-  body[data-density="compact"] .role-bar { padding: 5px 0 2px; }
-  body[data-density="compact"] .edu-row { padding: 5px 0 2px; }
-  body[data-density="compact"] .edu-meta li { font-size: var(--cv-body); line-height: 1.10; }
-  body[data-density="compact"] .cv-section { margin-top: 9px; }
-  body[data-density="compact"] .problem-row { padding: 3px 0; }
-  body[data-density="compact"] .problem-row .p-text { font-size: var(--cv-body); line-height: 1.10; }
-  body[data-density="compact"] .twocol { padding: 3px 0; }
-  body[data-density="compact"] .twocol .v { font-size: var(--cv-body); line-height: 1.10; }
-
   /* ---- Gate + generator UI (not part of the printed CV) ---- */
-  .tool-shell { max-width: 8.5in; margin: 0 auto var(--s-6); }
+  .tool-shell { max-width: 210mm; margin: 0 auto var(--s-6); }
   .tool-panel {
     background: var(--paper);
     border: 1px solid var(--ink);
@@ -271,7 +79,7 @@
     margin-top: var(--s-3); line-height: 1.5;
   }
   .tool-bar {
-    max-width: 8.5in; margin: 0 auto var(--s-5);
+    max-width: 210mm; margin: 0 auto var(--s-5);
     display: flex; justify-content: space-between; align-items: center;
     font-family: var(--font-sans); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
   }
@@ -303,7 +111,7 @@
   .fitnote.warn { color: #A3242A; border-left-color: #A3242A; }
 
   /* ---- View switcher + read-only content library ---- */
-  .viewnav { max-width: 8.5in; margin: 0 auto var(--s-4); display: flex; gap: 6px; }
+  .viewnav { max-width: 210mm; margin: 0 auto var(--s-4); display: flex; gap: 6px; }
   .viewnav .vn {
     font-family: var(--font-sans); font-weight: 700; font-size: 10px;
     letter-spacing: 0.16em; text-transform: uppercase;
@@ -359,7 +167,7 @@
     font-family: var(--font-mono); font-size: 11.5px;
     background: var(--paper-warm); padding: 1px 4px;
   }
-  @media screen and (max-width: 8.5in) {
+  @media screen and (max-width: 210mm) {
     body:not(.measuring) .lib-item { grid-template-columns: 1fr; gap: 2px; }
   }
   .lowfit {
@@ -397,27 +205,14 @@
   .save-panel button.active { background: rgba(250,247,240,0.15); border-color: var(--paper); }
 
   @media print {
-    .back-link, .save-panel, .tool-shell, .tool-bar { display: none; }
+    .back-link, .save-panel, .tool-shell, .tool-bar { display: none !important; }
     body { background: var(--paper); padding: 0; }
-    .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 0.08in 0.06in; }
-    .page:not(:last-of-type) { break-after: page; }
-    @page { size: letter; margin: 0.4in 0.5in; }
   }
 
-  @media screen and (max-width: 8.5in) {
+  @media screen and (max-width: 210mm) {
     body:not(.measuring) { padding: var(--s-5) 0; }
     body:not(.measuring) .tool-shell, body:not(.measuring) .tool-bar { width: 100%; }
-    /* .page geometry is deliberately guarded: the two-page auto-fit measures
-       rendered height, and print always uses the wide layout. Letting the
-       narrow-screen rules apply during measurement would inflate the measured
-       height and trim content that would have fitted in the PDF. */
-    body:not(.measuring) .page { width: 100%; padding: var(--s-6) var(--s-5); min-height: auto; box-shadow: none; }
-    body:not(.measuring) .role-bar { grid-template-columns: 1fr; }
-    body:not(.measuring) .role-bar .where { display: none; }
-    body:not(.measuring) .edu-row { grid-template-columns: 1fr; gap: var(--s-2); }
-    body:not(.measuring) .edu-row .school, body:not(.measuring) .edu-row .when { text-align: left; }
-    body:not(.measuring) .twocol { grid-template-columns: 1fr; gap: var(--s-2); }
-    body:not(.measuring) .problem-row { grid-template-columns: 1fr; gap: 2px; }
+    body:not(.measuring) .lib-item { grid-template-columns: 1fr; gap: 2px; }
   }
 </style>
 </head>
@@ -499,72 +294,28 @@
   </div>
 </div>
 
-<!-- PAGE 1 -->
+<!-- PAGE 1: same structure as cv.html (templates/cv.template.html) -->
 <article class="page" id="page1" hidden>
   <header class="cv-masthead">
-    <div class="cv-eyebrow">
-      <span class="words" id="out-eyebrow">Behavioural Science<span class="sep">|</span>Data Analytics<span class="sep">|</span>Market Research</span>
-      <span class="page-no"><span id="out-datestamp">Curriculum Vitae</span><span class="sep">|</span>1 / 2</span>
-    </div>
-    <h1 class="cv-fullname">joshua woodyard</h1>
-    <div class="cv-contact">
-      <span class="item">London, United Kingdom</span>
-      <span class="sep">|</span>
-      <span class="item"><a href="mailto:woodyardjoshuae@gmail.com">woodyardjoshuae@gmail.com</a></span>
-      <span class="sep">|</span>
-      <span class="item"><a href="tel:+447714350869">+44 7714 350869</a></span>
-      <span class="sep">|</span>
-      <span class="item"><a href="https://linkedin.com/in/joshua-woodyard" target="_blank" rel="noopener">linkedin.com/in/joshua-woodyard</a></span>
-    </div>
+    <p class="cv-tagline trim trim-line" id="out-eyebrow"></p>
+    <h1 class="cv-fullname trim trim-line">Joshua Woodyard</h1>
+    <p class="cv-contact trim trim-line">London, United Kingdom<span class="sep"> | </span>woodyardjoshuae@gmail.com<span class="sep"> | </span>+44 7714 350869<span class="sep"> | </span><a href="https://linkedin.com/in/joshua-woodyard">linkedin.com/in/joshua-woodyard</a></p>
+    <p class="cv-stamp trim" id="out-stamp1"></p>
   </header>
 
   <p class="cv-lede" id="out-lede"></p>
 
-  <section class="cv-section">
-    <h2>Experience</h2>
-    <div id="out-roles-p1"></div>
-  </section>
-
+  <div id="out-p1"></div>
 </article>
 
 <!-- PAGE 2 -->
 <article class="page" id="page2" hidden>
-  <header class="cv-masthead cv-masthead--cont">
-    <div class="cv-eyebrow">
-      <span class="words words--mark">joshua woodyard</span>
-      <span class="page-no"><span id="out-datestamp2">Curriculum Vitae</span><span class="sep">|</span>2 / 2</span>
-    </div>
+  <header class="cv-runhead">
+    <p class="cv-runmark trim trim-line">Joshua Woodyard</p>
+    <p class="cv-stamp trim" id="out-stamp2"></p>
   </header>
 
-  <section class="cv-section" id="sec-roles2" hidden>
-    <h2>Experience <span class="cont">continued</span></h2>
-    <div id="out-roles-p2"></div>
-  </section>
-
-  <section class="cv-section" id="sec-dissertation">
-    <h2>Research</h2>
-    <div id="out-dissertation"></div>
-  </section>
-
-  <section class="cv-section" id="sec-project" hidden>
-    <h2>Projects</h2>
-    <div id="out-project"></div>
-  </section>
-
-  <section class="cv-section">
-    <h2>Education</h2>
-    <div id="out-education"></div>
-  </section>
-
-  <section class="cv-section">
-    <h2>Skills &amp; Languages</h2>
-    <div id="out-skills"></div>
-    <div class="twocol">
-      <span class="k">Languages</span>
-      <div class="v" id="out-languages"></div>
-    </div>
-  </section>
-
+  <div id="out-p2"></div>
 </article>
 
 <div class="save-panel" id="save-panel" hidden>
@@ -746,24 +497,23 @@
 
   /* Lays out one CV payload and fits it to two pages. Shared by the tailored
      view and the master view so neither can drift from the other. */
-  function renderPayload(data) {
-    renderTagline(data.tagline);
-    $('out-lede').textContent = data.summary;
-    renderLanguages(data.languages);
-    renderSkills(data.skills);
-    const stamp = `CV · ${formatDateStamp()}`;
-    $('out-datestamp').textContent = stamp;
-    $('out-datestamp2').textContent = stamp;
+  const DEFAULT_TAGLINE = 'Behavioural Science | Data Analytics | Market Research';
 
+  function renderPayload(data) {
+    $('out-eyebrow').innerHTML = piped(String(data.tagline || DEFAULT_TAGLINE)
+      .split('|').map((t) => esc(t.trim())).filter(Boolean));
+    $('out-lede').innerHTML = body(data.summary);
+    const month = esc(formatDateStamp());
+    $('out-stamp1').innerHTML = piped([`CV &middot; ${month}`, '1 / 2']);
+    $('out-stamp2').innerHTML = piped([`CV &middot; ${month}`, '2 / 2']);
     // Pages must be laid out before heights can be measured.
     page1.hidden = false; page2.hidden = false;
     return fitToTwoPages(data);
   }
 
-  // Builds the same shape the Worker returns, but untailored: every approved
-  // bullet, every achievement, no track filtering and no model call.
   async function renderMaster() {
     const cv = await (await fetch('cv-data.json', { cache: 'no-store' })).json();
+    const omit = (cv._layout || {}).omit || [];
     const payload = {
       tagline: cv.variants.master.tagline,
       summary: cv.summaries.master,
@@ -771,20 +521,16 @@
         role: `${r.title} | ${r.company}`,
         where: r.where,
         when: r.when,
-        bullets: (r.bullets || []).map((b) => b.text),
+        bullets: (r.bullets || []).filter((b) => !omit.includes(b.id)).map((b) => b.text),
       })),
-      // The master CV has no project section; the Research section keeps its methods.
       dissertation: cv.dissertation,
-      project: null,
-      education: (cv.education || []).map((e) => {
-        const { dissertationSummary, ...rest } = e;
-        return rest;                       // the Research section covers it
-      }),
+      project: cv.project ? { ...cv.project, full: false } : null,
+      education: cv.education || [],
       languages: cv.languages,
       skills: cv.skills,
     };
+    await document.fonts.ready;
     renderPayload(payload);
-    page1.hidden = false; page2.hidden = false;
   }
 
   $('nav-tailor').addEventListener('click', () => setView('tailor'));
@@ -838,158 +584,95 @@
     return n;
   }
 
-  /* ---- Two-page auto-fit ----------------------------------------------
-     Hard requirement: a tailored CV must never exceed two pages. Content is
-     measured after render and progressively trimmed until it fits. Bullets are
-     trimmed from the end, so the server-enforced alwaysKeep bullet (which the
-     Worker places first) always survives. */
-  const CSS_IN = 96;
-  const PAGE_MAX = 11 * CSS_IN;                  // US Letter height
-  // Screen padding is 0.4in top / 0.5in bottom; print is 0.5in/0.5in. Reserve
-  // the difference plus rounding so "fits on screen" also means "fits in PDF".
-  const FIT_SAFETY = 0.32 * CSS_IN;
-
-  function naturalHeight(pageEl) {
-    const prev = pageEl.style.minHeight;
-    pageEl.style.minHeight = '0px';
-    const h = pageEl.getBoundingClientRect().height;
-    pageEl.style.minHeight = prev;
-    return h;
-  }
-  const pageOverflows = (pageEl) => naturalHeight(pageEl) > PAGE_MAX - FIT_SAFETY;
-
-  function roleBlock(r) {
-    const bar = el('div', 'role-bar');
-    bar.appendChild(el('span', 'role', r.role));
-    const meta = el('span', 'entry-meta');
-    meta.appendChild(document.createTextNode(r.where));
-    meta.appendChild(el('span', 'sep', '|'));
-    meta.appendChild(document.createTextNode(r.when));
-    bar.appendChild(meta);
-    const ul = el('ul', 'cv-bullets');
-    r.bullets.forEach((b) => ul.appendChild(el('li', null, b)));
-    return [bar, ul];
-  }
-
-  // Fills page 1 until it would overflow, then spills the remainder to page 2,
-  // rather than assuming a fixed split point.
-  function renderRoles(roles) {
-    const p1 = $('out-roles-p1'), p2 = $('out-roles-p2');
-    p1.innerHTML = ''; p2.innerHTML = '';
-    $('sec-roles2').hidden = false;
-    let spilled = false;
-    roles.forEach((r) => {
-      const [bar, ul] = roleBlock(r);
-      if (!spilled) {
-        p1.appendChild(bar); p1.appendChild(ul);
-        if (pageOverflows(page1)) {
-          p1.removeChild(bar); p1.removeChild(ul);
-          spilled = true;
-          p2.appendChild(bar); p2.appendChild(ul);
-        }
-      } else {
-        p2.appendChild(bar); p2.appendChild(ul);
+  /* ---- CV markup --------------------------------------------------------
+     The same markup scripts/build_cv.py writes for cv.html, styled by the
+     shared cv.css. Every string is approved corpus text resolved by the
+     Worker, and is escaped here before it reaches the page. */
+  const EMPH = ['129-person division', '13%', '0.90+ correlation', '10,000+ rows weekly',
+    '~3,500 roles', '40+ markets', '23 markets', '100% staffing commitment',
+    '~$15K', 'hundreds of millions', '6+ years'];   // as build_cv.py: one per bullet
+  const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  // Hyphenated tokens stay on one line (outside tags): extractors drop a
+  // hyphen a line break lands on ("MRI-Simmons" -> "MRISimmons").
+  const nb = (h) => h.split(/(<[^>]+>)/)
+    .map((seg) => seg.startsWith('<') ? seg : seg.replace(/\S*\w-\w\S*/g, (m) => `<span class="nb">${m}</span>`))
+    .join('');
+  function body(t, emphasise = true) {
+    let h = esc(t);
+    if (emphasise) {
+      for (const e of EMPH) {
+        const ee = esc(e);
+        if (h.includes(ee)) { h = h.replace(ee, `<strong>${ee}</strong>`); break; }
       }
-    });
-    $('sec-roles2').hidden = p2.children.length === 0;
-  }
-
-  // The tagline sits in the page-one eyebrow, as on the CV: the Worker picks
-  // the consumer-insights or master variant by track.
-  function renderTagline(text) {
-    const box = $('out-eyebrow');
-    const parts = String(text || 'Behavioural Science | Data Analytics | Market Research')
-      .split('|').map((t) => t.trim()).filter(Boolean);
-    box.innerHTML = '';
-    parts.forEach((t, i) => {
-      if (i) box.appendChild(el('span', 'sep', '|'));
-      box.appendChild(document.createTextNode(t));
-    });
-  }
-
-  function renderDissertation(d) {
-    $('sec-dissertation').hidden = !d;
-    if (!d) return;
-    const box = $('out-dissertation');
-    box.innerHTML = '';
-    const bar = el('div', 'edu-row');
-    bar.appendChild(el('span', 'degree', d.title));
-    // institution | year | mark, as on the CV.
-    const dmeta = el('span', 'entry-meta');
-    dmeta.appendChild(document.createTextNode(d.institution));
-    dmeta.appendChild(el('span', 'sep', '|'));
-    dmeta.appendChild(document.createTextNode(d.year || d.result || ''));
-    if (d.mark) {
-      dmeta.appendChild(el('span', 'sep', '|'));
-      dmeta.appendChild(document.createTextNode(d.mark));
     }
-    bar.appendChild(dmeta);
-    box.appendChild(bar);
-    const ul = el('ul', 'cv-bullets');
-    (d.bullets || []).forEach((b) => ul.appendChild(el('li', null, b)));
-    box.appendChild(ul);
+    return nb(h);
+  }
+  const piped = (parts) => parts.join('<span class="sep"> | </span>');
+  const section = (heading, inner) =>
+    `<section class="cv-section"><h2 class="trim trim-line">${heading}</h2>${inner}</section>`;
+
+  function entry(titleHtml, metaHtml, bulletsHtml, ulClass = 'cv-bullets') {
+    const li = bulletsHtml.map((b) => `<li>${b}</li>`).join('');
+    return `<div class="entry"><p class="entry-title trim trim-line">${titleHtml}</p>` +
+      `<p class="entry-meta trim trim-line">${metaHtml}</p>` +
+      (li ? `<ul class="${ulClass}">${li}</ul>` : '') + '</div>';
+  }
+  function roleHtml(r) {
+    const i = r.role.indexOf(' | ');
+    const title = i < 0 ? r.role : r.role.slice(0, i);
+    const company = i < 0 ? '' : r.role.slice(i + 3);
+    return entry(piped([nb(esc(title)), esc(company)].filter(Boolean)),
+      piped([esc(r.where), esc(r.when)]), r.bullets.map((b) => body(b)));
+  }
+  function researchHtml(d) {
+    return entry(esc(d.title), piped([d.institution, d.year, d.mark].filter(Boolean).map(esc)),
+      (d.bullets || []).map((b) => body(b, false)));
+  }
+  // Every CV carries the one-line project entry; the full one only when the
+  // Worker judged the job suits it and it fits.
+  function projectHtml(p, allowFull) {
+    const items = allowFull && p.full ? p.bullets : [p.short];
+    return entry(esc(p.title), piped([esc(p.label), esc(p.year)]), items.map((b) => body(b, false)));
+  }
+  function eduHtml(e, showTopics) {
+    const items = (e.meta || []).map((m) => body(m, false));
+    const topics = e.topics && showTopics ? `<li class="topics"><b>Topics</b>${nb(esc(e.topics))}</li>` : '';
+    const ul = items.length || topics
+      ? `<ul class="cv-bullets edu-bullets">${items.map((i) => `<li>${i}</li>`).join('')}${topics}</ul>` : '';
+    return `<div class="entry"><p class="entry-title trim trim-line">${nb(esc(e.degree))}</p>` +
+      `<p class="entry-meta trim trim-line">${piped([esc(e.school), esc(e.when)])}</p>${ul}</div>`;
+  }
+  // Skill rows in the order the Worker chose, then Languages, as on the CV.
+  function skillsHtml(skills, languages) {
+    const row = (k, v) => `<div class="skill-row"><p class="k trim trim-block">${esc(k)}</p>` +
+      `<p class="v trim trim-block">${nb(esc(v))}</p></div>`;
+    const langs = (languages || []).map((l) => `${l.name} (${l.level})`).join(', ');
+    return (skills || []).map((c) => row(c.label, c.text)).join('') + (langs ? row('Languages', langs) : '');
   }
 
-  function renderProject(p) {
-    $('sec-project').hidden = !p;
-    if (!p) return;
-    const box = $('out-project');
-    box.innerHTML = '';
-    const bar = el('div', 'edu-row');
-    bar.appendChild(el('span', 'degree', p.title));
-    bar.appendChild(el('span', 'entry-meta', p.year));
-    box.appendChild(bar);
-    // Bullets, to match every other entry. Tolerates the older single-body
-    // shape in case a cached corpus is served.
-    const items = p.bullets || [p.body].filter(Boolean);
-    const ul = el('ul', 'cv-bullets');
-    items.forEach((b) => ul.appendChild(el('li', null, b)));
-    box.appendChild(ul);
+  function layout(data, plan, page1Roles) {
+    const roles = trimRoles(data.roles, plan.bullets);
+    $('out-p1').innerHTML = section('Experience', roles.slice(0, page1Roles).map(roleHtml).join(''));
+    const p2 = [];
+    if (roles.length > page1Roles) {
+      p2.push(section('Experience (continued)', roles.slice(page1Roles).map(roleHtml).join('')));
+    }
+    if (data.dissertation) {
+      p2.push(section('Research', researchHtml({
+        ...data.dissertation, bullets: (data.dissertation.bullets || []).slice(0, plan.diss) })));
+    }
+    if (data.project) p2.push(section('Projects', projectHtml(data.project, plan.projectFull)));
+    p2.push(section('Education', (data.education || []).map((e) => eduHtml(e, plan.topics)).join('')));
+    p2.push(section('Skills &amp; Languages', skillsHtml(data.skills, data.languages)));
+    $('out-p2').innerHTML = p2.join('');
   }
 
-  // One row per skill category. The Worker decides the order; the categories
-  // themselves are never rewritten, so nothing unapproved can reach the page.
-  function renderSkills(skills) {
-    const box = $('out-skills');
-    box.innerHTML = '';
-    (skills || []).forEach((c) => {
-      const row = el('div', 'twocol');
-      row.appendChild(el('span', 'k', c.label));
-      row.appendChild(el('div', 'v', c.text));
-      box.appendChild(row);
-    });
-  }
-
-  function renderEducation(items, showTopics = true) {
-    const box = $('out-education');
-    box.innerHTML = '';
-    (items || []).forEach((e) => {
-      const bar = el('div', 'edu-row');
-      bar.appendChild(el('span', 'degree', e.degree));
-      const meta = el('span', 'entry-meta');
-      meta.appendChild(document.createTextNode(e.school));
-      meta.appendChild(el('span', 'sep', '|'));
-      meta.appendChild(document.createTextNode(e.when));
-      bar.appendChild(meta);
-      box.appendChild(bar);
-      const ul = el('ul', 'edu-meta');
-      (e.meta || []).forEach((m) => ul.appendChild(el('li', null, m)));
-      if (e.dissertationSummary) ul.appendChild(el('li', null, e.dissertationSummary));
-      if (e.topics && showTopics) {
-        const t = el('li', 'topics');
-        t.appendChild(el('b', null, 'Topics'));
-        t.appendChild(document.createTextNode(e.topics));
-        ul.appendChild(t);
-      }
-      box.appendChild(ul);
-    });
-  }
-
-  function renderLanguages(langs) {
-    const box = $('out-languages');
-    box.innerHTML = '';
-    box.textContent = (langs || []).map((l) => `${l.name} (${l.level})`).join(', ');
-  }
+  /* ---- Two-page auto-fit ----------------------------------------------
+     Hard requirement: a tailored CV never exceeds two A4 pages. Pages are
+     measured in print geometry (body.measuring): the A4 height less the
+     42px top and bottom @page margins is the budget for each page. */
+  const PAGE_BUDGET = 1122.52 - 84;
+  const pageOverflows = (pageEl) => pageEl.getBoundingClientRect().height > PAGE_BUDGET + 0.5;
 
   function renderKeywords(data) {
     const el2 = $('out-keywords');
@@ -1005,38 +688,32 @@
     $('keywords-panel').hidden = false;
   }
 
-  /* Escalating trim plans, least damaging first.
-
-     Order of sacrifice, cheapest first:
-       1. density  — tighter type, no content lost at all
-       2. topics   — course module lists, the least load-bearing lines here
-       3. project  — the independent project section
-       4. diss     — dissertation detail, policy and later findings first; the
-                     Research section itself always stays, as on the CV
-       5. bullets  — role evidence, the last thing to give up */
+  /* Escalating trim plans, least damaging first:
+       1. topics   — course module lists
+       2. project  — the full Wimbledon entry falls back to the one-line version
+       3. diss     — dissertation detail, later findings first; the Research
+                     section itself always stays, as on the CV
+       4. bullets  — role evidence, the last thing to give up */
   const FIT_PLANS = [
-    { bullets: 999, density: '',        project: true,  diss: 99, topics: true  },
-    { bullets: 999, density: 'compact', project: true,  diss: 99, topics: true  },
-    { bullets: 999, density: 'compact', project: true,  diss: 99, topics: false },
-    { bullets: 999, density: 'compact', project: false, diss: 99, topics: false },
-    { bullets: 999, density: 'compact', project: false, diss: 4,  topics: false },
-    { bullets: 999, density: 'compact', project: false, diss: 3,  topics: false },
-    { bullets: 999, density: 'compact', project: false, diss: 2,  topics: false },
-    { bullets: 18,  density: 'compact', project: false, diss: 2,  topics: false },
-    { bullets: 15,  density: 'compact', project: false, diss: 2,  topics: false },
-    { bullets: 12,  density: 'compact', project: false, diss: 2,  topics: false },
-    { bullets: 10,  density: 'compact', project: false, diss: 1,  topics: false },
+    { bullets: 999, projectFull: true,  topics: true,  diss: 99 },
+    { bullets: 999, projectFull: true,  topics: false, diss: 99 },
+    { bullets: 999, projectFull: false, topics: false, diss: 99 },
+    { bullets: 999, projectFull: false, topics: false, diss: 4  },
+    { bullets: 999, projectFull: false, topics: false, diss: 3  },
+    { bullets: 999, projectFull: false, topics: false, diss: 2  },
+    { bullets: 16,  projectFull: false, topics: false, diss: 2  },
+    { bullets: 14,  projectFull: false, topics: false, diss: 2  },
+    { bullets: 12,  projectFull: false, topics: false, diss: 2  },
+    { bullets: 10,  projectFull: false, topics: false, diss: 1  },
   ];
 
   /* plan.bullets is a budget for the whole CV, not a cap per role.
 
-     Slicing every role to the same number threw away a strong role's fourth
-     bullet while keeping a weak role's second. The Worker already returns each
-     role's bullets in the order it judged most relevant to the job, so the last
-     bullet of a role is its weakest. This spends the budget by repeatedly
-     dropping that weakest bullet from whichever role is currently fattest,
-     oldest role first on a tie, and never empties a role. A role the Worker
-     thought mattered keeps its depth; a thin one gives ground first. */
+     The Worker returns each role's bullets in the order it judged most
+     relevant to the job, so the last bullet of a role is its weakest. This
+     spends the budget by repeatedly dropping that weakest bullet from
+     whichever role is currently fattest, oldest role first on a tie, and
+     never empties a role. */
   function trimRoles(roles, budget) {
     const out = (roles || []).map((r) => ({ ...r, bullets: r.bullets.slice() }));
     let total = out.reduce((a, r) => a + r.bullets.length, 0);
@@ -1050,65 +727,50 @@
     return out;
   }
 
-  function applyPlan(data, plan) {
-    document.body.dataset.density = plan.density;
-    renderRoles(trimRoles(data.roles, plan.bullets));
-    renderProject(plan.project ? data.project : null);
-    renderEducation(data.education, plan.topics);
-    renderDissertation(
-      data.dissertation
-        ? { ...data.dissertation, bullets: (data.dissertation.bullets || []).slice(0, plan.diss) }
-        : null
-    );
+  // As many roles on page one as fit; the rest continue on page two.
+  function tryPlan(data, plan) {
+    for (let k = data.roles.length; k >= 1; k--) {
+      layout(data, plan, k);
+      if (!pageOverflows(page1)) return pageOverflows(page2) ? -1 : k;
+    }
+    return -1;
   }
 
   function fitToTwoPages(data) {
-    // Measure against print geometry, never the narrow-screen layout.
     document.body.classList.add('measuring');
     try {
-      return fitToTwoPagesInner(data);
+      for (let i = 0; i < FIT_PLANS.length; i++) {
+        const k = tryPlan(data, FIT_PLANS[i]);
+        if (k > 0) return { plan: FIT_PLANS[i], step: i, page1Roles: k, fits: true };
+      }
+      const last = FIT_PLANS[FIT_PLANS.length - 1];
+      return { plan: last, step: FIT_PLANS.length - 1, page1Roles: 1, fits: false };
     } finally {
       document.body.classList.remove('measuring');
     }
-  }
-
-  function fitToTwoPagesInner(data) {
-    for (let i = 0; i < FIT_PLANS.length; i++) {
-      applyPlan(data, FIT_PLANS[i]);
-      if (!pageOverflows(page1) && !pageOverflows(page2)) {
-        return { plan: FIT_PLANS[i], step: i, fits: true };
-      }
-    }
-    const last = FIT_PLANS[FIT_PLANS.length - 1];
-    return { plan: last, step: FIT_PLANS.length - 1, fits: false };
   }
 
   function reportFit(data, fit) {
     const note = $('out-fitnote');
     note.classList.toggle('warn', !fit.fits);
     if (!fit.fits) {
-      note.textContent = 'Could not fit two pages even at maximum compression — review before sending. Consider shortening a bullet in cv-data.json.';
+      note.textContent = 'Could not fit two pages even after trimming. Review before sending, or shorten a bullet in cv-data.json.';
       note.hidden = false;
       return;
     }
     const total = (data.roles || []).reduce((n, r) => n + r.bullets.length, 0);
-    if (fit.step === 0) {
-      note.textContent = `Fits two pages with no trimming — all ${total} selected bullets shown.`;
-    } else {
-      const kept = trimRoles(data.roles, fit.plan.bullets)
-        .reduce((n, r) => n + r.bullets.length, 0);
-      const bits = [];
-      if (fit.plan.density === 'compact') bits.push('compact spacing');
-      if (!fit.plan.topics) bits.push('course topics dropped');
-      if (!fit.plan.project) bits.push('project entry dropped');
-      if (fit.plan.diss < 99) bits.push(`${fit.plan.diss} dissertation bullets`);
-      if (kept < total) bits.push(`${kept} of ${total} role bullets, weakest dropped first`);
-      note.textContent = `Trimmed to hold two pages — ${bits.join(', ')}.`;
-    }
+    const bits = [];
+    if (data.project && data.project.full && !fit.plan.projectFull) bits.push('project shortened to one line');
+    if (!fit.plan.topics) bits.push('course topics dropped');
+    if (fit.plan.diss < 99) bits.push(`${fit.plan.diss} dissertation bullets`);
+    const kept = trimRoles(data.roles, fit.plan.bullets).reduce((n, r) => n + r.bullets.length, 0);
+    if (kept < total) bits.push(`${kept} of ${total} role bullets, weakest dropped first`);
+    note.textContent = bits.length
+      ? `Trimmed to hold two pages: ${bits.join(', ')}.`
+      : `Fits two pages with no trimming: all ${total} selected bullets shown.`;
     note.hidden = false;
   }
 
-  // Plain text in the same layout as the ATS CV (cv-ats.html).
   function buildAtsText(d) {
     const L = [];
     L.push('Joshua Woodyard');
@@ -1131,8 +793,9 @@
     }
     if (d.project) {
       L.push(''); L.push('PROJECTS');
-      L.push(`${d.project.title} | ${d.project.year}`);
-      (d.project.bullets || [d.project.body].filter(Boolean)).forEach((b) => L.push(`- ${b}`));
+      L.push(d.project.title);
+      L.push([d.project.label, d.project.year].filter(Boolean).join(' | '));
+      (d.project.full ? d.project.bullets : [d.project.short]).forEach((b) => L.push(`- ${b}`));
     }
     L.push(''); L.push('EDUCATION');
     (d.education || []).forEach((e) => {
@@ -1201,12 +864,13 @@
 
       generator.hidden = true;
       renderKeywords(data);
+      await document.fonts.ready;
       const fit = renderPayload(data);
       reportFit(data, fit);
       lastTailored = {
         ...data,
         roles: trimRoles(data.roles, fit.plan.bullets),
-        project: fit.plan.project ? data.project : null,
+        project: data.project ? { ...data.project, full: data.project.full && fit.plan.projectFull } : null,
       };
 
       resultBar.hidden = false; savePanel.hidden = false;
@@ -1227,7 +891,6 @@
     resultBar.hidden = true; savePanel.hidden = true;
     $('keywords-panel').hidden = true;
     setView('tailor');
-    document.body.dataset.density = '';
     lastTailored = null;
     generator.hidden = false;
   });

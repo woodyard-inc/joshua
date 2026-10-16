@@ -22,6 +22,11 @@ What it does, for each font the licence permits us to modify:
 
 Originals are kept untouched in fonts/original/.
 
+The corrected files are used site-wide (foundations.css) as well as on the
+CV, so each keeps every character the site's existing Cormorant file for that
+weight covers, plus the CV's punctuation. The Light weight has no TTF
+original; its source is the site's own woff2, kept in fonts/original/.
+
 Only Cormorant Garamond is modified. It is SIL OFL 1.1 with no Reserved Font
 Name. National Codes (Adobe, all rights reserved) and Helvetica (Apple /
 Linotype) are not ours to alter; they are corrected in CSS instead, with
@@ -45,6 +50,7 @@ ORIGINAL = FONTS / "original"
 
 # Fonts we are licensed to modify:  source in fonts/original -> output name
 MODIFIABLE = {
+    "CormorantGaramond-Light.woff2": "CormorantGaramondCV-Light.woff2",
     "CormorantGaramond-Regular.ttf": "CormorantGaramondCV-Regular.woff2",
     "CormorantGaramond-Bold.ttf": "CormorantGaramondCV-Bold.woff2",
     "CormorantGaramond-LightItalic.ttf": "CormorantGaramondCV-LightItalic.woff2",
@@ -72,12 +78,22 @@ MEASURE_CHARS = (
     + "‘’“”–—·•|→"
 )
 
-# Latin-1 plus the general punctuation the CV sets.
+# Latin-1 plus the general punctuation and symbols the site sets. Each output
+# also keeps whatever the site's existing file for that weight covers (see
+# site_unicodes), so swapping the corrected file in never drops a character.
 SUBSET_UNICODES = (
     list(range(0x20, 0x7F))
     + list(range(0xA0, 0x100))
-    + [0x2018, 0x2019, 0x201C, 0x201D, 0x2013, 0x2014, 0x00B7, 0x2022, 0x007C, 0x2192]
+    + [0x2018, 0x2019, 0x201C, 0x201D, 0x2013, 0x2014, 0x00B7, 0x2022, 0x007C, 0x2192,
+       0x2212, 0x2265, 0x2264, 0x2248, 0x00D7]
 )
+
+
+def site_unicodes(src_name):
+    """Codepoints in the site's current fonts/ file for the same weight."""
+    stem = src_name.rsplit(".", 1)[0]
+    path = FONTS / f"{stem}.woff2"
+    return list(TTFont(path).getBestCmap().keys()) if path.exists() else []
 
 RENAME_IDS = (1, 3, 4, 6, 16)
 
@@ -166,7 +182,7 @@ def fix(src_name, out_name):
     opts.name_languages = ["*"]
     opts.notdef_outline = True
     sub = subset.Subsetter(options=opts)
-    sub.populate(unicodes=SUBSET_UNICODES)
+    sub.populate(unicodes=sorted(set(SUBSET_UNICODES) | set(site_unicodes(src_name))))
     sub.subset(font)
     font.flavor = "woff2"
     font.save(FONTS / out_name)

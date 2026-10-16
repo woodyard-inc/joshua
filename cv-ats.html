@@ -179,7 +179,7 @@
       var pb = el('div', null, 'role');
       pb.appendChild(el('p', pj.title, 'role-title'));
       pb.appendChild(el('p', [pj.label, pj.year].join(' | '), 'role-meta'));
-      pb.appendChild(list([pj.short]));
+      pb.appendChild(list([].concat(pj.short)));
       root.appendChild(pb);
     }
 

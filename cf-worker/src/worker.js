@@ -113,7 +113,7 @@ PEOPLE SCIENCE SUB-LANE (boolean, independent of track): true only when the role
 
 BEHAVIOURAL LAYER (boolean, independent of track): true when the JD's core is explaining WHY people/users/customers behave as they do. Signals: "why", "behaviour/behavioural", "understand users/customers", "experiment", "drivers of", "motivation", product analytics, UX research, behavioural science. This is an emphasis layer applied on top of A or B — never a third track.
 
-PROJECT (boolean "projectFull"): every CV carries a one-line entry for Joshua's independent project, a Python Monte Carlo simulator that predicts Wimbledon matches point by point from IBM Slam Tracker data. Set projectFull true when the full three-bullet entry would genuinely help: the role values programming (especially Python), statistical modelling, simulation or forecasting, data science or machine learning, sports analytics, or applied research. Otherwise false.
+PROJECT (boolean "projectFull"): every CV carries a short entry for Joshua's independent project "What Wins on Grass", built with Claude Code: player fingerprints from IBM Slam Tracker data, shown as interactive charts, with matchups simulated point by point from two fingerprints. Set projectFull true when the full entry would genuinely help: the role values programming (especially Python), AI-assisted development, statistical modelling, simulation or forecasting, data science or machine learning, data visualisation, sports analytics, or applied research. Otherwise false.
 
 LOW FIT FLAG: set lowFit true if the JD requires (not merely prefers) a PhD with no industry-portfolio alternative, or demands core methods with no evidence in the menu below (causal inference, Bayesian, SEM). Never pretend evidence exists.
 
@@ -258,6 +258,7 @@ ${JSON.stringify(menu.roles, null, 1)}`;
           }
         : null,
       education: cv.education,
+      eduResultInMeta: !!(cv._layout || {}).eduResultInMeta,
       languages: cv.languages,
       // Skill categories, reordered per track. The category text itself is
       // never rewritten — only the order changes — so the same guarantee that

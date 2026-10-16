@@ -527,6 +527,7 @@
       dissertation: { ...cv.dissertation, bullets: cv.dissertation.short || cv.dissertation.bullets },
       project: cv.project ? { ...cv.project, full: false } : null,
       education: cv.education || [],
+      eduResultInMeta: !!(cv._layout || {}).eduResultInMeta,
       languages: cv.languages,
       skills: cv.skills,
     };
@@ -632,16 +633,21 @@
   // Every CV carries the one-line project entry; the full one only when the
   // Worker judged the job suits it and it fits.
   function projectHtml(p, allowFull) {
-    const items = allowFull && p.full ? p.bullets : [p.short];
+    const items = allowFull && p.full ? p.bullets : [].concat(p.short);
     return entry(esc(p.title), piped([esc(p.label), esc(p.year)]), items.map((b) => body(b, false)));
   }
-  function eduHtml(e, showTopics) {
-    const items = (e.meta || []).map((m) => body(m, false));
+  // With eduResultInMeta (cv-data _layout), a degree's result sits on its
+  // school | dates line, as the Research entry carries its mark.
+  function eduHtml(e, showTopics, resultInMeta) {
+    const meta = (e.meta || []).slice();
+    const line = [esc(e.school), esc(e.when)];
+    if (resultInMeta && meta.length) line.push(esc(meta.shift()));
+    const items = meta.map((m) => body(m, false));
     const topics = e.topics && showTopics ? `<li class="topics"><b>Topics</b>${nb(esc(e.topics))}</li>` : '';
     const ul = items.length || topics
       ? `<ul class="cv-bullets edu-bullets">${items.map((i) => `<li>${i}</li>`).join('')}${topics}</ul>` : '';
     return `<div class="entry"><p class="entry-title trim trim-line">${nb(esc(e.degree))}</p>` +
-      `<p class="entry-meta trim trim-line">${piped([esc(e.school), esc(e.when)])}</p>${ul}</div>`;
+      `<p class="entry-meta trim trim-line">${piped(line)}</p>${ul}</div>`;
   }
   // Skill rows in the order the Worker chose, then Languages, as on the CV.
   function skillsHtml(skills, languages) {
@@ -663,7 +669,7 @@
         ...data.dissertation, bullets: (data.dissertation.bullets || []).slice(0, plan.diss) })));
     }
     if (data.project) p2.push(section('Projects', projectHtml(data.project, plan.projectFull)));
-    p2.push(section('Education', (data.education || []).map((e) => eduHtml(e, plan.topics)).join('')));
+    p2.push(section('Education', (data.education || []).map((e) => eduHtml(e, plan.topics, data.eduResultInMeta)).join('')));
     p2.push(section('Skills &amp; Languages', skillsHtml(data.skills, data.languages)));
     $('out-p2').innerHTML = p2.join('');
   }
@@ -796,7 +802,7 @@
       L.push(''); L.push('PROJECTS');
       L.push(d.project.title);
       L.push([d.project.label, d.project.year].filter(Boolean).join(' | '));
-      (d.project.full ? d.project.bullets : [d.project.short]).forEach((b) => L.push(`- ${b}`));
+      (d.project.full ? d.project.bullets : [].concat(d.project.short)).forEach((b) => L.push(`- ${b}`));
     }
     L.push(''); L.push('EDUCATION');
     (d.education || []).forEach((e) => {

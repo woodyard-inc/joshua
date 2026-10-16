@@ -99,7 +99,7 @@
       "bullets": [
         {
           "id": "pet-nielsen",
-          "text": "Consolidated all digital vendors and media buys, including Google and Meta, into one placement-level reporting set with Nielsen audience data for digital TV and switchable attribution, giving one view of the full buy."
+          "text": "Consolidated all digital vendors and media buys, including Google and Meta, into a single placement-level reporting set, integrating Nielsen audience data for digital TV and switchable attribution models, giving the client one view of performance across the full buy."
         },
         {
           "id": "pet-etl",
@@ -121,7 +121,7 @@
         },
         {
           "id": "spr-kantar",
-          "text": "Partnered with Kantar on brand-lift studies and A/B creative tests (control vs exposed) during a brand relaunch."
+          "text": "Partnered with Kantar on brand-lift studies and A/B creative tests (control vs exposed) during a brand relaunch, turning results into strategy recommendations."
         }
       ],
       "whyBullets": [
@@ -220,15 +220,19 @@
     ]
   },
   "project": {
-    "_note": "short = the one-bullet version on every CV (cv.html, ATS, Workshop). bullets = the full entry the Workshop uses when the job description suits it.",
-    "title": "Wimbledon Men's Draw, Monte Carlo Match Simulator",
+    "_note": "short = the bullets on every CV (cv.html, ATS, Workshop). bullets = the full entry the Workshop uses when the job description suits it. Figures are the published 2014–2023 backtest (wimbledon/data/model_metrics.json).",
+    "title": "What Wins on Grass: Wimbledon Monte Carlo Match Simulator",
     "label": "Independent project",
     "year": "2026",
-    "short": "Personal project: a Python Monte Carlo engine that plays Wimbledon matches out point by point from IBM Slam Tracker data (2011–2023), profiling each player's serve, return and under-pressure play.",
+    "short": [
+      "Built with Claude Code: a Python and JavaScript app that gives every player in the Wimbledon men's draw a fingerprint from IBM Slam Tracker point data (2011–2023), shown as interactive charts.",
+      "Matchups are played out point by point from two fingerprints, not regressed: 68.4% accurate on 827 matches."
+    ],
     "bullets": [
-      "A head-to-head prediction engine that plays a match out one point at a time, built on IBM Slam Tracker data — roughly 48,000 points a season across 2011–2023.",
-      "Every player carries a profile page built only from their own record: serve, return and under-pressure characteristics — how unpredictably they serve, how they hold at break point, how they fade across sets — weighted by recency and opponent quality.",
-      "Two profiles are then run against each other thousands of times. Backtested on 827 matches (2014–2023), each season predicted from prior seasons only."
+      "Built with Claude Code as a Python data pipeline and a browser app: a fingerprint for every player in the Wimbledon men's draw from IBM Slam Tracker point-by-point data (2011–2023), about 48,000 points a season.",
+      "Each fingerprint covers serve, return and under-pressure play (how unpredictably a player serves, holds at break point and fades across sets), weighted by recency and opponent quality.",
+      "Every player has a page of interactive charts (serve speed and direction, rally length, pressure play, match log) and a place on a leaderboard.",
+      "Matchups are simulated, not regressed: two fingerprints play a match out point by point, 25,000 times in the browser, through a serve, rally and pressure model, then calibrated. Backtested on 827 matches (2014–2023), each season predicted only from earlier ones: 68.4% accurate."
     ]
   },
   "education": [
@@ -379,9 +383,9 @@
   },
   "_layout": {
     "_note": "Read by scripts/build_cv.py and cv-ats.html. page1Roles = roles before \"Experience (continued)\". omit = bullets the designed CV drops to hold two A4 pages (role-bullet id, or \"research:<opening words>\"). eduResultInMeta = set each degree's result on its school | dates line (designed CV only). atsOmit = like omit, for the ATS export, which only cuts if it runs over itself.",
-    "page1Roles": 6,
+    "page1Roles": 5,
     "omit": [],
-    "eduResultInMeta": false,
+    "eduResultInMeta": true,
     "atsOmit": []
   }
 }

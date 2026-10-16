@@ -113,12 +113,13 @@ def research_html(d, omit):
 
 
 def project_html(p):
-    """The short, one-bullet project entry carried on every CV."""
+    """The short project entry carried on every CV."""
+    short = p["short"] if isinstance(p["short"], list) else [p["short"]]
     return (
         '    <div class="entry">\n'
         f'      <p class="entry-title trim trim-line">{esc(p["title"])}</p>\n'
         f'      <p class="entry-meta trim trim-line">{piped([esc(p["label"]), esc(p["year"])])}</p>\n'
-        f'      <ul class="cv-bullets">\n      <li>{body(p["short"], emphasise=False)}</li>\n      </ul>\n'
+        f'      <ul class="cv-bullets">\n' + "\n".join(f"      <li>{body(b, emphasise=False)}</li>" for b in short) + '\n      </ul>\n'
         "    </div>"
     )
 

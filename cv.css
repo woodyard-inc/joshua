@@ -187,6 +187,13 @@
   letter-spacing: -0.005em; color: var(--ink);
   margin: 0; max-width: none;
 }
+/* A role line is two items: the title (role: team or account) and the
+   employer. The title is set a little tighter so it reads as one unit; the
+   separator is bold, dark and given extra room so the employer reads as a
+   separate item, to people and to parsers alike. */
+.entry-title .role-name { word-spacing: -0.06em; }
+.entry-title .sep { font-weight: 700; color: var(--ink); padding: 0 0.3em; }
+
 .entry-meta {
   font-family: var(--font-body); font-weight: 400;
   font-size: var(--cv-body); line-height: var(--lh-single);

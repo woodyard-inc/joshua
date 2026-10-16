@@ -48,12 +48,19 @@ def esc(t):
     return html.escape(str(t), quote=False)
 
 
+# Phrases parsers should read as one keyword, held on one line.
+KEEP_TOGETHER = ["Business Intelligence"]
+
+
 def nb(h):
-    """Hold hyphenated tokens on one line (outside tags only)."""
+    """Hold hyphenated tokens and KEEP_TOGETHER phrases on one line (outside tags only)."""
     parts = re.split(r"(<[^>]+>)", h)
     for i, seg in enumerate(parts):
         if not seg.startswith("<"):
-            parts[i] = re.sub(r"\S*\w-\w\S*", lambda m: f'<span class="nb">{m.group(0)}</span>', seg)
+            seg = re.sub(r"\S*\w-\w\S*", lambda m: f'<span class="nb">{m.group(0)}</span>', seg)
+            for k in KEEP_TOGETHER:
+                seg = seg.replace(k, f'<span class="nb">{k}</span>')
+            parts[i] = seg
     return "".join(parts)
 
 
@@ -86,10 +93,13 @@ def omitted(cv):
 
 def role_html(r, omit):
     bullets = [b for b in r["bullets"] if b["id"] not in omit]
+    # The title is one unit (role: team or account), set slightly tighter so
+    # it reads, and parses, as one item before the separator.
+    role_name = '<span class="role-name">' + nb(esc(r["title"])) + "</span>"
     li = "\n".join(f"      <li>{body(b['text'])}</li>" for b in bullets)
     return (
         '    <div class="entry">\n'
-        f'      <p class="entry-title trim trim-line">{piped([nb(esc(r["title"])), esc(r["company"])])}</p>\n'
+        f'      <p class="entry-title trim trim-line">{piped([role_name, esc(r["company"])])}</p>\n'
         f'      <p class="entry-meta trim trim-line">{piped([esc(r["where"]), esc(r["when"])])}</p>\n'
         f'      <ul class="cv-bullets">\n{li}\n      </ul>\n'
         "    </div>"

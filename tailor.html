@@ -609,8 +609,12 @@
   const esc = (t) => String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   // Hyphenated tokens stay on one line (outside tags): extractors drop a
   // hyphen a line break lands on ("MRI-Simmons" -> "MRISimmons").
+  // ...and so do phrases parsers should read as one keyword (as build_cv.py).
+  const KEEP_TOGETHER = ['Business Intelligence'];
   const nb = (h) => h.split(/(<[^>]+>)/)
-    .map((seg) => seg.startsWith('<') ? seg : seg.replace(/\S*\w-\w\S*/g, (m) => `<span class="nb">${m}</span>`))
+    .map((seg) => seg.startsWith('<') ? seg : KEEP_TOGETHER.reduce(
+      (acc, k) => acc.split(k).join(`<span class="nb">${k}</span>`),
+      seg.replace(/\S*\w-\w\S*/g, (m) => `<span class="nb">${m}</span>`)))
     .join('');
   function body(t, emphasise = true) {
     let h = esc(t);
@@ -636,7 +640,7 @@
     const i = r.role.indexOf(' | ');
     const title = i < 0 ? r.role : r.role.slice(0, i);
     const company = i < 0 ? '' : r.role.slice(i + 3);
-    return entry(piped([nb(esc(title)), esc(company)].filter(Boolean)),
+    return entry(piped([`<span class="role-name">${nb(esc(title))}</span>`, esc(company)].filter(Boolean)),
       piped([esc(r.where), esc(r.when)]), r.bullets.map((b) => body(b)));
   }
   function researchHtml(d) {

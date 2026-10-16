@@ -21,13 +21,12 @@
   "roles": [
     {
       "id": "publicis",
-      "title": "Senior Executive, Data & Insights",
-      "titlePeopleScience": "Senior Executive, Data & Insights (Talent)",
+      "title": "Senior Executive: Data & Insights",
+      "titlePeopleScience": "Senior Executive: Talent Data & Insights",
       "company": "Publicis Groupe",
       "where": "London, UK",
       "when": "Jul 2025 – Present",
       "ats": {
-        "title": "Data & Insights Senior Executive",
         "location": "London, United Kingdom"
       },
       "demoteUnlessPeopleScience": true,
@@ -56,12 +55,11 @@
     },
     {
       "id": "horizon-bi",
-      "title": "Senior Analyst, Analytics & Business Intelligence",
+      "title": "Senior Analyst: Analytics & Business Intelligence",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Jan 2022 – Sep 2023",
       "ats": {
-        "title": "Analytics & Business Intelligence Senior Analyst",
         "location": "New York, NY"
       },
       "bullets": [
@@ -82,12 +80,11 @@
     },
     {
       "id": "uniqlo",
-      "title": "Freelance Researcher (Part-time)",
+      "title": "Part-time Freelance Researcher",
       "company": "UNIQLO",
       "where": "New York City, US",
       "when": "May 2021 – May 2023",
       "ats": {
-        "title": "Part-time Freelance Researcher",
         "location": "New York, NY"
       },
       "bullets": [
@@ -104,13 +101,11 @@
     },
     {
       "id": "petco",
-      "title": "Senior Analyst, Petco account",
+      "title": "Senior Analyst: Petco account",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Jul 2020 – Jan 2022",
       "ats": {
-        "title": "Senior Analyst",
-        "account": "Petco",
         "location": "New York, NY"
       },
       "bullets": [
@@ -127,13 +122,11 @@
     },
     {
       "id": "sprint-boost",
-      "title": "Analyst, Sprint & Boost Mobile account",
+      "title": "Analyst: Sprint & Boost Mobile account",
       "company": "Horizon Media",
       "where": "New York City, US",
       "when": "Dec 2019 – Jul 2020",
       "ats": {
-        "title": "Analyst",
-        "account": "Sprint & Boost Mobile",
         "location": "New York, NY"
       },
       "bullets": [
@@ -156,13 +149,11 @@
     },
     {
       "id": "dunkin",
-      "title": "Strategy Associate, Dunkin' account",
+      "title": "Strategy Associate: Dunkin' account",
       "company": "Publicis Media",
       "where": "New York City, US",
       "when": "Apr 2019 – Dec 2019",
       "ats": {
-        "title": "Strategy Associate",
-        "account": "Dunkin'",
         "location": "New York, NY"
       },
       "bullets": [
@@ -417,5 +408,5 @@
     "eduResultInMeta": false,
     "atsOmit": []
   },
-  "_README_ats": "roles[].ats and education[].degreeAts are the parser-safe forms used by the ATS export, the Workshop's plain-text copy and the Worker: titles without commas or parentheses (ATS parsers split on them), the client account on its own line, and locations in a form parsers recognise."
+  "_README_ats": "Titles use a colon, never a comma or parentheses, between role and team or account: ATS parsers split on commas and parentheses. roles[].ats.location and education[].degreeAts are the parser-safe forms the ATS export uses."
 }

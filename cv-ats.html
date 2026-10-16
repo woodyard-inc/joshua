@@ -115,7 +115,7 @@
       .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     node.innerHTML = esc.replace(/\S*\w-\w\S*/g, function (m) {
       return '<span class="nb">' + m + '</span>';
-    });
+    }).split('Business Intelligence').join('<span class="nb">Business Intelligence</span>');
   }
   function el(tag, text, cls) {
     var n = document.createElement(tag);

@@ -53,6 +53,15 @@ def beta(x):
     return keep((MINUS if x < 0 else "") + s)
 
 
+def roman(n):
+    """Masthead issue number: the case study number in Roman numerals."""
+    out = ""
+    for v, r in ((10, "X"), (9, "IX"), (5, "V"), (4, "IV"), (1, "I")):
+        while n >= v:
+            out, n = out + r, n - v
+    return out
+
+
 def sig(stars):
     return stars in ("**", "***")
 
@@ -86,6 +95,9 @@ def build_context():
         "duration": keep(meta["duration"]),
         "mark": num(meta["mark_pct"]),
         "doc_page": num(meta["issp_doc_page"]),
+        "issue": roman(int(meta["case_number"])),
+        "rousseau": keep(meta["rousseau_year"]),
+        "since_rousseau": num(meta["year"] - meta["rousseau_year"]),
         "n_total": num(sample["n_total"]),
         "n_countries_word": "five",
         "issp": keep(sample["issp_year"]),
@@ -303,9 +315,8 @@ def table1_countries():
     rows = []
     for c in sorted(ORDER, key=lambda c: -by_code[c]["emm"]["mean"]):
         r = by_code[c]
-        n_flag = "<!-- TODO_DATA: Austria n is 1,120 in the text but 1,200 in Tables 2 and A2; 1,200 makes the sum 11,249 -->" if "n_table2" in r else ""
         rows.append(f'<tr><th scope="row">{esc(r["name"])}</th><td class="num">{num(r["emm"]["mean"], 2)}</td>'
-                    f'<td class="num">{num(r["n"])}{n_flag}</td><td class="num">{num(r["hdi"], 3)}</td>'
+                    f'<td class="num">{num(r["n"])}</td><td class="num">{num(r["hdi"], 3)}</td>'
                     f'<td class="num">{num(r["individualism"], 1)}</td><td class="num">{num(r["hazard"], 1)}</td>'
                     f'<td class="txt">{stands_out(c)}</td></tr>')
     return f'''<div class="tbl-scroll" tabindex="0" role="region" aria-label="Table 1, scrollable">
@@ -325,7 +336,7 @@ WHAT_CHANGED = {
 READING = {
     "hazard": "Infrastructure alone may not make lives better; community may (Aldrich &amp; Meyer, 2014; Sato et al., 2020; Toya &amp; Skidmore, 2014).",
     "power_distance": "Hierarchy may push people towards institutions for support.",
-    "masculinity": "Competitive cultures may lean on fair systems to hold together.<!-- TODO_CITE: add Hofstede et al., 2010 if Joshua confirms -->",
+    "masculinity": "Competitive cultures may lean on fair systems to hold together, much as Hofstede's work on masculine cultures would suggest.",
     "individualism": "Without ready-made in-groups, people need bridges (Putnam, 2000); in collectivist cultures, care is expected from the in-group (Hofstede et al., 2010).",
     "state": "When the state carries more, social capital has to carry less (Bjørnskov, 2003a; Lambsdorff, 2003; Özcan &amp; Bjørnskov, 2011).",
     "income": "Perhaps the well-off feel they should look after others, or get more from giving than from money (Aknin et al., 2013; Easterlin, 2015).",

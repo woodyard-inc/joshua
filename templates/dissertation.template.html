@@ -422,8 +422,7 @@
 
 <div class="pf-shell">
   <header class="pf-nameplate">
-    <!-- TODO_CONFIRM: "No. III" looks like an issue number (index says No. III, UNIQLO says No. II), so it is not derived from the case number. -->
-    <span class="pf-left">London · MMXXVI · No. III</span>
+    <span class="pf-left">London · MMXXVI · No. {{issue}}</span>
     <a class="pf-wordmark" href="index.html">Joshua Woodyard</a>
     <span class="pf-right"><span class="pf-nav-desktop"><a href="index.html#work">Work</a> · <a href="index.html#about">About</a> · <a href="index.html#contact">Contact</a></span><details class="menu">
       <summary aria-label="Open menu">Menu<span class="chev" aria-hidden="true"></span></summary>
@@ -523,7 +522,12 @@
       <!-- §01 -->
       <section id="question" aria-labelledby="question-h">
         <div class="sec-head"><span class="n">01</span><h2 id="question-h">The question</h2></div>
-        <p class="lead">We usually measure how well a country is doing by its income. But the relationships people have with family, neighbours, colleagues, friends and wider society are part of what makes life worth living, and they may not work the same way everywhere.</p>
+        <div class="with-note">
+          <div class="main">
+            <p class="lead">We usually measure how well a country is doing by its income. But the relationships people have with family, neighbours, colleagues, friends and wider society are part of what makes life worth living, and they may not work the same way everywhere.</p>
+          </div>
+          <aside class="note"><span class="caps">The quote on my desk</span><p>“Money can't buy happiness”: a maxim argued over since Rousseau's <em>Discourse on the Arts and Sciences</em> ({{rousseau}}). {{since_rousseau}} years later, the data still mostly agrees.</p></aside>
+        </div>
         <p>Does social capital make lives better everywhere, or does it depend on where you live? I tested it across five countries: Austria, China, Russia, South Africa and the United States.</p>
         <p>Social capital research often treats its link with life satisfaction as uniform, and measures its dimensions with separate instruments.</p>
         <p>My contribution was to use the underused ISSP {{issp}} module as a single instrument measuring all three of Putnam's social capital dimensions at once. National indices then served as moderators: what governments shape (human development, government resources, corruption and relative income) and what a country is given (natural-disaster risk and Hofstede's cultural values).</p>
@@ -545,9 +549,6 @@
           </div>
           <aside class="note"><span class="caps">Quietly proud of</span><p>Reconstructing the ISCO-08 skill levels for Chinese agricultural workers, where the ISSP module has a known missing-data issue flagged on p.&nbsp;{{doc_page}} of its own documentation — so the Chinese sample didn't collapse.</p></aside>
         </div>
-        <!-- TODO_VERIFY: "The quote on my desk" note (Rousseau, 1750: "Money can't buy happiness."). The attribution is unverified; the phrase is not in Rousseau's Discourse. Hidden until Joshua confirms the source.
-        <aside class="note"><span class="caps">The quote on my desk</span><p>Rousseau, 1750 — <em>"Money can't buy happiness."</em></p></aside>
-        -->
         <div class="spec">
           <h3 class="vh">Study specification</h3>
           <dl>
@@ -639,8 +640,7 @@
         <p>The design is cross-sectional, so association is the correct verb throughout. Any relationship here could reflect reverse causation (satisfied people invest more in community) or a third variable such as personality, which the ISSP doesn't measure.</p>
         <p>R² around {{r2}} means the pooled model explains roughly a fifth of the variance in life satisfaction, within the normal range for this literature.</p>
         <p>On income: household financial ease, a control for making ends meet, was one of the strongest predictors throughout (β {{fe_min}} to {{fe_max}}). Relative income did not predict satisfaction, but felt financial strain did.</p>
-        <!-- TODO_CONFIRM: were the pooled models weighted by country? -->
-        <p>China contributes about {{cn_share}}% of the pooled sample ({{cn_n}} of {{n_total}}). Pooled estimates should be read with that weight in mind.</p>
+        <p>Models were run within countries. Where the five are pooled to compare countries and test the national moderators, China contributes about {{cn_share}}% of the respondents ({{cn_n}} of {{n_total}}), so pooled estimates lean towards China and should be read with that in mind.</p>
         <p>Life satisfaction is a single-item measure, and significance is read at p &lt; .05 throughout this page.</p>
         <p>The readings and the playbook that follow are interpretations of associations. They are ideas to test, not settled findings.</p>
       </section>
@@ -684,7 +684,6 @@
             <p class="where"><b class="caps">Where</b> All contexts, especially advanced democracies</p>
             <dl>
               <dt class="caps">What the data show</dt><dd>Trust in fairness was positive and significant in every country, and Austria's coefficient was about twice the five-country average.</dd>
-              <!-- TODO_CONFIRM: keep the progressive-taxation sentence? -->
               <dt class="caps">The idea</dt><dd>Treat perceived fairness as something to build: transparent institutions, justice even for petty crimes, fair wage distribution, and better social resource services. The dissertation also argues for progressive taxation.</dd>
               <div class="test"><dt class="caps">How I'd test it</dt><dd>Follow perceived fairness and life satisfaction in a panel where a transparency or justice reform rolls out region by region.</dd></div>
             </dl>

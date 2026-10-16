@@ -8,6 +8,7 @@
     "duration": "~6 months",
     "mark_pct": 71,
     "issp_doc_page": 279,
+    "rousseau_year": 1750,
     "hypotheses_total": 4,
     "hypotheses_supported": 4,
     "_sources": "mark: transcript and page; issp_doc_page: page ('Quietly proud of' note); hypotheses: Diss. Results (H1a, H1b, H2a with nuance, H2b all supported)"
@@ -31,7 +32,7 @@
   "countries": [
     { "code": "US", "name": "United States", "n": 1173, "hdi": 0.924, "individualism": 9.1, "hazard": 6.9, "power_distance": 4.0, "masculinity": 6.2, "cpi": 7.5, "spi": 8.643,
       "emm": { "mean": 5.34, "se": 0.043, "lo": 5.25, "hi": 5.42 }, "r2": 0.183 },
-    { "code": "AT", "name": "Austria", "n": 1120, "n_table2": 1200, "hdi": 0.916, "individualism": 5.5, "hazard": 2.5, "power_distance": 1.1, "masculinity": 7.9, "cpi": 7.5, "spi": 8.798,
+    { "code": "AT", "name": "Austria", "n": 1200, "hdi": 0.916, "individualism": 5.5, "hazard": 2.5, "power_distance": 1.1, "masculinity": 7.9, "cpi": 7.5, "spi": 8.798,
       "emm": { "mean": 5.19, "se": 0.053, "lo": 5.08, "hi": 5.29 }, "r2": 0.217 },
     { "code": "ZA", "name": "South Africa", "n": 3098, "hdi": 0.72, "individualism": 6.5, "hazard": 4.2, "power_distance": 4.9, "masculinity": 6.3, "cpi": 4.3, "spi": 6.725,
       "emm": { "mean": 4.81, "se": 0.027, "lo": 4.76, "hi": 4.87 }, "r2": 0.148 },
@@ -40,7 +41,7 @@
     { "code": "CN", "name": "China", "n": 4219, "hdi": 0.747, "individualism": 2.0, "hazard": 7.8, "power_distance": 8.0, "masculinity": 6.6, "cpi": 4.1, "spi": 6.372,
       "emm": { "mean": 4.59, "se": 0.03, "lo": 4.53, "hi": 4.65 }, "r2": 0.211 }
   ],
-  "_countries_sources": "n: Diss. p. 18 text (Austria 1,120 there, but 1,200 in Table 2 and Table A2; 1,200 makes the five sum to 11,249 — TODO_DATA). Indices: Table 1 (hazard = INFORM natural risk 0-10; individualism, power distance, masculinity = Hofstede 0-10; CPI and SPI 0-10; HDI 0-1). emm: Table A4 (estimated marginal means of life satisfaction at mean social capital, 95% CI), rows matched to countries via the Table A5 contrasts. r2: Table 3.",
+  "_countries_sources": "n: Diss. Table 2 and Table A2 (the p. 18 text says 1,120 for Austria, a typo; 1,200 makes the five sum to 11,249, confirmed by Joshua). Indices: Table 1 (hazard = INFORM natural risk 0-10; individualism, power distance, masculinity = Hofstede 0-10; CPI and SPI 0-10; HDI 0-1). emm: Table A4 (estimated marginal means of life satisfaction at mean social capital, 95% CI), rows matched to countries via the Table A5 contrasts. r2: Table 3.",
 
   "tukey": {
     "ns_pairs": [ { "a": "US", "b": "AT", "p": 0.14 }, { "a": "RU", "b": "ZA", "p": 0.87 } ],

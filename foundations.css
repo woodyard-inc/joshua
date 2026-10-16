@@ -248,6 +248,15 @@ body {
    overlap. We correct with positive letter-spacing and disable kerning
    (the font's own kern table is unreliable). Never give National negative
    tracking. */
+/* National's letters are 0.3em tall, so a line box at line-height 1 is two
+   thirds empty space. Every National wordmark is trimmed to its ink (the
+   ascent-override above is the letters' real height), the same as the CV,
+   so it takes only the room its letters need and spacing around it is
+   measured from the letters, not from an invisible box. */
+.pf-wordmark, .wordmark, .masthead, .cv-name, .brand-centre h1 {
+  text-box: trim-both text alphabetic;
+}
+
 /* Force National on wordmark/masthead/cv-name regardless of element/cascade */
 h1.wordmark, h2.wordmark, .wordmark,
 h1.masthead, h2.masthead, .masthead,
@@ -473,7 +482,9 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
   align-items: center;
   max-width: 1280px;
   margin: 0 auto;
-  padding: var(--s-2) var(--page-pad);
+  /* Rule to wordmark ink, top and bottom: the wordmark is trimmed to its
+     letters, so this is the real gap. */
+  padding: var(--s-4) var(--page-pad);
   font-family: var(--font-sans);
   font-size: 10px;
   letter-spacing: 0.24em;

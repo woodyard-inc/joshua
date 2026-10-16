@@ -97,7 +97,9 @@
    is not rounded the way ascent is, so these single lines are rounded up to
    a whole pixel. */
 .cv-tagline, .cv-stamp, .cv-section > h2, .entry-title, .skill-row .k { text-box-edge: cap alphabetic; }
-.cv-tagline, .cv-section > h2, .entry-title { box-sizing: content-box; block-size: round(up, 1cap, 1px); }
+/* A minimum, not a fixed height: on a narrow screen these lines can wrap,
+   and a fixed one-line height made the second line overlap the next item. */
+.cv-tagline, .cv-section > h2, .entry-title { box-sizing: content-box; min-block-size: round(up, 1cap, 1px); }
 /* (The Skills label needs no rounding: it sits on the value's baseline, so
    the value sets the row height.) */
 

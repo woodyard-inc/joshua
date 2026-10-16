@@ -2,11 +2,11 @@
 """Build the designed CV pages from cv-data.json and templates/cv.template.html.
 
 Outputs (public, committed):
-    cv.html                       master
-    cv-consumer-insights.html     consumer-insights variant
+    cv.html                       master (the only CV on the site)
 
 Outputs (private, gitignored under build/private/):
-    the same pages with the real email and phone in the contact line, used
+    cv.html and cv-consumer-insights.html (the variant the Workshop uses for
+    insights / strategy roles), with the real email and phone in the contact line, used
     only to print the PDFs. The public pages carry "Email on request |
     Phone on request" and never contain the real values.
 
@@ -191,10 +191,6 @@ def build(cv, variant_id, private):
     page2.append(section("Skills &amp; Languages", skills_html(cv, v["skillOrder"])))
 
     tagline_parts = [p.strip() for p in v["tagline"].split("|")]
-    other = [vid for vid in cv["variants"] if vid != variant_id]
-    links = "\n".join(
-        f'  <a class="sp-link" href="{{{{ROOT}}}}{OUTPUTS[o]}">{esc(cv["variants"][o]["label"])} version →</a>'
-        for o in other)
     ats = "cv-ats.html" + ("" if variant_id == "master" else f"?variant={variant_id}")
 
     fills = {
@@ -208,7 +204,6 @@ def build(cv, variant_id, private):
         "PAGE1_SECTIONS": page1,
         "PAGE2_SECTIONS": "\n\n".join(page2),
         "VARIANT_LABEL": esc(v["label"]),
-        "VARIANT_LINKS": links,
         "ATS_HREF": "{{ROOT}}" + ats,
     }
     out = TEMPLATE.read_text(encoding="utf-8")
@@ -225,12 +220,15 @@ def main():
     cv = json.loads(DATA.read_text(encoding="utf-8"))
     PRIVATE.mkdir(parents=True, exist_ok=True)
     for vid, name in OUTPUTS.items():
-        public = build(cv, vid, private=False)
-        assert cv["contact"]["email"] not in public, "real email leaked into a public page"
-        assert cv["contact"]["phone"] not in public, "real phone leaked into a public page"
-        (ROOT / name).write_text(public, encoding="utf-8")
+        # Only the master CV is published; other variants are used by the
+        # Workshop's tailoring and printed privately, never shown on the site.
+        if vid == "master":
+            public = build(cv, vid, private=False)
+            assert cv["contact"]["email"] not in public, "real email leaked into a public page"
+            assert cv["contact"]["phone"] not in public, "real phone leaked into a public page"
+            (ROOT / name).write_text(public, encoding="utf-8")
         (PRIVATE / name).write_text(build(cv, vid, private=True), encoding="utf-8")
-        print(f"built {name}  (+ private copy)")
+        print(f"built {name}  ({'public + ' if vid == 'master' else ''}private copy)")
     return 0
 
 

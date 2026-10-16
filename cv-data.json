@@ -200,7 +200,8 @@
     }
   ],
   "dissertation": {
-    "title": "Money can't buy happiness: The cross-cultural relationships between social capital and life satisfaction",
+    "title": "Social Capital & Life Satisfaction",
+    "fullTitle": "Money can't buy happiness: The cross-cultural relationships between social capital and life satisfaction",
     "institution": "City St George's, University of London",
     "year": "2024",
     "mark": "Dissertation mark: 71% (Distinction)",
@@ -285,7 +286,7 @@
     {
       "id": "methods",
       "label": "Methods",
-      "text": "Behavioural Science, Behavioural Economics, Experimental Design, A/B Testing, Regression Analysis, Econometrics, Statistical Modelling, Predictive Modelling, PCA, Multiple Imputation, Survey Research, Quantitative Research, Qualitative Research"
+      "text": "Behavioural Science, Behavioural Economics, Experimental Design, Regression Analysis, Econometrics, Statistical Modelling, Survey Research, Qualitative Research"
     },
     {
       "id": "insights",
@@ -385,7 +386,7 @@
     "_note": "Read by scripts/build_cv.py and cv-ats.html. page1Roles = roles before \"Experience (continued)\". omit = bullets the designed CV drops to hold two A4 pages (role-bullet id, or \"research:<opening words>\"). eduResultInMeta = set each degree's result on its school | dates line (designed CV only). atsOmit = like omit, for the ATS export, which only cuts if it runs over itself.",
     "page1Roles": 5,
     "omit": [],
-    "eduResultInMeta": true,
+    "eduResultInMeta": false,
     "atsOmit": []
   }
 }

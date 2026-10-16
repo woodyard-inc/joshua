@@ -80,7 +80,7 @@
 
   @media print {
     .back-link, .save-panel, .lock-tab, .lock-form { display: none !important; }
-    body { background: var(--paper); padding: 0; }
+    body { background: #fff; padding: 0; }
   }
   @media screen and (max-width: 210mm) {
     body { padding: var(--s-5) 0; }
@@ -141,7 +141,6 @@
   </div>
   <button onclick="window.print()">Save as PDF →</button>
   <a class="sp-link" href="{{ATS_HREF}}">ATS version →</a>
-{{VARIANT_LINKS}}
   <a class="sp-link" href="{{ROOT}}tailor.html">CV Workshop →</a>
   <span class="sp-label" style="margin-top:2px;">Full contact details are in the Workshop</span>
 </div>

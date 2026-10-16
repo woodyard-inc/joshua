@@ -206,7 +206,7 @@
 
   @media print {
     .back-link, .save-panel, .tool-shell, .tool-bar { display: none !important; }
-    body { background: var(--paper); padding: 0; }
+    body { background: #fff; padding: 0; }
   }
 
   @media screen and (max-width: 210mm) {
@@ -485,7 +485,7 @@
       resultBar.hidden = !lastTailored;
       savePanel.hidden = !lastTailored;
       page1.hidden = !lastTailored; page2.hidden = !lastTailored;
-      if (lastTailored) renderPayload(lastTailored);
+      if (lastTailored) loadCvFonts().then(() => renderPayload(lastTailored));
     } else if (which === 'master') {
       resultBar.hidden = true; savePanel.hidden = true;
       renderMaster();
@@ -499,6 +499,17 @@
   /* Lays out one CV payload and fits it to two pages. Shared by the tailored
      view and the master view so neither can drift from the other. */
   const DEFAULT_TAGLINE = 'Behavioural Science | Data Analytics | Market Research';
+
+  // A browser fetches a face only when text first uses it, so the course
+  // topics' italic could still be loading while the two-page fit measures,
+  // and a fallback italic runs wider and taller. Load every CV face first.
+  function loadCvFonts() {
+    return Promise.all([
+      '400 16px "Cormorant Garamond CV"', '700 16px "Cormorant Garamond CV"',
+      'italic 300 16px "Cormorant Garamond CV"', '400 16px "Helvetica CV"',
+      '700 16px "Helvetica CV"', '700 16px "National CV"',
+    ].map((f) => document.fonts.load(f, 'Ab'))).then(() => document.fonts.ready);
+  }
 
   function renderPayload(data) {
     $('out-eyebrow').innerHTML = piped(String(data.tagline || DEFAULT_TAGLINE)
@@ -531,7 +542,7 @@
       languages: cv.languages,
       skills: cv.skills,
     };
-    await document.fonts.ready;
+    await loadCvFonts();
     renderPayload(payload);
   }
 
@@ -871,7 +882,7 @@
 
       generator.hidden = true;
       renderKeywords(data);
-      await document.fonts.ready;
+      await loadCvFonts();
       const fit = renderPayload(data);
       reportFit(data, fit);
       lastTailored = {

@@ -215,10 +215,9 @@
   display: inline-block; box-sizing: border-box;
   width: 1.1em; margin-left: -1.1em; padding-left: 0.15em;
   font-family: var(--font-body); font-weight: 700;
-  color: var(--cobalt);
+  color: var(--ink);
 }
 .cv-bullets li strong { font-weight: 700; color: var(--cobalt); }
-.edu-bullets li::before { color: var(--ink); }
 .cv-bullets li.topics {
   padding-left: 0; color: var(--ink-soft); font-style: italic;
 }
@@ -271,9 +270,17 @@ body[data-colour="grey"] {
    browser printing with its own "Default" margins lands on ours rather than
    stacking a second margin on top. */
 @media print {
-  .page { box-shadow: none; margin: 0; width: 100%; min-height: auto; padding: 4px 2px; }
+  /* The page margin lives in the page's own padding, with a zero @page
+     margin. Chrome then has no margin to print its date / title / URL
+     header and footer into, and a browser left on "Default" margins can't
+     stack a second margin on top. 46px x 51px is ~12mm x 13.5mm. */
+  @page { size: A4; margin: 0; }
+  .page { box-shadow: none; margin: 0; width: 210mm; min-height: auto;
+          padding: 46px 51px; background: none; }
   .page:not(:last-of-type) { break-after: page; }
-  @page { size: A4; margin: 31.5pt 36.75pt; }   /* 42px x 49px, ~11mm x 13mm */
+  /* Section rules are painted, and Chrome's print dialog leaves "Background
+     graphics" off by default; this keeps them (and the colours) either way. */
+  .page, .page * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 }
 
 @media screen and (max-width: 210mm) {

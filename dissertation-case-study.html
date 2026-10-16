@@ -391,6 +391,11 @@
     main.body p { margin-bottom: 8pt; }
     .glance, .strip, .fig, .note, .reading, .card, .pull, .spec .row, table.data tr, .heatmap tr, .skills, .next { break-inside: avoid; }
     h2, h3, .sec-head, .flabel, .fig .fno, .fig .ftitle, .fig .fsub { break-after: avoid; }
+    /* Table figures may split between rows; chart figures stay whole. */
+    figure.fig.wide { break-inside: auto; }
+    .fig .ftitle, .fig .fno, h2, h3, .sec-head { break-inside: avoid; }
+    p, li, dd, td { orphans: 3; widows: 3; }
+    table.moderators tr.grp { break-after: avoid; }
     .glance { background: #fff; border: 1px solid #000; border-top-width: 3px; }
     .glance ol { grid-template-columns: 1fr; gap: 6pt; }
     .strip .v { font-size: 26pt; }

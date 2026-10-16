@@ -669,7 +669,7 @@
   }
 
   function layout(data, plan, page1Roles) {
-    const roles = trimRoles(data.roles, plan.bullets);
+    const roles = trimRoles(data.roles, plan.bullets, plan.floor);
     $('out-p1').innerHTML = section('Experience', roles.slice(0, page1Roles).map(roleHtml).join(''));
     const p2 = [];
     if (roles.length > page1Roles) {
@@ -706,41 +706,50 @@
     $('keywords-panel').hidden = false;
   }
 
-  /* Escalating trim plans, least damaging first:
+  /* Two-page fit: start from everything and give ground in this order.
+
        1. topics   — course module lists
-       2. project  — the full Wimbledon entry falls back to the one-line version
-       3. diss     — dissertation detail, later findings first; the Research
+       2. bullets  — non-core role bullets, lowest-ranked first (the Worker
+                     ranks every bullet by relevance and marks 2-4 per role
+                     as core for this job)
+       3. project  — the full Wimbledon entry falls back to the short one
+       4. diss     — research detail, later bullets first; the Research
                      section itself always stays, as on the CV
-       4. bullets  — role evidence, the last thing to give up */
-  const FIT_PLANS = [
-    { bullets: 999, projectFull: true,  topics: true,  diss: 99 },
-    { bullets: 999, projectFull: true,  topics: false, diss: 99 },
-    { bullets: 999, projectFull: false, topics: false, diss: 99 },
-    { bullets: 999, projectFull: false, topics: false, diss: 4  },
-    { bullets: 999, projectFull: false, topics: false, diss: 3  },
-    { bullets: 999, projectFull: false, topics: false, diss: 2  },
-    { bullets: 16,  projectFull: false, topics: false, diss: 2  },
-    { bullets: 14,  projectFull: false, topics: false, diss: 2  },
-    { bullets: 12,  projectFull: false, topics: false, diss: 2  },
-    { bullets: 10,  projectFull: false, topics: false, diss: 1  },
+       5. bullets  — core bullets last, never below one per role
+
+     Within each stage the bullet budget is spent as fully as the pages
+     allow, so space left at the foot of page two is filled with the next
+     most relevant bullet rather than left empty. */
+  const STAGES = [
+    { topics: true,  projectFull: true,  diss: 99, floor: 'all'  },
+    { topics: false, projectFull: true,  diss: 99, floor: 'core' },
+    { topics: false, projectFull: false, diss: 99, floor: 'core' },
+    { topics: false, projectFull: false, diss: 3,  floor: 'core' },
+    { topics: false, projectFull: false, diss: 2,  floor: 'one'  },
   ];
 
-  /* plan.bullets is a budget for the whole CV, not a cap per role.
+  const coreOf = (r) => Number.isFinite(r.core) ? r.core : r.bullets.length;
+  const totalBullets = (roles) => (roles || []).reduce((n, r) => n + r.bullets.length, 0);
 
-     The Worker returns each role's bullets in the order it judged most
-     relevant to the job, so the last bullet of a role is its weakest. This
-     spends the budget by repeatedly dropping that weakest bullet from
-     whichever role is currently fattest, oldest role first on a tie, and
-     never empties a role. */
-  function trimRoles(roles, budget) {
+  /* plan.bullets is a budget for the whole CV, not a cap per role. Each role's
+     bullets arrive ranked, so its last bullet is its weakest. The budget is
+     spent by dropping the weakest non-core bullet from whichever role has
+     the most to spare (oldest role first on a tie), and only then, if the
+     stage allows, core bullets the same way, never emptying a role. */
+  function trimRoles(roles, budget, floor = 'one') {
     const out = (roles || []).map((r) => ({ ...r, bullets: r.bullets.slice() }));
-    let total = out.reduce((a, r) => a + r.bullets.length, 0);
+    const min = (r) => floor === 'all' ? r.bullets.length : floor === 'core' ? Math.min(coreOf(r), r.bullets.length) : 1;
+    const mins = out.map(min);
+    let total = totalBullets(out);
+    const dropFrom = (limitOf) => {
+      let idx = -1, spare = 0;
+      out.forEach((r, i) => { const s = r.bullets.length - limitOf(i); if (s > 0 && s >= spare) { spare = s; idx = i; } });
+      if (idx < 0) return false;
+      out[idx].bullets.pop(); total -= 1; return true;
+    };
     while (total > budget) {
-      let idx = -1, most = 1;
-      out.forEach((r, i) => { if (r.bullets.length >= most) { most = r.bullets.length; idx = i; } });
-      if (idx < 0 || out[idx].bullets.length <= 1) break;
-      out[idx].bullets.pop();
-      total -= 1;
+      if (dropFrom((i) => Math.max(mins[i], Math.min(coreOf(out[i]), 99)))) continue;   // non-core first
+      if (!dropFrom((i) => mins[i])) break;                                            // then core, to the floor
     }
     return out;
   }
@@ -754,15 +763,47 @@
     return -1;
   }
 
+  /* Once a fit is found, give back whatever still fits, most valuable first:
+     the next most relevant role bullet, research detail, the full project,
+     then course topics. Trimming one thing can move a role to page one and
+     free far more room than it took, so this keeps the pages full. */
+  function fillBack(data, plan, step, k, total) {
+    const upgrades = [
+      (p) => p.bullets < total ? { ...p, bullets: p.bullets + 1, floor: p.floor === 'all' ? 'core' : p.floor } : null,
+      (p) => p.diss < 99 && data.dissertation && p.diss < (data.dissertation.bullets || []).length ? { ...p, diss: p.diss + 1 } : null,
+      (p) => !p.projectFull && data.project && data.project.full ? { ...p, projectFull: true } : null,
+      (p) => !p.topics ? { ...p, topics: true } : null,
+    ];
+    let improved = true;
+    while (improved) {
+      improved = false;
+      for (const up of upgrades) {
+        const next = up(plan);
+        if (!next) continue;
+        const k2 = tryPlan(data, next);
+        if (k2 > 0) { plan = next; k = k2; improved = true; break; }
+      }
+    }
+    layout(data, plan, k);
+    return { plan, step, page1Roles: k, fits: true };
+  }
+
   function fitToTwoPages(data) {
     document.body.classList.add('measuring');
     try {
-      for (let i = 0; i < FIT_PLANS.length; i++) {
-        const k = tryPlan(data, FIT_PLANS[i]);
-        if (k > 0) return { plan: FIT_PLANS[i], step: i, page1Roles: k, fits: true };
+      const total = totalBullets(data.roles);
+      for (let i = 0; i < STAGES.length; i++) {
+        const st = STAGES[i];
+        const lowest = totalBullets(trimRoles(data.roles, 0, st.floor));
+        for (let budget = total; budget >= lowest; budget--) {
+          const plan = { ...st, bullets: budget };
+          const k = tryPlan(data, plan);
+          if (k > 0) return fillBack(data, plan, i, k, total);
+        }
       }
-      const last = FIT_PLANS[FIT_PLANS.length - 1];
-      return { plan: last, step: FIT_PLANS.length - 1, page1Roles: 1, fits: false };
+      const last = { ...STAGES[STAGES.length - 1], bullets: 0 };
+      layout(data, last, 1);
+      return { plan: last, step: STAGES.length - 1, page1Roles: 1, fits: false };
     } finally {
       document.body.classList.remove('measuring');
     }
@@ -781,11 +822,11 @@
     if (data.project && data.project.full && !fit.plan.projectFull) bits.push('project shortened to one line');
     if (!fit.plan.topics) bits.push('course topics dropped');
     if (fit.plan.diss < 99) bits.push(`${fit.plan.diss} dissertation bullets`);
-    const kept = trimRoles(data.roles, fit.plan.bullets).reduce((n, r) => n + r.bullets.length, 0);
-    if (kept < total) bits.push(`${kept} of ${total} role bullets, weakest dropped first`);
+    const kept = totalBullets(trimRoles(data.roles, fit.plan.bullets, fit.plan.floor));
+    if (kept < total) bits.push(`${kept} of ${total} role bullets, least relevant dropped first`);
     note.textContent = bits.length
       ? `Trimmed to hold two pages: ${bits.join(', ')}.`
-      : `Fits two pages with no trimming: all ${total} selected bullets shown.`;
+      : `Fits two pages with no trimming: all ${total} bullets shown, most relevant first.`;
     note.hidden = false;
   }
 
@@ -887,7 +928,7 @@
       reportFit(data, fit);
       lastTailored = {
         ...data,
-        roles: trimRoles(data.roles, fit.plan.bullets),
+        roles: trimRoles(data.roles, fit.plan.bullets, fit.plan.floor),
         project: data.project ? { ...data.project, full: data.project.full && fit.plan.projectFull } : null,
       };
 

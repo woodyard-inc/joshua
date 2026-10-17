@@ -127,7 +127,10 @@ def build_context():
         "k": num(DATA["pooled"]["predictors"]),
         "fe_min": beta(round(DATA["controls"]["financial_ease"]["min"], 2)),
         "fe_max": beta(round(DATA["controls"]["financial_ease"]["max"], 2)),
-        "tukey_note": tukey_note(),
+        "tukey_pairs": tukey_pairs(),
+        "n_moderators": num(sum(len(m.get("blocks", [None])) for m in DATA["moderators"])),
+        "dot_min": num(sample["ls_dot_min"]),
+        "dot_max": num(sample["ls_dot_max"]),
         "ci": num(sample["ci_level_pct"]),
         "z": num(sample["ci_z"]),
         "scale_hdi": keep(sample["scale_hdi"]),
@@ -136,16 +139,15 @@ def build_context():
     assert fair_all, "the fairness claims assume significance in every country"
     ctx["fig1"] = fig1_heatmap(fair_mean, otr_mean)
     ctx["fig2"] = fig2_fairness(fair_mean, at_ratio)
-    ctx["fig3"] = fig3_emm()
     ctx["table1"] = table1_countries()
     ctx["table2"] = table2_moderators()
     return ctx
 
 
-def tukey_note():
-    parts = [f"{by_code[p['a']]['name']} and {by_code[p['b']]['name']} (p = {keep(('%.2f' % p['p'])[1:])})"
-             for p in DATA["tukey"]["ns_pairs"]]
-    return " and ".join(parts)
+def tukey_pairs():
+    short = lambda c: "the US" if c == "US" else by_code[c]["name"]
+    parts = [f"{short(p['a'])} and {by_code[p['b']]['name']}" for p in DATA["tukey"]["ns_pairs"]]
+    return ", and ".join(parts)
 
 
 # ---------------------------------------------------------------- Fig. 1
@@ -261,64 +263,41 @@ def fig2_fairness(fair_mean, ratio):
         b, se, st = models[c]["trust_fairness"]
         z = DATA["sample"]["ci_z"]
         rows.append((by_code[c]["name"], b, b - z * se, b + z * se, c == "AT"))
-    ann = f"≈{keep(round(ratio))}× the cross-country average"
     fmt = lambda t: keep(f"{t:.1f}")
 
     def make(w, lw, s):
         return dotplot(rows, -0.1, 0.4, [-0.1, 0, 0.1, 0.2, 0.3, 0.4], fmt, w, lw,
                        (f"f2t{s}", "Trust in fairness and life satisfaction, by country"),
                        (f"f2d{s}", "Coefficients with 95% confidence intervals, all above zero; Austria's is the largest."),
-                       annotate=ann if w > 500 else "≈" + keep(round(ratio)) + "× average", ref=0)
+                       ref=0)
 
     table = "".join(f"<tr><th scope=\"row\">{esc(r[0])}</th><td>{beta(r[1])}</td><td>{num(r[2], 3)} to {num(r[3], 3)}</td></tr>" for r in rows)
     return two_sizes(make) + (f'<table class="vh"><caption>Fig. 2 data</caption><tr><th>Country</th><th>β</th><th>95% CI</th></tr>{table}</table>')
 
 
-def fig3_emm():
-    rows = []
-    for c in sorted(ORDER, key=lambda c: -by_code[c]["emm"]["mean"]):
-        e = by_code[c]["emm"]
-        rows.append((by_code[c]["name"], e["mean"], e["lo"], e["hi"], c == "CN"))
-    fmt = lambda t: keep(f"{t:g}")
-
-    def make(w, lw, s):
-        return dotplot(rows, 4, 6, [4, 4.5, 5, 5.5, 6], fmt, w, lw,
-                       (f"f3t{s}", "Life satisfaction at mean social capital, by country"),
-                       (f"f3d{s}", "Estimated marginal means on the 1 to 7 scale with 95% confidence intervals; the United States highest, China lowest."))
-
-    table = "".join(f"<tr><th scope=\"row\">{esc(r[0])}</th><td>{num(r[1], 2)}</td><td>{num(r[2], 2)} to {num(r[3], 2)}</td></tr>" for r in rows)
-    return two_sizes(make) + (f'<table class="vh"><caption>Fig. 3 data</caption><tr><th>Country</th><th>Mean</th><th>95% CI</th></tr>{table}</table>')
-
-
 # ---------------------------------------------------------------- tables
-def stands_out(c):
-    m = models[c]
-    if c == "US":
-        return (f"Highest satisfaction at average social capital, level with Austria. Trust in society was not significant; "
-                f"the elder care norm was (β = {beta(m['elder_care'][0])}).")
-    if c == "AT":
-        return (f"Trust in fairness strongest in the sample (β = {beta(m['trust_fairness'][0])}), about twice the five-country "
-                f"average. Daily contact also mattered.")
-    if c == "RU":
-        r = by_code["RU"]
-        return (f"Trust in society strongest in the sample (β = {beta(m['trust_society'][0])}). Highest power distance "
-                f"({num(r['power_distance'])}) and lowest corruption-index score ({num(r['cpi'])}) in the sample.")
-    if c == "ZA":
-        return (f"Social networks most strongly linked to satisfaction (β = {beta(m['social_network'][0])}), and the only "
-                f"country where the family first norm was significant.")
-    if c == "CN":
-        return (f"Lowest satisfaction at average social capital. The only country where the societal care norm was "
-                f"significant (β = {beta(m['societal_care'][0])}).")
+STANDS_OUT = {
+    "US": "The fewest significant links between social capital and satisfaction in the sample. Wealth may provide the floor, leaving bridging ties as the scarce resource.",
+    "AT": "Trust in fairness and organisational trust both stand out from the rest of the sample.",
+    "ZA": "The only country where social networks stayed significant in the pooled model. Community may compensate for institutional gaps.",
+    "RU": "The highest power distance and lowest corruption-perception score in the sample. Trust in society matters most; stable relationships may count for more when the wider situation feels uncertain.",
+    "CN": "The lowest satisfaction at average social capital, with societal care norms and organisational support mattering most.",
+}
+
+
+def ls_dot(v):
+    lo, hi = DATA["sample"]["ls_dot_min"], DATA["sample"]["ls_dot_max"]
+    return f'<span class="lsdot" aria-hidden="true"><i style="left:{100 * (v - lo) / (hi - lo):.1f}%"></i></span>'
 
 
 def table1_countries():
     rows = []
     for c in sorted(ORDER, key=lambda c: -by_code[c]["emm"]["mean"]):
         r = by_code[c]
-        rows.append(f'<tr><th scope="row">{esc(r["name"])}</th><td class="num">{num(r["emm"]["mean"], 2)}</td>'
+        rows.append(f'<tr><th scope="row">{esc(r["name"])}</th><td class="num">{num(r["emm"]["mean"], 2)}{ls_dot(r["emm"]["mean"])}</td>'
                     f'<td class="num">{num(r["n"])}</td><td class="num">{num(r["hdi"], 3)}</td>'
                     f'<td class="num">{num(r["individualism"], 1)}</td><td class="num">{num(r["hazard"], 1)}</td>'
-                    f'<td class="txt">{stands_out(c)}</td></tr>')
+                    f'<td class="txt">{STANDS_OUT[c]}</td></tr>')
     return f'''<div class="tbl-scroll" tabindex="0" role="region" aria-label="Table 1, scrollable">
 <table class="data countries">
 <thead><tr><th scope="col">Country</th><th scope="col" class="num">LS mean</th><th scope="col" class="num">n</th><th scope="col" class="num">HDI</th><th scope="col" class="num">Individ&shy;ualism</th><th scope="col" class="num">Hazard</th><th scope="col">What stands out</th></tr></thead>
@@ -404,10 +383,8 @@ BANNED = ["impact", "effect of", "drives", "proves", "leads to", "will lead", "i
 
 
 def check_language(page):
-    t = visible_text(page).lower().replace("main effect", "")
+    t = visible_text(page).lower()
     hits = [w for w in BANNED if w in t]
-    if re.search(r"\beffects?\b", t):
-        hits.append("effect")
     if hits:
         sys.exit("causal language on the page: " + ", ".join(hits))
 

@@ -137,6 +137,8 @@ def build_context():
         "scale_index": keep(sample["scale_index"]),
     }
     assert fair_all, "the fairness claims assume significance in every country"
+    others = [models[c]["trust_fairness"][0] for c in ORDER if c != "AT"]
+    assert models["AT"]["trust_fairness"][0] / (sum(others) / len(others)) > 2, "copy says 'more than twice the other four countries''"
     ctx["fig1"] = fig1_heatmap(fair_mean, otr_mean)
     ctx["fig2"] = fig2_fairness(fair_mean, at_ratio)
     ctx["table1"] = table1_countries()
@@ -200,7 +202,7 @@ def fig1_heatmap(fair_mean, otr_mean):
         key = k["id"] == "trust_fairness"
         label = esc(k["label"])
         if key:
-            label += '<span class="hm-flag">Significant in all five, and the largest on average</span>'
+            label += '<span class="hm-flag">The most consistent: significant in all five</span>'
         elif k.get("per_person"):
             label += '<span class="hm-sub">per person contacted</span>'
         cells = []
@@ -281,7 +283,7 @@ STANDS_OUT = {
     "AT": "Trust in fairness and organisational trust both stand out from the rest of the sample.",
     "ZA": "The only country where social networks stayed significant in the pooled model. Community may compensate for institutional gaps.",
     "RU": "The highest power distance and lowest corruption-perception score in the sample. Trust in society matters most; stable relationships may count for more when the wider situation feels uncertain.",
-    "CN": "The lowest satisfaction at average social capital, with societal care norms and organisational support mattering most.",
+    "CN": "The lowest satisfaction at average social capital. Societal norms and resources stood out in the pooled cross-country comparison (H1b).",
 }
 
 

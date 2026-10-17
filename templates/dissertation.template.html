@@ -9,11 +9,20 @@
 <meta name="description" content="How social capital and life satisfaction relate across Austria, China, Russia, South Africa and the United States: an MSc dissertation by Joshua Woodyard, City St George's, University of London.">
 <meta name="theme-color" content="#FFFDF8">
 <link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="preload" as="font" type="font/woff2" href="fonts/SourceSerif4-latin.woff2" crossorigin>
 <link rel="stylesheet" href="foundations.css">
 <style>
+  /* Source Serif 4 (SIL OFL, fonts/SourceSerif4-OFL.txt), self-hosted: the
+     variable upright and italic, Latin and Greek subsets (β, α). */
+  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-latin.woff2") format("woff2");
+               font-weight: 400 600; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-greek.woff2") format("woff2");
+               font-weight: 400 600; font-style: normal; font-display: swap; unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF; }
+  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-Italic-latin.woff2") format("woff2");
+               font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-Italic-greek.woff2") format("woff2");
+               font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF; }
+
   /* Case study 002. Page-local styles only: foundations.css is shared with
      the other case studies and is not changed here. */
   :root {
@@ -484,7 +493,7 @@
           <aside class="note"><span class="caps">The quote on my desk</span><p>“Money can't buy happiness”: a maxim argued over since Rousseau's <em>Discourse on the Arts and Sciences</em> ({{rousseau}}). {{since_rousseau}} years later, the data still mostly agrees.</p></aside>
         </div>
         <p>What is less clear is whether it works the same way everywhere. Most studies treat the link as uniform and measure trust, networks and norms with separate instruments. I used the ISSP {{issp}} Social Networks module, an underused survey that captures all three of Putnam's dimensions at once, and tested the link in five very different countries.</p>
-        <p>The answer: social capital matters everywhere, but not in the same way. Culture and natural risk change which relationships count. Where the state provides more, social capital carries less of the load. And one thing holds across every country: people who trust that the system treats them fairly are more satisfied with life.</p>
+        <p>The answer: social capital matters everywhere, but not in the same way. Culture and natural risk change which relationships count. Where the state provides more, social capital carries less of the load. And the most consistent link holds in every country: people who trust that the system treats them fairly are more satisfied with life.</p>
         <figure class="fig" id="fig1" aria-labelledby="fig1-t">
           <span class="fno">Fig. 1</span>
           <h3 class="ftitle" id="fig1-t">Social capital matters everywhere, but which kind depends on where you live</h3>
@@ -535,7 +544,7 @@
 
         <h3 class="fh">Fairness is the strongest constant</h3>
         <p class="flabel"><span class="code">H1a</span><span class="caps">· Within countries ·</span><span class="chip caps">Supported</span></p>
-        <p>Within every country, people with more social capital reported higher life satisfaction, extending Putnam's finding well beyond the US. Trust in fairness was the most consistent link, positive and significant in all five countries and strongest in Austria, where its coefficient was about twice the five-country average. That fits the “warm glow” of trust that Bjørnskov (2003b) describes in highly developed countries.</p>
+        <p>Within every country, people with more social capital reported higher life satisfaction, extending Putnam's finding well beyond the US. Trust in fairness was the most consistent link, positive and significant in all five countries and strongest in Austria, where its coefficient was more than twice the other four countries'. That fits the “warm glow” of trust that Bjørnskov (2003b) describes in highly developed countries.</p>
         <figure class="fig" id="fig2" aria-labelledby="fig2-t">
           <span class="fno">Fig. 2</span>
           <h4 class="ftitle" id="fig2-t">Austria leads, but fairness counts everywhere</h4>
@@ -617,7 +626,7 @@
             <h3 id="p3-h">Fairness is infrastructure</h3>
             <p class="where"><b class="caps">Where</b> Everywhere, especially advanced democracies</p>
             <dl>
-              <dt class="caps">Why</dt><dd>Trust in fairness was positive and significant in all five countries (<a href="#fig2">Fig. 2</a>).</dd>
+              <dt class="caps">Why</dt><dd>Trust in fairness was the most consistent link, positive and significant in all five countries (<a href="#fig2">Fig. 2</a>).</dd>
               <dt class="caps">What it could look like</dt><dd>Make fairness visible: transparent decision-making, justice that follows through on petty crimes as well as serious ones, fair wage distribution, and social services that are easy to find and use. The dissertation also argues for progressive taxation.</dd>
               <div class="big"><dt class="caps">The bigger point</dt><dd>Perceived fairness may be the one form of social capital a government can build directly.</dd></div>
             </dl>

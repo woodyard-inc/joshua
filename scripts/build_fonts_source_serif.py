@@ -9,7 +9,7 @@ size and keeps Google's Latin range plus α and β:
     fonts/original/SourceSerif4-*.woff2   variable sources (SIL OFL)
     fonts/SourceSerif4-{Regular,Semibold,Italic}[-greek].woff2
 
-    /tmp/fontenv/bin/python scripts/make_source_serif.py
+    /tmp/fontenv/bin/python scripts/build_fonts_source_serif.py
 """
 from pathlib import Path
 

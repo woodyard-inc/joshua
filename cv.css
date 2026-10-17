@@ -9,7 +9,7 @@
 /* ---- CV faces --------------------------------------------------------
    Line metrics are corrected so a line box matches the ink it contains.
    Cormorant Garamond CV is modified at the source by
-   scripts/fix_font_metrics.py (SIL OFL, see fonts/OFL.txt). Helvetica and
+   scripts/build_fonts_cormorant.py (SIL OFL, see fonts/OFL.txt). Helvetica and
    National Codes are not ours to modify, so the same correction is made
    here with *-override descriptors, using that script's measurements. */
 @font-face { font-family: "Cormorant Garamond CV"; src: url("fonts/CormorantGaramondCV-Regular.woff2") format("woff2");

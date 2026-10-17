@@ -32,3 +32,16 @@ cf-worker/node_modules/
 # Local-only: source photos (306 MB) and editor/agent config
 wimbledon/profile pictures to upload/
 .claude/
+
+# Wimbledon: local analysis scripts, dev servers and scratch output (not part of the site)
+wimbledon/Components.html
+wimbledon/convert_player_photos.sh
+wimbledon/devserver.py
+wimbledon/serve.sh
+wimbledon/djokovic_federer_analysis.py
+wimbledon/rafa_marker.png
+wimbledon/src/pbp_index_analysis.py
+wimbledon/src/regression_analysis.py
+wimbledon/data/analysis_report.json
+wimbledon/data/pbp_index_importance.json
+wimbledon/data/pbp_player_profiles.json

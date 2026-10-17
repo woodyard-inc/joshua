@@ -13,7 +13,7 @@
 
    Line metrics are corrected so a line box matches the ink it holds (the same
    type as the CV). Cormorant Garamond is served as the metric-corrected
-   "CV" files built by scripts/fix_font_metrics.py (SIL OFL, see
+   "CV" files built by scripts/build_fonts_cormorant.py (SIL OFL, see
    fonts/OFL.txt). Helvetica and National are not ours to modify, so they are
    corrected here with ascent/descent/line-gap overrides measured by that
    script. */

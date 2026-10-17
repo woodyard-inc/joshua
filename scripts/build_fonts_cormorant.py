@@ -33,7 +33,7 @@ Linotype) are not ours to alter; they are corrected in CSS instead, with
 ascent-override / descent-override / line-gap-override, using the
 measurements this script prints for them.
 
-Usage:  python3 scripts/fix_font_metrics.py
+Usage:  python3 scripts/build_fonts_cormorant.py
 Needs:  fontTools, brotli
 """
 

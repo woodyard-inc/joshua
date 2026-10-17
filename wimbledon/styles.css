@@ -1456,6 +1456,13 @@ select#player-select:focus { outline: 1px solid var(--cobalt); }
 }
 
 @media (max-width: 600px) {
+  /* Landing overlay: left-aligned and wrapping on phones; the one-line,
+   * right-aligned title ran off the screen. */
+  .empty-overlay { padding: var(--s-5); text-align: left; }
+  .empty-eyebrow, .empty-title, .empty-desc { text-align: left; }
+  .empty-title { white-space: normal; font-size: 34px; }
+  .empty-desc { margin: 0; }
+
   .hl-stat .hl-val { font-size: 22px; }
   .brand-centre h1 { font-size: 22px; }
   select#player-select { min-width: 140px; }

@@ -74,7 +74,7 @@
   }
   .stat-row .s:first-child { padding-left: 0; }
   .stat-row .s:last-child  { padding-right: 0; border-right: none; }
-  .stat-row .s .k { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); }
+  .stat-row .s .k { display: block; line-height: 1.5; font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); }
   .stat-row .s .v { font-family: var(--font-display); font-size: 56px; line-height: 0.95; font-weight: 700; letter-spacing: -0.04em; color: var(--ink); margin-top: var(--s-3); font-variant-numeric: tabular-nums; }
   .stat-row .s .v--cobalt { color: var(--cobalt); }
   .stat-row .s .v .suf { font-size: 28px; letter-spacing: 0.04em; color: var(--ink-muted); margin-left: 4px; font-weight: 700; }
@@ -192,7 +192,7 @@
     color: var(--paper);
   }
   .next-project .eyebrow { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(250,247,240,0.6); }
-  .next-project h3 { font-family: var(--font-display); font-size: 64px; font-weight: 700; letter-spacing: -0.035em; line-height: 0.95; color: var(--paper); margin-top: var(--s-3); max-width: 16ch; }
+  .next-project h3 { text-transform: none; font-family: var(--font-display); font-size: 64px; font-weight: 700; letter-spacing: -0.035em; line-height: 0.95; color: var(--paper); margin-top: var(--s-3); max-width: 16ch; }
   .next-project h3 em { font-family: var(--font-body); font-style: italic; font-weight: 300; color: rgba(250,247,240,0.7); font-size: 0.6em; display: block; margin-top: var(--s-3); }
   .next-project .arrow { font-family: var(--font-body); font-style: italic; font-size: 48px; }
   .next-project:hover .arrow { transform: translateX(8px); transition: transform 220ms ease; }
@@ -215,7 +215,8 @@
     .nameplate .menu { display: inline-block; }
     .title-block, .deck-block { grid-template-columns: 1fr; }
     .stat-row { grid-template-columns: repeat(2, 1fr); }
-    .stat-row .s { border-right: none; border-bottom: 1px solid var(--rule-strong); padding: var(--s-5) var(--s-4); }
+    .stat-row .s, .stat-row .s:first-child, .stat-row .s:last-child { border-right: none; border-bottom: 1px solid var(--rule-strong); padding: var(--s-5) var(--s-4) var(--s-5) 0; }
+    .stat-row .s:nth-child(even) { padding-left: var(--s-4); }
     .stat-row .s:nth-child(odd) { border-right: 1px solid var(--rule-strong); }
     .stat-row .s:last-child, .stat-row .s:nth-last-child(2) { border-bottom: none; }
     .article { grid-template-columns: 1fr; }
@@ -237,6 +238,13 @@
     .chart-row .tr { grid-column: 1 / -1; order: 3; }
     .colophon { grid-template-columns: 1fr; gap: 4px; }
     .colophon .c, .colophon .r { text-align: left; }
+    .crumb { flex-wrap: wrap; gap: 6px 10px; }
+    .title-block { padding: var(--s-6) 0 var(--s-7); }
+    .deck-block { padding: var(--s-6) 0 var(--s-7); }
+    .deck-block .standfirst { font-size: 24px; }
+    .article { padding: var(--s-7) 0 var(--s-8); }
+    .article blockquote p { font-size: 24px; }
+    .next-project { margin-top: var(--s-7); }
   }
 
   @media (hover: none) {
@@ -388,7 +396,7 @@
                alt="UNIQLO SOHO ground floor — the LifeWear wall with rain-jacket mannequin and heavyweight tee table."
                style="width: 100%; height: auto; display: block; border: 1px solid var(--rule-strong);">
         </picture>
-        <figcaption style="grid-column: 1 / -1; font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-top: var(--s-3); padding-left: var(--s-3); border-left: 2px solid var(--cobalt);">Broome Street, SOHO (left); UNIQLO SOHO ground floor with the LifeWear wall (right).</figcaption>
+        <figcaption style="grid-column: 1 / -1; font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-top: var(--s-3); padding-left: var(--s-3); border-left: 2px solid var(--cobalt);">Broome Street, SOHO, and the UNIQLO SOHO ground floor with its LifeWear wall.</figcaption>
       </figure>
 
       <p>Data gets you a hypothesis; a floor gets you an explanation. On a 90°F August Saturday afternoon, I went to the SOHO store to see the correlation in the wild.</p>
@@ -450,7 +458,7 @@
   <a class="next-project" href="dissertation-case-study.html">
     <div>
       <span class="eyebrow">Next case study · 002</span>
-      <h3>Money can't buy happiness<em>MSc Dissertation · City, University of London · 2024</em></h3>
+      <h3>Money can't buy happiness<em>MSc dissertation · City St George's, University of London · 2024</em></h3>
     </div>
     <span class="arrow">→</span>
   </a>

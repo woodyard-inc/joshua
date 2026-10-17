@@ -548,7 +548,13 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
 @media (max-width: 700px) {
   .pf-nav-desktop { display: none; }
   .pf-nameplate .menu { display: inline-block; }
-  .pf-nameplate { grid-template-columns: auto 1fr auto; }
+  /* Phones: wordmark left, menu right. The date / issue line is dropped:
+     beside the wordmark it squeezed both onto two lines. National draws its
+     letters at about a third of the em, so the wordmark needs a large size
+     to read at all. */
+  .pf-left { display: none; }
+  .pf-nameplate { grid-template-columns: 1fr auto; padding: var(--s-3) var(--page-pad); }
+  .pf-wordmark { font-size: 36px; text-align: left; justify-self: start; }
   .pf-colophon { grid-template-columns: 1fr; gap: var(--s-2); }
-  .pf-col-c, .pf-col-r { text-align: left; }
+  .pf-col-l, .pf-col-c, .pf-col-r { text-align: left; white-space: normal; }
 }

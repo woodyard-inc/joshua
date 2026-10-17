@@ -216,9 +216,9 @@
   .card dl { margin: 0; }
   .card dt { color: var(--d-ink-2); margin: 0 0 4px; }
   .card dd { margin: 0 0 16px; font-size: 17px; line-height: 1.5; }
-  .card .test { background: var(--d-tint); padding: 16px; margin-top: 4px; }
-  .card .test dt { color: var(--d-ink); }
-  .card .test dd { margin: 0; }
+  .card .big { background: var(--d-tint); padding: 16px; margin-top: 4px; }
+  .card .big dt { color: var(--d-ink); }
+  main.body .card .big dd { margin: 0; font-family: var(--d-serif); font-style: italic; font-size: 21px; line-height: 1.4; color: var(--d-ink); }
 
   /* Skills strip */
   .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 3px solid var(--d-ink); margin-top: var(--d-section); }
@@ -384,7 +384,8 @@
     .coefs .cb { font-size: 8.5pt; }
     .card h3 { font-size: 13pt; }
     .card dd { margin-bottom: 6pt; }
-    .card .test { padding: 6pt 8pt; }
+    .card .big { padding: 6pt 8pt; }
+    main.body .card .big dd { font-size: 12pt; }
     .card .where { font-size: 9.5pt !important; margin-bottom: 6pt !important; }
     .skills h3 { font-size: 12pt; }
     main.body .skills p { font-size: 9.5pt; }
@@ -402,13 +403,13 @@
     .with-note > .note { margin: 0 0 12pt; background: #fff; border: 1px solid #999; padding: 8pt; }
     .playbook { display: block; }
     .card { margin-bottom: 12pt; padding-top: 6pt; }
-    .card .test { background: #fff; border: 1px solid #999; }
+    .card .big { background: #fff; border: 1px solid #999; }
     .tbl-scroll, .hm-scroll { overflow: visible; }
     table.countries, table.heatmap { min-width: 0; }
     .chart--narrow { display: none !important; }
     .chart--wide { display: block !important; }
     .heatmap td.ns { background: #eee !important; }
-    .heatmap td, .hm-ramp, .chip, .card .test { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .heatmap td, .hm-ramp, .chip, .card .big { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     .heatmap td:not(.ns) { color: inherit; }
     .chip { color: #fff !important; }
     .pull p { font-size: 18pt !important; }
@@ -480,15 +481,14 @@
       <li><span class="n">02</span><span>Both kinds of national context moderate the link: what governments shape (human development, government resources, corruption, income) and what a country is given (natural-disaster risk, cultural values).</span></li>
       <li><span class="n">03</span><span>Most associations weaken as state capacity grows, but trust in fairness stays positive and significant in every country. Relative income has no significant main effect.</span></li>
     </ol>
-    <p class="jump"><a href="#playbook">Jump to the playbook: four low-cost ideas for building community, and how I'd test them →</a></p>
+    <p class="jump"><a href="#playbook">Jump to the playbook: four low-cost ideas for building community →</a></p>
   </section>
 
   <!-- 3. STAT STRIP -->
   <section class="strip" aria-label="Key numbers">
     <div class="s"><span class="k caps">Respondents</span><div class="v">11,249</div><p>Five countries, ISSP 2017 Social Networks module.</p></div>
     <div class="s"><span class="k caps">Trust in fairness</span><div class="v">5 of 5</div><p>Significant and positive in every country (β 0.09–0.29, p < .05).</p></div>
-    <!-- TODO_CONFIRM: tile wording. The dissertation calls only H2a "highly nuanced". -->
-    <div class="s"><span class="k caps">Hypotheses supported</span><div class="v">4 of 4</div><p>H2a with nuance: its moderation results were mixed.</p></div>
+    <div class="s"><span class="k caps">Hypotheses supported</span><div class="v">4 of 4</div><p>H2a with nuance: some ties mattered more, others less, depending on context.</p></div>
     <div class="s"><span class="k caps">Relative income</span><div class="v">n.s.</div><p>No significant main effect, although felt financial strain was among the strongest predictors.</p></div>
   </section>
 
@@ -665,10 +665,9 @@
       <!-- §05 -->
       <section id="playbook" aria-labelledby="playbook-h">
         <div class="sec-head"><span class="n">05</span><h2 id="playbook-h">The playbook</h2></div>
-        <p class="lead"><em>Four low-cost ideas for building better communities, and how I'd test each one</em></p>
+        <p class="lead"><em>Four low-cost ideas for building better communities, grounded in what the data suggest</em></p>
         <p class="lede-bold">Context first. Because the link between social capital and life satisfaction depends on culture and institutions, both need to be understood before any intervention is designed.</p>
         <div class="playbook">
-          <!-- TODO_CONFIRM: each "How I'd test it" line is a draft written for Joshua. -->
           <article class="card" aria-labelledby="p1-h">
             <span class="idx">P1</span>
             <h3 id="p1-h">Plan together before the flood</h3>
@@ -676,7 +675,8 @@
             <dl>
               <dt class="caps">What the data show</dt><dd>In riskier countries, trust and social networks were less strongly linked to life satisfaction, while societal care was more strongly linked. Hazard risk itself had no positive association with satisfaction.</dd>
               <dt class="caps">The idea</dt><dd>Community emergency action plans and regular community events. They build trust and organisational support, help protect people when disaster strikes, and cost little compared with large-scale infrastructure.</dd>
-              <div class="test"><dt class="caps">How I'd test it</dt><dd>Pilot plans in some at-risk neighbourhoods and compare with matched neighbourhoods. Measure trust, societal care and life satisfaction before, after, and again after the next hazard event.</dd></div>
+              <dt class="caps">What it could look like</dt><dd>Neighbourhood emergency plans written with residents: who checks on whom, where to meet, who has a car or a generator. Keep the network alive through regular street events, drills and shared meals, so it already exists when it's needed. Councils and community groups can run it for a fraction of the cost of new flood defences.</dd>
+              <div class="big"><dt class="caps">The bigger point</dt><dd>Resilience may be social before it is structural.</dd></div>
             </dl>
           </article>
           <article class="card" aria-labelledby="p2-h">
@@ -686,7 +686,8 @@
             <dl>
               <dt class="caps">What the data show</dt><dd>Social networks mattered more for life satisfaction in individualistic cultures, where there are fewer ready-made in-groups.</dd>
               <dt class="caps">The idea</dt><dd>Subsidise or create ‘network drivers’ that build bridging ties between people who don't share an identity. These can be informal (parks, pubs) or formal (employment resource centres, national sporting events), alongside teaching tolerance and inclusivity from a young age.</dd>
-              <div class="test"><dt class="caps">How I'd test it</dt><dd>Stagger a community-space grant across areas. Measure bridging ties with a position generator (Lin) and life satisfaction over time, comparing early and late areas.</dd></div>
+              <dt class="caps">What it could look like</dt><dd>Treat the places where strangers meet as social infrastructure. Protect community pubs and parks through planning decisions, design employment resource centres as meeting points as well as service desks, and use national sporting events to bring different groups together. Teach tolerance and inclusivity in schools so the bridges get used.</dd>
+              <div class="big"><dt class="caps">The bigger point</dt><dd>Where people meet is already policy, whether or not anyone designs it.</dd></div>
             </dl>
           </article>
           <article class="card" aria-labelledby="p3-h">
@@ -696,7 +697,8 @@
             <dl>
               <dt class="caps">What the data show</dt><dd>Trust in fairness was positive and significant in every country, and Austria's coefficient was about twice the five-country average.</dd>
               <dt class="caps">The idea</dt><dd>Treat perceived fairness as something to build: transparent institutions, justice even for petty crimes, fair wage distribution, and better social resource services. The dissertation also argues for progressive taxation.</dd>
-              <div class="test"><dt class="caps">How I'd test it</dt><dd>Follow perceived fairness and life satisfaction in a panel where a transparency or justice reform rolls out region by region.</dd></div>
+              <dt class="caps">What it could look like</dt><dd>Make fairness visible. Publish how decisions are made, follow through on small injustices as well as big ones, and make benefits and services easy to find and understand. Fair wage distribution and progressive taxation are the structural options the dissertation puts forward.</dd>
+              <div class="big"><dt class="caps">The bigger point</dt><dd>Perceived fairness may be the one form of social capital a government can build directly.</dd></div>
             </dl>
           </article>
           <article class="card" aria-labelledby="p4-h">
@@ -706,7 +708,8 @@
             <dl>
               <dt class="caps">What the data show</dt><dd>Many social capital measures were positively associated with life satisfaction, while relative income had no significant main effect.</dd>
               <dt class="caps">The idea</dt><dd>Development projects aimed at community resources and community trust may do more for wellbeing than economic promises. Treat barriers to social capital as a development challenge in their own right.</dd>
-              <div class="test"><dt class="caps">How I'd test it</dt><dd>Compare wellbeing outcomes of community-investment programmes with cost-matched cash or infrastructure programmes.</dd></div>
+              <dt class="caps">What it could look like</dt><dd>Judge development projects partly by what they do for community: new shared spaces, local groups and levels of trust, counted alongside jobs and income. Fund community centres, clubs and mutual-aid networks as core development, not an add-on.</dd>
+              <div class="big"><dt class="caps">The bigger point</dt><dd>Progress could be measured in connection as well as cash.</dd></div>
             </dl>
           </article>
         </div>

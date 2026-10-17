@@ -6,22 +6,22 @@
      templates/dissertation.template.html. Edit those, then rebuild. -->
 <title>Money can't buy happiness, but community can · Joshua Woodyard</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23002FA7%27/%3E%3C/svg%3E">
 <meta name="description" content="How social capital and life satisfaction relate across Austria, China, Russia, South Africa and the United States: an MSc dissertation by Joshua Woodyard, City St George's, University of London.">
 <meta name="theme-color" content="#FFFDF8">
 <link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
-<link rel="preload" as="font" type="font/woff2" href="fonts/SourceSerif4-latin.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/SourceSerif4-Regular.woff2" crossorigin>
 <link rel="stylesheet" href="foundations.css">
 <style>
-  /* Source Serif 4 (SIL OFL, fonts/SourceSerif4-OFL.txt), self-hosted: the
-     variable upright and italic, Latin and Greek subsets (β, α). */
-  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-latin.woff2") format("woff2");
-               font-weight: 400 600; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-greek.woff2") format("woff2");
-               font-weight: 400 600; font-style: normal; font-display: swap; unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF; }
-  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-Italic-latin.woff2") format("woff2");
-               font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-Italic-greek.woff2") format("woff2");
-               font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF; }
+  /* Source Serif 4 (SIL OFL, fonts/SourceSerif4-OFL.txt): static instances at
+     text optical size, cut by scripts/make_source_serif.py (52 KB for the
+     three styles, against 240 KB for the variable files). */
+  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-Regular-greek.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; unicode-range: U+03B1-03B2; }
+  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-Semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-Semibold-greek.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; unicode-range: U+03B1-03B2; }
+  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-Italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: "Source Serif 4"; src: url("fonts/SourceSerif4-Italic-greek.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; unicode-range: U+03B1-03B2; }
 
   /* Case study 002. Page-local styles only: foundations.css is shared with
      the other case studies and is not changed here. */
@@ -36,7 +36,10 @@
     --d-gap: 24px;
     --d-section: 96px;
   }
-  body { padding: 0; background: var(--paper); color: var(--d-ink); }
+  /* Source Serif is the default here, so hidden captions and data tables
+     don't pull in the site's Cormorant files as well. */
+  body { padding: 0; background: var(--paper); color: var(--d-ink); font-family: var(--d-serif); }
+  caption, th, td, svg title, svg desc { font-family: inherit; }
   .vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
 
   /* Shared nameplate: larger and darker here for legibility and contrast. */
@@ -133,7 +136,7 @@
   .toc-mob { display: none; }
 
   /* "body" also matches foundations.css's body-text class: undo its measure. */
-  main.body { grid-column: 3 / 13; display: grid; grid-template-columns: subgrid; max-width: none; }
+  main.body { grid-column: 3 / 13; display: grid; grid-template-columns: subgrid; max-width: none; font-family: var(--d-serif); }
   main.body > section { grid-column: 1 / -1; display: grid; grid-template-columns: subgrid; align-content: start; }
   main.body > section + section, main.body > section + .pull, main.body > .pull + section { margin-top: var(--d-section); }
   main.body section > *, .with-note > .main { grid-column: 2 / 8; }

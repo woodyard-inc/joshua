@@ -28,3 +28,7 @@ wimbledon/data/processed/
 cf-worker/.dev.vars
 cf-worker/.wrangler/
 cf-worker/node_modules/
+
+# Local-only: source photos (306 MB) and editor/agent config
+wimbledon/profile pictures to upload/
+.claude/

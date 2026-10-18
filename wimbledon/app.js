@@ -25,6 +25,16 @@ async function boot() {
   // Set year select to match default state
   document.getElementById("year-select").value = state.year;
 
+  // Let the landing image have the connection first: the data isn't needed
+  // until a player is chosen, and on a phone connection the two compete.
+  await new Promise((resolve) => {
+    const img = document.querySelector(".trophy-img");
+    if (!img || img.complete) return resolve();
+    img.addEventListener("load", resolve, { once: true });
+    img.addEventListener("error", resolve, { once: true });
+    setTimeout(resolve, 2500);
+  });
+
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
   // Revalidate rather than refetch: the browser keeps the data and asks the
   // server whether it changed (a small 304 when not), so a deploy still shows

@@ -75,7 +75,8 @@ countries = DATA["countries"]
 by_code = {c["code"]: c for c in countries}
 models = DATA["country_models"]
 constructs = DATA["constructs"]
-ORDER = ["US", "AT", "ZA", "RU", "CN"]          # Fig. 1 column order
+# Every visual uses one country order: life satisfaction at mean social capital, high to low.
+ORDER = [c["code"] for c in sorted(DATA["countries"], key=lambda c: -c["emm"]["mean"])]
 
 
 # ---------------------------------------------------------------- context
@@ -139,9 +140,14 @@ def build_context():
     assert fair_all, "the fairness claims assume significance in every country"
     others = [models[c]["trust_fairness"][0] for c in ORDER if c != "AT"]
     assert models["AT"]["trust_fairness"][0] / (sum(others) / len(others)) > 2, "copy says 'more than twice the other four countries''"
-    ctx["fig1"] = fig1_heatmap(fair_mean, otr_mean)
-    ctx["fig2"] = fig2_fairness(fair_mean, at_ratio)
-    ctx["table1"] = table1_countries()
+    ctx["h1a_card"] = h1a_card()
+    ctx["h1b_card"] = h1b_card()
+    ctx["h2a_card"] = h2a_card()
+    ctx["h2b_card"] = h2b_card()
+    ctx["reading_h1a"] = READINGS["h1a"]
+    ctx["reading_h1b"] = READINGS["h1b"]
+    ctx["full_table"] = full_table()
+    ctx["country_cards"] = country_cards()
     ctx["table2"] = table2_moderators()
     return ctx
 
@@ -152,10 +158,11 @@ def tukey_pairs():
     return ", and ".join(parts)
 
 
-# ---------------------------------------------------------------- Fig. 1
-COBALT = (0, 47, 167)
-RED = (178, 58, 30)
+# ---------------------------------------------------------------- tints
+INK = (20, 20, 20)
+PAPER_WARM = (240, 235, 221)
 PAPER = (255, 253, 248)
+TERRACOTTA = (211, 82, 32)
 
 
 def mix(a, b, t):
@@ -171,141 +178,161 @@ def contrast(a, b):
     return (hi + 0.05) / (lo + 0.05)
 
 
-def fill(b, scale):
-    """Diverging fill: cobalt for positive, red for negative. Magnitudes below
-    60% of the scale use light tints (ink text), the rest dark tones (white
-    text), skipping the mid band where neither text colour reaches 4.5:1."""
-    hue = COBALT if b > 0 else RED
-    steps = [m / 100 for m in range(101)]
-    ink_max = max(m for m in steps if contrast("#1a1a1a", mix(PAPER, hue, m)) >= 4.5)
-    white_min = min(m for m in steps if contrast("#ffffff", mix(PAPER, hue, m)) >= 4.5)
-    t = min(1, abs(b) / scale)
-    m = 0.08 + (ink_max - 0.08) * t / 0.6 if t < 0.6 else white_min + (1 - white_min) * (t - 0.6) / 0.4
-    return mix(PAPER, hue, m)
+def tint(t, hue=INK):
+    """The kit's grey ramp (paper-warm to ink) for magnitudes; terracotta for
+    negative coefficients. Text is ink or paper, whichever reads at 4.5:1."""
+    bg = mix(PAPER_WARM, hue, 0.08 + 0.84 * max(0, min(1, t)))
+    fg = max(("#141414", "#fffdf8"), key=lambda c: contrast(c, bg))
+    if contrast(fg, bg) < 4.5:      # step out of the mid band where neither reads
+        bg = mix(PAPER_WARM, hue, 0.08 if t < 0.5 else 0.92)
+        fg = max(("#141414", "#fffdf8"), key=lambda c: contrast(c, bg))
+    return f"background:{bg};color:{fg}"
 
 
-def best_text(bg):
-    """White or ink, whichever reads better on this fill (WCAG contrast)."""
-    fg = max(("#ffffff", "#1a1a1a"), key=lambda c: contrast(c, bg))
-    assert contrast(fg, bg) >= 4.5, f"no readable text colour on {bg}"
-    return fg
+def heads():
+    return '<span class="corner"></span>' + "".join(
+        f'<span class="col-head"><abbr title="{esc(by_code[c]["name"])}">{c}</abbr></span>' for c in ORDER)
 
 
-def fig1_heatmap(fair_mean, otr_mean):
+def scorecard(lens, body, key):
+    return (f'<div class="scorecard"><span class="lens">{lens}</span>'
+            f'<div class="matrix" role="table">{heads()}{body}</div><p class="key">{key}</p></div>')
+
+
+# ---------------------------------------------------------------- card visuals
+def h1a_card():
+    rows = [k for k in constructs if k["group"] == "Trust"]
+    scale = max(models[c][k["id"]][0] for c in ORDER for k in rows)
+    body = ""
+    for k in rows:
+        hl = k["id"] == "trust_fairness"
+        body += f'<span class="row-head{" hl" if hl else ""}">{esc({"trust_society": "Society", "trust_fairness": "Fairness", "org_trust": "Org."}[k["id"]])}</span>'
+        for c in ORDER:
+            b, se, st = models[c][k["id"]]
+            if sig(st):
+                body += f'<span class="cell{" hl" if hl else ""}" style="{tint(b / scale)}" title="{esc(k["label"])}, {esc(by_code[c]["name"])}: β = {beta(b)}, {pstr(st)}">{beta(b)}</span>'
+            else:
+                body += f'<span class="cell ns" title="{esc(k["label"])}, {esc(by_code[c]["name"])}: β = {beta(b)}, not significant">n.s.</span>'
+    return scorecard("Trust · β by country", body, "β, country OLS · darker = stronger · n.s. p ≥ .05")
+
+
+def h1b_card():
+    lo, hi = DATA["sample"]["ls_dot_min"], DATA["sample"]["ls_dot_max"]
+    low = min(by_code[c]["emm"]["mean"] for c in ORDER)
+    body = '<span class="row-head">LS mean</span>'
+    for c in ORDER:
+        v = by_code[c]["emm"]["mean"]
+        w = 100 * (v - lo) / (hi - lo)
+        body += (f'<span class="cell" title="{esc(by_code[c]["name"])}: {num(v, 2)}">{num(v, 2)}'
+                 f'<span class="bar{" hl" if v == low else ""}" aria-hidden="true"><i style="width:{w:.0f}%"></i></span></span>')
+    return scorecard(f"Life satisfaction · {num(DATA['sample']['likert_min'])}–{num(DATA['sample']['likert_max'])}",
+                     body, f"Marginal means · bars {num(lo)}–{num(hi)}")
+
+
+def index_card(rows, lens, key):
+    body = ""
+    for field, label, d in rows:
+        vals = [by_code[c][field] for c in ORDER]
+        lo, hi = min(vals), max(vals)
+        body += f'<span class="row-head">{label}</span>'
+        for c in ORDER:
+            v = by_code[c][field]
+            body += f'<span class="cell" style="{tint((v - lo) / (hi - lo) if hi > lo else 0.5)}" title="{esc(by_code[c]["name"])}: {num(v, d)}">{num(v, d)}</span>'
+    return scorecard(lens, body, key)
+
+
+def h2a_card():
+    return index_card([("hazard", "Hazard", 1), ("power_distance", "Power dist.", 1), ("masculinity", "Masculinity", 1), ("individualism", "Individualism", 1)],
+                      f"What a country is given · {keep(DATA['sample']['scale_index'])}",
+                      "INFORM hazard · Hofstede · darker = higher")
+
+
+def h2b_card():
+    return index_card([("hdi", "HDI", 3), ("spi", "SPI", 2), ("cpi", "CPI", 1)],
+                      "What governments shape",
+                      f"HDI {keep(DATA['sample']['scale_hdi'])} · SPI, CPI {keep(DATA['sample']['scale_index'])} · darker = higher")
+
+
+READINGS = {
+    "h1a": "The surprise was organisational support resources, which went with lower satisfaction, the opposite of what I expected. People may dislike having to rely on institutions for what they need. It took me a week to see it.",
+    "h1b": "In China, guanxi (關係) networks are also how knowledge, licences, projects and careers flow. When social capital is an economic necessity rather than an extra, an average amount may not feel like enough (He &amp; Gebhardt, 2015).",
+}
+
+
+# ---------------------------------------------------------------- all 11 measures (disclosure)
+def full_table():
     scale = max(abs(models[c][k["id"]][0]) for c in ORDER for k in constructs if not k.get("per_person"))
-    head = "".join(f'<th scope="col"><abbr title="{esc(by_code[c]["name"])}">{c}</abbr></th>' for c in ORDER)
     rows, group = [], None
     for k in constructs:
         if k["group"] != group:
             group = k["group"]
-            rows.append(f'<tr class="hm-group"><th scope="rowgroup" colspan="{len(ORDER) + 1}">{esc(group)}</th></tr>')
-        key = k["id"] == "trust_fairness"
-        label = esc(k["label"])
-        if key:
-            label += '<span class="hm-flag">The most consistent: significant in all five</span>'
-        elif k.get("per_person"):
-            label += '<span class="hm-sub">per person contacted</span>'
-        cells = []
+            rows.append(f'<tr class="grp"><th colspan="{len(ORDER) + 1}" scope="rowgroup">{esc(group)}</th></tr>')
+        label = esc(k["label"]) + ('<span class="sub">per person contacted</span>' if k.get("per_person") else "")
+        cells = ""
         for c in ORDER:
             b, se, st = models[c][k["id"]]
             if sig(st):
-                bg = fill(b, scale)
-                fg = best_text(bg)
-                cells.append(f'<td style="background:{bg};color:{fg}" title="{esc(k["label"])}, {esc(by_code[c]["name"])}: β = {beta(b)}, {pstr(st)}">{beta(b)}</td>')
+                style = tint(abs(b) / scale, TERRACOTTA if b < 0 else INK)
+                cells += f'<td style="{style}">{beta(b)}</td>'
             else:
-                cells.append(f'<td class="ns" title="{esc(k["label"])}, {esc(by_code[c]["name"])}: β = {beta(b)}, not significant">n.s.<span class="vh"> (β = {beta(b)})</span></td>')
-        cls = ' class="hm-key"' if key else ""
-        rows.append(f'<tr{cls}><th scope="row">{label}</th>{"".join(cells)}</tr>')
-    lo, hi = beta(-scale), beta(scale)
-    legend = (f'<div class="hm-legend" aria-hidden="true"><span>{lo}</span><span class="hm-ramp"></span><span>+{hi}</span>'
-              f'<span class="hm-ns">n.s.</span><span>not significant (p ≥ .05)</span></div>')
-    return f'''<div class="hm-scroll" tabindex="0" role="region" aria-label="Fig. 1, scrollable table">
-<table class="heatmap">
-<caption class="vh">Fig. 1: OLS coefficient of each social capital measure on life satisfaction, by country. n.s. = not significant at p &lt; .05.</caption>
-<thead><tr><th scope="col"><span class="vh">Measure</span></th>{head}</tr></thead>
-<tbody>{"".join(rows)}</tbody>
-</table></div>{legend}'''
+                cells += f'<td class="ns">n.s.<span class="vh"> (β = {beta(b)})</span></td>'
+        cls = ' class="hl"' if k["id"] == "trust_fairness" else ""
+        rows.append(f'<tr{cls}><th scope="row">{label}</th>{cells}</tr>')
+    z = DATA["sample"]["ci_z"]
+    ci = " · ".join(f'{c} {num(models[c]["trust_fairness"][0] - z * models[c]["trust_fairness"][1], 3)} to '
+                    f'{num(models[c]["trust_fairness"][0] + z * models[c]["trust_fairness"][1], 3)}' for c in ORDER)
+    head = "".join(f'<th scope="col"><abbr title="{esc(by_code[c]["name"])}">{c}</abbr></th>' for c in ORDER)
+    return f'''<details class="more" id="all-measures">
+<summary>All {num(len(constructs))} measures, by country</summary>
+<div class="fulltable-wrap" tabindex="0" role="region" aria-label="All measures, scrollable">
+<table class="full"><caption class="vh">OLS coefficient of each social capital measure on life satisfaction, by country</caption>
+<thead><tr><th scope="col">Measure</th>{head}</tr></thead><tbody>{"".join(rows)}</tbody></table>
+<p class="fc">Country-level OLS coefficients, ISSP {keep(DATA["sample"]["issp_year"])}; grey cells are not significant at p &lt; .05, terracotta cells negative. Trust in fairness, {num(DATA["sample"]["ci_level_pct"])}% intervals (β ± {num(z)} SE): {ci}.</p>
+</div></details>'''
 
 
-# ---------------------------------------------------------------- dot plots
-def dotplot(rows, lo, hi, ticks, tick_fmt, width, label_w, title, desc, annotate=None, ref=None):
-    """Horizontal dot-and-whisker plot. rows: (label, value, lo, hi, highlight)."""
-    top, row_h, bottom = (30 if annotate else 8), 40, 34
-    plot_l, plot_r = label_w, width - 16
-    h = top + row_h * len(rows) + bottom
-    x = lambda v: plot_l + (v - lo) / (hi - lo) * (plot_r - plot_l)
-    out = [f'<svg class="dot" viewBox="0 0 {width} {h}" width="{width}" height="{h}" role="img" aria-labelledby="{title[0]} {desc[0]}">',
-           f'<title id="{title[0]}">{esc(title[1])}</title><desc id="{desc[0]}">{esc(desc[1])}</desc>']
-    for t in ticks:
-        out.append(f'<line class="grid" x1="{x(t):.1f}" x2="{x(t):.1f}" y1="{top}" y2="{h - bottom}"/>')
-        out.append(f'<text class="tick" x="{x(t):.1f}" y="{h - bottom + 22}" text-anchor="middle">{tick_fmt(t)}</text>')
-    if ref is not None:
-        out.append(f'<line class="ref" x1="{x(ref):.1f}" x2="{x(ref):.1f}" y1="{top}" y2="{h - bottom}"/>')
-    for i, (label, v, a, b, hl) in enumerate(rows):
-        y = top + row_h * i + row_h / 2
-        cls = ' class="hl"' if hl else ""
-        out.append(f'<g{cls}><text class="lab" x="0" y="{y + 5:.1f}">{esc(label)}</text>'
-                   f'<line class="ci" x1="{x(a):.1f}" x2="{x(b):.1f}" y1="{y:.1f}" y2="{y:.1f}"/>'
-                   f'<circle cx="{x(v):.1f}" cy="{y:.1f}" r="6"/>')
-        if hl and annotate:
-            out.append(f'<text class="ann" x="{min(x(v), plot_r):.1f}" y="{y - 14:.1f}" text-anchor="{"end" if x(v) > (plot_l + plot_r) / 2 else "start"}">{esc(annotate)}</text>')
-        out.append("</g>")
-    out.append("</svg>")
-    return "".join(out)
-
-
-def two_sizes(make):
-    return (f'<div class="chart chart--wide">{make(860, 150, "w")}</div>'
-            f'<div class="chart chart--narrow">{make(360, 112, "n")}</div>')
-
-
-def fig2_fairness(fair_mean, ratio):
-    rows = []
-    for c in sorted(ORDER, key=lambda c: -models[c]["trust_fairness"][0]):
-        b, se, st = models[c]["trust_fairness"]
-        z = DATA["sample"]["ci_z"]
-        rows.append((by_code[c]["name"], b, b - z * se, b + z * se, c == "AT"))
-    fmt = lambda t: keep(f"{t:.1f}")
-
-    def make(w, lw, s):
-        return dotplot(rows, -0.1, 0.4, [-0.1, 0, 0.1, 0.2, 0.3, 0.4], fmt, w, lw,
-                       (f"f2t{s}", "Trust in fairness and life satisfaction, by country"),
-                       (f"f2d{s}", "Coefficients with 95% confidence intervals, all above zero; Austria's is the largest."),
-                       ref=0)
-
-    table = "".join(f"<tr><th scope=\"row\">{esc(r[0])}</th><td>{beta(r[1])}</td><td>{num(r[2], 3)} to {num(r[3], 3)}</td></tr>" for r in rows)
-    return two_sizes(make) + (f'<table class="vh"><caption>Fig. 2 data</caption><tr><th>Country</th><th>β</th><th>95% CI</th></tr>{table}</table>')
-
-
-# ---------------------------------------------------------------- tables
-STANDS_OUT = {
-    "US": "The fewest significant links between social capital and satisfaction in the sample. Wealth may provide the floor, leaving bridging ties as the scarce resource.",
+# ---------------------------------------------------------------- Fig. 01 country cards
+CARD_NOTE = {
+    "US": "The fewest significant links between social capital and satisfaction. Wealth may provide the floor; bridging ties are the scarce resource.",
     "AT": "Trust in fairness and organisational trust both stand out from the rest of the sample.",
-    "ZA": "The only country where social networks stayed significant in the pooled model. Community may compensate for institutional gaps.",
-    "RU": "The highest power distance and lowest corruption-perception score in the sample. Trust in society matters most; stable relationships may count for more when the wider situation feels uncertain.",
-    "CN": "The lowest satisfaction at average social capital. Societal norms and resources stood out in the pooled cross-country comparison (H1b).",
+    "RU": "Highest power distance and lowest corruption-perception score in the sample. Trust in society matters most.",
+    "ZA": "The only country where social networks stayed significant in the pooled model.",
+    "CN": "Lowest satisfaction at average social capital. Societal norms and resources stood out in the pooled comparison.",
 }
 
 
-def ls_dot(v):
-    lo, hi = DATA["sample"]["ls_dot_min"], DATA["sample"]["ls_dot_max"]
-    return f'<span class="lsdot" aria-hidden="true"><i style="left:{100 * (v - lo) / (hi - lo):.1f}%"></i></span>'
-
-
-def table1_countries():
-    rows = []
-    for c in sorted(ORDER, key=lambda c: -by_code[c]["emm"]["mean"]):
+def country_cards():
+    n_max = max(by_code[c]["n"] for c in ORDER)
+    cards = []
+    for c in ORDER:
         r = by_code[c]
-        rows.append(f'<tr><th scope="row">{esc(r["name"])}</th><td class="num">{num(r["emm"]["mean"], 2)}{ls_dot(r["emm"]["mean"])}</td>'
-                    f'<td class="num">{num(r["n"])}</td><td class="num">{num(r["hdi"], 3)}</td>'
-                    f'<td class="num">{num(r["individualism"], 1)}</td><td class="num">{num(r["hazard"], 1)}</td>'
-                    f'<td class="txt">{STANDS_OUT[c]}</td></tr>')
-    return f'''<div class="tbl-scroll" tabindex="0" role="region" aria-label="Table 1, scrollable">
-<table class="data countries">
-<thead><tr><th scope="col">Country</th><th scope="col" class="num">LS mean</th><th scope="col" class="num">n</th><th scope="col" class="num">HDI</th><th scope="col" class="num">Individ&shy;ualism</th><th scope="col" class="num">Hazard</th><th scope="col">What stands out</th></tr></thead>
-<tbody>{"".join(rows)}</tbody></table></div>'''
+        stats = [("HDI", r["hdi"] * 100, num(r["hdi"], 2)),
+                 ("Indiv.", r["individualism"] * 10, num(r["individualism"], 1)),
+                 ("Hazard", r["hazard"] * 10, num(r["hazard"], 1)),
+                 ("n", 100 * r["n"] / n_max, num(r["n"]))]
+        rows = "".join(f'<div class="stat"><span class="lbl">{lbl}</span><div class="bar"><div class="fill" style="width:{w:.0f}%"></div></div><span class="v">{v}</span></div>'
+                       for lbl, w, v in stats)
+        cards.append(f'''<article class="country-card">
+<div class="top-rule"></div>
+<span class="code">{c}</span>
+<span class="name">{esc(r["name"])}</span>
+<div class="ls">{num(r["emm"]["mean"], 2)}</div>
+<span class="ls-cap">Life satisfaction · {num(DATA["sample"]["likert_min"])}–{num(DATA["sample"]["likert_max"])}</span>
+<div class="stats">{rows}</div>
+<p class="finding">{CARD_NOTE[c]}</p>
+</article>''')
+    pairs = ", and ".join(f'{"the US" if p["a"] == "US" else by_code[p["a"]]["name"]} and {by_code[p["b"]]["name"]}' for p in DATA["tukey"]["ns_pairs"])
+    return f'''<section class="country-strip" id="fig-01" aria-labelledby="fig-01-t">
+<div class="strip-head">
+<p class="strip-title" id="fig-01-t"><span class="figno">Fig. 01</span><span class="strip-name">Life satisfaction at mean social capital, by country</span></p>
+<p class="lede">Where you live still shapes how satisfied you are, even at the same level of social connection. At average social capital, China was lowest, and only {pairs}, were statistically level.</p>
+</div>
+<div class="country-cards">{"".join(cards)}</div>
+<p class="fc">Estimated marginal means of life satisfaction ({num(DATA["sample"]["likert_min"])}–{num(DATA["sample"]["likert_max"])}) with social capital held at its sample mean, from the pooled OLS model. Bars: HDI (UN Human Development Index, {keep(DATA["sample"]["scale_hdi"])}); Indiv. (Hofstede individualism, {keep(DATA["sample"]["scale_index"])}); Hazard (INFORM natural-hazard risk, {keep(DATA["sample"]["scale_index"])}); n, respondents after imputation.</p>
+</section>'''
 
 
+# ---------------------------------------------------------------- Table 01: moderation
 WHAT_CHANGED = {
     "hazard": "In riskier countries, trust in society, trust in fairness and social networks were less strongly linked to satisfaction; the societal care norm more strongly. Risk itself had no significant association.",
     "power_distance": "Higher power distance went with lower satisfaction overall, and with a stronger link for organisational support resources.",
@@ -324,14 +351,14 @@ READING = {
 }
 
 
-def coef_lines(main, terms, prefix=""):
-    lines = [f'<span class="cl"><span class="ck">{prefix}Main</span> {beta(main[0])} <span class="cp">{pstr(main[1])}</span></span>']
+def coef_lines(main, terms):
+    lines = [f'<span class="cl"><span class="ck">Main</span> {beta(main[0])} <span class="cp">{pstr(main[1])}</span></span>']
     lines += [f'<span class="cl"><span class="ck">× {esc(t)}</span> {beta(b)} <span class="cp">{pstr(st)}</span></span>' for t, b, st in terms]
     return "".join(lines)
 
 
 def table2_moderators():
-    groups = [("given", "What a country is given"), ("governed", "What governments shape")]
+    groups = [("given", "What a country is given · H2a"), ("governed", "What governments shape · H2b")]
     body = []
     for gid, gname in groups:
         rows = [f'<tr class="grp"><th colspan="4" scope="colgroup">{gname}</th></tr>']
@@ -343,10 +370,14 @@ def table2_moderators():
             rows.append(f'<tr><th scope="row">{esc(m["label"])}</th><td>{WHAT_CHANGED[m["id"]]}</td>'
                         f'<td class="coefs">{coefs}</td><td class="reading">{READING[m["id"]]}</td></tr>')
         body.append("<tbody>" + "".join(rows) + "</tbody>")
-    return f'''<div class="tbl-scroll tbl-mod" tabindex="0" role="region" aria-label="Table 2, scrollable">
-<table class="data moderators">
+    return f'''<div class="mod-table" id="table-01">
+<p class="tcap" id="table-01-t"><span class="figno">Table 01</span>How national context changes the link between social capital and life satisfaction</p>
+<div class="tbl-scroll" tabindex="0" role="region" aria-labelledby="table-01-t">
+<table aria-labelledby="table-01-t">
 <thead><tr><th scope="col">Moderator</th><th scope="col">What changed</th><th scope="col">Key coefficients</th><th scope="col">My reading</th></tr></thead>
-{"".join(body)}</table></div>'''
+{"".join(body)}</table></div>
+<p class="vh">Coefficients are interaction terms and the moderator's main term, from pooled OLS models with one moderator at a time; only terms significant at p &lt; .05 are listed.</p>
+</div>'''
 
 
 # ---------------------------------------------------------------- render + checks

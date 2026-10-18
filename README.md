@@ -49,8 +49,7 @@ python3 scripts/verify_cv.py               # checks those PDFs
 python3 scripts/build_dissertation.py      # dissertation-case-study.html; fails on
                                            # untraced numbers or causal wording
 python3 scripts/build_fonts_cormorant.py   # Cormorant Garamond CV (metric-corrected)
-python3 scripts/build_fonts_source_serif.py  # Source Serif 4 static instances
 ```
 
-The font scripts need fontTools (and brotli for woff2). Edit templates and
+The font script needs fontTools (and brotli for woff2). Edit templates and
 data, not the generated pages.

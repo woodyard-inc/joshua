@@ -6,6 +6,8 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23002FA7%27/%3E%3C/svg%3E">
   <title>What Wins on Grass — Wimbledon Player Intelligence · Joshua Woodyard</title>
   <meta name="description" content="Point-by-point player intelligence and grass-court Monte Carlo prediction for the Wimbledon men's draw, 2011–2023. Built on Jeff Sackmann's open tennis datasets (Slam point-by-point + ATP match results), enriched with full grass-circuit aggregates and a custom Elo rating system.">
+  <link rel="preload" as="image" href="trophy-1600.webp" imagesrcset="trophy-1000.webp 1000w, trophy-1600.webp 1600w, trophy-2200.webp 2200w" imagesizes="(max-width: 600px) 800px, (max-aspect-ratio: 43/24) 180vh, 100vw" fetchpriority="high">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="../foundations.css?v=58">
   <link rel="stylesheet" href="styles.css?v=56">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.min.css">
@@ -77,7 +79,7 @@
   <!-- ── EMPTY STATE ────────────────────────────────────────────── -->
   <div id="empty-state" class="empty-state">
     <div class="empty-trophy">
-      <img src="trophy-1600.webp" srcset="trophy-1000.webp 1000w, trophy-1600.webp 1600w, trophy-2200.webp 2200w" sizes="(max-aspect-ratio: 43/24) 180vh, 100vw" width="2752" height="1536" fetchpriority="high" decoding="async" alt="Wimbledon Trophy" class="trophy-img">
+      <img src="trophy-1600.webp" srcset="trophy-1000.webp 1000w, trophy-1600.webp 1600w, trophy-2200.webp 2200w" sizes="(max-width: 600px) 800px, (max-aspect-ratio: 43/24) 180vh, 100vw" width="2752" height="1536" fetchpriority="high" decoding="async" alt="Wimbledon Trophy" class="trophy-img">
     </div>
     <div class="empty-overlay">
       <p class="empty-eyebrow">Wimbledon · Men's Draw</p>
@@ -385,6 +387,6 @@
   </footer>
 
   <!-- v9: markov.js + compare.js retired — MC worker is the single engine -->
-  <script src="app.js?v=56"></script>
+  <script src="app.js?v=57"></script>
 </body>
 </html>

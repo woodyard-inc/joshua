@@ -26,7 +26,10 @@ async function boot() {
   document.getElementById("year-select").value = state.year;
 
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
-  const nc   = { cache: "no-store" };
+  // Revalidate rather than refetch: the browser keeps the data and asks the
+  // server whether it changed (a small 304 when not), so a deploy still shows
+  // at once. Low priority lets the landing image load first.
+  const nc   = { cache: "no-cache", priority: "low" };
 
   // Load global (non-year-specific) data alongside the first year
   const [,, eraStats, curated] = await Promise.all([
@@ -136,7 +139,7 @@ async function boot() {
 
 async function loadFingerprintsOnly(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
-  const nc = { cache: "no-store" };
+  const nc = { cache: "no-cache", priority: "low" };
   const [fps, gps, ps, tb, arch, prof] = await Promise.all([
     fetch(`${base}/data/${year}_fingerprints.json`,        nc).then(r => r.json()).catch(() => null),
     fetch(`${base}/data/${year}_grass_profiles.json`,      nc).then(r => r.json()).catch(() => ({})),
@@ -220,7 +223,10 @@ function lookupName(records, name) {
 
 async function loadYear(year) {
   const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
-  const nc   = { cache: "no-store" };
+  // Revalidate rather than refetch: the browser keeps the data and asks the
+  // server whether it changed (a small 304 when not), so a deploy still shows
+  // at once. Low priority lets the landing image load first.
+  const nc   = { cache: "no-cache", priority: "low" };
   const [profiles, tourn, fingerprints, grassProfiles, archetypes, archetypesMeta,
          pressureStates, tiebreakBaselines] = await Promise.all([
     fetch(`${base}/data/${year}_men_profiles.json`, nc).then(r => r.json()).catch(() => ({})),
@@ -2772,7 +2778,7 @@ async function runComparison(nameA, nameB, overrideFps = null) {
     try {
       const base = location.pathname.includes("github.io") ? "/joshua/wimbledon" : ".";
       state.matchupCorpus = await fetch(`${base}/data/matchup_corpus.json`,
-                                        { cache: "no-store" })
+                                        { cache: "no-cache", priority: "low" })
                                     .then(r => r.json()).catch(() => null);
     } catch (_e) { state.matchupCorpus = null; }
   }

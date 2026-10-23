@@ -209,6 +209,7 @@
   --measure-narrow: 48ch;     /* for deck/standfirst */
   --col-gap:     32px;
   --page-pad:    clamp(24px, 5vw, 80px);
+  --nameplate-h: 50px;        /* the sticky .pf-shell bar, measured (49.5px on desktop) */
 
   /* ---- LINES & RULES ----
      Swiss/editorial: hairlines over shadows. */
@@ -234,6 +235,7 @@ html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
 
 body {
   margin: 0;
+  overflow-x: clip;           /* full-bleed bands use 100vw; never scroll sideways */
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
@@ -522,6 +524,33 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
 }
 .pf-nav-desktop a { color: inherit; border: none; padding: 0; }
 .pf-nav-desktop a:hover { color: var(--cobalt); }
+
+/* Next case study band — shared by the case studies (place inside .shell).
+   Full-bleed: the band runs edge to edge of the viewport, and its content
+   sits exactly on the shell's content edges. */
+.next-project {
+  display: grid; grid-template-columns: 1fr auto; gap: var(--s-7); align-items: end;
+  margin: var(--s-9) calc(50% - 50vw) 0;
+  padding: var(--s-9) calc(50vw - 50%);
+  background: var(--ink); color: var(--paper);
+  text-decoration: none; border: none; cursor: pointer;
+}
+.next-project .eyebrow { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(250,247,240,0.6); }
+.next-project h3 { text-transform: none; font-family: var(--font-display); font-size: 64px; font-weight: 700; letter-spacing: -0.035em; line-height: 0.95; color: var(--paper); margin-top: var(--s-3); max-width: 16ch; }
+.next-project h3 em { font-family: var(--font-body); font-style: italic; font-weight: 300; color: rgba(250,247,240,0.7); font-size: 0.6em; display: block; margin-top: var(--s-3); }
+.next-project .arrow { font-family: var(--font-body); font-style: italic; font-size: 48px; line-height: 1; color: var(--paper); }
+.next-project:hover .arrow { transform: translateX(8px); transition: transform 220ms ease; }
+@media (max-width: 960px) {
+  .next-project { grid-template-columns: 1fr; padding-top: var(--s-7); padding-bottom: var(--s-7); }
+  .next-project h3 { font-size: 36px; }
+}
+@media (max-width: 600px) { .next-project { margin-top: var(--s-7); } }
+@media (prefers-reduced-motion: reduce) { .next-project:hover .arrow { transform: none; } }
+@media print {
+  .next-project { margin: 18pt 0 0; padding: 18pt; break-inside: avoid; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .next-project h3 { font-size: 26pt; }
+  .next-project .arrow { display: none; }
+}
 
 /* Colophon footer */
 .pf-colophon {

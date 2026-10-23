@@ -182,21 +182,6 @@
   .methods .m h4 { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-top: var(--s-3); text-transform: none; }
   .methods .m p { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin-top: var(--s-3); }
 
-  /* Next project */
-  .next-project {
-    background: var(--ink); color: var(--paper); padding: var(--s-9) var(--s-8);
-    margin: var(--s-9) calc(-1 * var(--page-pad)) 0;
-    display: grid; grid-template-columns: 1fr auto; gap: var(--s-7); align-items: end;
-    cursor: pointer;
-    text-decoration: none;
-    border: none;
-    color: var(--paper);
-  }
-  .next-project .eyebrow { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(250,247,240,0.6); }
-  .next-project h3 { text-transform: none; font-family: var(--font-display); font-size: 64px; font-weight: 700; letter-spacing: -0.035em; line-height: 0.95; color: var(--paper); margin-top: var(--s-3); max-width: 16ch; }
-  .next-project h3 em { font-family: var(--font-body); font-style: italic; font-weight: 300; color: rgba(250,247,240,0.7); font-size: 0.6em; display: block; margin-top: var(--s-3); }
-  .next-project .arrow { font-family: var(--font-body); font-style: italic; font-size: 48px; }
-  .next-project:hover .arrow { transform: translateX(8px); transition: transform 220ms ease; }
 
   /* Colophon */
   .colophon {
@@ -227,8 +212,6 @@
     .figure { grid-column: auto; }
     .figure-pair { grid-template-columns: 1fr !important; }
     .floorplan { grid-template-columns: 1fr; }
-    .next-project { grid-template-columns: 1fr; padding: var(--s-7) var(--s-5); }
-    .next-project h3 { font-size: 36px; }
   }
 
   @media (max-width: 600px) {
@@ -245,16 +228,12 @@
     .deck-block .standfirst { font-size: 24px; }
     .article { padding: var(--s-7) 0 var(--s-8); }
     .article blockquote p { font-size: 24px; }
-    .next-project { margin-top: var(--s-7); }
   }
 
   @media (hover: none) {
     .nameplate a, .colophon a { padding: 6px 4px; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .next-project:hover .arrow { transform: none; }
-  }
 </style>
 </head>
 <body>

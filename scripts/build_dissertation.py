@@ -145,7 +145,7 @@ def build_context():
     ctx["h2a_card"] = h2a_card()
     ctx["h2b_card"] = h2b_card()
     ctx["reading_h1a"] = READINGS["h1a"]
-    ctx["reading_h1b"] = READINGS["h1b"]
+    ctx["reading_h1b"] = reading_h1b()
     ctx["full_table"] = full_table()
     ctx["country_cards"] = country_cards()
     ctx["table2"] = table2_moderators()
@@ -217,17 +217,27 @@ def h1a_card():
 
 
 def h1b_card():
-    lo, hi = DATA["sample"]["ls_dot_min"], DATA["sample"]["ls_dot_max"]
-    low = min(by_code[c]["emm"]["mean"] for c in ORDER)
-    body = '<span class="row-head">LS mean</span>'
-    for c in ORDER:
-        v = by_code[c]["emm"]["mean"]
-        w = 100 * (v - lo) / (hi - lo)
-        body += (f'<span class="cell" title="{esc(by_code[c]["name"])}: {num(v, 2)}">{num(v, 2)}'
-                 f'<span class="bar{" hl" if v == low else ""}" aria-hidden="true"><i style="width:{w:.0f}%"></i></span></span>')
-    return scorecard(f"Life satisfaction · {num(DATA['sample']['likert_min'])}–{num(DATA['sample']['likert_max'])}",
-                     body, f"Marginal means · bars {num(lo)}–{num(hi)}")
-
+    """Pooled model with country interactions, Austria the reference: where the
+    same tie carried a different weight (Diss. Table A3)."""
+    pooled = DATA["pooled"]["vs_austria"]
+    rows = [("trust_fairness", "Fairness"), ("social_network", "Networks"), ("daily_contact", "Daily contact")]
+    body = ""
+    for mid, label in rows:
+        hl = mid == "trust_fairness"
+        name = next(k["label"] for k in constructs if k["id"] == mid)
+        scale = max(abs(pooled[mid][c][0]) for c in ORDER if c != "AT")
+        body += f'<span class="row-head{" hl" if hl else ""}">{label}</span>'
+        for c in ORDER:
+            b, se, st = pooled[mid][c]
+            cls = " hl" if hl else ""
+            if c == "AT":
+                body += f'<span class="cell ref{cls}" title="{esc(name)}, Austria (reference): β = {beta(b)}, {pstr(st)}">ref</span>'
+            elif sig(st):
+                style = tint(abs(b) / scale, TERRACOTTA if b < 0 else INK)
+                body += f'<span class="cell{cls}" style="{style}" title="{esc(name)} × {esc(by_code[c]["name"])}: β = {beta(b)}, {pstr(st)}">{beta(b)}</span>'
+            else:
+                body += f'<span class="cell ns" title="{esc(name)} × {esc(by_code[c]["name"])}: β = {beta(b)}, not significant">n.s.</span>'
+    return scorecard("Pooled model · difference from Austria", body, "Interaction β vs Austria · terracotta = weaker · n.s. p ≥ .05")
 
 def index_card(rows, lens, key):
     body = ""
@@ -255,8 +265,13 @@ def h2b_card():
 
 READINGS = {
     "h1a": "The surprise was organisational support resources, which went with lower satisfaction, the opposite of what I expected. People may dislike having to rely on institutions for what they need. It took me a week to see it.",
-    "h1b": "In China, guanxi (關係) networks are also how knowledge, licences, projects and careers flow. When social capital is an economic necessity rather than an extra, an average amount may not feel like enough (He &amp; Gebhardt, 2015).",
 }
+
+
+def reading_h1b():
+    ru, za = models["RU"]["trust_society"][0], models["ZA"]["trust_society"][0]
+    return (f"In Russia and South Africa, trust in society was among the strongest links ({beta(ru)} and {beta(za)}). "
+            "Where the wider situation feels uncertain, stable relations with strangers may count for more.")
 
 
 # ---------------------------------------------------------------- all 11 measures (disclosure)
@@ -297,40 +312,47 @@ CARD_NOTE = {
     "AT": "Trust in fairness and organisational trust both stand out from the rest of the sample.",
     "RU": "Highest power distance and lowest corruption-perception score in the sample. Trust in society matters most.",
     "ZA": "The only country where social networks stayed significant in the pooled model.",
-    "CN": "Lowest satisfaction at average social capital. Societal norms and resources stood out in the pooled comparison.",
+    "CN": "Lowest satisfaction at average social capital. In China, guanxi (關係) networks also carry knowledge, licences, projects and careers, so an average amount may not feel like enough (He &amp; Gebhardt, 2015).",
 }
 
 
+def fig01_ranking():
+    """US ≈ Austria > Russia ≈ South Africa > China, from the means and the
+    pairs Tukey could not separate."""
+    level = {frozenset((p["a"], p["b"])) for p in DATA["tukey"]["ns_pairs"]}
+    short = lambda c: "US" if c == "US" else by_code[c]["name"]
+    out = short(ORDER[0])
+    for prev, c in zip(ORDER, ORDER[1:]):
+        out += (" ≈ " if frozenset((prev, c)) in level else " > ") + short(c)
+    return out
+
+
 def country_cards():
-    n_max = max(by_code[c]["n"] for c in ORDER)
     cards = []
     for c in ORDER:
         r = by_code[c]
-        stats = [("HDI", r["hdi"] * 100, num(r["hdi"], 2)),
-                 ("Indiv.", r["individualism"] * 10, num(r["individualism"], 1)),
-                 ("Hazard", r["hazard"] * 10, num(r["hazard"], 1)),
-                 ("n", 100 * r["n"] / n_max, num(r["n"]))]
-        rows = "".join(f'<div class="stat"><span class="lbl">{lbl}</span><div class="bar"><div class="fill" style="width:{w:.0f}%"></div></div><span class="v">{v}</span></div>'
-                       for lbl, w, v in stats)
         cards.append(f'''<article class="country-card">
 <div class="top-rule"></div>
 <span class="code">{c}</span>
 <span class="name">{esc(r["name"])}</span>
 <div class="ls">{num(r["emm"]["mean"], 2)}</div>
 <span class="ls-cap">Life satisfaction · {num(DATA["sample"]["likert_min"])}–{num(DATA["sample"]["likert_max"])}</span>
-<div class="stats">{rows}</div>
+<span class="n-line">n = {num(r["n"])}</span>
 <p class="finding">{CARD_NOTE[c]}</p>
 </article>''')
-    pairs = ", and ".join(f'{"the US" if p["a"] == "US" else by_code[p["a"]]["name"]} and {by_code[p["b"]]["name"]}' for p in DATA["tukey"]["ns_pairs"])
+    gap = DATA["tukey"]["max_diff"]
+    lede = (f"Where you live still shapes how satisfied you are. Holding social capital at its average, satisfaction ranked "
+            f"{fig01_ranking()}; every other pair differed significantly, and the widest gap, "
+            f"{'US' if gap['a'] == 'US' else by_code[gap['a']]['name']} to {by_code[gap['b']]['name']}, was "
+            f"{num(gap['diff'], 2)} points on the {num(DATA['sample']['likert_max'])}-point scale.")
     return f'''<section class="country-strip" id="fig-01" aria-labelledby="fig-01-t">
 <div class="strip-head">
 <p class="strip-title" id="fig-01-t"><span class="figno">Fig. 01</span><span class="strip-name">Life satisfaction at mean social capital, by country</span></p>
-<p class="lede">Where you live still shapes how satisfied you are, even at the same level of social connection. At average social capital, China was lowest, and only {pairs}, were statistically level.</p>
+<p class="lede">{lede}</p>
 </div>
 <div class="country-cards">{"".join(cards)}</div>
-<p class="fc">Estimated marginal means of life satisfaction ({num(DATA["sample"]["likert_min"])}–{num(DATA["sample"]["likert_max"])}) with social capital held at its sample mean, from the pooled OLS model. Bars: HDI (UN Human Development Index, {keep(DATA["sample"]["scale_hdi"])}); Indiv. (Hofstede individualism, {keep(DATA["sample"]["scale_index"])}); Hazard (INFORM natural-hazard risk, {keep(DATA["sample"]["scale_index"])}); n, respondents after imputation.</p>
+<p class="fc">Estimated marginal means of life satisfaction ({num(DATA["sample"]["likert_min"])}–{num(DATA["sample"]["likert_max"])}) with social capital held at its sample mean, from the pooled OLS model; pairwise differences by Tukey comparison. n: respondents after imputation.</p>
 </section>'''
-
 
 # ---------------------------------------------------------------- Table 01: moderation
 WHAT_CHANGED = {
@@ -352,8 +374,8 @@ READING = {
 
 
 def coef_lines(main, terms):
-    lines = [f'<span class="cl"><span class="ck">Main</span> {beta(main[0])} <span class="cp">{pstr(main[1])}</span></span>']
-    lines += [f'<span class="cl"><span class="ck">× {esc(t)}</span> {beta(b)} <span class="cp">{pstr(st)}</span></span>' for t, b, st in terms]
+    lines = [f'<span class="cl"><span class="ck">Main</span> <span class="cv">{beta(main[0])} <span class="cp">{pstr(main[1])}</span></span></span>']
+    lines += [f'<span class="cl"><span class="ck">× {esc(t)}</span> <span class="cv">{beta(b)} <span class="cp">{pstr(st)}</span></span></span>' for t, b, st in terms]
     return "".join(lines)
 
 

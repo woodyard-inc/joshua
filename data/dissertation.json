@@ -47,6 +47,7 @@
 
   "tukey": {
     "ns_pairs": [ { "a": "US", "b": "AT", "p": 0.14 }, { "a": "RU", "b": "ZA", "p": 0.87 } ],
+    "max_diff": { "a": "US", "b": "CN", "diff": 0.7472, "_source": "Table A5 (CN–US M_diff = 0.7472)" },
     "_source": "Table A5 (AT-US p = 0.1413; RU-ZA p = 0.8682); all other pairs p < .0001"
   },
 
@@ -80,6 +81,12 @@
   "pooled": {
     "r2": 0.219,
     "predictors": 67,
+    "vs_austria": {
+      "_source": "Diss. Table A3, pooled OLS with country interactions, Austria reference (pp. 55–57); text p. 25. Each cell [beta, SE, published stars]; AT cells are main terms, the others Country x measure interactions.",
+      "trust_fairness": { "AT": [0.262, 0.046, "***"], "CN": [-0.121, 0.053, "**"], "RU": [-0.136, 0.059, "**"], "US": [-0.160, 0.066, "**"], "ZA": [-0.143, 0.051, "***"] },
+      "social_network": { "AT": [0.029, 0.039, ""], "CN": [-0.058, 0.043, ""], "RU": [0.073, 0.050, ""], "US": [-0.078, 0.056, ""], "ZA": [0.134, 0.045, "***"] },
+      "daily_contact": { "AT": [0.004, 0.001, "***"], "CN": [-0.002, 0.002, ""], "RU": [0.0003, 0.002, ""], "US": [-0.004, 0.002, "**"], "ZA": [-0.003, 0.002, ""] }
+    },
     "_source": "Table A3: R2 0.219, F df = 67; 11,111"
   },
 

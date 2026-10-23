@@ -16,10 +16,16 @@
   /* Case study 002. The design kit is foundations.css; the components are
      case study 001's and this page's original ones (title block, deck, stat
      row, contents | text | marginalia, hypothesis grid, country cards,
-     moderation table, methods strip, next-case block). */
+     moderation table, methods strip). The next-case band is shared and lives
+     in foundations.css.
+
+     After the stat row every block sits on one of two widths: TEXT (the prose
+     column) or WIDE (prose + margin). The 180px column on the left holds only
+     the sticky contents list. */
   body { padding: 0; }
   .shell { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-pad); }
   .vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+  abbr[title] { text-decoration: none; border: none; cursor: help; }
 
   .crumb {
     padding: var(--s-5) 0 0; display: flex; gap: 12px;
@@ -47,14 +53,14 @@
   .title-block .meta .k { color: var(--ink-muted); display: block; margin-top: var(--s-3); }
   .title-block .meta .v { color: var(--ink); display: block; margin-top: 3px; letter-spacing: 0.12em; }
 
-  /* Deck */
+  /* Deck: the article's columns, so the standfirst lines up with the prose */
   .deck-block {
     padding: var(--s-7) 0 var(--s-8);
     border-bottom: 1px solid var(--ink);
-    display: grid; grid-template-columns: 1fr 2fr; gap: var(--s-7); align-items: start;
+    display: grid; grid-template-columns: 180px minmax(0, 660px) 220px; column-gap: var(--s-7); align-items: start;
   }
   .deck-block .side .label--micro { color: var(--ink-muted); display: block; margin-bottom: 6px; }
-  .deck-block .standfirst { font-family: var(--font-body); font-weight: 300; font-size: 28px; line-height: 1.3; color: var(--ink); max-width: 32ch; text-wrap: balance; margin: 0; }
+  .deck-block .standfirst { grid-column: 2 / 4; font-family: var(--font-body); font-weight: 300; font-size: 28px; line-height: 1.3; color: var(--ink); max-width: 32ch; text-wrap: balance; margin: 0; }
 
   /* Stat row */
   .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--ink); }
@@ -67,31 +73,38 @@
   .stat-row .s .v--small { font-size: 40px; }
   .stat-row .s .n { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); margin-top: 8px; line-height: 1.45; }
 
-  /* Article: contents | text | marginalia. Each block names its column, so
-     margin notes sit beside the text they belong to. */
+  /* Article: contents | main. Main: text | margin. */
   .article {
-    padding: var(--s-9) 0 var(--s-10);
-    display: grid; grid-template-columns: 180px minmax(0, 660px) 220px;
-    column-gap: var(--s-7); align-items: start;
+    padding: var(--s-9) 0 0;
+    display: grid; grid-template-columns: 180px minmax(0, 1fr); column-gap: var(--s-7);
   }
-  .article > .leftnotes { grid-column: 1; grid-row: 1; }
-  .article > .col { grid-column: 2; }
-  .article > .marg { grid-column: 3; }
-  .article > .span-2 { grid-column: 1 / 3; }
-  .article > .wide { grid-column: 1 / -1; }
+  .article > .leftnotes {
+    grid-column: 1; align-self: start;
+    position: sticky; top: calc(var(--nameplate-h) + var(--s-5));
+    padding-top: var(--s-2);
+  }
+  .main { grid-column: 2; display: grid; grid-template-columns: minmax(0, 660px) 220px; column-gap: var(--s-7); align-items: start; }
+  .main > .col { grid-column: 1; }
+  .main > .marg { grid-column: 2; }
+  .main > .wide { grid-column: 1 / -1; }
+
   .article h2 {
     font-family: var(--font-display); font-size: 13px; font-weight: 700;
     letter-spacing: 0.3em; text-transform: uppercase;
     padding-bottom: 8px; border-bottom: 1px solid var(--ink);
     margin: var(--s-7) 0 var(--s-4);
+    scroll-margin-top: calc(var(--nameplate-h) + var(--s-5));
   }
-  .article > .col:nth-child(2) > h2:first-child { margin-top: 0; }
+  .main > .col:first-child > h2:first-child { margin-top: 0; }
   .article h2 .sub { font-family: var(--font-body); font-weight: 300; font-style: italic; text-transform: none; letter-spacing: 0; color: var(--ink-muted); font-size: 15px; margin-left: 6px; }
   .article .section-num { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); letter-spacing: 0.12em; display: block; text-align: right; padding-top: var(--s-2); font-weight: 400; }
-  .article h3 {
-    font-family: var(--font-display); font-size: 15px; font-weight: 700;
-    letter-spacing: 0.02em;
-    margin: var(--s-5) 0 var(--s-2);
+  /* Limits: a real subsection under Results */
+  .article h3.subsec {
+    font-family: var(--font-display); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink);
+    padding-top: 8px; border-top: 1px solid var(--ink);
+    margin: var(--s-7) 0 var(--s-4);
+    scroll-margin-top: calc(var(--nameplate-h) + var(--s-5));
   }
   .article p { font-family: var(--font-body); font-size: 18px; line-height: 1.65; color: var(--ink); margin-bottom: 1em; }
   .article p.lead { font-size: 22px; line-height: 1.5; font-weight: 300; }
@@ -102,48 +115,56 @@
   }
   .article blockquote p {
     font-family: var(--font-body); font-style: italic; font-weight: 300;
-    font-size: 26px; line-height: 1.3; color: var(--ink); margin: 0; max-width: 28ch;
+    font-size: 26px; line-height: 1.3; color: var(--ink); margin: 0; max-width: none;
   }
   .article blockquote .attrib {
     font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--ink-muted); margin-top: var(--s-4); display: block;
   }
 
-  /* Marginalia */
+  /* Marginalia and contents */
   .article aside {
     font-family: var(--font-body); font-size: 13px; font-style: italic; line-height: 1.5; color: var(--ink-soft);
     padding-top: var(--s-2); border-top: 1px solid var(--cobalt); margin-bottom: var(--s-6);
   }
   .article aside .label--micro { color: var(--cobalt); font-style: normal; display: block; margin-bottom: 6px; }
-  .article .leftnotes { padding-top: var(--s-2); }
   .article .leftnotes .label--micro { color: var(--ink-muted); display: block; margin-bottom: 6px; }
   .article .leftnotes .toc { font-family: var(--font-body); font-style: italic; font-size: 14px; line-height: 1.6; color: var(--ink); }
   .article .leftnotes .toc a { border: none; color: var(--ink); display: block; padding: 4px 0; border-bottom: 1px solid var(--rule); }
-  .article .leftnotes .toc a:hover { color: var(--cobalt); }
+  .article .leftnotes .toc a:hover, .article .leftnotes .toc a[aria-current="true"] { color: var(--cobalt); }
+  .article .leftnotes .toc a.toc-sub { padding-left: 26px; font-size: 13px; }
   .article .leftnotes .toc .n { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); letter-spacing: 0.12em; margin-right: 8px; font-style: normal; }
-  .inline-note { display: none; }
-  abbr[title] { text-decoration: none; border: none; cursor: help; }
-  .country-strip .fc, .country-strip .lede, .more .fc { max-width: none; }
+  .article .leftnotes .toc a[aria-current="true"] .n { color: var(--cobalt); }
 
-  /* Card grid: the hypothesis block, reused for the playbook */
+  /* Card grids (hypotheses and playbook). Cards share row tracks through
+     subgrid, so code, question, verdict, body, visual and reading line up
+     across each pair. */
   .hyp {
     border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink);
     display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
     margin: var(--s-3) 0 var(--s-5);
   }
-  .hyp .h { padding: var(--s-4) var(--s-5); border-right: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); break-inside: avoid; }
+  .hyp .h {
+    display: grid; grid-template-rows: subgrid; grid-row: span var(--rows, 5); align-content: start;
+    padding: var(--s-4) var(--s-5); border-right: 1px solid var(--rule-strong); border-bottom: 1px solid var(--rule-strong); break-inside: avoid;
+  }
+  .hyp--h1 .h { --rows: 6; }
+  .hyp--h2 .h { --rows: 5; }
+  .hyp--play .h { --rows: 4; }
   .hyp .h:nth-of-type(2n) { border-right: none; }
   .hyp .h:nth-last-of-type(-n+2) { border-bottom: none; }
   .hyp .h .code { font-family: var(--font-display); font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--cobalt); }
   .hyp .h .title { font-family: var(--font-display); font-size: 18px; font-weight: 700; letter-spacing: -0.01em; color: var(--ink); margin: 8px 0 0; text-transform: none; }
   .hyp .h .q { font-family: var(--font-body); font-style: italic; font-size: 16px; line-height: 1.4; color: var(--ink); margin: 8px 0 0; }
-  .hyp .h .verdict { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); margin-top: var(--s-3); display: block; padding-top: 8px; border-top: 1px solid var(--rule); }
+  .hyp .h .verdict { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink); margin-top: var(--s-3); display: block; padding-top: 8px; border-top: 1px solid var(--rule); align-self: start; }
   .hyp .h .verdict strong { color: var(--cobalt); font-weight: 700; }
   .hyp .h p.body { font-family: var(--font-body); font-size: 15px; line-height: 1.5; color: var(--ink-soft); margin: 6px 0 0; max-width: none; }
   .hyp .h p.body a { color: var(--cobalt); }
-  .hyp--play .h p.body { margin-top: var(--s-3); padding-top: 10px; border-top: 1px solid var(--rule); }
+  .hyp--play .h p.body { margin-top: var(--s-3); padding-top: 10px; border-top: 1px solid var(--rule); align-self: start; }
+  .hyp .h .reading { margin: var(--s-3) 0 0; padding-top: var(--s-2); border-top: 1px solid var(--cobalt); font-family: var(--font-body); font-size: 13px; font-style: italic; line-height: 1.5; color: var(--ink-soft); align-self: start; }
+  .hyp .h .reading .label--micro { color: var(--cobalt); font-style: normal; display: block; margin-bottom: 6px; }
 
   /* Compact visual inside a card: values printed in the cells */
-  .scorecard { margin-top: var(--s-3); padding-top: var(--s-2); border-top: 1px solid var(--rule); }
+  .scorecard { margin-top: var(--s-3); padding-top: var(--s-2); border-top: 1px solid var(--rule); align-self: start; }
   .scorecard .lens { font-family: var(--font-mono); font-size: 10px; color: var(--ink-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; display: block; }
   .matrix { display: grid; grid-template-columns: 92px repeat(5, minmax(0, 1fr)); gap: 2px; align-items: stretch; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
   .matrix .col-head { text-align: center; font-size: 10px; font-weight: 700; color: var(--ink); letter-spacing: 0.08em; padding-bottom: 4px; }
@@ -151,10 +172,8 @@
   .matrix .row-head.hl { color: var(--cobalt); font-weight: 700; }
   .matrix .cell { font-size: 10px; text-align: center; padding: 3px 0; line-height: 1.2; }
   .matrix .cell.ns { background: var(--paper-warm); color: var(--ink-muted); }
+  .matrix .cell.ref { background: none; color: var(--ink); box-shadow: inset 0 0 0 1px var(--rule-strong); }
   .matrix .cell.hl { box-shadow: inset 0 -2px 0 var(--cobalt); }
-  .matrix .bar { display: block; position: relative; height: 4px; background: var(--paper-warm); margin: 6px 4px 0; }
-  .matrix .bar i { position: absolute; inset: 0 auto 0 0; background: var(--ink); }
-  .matrix .bar.hl i { background: var(--cobalt); }
   .scorecard .key { font-family: var(--font-mono); font-size: 9px; color: var(--ink-muted); letter-spacing: 0.04em; text-transform: uppercase; margin-top: var(--s-2); line-height: 1.5; max-width: none; }
 
   /* "All 11 measures" disclosure */
@@ -171,34 +190,29 @@
   table.full td { font-family: var(--font-mono); font-size: 11px; text-align: center; }
   table.full td.ns { background: var(--paper-warm); color: var(--ink-muted); }
   table.full .sub { display: block; font-family: var(--font-body); font-style: italic; font-size: 12px; color: var(--ink-muted); }
-  .more .fc { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin: var(--s-3) 0 0; }
+  .more .fc { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin: var(--s-3) 0 0; max-width: none; }
 
   /* Fig. 01: country cards */
-  .country-strip { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink); margin: var(--s-5) 0 var(--s-7); padding: var(--s-5) 0 0; break-inside: avoid; }
-  .country-strip .strip-head { display: grid; grid-template-columns: minmax(180px, 1fr) 3fr; gap: var(--s-6); align-items: baseline; padding-bottom: var(--s-5); border-bottom: 1px solid var(--rule); margin-bottom: var(--s-5); }
+  .country-strip { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink); margin: var(--s-5) 0 var(--s-7); padding: var(--s-5) 0 0; break-inside: avoid; scroll-margin-top: calc(var(--nameplate-h) + var(--s-5)); }
+  .country-strip .strip-head { display: grid; grid-template-columns: minmax(160px, 1fr) 3fr; gap: var(--s-6); align-items: baseline; padding-bottom: var(--s-5); border-bottom: 1px solid var(--rule); margin-bottom: var(--s-5); }
   .country-strip .strip-title { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--ink-muted); margin: 0; display: flex; align-items: baseline; gap: var(--s-3); flex-wrap: wrap; }
   .country-strip .strip-title .figno { color: var(--cobalt); letter-spacing: 0.16em; text-transform: uppercase; font-size: 10px; }
   .country-strip .strip-title .strip-name { color: var(--ink); letter-spacing: 0.02em; }
-  .country-strip .lede { font-family: var(--font-body); font-size: 16px; font-style: italic; color: var(--ink-soft); line-height: 1.5; margin: 0; }
+  .country-strip .lede { font-family: var(--font-body); font-size: 16px; font-style: italic; color: var(--ink-soft); line-height: 1.5; margin: 0; max-width: none; }
   .country-cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
-  .country-card { padding: var(--s-4) var(--s-4) var(--s-5); border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: var(--s-3); }
+  .country-card { padding: var(--s-4) var(--s-4) var(--s-5); border-right: 1px solid var(--rule); display: flex; flex-direction: column; gap: var(--s-3); min-width: 0; }
   .country-card:last-child { border-right: none; }
   .country-card .top-rule { height: 3px; background: var(--ink); }
   .country-card .code { align-self: flex-start; font-family: var(--font-mono); font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: var(--cobalt); padding: 3px 6px; border: 1px solid var(--cobalt); line-height: 1; }
   .country-card .name { font-family: var(--font-display); font-size: 15px; font-weight: 700; letter-spacing: 0.02em; color: var(--ink); white-space: nowrap; margin-top: -4px; }
   .country-card .ls { font-family: var(--font-display); font-size: 38px; line-height: 0.95; font-weight: 700; letter-spacing: -0.04em; color: var(--ink); font-variant-numeric: tabular-nums; }
   .country-card .ls-cap { font-family: var(--font-display); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-muted); margin-top: -6px; }
-  .country-card .stats { display: flex; flex-direction: column; gap: 4px; padding-top: var(--s-3); border-top: 1px solid var(--rule); }
-  .country-card .stat { display: grid; grid-template-columns: 46px minmax(0, 1fr) auto; gap: var(--s-2); align-items: center; font-family: var(--font-mono); font-size: 10px; color: var(--ink-soft); }
-  .country-card .stat .lbl { letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
-  .country-card .stat .bar { height: 5px; background: var(--paper-warm); position: relative; }
-  .country-card .stat .bar .fill { position: absolute; inset: 0 auto 0 0; background: var(--ink); }
-  .country-card .stat .v { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink); white-space: nowrap; }
-  .country-card .finding { font-family: var(--font-body); font-size: 13px; line-height: 1.5; color: var(--ink); margin: auto 0 0; padding-top: var(--s-2); }
-  .country-strip .fc { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; padding: var(--s-4) 0; border-top: 1px solid var(--rule); margin: 0; }
+  .country-card .n-line { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); padding-top: var(--s-3); border-top: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
+  .country-card .finding { font-family: var(--font-body); font-size: 13px; line-height: 1.5; color: var(--ink); margin: 0; }
+  .country-strip .fc { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); line-height: 1.5; padding: var(--s-4) 0; border-top: 1px solid var(--rule); margin: 0; max-width: none; }
 
   /* Table 01: moderation */
-  .mod-table { margin: var(--s-4) 0 var(--s-6); }
+  .mod-table { margin: var(--s-4) 0 var(--s-6); scroll-margin-top: calc(var(--nameplate-h) + var(--s-5)); }
   .mod-table .tbl-scroll { overflow-x: auto; position: relative; }
   .mod-table table { width: 100%; border-collapse: collapse; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink); }
   .mod-table .tcap { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; color: var(--ink-muted); margin: 0; padding-bottom: var(--s-3); max-width: none; line-height: 1.5; }
@@ -208,11 +222,13 @@
   .mod-table td { font-family: var(--font-body); font-size: 15px; line-height: 1.45; color: var(--ink); vertical-align: top; padding: 10px var(--s-4) 10px 0; border-bottom: 1px solid var(--rule); }
   .mod-table th[scope="row"] { font-family: var(--font-display); font-size: 13px; font-weight: 700; letter-spacing: 0.02em; text-align: left; vertical-align: top; padding: 10px var(--s-4) 10px 0; border-bottom: 1px solid var(--rule); width: 16%; }
   .mod-table td:nth-of-type(1) { width: 32%; }
-  .mod-table td.coefs { width: 24%; }
+  .mod-table td.coefs { width: 26%; }
   .mod-table td.reading { color: var(--ink-soft); font-style: italic; padding-right: 0; }
   .mod-table tr { break-inside: avoid; }
-  .coefs .cl { display: block; font-family: var(--font-mono); font-size: 11px; line-height: 1.7; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  /* A coefficient line may wrap between its term and its value, never inside the value */
+  .coefs .cl { display: block; font-family: var(--font-mono); font-size: 11px; line-height: 1.6; font-variant-numeric: tabular-nums; margin-bottom: 2px; }
   .coefs .ck { font-family: var(--font-display); font-size: 11px; color: var(--ink-soft); }
+  .coefs .cv { white-space: nowrap; }
   .coefs .cp { color: var(--ink-muted); }
   .coefs .cb { display: block; font-family: var(--font-display); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--cobalt); margin-top: var(--s-2); }
   .coefs .cb:first-child { margin-top: 0; }
@@ -226,19 +242,6 @@
   .methods .m h4 { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--ink); margin-top: var(--s-3); text-transform: none; }
   .methods .m p { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin-top: var(--s-3); }
 
-  /* Next project */
-  .next-project {
-    background: var(--ink); color: var(--paper); padding: var(--s-9) var(--s-8);
-    margin: var(--s-9) calc(-1 * var(--page-pad)) 0;
-    display: grid; grid-template-columns: 1fr auto; gap: var(--s-7); align-items: end;
-    text-decoration: none; border: none;
-  }
-  .next-project .eyebrow { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(250,247,240,0.6); }
-  .next-project h3 { text-transform: none; font-family: var(--font-display); font-size: 64px; font-weight: 700; letter-spacing: -0.035em; line-height: 0.95; color: var(--paper); margin-top: var(--s-3); max-width: 16ch; }
-  .next-project h3 em { font-family: var(--font-body); font-style: italic; font-weight: 300; color: rgba(250,247,240,0.7); font-size: 0.6em; display: block; margin-top: var(--s-3); }
-  .next-project .arrow { font-family: var(--font-body); font-style: italic; font-size: 48px; color: var(--paper); }
-  .next-project:hover .arrow { transform: translateX(8px); transition: transform 220ms ease; }
-
   .colophon {
     padding: var(--s-5) 0 var(--s-6);
     display: grid; grid-template-columns: 1fr 1fr 1fr;
@@ -249,7 +252,16 @@
   .colophon .r { text-align: right; }
   .colophon strong { color: var(--ink); font-weight: 400; }
 
-  /* Responsive (the original page's breakpoints) */
+  /* 961–1199px: no contents column; text | margin */
+  @media (max-width: 1199px) {
+    .deck-block { grid-template-columns: minmax(0, 660px) 220px; }
+    .deck-block .side { grid-column: 1 / -1; }
+    .deck-block .standfirst { grid-column: 1 / -1; }
+    .article { grid-template-columns: minmax(0, 1fr); }
+    .article > .leftnotes { display: none; }
+    .main { grid-column: 1; }
+  }
+  /* ≤960px: one column */
   @media (max-width: 960px) {
     .title-block, .deck-block { grid-template-columns: 1fr; gap: var(--s-5); padding: var(--s-6) 0 var(--s-7); }
     .stat-row { grid-template-columns: repeat(2, 1fr); }
@@ -257,10 +269,9 @@
     .stat-row .s:nth-child(odd) { border-right: 1px solid var(--rule-strong); }
     .stat-row .s:nth-child(even) { padding-left: var(--s-4); }
     .stat-row .s:nth-last-child(-n+2) { border-bottom: none; }
-    .article { grid-template-columns: minmax(0, 1fr); padding: var(--s-7) 0 var(--s-8); }
-    .article > * { grid-column: 1 !important; grid-row: auto !important; }
-    .article > .marg.with-inline { display: none; }
-    .inline-note { display: block; padding: var(--s-4) 0 var(--s-2); margin-bottom: 0 !important; }
+    .article { padding: var(--s-7) 0 0; }
+    .main { grid-template-columns: minmax(0, 1fr); }
+    .main > .col, .main > .marg, .main > .wide { grid-column: 1; }
     .hyp { grid-template-columns: 1fr; }
     .hyp .h, .hyp .h:nth-of-type(2n) { border-right: none; border-bottom: 1px solid var(--rule-strong); }
     .hyp .h:last-of-type { border-bottom: none; }
@@ -271,8 +282,6 @@
     .methods { grid-template-columns: 1fr; }
     .methods .m { border-right: none; border-bottom: 1px solid var(--rule-strong); padding: var(--s-5) 0; }
     .methods .m:last-child { border-bottom: none; }
-    .next-project { grid-template-columns: 1fr; padding: var(--s-7) var(--s-5); }
-    .next-project h3 { font-size: 36px; }
   }
   @media (max-width: 600px) {
     .crumb { flex-wrap: wrap; gap: 6px 10px; }
@@ -288,29 +297,28 @@
     .mod-table table, .mod-table tbody, .mod-table tr, .mod-table td, .mod-table th[scope="row"] { display: block; width: auto !important; }
     .mod-table tr { padding: var(--s-3) 0; border-bottom: 1px solid var(--rule); }
     .mod-table td, .mod-table th[scope="row"] { border-bottom: none; padding: 2px 0; }
-    .coefs .cl { white-space: normal; }
     .colophon { grid-template-columns: 1fr; gap: 4px; }
     .colophon .c, .colophon .r { text-align: left; }
   }
   @media (hover: none) { .colophon a { padding: 6px 4px; } }
-  @media (prefers-reduced-motion: reduce) { .next-project:hover .arrow { transform: none; } }
 
   @media print {
     @page { size: A4; margin: 16mm 14mm; }
     body, .pf-shell { background: #fff !important; }
     body { font-variant-ligatures: no-common-ligatures; }
     .pf-shell { position: static; }
-    .pf-nav-desktop, .menu, .leftnotes, .crumb, .next-project .arrow, .inline-note { display: none !important; }
+    .pf-nav-desktop, .menu, .leftnotes, .crumb { display: none !important; }
     .shell { max-width: none; padding: 0; }
-    .title-block, .deck-block, .article { display: block !important; padding: 10pt 0; }
-    .article > .marg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12pt; }
-    .article > .marg.with-inline { display: grid !important; }
+    .title-block, .deck-block, .article, .main { display: block !important; padding: 10pt 0; }
+    .main > .marg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12pt; }
     .article aside { margin: 0 0 10pt; break-inside: avoid; }
     .title-block h1 { font-size: 40pt; }
     .title-block .meta { margin-top: 12pt; }
     .deck-block .standfirst { font-size: 15pt; max-width: none; }
-    .stat-row .s { padding: 8pt 8pt 8pt 0; }
+    .stat-row { grid-template-columns: repeat(4, 1fr) !important; }
+    .stat-row .s { padding: 8pt 8pt 8pt 0; border-bottom: none !important; border-right: 1px solid var(--rule-strong) !important; }
     .stat-row .s + .s { padding-left: 8pt; }
+    .stat-row .s:last-child { border-right: none !important; }
     .stat-row .s .v { font-size: 26pt; }
     .article p { font-size: 10.5pt; line-height: 1.45; break-inside: avoid; orphans: 3; widows: 3; }
     .article p.lead { font-size: 13pt; }
@@ -321,17 +329,11 @@
     .country-cards { grid-template-columns: repeat(5, 1fr); }
     .country-card { border-right: 1px solid var(--rule); border-bottom: none; padding: 8pt; }
     .mod-table .tbl-scroll, .more .fulltable-wrap { overflow: visible; }
+    .mod-table .tcap, .mod-table thead, .mod-table tr.grp { break-after: avoid; }
     table.full { min-width: 0; }
     .mod-table table { table-layout: fixed; }
-    .coefs .cl { white-space: normal; font-size: 8pt; }
-    .matrix .cell, table.full td, .matrix .bar i, .country-card .stat .bar .fill, .next-project { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
-    .next-project { margin: 18pt 0 0; padding: 18pt; break-inside: avoid; }
-    .mod-table .tcap, .mod-table thead, .mod-table tr.grp { break-after: avoid; }
-    .mod-table table { break-before: auto; }
-    .stat-row { grid-template-columns: repeat(4, 1fr) !important; }
-    .stat-row .s { border-bottom: none !important; border-right: 1px solid var(--rule-strong) !important; }
-    .stat-row .s:last-child { border-right: none !important; }
-    .next-project h3 { font-size: 26pt; }
+    .coefs .cl { font-size: 8pt; }
+    .matrix .cell, table.full td { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     a { border-bottom: none !important; }
   }
 </style>
@@ -390,7 +392,7 @@
     <div class="s"><span class="k">Relative income</span><div class="v v--small">n.s.</div><p class="n">No significant main effect.</p></div>
   </section>
 
-  <!-- ARTICLE -->
+  <!-- ARTICLE: contents | main (text | margin) -->
   <article class="article">
 
     <div class="leftnotes">
@@ -399,111 +401,85 @@
         <a href="#context"><span class="n">01</span>Context</a>
         <a href="#approach"><span class="n">02</span>Approach &amp; methods</a>
         <a href="#results"><span class="n">03</span>Results</a>
+        <a href="#limits" class="toc-sub">Limits</a>
         <a href="#implications"><span class="n">04</span>Implications</a>
         <a href="#next"><span class="n">05</span>What I'd do next</a>
       </nav>
     </div>
 
-    <!-- §01 -->
-    <div class="col">
-      <h2 id="context">Context <span class="section-num">§ 01</span></h2>
-      <p class="lead">We usually judge how well a country is doing by its income. Yet the relationships around us, at home, at work and in our neighbourhoods, are a large part of what makes life worth living. Researchers call this social capital, and its link with life satisfaction is well established (Putnam, 2000; Helliwell &amp; Putnam, 2004).</p>
-      <p>What is less clear is whether it works the same way everywhere. Most studies treat the link as uniform and measure trust, networks and norms with separate instruments. I used the ISSP 2017 Social Networks module, an underused survey that captures all three of Putnam's dimensions at once, and tested the link in five very different countries.</p>
-      <p>The answer: social capital matters everywhere, but not in the same way. Culture and natural risk change which relationships count. Where the state provides more, social capital carries less of the load. And the most consistent link holds in every country: people who trust that the system treats them fairly are more satisfied with life.</p>
-    </div>
-    <div class="marg">
-      <aside>
-        <span class="label--micro">The quote on my desk</span>
-        “Money can't buy happiness”: a maxim argued over since Rousseau's <em>Discourse on the Arts and Sciences</em> (1750). 274 years later, the data still mostly agrees.
-      </aside>
-    </div>
+    <div class="main">
 
-    <!-- §02 -->
-    <div class="col">
-      <h2 id="approach">Approach &amp; methods <span class="section-num">§ 02</span></h2>
-      <p>The data are the ISSP 2017 Social Networks module: 11,249 respondents in five countries, analysed in R. Life satisfaction is the module's single 7-point item. Social capital is measured through 11 measures across trust, social networks, support resources, reciprocity norms and contact. 8 contextual moderators frame the comparison: what governments shape (the Human Development Index, Social Progress Index, Corruption Perceptions Index and within-country income) and what a country is given (INFORM natural-hazard risk and Hofstede's power distance, masculinity and individualism). The dissertation calls these explicit and implicit moderators.</p>
-      <p>Gaps in 3,968 of the 11,249 rows were filled by multiple imputation (MICE, predictive mean matching, grouped by country), and multi-item measures were reduced by PCA (most α ≥ 0.71). Country-level and pooled OLS with interaction terms tested four hypotheses, with estimated marginal means and Tukey comparisons between countries, VIF checks for multicollinearity and AIC/BIC to compare moderator models. Controls were age, partner status, ISCO-08 skill level and household financial ease.</p>
-    </div>
-    <div class="marg">
-      <aside>
-        <span class="label--micro">Tool stack</span>
-        R: <em>mice, emmeans, car</em> (VIF). Excel for early wrangling. The ISSP codebook as gospel.
-      </aside>
-      <aside>
-        <span class="label--micro">Quietly proud of</span>
-        Reconstructing the ISCO-08 skill levels for Chinese agricultural workers, where the ISSP module has a known missing-data issue flagged on p.&nbsp;279 of its own documentation — so the Chinese sample didn't collapse.
-      </aside>
-    </div>
-
-    <!-- §03 -->
-    <div class="col">
-      <h2 id="results">Results <span class="section-num">§ 03</span></h2>
-      <p>The data are a snapshot, not an experiment, so every result here is an association.</p>
-    </div>
-
-    <div class="span-2">
-      <div class="hyp">
-        <div class="h">
-          <span class="code">H1a · Within</span>
-          <p class="q">Social capital is positively associated with life satisfaction within each country.</p>
-          <span class="verdict"><strong>Supported.</strong></span>
-          <p class="body">Within every country, people with more social capital reported higher life satisfaction. Trust in fairness was the most consistent link, significant in all five and strongest in Austria, more than twice the other four countries'. That fits the “warm glow” of trust in highly developed countries (Bjørnskov, 2003b).</p>
-          <div class="scorecard"><span class="lens">Trust · β by country</span><div class="matrix" role="table"><span class="corner"></span><span class="col-head"><abbr title="United States">US</abbr></span><span class="col-head"><abbr title="Austria">AT</abbr></span><span class="col-head"><abbr title="Russia">RU</abbr></span><span class="col-head"><abbr title="South Africa">ZA</abbr></span><span class="col-head"><abbr title="China">CN</abbr></span><span class="row-head">Society</span><span class="cell ns" title="Trust in society, United States: β = 0.065, not significant">n.s.</span><span class="cell" style="background:#a6a39a;color:#141414" title="Trust in society, Austria: β = 0.088, p < .05">0.088</span><span class="cell" style="background:#66645f;color:#fffdf8" title="Trust in society, Russia: β = 0.189, p < .01">0.189</span><span class="cell" style="background:#706e68;color:#fffdf8" title="Trust in society, South Africa: β = 0.173, p < .01">0.173</span><span class="cell" style="background:#a4a197;color:#141414" title="Trust in society, China: β = 0.092, p < .01">0.092</span><span class="row-head hl">Fairness</span><span class="cell hl" style="background:#a29f96;color:#141414" title="Trust in fairness, United States: β = 0.094, p < .05">0.094</span><span class="cell hl" style="background:#262524;color:#fffdf8" title="Trust in fairness, Austria: β = 0.29, p < .01">0.29</span><span class="cell hl" style="background:#939088;color:#141414" title="Trust in fairness, Russia: β = 0.118, p < .01">0.118</span><span class="cell hl" style="background:#918e86;color:#141414" title="Trust in fairness, South Africa: β = 0.122, p < .01">0.122</span><span class="cell hl" style="background:#8a8880;color:#141414" title="Trust in fairness, China: β = 0.132, p < .01">0.132</span><span class="row-head">Org.</span><span class="cell" style="background:#949289;color:#141414" title="Organisational trust, United States: β = 0.116, p < .01">0.116</span><span class="cell" style="background:#97948c;color:#141414" title="Organisational trust, Austria: β = 0.112, p < .01">0.112</span><span class="cell" style="background:#a4a198;color:#141414" title="Organisational trust, Russia: β = 0.091, p < .01">0.091</span><span class="cell" style="background:#aaa69d;color:#141414" title="Organisational trust, South Africa: β = 0.083, p < .01">0.083</span><span class="cell" style="background:#949189;color:#141414" title="Organisational trust, China: β = 0.117, p < .01">0.117</span></div><p class="key">β, country OLS · darker = stronger · n.s. p ≥ .05</p></div>
-        </div>
-        <aside class="inline-note">
-          <span class="label--micro">My reading</span>
-          The surprise was organisational support resources, which went with lower satisfaction, the opposite of what I expected. People may dislike having to rely on institutions for what they need. It took me a week to see it.
-        </aside>
-        <div class="h">
-          <span class="code">H1b · Between</span>
-          <p class="q">The relationship between social capital and life satisfaction varies across countries.</p>
-          <span class="verdict"><strong>Supported.</strong></span>
-          <p class="body">At average social capital, life satisfaction still differed, from 5.34 in the US to 4.59 in China; only the US and Austria, and Russia and South Africa were statistically level. Trust mattered almost everywhere, social networks in South Africa, and societal norms and resources in China.</p>
-          <div class="scorecard"><span class="lens">Life satisfaction · 1–7</span><div class="matrix" role="table"><span class="corner"></span><span class="col-head"><abbr title="United States">US</abbr></span><span class="col-head"><abbr title="Austria">AT</abbr></span><span class="col-head"><abbr title="Russia">RU</abbr></span><span class="col-head"><abbr title="South Africa">ZA</abbr></span><span class="col-head"><abbr title="China">CN</abbr></span><span class="row-head">LS mean</span><span class="cell" title="United States: 5.34">5.34<span class="bar" aria-hidden="true"><i style="width:78%"></i></span></span><span class="cell" title="Austria: 5.19">5.19<span class="bar" aria-hidden="true"><i style="width:73%"></i></span></span><span class="cell" title="Russia: 4.85">4.85<span class="bar" aria-hidden="true"><i style="width:62%"></i></span></span><span class="cell" title="South Africa: 4.81">4.81<span class="bar" aria-hidden="true"><i style="width:60%"></i></span></span><span class="cell" title="China: 4.59">4.59<span class="bar hl" aria-hidden="true"><i style="width:53%"></i></span></span></div><p class="key">Marginal means · bars 3–6</p></div>
-        </div>
-        <aside class="inline-note">
-          <span class="label--micro">My reading</span>
-          In China, guanxi (關係) networks are also how knowledge, licences, projects and careers flow. When social capital is an economic necessity rather than an extra, an average amount may not feel like enough (He &amp; Gebhardt, 2015).
-        </aside>
-        <div class="h">
-          <span class="code">H2a · Implicit</span>
-          <p class="q">Implicit national factors — natural-disaster risk and Hofstede cultural values — moderate the relationship.</p>
-          <span class="verdict"><strong>Supported,</strong> with nuance.</span>
-          <p class="body">What a country is given changed which relationships counted. In riskier countries, trust and networks mattered less and the societal care norm more; social networks mattered more in individualistic cultures.</p>
-          <div class="scorecard"><span class="lens">What a country is given · 0–10</span><div class="matrix" role="table"><span class="corner"></span><span class="col-head"><abbr title="United States">US</abbr></span><span class="col-head"><abbr title="Austria">AT</abbr></span><span class="col-head"><abbr title="Russia">RU</abbr></span><span class="col-head"><abbr title="South Africa">ZA</abbr></span><span class="col-head"><abbr title="China">CN</abbr></span><span class="row-head">Hazard</span><span class="cell" style="background:#454441;color:#fffdf8" title="United States: 6.9">6.9</span><span class="cell" style="background:#dedacd;color:#141414" title="Austria: 2.5">2.5</span><span class="cell" style="background:#84817a;color:#141414" title="Russia: 5.1">5.1</span><span class="cell" style="background:#a3a097;color:#141414" title="South Africa: 4.2">4.2</span><span class="cell" style="background:#262524;color:#fffdf8" title="China: 7.8">7.8</span><span class="row-head">Power dist.</span><span class="cell" style="background:#9d9a91;color:#141414" title="United States: 4.0">4.0</span><span class="cell" style="background:#dedacd;color:#141414" title="Austria: 1.1">1.1</span><span class="cell" style="background:#262524;color:#fffdf8" title="Russia: 9.3">9.3</span><span class="cell" style="background:#89867f;color:#141414" title="South Africa: 4.9">4.9</span><span class="cell" style="background:#43423f;color:#fffdf8" title="China: 8.0">8.0</span><span class="row-head">Masculinity</span><span class="cell" style="background:#6f6d67;color:#fffdf8" title="United States: 6.2">6.2</span><span class="cell" style="background:#262524;color:#fffdf8" title="Austria: 7.9">7.9</span><span class="cell" style="background:#dedacd;color:#141414" title="Russia: 3.6">3.6</span><span class="cell" style="background:#6a6863;color:#fffdf8" title="South Africa: 6.3">6.3</span><span class="cell" style="background:#5d5c57;color:#fffdf8" title="China: 6.6">6.6</span><span class="row-head">Individualism</span><span class="cell" style="background:#262524;color:#fffdf8" title="United States: 9.1">9.1</span><span class="cell" style="background:#83817a;color:#141414" title="Austria: 5.5">5.5</span><span class="cell" style="background:#ada9a0;color:#141414" title="Russia: 3.9">3.9</span><span class="cell" style="background:#696762;color:#fffdf8" title="South Africa: 6.5">6.5</span><span class="cell" style="background:#dedacd;color:#141414" title="China: 2.0">2.0</span></div><p class="key">INFORM hazard · Hofstede · darker = higher</p></div>
-        </div>
-        <div class="h">
-          <span class="code">H2b · Explicit</span>
-          <p class="q">Explicit national factors — human development, government resources, corruption and income — moderate the relationship.</p>
-          <span class="verdict"><strong>Supported.</strong></span>
-          <p class="body">As the state provided more, most links weakened, while governance quality was itself linked to higher satisfaction. Relative income had no significant main effect, but household financial ease, a measure of making ends meet, was one of the strongest predictors.</p>
-          <div class="scorecard"><span class="lens">What governments shape</span><div class="matrix" role="table"><span class="corner"></span><span class="col-head"><abbr title="United States">US</abbr></span><span class="col-head"><abbr title="Austria">AT</abbr></span><span class="col-head"><abbr title="Russia">RU</abbr></span><span class="col-head"><abbr title="South Africa">ZA</abbr></span><span class="col-head"><abbr title="China">CN</abbr></span><span class="row-head">HDI</span><span class="cell" style="background:#262524;color:#fffdf8" title="United States: 0.924">0.924</span><span class="cell" style="background:#2d2c2b;color:#fffdf8" title="Austria: 0.916">0.916</span><span class="cell" style="background:#262524;color:#fffdf8" title="Russia: 0.833">0.833</span><span class="cell" style="background:#dedacd;color:#141414" title="South Africa: 0.720">0.720</span><span class="cell" style="background:#c6c2b7;color:#141414" title="China: 0.747">0.747</span><span class="row-head">SPI</span><span class="cell" style="background:#31312f;color:#fffdf8" title="United States: 8.64">8.64</span><span class="cell" style="background:#262524;color:#fffdf8" title="Austria: 8.80">8.80</span><span class="cell" style="background:#c4c0b5;color:#141414" title="Russia: 6.72">6.72</span><span class="cell" style="background:#c4c0b4;color:#141414" title="South Africa: 6.72">6.72</span><span class="cell" style="background:#dedacd;color:#141414" title="China: 6.37">6.37</span><span class="row-head">CPI</span><span class="cell" style="background:#262524;color:#fffdf8" title="United States: 7.5">7.5</span><span class="cell" style="background:#262524;color:#fffdf8" title="Austria: 7.5">7.5</span><span class="cell" style="background:#dedacd;color:#141414" title="Russia: 2.9">2.9</span><span class="cell" style="background:#a6a39a;color:#141414" title="South Africa: 4.3">4.3</span><span class="cell" style="background:#aeaba1;color:#141414" title="China: 4.1">4.1</span></div><p class="key">HDI 0–1 · SPI, CPI 0–10 · darker = higher</p></div>
-        </div>
+      <!-- §01 -->
+      <div class="col">
+        <h2 id="context">Context <span class="section-num">§ 01</span></h2>
+        <p class="lead">We usually judge how well a country is doing by its income. Yet the relationships around us, at home, at work and in our neighbourhoods, are a large part of what makes life worth living. Researchers call this social capital, and its link with life satisfaction is well established (Putnam, 2000; Helliwell &amp; Putnam, 2004).</p>
+        <p>What is less clear is whether it works the same way everywhere. Most studies treat the link as uniform and measure trust, networks and norms with separate instruments. I used the ISSP 2017 Social Networks module, an underused survey that captures all three of Putnam's dimensions at once, and tested the link in five very different countries.</p>
+        <p>The answer: social capital matters everywhere, but not in the same way. Culture and natural risk change which relationships count. Where the state provides more, social capital carries less of the load. And the most consistent link holds in every country: people who trust that the system treats them fairly are more satisfied with life.</p>
+        <blockquote>
+          <p>Overall, this is a very comprehensive study of the relationship between life satisfaction and social capital in various national contexts. It was a pleasure to read this thoughtful analysis.</p>
+          <span class="attrib">— Dr Anke Plagnol · supervisor</span>
+        </blockquote>
       </div>
-      <details class="more" id="all-measures">
+      <div class="marg">
+        <aside>
+          <span class="label--micro">The quote on my desk</span>
+          “Money can't buy happiness”: a maxim argued over since Rousseau's <em>Discourse on the Arts and Sciences</em> (1750). 274 years later, the data still mostly agrees.
+        </aside>
+      </div>
+
+      <!-- §02 -->
+      <div class="col">
+        <h2 id="approach">Approach &amp; methods <span class="section-num">§ 02</span></h2>
+        <p>The data are the ISSP 2017 Social Networks module: 11,249 respondents in five countries, analysed in R. Life satisfaction is the module's single 7-point item. Social capital is measured through 11 measures across trust, social networks, support resources, reciprocity norms and contact. 8 contextual moderators frame the comparison: what governments shape (the Human Development Index, Social Progress Index, Corruption Perceptions Index and within-country income) and what a country is given (INFORM natural-hazard risk and Hofstede's power distance, masculinity and individualism). The dissertation calls these explicit and implicit moderators.</p>
+        <p>Gaps in 3,968 of the 11,249 rows were filled by multiple imputation (MICE, predictive mean matching, grouped by country), and multi-item measures were reduced by PCA (most α ≥ 0.71). Country-level and pooled OLS with interaction terms tested four hypotheses, with estimated marginal means and Tukey comparisons between countries, VIF checks for multicollinearity and AIC/BIC to compare moderator models. Controls were age, partner status, ISCO-08 skill level and household financial ease.</p>
+      </div>
+      <div class="marg">
+        <aside>
+          <span class="label--micro">Tool stack</span>
+          R: <em>mice, emmeans, car</em> (VIF). Excel for early wrangling. The ISSP codebook as gospel.
+        </aside>
+        <aside>
+          <span class="label--micro">Quietly proud of</span>
+          Reconstructing the ISCO-08 skill levels for Chinese agricultural workers, where the ISSP module has a known missing-data issue flagged on p.&nbsp;279 of its own documentation — so the Chinese sample didn't collapse.
+        </aside>
+      </div>
+
+      <!-- §03 -->
+      <div class="col">
+        <h2 id="results">Results <span class="section-num">§ 03</span></h2>
+        <p>The data are a snapshot, not an experiment, so every result here is an association.</p>
+      </div>
+
+      <div class="wide">
+        <div class="hyp hyp--h1">
+          <div class="h">
+            <span class="code">H1a · Within</span>
+            <p class="q">Social capital is positively associated with life satisfaction within each country.</p>
+            <span class="verdict"><strong>Supported.</strong></span>
+            <p class="body">Within every country, people with more social capital reported higher life satisfaction. Trust in fairness was the most consistent link, significant in all five and strongest in Austria, more than twice the other four countries'. That fits the “warm glow” of trust in highly developed countries (Bjørnskov, 2003b).</p>
+            <div class="scorecard"><span class="lens">Trust · β by country</span><div class="matrix" role="table"><span class="corner"></span><span class="col-head"><abbr title="United States">US</abbr></span><span class="col-head"><abbr title="Austria">AT</abbr></span><span class="col-head"><abbr title="Russia">RU</abbr></span><span class="col-head"><abbr title="South Africa">ZA</abbr></span><span class="col-head"><abbr title="China">CN</abbr></span><span class="row-head">Society</span><span class="cell ns" title="Trust in society, United States: β = 0.065, not significant">n.s.</span><span class="cell" style="background:#a6a39a;color:#141414" title="Trust in society, Austria: β = 0.088, p < .05">0.088</span><span class="cell" style="background:#66645f;color:#fffdf8" title="Trust in society, Russia: β = 0.189, p < .01">0.189</span><span class="cell" style="background:#706e68;color:#fffdf8" title="Trust in society, South Africa: β = 0.173, p < .01">0.173</span><span class="cell" style="background:#a4a197;color:#141414" title="Trust in society, China: β = 0.092, p < .01">0.092</span><span class="row-head hl">Fairness</span><span class="cell hl" style="background:#a29f96;color:#141414" title="Trust in fairness, United States: β = 0.094, p < .05">0.094</span><span class="cell hl" style="background:#262524;color:#fffdf8" title="Trust in fairness, Austria: β = 0.29, p < .01">0.29</span><span class="cell hl" style="background:#939088;color:#141414" title="Trust in fairness, Russia: β = 0.118, p < .01">0.118</span><span class="cell hl" style="background:#918e86;color:#141414" title="Trust in fairness, South Africa: β = 0.122, p < .01">0.122</span><span class="cell hl" style="background:#8a8880;color:#141414" title="Trust in fairness, China: β = 0.132, p < .01">0.132</span><span class="row-head">Org.</span><span class="cell" style="background:#949289;color:#141414" title="Organisational trust, United States: β = 0.116, p < .01">0.116</span><span class="cell" style="background:#97948c;color:#141414" title="Organisational trust, Austria: β = 0.112, p < .01">0.112</span><span class="cell" style="background:#a4a198;color:#141414" title="Organisational trust, Russia: β = 0.091, p < .01">0.091</span><span class="cell" style="background:#aaa69d;color:#141414" title="Organisational trust, South Africa: β = 0.083, p < .01">0.083</span><span class="cell" style="background:#949189;color:#141414" title="Organisational trust, China: β = 0.117, p < .01">0.117</span></div><p class="key">β, country OLS · darker = stronger · n.s. p ≥ .05</p></div>
+            <p class="reading"><span class="label--micro">My reading</span>The surprise was organisational support resources, which went with lower satisfaction, the opposite of what I expected. People may dislike having to rely on institutions for what they need. It took me a week to see it.</p>
+          </div>
+          <div class="h">
+            <span class="code">H1b · Between</span>
+            <p class="q">The relationship between social capital and life satisfaction varies across countries.</p>
+            <span class="verdict"><strong>Supported.</strong></span>
+            <p class="body">Pooling all five countries, with Austria as the baseline, shows where the same tie carried different weight. Trust in fairness was positive everywhere, but roughly half as strong outside Austria. Social networks counted for more in South Africa and daily contact for less in the United States; most other differences were not significant. Held at average social capital, these differences add up to different levels of satisfaction (<a href="#fig-01">Fig. 01</a>).</p>
+            <div class="scorecard"><span class="lens">Pooled model · difference from Austria</span><div class="matrix" role="table"><span class="corner"></span><span class="col-head"><abbr title="United States">US</abbr></span><span class="col-head"><abbr title="Austria">AT</abbr></span><span class="col-head"><abbr title="Russia">RU</abbr></span><span class="col-head"><abbr title="South Africa">ZA</abbr></span><span class="col-head"><abbr title="China">CN</abbr></span><span class="row-head hl">Fairness</span><span class="cell hl" style="background:#d55e2f;color:#141414" title="Trust in fairness × United States: β = −0.16, p < .05">−0.16</span><span class="cell ref hl" title="Trust in fairness, Austria (reference): β = 0.262, p < .01">ref</span><span class="cell hl" style="background:#d97247;color:#141414" title="Trust in fairness × Russia: β = −0.136, p < .05">−0.136</span><span class="cell hl" style="background:#d86c40;color:#141414" title="Trust in fairness × South Africa: β = −0.143, p < .01">−0.143</span><span class="cell hl" style="background:#db7e56;color:#141414" title="Trust in fairness × China: β = −0.121, p < .05">−0.121</span><span class="row-head">Networks</span><span class="cell ns" title="Social networks × United States: β = −0.078, not significant">n.s.</span><span class="cell ref" title="Social networks, Austria (reference): β = 0.029, n.s.">ref</span><span class="cell ns" title="Social networks × Russia: β = 0.073, not significant">n.s.</span><span class="cell" style="background:#262524;color:#fffdf8" title="Social networks × South Africa: β = 0.134, p < .01">0.134</span><span class="cell ns" title="Social networks × China: β = −0.058, not significant">n.s.</span><span class="row-head">Daily contact</span><span class="cell" style="background:#d55e2f;color:#141414" title="Daily contact × United States: β = −0.004, p < .05">−0.004</span><span class="cell ref" title="Daily contact, Austria (reference): β = 0.004, p < .01">ref</span><span class="cell ns" title="Daily contact × Russia: β = 0.0003, not significant">n.s.</span><span class="cell ns" title="Daily contact × South Africa: β = −0.003, not significant">n.s.</span><span class="cell ns" title="Daily contact × China: β = −0.002, not significant">n.s.</span></div><p class="key">Interaction β vs Austria · terracotta = weaker · n.s. p ≥ .05</p></div>
+            <p class="reading"><span class="label--micro">My reading</span>In Russia and South Africa, trust in society was among the strongest links (0.189 and 0.173). Where the wider situation feels uncertain, stable relations with strangers may count for more.</p>
+          </div>
+        </div>
+        <details class="more" id="all-measures">
 <summary>All 11 measures, by country</summary>
 <div class="fulltable-wrap" tabindex="0" role="region" aria-label="All measures, scrollable">
 <table class="full"><caption class="vh">OLS coefficient of each social capital measure on life satisfaction, by country</caption>
 <thead><tr><th scope="col">Measure</th><th scope="col"><abbr title="United States">US</abbr></th><th scope="col"><abbr title="Austria">AT</abbr></th><th scope="col"><abbr title="Russia">RU</abbr></th><th scope="col"><abbr title="South Africa">ZA</abbr></th><th scope="col"><abbr title="China">CN</abbr></th></tr></thead><tbody><tr class="grp"><th colspan="6" scope="rowgroup">Trust</th></tr><tr><th scope="row">Trust in society</th><td class="ns">n.s.<span class="vh"> (β = 0.065)</span></td><td style="background:#a6a39a;color:#141414">0.088</td><td style="background:#66645f;color:#fffdf8">0.189</td><td style="background:#706e68;color:#fffdf8">0.173</td><td style="background:#a4a197;color:#141414">0.092</td></tr><tr class="hl"><th scope="row">Trust in fairness</th><td style="background:#a29f96;color:#141414">0.094</td><td style="background:#262524;color:#fffdf8">0.29</td><td style="background:#939088;color:#141414">0.118</td><td style="background:#918e86;color:#141414">0.122</td><td style="background:#8a8880;color:#141414">0.132</td></tr><tr><th scope="row">Organisational trust</th><td style="background:#949289;color:#141414">0.116</td><td style="background:#97948c;color:#141414">0.112</td><td style="background:#a4a198;color:#141414">0.091</td><td style="background:#aaa69d;color:#141414">0.083</td><td style="background:#949189;color:#141414">0.117</td></tr><tr class="grp"><th colspan="6" scope="rowgroup">Networks</th></tr><tr><th scope="row">Social networks</th><td class="ns">n.s.<span class="vh"> (β = −0.029)</span></td><td class="ns">n.s.<span class="vh"> (β = 0.039)</span></td><td style="background:#a6a299;color:#141414">0.089</td><td style="background:#838079;color:#141414">0.144</td><td class="ns">n.s.<span class="vh"> (β = −0.019)</span></td></tr><tr class="grp"><th colspan="6" scope="rowgroup">Support resources</th></tr><tr><th scope="row">Personal support resources</th><td class="ns">n.s.<span class="vh"> (β = 0.08)</span></td><td class="ns">n.s.<span class="vh"> (β = −0.033)</span></td><td class="ns">n.s.<span class="vh"> (β = 0.023)</span></td><td class="ns">n.s.<span class="vh"> (β = 0.028)</span></td><td class="ns">n.s.<span class="vh"> (β = 0.009)</span></td></tr><tr><th scope="row">Organisational support resources</th><td style="background:#e5b297;color:#141414">−0.10</td><td style="background:#e6b69c;color:#141414">−0.092</td><td class="ns">n.s.<span class="vh"> (β = −0.042)</span></td><td style="background:#e8c3ac;color:#141414">−0.062</td><td class="ns">n.s.<span class="vh"> (β = −0.016)</span></td></tr><tr class="grp"><th colspan="6" scope="rowgroup">Reciprocity norms</th></tr><tr><th scope="row">Elder care norm</th><td style="background:#a6a299;color:#141414">0.089</td><td class="ns">n.s.<span class="vh"> (β = 0.015)</span></td><td class="ns">n.s.<span class="vh"> (β = 0.06)</span></td><td class="ns">n.s.<span class="vh"> (β = 0.013)</span></td><td style="background:#bbb7ac;color:#141414">0.056</td></tr><tr><th scope="row">Family first norm</th><td class="ns">n.s.<span class="vh"> (β = 0.045)</span></td><td class="ns">n.s.<span class="vh"> (β = −0.008)</span></td><td class="ns">n.s.<span class="vh"> (β = 0.021)</span></td><td style="background:#afaba1;color:#141414">0.075</td><td class="ns">n.s.<span class="vh"> (β = 0.039)</span></td></tr><tr><th scope="row">Societal care norm</th><td class="ns">n.s.<span class="vh"> (β = 0.012)</span></td><td class="ns">n.s.<span class="vh"> (β = 0.0003)</span></td><td class="ns">n.s.<span class="vh"> (β = 0.007)</span></td><td class="ns">n.s.<span class="vh"> (β = −0.029)</span></td><td style="background:#b1aea4;color:#141414">0.071</td></tr><tr class="grp"><th colspan="6" scope="rowgroup">Contact</th></tr><tr><th scope="row">Daily contact<span class="sub">per person contacted</span></th><td class="ns">n.s.<span class="vh"> (β = 0.001)</span></td><td style="background:#dcd7cb;color:#141414">0.004</td><td class="ns">n.s.<span class="vh"> (β = 0.003)</span></td><td class="ns">n.s.<span class="vh"> (β = 0.001)</span></td><td style="background:#ddd9cc;color:#141414">0.002</td></tr><tr><th scope="row">Organisational contact</th><td class="ns">n.s.<span class="vh"> (β = 0.029)</span></td><td style="background:#afaba1;color:#141414">0.075</td><td style="background:#9e9b92;color:#141414">0.101</td><td style="background:#adaaa0;color:#141414">0.077</td><td style="background:#a6a39a;color:#141414">0.088</td></tr></tbody></table>
 <p class="fc">Country-level OLS coefficients, ISSP 2017; grey cells are not significant at p &lt; .05, terracotta cells negative. Trust in fairness, 95% intervals (β ± 1.96 SE): US 0.010 to 0.178 · AT 0.217 to 0.363 · RU 0.044 to 0.192 · ZA 0.067 to 0.177 · CN 0.087 to 0.177.</p>
 </div></details>
-    </div>
-    <div class="marg with-inline">
-      <aside>
-        <span class="label--micro">My reading · H1a</span>
-        The surprise was organisational support resources, which went with lower satisfaction, the opposite of what I expected. People may dislike having to rely on institutions for what they need. It took me a week to see it.
-      </aside>
-      <aside>
-        <span class="label--micro">My reading · H1b</span>
-        In China, guanxi (關係) networks are also how knowledge, licences, projects and careers flow. When social capital is an economic necessity rather than an extra, an average amount may not feel like enough (He &amp; Gebhardt, 2015).
-      </aside>
-    </div>
-
-    <div class="wide">
-      <section class="country-strip" id="fig-01" aria-labelledby="fig-01-t">
+        <section class="country-strip" id="fig-01" aria-labelledby="fig-01-t">
 <div class="strip-head">
 <p class="strip-title" id="fig-01-t"><span class="figno">Fig. 01</span><span class="strip-name">Life satisfaction at mean social capital, by country</span></p>
-<p class="lede">Where you live still shapes how satisfied you are, even at the same level of social connection. At average social capital, China was lowest, and only the US and Austria, and Russia and South Africa, were statistically level.</p>
+<p class="lede">Where you live still shapes how satisfied you are. Holding social capital at its average, satisfaction ranked US ≈ Austria > Russia ≈ South Africa > China; every other pair differed significantly, and the widest gap, US to China, was 0.75 points on the 7-point scale.</p>
 </div>
 <div class="country-cards"><article class="country-card">
 <div class="top-rule"></div>
@@ -511,7 +487,7 @@
 <span class="name">United States</span>
 <div class="ls">5.34</div>
 <span class="ls-cap">Life satisfaction · 1–7</span>
-<div class="stats"><div class="stat"><span class="lbl">HDI</span><div class="bar"><div class="fill" style="width:92%"></div></div><span class="v">0.92</span></div><div class="stat"><span class="lbl">Indiv.</span><div class="bar"><div class="fill" style="width:91%"></div></div><span class="v">9.1</span></div><div class="stat"><span class="lbl">Hazard</span><div class="bar"><div class="fill" style="width:69%"></div></div><span class="v">6.9</span></div><div class="stat"><span class="lbl">n</span><div class="bar"><div class="fill" style="width:28%"></div></div><span class="v">1,173</span></div></div>
+<span class="n-line">n = 1,173</span>
 <p class="finding">The fewest significant links between social capital and satisfaction. Wealth may provide the floor; bridging ties are the scarce resource.</p>
 </article><article class="country-card">
 <div class="top-rule"></div>
@@ -519,7 +495,7 @@
 <span class="name">Austria</span>
 <div class="ls">5.19</div>
 <span class="ls-cap">Life satisfaction · 1–7</span>
-<div class="stats"><div class="stat"><span class="lbl">HDI</span><div class="bar"><div class="fill" style="width:92%"></div></div><span class="v">0.92</span></div><div class="stat"><span class="lbl">Indiv.</span><div class="bar"><div class="fill" style="width:55%"></div></div><span class="v">5.5</span></div><div class="stat"><span class="lbl">Hazard</span><div class="bar"><div class="fill" style="width:25%"></div></div><span class="v">2.5</span></div><div class="stat"><span class="lbl">n</span><div class="bar"><div class="fill" style="width:28%"></div></div><span class="v">1,200</span></div></div>
+<span class="n-line">n = 1,200</span>
 <p class="finding">Trust in fairness and organisational trust both stand out from the rest of the sample.</p>
 </article><article class="country-card">
 <div class="top-rule"></div>
@@ -527,7 +503,7 @@
 <span class="name">Russia</span>
 <div class="ls">4.85</div>
 <span class="ls-cap">Life satisfaction · 1–7</span>
-<div class="stats"><div class="stat"><span class="lbl">HDI</span><div class="bar"><div class="fill" style="width:83%"></div></div><span class="v">0.83</span></div><div class="stat"><span class="lbl">Indiv.</span><div class="bar"><div class="fill" style="width:39%"></div></div><span class="v">3.9</span></div><div class="stat"><span class="lbl">Hazard</span><div class="bar"><div class="fill" style="width:51%"></div></div><span class="v">5.1</span></div><div class="stat"><span class="lbl">n</span><div class="bar"><div class="fill" style="width:37%"></div></div><span class="v">1,559</span></div></div>
+<span class="n-line">n = 1,559</span>
 <p class="finding">Highest power distance and lowest corruption-perception score in the sample. Trust in society matters most.</p>
 </article><article class="country-card">
 <div class="top-rule"></div>
@@ -535,7 +511,7 @@
 <span class="name">South Africa</span>
 <div class="ls">4.81</div>
 <span class="ls-cap">Life satisfaction · 1–7</span>
-<div class="stats"><div class="stat"><span class="lbl">HDI</span><div class="bar"><div class="fill" style="width:72%"></div></div><span class="v">0.72</span></div><div class="stat"><span class="lbl">Indiv.</span><div class="bar"><div class="fill" style="width:65%"></div></div><span class="v">6.5</span></div><div class="stat"><span class="lbl">Hazard</span><div class="bar"><div class="fill" style="width:42%"></div></div><span class="v">4.2</span></div><div class="stat"><span class="lbl">n</span><div class="bar"><div class="fill" style="width:73%"></div></div><span class="v">3,098</span></div></div>
+<span class="n-line">n = 3,098</span>
 <p class="finding">The only country where social networks stayed significant in the pooled model.</p>
 </article><article class="country-card">
 <div class="top-rule"></div>
@@ -543,97 +519,106 @@
 <span class="name">China</span>
 <div class="ls">4.59</div>
 <span class="ls-cap">Life satisfaction · 1–7</span>
-<div class="stats"><div class="stat"><span class="lbl">HDI</span><div class="bar"><div class="fill" style="width:75%"></div></div><span class="v">0.75</span></div><div class="stat"><span class="lbl">Indiv.</span><div class="bar"><div class="fill" style="width:20%"></div></div><span class="v">2.0</span></div><div class="stat"><span class="lbl">Hazard</span><div class="bar"><div class="fill" style="width:78%"></div></div><span class="v">7.8</span></div><div class="stat"><span class="lbl">n</span><div class="bar"><div class="fill" style="width:100%"></div></div><span class="v">4,219</span></div></div>
-<p class="finding">Lowest satisfaction at average social capital. Societal norms and resources stood out in the pooled comparison.</p>
+<span class="n-line">n = 4,219</span>
+<p class="finding">Lowest satisfaction at average social capital. In China, guanxi (關係) networks also carry knowledge, licences, projects and careers, so an average amount may not feel like enough (He &amp; Gebhardt, 2015).</p>
 </article></div>
-<p class="fc">Estimated marginal means of life satisfaction (1–7) with social capital held at its sample mean, from the pooled OLS model. Bars: HDI (UN Human Development Index, 0–1); Indiv. (Hofstede individualism, 0–10); Hazard (INFORM natural-hazard risk, 0–10); n, respondents after imputation.</p>
+<p class="fc">Estimated marginal means of life satisfaction (1–7) with social capital held at its sample mean, from the pooled OLS model; pairwise differences by Tukey comparison. n: respondents after imputation.</p>
 </section>
-      <div class="mod-table" id="table-01">
+        <div class="hyp hyp--h2">
+          <div class="h">
+            <span class="code">H2a · Implicit</span>
+            <p class="q">Implicit national factors — natural-disaster risk and Hofstede cultural values — moderate the relationship.</p>
+            <span class="verdict"><strong>Supported,</strong> with nuance.</span>
+            <p class="body">What a country is given changed which relationships counted. In riskier countries, trust and networks mattered less and the societal care norm more; social networks mattered more in individualistic cultures.</p>
+            <div class="scorecard"><span class="lens">What a country is given · 0–10</span><div class="matrix" role="table"><span class="corner"></span><span class="col-head"><abbr title="United States">US</abbr></span><span class="col-head"><abbr title="Austria">AT</abbr></span><span class="col-head"><abbr title="Russia">RU</abbr></span><span class="col-head"><abbr title="South Africa">ZA</abbr></span><span class="col-head"><abbr title="China">CN</abbr></span><span class="row-head">Hazard</span><span class="cell" style="background:#454441;color:#fffdf8" title="United States: 6.9">6.9</span><span class="cell" style="background:#dedacd;color:#141414" title="Austria: 2.5">2.5</span><span class="cell" style="background:#84817a;color:#141414" title="Russia: 5.1">5.1</span><span class="cell" style="background:#a3a097;color:#141414" title="South Africa: 4.2">4.2</span><span class="cell" style="background:#262524;color:#fffdf8" title="China: 7.8">7.8</span><span class="row-head">Power dist.</span><span class="cell" style="background:#9d9a91;color:#141414" title="United States: 4.0">4.0</span><span class="cell" style="background:#dedacd;color:#141414" title="Austria: 1.1">1.1</span><span class="cell" style="background:#262524;color:#fffdf8" title="Russia: 9.3">9.3</span><span class="cell" style="background:#89867f;color:#141414" title="South Africa: 4.9">4.9</span><span class="cell" style="background:#43423f;color:#fffdf8" title="China: 8.0">8.0</span><span class="row-head">Masculinity</span><span class="cell" style="background:#6f6d67;color:#fffdf8" title="United States: 6.2">6.2</span><span class="cell" style="background:#262524;color:#fffdf8" title="Austria: 7.9">7.9</span><span class="cell" style="background:#dedacd;color:#141414" title="Russia: 3.6">3.6</span><span class="cell" style="background:#6a6863;color:#fffdf8" title="South Africa: 6.3">6.3</span><span class="cell" style="background:#5d5c57;color:#fffdf8" title="China: 6.6">6.6</span><span class="row-head">Individualism</span><span class="cell" style="background:#262524;color:#fffdf8" title="United States: 9.1">9.1</span><span class="cell" style="background:#83817a;color:#141414" title="Austria: 5.5">5.5</span><span class="cell" style="background:#ada9a0;color:#141414" title="Russia: 3.9">3.9</span><span class="cell" style="background:#696762;color:#fffdf8" title="South Africa: 6.5">6.5</span><span class="cell" style="background:#dedacd;color:#141414" title="China: 2.0">2.0</span></div><p class="key">INFORM hazard · Hofstede · darker = higher</p></div>
+          </div>
+          <div class="h">
+            <span class="code">H2b · Explicit</span>
+            <p class="q">Explicit national factors — human development, government resources, corruption and income — moderate the relationship.</p>
+            <span class="verdict"><strong>Supported.</strong></span>
+            <p class="body">As the state provided more, most links weakened, while governance quality was itself linked to higher satisfaction. Relative income had no significant main effect, but household financial ease, a measure of making ends meet, was one of the strongest predictors.</p>
+            <div class="scorecard"><span class="lens">What governments shape</span><div class="matrix" role="table"><span class="corner"></span><span class="col-head"><abbr title="United States">US</abbr></span><span class="col-head"><abbr title="Austria">AT</abbr></span><span class="col-head"><abbr title="Russia">RU</abbr></span><span class="col-head"><abbr title="South Africa">ZA</abbr></span><span class="col-head"><abbr title="China">CN</abbr></span><span class="row-head">HDI</span><span class="cell" style="background:#262524;color:#fffdf8" title="United States: 0.924">0.924</span><span class="cell" style="background:#2d2c2b;color:#fffdf8" title="Austria: 0.916">0.916</span><span class="cell" style="background:#262524;color:#fffdf8" title="Russia: 0.833">0.833</span><span class="cell" style="background:#dedacd;color:#141414" title="South Africa: 0.720">0.720</span><span class="cell" style="background:#c6c2b7;color:#141414" title="China: 0.747">0.747</span><span class="row-head">SPI</span><span class="cell" style="background:#31312f;color:#fffdf8" title="United States: 8.64">8.64</span><span class="cell" style="background:#262524;color:#fffdf8" title="Austria: 8.80">8.80</span><span class="cell" style="background:#c4c0b5;color:#141414" title="Russia: 6.72">6.72</span><span class="cell" style="background:#c4c0b4;color:#141414" title="South Africa: 6.72">6.72</span><span class="cell" style="background:#dedacd;color:#141414" title="China: 6.37">6.37</span><span class="row-head">CPI</span><span class="cell" style="background:#262524;color:#fffdf8" title="United States: 7.5">7.5</span><span class="cell" style="background:#262524;color:#fffdf8" title="Austria: 7.5">7.5</span><span class="cell" style="background:#dedacd;color:#141414" title="Russia: 2.9">2.9</span><span class="cell" style="background:#a6a39a;color:#141414" title="South Africa: 4.3">4.3</span><span class="cell" style="background:#aeaba1;color:#141414" title="China: 4.1">4.1</span></div><p class="key">HDI 0–1 · SPI, CPI 0–10 · darker = higher</p></div>
+          </div>
+        </div>
+        <div class="mod-table" id="table-01">
 <p class="tcap" id="table-01-t"><span class="figno">Table 01</span>How national context changes the link between social capital and life satisfaction</p>
 <div class="tbl-scroll" tabindex="0" role="region" aria-labelledby="table-01-t">
 <table aria-labelledby="table-01-t">
 <thead><tr><th scope="col">Moderator</th><th scope="col">What changed</th><th scope="col">Key coefficients</th><th scope="col">My reading</th></tr></thead>
-<tbody><tr class="grp"><th colspan="4" scope="colgroup">What a country is given · H2a</th></tr><tr><th scope="row">Natural-disaster risk</th><td>In riskier countries, trust in society, trust in fairness and social networks were less strongly linked to satisfaction; the societal care norm more strongly. Risk itself had no significant association.</td><td class="coefs"><span class="cl"><span class="ck">Main</span> −0.053 <span class="cp">n.s.</span></span><span class="cl"><span class="ck">× Trust in society</span> −0.022 <span class="cp">p < .01</span></span><span class="cl"><span class="ck">× Trust in fairness</span> −0.019 <span class="cp">p < .05</span></span><span class="cl"><span class="ck">× Social networks</span> −0.025 <span class="cp">p < .01</span></span><span class="cl"><span class="ck">× Societal care norm</span> 0.025 <span class="cp">p < .01</span></span></td><td class="reading">Infrastructure alone may not make lives better; community may (Aldrich &amp; Meyer, 2014; Sato et al., 2020; Toya &amp; Skidmore, 2014).</td></tr><tr><th scope="row">Power distance</th><td>Higher power distance went with lower satisfaction overall, and with a stronger link for organisational support resources.</td><td class="coefs"><span class="cl"><span class="ck">Main</span> −0.105 <span class="cp">p < .01</span></span><span class="cl"><span class="ck">× Organisational support resources</span> 0.015 <span class="cp">p < .01</span></span></td><td class="reading">Hierarchy may push people towards institutions for support.</td></tr><tr><th scope="row">Masculinity</th><td>As masculinity rose, trust in fairness mattered more and the elder care norm less.</td><td class="coefs"><span class="cl"><span class="ck">Main</span> 0.142 <span class="cp">n.s.</span></span><span class="cl"><span class="ck">× Trust in fairness</span> 0.029 <span class="cp">p < .05</span></span><span class="cl"><span class="ck">× Elder care norm</span> −0.04 <span class="cp">p < .01</span></span></td><td class="reading">Competitive cultures may lean on fair systems to hold together, much as Hofstede's work on masculine cultures would suggest.</td></tr><tr><th scope="row">Individualism vs collectivism</th><td>Social networks mattered more in individualistic cultures; societal care and organisational contact mattered more in collectivist ones.</td><td class="coefs"><span class="cl"><span class="ck">Main</span> 0.122 <span class="cp">p < .01</span></span><span class="cl"><span class="ck">× Social networks</span> 0.017 <span class="cp">p < .01</span></span><span class="cl"><span class="ck">× Societal care norm</span> −0.019 <span class="cp">p < .01</span></span><span class="cl"><span class="ck">× Organisational contact</span> −0.013 <span class="cp">p < .05</span></span></td><td class="reading">Without ready-made in-groups, people need bridges (Putnam, 2000); in collectivist cultures, care is expected from the in-group (Hofstede et al., 2010).</td></tr></tbody><tbody><tr class="grp"><th colspan="4" scope="colgroup">What governments shape · H2b</th></tr><tr><th scope="row">Human development, government resources, corruption</th><td>Each index went with higher satisfaction in its own right, and with weaker links for social networks, organisational support resources or organisational contact.</td><td class="coefs"><span class="cb">HDI</span><span class="cl"><span class="ck">Main</span> 2.749 <span class="cp">p < .05</span></span><span class="cl"><span class="ck">× Social networks</span> −0.37 <span class="cp">p < .05</span></span><span class="cb">SPI</span><span class="cl"><span class="ck">Main</span> 0.303 <span class="cp">p < .01</span></span><span class="cl"><span class="ck">× Organisational support resources</span> −0.035 <span class="cp">p < .01</span></span><span class="cl"><span class="ck">× Organisational contact</span> −0.03 <span class="cp">p < .05</span></span><span class="cb">CPI</span><span class="cl"><span class="ck">Main</span> 0.167 <span class="cp">p < .01</span></span><span class="cl"><span class="ck">× Social networks</span> −0.019 <span class="cp">p < .05</span></span><span class="cl"><span class="ck">× Organisational support resources</span> −0.023 <span class="cp">p < .01</span></span></td><td class="reading">When the state carries more, social capital has to carry less (Bjørnskov, 2003a; Lambsdorff, 2003; Özcan &amp; Bjørnskov, 2011).</td></tr><tr><th scope="row">Relative income</th><td>No significant main effect. As income rose, trust in society, daily contact and organisational contact mattered less; societal care mattered more.</td><td class="coefs"><span class="cl"><span class="ck">Main</span> 0.068 <span class="cp">n.s.</span></span><span class="cl"><span class="ck">× Trust in society</span> −0.014 <span class="cp">p < .05</span></span><span class="cl"><span class="ck">× Daily contact</span> −0.001 <span class="cp">p < .01</span></span><span class="cl"><span class="ck">× Organisational contact</span> −0.013 <span class="cp">p < .05</span></span><span class="cl"><span class="ck">× Societal care norm</span> 0.016 <span class="cp">p < .01</span></span></td><td class="reading">Perhaps the well-off feel they should look after others, or get more from giving than from money (Aknin et al., 2013; Easterlin, 2015).</td></tr></tbody></table></div>
+<tbody><tr class="grp"><th colspan="4" scope="colgroup">What a country is given · H2a</th></tr><tr><th scope="row">Natural-disaster risk</th><td>In riskier countries, trust in society, trust in fairness and social networks were less strongly linked to satisfaction; the societal care norm more strongly. Risk itself had no significant association.</td><td class="coefs"><span class="cl"><span class="ck">Main</span> <span class="cv">−0.053 <span class="cp">n.s.</span></span></span><span class="cl"><span class="ck">× Trust in society</span> <span class="cv">−0.022 <span class="cp">p < .01</span></span></span><span class="cl"><span class="ck">× Trust in fairness</span> <span class="cv">−0.019 <span class="cp">p < .05</span></span></span><span class="cl"><span class="ck">× Social networks</span> <span class="cv">−0.025 <span class="cp">p < .01</span></span></span><span class="cl"><span class="ck">× Societal care norm</span> <span class="cv">0.025 <span class="cp">p < .01</span></span></span></td><td class="reading">Infrastructure alone may not make lives better; community may (Aldrich &amp; Meyer, 2014; Sato et al., 2020; Toya &amp; Skidmore, 2014).</td></tr><tr><th scope="row">Power distance</th><td>Higher power distance went with lower satisfaction overall, and with a stronger link for organisational support resources.</td><td class="coefs"><span class="cl"><span class="ck">Main</span> <span class="cv">−0.105 <span class="cp">p < .01</span></span></span><span class="cl"><span class="ck">× Organisational support resources</span> <span class="cv">0.015 <span class="cp">p < .01</span></span></span></td><td class="reading">Hierarchy may push people towards institutions for support.</td></tr><tr><th scope="row">Masculinity</th><td>As masculinity rose, trust in fairness mattered more and the elder care norm less.</td><td class="coefs"><span class="cl"><span class="ck">Main</span> <span class="cv">0.142 <span class="cp">n.s.</span></span></span><span class="cl"><span class="ck">× Trust in fairness</span> <span class="cv">0.029 <span class="cp">p < .05</span></span></span><span class="cl"><span class="ck">× Elder care norm</span> <span class="cv">−0.04 <span class="cp">p < .01</span></span></span></td><td class="reading">Competitive cultures may lean on fair systems to hold together, much as Hofstede's work on masculine cultures would suggest.</td></tr><tr><th scope="row">Individualism vs collectivism</th><td>Social networks mattered more in individualistic cultures; societal care and organisational contact mattered more in collectivist ones.</td><td class="coefs"><span class="cl"><span class="ck">Main</span> <span class="cv">0.122 <span class="cp">p < .01</span></span></span><span class="cl"><span class="ck">× Social networks</span> <span class="cv">0.017 <span class="cp">p < .01</span></span></span><span class="cl"><span class="ck">× Societal care norm</span> <span class="cv">−0.019 <span class="cp">p < .01</span></span></span><span class="cl"><span class="ck">× Organisational contact</span> <span class="cv">−0.013 <span class="cp">p < .05</span></span></span></td><td class="reading">Without ready-made in-groups, people need bridges (Putnam, 2000); in collectivist cultures, care is expected from the in-group (Hofstede et al., 2010).</td></tr></tbody><tbody><tr class="grp"><th colspan="4" scope="colgroup">What governments shape · H2b</th></tr><tr><th scope="row">Human development, government resources, corruption</th><td>Each index went with higher satisfaction in its own right, and with weaker links for social networks, organisational support resources or organisational contact.</td><td class="coefs"><span class="cb">HDI</span><span class="cl"><span class="ck">Main</span> <span class="cv">2.749 <span class="cp">p < .05</span></span></span><span class="cl"><span class="ck">× Social networks</span> <span class="cv">−0.37 <span class="cp">p < .05</span></span></span><span class="cb">SPI</span><span class="cl"><span class="ck">Main</span> <span class="cv">0.303 <span class="cp">p < .01</span></span></span><span class="cl"><span class="ck">× Organisational support resources</span> <span class="cv">−0.035 <span class="cp">p < .01</span></span></span><span class="cl"><span class="ck">× Organisational contact</span> <span class="cv">−0.03 <span class="cp">p < .05</span></span></span><span class="cb">CPI</span><span class="cl"><span class="ck">Main</span> <span class="cv">0.167 <span class="cp">p < .01</span></span></span><span class="cl"><span class="ck">× Social networks</span> <span class="cv">−0.019 <span class="cp">p < .05</span></span></span><span class="cl"><span class="ck">× Organisational support resources</span> <span class="cv">−0.023 <span class="cp">p < .01</span></span></span></td><td class="reading">When the state carries more, social capital has to carry less (Bjørnskov, 2003a; Lambsdorff, 2003; Özcan &amp; Bjørnskov, 2011).</td></tr><tr><th scope="row">Relative income</th><td>No significant main effect. As income rose, trust in society, daily contact and organisational contact mattered less; societal care mattered more.</td><td class="coefs"><span class="cl"><span class="ck">Main</span> <span class="cv">0.068 <span class="cp">n.s.</span></span></span><span class="cl"><span class="ck">× Trust in society</span> <span class="cv">−0.014 <span class="cp">p < .05</span></span></span><span class="cl"><span class="ck">× Daily contact</span> <span class="cv">−0.001 <span class="cp">p < .01</span></span></span><span class="cl"><span class="ck">× Organisational contact</span> <span class="cv">−0.013 <span class="cp">p < .05</span></span></span><span class="cl"><span class="ck">× Societal care norm</span> <span class="cv">0.016 <span class="cp">p < .01</span></span></span></td><td class="reading">Perhaps the well-off feel they should look after others, or get more from giving than from money (Aknin et al., 2013; Easterlin, 2015).</td></tr></tbody></table></div>
 <p class="vh">Coefficients are interaction terms and the moderator's main term, from pooled OLS models with one moderator at a time; only terms significant at p &lt; .05 are listed.</p>
 </div>
-    </div>
+      </div>
 
-    <div class="col">
-      <h3>Limits</h3>
-      <p>Because the data are a snapshot, the arrows could point either way: satisfied people may simply invest more in community. A third factor such as personality, which the ISSP doesn't measure, could also drive both. The model explains about a fifth of the variance in life satisfaction (R² ≈ 0.22), normal for this literature. Life satisfaction is a single survey item, and China makes up 37.5% of the pooled sample (4,219 of 11,249), so pooled estimates lean towards it.</p>
+      <div class="col">
+        <h3 class="subsec" id="limits">Limits</h3>
+        <p>Because the data are a snapshot, the arrows could point either way: satisfied people may simply invest more in community. A third factor such as personality, which the ISSP doesn't measure, could also drive both. The model explains about a fifth of the variance in life satisfaction (R² ≈ 0.22), normal for this literature. Life satisfaction is a single survey item, and China makes up 37.5% of the pooled sample (4,219 of 11,249), so pooled estimates lean towards it.</p>
 
-      <blockquote>
-        <p>Overall, this is a very comprehensive study of the relationship between life satisfaction and social capital in various national contexts. It was a pleasure to read this thoughtful analysis.</p>
-        <span class="attrib">— Dr Anke Plagnol · supervisor</span>
-      </blockquote>
+        <!-- §04 -->
+        <h2 id="implications">Implications <span class="sub">The playbook</span> <span class="section-num">§ 04</span></h2>
+        <p class="lead">Context comes first. Institutions can only do so much for wellbeing on their own, because culture and physical environment shape how people interact, so both need to be understood before anyone designs an intervention. These are directions to explore, not proven effects.</p>
+      </div>
 
-      <!-- §04 -->
-      <h2 id="implications">Implications <span class="sub">The playbook</span> <span class="section-num">§ 04</span></h2>
-      <p class="lead">Context comes first. Because the link depends on culture and institutions, both need to be understood before anyone designs an intervention. These are directions to explore, not proven effects.</p>
-
-    </div>
-
-    <div class="span-2">
-      <div class="hyp hyp--play">
-        <div class="h">
-          <span class="code">P1 · High natural-disaster risk</span>
-          <h4 class="title">Plan together before the flood</h4>
-          <p class="q">Resilience may be social before it is structural.</p>
-          <p class="body">In riskier countries, trust and networks counted for less and societal care for more. Neighbourhood emergency plans written with residents, kept alive by street events, drills and shared meals, could build that care at a fraction of the cost of new flood defences (<a href="#table-01">Table 01</a>).</p>
-        </div>
-        <div class="h">
-          <span class="code">P2 · Individualistic cultures</span>
-          <h4 class="title">Pubs as policy</h4>
-          <p class="q">Where people meet is already policy, whether or not anyone designs it.</p>
-          <p class="body">Social networks mattered more where there are fewer ready-made in-groups. Protecting community pubs and parks, designing employment resource centres as meeting points and using national sporting events to bring groups together treats those places as social infrastructure (<a href="#table-01">Table 01</a>).</p>
-        </div>
-        <div class="h">
-          <span class="code">P3 · Everywhere, especially advanced democracies</span>
-          <h4 class="title">Fairness is infrastructure</h4>
-          <p class="q">Perceived fairness may be the one form of social capital a government can build directly.</p>
-          <p class="body">Trust in fairness was the most consistent link, significant in all five countries. Transparent decision-making, justice that follows through on petty crimes, fair wage distribution and easy-to-use social services make it visible; the dissertation also argues for progressive taxation (<a href="#results">§ Results</a>).</p>
-        </div>
-        <div class="h">
-          <span class="code">P4 · Developed societies</span>
-          <h4 class="title">Community over cash</h4>
-          <p class="q">Progress could be measured in connection as well as cash.</p>
-          <p class="body">Social capital was consistently linked to satisfaction; relative income was not. Judging development projects partly by what they do for community, and funding community centres, clubs and mutual-aid networks as core development, follows from that (<a href="#results">§ Results</a>).</p>
+      <div class="wide">
+        <div class="hyp hyp--play">
+          <div class="h">
+            <span class="code">P1 · High natural-disaster risk</span>
+            <h4 class="title">Plan together before the flood</h4>
+            <p class="q">Resilience may be social before it is structural.</p>
+            <p class="body">Neighbourhood emergency plans written with residents, kept alive by street events, drills and shared meals, could build that care at a fraction of the cost of new flood defences (<a href="#table-01">Table 01</a>).</p>
+          </div>
+          <div class="h">
+            <span class="code">P2 · Individualistic cultures</span>
+            <h4 class="title">Pubs as policy</h4>
+            <p class="q">Where people meet is already policy, whether or not anyone designs it.</p>
+            <p class="body">Protecting community pubs and parks, designing employment resource centres as meeting points and using national sporting events to bring groups together treats those places as social infrastructure (<a href="#table-01">Table 01</a>).</p>
+          </div>
+          <div class="h">
+            <span class="code">P3 · Everywhere, especially advanced democracies</span>
+            <h4 class="title">Fairness is infrastructure</h4>
+            <p class="q">Perceived fairness may be the one form of social capital a government can build directly.</p>
+            <p class="body">Transparent decision-making, justice that follows through on petty crimes, fair wage distribution and easy-to-use social services make fairness visible; the dissertation also argues for progressive taxation (<a href="#results">§ Results</a>).</p>
+          </div>
+          <div class="h">
+            <span class="code">P4 · Developed societies</span>
+            <h4 class="title">Community over cash</h4>
+            <p class="q">Progress could be measured in connection as well as cash.</p>
+            <p class="body">Development projects could be judged partly by what they do for community, with community centres, clubs and mutual-aid networks funded as core development (<a href="#results">§ Results</a>).</p>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="col">
-      <p>The wider lesson for theory is that institutions can only do so much for wellbeing on their own, because culture and physical environment shape how people interact.</p>
 
       <!-- §05 -->
-      <h2 id="next">What I'd do next <span class="section-num">§ 05</span></h2>
-      <p>This is a small step in a large literature. Next, I would widen the sample beyond five countries and add personality, which predicts the forms of social capital people build (Tulin, Lancee &amp; Volker, 2018) but which the ISSP doesn't measure. I would also develop better measures of social norms. Above all, I would run a longitudinal panel, even just two waves, to separate “social capital comes first” from “satisfied people build social capital”.</p>
+      <div class="col">
+        <h2 id="next">What I'd do next <span class="section-num">§ 05</span></h2>
+        <p>This is a small step in a large literature. Next, I would widen the sample beyond five countries and add personality, which predicts the forms of social capital people build (Tulin, Lancee &amp; Volker, 2018) but which the ISSP doesn't measure. I would also develop better measures of social norms. Above all, I would run a longitudinal panel, even just two waves, to separate “social capital comes first” from “satisfied people build social capital”.</p>
 
-      <blockquote>
-        <p>These simple relationships: with family, neighbours, colleagues, friends, and broader society have the power to make life worth living.</p>
-        <span class="attrib">— From the dissertation's conclusion</span>
-      </blockquote>
+        <blockquote>
+          <p>These simple relationships: with family, neighbours, colleagues, friends, and broader society have the power to make life worth living.</p>
+          <span class="attrib">— From the dissertation's conclusion</span>
+        </blockquote>
+      </div>
+
+      <!-- CLOSING STRIP -->
+      <div class="methods wide">
+        <div class="m">
+          <span class="k">Quantitative</span>
+          <h4>Modelling &amp; inference</h4>
+          <p>11,249 respondents · ISSP 2017 · MICE imputation (PMM, country-grouped) · PCA for multi-item measures · country-level and pooled OLS with interaction terms · estimated marginal means (emmeans) with Tukey comparisons · VIF multicollinearity checks · AIC/BIC for moderator model comparison.</p>
+        </div>
+        <div class="m">
+          <span class="k">Secondary data</span>
+          <h4>National moderators</h4>
+          <p>8 moderators · UNDP HDI 2017 · Social Progress Index 2017 · Transparency International CPI 2017 · within-country income percentiles · INFORM Risk Index · Hofstede's power distance, masculinity and individualism.</p>
+        </div>
+        <div class="m">
+          <span class="k">Context</span>
+          <h4>Literatures bridged</h4>
+          <p>Putnam's social capital framework · Hofstede's cultural dimensions · the Easterlin paradox and subjective wellbeing research · Lin's position generator · Van der Gaag &amp; Snijders' resource generator.</p>
+        </div>
+      </div>
+
     </div>
-
-    <!-- CLOSING STRIP -->
-    <div class="methods wide">
-      <div class="m">
-        <span class="k">Quantitative</span>
-        <h4>Modelling &amp; inference</h4>
-        <p>11,249 respondents · ISSP 2017 · MICE imputation (PMM, country-grouped) · PCA for multi-item measures · country-level and pooled OLS with interaction terms · estimated marginal means (emmeans) with Tukey comparisons · VIF multicollinearity checks · AIC/BIC for moderator model comparison.</p>
-      </div>
-      <div class="m">
-        <span class="k">Secondary data</span>
-        <h4>National moderators</h4>
-        <p>8 moderators · UNDP HDI 2017 · Social Progress Index 2017 · Transparency International CPI 2017 · within-country income percentiles · INFORM Risk Index · Hofstede's power distance, masculinity and individualism.</p>
-      </div>
-      <div class="m">
-        <span class="k">Context</span>
-        <h4>Literatures bridged</h4>
-        <p>Putnam's social capital framework · Hofstede's cultural dimensions · the Easterlin paradox and subjective wellbeing research · Lin's position generator · Van der Gaag &amp; Snijders' resource generator.</p>
-      </div>
-    </div>
-
   </article>
 
   <!-- NEXT -->
@@ -654,6 +639,27 @@
 </div>
 
 <script>
+  /* Contents: mark the section in view (aria-current). The links work as
+     plain anchors without this. */
+  (() => {
+    const links = [...document.querySelectorAll('.leftnotes .toc a')];
+    const targets = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    if (!('IntersectionObserver' in window) || !targets.length) return;
+    const mark = () => {
+      const line = innerHeight * 0.3;
+      let current = targets[0];
+      for (const t of targets) if (t.getBoundingClientRect().top <= line) current = t;
+      links.forEach((a) => a.getAttribute('href') === '#' + current.id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+    };
+    // The observer catches headings crossing the reading line; a throttled
+    // scroll listener covers jumps that skip a heading past it.
+    const io = new IntersectionObserver(mark, { rootMargin: '0px 0px -60% 0px', threshold: [0, 1] });
+    targets.forEach((t) => io.observe(t));
+    let queued = false;
+    addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(() => { queued = false; mark(); }); } }, { passive: true });
+    mark();
+  })();
+
   /* The coefficient table is collapsed on screen; print it open. */
   (() => {
     const more = document.querySelectorAll('details.more');

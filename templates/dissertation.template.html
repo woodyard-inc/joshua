@@ -11,7 +11,8 @@
 <meta name="theme-color" content="#FFFDF8">
 <link rel="preload" as="font" type="font/woff2" href="fonts/Helvetica-Bold.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="fonts/CormorantGaramondCV-Light.woff2" crossorigin>
-<link rel="stylesheet" href="foundations.css">
+<link rel="stylesheet" href="foundations.css?v=59">
+<script>document.documentElement.classList.add('js');</script>
 <style>
   /* Case study 002. The design kit is foundations.css; the components are
      case study 001's and this page's original ones (title block, deck, stat
@@ -19,9 +20,10 @@
      moderation table, methods strip). The next-case band is shared and lives
      in foundations.css.
 
-     After the stat row every block sits on one of two widths: TEXT (the prose
-     column) or WIDE (prose + margin). The 180px column on the left holds only
-     the sticky contents list. */
+     After the stat row, prose sits in the TEXT column with notes in the margin,
+     and tables and figures run the full page width, centred. The contents list
+     rides in a rail over the left column; with JS it is sticky and steps
+     aside while a full-width block passes under it. */
   body { padding: 0; }
   .shell { max-width: 1180px; margin: 0 auto; padding: 0 var(--page-pad); }
   .vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
@@ -73,19 +75,18 @@
   .stat-row .s .v--small { font-size: 40px; }
   .stat-row .s .n { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); margin-top: 8px; line-height: 1.45; }
 
-  /* Article: contents | main. Main: text | margin. */
+  /* Article: rail | text | margin; full-width blocks span all three */
   .article {
-    padding: var(--s-9) 0 0;
-    display: grid; grid-template-columns: 180px minmax(0, 1fr); column-gap: var(--s-7);
+    position: relative; padding: var(--s-9) 0 0;
+    display: grid; grid-template-columns: 180px minmax(0, 660px) 220px; column-gap: var(--s-7);
   }
-  .article > .leftnotes {
-    grid-column: 1; align-self: start;
-    position: sticky; top: calc(var(--nameplate-h) + var(--s-5));
-    padding-top: var(--s-2);
-  }
-  .main { grid-column: 2; display: grid; grid-template-columns: minmax(0, 660px) 220px; column-gap: var(--s-7); align-items: start; }
-  .main > .col { grid-column: 1; }
-  .main > .marg { grid-column: 2; }
+  .toc-rail { position: absolute; top: var(--s-9); bottom: 0; left: 0; width: 180px; }
+  .leftnotes { padding-top: var(--s-2); transition: opacity 160ms ease, visibility 160ms ease; }
+  .js .toc-rail .leftnotes { position: sticky; top: calc(var(--nameplate-h) + var(--s-5)); }
+  .leftnotes.is-tucked { opacity: 0; visibility: hidden; }
+  .main { display: contents; }
+  .main > .col { grid-column: 2; }
+  .main > .marg { grid-column: 3; }
   .main > .wide { grid-column: 1 / -1; }
 
   .article h2 {
@@ -252,14 +253,15 @@
   .colophon .r { text-align: right; }
   .colophon strong { color: var(--ink); font-weight: 400; }
 
-  /* 961–1199px: no contents column; text | margin */
+  /* 961–1199px: no contents rail; text | margin */
   @media (max-width: 1199px) {
-    .deck-block { grid-template-columns: minmax(0, 660px) 220px; }
+    .deck-block { grid-template-columns: minmax(0, 1fr) 220px; }
     .deck-block .side { grid-column: 1 / -1; }
     .deck-block .standfirst { grid-column: 1 / -1; }
-    .article { grid-template-columns: minmax(0, 1fr); }
-    .article > .leftnotes { display: none; }
-    .main { grid-column: 1; }
+    .toc-rail { display: none; }
+    .article { grid-template-columns: minmax(0, 1fr) 220px; }
+    .main > .col { grid-column: 1; }
+    .main > .marg { grid-column: 2; }
   }
   /* ≤960px: one column */
   @media (max-width: 960px) {
@@ -270,7 +272,7 @@
     .stat-row .s:nth-child(even) { padding-left: var(--s-4); }
     .stat-row .s:nth-last-child(-n+2) { border-bottom: none; }
     .article { padding: var(--s-7) 0 0; }
-    .main { grid-template-columns: minmax(0, 1fr); }
+    .article { grid-template-columns: minmax(0, 1fr); }
     .main > .col, .main > .marg, .main > .wide { grid-column: 1; }
     .hyp { grid-template-columns: 1fr; }
     .hyp .h, .hyp .h:nth-of-type(2n) { border-right: none; border-bottom: 1px solid var(--rule-strong); }
@@ -307,9 +309,9 @@
     body, .pf-shell { background: #fff !important; }
     body { font-variant-ligatures: no-common-ligatures; }
     .pf-shell { position: static; }
-    .pf-nav-desktop, .menu, .leftnotes, .crumb { display: none !important; }
+    .pf-nav-desktop, .menu, .toc-rail, .crumb { display: none !important; }
     .shell { max-width: none; padding: 0; }
-    .title-block, .deck-block, .article, .main { display: block !important; padding: 10pt 0; }
+    .title-block, .deck-block, .article { display: block !important; padding: 10pt 0; }
     .main > .marg { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12pt; }
     .article aside { margin: 0 0 10pt; break-inside: avoid; }
     .title-block h1 { font-size: 40pt; }
@@ -395,6 +397,7 @@
   <!-- ARTICLE: contents | main (text | margin) -->
   <article class="article">
 
+    <div class="toc-rail">
     <div class="leftnotes">
       <span class="label--micro">Contents</span>
       <nav class="toc" aria-label="Contents">
@@ -405,6 +408,7 @@
         <a href="#implications"><span class="n">04</span>Implications</a>
         <a href="#next"><span class="n">05</span>What I'd do next</a>
       </nav>
+    </div>
     </div>
 
     <div class="main">
@@ -585,11 +589,16 @@
     const links = [...document.querySelectorAll('.leftnotes .toc a')];
     const targets = links.map((a) => document.querySelector(a.getAttribute('href'))).filter(Boolean);
     if (!('IntersectionObserver' in window) || !targets.length) return;
+    const toc = document.querySelector('.leftnotes');
+    const wides = [...document.querySelectorAll('.main > .wide')];
     const mark = () => {
       const line = innerHeight * 0.3;
       let current = targets[0];
       for (const t of targets) if (t.getBoundingClientRect().top <= line) current = t;
       links.forEach((a) => a.getAttribute('href') === '#' + current.id ? a.setAttribute('aria-current', 'true') : a.removeAttribute('aria-current'));
+      // Step aside while a full-width block passes under the list.
+      const r = toc.getBoundingClientRect();
+      toc.classList.toggle('is-tucked', wides.some((w) => { const b = w.getBoundingClientRect(); return b.top < r.bottom + 16 && b.bottom > r.top - 16; }));
     };
     // The observer catches headings crossing the reading line; a throttled
     // scroll listener covers jumps that skip a heading past it.

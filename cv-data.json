@@ -67,7 +67,7 @@
         },
         {
           "id": "hbi-knime",
-          "text": "Built standardised Knime modules for data cleaning, ID matching and automated QA across all audited accounts, replacing one-off fixes with one maintainable process and cutting reporting runtime by 13%."
+          "text": "Built standardised KNIME modules for data cleaning, ID matching and automated QA across all audited accounts, replacing one-off fixes with one maintainable process and cutting reporting runtime by 13%."
         },
         {
           "id": "hbi-spend",
@@ -107,7 +107,7 @@
         },
         {
           "id": "pet-etl",
-          "text": "Maintained ETL pipelines (T-SQL, Knime, Snowflake) processing 10,000+ rows weekly for a nine-figure retail client's media reporting, managing data vendors and adapting dashboards to client and team needs."
+          "text": "Maintained ETL pipelines (T-SQL, KNIME, Snowflake) processing 10,000+ rows weekly for a nine-figure retail client's media reporting, managing data vendors and adapting dashboards to client and team needs."
         }
       ],
       "whyBullets": []
@@ -209,9 +209,10 @@
     "institution": "City St George's, University of London",
     "year": "2024",
     "mark": "Dissertation mark: 71% (Distinction)",
+    "_TODO_mark": "Confirm transcript says Distinction; if not, remove '(Distinction)'",
     "supervisor": "Dr Anke Plagnol",
     "short": [
-      "Analysed 11,249 people in five countries (ISSP 2017, OLS in R): does social connection go with happier lives?",
+      "Analysed 11,249 people in five countries (ISSP 2017, R): multiple imputation for missing data, PCA-built measures, OLS modelling. Does social connection go with happier lives?",
       "Trust in fair institutions predicted satisfaction most consistently; relative income had no significant effect.",
       "Social capital mattered most where governments did least, shifting with culture and natural-disaster risk."
     ],

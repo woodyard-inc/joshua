@@ -1,5 +1,10 @@
 // Variant rules shared with cv-ats.html (bundled from the site root).
 import { DEFAULT_SECTIONS, TRACKS, resolve, variantForTrack } from "../../cv-variant.js";
+// Track A sub-types and their classifier, shared with the local tailor
+// (bundled at deploy: redeploy after editing data/tailor_paths.json).
+import PATHS from "../../data/tailor_paths.json";
+import { classifyTrackA } from "./classify.js";
+const SUBTYPES = PATHS.A.subtypes;
 
 const MODEL = "claude-sonnet-4-6";
 const MAX_JD_LENGTH = 20000;
@@ -93,11 +98,13 @@ function asBullet(line) {
 
 // Skills rows in the given order, then any rows it leaves out. A Workshop CV
 // keeps every row; the two-page fit trims bullets, not skills.
-function orderedSkills(all, order) {
+// exclusive: rows the order leaves out are dropped (Track A sub-types);
+// otherwise they follow the ordered ones.
+function orderedSkills(all, order, exclusive = false) {
   if (!order) return all;
   const byId = Object.fromEntries(all.map((c) => [c.id, c]));
   const picked = order.map((id) => byId[id]).filter(Boolean);
-  const rest = all.filter((c) => !order.includes(c.id));
+  const rest = exclusive ? [] : all.filter((c) => !order.includes(c.id));
   return [...picked, ...rest];
 }
 
@@ -117,6 +124,8 @@ export default {
     // Joshua's own track choice in the Workshop (Auto when absent). It is a
     // form control, not text, so a job description can't set it.
     const trackChoice = body && (body.track === "A" || body.track === "B") ? body.track : null;
+    // Likewise the Track A sub-type (insight / marketing / product), else classified from the JD.
+    const subtypeChoice = body && SUBTYPES[body.subtype] ? body.subtype : null;
 
     if (!timingSafeEqual(password, env.CV_PASSWORD)) {
       return jsonResponse({ error: "Incorrect password" }, 401, headers);
@@ -167,7 +176,6 @@ PEOPLE SCIENCE SUB-LANE (boolean, independent of track): true only when the role
 
 BEHAVIOURAL LAYER (boolean, independent of track): true when the JD's core is explaining WHY people/users/customers behave as they do. Signals: "why", "behaviour/behavioural", "understand users/customers", "experiment", "drivers of", "motivation", product analytics, UX research, behavioural science. This is an emphasis layer applied on top of A or B — never a third track.
 
-PRODUCT ROLE (boolean, Track A only): true for product data science and product analytics roles (product data scientist, product analyst, an insights or analytics team embedded with product, engineering or ML). false for consumer insight, market research, strategy and marketing analytics roles, and always false on Track B.
 
 HEADLINE ("taglineIds"): the line under Joshua's name. Choose exactly 3 ids from HEADLINE TERMS below, ordered by weight in this JD: the first is the term closest to the job's core (its title and most repeated requirement), then the next strongest. Prefer terms that match keywords_targeted in meaning. Keep one behavioural term (behavioural-science or behavioural-economics) only when the JD values understanding why people behave as they do; it is his differentiator, not a requirement. Never pick two terms that say the same thing (e.g. quant-qual and survey-research). people-analytics only when peopleScience is true.
 
@@ -187,7 +195,6 @@ Output ONLY valid JSON, no code fences, no commentary:
   "track": "A" | "B",
   "peopleScience": boolean,
   "behaviouralLayer": boolean,
-  "productRole": boolean,
   "projectFull": boolean,
   "lowFit": boolean,
   "lowFitReason": string,
@@ -227,7 +234,12 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
     const trackNote = trackChoice
       ? `TRACK: fixed by Joshua to "${trackChoice}". Return "track": "${trackChoice}" and rank everything for that track.\n\n`
       : "";
-    const userPrompt = `${trackNote}AMENDMENTS from Joshua:\n${amendText}\n\nJOB_DESCRIPTION:\n${jobDescription}`;
+    // The sub-type is decided before the model runs: by Joshua, or by the
+    // deterministic classifier. The model ranks bullets for it.
+    const classification = classifyTrackA(jobDescription, PATHS.A.classifier);
+    const subtype = subtypeChoice || classification.subtype;
+    const subtypeNote = `IF TRACK A: this is an ${SUBTYPES[subtype].label} role (${SUBTYPES[subtype].about}). Rank bullets for that.\n\n`;
+    const userPrompt = `${trackNote}${subtypeNote}AMENDMENTS from Joshua:\n${amendText}\n\nJOB_DESCRIPTION:\n${jobDescription}`;
 
     let anthropicRes;
     try {
@@ -271,7 +283,7 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
     const src = applied ? resolve(cv, variant) : cv;
     const peopleScience = !!pick.peopleScience;
     const behavioural = !!pick.behaviouralLayer;
-    const productRole = track === "A" && !!pick.productRole;
+    const sub = track === "A" ? SUBTYPES[subtype] : null;
 
     // ---- Amendments: sorted by the model, wording checked here. ----
     const roleIds = new Set(cv.roles.map((r) => r.id));
@@ -352,10 +364,9 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
     const termById = Object.fromEntries(menu.headline.map((t) => [t.id, t.text]));
     const termIds = [...new Set((Array.isArray(pick.taglineIds) ? pick.taglineIds : [])
       .filter((id) => termById[id] && (id !== "people-analytics" || peopleScience)))].slice(0, 3);
-    // Product roles on Track A take the product headline (cv-data taglines.product,
-    // the same one the local tailor's Path A uses); insight roles keep the above.
-    const productTagline = productRole && (cv.taglines || {}).product;
-    const tagline = productTagline
+    // Track A: the sub-type's approved headline (cv-data taglines). Track B: the
+    // three approved terms the model ordered, else the Research tagline.
+    const tagline = (sub && (cv.taglines || {})[sub.tagline])
       || (termIds.length === 3 ? termIds.map((id) => termById[id]).join(" | ") : trackTagline);
 
     return jsonResponse({
@@ -369,13 +380,26 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
       researchIncludesProject: !!(applied && variant.researchIncludesProject),
       peopleScience,
       behaviouralLayer: behavioural,
-      productRole,
+      // Track A sub-type: what was chosen, why, and what came next.
+      subtype: sub ? subtype : null,
+      subtypeLabel: sub ? sub.label : null,
+      subtypeSource: sub ? (subtypeChoice ? "chosen" : "auto") : null,
+      classification: sub ? {
+        auto: classification.subtype,
+        autoLabel: SUBTYPES[classification.subtype].label,
+        closeCall: classification.closeCall,
+        lead: classification.lead,
+        runnerUp: SUBTYPES[classification.runnerUp].label,
+        scores: Object.fromEntries(Object.entries(classification.scores).map(([k, v]) => [SUBTYPES[k].label, v])),
+        drivers: classification.drivers,
+        productSignals: classification.productSignals,
+      } : null,
       lowFit: !!pick.lowFit,
       lowFitReason: typeof pick.lowFitReason === "string" ? pick.lowFitReason.slice(0, 300) : "",
       rationale: typeof pick.rationale === "string" ? pick.rationale.slice(0, 300) : "",
       keywords_targeted: keywords,
       tagline,
-      summary: applied ? src.summary : cv.summaries.master,
+      summary: applied ? src.summary : (sub && cv.summaries[sub.summary]) || cv.summaries.master,
       selectedProblems: [],
       roles,
       dissertation: {
@@ -406,8 +430,9 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
       // Skill categories, reordered per track. The category text itself is
       // never rewritten — only the order changes — so the same guarantee that
       // covers bullets covers skills.
-      skills: orderedSkills(src.skills || [],
-        (applied && variant.skillOrder) || (cv._skillOrder || {})[track === "B" ? "trackB" : "trackA"]).map((k) => {
+      skills: (sub
+        ? orderedSkills(src.skills || [], sub.skillOrder.filter((id) => id !== "languages"), true)
+        : orderedSkills(src.skills || [], (applied && variant.skillOrder) || (cv._skillOrder || {}).trackB)).map((k) => {
         const have = new Set(k.text.split(",").map((x) => x.trim().toLowerCase()));
         const add = amended.filter((a) => a.keep && a.kind === "skill" && a.rowId === k.id)
           .flatMap((a) => a.text.split(", ")).filter((x) => !have.has(x.toLowerCase()) && have.add(x.toLowerCase()));

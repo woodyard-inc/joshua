@@ -62,7 +62,14 @@ data, not the generated pages.
 ```sh
 python3 scripts/tailor_cv.py --jd job.txt            # Path A (commercial / product analytics)
 python3 scripts/tailor_cv.py --plan output/<slug>/plan.json   # re-render, no API call
+python3 scripts/tailor_classify.py job.txt          # Track A sub-type only (free, instant)
 ```
+
+Track A has three sub-types (A-Insight, A-Marketing, A-Product), each with its own
+approved headline, summary and skills order. `data/tailor_paths.json` holds them
+and the classifier rules; the Workshop's Worker (`cf-worker/src/classify.js`,
+bundled at deploy) and the local tailor (`scripts/tailor_classify.py`) apply the
+same rules. Redeploy the Worker after editing them.
 
 Writes a CV for one job from the experience bank, in the job's language, and
 cites the bank entries behind every bullet. `scripts/tailor_rules.py` removes

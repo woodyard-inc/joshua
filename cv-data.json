@@ -17,7 +17,9 @@
   },
   "summaries": {
     "master": "Behavioural researcher and analyst with 6+ years in consumer insights and analytics across telecom, QSR, retail, media and workforce. Uses experimental design, econometrics and behavioural science to find what actually drives customer and business results, and turns it into recommendations leaders act on. Most recently ran the staffing analytics for 11 global new-business transitions (~3,500 roles) at Publicis Groupe. MSc Behavioural Economics (City St George's, University of London). Hands-on with SQL, Python, R, Snowflake and Tableau; experienced in A/B testing, attribution and building reliable data pipelines.",
-    "research": "Behavioural economist with six to seven years in data, insight and research roles across media agencies, retail and global operations. Trained in experimental design, econometrics and quantitative and qualitative research design; experienced in turning large survey and behavioural datasets into clear, decision-ready findings."
+    "research": "Behavioural economist with six to seven years in data, insight and research roles across media agencies, retail and global operations. Trained in experimental design, econometrics and quantitative and qualitative research design; experienced in turning large survey and behavioural datasets into clear, decision-ready findings.",
+    "marketing": "Marketing and digital analyst with 6+ years across media agencies, retail and telecom, measuring what campaigns and customer journeys actually drive. Experienced in A/B and control-vs-exposed testing, attribution, and building reliable multi-source data pipelines. MSc Behavioural Economics (City St George's, University of London). Hands-on with SQL, Python, R, Snowflake and Tableau.",
+    "product": "Data analyst and behavioural economist with 6+ years in analytics across retail, media, telecom and global operations. Experienced in experimentation, SQL and Python, and building reliable data pipelines, turning user behaviour into product and commercial decisions. MSc Behavioural Economics (City St George's, University of London)."
   },
   "roles": [
     {
@@ -334,7 +336,7 @@
     }
   ],
   "_skillOrder": {
-    "_note": "Skills row orders for Workshop CVs. Rows are reordered, never rewritten. \"languages\" renders cv.languages as a row. trackA = Track A (Commercial). Track B (Research) jobs take variants.research.skillOrder and skillText, then any rows it leaves out.",
+    "_note": "Skills row order for the printed master. Track A Workshop CVs take their sub-type's order (data/tailor_paths.json A.subtypes); Track B takes variants.research.skillOrder. Rows are reordered, never rewritten. \"languages\" renders cv.languages as a row.",
     "master": [
       "methods",
       "insights",
@@ -342,16 +344,6 @@
       "platforms",
       "adplatforms",
       "viz",
-      "ai",
-      "languages"
-    ],
-    "trackA": [
-      "programming",
-      "viz",
-      "insights",
-      "platforms",
-      "methods",
-      "adplatforms",
       "ai",
       "languages"
     ]
@@ -567,7 +559,9 @@
   },
   "_README_ats": "Experience entries are two lines: the job title alone (specialism after a comma), then 'Company | City, Country | Dates'. Client names live in the bullets, never in a title line, so parsers take the company from line 2. education[].degreeAts is the ATS form of a degree.",
   "taglines": {
-    "_note": "Shared headlines. product: Track A product roles in the Workshop, and the local tailor's Path A.",
+    "_note": "Approved headlines for Track A sub-types (Workshop and the local tailor's Path A); see data/tailor_paths.json.",
+    "insight": "Consumer Insights | Behavioural Science | Data Analytics",
+    "marketing": "Marketing & Digital Analytics | Measurement | Behavioural Science",
     "product": "Product & Commercial Analytics | Experimentation | Behavioural Science"
   }
 }

@@ -42,6 +42,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_cv  # noqa: E402
+import tailor_classify  # noqa: E402
 import tailor_rules as rules  # noqa: E402
 from cvprint import Printer  # noqa: E402
 
@@ -120,9 +121,10 @@ Not allowed:
 Traceability: every bullet and the summary list the bank ids they draw on, and only those. A bullet with a fact its ids don't support will be deleted by an automatic check, so cite every entry you use and keep figures exactly as the bank states them (approximate figures keep their "~").
 
 PATH {path['track']}: {path['label']}
+Sub-type: {path['subtypeLabel']} ({path['subtypeAbout']}). Rank and phrase for that.
 Used for: {path['useFor']}
 Headline (fixed): {cv['taglines'][path['tagline']]}
-Summary: {path['summaryBrief']} 50-75 words, third person without pronouns, no first person.
+Summary: {path['summaryBrief']} Opener: "{path['summaryOpener']}". 50-75 words, third person without pronouns, no first person.
 Priority entries for this path (use when relevant): {', '.join(path['priority'])}
 Dissertation (ed_diss, ed_msc): {path['dissertationBrief']} The title and mark are printed above these bullets; don't repeat the mark.
 Project (pj_wimbledon): 1-2 bullets.
@@ -331,7 +333,11 @@ def slugify(s):
 def fit_report(plan, final, removed, notes, trimmed, bank, jd, meta):
     f = plan["fit"]
     L = [f"# Fit report: {plan['job']['title']}, {plan['job']['company']}", "",
-         f"Path {meta['path']} ({meta['pathLabel']}). Written {meta['generated']} by {meta['model']}. "
+         f"Path {meta['path']} ({meta['pathLabel']}), {meta['subtype']} ({meta['subtypeSource']}"
+         + (f"; driven by {', '.join(meta['classification']['drivers'])}; runner-up "
+            f"{meta['classification']['runnerUp']}" if meta.get("classification") else "")
+         + (", close call" if meta.get("classification") and meta["classification"]["closeCall"] else "")
+         + f"). Written {meta['generated']} by {meta['model']}. "
          "Bank ids refer to private/experience_bank.yaml."
          + (f" Left out for this path: {', '.join(meta['excluded'])}." if meta["excluded"] else ""), "",
          "## Requirements and evidence", "", "| Requirement | Evidence | Note |", "|---|---|---|"]
@@ -367,6 +373,7 @@ def main():
     ap.add_argument("--plan", type=Path, help="re-render a saved plan.json (no API call)")
     ap.add_argument("--path", default="A", help="tailoring path in data/tailor_paths.json (default A)")
     ap.add_argument("--slug", help="output folder name (default: from the job)")
+    ap.add_argument("--subtype", help="Track A sub-type: insight, marketing or product (default: classify the JD)")
     ap.add_argument("--hook", action="append", default=[],
                     help="a personal-bank item or position the fit report must use as a hook (repeatable)")
     args = ap.parse_args()
@@ -380,6 +387,20 @@ def main():
     path = paths[args.path]
     saved = json.loads(args.plan.read_text(encoding="utf-8")) if args.plan else None
     jd = saved["jd"] if saved else args.jd.read_text(encoding="utf-8")
+
+    # Track A sub-type: chosen, or classified from the JD exactly as the
+    # Workshop does. Its headline, summary opener and skills rows apply.
+    classification, labels = None, {}
+    if "subtypes" in path:
+        classification = tailor_classify.classify(jd, path["classifier"])
+        subtype = args.subtype or classification["subtype"]
+        if subtype not in path["subtypes"]:
+            raise SystemExit(f"unknown sub-type {subtype!r}; one of {list(path['subtypes'])}")
+        sub = path["subtypes"][subtype]
+        labels = {k: v["label"] for k, v in path["subtypes"].items()}
+        print(("chosen: " if args.subtype else "classified: ") + tailor_classify.describe(classification, labels))
+        path = {**path, "subtype": subtype, "subtypeLabel": sub["label"], "subtypeAbout": sub["about"],
+                **{k: sub[k] for k in ("tagline", "summaryOpener", "skillOrder", "skillAppend") if k in sub}}
 
     # Entries the path leaves out unless the job asks for them (e.g. pm_ops).
     data = yaml.safe_load(BANK.read_text(encoding="utf-8"))
@@ -407,6 +428,11 @@ def main():
         if not any(h.lower() in x["basis"].lower() or h.lower() in x["hook"].lower() for x in plan["fit"]["hooks"]):
             problems.append(f'no cover-letter hook about "{h}"')
     meta = {"path": args.path, "pathLabel": path["label"], "model": model, "excluded": excluded,
+            "subtype": path.get("subtypeLabel"), "subtypeSource": "chosen" if args.subtype else "auto",
+            "classification": classification and {
+                **{k: classification[k] for k in ("closeCall", "lead", "drivers")},
+                "auto": labels[classification["subtype"]], "runnerUp": labels[classification["runnerUp"]],
+                "scores": {labels[k]: v for k, v in classification["scores"].items()}},
             "generated": dt.datetime.now().strftime("%Y-%m-%d %H:%M")}
     roles = {r["id"]: r for r in cv["roles"]}
     trace = {

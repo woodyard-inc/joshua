@@ -1,10 +1,9 @@
 {
-  "_note": "Paths for scripts/tailor_cv.py, the local CV tailor that writes from private/experience_bank.yaml. A path belongs to a track (A = Commercial, B = Research; see cv-variant.js). The printed variants in cv-data.json and the Workshop are separate and unchanged. Skills rows come from cv-data.json, reordered (rows not listed are dropped) and with the additions below; the model never writes skills. A path's headline is cv-data.json taglines.<tagline>, shared with the Workshop.",
+  "_note": "Paths for scripts/tailor_cv.py (the local tailor, writing from private/experience_bank.yaml). Path A also holds the Track A sub-types and their classifier, which the Workshop's Worker bundles at deploy, so both tailors classify alike. Headlines are cv-data.json taglines.<tagline>; Workshop summaries are cv-data.json summaries.<summary>. Skills rows come from cv-data.json, in the sub-type's order (rows not listed are dropped); skillAppend is local-tailor only.",
   "A": {
     "track": "A",
     "label": "Commercial: product & commercial analytics",
     "useFor": "Product data science, commercial or marketing analytics, insight analytics, BI-with-strategy roles.",
-    "tagline": "product",
     "sections": [
       "summary",
       "experience",
@@ -13,8 +12,134 @@
       "education",
       "skills"
     ],
-    "summaryOpener": "Data analyst and behavioural economist with 6+ years",
-    "summaryBrief": "Open with exactly \"Data analyst and behavioural economist with 6+ years\", then adapt to the job from bank facts: retail, media and global operations; experimentation, SQL and Python, reliable pipelines; turning user and customer behaviour into product and commercial decisions.",
+    "summaryBrief": "Open with exactly the sub-type's summary opener, then adapt to the job from bank facts: retail, media, telecom and global operations; the methods, tools and outcomes this job most needs.",
+    "subtypes": {
+      "insight": {
+        "label": "A-Insight",
+        "about": "consumer / customer / audience insight, research-led",
+        "tagline": "insight",
+        "summary": "master",
+        "summaryOpener": "Behavioural researcher and analyst with 6+ years",
+        "skillOrder": [
+          "methods",
+          "insights",
+          "platforms",
+          "programming",
+          "viz",
+          "ai",
+          "languages"
+        ]
+      },
+      "marketing": {
+        "label": "A-Marketing",
+        "about": "marketing analytics, effectiveness, measurement, digital / web analytics, CRM, campaign performance",
+        "tagline": "marketing",
+        "summary": "marketing",
+        "summaryOpener": "Marketing and digital analyst with 6+ years",
+        "skillOrder": [
+          "programming",
+          "methods",
+          "insights",
+          "viz",
+          "adplatforms",
+          "ai",
+          "platforms",
+          "languages"
+        ]
+      },
+      "product": {
+        "label": "A-Product",
+        "about": "product analytics / product data science embedded with product, engineering or ML teams",
+        "tagline": "product",
+        "summary": "product",
+        "summaryOpener": "Data analyst and behavioural economist with 6+ years",
+        "skillOrder": [
+          "programming",
+          "methods",
+          "viz",
+          "insights",
+          "ai",
+          "platforms",
+          "languages"
+        ],
+        "skillAppend": {
+          "insights": [
+            "Product Analytics",
+            "User Behaviour"
+          ]
+        }
+      }
+    },
+    "classifier": {
+      "_note": "Deterministic and shared: the Worker (cf-worker/src/classify.js, bundled at deploy) and the local tailor (scripts/tailor_classify.py) both apply these rules. Patterns are case-insensitive. Insight and marketing score one point per phrase found; A-Product needs at least minSignals of its signals and then scores weight per signal. A lead of margin points or fewer is a close call and defaults to closeCallDefault.",
+      "titleChars": 300,
+      "margin": 2,
+      "closeCallDefault": "marketing",
+      "product": {
+        "minSignals": 2,
+        "weight": 3,
+        "signals": [
+          {
+            "name": "product analytics / product data science in the title",
+            "where": "title",
+            "pattern": "product (analytics|analyst|data scien\\w*)"
+          },
+          {
+            "name": "partners with product managers, engineering or ML teams",
+            "pattern": "(partner|work|collaborat)\\w*[^.\\n]{0,80}(product managers?|product teams?|engineer\\w*|machine learning|\\bML\\b)"
+          },
+          {
+            "name": "in-app / feature / roadmap / rollout decisions",
+            "pattern": "\\bin-app\\b|\\bfeatures? (launch\\w*|releases?|adoption)|\\broadmaps?\\b|\\broll[- ]?outs?\\b"
+          },
+          {
+            "name": "product experimentation on a live app or platform",
+            "pattern": "(experiment\\w*|A/B tests?)[^.\\n]{0,80}\\b(app|platform|product)\\b|\\b(app|platform|product)\\b[^.\\n]{0,80}(experiment\\w*|A/B tests?)"
+          }
+        ]
+      },
+      "marketing": {
+        "weight": 1,
+        "phrases": [
+          "A/B tests?|A/B testing",
+          "funnels?",
+          "conversions?",
+          "digital analytics",
+          "web analytics|site analytics",
+          "(site|customer|user) journeys?",
+          "attribution",
+          "campaigns?",
+          "marketing",
+          "measurement",
+          "effectiveness",
+          "\\bCRM\\b",
+          "acquisition",
+          "retention",
+          "GA4|Google Analytics|Adobe Analytics",
+          "\\bmedia\\b",
+          "\\bROI\\b|return on (investment|ad spend)",
+          "paid (search|social|media)|\\bSEO\\b|\\bSEM\\b",
+          "personali[sz]ation"
+        ]
+      },
+      "insight": {
+        "weight": 1,
+        "phrases": [
+          "insights?",
+          "\\bresearch\\b",
+          "surveys?",
+          "customer understanding|understand\\w* (our )?(customers|consumers|shoppers)",
+          "(consumer|customer|shopper) behaviou?r",
+          "segmentation",
+          "audiences?",
+          "qualitative|quantitative research",
+          "focus groups?|\\binterviews\\b",
+          "voice of (the )?customer",
+          "brand (tracking|health)",
+          "attitudes|needs states?"
+        ]
+      }
+    },
     "priority": [
       "hz_boost",
       "hz_scale",
@@ -31,23 +156,9 @@
       "pm_ops": "media operations|media ops|trafficking"
     },
     "_excludeNote": "Bank entries left out unless the job description matches the pattern (case-insensitive).",
+    "_priorityNote": "Bullets citing a priority entry are trimmed for space only after every other non-core bullet.",
     "dissertationMax": 2,
     "dissertationBrief": "At most two bullets in the Research section: the methods, then the key finding.",
-    "skillOrder": [
-      "programming",
-      "methods",
-      "viz",
-      "insights",
-      "ai",
-      "platforms",
-      "languages"
-    ],
-    "skillAppend": {
-      "insights": [
-        "Product Analytics",
-        "User Behaviour"
-      ]
-    },
     "education": {
       "msc": {
         "topicsLabel": "Coursework",
@@ -56,7 +167,6 @@
       "bonn": {
         "omit": true
       }
-    },
-    "_priorityNote": "Bullets citing a priority entry are trimmed for space only after every other non-core bullet."
+    }
   }
 }

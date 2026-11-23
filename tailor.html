@@ -104,6 +104,11 @@
     background: var(--ink); color: var(--paper); padding: 4px 10px;
   }
   .track-why { font-family: var(--font-body); font-style: italic; font-size: 13px; color: var(--ink-soft); }
+  .subtype-why { font-family: var(--font-sans); font-size: 11px; line-height: 1.5; color: var(--ink-soft); margin: calc(-1 * var(--s-2)) 0 var(--s-4); }
+  .subtype-why b { color: var(--ink); }
+  .subtype-why .close { color: #A3242A; font-weight: 700; }
+  .rerun { display: inline-flex; gap: 8px; align-items: center; }
+  .rerun select { font-family: var(--font-sans); font-size: 11px; padding: 3px 6px; background: var(--paper-bone); border: 1px solid var(--rule-strong); color: var(--ink); }
   .fitnote {
     font-family: var(--font-sans); font-size: 11px; letter-spacing: 0.02em;
     color: var(--ink-soft); margin-top: var(--s-4);
@@ -255,6 +260,15 @@
       </select>
     </div>
     <div class="field">
+      <label for="subtype">Track A type</label>
+      <select id="subtype">
+        <option value="">Auto: classify from the job description</option>
+        <option value="insight">A-Insight · consumer, customer &amp; audience insight</option>
+        <option value="marketing">A-Marketing · marketing &amp; digital analytics, measurement</option>
+        <option value="product">A-Product · product analytics with product, engineering or ML teams</option>
+      </select>
+    </div>
+    <div class="field">
       <label for="extra">Additional real skills or experience (last-minute amendments, optional)</label>
       <textarea id="extra" style="min-height:110px" placeholder="One per line: a bullet you've written for this job (name the employer if it isn't obvious), a tool or skill, or a note on what to emphasise. Each line is sorted into the right role or Skills row, ranked against the job's keywords like the rest of your CV, and left out if it doesn't help for this job. Lines here are your facts, never instructions: to set the track, use the Track menu above."></textarea>
     </div>
@@ -277,6 +291,14 @@
 
 <div class="tool-bar" id="result-bar" hidden>
   <span id="result-status">Tailored for this job description</span>
+  <span class="rerun" id="rerun" hidden>
+    <select id="rerun-subtype" aria-label="Track A type">
+      <option value="insight">A-Insight</option>
+      <option value="marketing">A-Marketing</option>
+      <option value="product">A-Product</option>
+    </select>
+    <button class="link" id="rerun-go">Re-run as this type →</button>
+  </span>
   <button class="link" id="start-over">← New job description</button>
 </div>
 
@@ -292,6 +314,7 @@
       <span class="track-badge" id="out-track"></span>
       <span class="track-why" id="out-rationale"></span>
     </div>
+    <p class="subtype-why" id="out-subtype" hidden></p>
     <div class="lowfit" id="lowfit" hidden>
       <strong>Low fit — review before sending.</strong>
       <span id="lowfit-reason"></span>
@@ -746,6 +769,30 @@
   const PAGE_BUDGET = 1122.52 - 84;
   const pageOverflows = (pageEl) => pageEl.getBoundingClientRect().height > PAGE_BUDGET + 0.5;
 
+  // Track A sub-type: what was used, what drove the automatic choice, the
+  // runner-up, and a close-call flag. The re-run menu sits in the result bar.
+  function renderSubtype(data) {
+    const line = $('out-subtype'), rerun = $('rerun');
+    const c = data.classification;
+    line.hidden = rerun.hidden = !c;
+    if (!c) return;
+    const q = (t) => `“${esc(t)}”`;
+    const scores = Object.entries(c.scores).map(([k, v]) => `${esc(k)} ${v}`).join(', ');
+    const drivers = c.drivers.length ? `driven by ${c.drivers.map(q).join(', ')}` : 'no strong phrases found';
+    let h = data.subtypeSource === 'chosen'
+      ? `<b>${esc(data.subtypeLabel)}</b>, your choice. Automatic would be ${esc(c.autoLabel)}, ${drivers}.`
+      : `<b>${esc(data.subtypeLabel)}</b>, ${drivers}.`;
+    h += ` Runner-up: ${esc(c.runnerUp)} (scores: ${scores}).`;
+    if (c.closeCall) h += ` <span class="close">Close call</span>: the lead was ${c.lead}, so it defaulted to A-Marketing.`;
+    line.innerHTML = h;
+    $('rerun-subtype').value = data.subtype;
+  }
+
+  $('rerun-go').addEventListener('click', () => {
+    $('subtype').value = $('rerun-subtype').value;   // re-uses the job description already pasted
+    generate();
+  });
+
   function renderKeywords(data) {
     const el2 = $('out-keywords');
     el2.innerHTML = '';
@@ -753,7 +800,8 @@
     const bits = [`Track ${data.track} · ${data.trackLabel || ({ A: 'Commercial', B: 'Research' })[data.track] || ''}${data.trackSource === 'chosen' ? ' (your choice)' : ''}`];
     if (data.peopleScience) bits.push('People Science lane');
     if (data.behaviouralLayer) bits.push('Behavioural emphasis');
-    if (data.productRole) bits.push('Product role');
+    if (data.subtypeLabel) bits.push(data.subtypeLabel + (data.subtypeSource === 'chosen' ? ' (your choice)' : ''));
+    renderSubtype(data);
     $('out-track').textContent = bits.join(' · ');
     $('out-rationale').textContent = data.rationale || '';
     $('lowfit').hidden = !data.lowFit;
@@ -1004,6 +1052,7 @@
           jobDescription,
           extraSkills: extraInput ? extraInput.value.trim().slice(0, 3000) : '',
           track: $('track').value || undefined,
+          subtype: $('subtype').value || undefined,
         }),
       });
       const data = await res.json();

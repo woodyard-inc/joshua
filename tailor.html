@@ -753,6 +753,7 @@
     const bits = [`Track ${data.track} · ${data.trackLabel || ({ A: 'Commercial', B: 'Research' })[data.track] || ''}${data.trackSource === 'chosen' ? ' (your choice)' : ''}`];
     if (data.peopleScience) bits.push('People Science lane');
     if (data.behaviouralLayer) bits.push('Behavioural emphasis');
+    if (data.productRole) bits.push('Product role');
     $('out-track').textContent = bits.join(' · ');
     $('out-rationale').textContent = data.rationale || '';
     $('lowfit').hidden = !data.lowFit;

@@ -124,7 +124,10 @@ def stamp(cv, page):
 
 
 def omitted(cv):
-    return cv.get("_layout", {}).get("omit", [])
+    """Bullets this CV leaves out: any set by hand in _layout.omit, plus the
+    ones scripts/fit_cv.py dropped to hold two pages (variants.<id>.fit)."""
+    fit = cv.get("_variant", {}).get("fit", {})
+    return cv.get("_layout", {}).get("omit", []) + fit.get("omit", [])
 
 
 def role_html(r, omit):
@@ -227,7 +230,7 @@ def build(cv, variant_id, private):
     v = cv["_variant"]
     layout = cv.get("_layout", {})
     omit = omitted(cv)
-    k = v.get("page1Roles", layout.get("page1Roles", 4))
+    k = v.get("fit", {}).get("page1Roles", v.get("page1Roles", layout.get("page1Roles", 4)))
     roles = cv["roles"]
     order = v.get("sections", DEFAULT_SECTIONS)
     assert order[0] == "summary", "the summary opens every CV"

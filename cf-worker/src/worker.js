@@ -167,6 +167,8 @@ PEOPLE SCIENCE SUB-LANE (boolean, independent of track): true only when the role
 
 BEHAVIOURAL LAYER (boolean, independent of track): true when the JD's core is explaining WHY people/users/customers behave as they do. Signals: "why", "behaviour/behavioural", "understand users/customers", "experiment", "drivers of", "motivation", product analytics, UX research, behavioural science. This is an emphasis layer applied on top of A or B — never a third track.
 
+PRODUCT ROLE (boolean, Track A only): true for product data science and product analytics roles (product data scientist, product analyst, an insights or analytics team embedded with product, engineering or ML). false for consumer insight, market research, strategy and marketing analytics roles, and always false on Track B.
+
 HEADLINE ("taglineIds"): the line under Joshua's name. Choose exactly 3 ids from HEADLINE TERMS below, ordered by weight in this JD: the first is the term closest to the job's core (its title and most repeated requirement), then the next strongest. Prefer terms that match keywords_targeted in meaning. Keep one behavioural term (behavioural-science or behavioural-economics) only when the JD values understanding why people behave as they do; it is his differentiator, not a requirement. Never pick two terms that say the same thing (e.g. quant-qual and survey-research). people-analytics only when peopleScience is true.
 
 PROJECT (boolean "projectFull"): every CV carries a short entry for Joshua's independent project "What Wins on Grass", built with Claude Code: player fingerprints from IBM Slam Tracker data, shown as interactive charts, with matchups simulated point by point from two fingerprints. Set projectFull true when the full entry would genuinely help: the role values programming (especially Python), AI-assisted development, statistical modelling, simulation or forecasting, data science or machine learning, data visualisation, sports analytics, or applied research. Otherwise false.
@@ -185,6 +187,7 @@ Output ONLY valid JSON, no code fences, no commentary:
   "track": "A" | "B",
   "peopleScience": boolean,
   "behaviouralLayer": boolean,
+  "productRole": boolean,
   "projectFull": boolean,
   "lowFit": boolean,
   "lowFitReason": string,
@@ -268,6 +271,7 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
     const src = applied ? resolve(cv, variant) : cv;
     const peopleScience = !!pick.peopleScience;
     const behavioural = !!pick.behaviouralLayer;
+    const productRole = track === "A" && !!pick.productRole;
 
     // ---- Amendments: sorted by the model, wording checked here. ----
     const roleIds = new Set(cv.roles.map((r) => r.id));
@@ -348,7 +352,11 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
     const termById = Object.fromEntries(menu.headline.map((t) => [t.id, t.text]));
     const termIds = [...new Set((Array.isArray(pick.taglineIds) ? pick.taglineIds : [])
       .filter((id) => termById[id] && (id !== "people-analytics" || peopleScience)))].slice(0, 3);
-    const tagline = termIds.length === 3 ? termIds.map((id) => termById[id]).join(" | ") : trackTagline;
+    // Product roles on Track A take the product headline (cv-data taglines.product,
+    // the same one the local tailor's Path A uses); insight roles keep the above.
+    const productTagline = productRole && (cv.taglines || {}).product;
+    const tagline = productTagline
+      || (termIds.length === 3 ? termIds.map((id) => termById[id]).join(" | ") : trackTagline);
 
     return jsonResponse({
       track,
@@ -361,6 +369,7 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
       researchIncludesProject: !!(applied && variant.researchIncludesProject),
       peopleScience,
       behaviouralLayer: behavioural,
+      productRole,
       lowFit: !!pick.lowFit,
       lowFitReason: typeof pick.lowFitReason === "string" ? pick.lowFitReason.slice(0, 300) : "",
       rationale: typeof pick.rationale === "string" ? pick.rationale.slice(0, 300) : "",

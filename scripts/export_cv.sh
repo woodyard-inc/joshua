@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build the CV pages and print the six PDFs with Chrome, at A4.
+# Fit, build and print the six CV PDFs with Chrome, at A4 (two pages each).
 #
 #   Joshua Woodyard CV.pdf                              designed, master
 #   Joshua Woodyard CV (ATS).pdf                        plain, master
@@ -21,6 +21,8 @@ PORT=8799
 CHROME="${CHROME:-/Applications/Google Chrome.app/Contents/MacOS/Google Chrome}"
 
 mkdir -p "$OUT"
+# The master may run past two pages; fit each variant back to two first.
+python3 "$ROOT/scripts/fit_cv.py"
 python3 "$ROOT/scripts/build_cv.py"
 
 ( cd "$ROOT" && python3 -m http.server "$PORT" --bind 127.0.0.1 >/dev/null 2>&1 ) &

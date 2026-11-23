@@ -1,7 +1,7 @@
 {
   "_README": "Single source of truth for CV content. cv.html (the designed master), cv-ats.html (the ATS export) and the CV tailor all draw from here. The Cloudflare Worker verifies every bullet it emits against the strings in this file, so nothing reaches a page that isn't approved here. Add a variant here before the tailor can ever use it.",
   "meta": {
-    "updated": "2026-10",
+    "updated": "2026-11",
     "spec": "cv_tailor_handover.md v2 — domain-agnostic positioning"
   },
   "positioning": {
@@ -16,7 +16,7 @@
     "linkedin": "linkedin.com/in/joshua-woodyard"
   },
   "summaries": {
-    "master": "Behavioural researcher and analyst with 6+ years in consumer insights and analytics across telecom, QSR, retail, media and workforce. Uses experimental design, econometrics and behavioural science to find what actually drives customer and business results, and turns it into recommendations leaders act on. Most recently ran the staffing analytics for 11 global new-business transitions (~3,500 roles) at Publicis Groupe. MSc Behavioural Economics (City St George's, University of London). Hands-on with SQL, Python, R, Snowflake, Nielsen, Mintel and Kantar.",
+    "master": "Behavioural researcher and analyst with 6+ years in consumer insights and analytics across telecom, QSR, retail, media and workforce. Uses experimental design, econometrics and behavioural science to find what actually drives customer and business results, and turns it into recommendations leaders act on. Most recently ran the staffing analytics for 11 global new-business transitions (~3,500 roles) at Publicis Groupe. MSc Behavioural Economics (City St George's, University of London). Hands-on with SQL, Python, R, Snowflake and Tableau; experienced in A/B testing, attribution and building reliable data pipelines.",
     "research": "Behavioural economist with six to seven years in data, insight and research roles across media agencies, retail and global operations. Trained in experimental design, econometrics and quantitative and qualitative research design; experienced in turning large survey and behavioural datasets into clear, decision-ready findings."
   },
   "roles": [
@@ -90,7 +90,8 @@
         },
         {
           "id": "uni-basket",
-          "text": "In one sales study, found around a dozen top-50 products customers bought together (0.90+ correlation across eight stores) that rarely held prime floor space; recommended moving them to key positions for peak weekends."
+          "alwaysKeep": true,
+          "text": "In one sales study, found around a dozen top-50 products customers bought together (0.90+ correlation across eight stores) that rarely held prime floor space; recommended moving them to key positions for peak weekends; presented the findings to UNIQLO's global brand director."
         }
       ],
       "whyBullets": []
@@ -104,11 +105,13 @@
       "bullets": [
         {
           "id": "pet-nielsen",
+          "alwaysKeep": true,
           "text": "On the Petco account, consolidated all digital vendors and media buys, including Google and Meta, into a single placement-level reporting set, integrating Nielsen audience data for digital TV and switchable attribution models, giving the client one view of performance across the full buy."
         },
         {
           "id": "pet-etl",
-          "text": "Maintained ETL pipelines (T-SQL, KNIME, Snowflake) processing 10,000+ rows weekly for a nine-figure retail client's media reporting, managing data vendors and adapting dashboards to client and team needs."
+          "alwaysKeep": true,
+          "text": "Maintained production ETL pipelines (T-SQL, KNIME, Snowflake) on databases of 500,000+ rows, consolidating up to 20 vendor, platform and reporting-layer sources into final reporting tables for a nine-figure retail client; ingested platform data via APIs and managed data vendors."
         }
       ],
       "whyBullets": []
@@ -122,11 +125,12 @@
       "bullets": [
         {
           "id": "spr-synth",
-          "text": "On the Sprint and Boost Mobile accounts, consolidated vendor feeds from Google, Meta and other platforms into one SQL dataset, then prepared the weekly reporting and the quarterly post-campaign analyses that steered budget allocation."
+          "text": "On the Sprint and Boost Mobile accounts, consolidated vendor feeds from Google, Meta and other platforms into one SQL dataset, then prepared the weekly reporting and quarterly post-campaign analyses that steered budget allocation, using Cuebiq location data to link digital media to store visits."
         },
         {
           "id": "spr-kantar",
-          "text": "Partnered with Kantar on brand-lift studies and A/B creative tests (control vs exposed) during a brand relaunch, turning results into strategy recommendations."
+          "alwaysKeep": true,
+          "text": "Partnered with Kantar on control-vs-exposed tests of two creative directions for Boost Mobile's relaunch, measuring purchase intent; analysed and validated results with confidence intervals. The story-led creative drove ~5% more clicks and stronger upper-funnel engagement, informing the next creative brief."
         }
       ],
       "whyBullets": [
@@ -231,11 +235,11 @@
     "label": "Independent project",
     "year": "2026",
     "short": [
-      "Built with Claude Code: a Python and JavaScript app that gives every player in the Wimbledon men's draw a fingerprint from IBM Slam Tracker point data (2011–2023), shown as interactive charts.",
+      "Built in Python and JavaScript, using Claude Code as a development assistant: an app that gives every player in the Wimbledon men's draw a fingerprint from IBM Slam Tracker point data (2011–2023), shown as interactive charts.",
       "Matchups are played out point by point from two fingerprints, not regressed: 68.4% accurate on 827 matches."
     ],
     "bullets": [
-      "Built with Claude Code as a Python data pipeline and a browser app: a fingerprint for every player in the Wimbledon men's draw from IBM Slam Tracker point-by-point data (2011–2023), about 48,000 points a season.",
+      "Built in Python and JavaScript, using Claude Code as a development assistant: a data pipeline and a browser app, with a fingerprint for every player in the Wimbledon men's draw from IBM Slam Tracker point-by-point data (2011–2023), about 48,000 points a season.",
       "Each fingerprint covers serve, return and under-pressure play (how unpredictably a player serves, holds at break point and fades across sets), weighted by recency and opponent quality.",
       "Every player has a page of interactive charts (serve speed and direction, rally length, pressure play, match log) and a place on a leaderboard.",
       "Matchups are simulated, not regressed: two fingerprints play a match out point by point, 25,000 times in the browser, through a serve, rally and pressure model, then calibrated. Backtested on 827 matches (2014–2023), each season predicted only from earlier ones: 68.4% accurate."
@@ -296,7 +300,7 @@
     {
       "id": "methods",
       "label": "Methods",
-      "text": "Behavioural Science, Behavioural Economics, Experimental Design, Regression Analysis, Econometrics, Statistical Modelling, Survey Research, Qualitative Research"
+      "text": "Behavioural Science, Behavioural Economics, Experimental Design, Regression Analysis, Econometrics, Statistical Modelling, Survey Research, Qualitative Research, A/B Testing, Experimentation, Significance Testing"
     },
     {
       "id": "insights",
@@ -374,7 +378,19 @@
         "education",
         "skills",
         "memberships"
-      ]
+      ],
+      "fit": {
+        "_note": "Written by scripts/fit_cv.py (run by export_cv.sh) to hold two A4 pages; don't edit by hand.",
+        "omit": [
+          "pub-ai",
+          "dun-ops",
+          "dun-mixplanning"
+        ],
+        "page1Roles": 5,
+        "atsOmit": [
+          "dun-ops"
+        ]
+      }
     },
     "consumer-insights": {
       "label": "Consumer Insights",
@@ -399,7 +415,19 @@
         "education",
         "skills",
         "memberships"
-      ]
+      ],
+      "fit": {
+        "_note": "Written by scripts/fit_cv.py (run by export_cv.sh) to hold two A4 pages; don't edit by hand.",
+        "omit": [
+          "pub-ai",
+          "dun-ops",
+          "dun-mixplanning"
+        ],
+        "page1Roles": 5,
+        "atsOmit": [
+          "dun-ops"
+        ]
+      }
     },
     "research": {
       "label": "Research",
@@ -427,10 +455,7 @@
         "languages"
       ],
       "skillText": {
-        "methods": "Behavioural Science, Behavioural Economics, Survey Research, Experimental Design, Regression Analysis, Econometrics, Statistical Modelling, Multiple Imputation, Principal Component Analysis, Significance Testing, Qualitative Research"
-      },
-      "bulletText": {
-        "spr-kantar": "Partnered with Kantar on control-vs-exposed tests of two creative directions for Boost Mobile's relaunch, measuring purchase intent; validated results with confidence intervals. The story-led creative drove ~5% more clicks and stronger upper-funnel engagement, informing the next creative brief."
+        "methods": "Behavioural Science, Behavioural Economics, Survey Research, Experimental Design, Regression Analysis, Econometrics, Statistical Modelling, Multiple Imputation, Principal Component Analysis, Significance Testing, A/B Testing, Experimentation, Qualitative Research"
       },
       "bulletOrder": {
         "uniqlo": [
@@ -452,6 +477,14 @@
         "bonn": {
           "omit": true
         }
+      },
+      "fit": {
+        "_note": "Written by scripts/fit_cv.py (run by export_cv.sh) to hold two A4 pages; don't edit by hand.",
+        "omit": [
+          "pub-ai"
+        ],
+        "page1Roles": 2,
+        "atsOmit": []
       }
     }
   },
@@ -532,5 +565,9 @@
     "eduResultInMeta": false,
     "atsOmit": []
   },
-  "_README_ats": "Experience entries are two lines: the job title alone (specialism after a comma), then 'Company | City, Country | Dates'. Client names live in the bullets, never in a title line, so parsers take the company from line 2. education[].degreeAts is the ATS form of a degree."
+  "_README_ats": "Experience entries are two lines: the job title alone (specialism after a comma), then 'Company | City, Country | Dates'. Client names live in the bullets, never in a title line, so parsers take the company from line 2. education[].degreeAts is the ATS form of a degree.",
+  "taglines": {
+    "_note": "Shared headlines. product: Track A product roles in the Workshop, and the local tailor's Path A.",
+    "product": "Product & Commercial Analytics | Experimentation | Behavioural Science"
+  }
 }

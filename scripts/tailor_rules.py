@@ -28,8 +28,8 @@ KNOWN_TOOLS = ["Python", "R", "SQL", "T-SQL", "Snowflake", "KNIME", "Alteryx", "
                "JavaScript", "Nielsen", "Kantar", "Mintel", "MRI-Simmons", "Comscore", "Cuebiq",
                "Google", "Meta", "Spark", "Airflow", "AWS", "Azure", "GCP", "Mixpanel", "Amplitude",
                "Optimizely", "Statsig", "Stata", "SAS", "Qualtrics", "Hex", "Mode", "Redshift"]
-# Client names come from the private bank ("clients", and "review_clients"
-# for names the CV hasn't published), so they never sit in this public file.
+# Client names come from the private bank ("clients", and
+# "never_on_cv_clients"), so they never sit in this public file.
 
 S = r"[^.;]"  # within one sentence or clause
 CLAIM_RULES = [
@@ -63,6 +63,8 @@ CLAIM_RULES = [
      "all"),
     ("power-of-one", 'writes "Power of One"', r"(?i)power of one", "all"),
     ("nielseniq", 'writes "NielsenIQ"; it is Nielsen', r"(?i)nielsen\s*iq", "all"),
+    ("elo", 'describes Elo as a standalone prediction; say "Elo-weighted serve and return ratings"',
+     r"\bElo\b(?!-weighted)", "all"),
     ("ds-title", '"Data Scientist" as a job title held',
      r"\b(as|worked as|role as|title of) (a |the )?(senior |lead )?data scientist", "all"),
 ]
@@ -106,8 +108,8 @@ class Bank:
         self.data = data
         self.entries = {e["id"]: e for e in data["entries"]}
         self.never = list(data.get("never_claim_tools", []))
-        self.clients = list(data.get("clients", [])) + list(data.get("review_clients", []))
-        self.review_clients = list(data.get("review_clients", []))
+        self.clients = list(data.get("clients", []))
+        self.never_clients = list(data.get("never_on_cv_clients", []))
         bank_tools = {t for e in data["entries"] for t in e.get("tools", [])}
         self.tools = sorted((set(KNOWN_TOOLS) | bank_tools | set(self.never)) - {"M", "APIs"},
                             key=len, reverse=True)
@@ -145,6 +147,8 @@ def check(text, ids, bank, role=None, kind="bullet"):
         if re.search(rf"\b{re.escape(c)}", text) and not re.search(rf"\b{re.escape(c)}", source):
             bad.append(f'client "{c}" not in the cited entries')
     bad += never_claimed(text, bank)
+    bad += [f'names "{c}", a client that never appears on a CV' for c in bank.never_clients
+            if re.search(rf"\b{re.escape(c)}\b", text)]
     for rid, msg, pat, scope in CLAIM_RULES:
         if scope.startswith("cites:"):
             if scope[6:] not in ids:
@@ -161,8 +165,4 @@ def never_claimed(text, bank):
 
 
 def notes(text, bank=None):
-    out = [f"[{nid}] {msg}" for nid, msg, pat in NOTES if re.search(pat, text)]
-    named = [c for c in (bank.review_clients if bank else []) if re.search(rf"\b{re.escape(c)}\b", text)]
-    if named:
-        out.append(f"[review-clients] names {', '.join(named)} (the CV hasn't published these; check before sending)")
-    return out
+    return [f"[{nid}] {msg}" for nid, msg, pat in NOTES if re.search(pat, text)]

@@ -277,7 +277,12 @@
   padding: var(--space-xs) 0 var(--space-s);
   border-bottom: 1px solid var(--rule);
 }
-.skill-row:first-of-type { padding-top: 0; }
+/* Under the section rule the first row starts on the value's ascent, which
+   Chrome rounds down, so its ink sat ~0.5pt closer to the rule than the
+   first line of every other section (5.7pt vs 6.25pt, scripts/verify_cv.py).
+   One pixel (Chrome snaps the row to whole pixels; 0.75pt) brings it to
+   ~6.5pt, within the check's 0.5pt. */
+.skill-row:first-of-type { padding-top: 1px; }
 .skill-row:last-child { border-bottom: none; padding-bottom: 0; }
 .skill-row .k {
   font-family: var(--font-sans); font-weight: 700;

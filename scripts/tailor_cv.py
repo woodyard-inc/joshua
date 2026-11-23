@@ -31,16 +31,11 @@ output/ is git-ignored: the PDF carries real contact details.
 import argparse
 import copy
 import datetime as dt
-import functools
-import http.server
 import json
 import os
 import re
-import socketserver
 import subprocess
 import sys
-import tempfile
-import threading
 from pathlib import Path
 
 import yaml
@@ -48,12 +43,12 @@ import yaml
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_cv  # noqa: E402
 import tailor_rules as rules  # noqa: E402
+from cvprint import Printer  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 BANK = ROOT / "private" / "experience_bank.yaml"
 PATHS = ROOT / "data" / "tailor_paths.json"
 OUTPUT = ROOT / "output"
-CHROME = os.environ.get("CHROME", "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 MODEL = "claude-opus-5-5"
 
 # Bullets the model writes per role (min, max), most recent role first.
@@ -126,7 +121,7 @@ Traceability: every bullet and the summary list the bank ids they draw on, and o
 
 PATH {path['track']}: {path['label']}
 Used for: {path['useFor']}
-Headline (fixed): {path['headline']}
+Headline (fixed): {cv['taglines'][path['tagline']]}
 Summary: {path['summaryBrief']} 50-75 words, third person without pronouns, no first person.
 Priority entries for this path (use when relevant): {', '.join(path['priority'])}
 Dissertation (ed_diss, ed_msc): {path['dissertationBrief']} The title and mark are printed above these bullets; don't repeat the mark.
@@ -150,7 +145,7 @@ PERSONAL BANK (hooks only): {json.dumps(bank.data['personal'])}
 POSITIONS (hooks only, phrase as beliefs): {json.dumps(bank.data['positions'])}"""
 
 
-def ask_claude(bank, path, cv, jd):
+def ask_claude(bank, path, cv, jd, hooks=()):
     import anthropic
 
     load_env()
@@ -163,7 +158,9 @@ def ask_claude(bank, path, cv, jd):
         thinking={"type": "adaptive"},
         output_config={"effort": "high", "format": {"type": "json_schema", "schema": schema(bank, cv)}},
         system=[{"type": "text", "text": system_prompt(bank, path, cv), "cache_control": {"type": "ephemeral"}}],
-        messages=[{"role": "user", "content": f"Tailor the CV to this job description.\n\n<job_description>\n{jd}\n</job_description>"}],
+        messages=[{"role": "user", "content": "Tailor the CV to this job description." + "".join(
+            f"\nInclude a cover-letter hook whose basis is the personal-bank item or position about: {h}" for h in hooks)
+            + f"\n\n<job_description>\n{jd}\n</job_description>"}],
     ) as stream:
         msg = stream.get_final_message()
     if msg.stop_reason == "refusal":
@@ -179,7 +176,7 @@ def ask_claude(bank, path, cv, jd):
 
 # ---------------------------------------------------------------- checking --
 
-def vet(plan, bank, cv):
+def vet(plan, bank, cv, path):
     """Apply the fact and claim checks. Returns kept items and the removals."""
     removed, notes = [], []
     order = [r["id"] for r in cv["roles"]]
@@ -216,6 +213,9 @@ def vet(plan, bank, cv):
     proj = vet_list(plan["project"], "project", {"pj_wimbledon"})
     s = plan["summary"]
     bad = rules.check(s["text"], s["ids"], bank, kind="summary")
+    opener = path.get("summaryOpener")
+    if opener and not s["text"].startswith(opener):
+        bad.append(f'does not open with the path\'s summary opener "{opener}"')
     if bad:
         removed.append({"where": "summary", "text": s["text"], "ids": s["ids"], "reasons": bad})
         summary = {"text": cv["summaries"]["master"], "ids": [], "source": "cv-data.json master summary (fallback)"}
@@ -236,69 +236,44 @@ def tailored_cv(cv, path, kept, plan, page1):
     for r in c["roles"]:
         r["bullets"] = [{"id": f"t-{r['id']}-{i}", "text": b["text"]} for i, b in enumerate(by_role[r["id"]])]
     for k in c["skills"]:
-        k["text"] = path["skillText"].get(k["id"], k["text"])
+        k["text"] = path.get("skillText", {}).get(k["id"], k["text"])
         add = [x for x in path.get("skillAppend", {}).get(k["id"], [])
                if x.lower() not in k["text"].lower()]
         if add:
             k["text"] += ", " + ", ".join(add)
     d = c["dissertation"]
     mark = re.sub(r"^Dissertation mark:\s*", "", d["mark"]).replace(" (", ", ").rstrip(")")
+    edu = path.get("education", {})
+    c["education"] = [e for e in c["education"] if not edu.get(e.get("id"), {}).get("omit")]
+    in_research = "research" in path["sections"]
+    if in_research and plan["dissertation"]:
+        d["short"] = [b["text"] for b in plan["dissertation"]]
     for e in c["education"]:
-        ov = path.get("education", {}).get(e.get("id"), {})
-        e.update(ov)
-        if e.get("id") == "msc" and plan["dissertation"]:
+        e.update({k: v for k, v in edu.get(e.get("id"), {}).items() if k != "omit"})
+        if e.get("id") == "msc" and plan["dissertation"] and not in_research:
             e["meta"] = list(e.get("meta", [])) + [f"Dissertation: {d['title']} ({mark})."] + [
                 b["text"] for b in plan["dissertation"]]
     c["project"]["short"] = [b["text"] for b in plan["project"]] or c["project"]["short"]
     c["variants"]["tailored"] = {
-        "label": "Tailored", "tagline": path["headline"], "summary": "tailored",
+        "label": "Tailored", "tagline": cv["taglines"][path["tagline"]], "summary": "tailored",
         "sections": path["sections"], "page1Roles": page1, "skillOrder": path["skillOrder"]}
     return c
-
-
-class Printer:
-    """A local server for the repo (fonts and CSS load over http) and Chrome."""
-
-    def __enter__(self):
-        handler = functools.partial(Quiet, directory=str(ROOT))
-        self.httpd = socketserver.ThreadingTCPServer(("127.0.0.1", 0), handler)
-        self.port = self.httpd.server_address[1]
-        threading.Thread(target=self.httpd.serve_forever, daemon=True).start()
-        return self
-
-    def __exit__(self, *a):
-        self.httpd.shutdown()
-
-    def pdf(self, html, out):
-        page = ROOT / "build" / "private" / f"tailored-{out.parent.name}.html"
-        page.parent.mkdir(parents=True, exist_ok=True)
-        page.write_text(html, encoding="utf-8")
-        subprocess.run([CHROME, "--headless=new", "--disable-gpu", "--no-pdf-header-footer",
-                        "--virtual-time-budget=8000", f"--print-to-pdf={out}",
-                        f"http://127.0.0.1:{self.port}/build/private/{page.name}"],
-                       capture_output=True, check=True)
-        info = subprocess.run(["pdfinfo", str(out)], capture_output=True, text=True).stdout
-        pages = int(re.search(r"^Pages:\s+(\d+)", info, re.M).group(1))
-        a4 = "A4" in re.search(r"^Page size:.*$", info, re.M).group(0)
-        return pages, a4
-
-
-class Quiet(http.server.SimpleHTTPRequestHandler):
-    def log_message(self, *a):
-        pass
 
 
 def fit(cv, path, kept, out):
     """Most bullets that hold two pages: drop the least relevant non-core
     bullet from the role with the most to spare, then project and
     dissertation detail, then core bullets, never emptying a role."""
-    plan = {"roles": [{"role": r["role"], "bullets": list(r["bullets"])} for r in kept["roles"]],
+    prio = set(path.get("priority", []))
+    plan = {"roles": [{"role": r["role"], "bullets": [{**b, "core": b["core"] or bool(prio & set(b["ids"]))}
+                                                      for b in r["bullets"]]} for r in kept["roles"]],
             "dissertation": list(kept["dissertation"]), "project": list(kept["project"])}
     trimmed = []
     with Printer() as pr:
         while True:
             for k in (3, 2, 4, 1, 5):
-                pages, a4 = pr.pdf(build_cv.build(tailored_cv(cv, path, kept, plan, k), "tailored", True), out)
+                pages, a4 = pr.html(build_cv.build(tailored_cv(cv, path, kept, plan, k), "tailored", True),
+                                    f"tailored-{out.parent.name}.html", out)
                 if pages == 2:
                     return plan, k, trimmed, a4
             cut = trim_one(plan)
@@ -357,7 +332,8 @@ def fit_report(plan, final, removed, notes, trimmed, bank, jd, meta):
     f = plan["fit"]
     L = [f"# Fit report: {plan['job']['title']}, {plan['job']['company']}", "",
          f"Path {meta['path']} ({meta['pathLabel']}). Written {meta['generated']} by {meta['model']}. "
-         "Bank ids refer to private/experience_bank.yaml.", "",
+         "Bank ids refer to private/experience_bank.yaml."
+         + (f" Left out for this path: {', '.join(meta['excluded'])}." if meta["excluded"] else ""), "",
          "## Requirements and evidence", "", "| Requirement | Evidence | Note |", "|---|---|---|"]
     for r in f["requirements"]:
         ev = ", ".join(r["ids"]) if r["supported"] and r["ids"] else "NOT SUPPORTED"
@@ -391,45 +367,55 @@ def main():
     ap.add_argument("--plan", type=Path, help="re-render a saved plan.json (no API call)")
     ap.add_argument("--path", default="A", help="tailoring path in data/tailor_paths.json (default A)")
     ap.add_argument("--slug", help="output folder name (default: from the job)")
+    ap.add_argument("--hook", action="append", default=[],
+                    help="a personal-bank item or position the fit report must use as a hook (repeatable)")
     args = ap.parse_args()
     if not (args.jd or args.plan):
         ap.error("give --jd or --plan")
 
     cv = json.loads(build_cv.DATA.read_text(encoding="utf-8"))
-    bank = rules.Bank(yaml.safe_load(BANK.read_text(encoding="utf-8")))
     paths = json.loads(PATHS.read_text(encoding="utf-8"))
     if args.path not in paths:
         raise SystemExit(f"unknown path {args.path!r}; defined: {[k for k in paths if not k.startswith('_')]}")
     path = paths[args.path]
+    saved = json.loads(args.plan.read_text(encoding="utf-8")) if args.plan else None
+    jd = saved["jd"] if saved else args.jd.read_text(encoding="utf-8")
 
-    if args.plan:
-        saved = json.loads(args.plan.read_text(encoding="utf-8"))
-        plan, model, jd = saved["plan"], saved["model"], saved["jd"]
+    # Entries the path leaves out unless the job asks for them (e.g. pm_ops).
+    data = yaml.safe_load(BANK.read_text(encoding="utf-8"))
+    excluded = [i for i, pat in path.get("exclude", {}).items() if not re.search(pat, jd, re.I)]
+    data["entries"] = [e for e in data["entries"] if e["id"] not in excluded]
+    bank = rules.Bank(data)
+
+    if saved:
+        plan, model = saved["plan"], saved["model"]
     else:
-        jd = args.jd.read_text(encoding="utf-8")
-        plan, model = ask_claude(bank, path, cv, jd)
+        plan, model = ask_claude(bank, path, cv, jd, args.hook)
     slug = args.slug or slugify(f"{plan['job']['company']} {plan['job']['title']}") or "job"
     out = OUTPUT / slug
     out.mkdir(parents=True, exist_ok=True)
     (out / "plan.json").write_text(json.dumps({"model": model, "jd": jd, "plan": plan}, indent=1, ensure_ascii=False))
 
-    kept, removed, notes = vet(plan, bank, cv)
+    kept, removed, notes = vet(plan, bank, cv, path)
     pdf = out / f"Joshua Woodyard CV - {plan['job']['company']}.pdf"
     final, page1, trimmed, a4 = fit(cv, path, kept, pdf)
     final["summary"] = kept["summary"]
     text, problems = post_checks(pdf, final, bank, path, cv)
     (out / "cv.txt").write_text(text, encoding="utf-8")
 
-    meta = {"path": args.path, "pathLabel": path["label"], "model": model,
+    for h in args.hook:
+        if not any(h.lower() in x["basis"].lower() or h.lower() in x["hook"].lower() for x in plan["fit"]["hooks"]):
+            problems.append(f'no cover-letter hook about "{h}"')
+    meta = {"path": args.path, "pathLabel": path["label"], "model": model, "excluded": excluded,
             "generated": dt.datetime.now().strftime("%Y-%m-%d %H:%M")}
     roles = {r["id"]: r for r in cv["roles"]}
     trace = {
         "job": plan["job"], **meta, "pdf": pdf.name, "pages": 2, "a4": a4, "page1Roles": page1,
-        "headline": {"text": path["headline"], "source": "data/tailor_paths.json"},
+        "headline": {"text": cv["taglines"][path["tagline"]], "source": f"cv-data.json taglines.{path['tagline']}"},
         "summary": final["summary"],
         "experience": [{"role": r["role"], "title": roles[r["role"]]["title"], "company": roles[r["role"]]["company"],
                         "bullets": [{"text": b["text"], "ids": b["ids"]} for b in r["bullets"]]} for r in final["roles"]],
-        "education": {"dissertation": final["dissertation"]},
+        ("research" if "research" in path["sections"] else "education"): {"dissertation": final["dissertation"]},
         "projects": final["project"],
         "skills": {"source": "cv-data.json skills rows, reordered and edited by data/tailor_paths.json", "order": path["skillOrder"]},
         "removed": removed, "trimmedForSpace": trimmed, "postCheckProblems": problems,

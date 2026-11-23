@@ -170,7 +170,8 @@ import { DEFAULT_SECTIONS, resolve } from './cv-variant.js';
   function render(data) {
     var v = (data.variants || {})[VARIANT] || data.variants.master;
     var cv = resolve(data, v);
-    var omit = omitted(cv);
+    // Plus the bullets scripts/fit_cv.py dropped to hold two pages.
+    var omit = omitted(cv).concat(((v.fit || {}).atsOmit) || []);
     var c = cv.contact || {};
     var root = document.getElementById('cv');
     root.innerHTML = '';

@@ -1,27 +1,62 @@
 {
-  "_note": "Paths for scripts/tailor_cv.py, the local CV tailor that writes from private/experience_bank.yaml. A path belongs to a track (A = Commercial, B = Research; see cv-variant.js). The printed variants in cv-data.json and the Workshop are separate and unchanged. Skills rows come from cv-data.json, reordered and with the text below; the model never writes skills.",
+  "_note": "Paths for scripts/tailor_cv.py, the local CV tailor that writes from private/experience_bank.yaml. A path belongs to a track (A = Commercial, B = Research; see cv-variant.js). The printed variants in cv-data.json and the Workshop are separate and unchanged. Skills rows come from cv-data.json, reordered (rows not listed are dropped) and with the additions below; the model never writes skills. A path's headline is cv-data.json taglines.<tagline>, shared with the Workshop.",
   "A": {
     "track": "A",
     "label": "Commercial: product & commercial analytics",
     "useFor": "Product data science, commercial or marketing analytics, insight analytics, BI-with-strategy roles.",
-    "headline": "Product & Commercial Analytics | Experimentation | Behavioural Science",
-    "sections": ["summary", "experience", "projects", "education", "skills"],
-    "priority": ["hz_boost", "hz_scale", "hz_petco", "hz_sprint", "uq_sales", "pm_mix", "pg_build", "pg_trust", "pg_ai", "pj_wimbledon"],
-    "summaryBrief": "Data scientist / analyst and behavioural economist; 6+ years (six to seven) across retail, media and global operations; experimentation, SQL and Python, reliable pipelines; turns user and customer behaviour into product and commercial decisions. Facts from the bank only.",
-    "dissertationMax": 2,
-    "dissertationBrief": "At most two bullets: the methods, then the key finding.",
-    "skillOrder": ["programming", "methods", "viz", "insights", "ai", "languages"],
-    "skillText": {
-      "methods": "A/B Testing, Experimentation, Regression, Econometrics, Significance Testing, Statistical Modelling"
+    "tagline": "product",
+    "sections": [
+      "summary",
+      "experience",
+      "projects",
+      "research",
+      "education",
+      "skills"
+    ],
+    "summaryOpener": "Data analyst and behavioural economist with 6+ years",
+    "summaryBrief": "Open with exactly \"Data analyst and behavioural economist with 6+ years\", then adapt to the job from bank facts: retail, media and global operations; experimentation, SQL and Python, reliable pipelines; turning user and customer behaviour into product and commercial decisions.",
+    "priority": [
+      "hz_boost",
+      "hz_scale",
+      "hz_petco",
+      "hz_sprint",
+      "uq_sales",
+      "pm_mix",
+      "pg_build",
+      "pg_trust",
+      "pg_ai",
+      "pj_wimbledon"
+    ],
+    "exclude": {
+      "pm_ops": "media operations|media ops|trafficking"
     },
+    "_excludeNote": "Bank entries left out unless the job description matches the pattern (case-insensitive).",
+    "dissertationMax": 2,
+    "dissertationBrief": "At most two bullets in the Research section: the methods, then the key finding.",
+    "skillOrder": [
+      "programming",
+      "methods",
+      "viz",
+      "insights",
+      "ai",
+      "platforms",
+      "languages"
+    ],
     "skillAppend": {
-      "insights": ["Product Analytics", "User Behaviour Analysis"]
+      "insights": [
+        "Product Analytics",
+        "User Behaviour"
+      ]
     },
     "education": {
       "msc": {
         "topicsLabel": "Coursework",
-        "topics": "Experimental design, econometrics, behavioural decision making, qualitative research design"
+        "topics": "Experimental design, econometrics, behavioural decision making, research methods, qualitative research design"
+      },
+      "bonn": {
+        "omit": true
       }
-    }
+    },
+    "_priorityNote": "Bullets citing a priority entry are trimmed for space only after every other non-core bullet."
   }
 }

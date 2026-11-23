@@ -114,6 +114,9 @@ export default {
     catch { return jsonResponse({ error: "Invalid request body" }, 400, headers); }
 
     const { password, jobDescription, extraSkills } = body || {};
+    // Joshua's own track choice in the Workshop (Auto when absent). It is a
+    // form control, not text, so a job description can't set it.
+    const trackChoice = body && (body.track === "A" || body.track === "B") ? body.track : null;
 
     if (!timingSafeEqual(password, env.CV_PASSWORD)) {
       return jsonResponse({ error: "Incorrect password" }, 401, headers);
@@ -157,8 +160,8 @@ Two failure modes you must actively avoid:
 2. Framing any single sector — especially talent/workforce — as the identity. The Publicis role is the most recent proof point, never the headline, UNLESS this is a People Science / People Data role.
 
 TRACK CLASSIFICATION (pick the dominant signal):
-- Track "A" — Commercial (insights, markets, strategy): market intelligence, competitive analysis, consumer/customer insight, growth strategy, commercial decision support. This includes consumer, market, shopper and customer RESEARCHER roles (insights researcher, market researcher, consumer research manager), even when they ask for statistical modelling or quantitative and qualitative studies: the subject is the market and the consumer.
-- Track "B" — Research (applied research, behavioural science): applied/research scientist, behavioural scientist, quantitative UXR, people or behavioural data science, government behavioural units. The word "research" alone does not make a role Track B.
+- Track "A" — Commercial (insights, markets, strategy, product and commercial analytics): market intelligence, competitive analysis, consumer/customer insight, growth strategy, commercial decision support; product data science and product analytics (product data scientist, product analyst, insights/analytics teams partnering with product), commercial or marketing analytics, BI with strategy. This includes consumer, market, shopper and customer RESEARCHER roles (insights researcher, market researcher, consumer research manager), and product roles that ask for experimentation, A/B testing, SQL, Python or support for ML teams: the subject is the market, the product and its users' commercial behaviour.
+- Track "B" — Research (applied research, behavioural science): research is the deliverable — applied/research scientist, behavioural scientist, quantitative UXR, people or behavioural data science, government behavioural units, academic or policy research. The words "research", "data scientist" or "experimentation" alone do not make a role Track B; a product data scientist is Track A.
 
 PEOPLE SCIENCE SUB-LANE (boolean, independent of track): true only when the role is genuinely about people/workforce/HR data (e.g. "People Data Analytics", workforce-behavioural teams). This is the ONE case where the Publicis workforce experience should lead rather than be demoted.
 
@@ -218,7 +221,10 @@ ${JSON.stringify(menu.skills, null, 1)}
 Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skill" | "context", "roleId": string, "rowId": string, "keep": boolean, "text": string, "reason": string } ] (an empty array when there are none).`;
 
     const amendText = amendments.length ? amendments.map((a) => `${a.id}: ${a.line}`).join("\n") : "(none)";
-    const userPrompt = `AMENDMENTS from Joshua:\n${amendText}\n\nJOB_DESCRIPTION:\n${jobDescription}`;
+    const trackNote = trackChoice
+      ? `TRACK: fixed by Joshua to "${trackChoice}". Return "track": "${trackChoice}" and rank everything for that track.\n\n`
+      : "";
+    const userPrompt = `${trackNote}AMENDMENTS from Joshua:\n${amendText}\n\nJOB_DESCRIPTION:\n${jobDescription}`;
 
     let anthropicRes;
     try {
@@ -251,7 +257,7 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
     catch { return jsonResponse({ error: "Could not parse the tailoring plan. Try again." }, 502, headers); }
 
     // ---- Resolve IDs to approved text. Unknown ids are dropped, never invented. ----
-    const track = pick.track === "B" ? "B" : "A";
+    const track = trackChoice || (pick.track === "B" ? "B" : "A");
     // Each track prints as a variant in cv-data (variants.<id>.track):
     // A = Commercial (consumer-insights), B = Research (research). A Track B
     // CV is the Research variant: its summary, section order, wording,
@@ -347,6 +353,7 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
     return jsonResponse({
       track,
       trackLabel: TRACKS[track],
+      trackSource: trackChoice ? "chosen" : "auto",
       variant: applied ? variantId : "master",
       // Section order and layout hints from the variant (Track B); the
       // Workshop lays sections out in this order.

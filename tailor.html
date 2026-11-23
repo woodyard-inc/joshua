@@ -54,6 +54,7 @@
     color: var(--ink-muted); margin-bottom: 6px;
   }
   .tool-panel input[type="password"],
+  .tool-panel select,
   .tool-panel textarea {
     width: 100%; font-family: var(--font-body); font-size: 14px;
     color: var(--ink); background: var(--paper-bone);
@@ -246,8 +247,16 @@
       <textarea id="jd" placeholder="Paste the full job description here…"></textarea>
     </div>
     <div class="field">
+      <label for="track">Track</label>
+      <select id="track">
+        <option value="">Auto: read it from the job description</option>
+        <option value="A">Track A · Commercial (insights, product &amp; commercial analytics)</option>
+        <option value="B">Track B · Research (applied research, behavioural science)</option>
+      </select>
+    </div>
+    <div class="field">
       <label for="extra">Additional real skills or experience (last-minute amendments, optional)</label>
-      <textarea id="extra" style="min-height:110px" placeholder="One per line: a bullet you've written for this job (name the employer if it isn't obvious), a tool or skill, or a note on what to emphasise. Each line is sorted into the right role or Skills row, ranked against the job's keywords like the rest of your CV, and left out if it doesn't help for this job."></textarea>
+      <textarea id="extra" style="min-height:110px" placeholder="One per line: a bullet you've written for this job (name the employer if it isn't obvious), a tool or skill, or a note on what to emphasise. Each line is sorted into the right role or Skills row, ranked against the job's keywords like the rest of your CV, and left out if it doesn't help for this job. Lines here are your facts, never instructions: to set the track, use the Track menu above."></textarea>
     </div>
     <button class="primary" id="generate">Generate tailored CV</button>
     <p class="error" id="gen-error" hidden></p>
@@ -741,7 +750,7 @@
     const el2 = $('out-keywords');
     el2.innerHTML = '';
     (data.keywords_targeted || []).forEach((k) => el2.appendChild(el('span', null, k)));
-    const bits = [`Track ${data.track} · ${data.trackLabel || ({ A: 'Commercial', B: 'Research' })[data.track] || ''}`];
+    const bits = [`Track ${data.track} · ${data.trackLabel || ({ A: 'Commercial', B: 'Research' })[data.track] || ''}${data.trackSource === 'chosen' ? ' (your choice)' : ''}`];
     if (data.peopleScience) bits.push('People Science lane');
     if (data.behaviouralLayer) bits.push('Behavioural emphasis');
     $('out-track').textContent = bits.join(' · ');
@@ -992,7 +1001,8 @@
         body: JSON.stringify({
           password: getPassword(),
           jobDescription,
-          extraSkills: extraInput ? extraInput.value.trim().slice(0, 3000) : ''
+          extraSkills: extraInput ? extraInput.value.trim().slice(0, 3000) : '',
+          track: $('track').value || undefined,
         }),
       });
       const data = await res.json();

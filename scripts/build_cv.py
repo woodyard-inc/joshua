@@ -50,7 +50,8 @@ DEFAULT_SECTIONS = ["summary", "experience", "research", "projects", "education"
 
 def resolve(cv, variant_id):
     """A copy of the CV data with the variant's overrides applied. Anything a
-    variant doesn't name is the master text. Shared with verify_cv.py."""
+    variant doesn't name is the master text. Shared with verify_cv.py;
+    cv-variant.js is the JavaScript copy (cv-ats.html, the Worker)."""
     import copy
     v = cv["variants"][variant_id]
     c = copy.deepcopy(cv)
@@ -65,6 +66,8 @@ def resolve(cv, variant_id):
             r["bullets"].sort(key=lambda b: rank.get(b["id"], len(rank)))
     if v.get("dissertationFirst"):
         c["dissertation"]["short"] = [v["dissertationFirst"]] + c["dissertation"]["short"][1:]
+    c["education"] = [e for e in c["education"]
+                      if not v.get("education", {}).get(e.get("id"), {}).get("omit")]
     for e in c["education"]:
         ov = v.get("education", {}).get(e.get("id"), {})
         if "topics" in ov:

@@ -106,11 +106,12 @@
 
 <div id="cv"><p class="loading">Loading&hellip;</p></div>
 
-<script>
+<script type="module">
+import { DEFAULT_SECTIONS, resolve } from './cv-variant.js';
 (function () {
   // Same master data as the designed CV. ?variant= picks a variant from
   // cv-data.json: its tagline, Skills order, section order and any overrides
-  // (mirrors resolve() in scripts/build_cv.py). Single column, plain headings,
+  // (cv-variant.js, mirrored by scripts/build_cv.py). Single column, plain headings,
   // real lists, contact in the body, in every order.
   var params = new URLSearchParams(location.search);
   var VARIANT = params.get('variant') || 'master';
@@ -144,32 +145,6 @@
     return !omit.some(function (o) {
       return o.indexOf('research:') === 0 && text.indexOf(o.slice(9)) === 0;
     });
-  }
-
-  var DEFAULT_SECTIONS = ['summary', 'experience', 'research', 'projects', 'education', 'skills', 'memberships'];
-
-  // The variant's overrides on a copy of the data; anything it doesn't name
-  // is the master text.
-  function resolve(cv, v) {
-    var c = JSON.parse(JSON.stringify(cv));
-    var texts = v.bulletText || {}, orders = v.bulletOrder || {};
-    c.roles.forEach(function (r) {
-      r.bullets.forEach(function (b) { if (texts[b.id]) b.text = texts[b.id]; });
-      var ord = orders[r.id];
-      if (ord) {
-        var rank = function (b) { var i = ord.indexOf(b.id); return i === -1 ? ord.length : i; };
-        r.bullets.sort(function (a, b) { return rank(a) - rank(b); });
-      }
-    });
-    if (v.dissertationFirst) c.dissertation.short = [v.dissertationFirst].concat(c.dissertation.short.slice(1));
-    (c.education || []).forEach(function (e) {
-      var ov = (v.education || {})[e.id] || {};
-      if (ov.topics) e.topics = ov.topics;
-      if (ov.topicsLabel) e.topicsLabel = ov.topicsLabel;
-      e.meta = (e.meta || []).concat(ov.metaAppend || []);
-    });
-    (c.skills || []).forEach(function (k) { if ((v.skillText || {})[k.id]) k.text = v.skillText[k.id]; });
-    return c;
   }
 
   function researchBlock(d, omit) {

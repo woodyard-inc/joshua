@@ -1,3 +1,6 @@
+// Variant rules shared with cv-ats.html (bundled from the site root).
+import { DEFAULT_SECTIONS, TRACKS, resolve, variantForTrack } from "../../cv-variant.js";
+
 const MODEL = "claude-sonnet-4-6";
 const MAX_JD_LENGTH = 20000;
 const MIN_JD_LENGTH = 20;
@@ -88,9 +91,9 @@ function asBullet(line) {
   return /[.!?]$/.test(t) ? t : `${t}.`;
 }
 
-function orderedSkills(cv, track) {
-  const all = cv.skills || [];
-  const order = (cv._skillOrder || {})[track === "B" ? "trackB" : "trackA"];
+// Skills rows in the given order, then any rows it leaves out. A Workshop CV
+// keeps every row; the two-page fit trims bullets, not skills.
+function orderedSkills(all, order) {
   if (!order) return all;
   const byId = Object.fromEntries(all.map((c) => [c.id, c]));
   const picked = order.map((id) => byId[id]).filter(Boolean);
@@ -154,8 +157,8 @@ Two failure modes you must actively avoid:
 2. Framing any single sector — especially talent/workforce — as the identity. The Publicis role is the most recent proof point, never the headline, UNLESS this is a People Science / People Data role.
 
 TRACK CLASSIFICATION (pick the dominant signal):
-- Track "A" — Insights / Markets / Strategy: market intelligence, competitive analysis, consumer/customer insight, growth strategy, commercial decision support. This includes consumer, market, shopper and customer RESEARCHER roles (insights researcher, market researcher, consumer research manager), even when they ask for statistical modelling or quantitative and qualitative studies: the subject is the market and the consumer.
-- Track "B" — Applied Research / Behavioural Science: applied/research scientist, behavioural scientist, quantitative UXR, people or behavioural data science, government behavioural units. The word "research" alone does not make a role Track B.
+- Track "A" — Commercial (insights, markets, strategy): market intelligence, competitive analysis, consumer/customer insight, growth strategy, commercial decision support. This includes consumer, market, shopper and customer RESEARCHER roles (insights researcher, market researcher, consumer research manager), even when they ask for statistical modelling or quantitative and qualitative studies: the subject is the market and the consumer.
+- Track "B" — Research (applied research, behavioural science): applied/research scientist, behavioural scientist, quantitative UXR, people or behavioural data science, government behavioural units. The word "research" alone does not make a role Track B.
 
 PEOPLE SCIENCE SUB-LANE (boolean, independent of track): true only when the role is genuinely about people/workforce/HR data (e.g. "People Data Analytics", workforce-behavioural teams). This is the ONE case where the Publicis workforce experience should lead rather than be demoted.
 
@@ -249,6 +252,14 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
 
     // ---- Resolve IDs to approved text. Unknown ids are dropped, never invented. ----
     const track = pick.track === "B" ? "B" : "A";
+    // Each track prints as a variant in cv-data (variants.<id>.track):
+    // A = Commercial (consumer-insights), B = Research (research). A Track B
+    // CV is the Research variant: its summary, section order, wording,
+    // education and skills. Track A keeps the master text and takes its
+    // variant's tagline. With no tagged variant, the master text is used.
+    const [variantId, variant] = variantForTrack(cv, track) || ["master", null];
+    const applied = track === "B" && variant;
+    const src = applied ? resolve(cv, variant) : cv;
     const peopleScience = !!pick.peopleScience;
     const behavioural = !!pick.behaviouralLayer;
 
@@ -281,15 +292,17 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
     );
 
     // A tailored CV has the same sections and the same approved wording as
-    // the master CV (cv.html). Tailoring changes only which bullets each role
-    // keeps, their order, the Skills row order and the tagline. No Key
+    // its track's printed CV (cv.html, or the Research variant for Track B).
+    // Tailoring changes only which bullets each role keeps, their order, the
+    // Skills row order and the tagline. No Key
     // Achievements band, no alternative "why" wordings, and the Research
     // section is always present, as it is on the CV.
     const roles = cv.roles.map((role) => {
       // Kept bullet amendments join the role as ranked bullets like any other.
       const extra = amended.filter((a) => a.keep && a.kind === "bullet" && a.roleId === role.id)
         .map((a) => ({ id: a.id, text: a.text }));
-      const all = [...role.bullets, ...extra];
+      const own = src.roles.find((r) => r.id === role.id).bullets;
+      const all = [...own, ...extra];
       const byId = Object.fromEntries(all.map((b) => [b.id, b]));
       const choice = picked[role.id] || { ids: [], core: 2 };
 
@@ -320,12 +333,12 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
       .filter((k) => typeof k === "string")
       .slice(0, 8);
 
-    // Insights / strategy roles take the consumer-insights tagline; research
-    // roles take the master tagline. Both are approved variants in cv-data.
+    // Track A (Commercial) takes the consumer-insights tagline, Track B
+    // (Research) the research variant's. Both are approved variants in cv-data.
     // The headline is three approved terms the model ordered for this job;
     // without a valid three, the track's approved tagline is used.
     const variants = cv.variants || {};
-    const trackTagline = ((track === "A" ? variants["consumer-insights"] : variants.master) || variants.master || {}).tagline || "";
+    const trackTagline = ((variant || variants.master) || {}).tagline || (variants.master || {}).tagline || "";
     const termById = Object.fromEntries(menu.headline.map((t) => [t.id, t.text]));
     const termIds = [...new Set((Array.isArray(pick.taglineIds) ? pick.taglineIds : [])
       .filter((id) => termById[id] && (id !== "people-analytics" || peopleScience)))].slice(0, 3);
@@ -333,6 +346,12 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
 
     return jsonResponse({
       track,
+      trackLabel: TRACKS[track],
+      variant: applied ? variantId : "master",
+      // Section order and layout hints from the variant (Track B); the
+      // Workshop lays sections out in this order.
+      sections: (applied && variant.sections) || DEFAULT_SECTIONS,
+      researchIncludesProject: !!(applied && variant.researchIncludesProject),
       peopleScience,
       behaviouralLayer: behavioural,
       lowFit: !!pick.lowFit,
@@ -340,7 +359,7 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
       rationale: typeof pick.rationale === "string" ? pick.rationale.slice(0, 300) : "",
       keywords_targeted: keywords,
       tagline,
-      summary: cv.summaries.master,
+      summary: applied ? src.summary : cv.summaries.master,
       selectedProblems: [],
       roles,
       dissertation: {
@@ -365,13 +384,14 @@ Add to the JSON output: "amendments": [ { "id": string, "kind": "bullet" | "skil
             full: !!pick.projectFull,
           }
         : null,
-      education: cv.education,
+      education: src.education,
       eduResultInMeta: !!(cv._layout || {}).eduResultInMeta,
       languages: cv.languages,
       // Skill categories, reordered per track. The category text itself is
       // never rewritten — only the order changes — so the same guarantee that
       // covers bullets covers skills.
-      skills: orderedSkills(cv, track).map((k) => {
+      skills: orderedSkills(src.skills || [],
+        (applied && variant.skillOrder) || (cv._skillOrder || {})[track === "B" ? "trackB" : "trackA"]).map((k) => {
         const have = new Set(k.text.split(",").map((x) => x.trim().toLowerCase()));
         const add = amended.filter((a) => a.keep && a.kind === "skill" && a.rowId === k.id)
           .flatMap((a) => a.text.split(", ")).filter((x) => !have.has(x.toLowerCase()) && have.add(x.toLowerCase()));

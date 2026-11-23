@@ -27,6 +27,9 @@ foundations.css        shared design system: tokens, fonts, nameplate, footer
 cv.css                 CV styles (cv.html and the Workshop)
 cv-data.json           CV content: the one source for cv.html, cv-ats.html,
                        the Workshop and the Worker
+cv-variant.js          CV variant rules (overrides, section order, tracks),
+                       shared by cv-ats.html and the Worker; build_cv.py
+                       mirrors it. Track A = Commercial, Track B = Research
 data/                  page data (dissertation.json: every number on case study 002)
 templates/             page templates for the generated pages
 scripts/               build_* make outputs; export_* and verify_* check the CV

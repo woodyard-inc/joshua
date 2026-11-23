@@ -216,7 +216,7 @@
       "Trust in fair institutions predicted satisfaction most consistently; relative income had no significant effect.",
       "Social capital mattered most where governments did least, shifting with culture and natural-disaster risk."
     ],
-    "_note": "short = the condensed version on every CV and on commercial (track A) tailored CVs. bullets = the full research version, used on research-track (track B) tailored CVs.",
+    "_note": "short = the condensed version on every printed CV and on Track A (Commercial) Workshop CVs. bullets = the full research version, used on Track B (Research) Workshop CVs.",
     "bullets": [
       "Modelled the link between social capital and life satisfaction across five countries in R, using the International Social Survey Programme (ISSP) 2017 module (n = 11,249) as one instrument for all three of Putnam's dimensions.",
       "Methods: multiple imputation (MICE), PCA-built constructs, country-level and pooled OLS with interaction terms, Tukey pairwise comparisons, and AIC/BIC model comparison.",
@@ -330,7 +330,7 @@
     }
   ],
   "_skillOrder": {
-    "_note": "Track orders for the tailored variant. Rows are reordered, never rewritten. \"languages\" renders cv.languages as a row.",
+    "_note": "Skills row orders for Workshop CVs. Rows are reordered, never rewritten. \"languages\" renders cv.languages as a row. trackA = Track A (Commercial). Track B (Research) jobs take variants.research.skillOrder and skillText, then any rows it leaves out.",
     "master": [
       "methods",
       "insights",
@@ -347,16 +347,6 @@
       "insights",
       "platforms",
       "methods",
-      "adplatforms",
-      "ai",
-      "languages"
-    ],
-    "trackB": [
-      "methods",
-      "platforms",
-      "insights",
-      "programming",
-      "viz",
       "adplatforms",
       "ai",
       "languages"
@@ -388,6 +378,8 @@
     },
     "consumer-insights": {
       "label": "Consumer Insights",
+      "track": "A",
+      "_note": "Track A (Commercial: insights, markets, strategy) as a printed CV. The Workshop takes this tagline for Track A jobs.",
       "tagline": "Consumer Insights | Behavioural Science | Data Analytics",
       "skillOrder": [
         "insights",
@@ -411,7 +403,8 @@
     },
     "research": {
       "label": "Research",
-      "_note": "Track B (research roles) as a printed CV. Overrides apply to this variant only; everything not named here is the master text.",
+      "track": "B",
+      "_note": "Track B (Research: applied research, behavioural science) as a printed CV. The Workshop applies these overrides to every Track B job. Overrides apply to this variant only; everything not named here is the master text.",
       "tagline": "Behavioural Science | Data Analytics | Market Research",
       "summary": "research",
       "sections": [
@@ -423,10 +416,11 @@
         "memberships"
       ],
       "researchIncludesProject": true,
-      "page1Roles": 1,
+      "page1Roles": 2,
       "skillOrder": [
         "methods",
         "platforms",
+        "insights",
         "programming",
         "viz",
         "ai",
@@ -454,6 +448,9 @@
           "metaAppend": [
             "Coursework included business statistics and qualitative research design."
           ]
+        },
+        "bonn": {
+          "omit": true
         }
       }
     }

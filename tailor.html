@@ -687,7 +687,7 @@
     const line = [esc(e.school), esc(e.when)];
     if (resultInMeta && meta.length) line.push(esc(meta.shift()));
     const items = meta.map((m) => body(m, false));
-    const topics = e.topics && showTopics ? `<li class="topics"><b>Topics</b>${nb(esc(e.topics))}</li>` : '';
+    const topics = e.topics && showTopics ? `<li class="topics"><b>${esc(e.topicsLabel || 'Topics')}</b>${nb(esc(e.topics))}</li>` : '';
     const ul = items.length || topics
       ? `<ul class="cv-bullets edu-bullets">${items.map((i) => `<li>${i}</li>`).join('')}${topics}</ul>` : '';
     return `<div class="entry"><p class="entry-title trim trim-line">${nb(esc(e.degree))}</p>` +
@@ -701,20 +701,32 @@
     return (skills || []).map((c) => row(c.label, c.text)).join('') + (langs ? row('Languages', langs) : '');
   }
 
+  // Section order comes from the Worker (the track's variant in cv-data:
+  // Track B / Research leads with Education and Research). Sections before
+  // Experience sit on page one above it; sections after it follow
+  // "Experience (continued)" on page two.
+  const DEFAULT_SECTIONS = ['summary', 'experience', 'research', 'projects', 'education', 'skills'];
   function layout(data, plan, page1Roles) {
     const roles = trimRoles(data.roles, plan.bullets, plan.floor);
-    $('out-p1').innerHTML = section('Experience', roles.slice(0, page1Roles).map(roleHtml).join(''));
+    const inResearch = !!data.researchIncludesProject;
+    const blocks = {
+      research: () => data.dissertation ? section('Research', researchHtml({
+        ...data.dissertation, bullets: (data.dissertation.bullets || []).slice(0, plan.diss) })
+        + (inResearch && data.project ? projectHtml(data.project, plan.projectFull) : '')) : '',
+      projects: () => !inResearch && data.project ? section('Projects', projectHtml(data.project, plan.projectFull)) : '',
+      education: () => section('Education', (data.education || []).map((e) => eduHtml(e, plan.topics, data.eduResultInMeta)).join('')),
+      skills: () => section('Skills &amp; Languages', skillsHtml(data.skills, data.languages)),
+    };
+    const order = (data.sections || DEFAULT_SECTIONS).filter((k) => k === 'experience' || blocks[k]);
+    const at = order.indexOf('experience');
+    const p1 = order.slice(0, at).map((k) => blocks[k]());
+    p1.push(section('Experience', roles.slice(0, page1Roles).map(roleHtml).join('')));
     const p2 = [];
     if (roles.length > page1Roles) {
       p2.push(section('Experience (continued)', roles.slice(page1Roles).map(roleHtml).join('')));
     }
-    if (data.dissertation) {
-      p2.push(section('Research', researchHtml({
-        ...data.dissertation, bullets: (data.dissertation.bullets || []).slice(0, plan.diss) })));
-    }
-    if (data.project) p2.push(section('Projects', projectHtml(data.project, plan.projectFull)));
-    p2.push(section('Education', (data.education || []).map((e) => eduHtml(e, plan.topics, data.eduResultInMeta)).join('')));
-    p2.push(section('Skills &amp; Languages', skillsHtml(data.skills, data.languages)));
+    order.slice(at + 1).forEach((k) => p2.push(blocks[k]()));
+    $('out-p1').innerHTML = p1.join('');
     $('out-p2').innerHTML = p2.join('');
   }
 
@@ -729,7 +741,7 @@
     const el2 = $('out-keywords');
     el2.innerHTML = '';
     (data.keywords_targeted || []).forEach((k) => el2.appendChild(el('span', null, k)));
-    const bits = [`Track ${data.track}`];
+    const bits = [`Track ${data.track} · ${data.trackLabel || ({ A: 'Commercial', B: 'Research' })[data.track] || ''}`];
     if (data.peopleScience) bits.push('People Science lane');
     if (data.behaviouralLayer) bits.push('Behavioural emphasis');
     $('out-track').textContent = bits.join(' · ');
@@ -888,6 +900,18 @@
     L.push('London, United Kingdom | woodyardjoshuae@gmail.com | +44 7714 350869 | linkedin.com/in/joshua-woodyard');
     L.push(''); L.push('PROFILE');
     L.push(d.summary);
+    const inResearch = !!d.researchIncludesProject;
+    const project = () => {
+      L.push(d.project.title);
+      L.push(d.project.label);
+      L.push(d.project.year);
+      (d.project.full ? d.project.bullets : [].concat(d.project.short)).forEach((b) => L.push(`- ${b}`));
+    };
+    const blocks = { experience, research, projects, education, skills };
+    (d.sections || DEFAULT_SECTIONS).forEach((k) => blocks[k] && blocks[k]());
+    return L.join('\n');
+
+    function experience() {
     L.push(''); L.push('EXPERIENCE');
     // Two lines per job, as in the ATS CV: the title alone, then
     // "Company | City, Country | Dates".
@@ -898,34 +922,38 @@
       L.push([company, r.where, r.when].join(' | '));
       r.bullets.forEach((b) => L.push(`- ${b}`));
     });
-    if (d.dissertation) {
+    }
+    function research() {
+      if (!d.dissertation) return;
       L.push(''); L.push('RESEARCH');
       L.push(d.dissertation.title);
       L.push(d.dissertation.institution);
       L.push(d.dissertation.year);
       if (d.dissertation.mark) L.push(d.dissertation.mark);
       (d.dissertation.bullets || []).forEach((b) => L.push(`- ${b}`));
+      if (inResearch && d.project) { L.push(''); project(); }
     }
-    if (d.project) {
+    function projects() {
+      if (!d.project || inResearch) return;
       L.push(''); L.push('PROJECTS');
-      L.push(d.project.title);
-      L.push(d.project.label);
-      L.push(d.project.year);
-      (d.project.full ? d.project.bullets : [].concat(d.project.short)).forEach((b) => L.push(`- ${b}`));
+      project();
     }
-    L.push(''); L.push('EDUCATION');
-    (d.education || []).forEach((e) => {
-      L.push('');
-      L.push(e.degreeAts || e.degree);
-      L.push(e.school);
-      L.push(e.when);
-      (e.meta || []).forEach((m) => L.push(`- ${m}`));
-      if (e.topics) L.push(`Topics: ${e.topics}`);
-    });
-    L.push(''); L.push('SKILLS & LANGUAGES');
-    (d.skills || []).forEach((c) => L.push(`${c.label}: ${c.text}`));
-    L.push('Languages: ' + (d.languages || []).map((l) => `${l.name} (${l.level})`).join(', '));
-    return L.join('\n');
+    function education() {
+      L.push(''); L.push('EDUCATION');
+      (d.education || []).forEach((e) => {
+        L.push('');
+        L.push(e.degreeAts || e.degree);
+        L.push(e.school);
+        L.push(e.when);
+        (e.meta || []).forEach((m) => L.push(`- ${m}`));
+        if (e.topics) L.push(`${e.topicsLabel || 'Topics'}: ${e.topics}`);
+      });
+    }
+    function skills() {
+      L.push(''); L.push('SKILLS & LANGUAGES');
+      (d.skills || []).forEach((c) => L.push(`${c.label}: ${c.text}`));
+      L.push('Languages: ' + (d.languages || []).map((l) => `${l.name} (${l.level})`).join(', '));
+    }
   }
 
   $('btn-ats').addEventListener('click', async () => {

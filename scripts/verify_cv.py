@@ -216,7 +216,7 @@ def verify(pdf, designed):
 
     source = rendered_text(CV)
     for w in ["Universität", "St George's", "–", "—"]:
-        if w in ("–", "—") and w not in source:
+        if w not in source:
             print(f"   [SKIP] extracts: {w!r}  — the CV never sets it")
             continue
         check(w in t, f"extracts: {w!r}")

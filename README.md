@@ -56,3 +56,26 @@ python3 scripts/build_fonts_cormorant.py   # Cormorant Garamond CV (metric-corre
 
 The font script needs fontTools (and brotli for woff2). Edit templates and
 data, not the generated pages.
+
+## CV tailor (local)
+
+```sh
+python3 scripts/tailor_cv.py --jd job.txt            # Path A (commercial / product analytics)
+python3 scripts/tailor_cv.py --plan output/<slug>/plan.json   # re-render, no API call
+```
+
+Writes a CV for one job from the experience bank, in the job's language, and
+cites the bank entries behind every bullet. `scripts/tailor_rules.py` removes
+any bullet with a figure, tool or client its entries don't hold, or one that
+breaks a claim limit. Output in `output/<slug>/`: the PDF (two A4 pages),
+`cv.txt`, `trace.json` (bullet to bank ids), `fit_report.md` and `plan.json`.
+
+- `private/experience_bank.yaml`: the bank, claim limits, personal bank.
+  Git-ignored (client names and personal details; the repo is public).
+- `data/tailor_paths.json`: each path's headline, section order, skills rows.
+- `output/`: git-ignored (real contact details).
+- Needs `pip install anthropic pyyaml`, Chrome, and an Anthropic API key in
+  the environment or in the git-ignored `.env` (`ANTHROPIC_API_KEY=...`).
+
+The Workshop (`tailor.html`) and the printed variants are separate and
+unchanged by it.

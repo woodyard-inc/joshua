@@ -45,3 +45,8 @@ wimbledon/src/regression_analysis.py
 wimbledon/data/analysis_report.json
 wimbledon/data/pbp_index_importance.json
 wimbledon/data/pbp_player_profiles.json
+
+# CV tailor: the experience bank (client names, personal bank) and the
+# tailored CVs (real contact details) never leave this machine
+private/
+output/

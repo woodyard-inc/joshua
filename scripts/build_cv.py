@@ -41,7 +41,40 @@ EMPH = ["129-person division", "13%", "0.90+ correlation", "10,000+ rows weekly"
         "~3,500 roles", "40+ markets", "23 markets", "100% staffing commitment",
         "~$15K", "hundreds of millions", "6+ years"]
 
-OUTPUTS = {"master": "cv.html", "consumer-insights": "cv-consumer-insights.html"}
+OUTPUTS = {"master": "cv.html", "consumer-insights": "cv-consumer-insights.html", "research": "cv-research.html"}
+
+# Section order when a variant doesn't set "sections": the order every CV had
+# before sections became configurable. "memberships" renders only with content.
+DEFAULT_SECTIONS = ["summary", "experience", "research", "projects", "education", "skills", "memberships"]
+
+
+def resolve(cv, variant_id):
+    """A copy of the CV data with the variant's overrides applied. Anything a
+    variant doesn't name is the master text. Shared with verify_cv.py."""
+    import copy
+    v = cv["variants"][variant_id]
+    c = copy.deepcopy(cv)
+    c["_variant"] = v
+    c["_summary"] = cv["summaries"][v.get("summary", "master")]
+    texts, orders = v.get("bulletText", {}), v.get("bulletOrder", {})
+    for r in c["roles"]:
+        for b in r["bullets"]:
+            b["text"] = texts.get(b["id"], b["text"])
+        if r["id"] in orders:
+            rank = {bid: i for i, bid in enumerate(orders[r["id"]])}
+            r["bullets"].sort(key=lambda b: rank.get(b["id"], len(rank)))
+    if v.get("dissertationFirst"):
+        c["dissertation"]["short"] = [v["dissertationFirst"]] + c["dissertation"]["short"][1:]
+    for e in c["education"]:
+        ov = v.get("education", {}).get(e.get("id"), {})
+        if "topics" in ov:
+            e["topics"] = ov["topics"]
+        if "topicsLabel" in ov:
+            e["topicsLabel"] = ov["topicsLabel"]
+        e["meta"] = list(e.get("meta", [])) + ov.get("metaAppend", [])
+    for k in c["skills"]:
+        k["text"] = v.get("skillText", {}).get(k["id"], k["text"])
+    return c
 
 
 def esc(t):
@@ -140,7 +173,7 @@ def edu_html(e, result_in_meta=False):
         line.append(esc(meta.pop(0)))
     items = [f"      <li>{body(m, emphasise=False)}</li>" for m in meta]
     if e.get("topics"):
-        items.append(f'      <li class="topics"><b>Topics</b>{nb(esc(e["topics"]))}</li>')
+        items.append(f'      <li class="topics"><b>{esc(e.get("topicsLabel", "Topics"))}</b>{nb(esc(e["topics"]))}</li>')
     ul = f'      <ul class="cv-bullets edu-bullets">\n' + "\n".join(items) + "\n      </ul>\n" if items else ""
     return (
         '    <div class="entry">\n'
@@ -181,23 +214,52 @@ def contact(cv, private):
     return piped([esc(c["location"]), esc(email), esc(phone), li])
 
 
+def memberships_html(items):
+    li = "\n".join(f"      <li>{body(m, emphasise=False)}</li>" for m in items)
+    return f'    <div class="entry">\n      <ul class="cv-bullets">\n{li}\n      </ul>\n    </div>'
+
+
 def build(cv, variant_id, private):
-    v = cv["variants"][variant_id]
+    cv = resolve(cv, variant_id)
+    v = cv["_variant"]
     layout = cv.get("_layout", {})
     omit = omitted(cv)
-    k = layout.get("page1Roles", 4)
+    k = v.get("page1Roles", layout.get("page1Roles", 4))
     roles = cv["roles"]
+    order = v.get("sections", DEFAULT_SECTIONS)
+    assert order[0] == "summary", "the summary opens every CV"
 
-    page1 = section("Experience", "\n".join(role_html(r, omit) for r in roles[:k]))
-    page2 = []
-    if roles[k:]:
-        page2.append(section("Experience (continued)", "\n".join(role_html(r, omit) for r in roles[k:])))
-    page2.append(section("Research", research_html(cv["dissertation"], omit)))
-    if cv.get("project", {}).get("short"):
-        page2.append(section("Projects", project_html(cv["project"])))
-    in_meta = layout.get("eduResultInMeta", False)
-    page2.append(section("Education", "\n".join(edu_html(e, in_meta) for e in cv["education"])))
-    page2.append(section("Skills &amp; Languages", skills_html(cv, v["skillOrder"])))
+    # Sections before Experience sit on page 1 under the summary; Experience
+    # splits after page1Roles roles; everything after it is on page 2.
+    page1, page2, past = [], [], False
+    for key in order[1:]:
+        if key == "experience":
+            page1.append(section("Experience", "\n".join(role_html(r, omit) for r in roles[:k])))
+            if roles[k:]:
+                page2.append(section("Experience (continued)", "\n".join(role_html(r, omit) for r in roles[k:])))
+            past = True
+            continue
+        if key == "research":
+            inner = research_html(cv["dissertation"], omit)
+            if v.get("researchIncludesProject") and cv.get("project", {}).get("short"):
+                inner += "\n" + project_html(cv["project"])
+            html_ = section("Research", inner)
+        elif key == "projects":
+            if not cv.get("project", {}).get("short"):
+                continue
+            html_ = section("Projects", project_html(cv["project"]))
+        elif key == "education":
+            in_meta = layout.get("eduResultInMeta", False)
+            html_ = section("Education", "\n".join(edu_html(e, in_meta) for e in cv["education"]))
+        elif key == "skills":
+            html_ = section("Skills &amp; Languages", skills_html(cv, v["skillOrder"]))
+        elif key == "memberships":
+            if not cv.get("memberships"):
+                continue
+            html_ = section("Memberships", memberships_html(cv["memberships"]))
+        else:
+            raise SystemExit(f"unknown section {key!r} in variant {variant_id}")
+        (page2 if past else page1).append(html_)
 
     tagline_parts = [p.strip() for p in v["tagline"].split("|")]
     ats = "cv-ats.html" + ("" if variant_id == "master" else f"?variant={variant_id}")
@@ -208,8 +270,8 @@ def build(cv, variant_id, private):
         "TAGLINE": piped([esc(p) for p in tagline_parts]),
         "CONTACT": contact(cv, private),
         "STAMP_1": stamp(cv, 1),
-        "PROFILE": body(cv["summaries"]["master"]),
-        "PAGE1_SECTIONS": page1,
+        "PROFILE": body(cv["_summary"]),
+        "PAGE1_SECTIONS": "\n\n".join(page1),
         "PAGE2_SECTIONS": "\n\n".join(page2),
         "VARIANT_LABEL": esc(v["label"]),
         "ATS_HREF": "{{ROOT}}" + ats,

@@ -16,7 +16,8 @@
     "linkedin": "linkedin.com/in/joshua-woodyard"
   },
   "summaries": {
-    "master": "Behavioural researcher and analyst with 6+ years in consumer insights and analytics across telecom, QSR, retail, media and workforce. Uses experimental design, econometrics and behavioural science to find what actually drives customer and business results, and turns it into recommendations leaders act on. Most recently ran the staffing analytics for 11 global new-business transitions (~3,500 roles) at Publicis Groupe. MSc Behavioural Economics (City St George's, University of London). Hands-on with SQL, Python, R, Snowflake, Nielsen, Mintel and Kantar."
+    "master": "Behavioural researcher and analyst with 6+ years in consumer insights and analytics across telecom, QSR, retail, media and workforce. Uses experimental design, econometrics and behavioural science to find what actually drives customer and business results, and turns it into recommendations leaders act on. Most recently ran the staffing analytics for 11 global new-business transitions (~3,500 roles) at Publicis Groupe. MSc Behavioural Economics (City St George's, University of London). Hands-on with SQL, Python, R, Snowflake, Nielsen, Mintel and Kantar.",
+    "research": "Behavioural economist with six to seven years in data, insight and research roles across media agencies, retail and global operations. Trained in experimental design, econometrics and quantitative and qualitative research design; experienced in turning large survey and behavioural datasets into clear, decision-ready findings."
   },
   "roles": [
     {
@@ -242,6 +243,7 @@
   },
   "education": [
     {
+      "id": "msc",
       "degree": "Master of Science (MSc), Behavioural Economics",
       "degreeAts": "Master of Science in Behavioural Economics",
       "school": "City St George's, University of London",
@@ -252,6 +254,7 @@
       "topics": "Experimental Economics, Game Theory, Cognitive Psychology, Decision Making, Econometrics, Research Methods"
     },
     {
+      "id": "bsc",
       "degree": "Bachelor of Science in Business (Marketing)",
       "school": "DePaul University",
       "when": "Sep 2015 – Dec 2018",
@@ -262,6 +265,7 @@
       "topics": "Market Research, Predictive Modelling, Psychology, Statistics, Economics, German"
     },
     {
+      "id": "bonn",
       "degree": "Exchange Programme",
       "school": "Universität Bonn",
       "when": "Mar 2017 – Aug 2017",
@@ -287,6 +291,7 @@
       "level": "spoken"
     }
   ],
+  "memberships": [],
   "skills": [
     {
       "id": "methods",
@@ -370,6 +375,15 @@
         "viz",
         "ai",
         "languages"
+      ],
+      "sections": [
+        "summary",
+        "experience",
+        "research",
+        "projects",
+        "education",
+        "skills",
+        "memberships"
       ]
     },
     "consumer-insights": {
@@ -384,7 +398,64 @@
         "viz",
         "ai",
         "languages"
+      ],
+      "sections": [
+        "summary",
+        "experience",
+        "research",
+        "projects",
+        "education",
+        "skills",
+        "memberships"
       ]
+    },
+    "research": {
+      "label": "Research",
+      "_note": "Track B (research roles) as a printed CV. Overrides apply to this variant only; everything not named here is the master text.",
+      "tagline": "Behavioural Science | Data Analytics | Market Research",
+      "summary": "research",
+      "sections": [
+        "summary",
+        "education",
+        "research",
+        "experience",
+        "skills",
+        "memberships"
+      ],
+      "researchIncludesProject": true,
+      "page1Roles": 1,
+      "skillOrder": [
+        "methods",
+        "platforms",
+        "programming",
+        "viz",
+        "ai",
+        "languages"
+      ],
+      "skillText": {
+        "methods": "Behavioural Science, Behavioural Economics, Survey Research, Experimental Design, Regression Analysis, Econometrics, Statistical Modelling, Multiple Imputation, Principal Component Analysis, Significance Testing, Qualitative Research"
+      },
+      "bulletText": {
+        "spr-kantar": "Partnered with Kantar on control-vs-exposed tests of two creative directions for Boost Mobile's relaunch, measuring purchase intent; validated results with confidence intervals. The story-led creative drove ~5% more clicks and stronger upper-funnel engagement, informing the next creative brief."
+      },
+      "bulletOrder": {
+        "uniqlo": [
+          "uni-basket",
+          "uni-research"
+        ]
+      },
+      "dissertationFirst": "Analysed 11,249 people in five countries (ISSP 2017, R): multiple imputation for missing data, PCA-built measures, OLS modelling with interaction terms.",
+      "education": {
+        "msc": {
+          "topicsLabel": "Coursework",
+          "topics": "Experimental design, econometrics, behavioural decision making, qualitative research design"
+        },
+        "bsc": {
+          "metaAppend": [
+            "Coursework included business statistics and qualitative research design."
+          ]
+        }
+      }
     }
   },
   "taglineTerms": {
@@ -458,7 +529,7 @@
     ]
   },
   "_layout": {
-    "_note": "Read by scripts/build_cv.py and cv-ats.html. page1Roles = roles before \"Experience (continued)\". omit = bullets the designed CV drops to hold two A4 pages (role-bullet id, or \"research:<opening words>\"). eduResultInMeta = set each degree's result on its school | dates line (designed CV only). atsOmit = like omit, for the ATS export, which only cuts if it runs over itself.",
+    "_note": "Read by scripts/build_cv.py and cv-ats.html. page1Roles = roles before \"Experience (continued)\". omit = bullets the designed CV drops to hold two A4 pages (role-bullet id, or \"research:<opening words>\"). eduResultInMeta = set each degree's result on its school | dates line (designed CV only). atsOmit = like omit, for the ATS export, which only cuts if it runs over itself. Variants may set their own \"sections\" (order of summary, experience, research, projects, education, skills, memberships; summary first) and \"page1Roles\".",
     "page1Roles": 5,
     "omit": [],
     "eduResultInMeta": false,

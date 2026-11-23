@@ -17,7 +17,17 @@ import pdfplumber
 
 ROOT = Path(__file__).resolve().parent.parent
 EXPORTS = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "build" / "exports"
-CV = json.loads((ROOT / "cv-data.json").read_text(encoding="utf-8"))
+CV_ALL = json.loads((ROOT / "cv-data.json").read_text(encoding="utf-8"))
+sys.path.insert(0, str(ROOT / "scripts"))
+from build_cv import DEFAULT_SECTIONS, resolve  # noqa: E402  (one source for variant overrides)
+
+# Which variant a PDF is, from its file name ("... CV - Research (ATS).pdf").
+# Anything not named here is checked against the master text.
+VARIANT_BY_NAME = {"Research": "research"}
+# The heading each section key prints under (lower-case, as pdftotext reads it).
+# (Projects is left out: it prints only when there is a standalone project.)
+HEADING = {"experience": "experience", "research": "research",
+           "education": "education", "skills": "skills"}
 
 MUST = ["Behavioural Science", "Behavioural Economics", "Econometrics", "Regression Analysis",
         "Statistical Modelling", "Survey Research", "Qualitative Research", "Consumer Insights",
@@ -47,10 +57,14 @@ def check(ok, label, detail=""):
         failures.append(label)
 
 
-def rendered_text():
+def variant_of(pdf):
+    return next((v for k, v in VARIANT_BY_NAME.items() if k in pdf.name), "master")
+
+
+def rendered_text(CV):
     """Every string the CV pages actually set (not the whole corpus: the
     project and tailoring fields are never printed)."""
-    parts = [CV["summaries"]["master"]] + [v["tagline"] for v in CV["variants"].values()]
+    parts = [CV["_summary"]] + [v["tagline"] for v in CV["variants"].values()]
     parts += list(CV["contact"].values())
     for r in CV["roles"]:
         parts += [r["title"], r["company"], r["where"], r["when"]] + [b["text"] for b in r["bullets"]]
@@ -102,7 +116,7 @@ def lines_of(page):
 def gaps(pdf):
     """Section rule -> cap top below it; title baseline -> dates cap top."""
     rule_gaps, title_gaps, entry_gaps = [], [], []
-    titles = {r["title"] for r in CV["roles"]}
+    titles = {r["title"] for r in CV_ALL["roles"]}
     with pdfplumber.open(pdf) as doc:
         for page in doc.pages:
             lines = lines_of(page)
@@ -131,7 +145,10 @@ def gaps(pdf):
 
 
 def verify(pdf, designed):
-    print(f"\n== {pdf.name}")
+    variant = variant_of(pdf)
+    CV = resolve(CV_ALL, variant)
+    order = [k for k in CV["_variant"].get("sections", DEFAULT_SECTIONS) if k in HEADING]
+    print(f"\n== {pdf.name}   (variant: {variant})")
     t = text_of(pdf)
     flat = re.sub(r"\s+", " ", t)
     size = info(pdf, "Page size")
@@ -149,13 +166,22 @@ def verify(pdf, designed):
     want = f"{c['location']} | {c['email']} | {c['phone']} | {c['linkedin']}"
     check(want in t, "contact line in one piece", want)
 
-    prof = CV["summaries"]["master"]
+    prof = CV["_summary"]
     tail = prof[-40:]
     after = flat[flat.find(tail) + len(tail):].strip() if tail in flat else ""
     first = CV["roles"][0]["title"]
-    check(re.match(r"(?i)^experience\b", after) is not None, "Experience heading directly after Profile",
+    nxt = HEADING[order[0]]
+    check(re.match(rf"(?i)^{nxt}\b", after) is not None, f"{nxt.title()} heading directly after Profile",
           after[:40])
-    check(after.lower().startswith("experience " + first.lower()), "then the Publicis title line", first)
+    if nxt == "experience":
+        check(after.lower().startswith("experience " + first.lower()), "then the Publicis title line", first)
+    # Section headings in the variant's order (first occurrence of each,
+    # matched as a heading line, so words inside bullets don't count).
+    low = [l.strip().lower() for l in t.splitlines()]
+    heads = [HEADING[k] for k in order]
+    pos = [next((i for i, l in enumerate(low) if l == h or l.startswith(h + " &")), -1) for h in heads]
+    check(-1 not in pos and pos == sorted(pos), "sections in the variant's order",
+          " > ".join(f"{h}@{p}" for h, p in zip(heads, pos)))
 
     lines = [l.strip() for l in t.splitlines() if l.strip()]
     # Every Experience entry: the title alone, then "Company | City, Country | Dates".
@@ -188,7 +214,7 @@ def verify(pdf, designed):
         check(bool(p2) and p2[0].lower() == "experience (continued)", "page 2 opens with Experience (continued)",
               p2[0] if p2 else "(empty)")
 
-    source = rendered_text()
+    source = rendered_text(CV)
     for w in ["Universität", "St George's", "–", "—"]:
         if w in ("–", "—") and w not in source:
             print(f"   [SKIP] extracts: {w!r}  — the CV never sets it")
@@ -196,13 +222,21 @@ def verify(pdf, designed):
         check(w in t, f"extracts: {w!r}")
     check(re.search(r"^\s*[•·]\s*$", t, re.M) is None, "no bullet glyph alone on a line")
 
+    # A variant may leave out whole skills rows (variants.<id>.skillOrder);
+    # keywords that live only in those rows are reported, not required.
+    keep = CV["_variant"].get("skillOrder")
+    dropped = [k for k in CV["skills"] if keep and k["id"] not in keep]
     for w in MUST:
+        if w not in flat and any(w in k["text"] for k in dropped):
+            print(f"   [SKIP] present: {w}  — only in the {next(k['label'] for k in dropped if w in k['text'])} row, which this variant leaves out")
+            continue
         check(w in flat, f"present: {w}")
     horizon = next(r for r in CV["roles"] if r["id"] == "horizon-bi")
     htitle = horizon["title"]
     check("Business Intelligence" in htitle and htitle in t, "Business Intelligence in the Horizon title line")
     start = flat.find(first)
-    exp = flat[start:flat.find(CV["dissertation"]["title"], start)]
+    end = flat.find(CV["dissertation"]["title"], start)
+    exp = flat[start:end if end > 0 else None]
     for w in ["Meta", "Google"]:
         check(w in exp, f"{w} in an Experience bullet")
 

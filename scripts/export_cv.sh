@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
-# Build the CV pages and print the four PDFs with Chrome, at A4.
+# Build the CV pages and print the six PDFs with Chrome, at A4.
 #
 #   Joshua Woodyard CV.pdf                              designed, master
 #   Joshua Woodyard CV (ATS).pdf                        plain, master
 #   Joshua Woodyard CV - Consumer Insights.pdf          designed, variant
 #   Joshua Woodyard CV - Consumer Insights (ATS).pdf    plain, variant
+#   Joshua Woodyard CV - Research.pdf                   designed, research variant (track B)
+#   Joshua Woodyard CV - Research (ATS).pdf             plain, research variant
 #
 # The designed PDFs are printed from build/private/, which carries the real
 # email and phone; the public pages carry "on request". build/ is gitignored,
@@ -40,3 +42,5 @@ print "build/private/cv.html"                        "Joshua Woodyard CV.pdf"
 print "cv-ats.html"                                  "Joshua Woodyard CV (ATS).pdf"
 print "build/private/cv-consumer-insights.html"      "Joshua Woodyard CV - Consumer Insights.pdf"
 print "cv-ats.html?variant=consumer-insights"        "Joshua Woodyard CV - Consumer Insights (ATS).pdf"
+print "build/private/cv-research.html"               "Joshua Woodyard CV - Research.pdf"
+print "cv-ats.html?variant=research"                 "Joshua Woodyard CV - Research (ATS).pdf"

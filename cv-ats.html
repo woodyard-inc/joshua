@@ -108,8 +108,10 @@
 
 <script>
 (function () {
-  // Same master data as the designed CV. ?variant=consumer-insights swaps the
-  // tagline and the Skills row order and nothing else.
+  // Same master data as the designed CV. ?variant= picks a variant from
+  // cv-data.json: its tagline, Skills order, section order and any overrides
+  // (mirrors resolve() in scripts/build_cv.py). Single column, plain headings,
+  // real lists, contact in the body, in every order.
   var params = new URLSearchParams(location.search);
   var VARIANT = params.get('variant') || 'master';
 
@@ -144,8 +146,55 @@
     });
   }
 
-  function render(cv) {
-    var v = (cv.variants || {})[VARIANT] || cv.variants.master;
+  var DEFAULT_SECTIONS = ['summary', 'experience', 'research', 'projects', 'education', 'skills', 'memberships'];
+
+  // The variant's overrides on a copy of the data; anything it doesn't name
+  // is the master text.
+  function resolve(cv, v) {
+    var c = JSON.parse(JSON.stringify(cv));
+    var texts = v.bulletText || {}, orders = v.bulletOrder || {};
+    c.roles.forEach(function (r) {
+      r.bullets.forEach(function (b) { if (texts[b.id]) b.text = texts[b.id]; });
+      var ord = orders[r.id];
+      if (ord) {
+        var rank = function (b) { var i = ord.indexOf(b.id); return i === -1 ? ord.length : i; };
+        r.bullets.sort(function (a, b) { return rank(a) - rank(b); });
+      }
+    });
+    if (v.dissertationFirst) c.dissertation.short = [v.dissertationFirst].concat(c.dissertation.short.slice(1));
+    (c.education || []).forEach(function (e) {
+      var ov = (v.education || {})[e.id] || {};
+      if (ov.topics) e.topics = ov.topics;
+      if (ov.topicsLabel) e.topicsLabel = ov.topicsLabel;
+      e.meta = (e.meta || []).concat(ov.metaAppend || []);
+    });
+    (c.skills || []).forEach(function (k) { if ((v.skillText || {})[k.id]) k.text = v.skillText[k.id]; });
+    return c;
+  }
+
+  function researchBlock(d, omit) {
+    var rb = el('div', null, 'role');
+    rb.appendChild(el('p', d.title, 'role-title'));
+    rb.appendChild(el('p', d.institution, 'role-line'));
+    rb.appendChild(el('p', d.year, 'role-meta'));
+    rb.appendChild(el('p', d.mark, 'role-meta'));
+    // Every CV carries the condensed research bullets; the full set is for
+    // research roles, chosen in the Workshop.
+    rb.appendChild(list((d.short || d.bullets).filter(function (t) { return keepResearch(t, omit); })));
+    return rb;
+  }
+  function projectBlock(pj) {
+    var pb = el('div', null, 'role');
+    pb.appendChild(el('p', pj.title, 'role-title'));
+    pb.appendChild(el('p', pj.label, 'role-line'));
+    pb.appendChild(el('p', pj.year, 'role-meta'));
+    pb.appendChild(list([].concat(pj.short)));
+    return pb;
+  }
+
+  function render(data) {
+    var v = (data.variants || {})[VARIANT] || data.variants.master;
+    var cv = resolve(data, v);
     var omit = omitted(cv);
     var c = cv.contact || {};
     var root = document.getElementById('cv');
@@ -155,69 +204,70 @@
     root.appendChild(el('p', v.tagline, 'tagline'));
     root.appendChild(el('p', [c.location, c.email, c.phone, c.linkedin].filter(Boolean).join(' | '), 'contact'));
 
-    section(root, 'Profile');
-    root.appendChild(el('p', cv.summaries.master));
-
-    // Two lines a parser can't misread: the job title alone, then
-    // "Company | City, Country | Dates", company first. Client names are in
-    // the bullets, never on these lines.
-    section(root, 'Experience');
-    (cv.roles || []).forEach(function (r) {
-      var block = el('div', null, 'role role--job');
-      block.appendChild(el('p', r.title, 'role-title'));
-      block.appendChild(el('p', [r.company, r.where, r.when].join(' | '), 'role-meta'));
-      block.appendChild(list(r.bullets.filter(function (b) { return keepRole(b, omit); })
-                                      .map(function (b) { return b.text; })));
-      root.appendChild(block);
-    });
-
-    section(root, 'Research');
-    var d = cv.dissertation;
-    var rb = el('div', null, 'role');
-    rb.appendChild(el('p', d.title, 'role-title'));
-    rb.appendChild(el('p', d.institution, 'role-line'));
-    rb.appendChild(el('p', d.year, 'role-meta'));
-    rb.appendChild(el('p', d.mark, 'role-meta'));
-    // Every CV carries the condensed research bullets; the full set is for
-    // research roles, chosen in the Workshop.
-    rb.appendChild(list((d.short || d.bullets).filter(function (t) { return keepResearch(t, omit); })));
-    root.appendChild(rb);
-
-    // The short, one-bullet project entry carried on every CV.
-    var pj = cv.project;
-    if (pj && pj.short) {
-      section(root, 'Projects');
-      var pb = el('div', null, 'role');
-      pb.appendChild(el('p', pj.title, 'role-title'));
-      pb.appendChild(el('p', pj.label, 'role-line'));
-      pb.appendChild(el('p', pj.year, 'role-meta'));
-      pb.appendChild(list([].concat(pj.short)));
-      root.appendChild(pb);
-    }
-
-    section(root, 'Education');
-    (cv.education || []).forEach(function (e) {
-      var block = el('div', null, 'edu');
-      block.appendChild(el('p', e.degreeAts || e.degree, 'role-title'));
-      block.appendChild(el('p', e.school, 'role-line'));
-      block.appendChild(el('p', e.when, 'role-meta'));
-      var items = (e.meta || []).slice();
-      if (e.topics) items.push('Topics: ' + e.topics);
-      if (items.length) block.appendChild(list(items));
-      root.appendChild(block);
-    });
-
-    section(root, 'Skills & Languages');
-    var byId = {};
-    (cv.skills || []).forEach(function (s) { byId[s.id] = s; });
-    root.appendChild(list(v.skillOrder.map(function (id) {
-      if (id === 'languages') {
-        return 'Languages: ' + (cv.languages || []).map(function (l) {
-          return l.name + ' (' + l.level + ')';
-        }).join(', ');
+    var renderers = {
+      summary: function () {
+        section(root, 'Profile');
+        root.appendChild(el('p', cv.summaries[v.summary || 'master']));
+      },
+      // Two lines a parser can't misread: the job title alone, then
+      // "Company | City, Country | Dates", company first. Client names are in
+      // the bullets, never on these lines.
+      experience: function () {
+        section(root, 'Experience');
+        (cv.roles || []).forEach(function (r) {
+          var block = el('div', null, 'role role--job');
+          block.appendChild(el('p', r.title, 'role-title'));
+          block.appendChild(el('p', [r.company, r.where, r.when].join(' | '), 'role-meta'));
+          block.appendChild(list(r.bullets.filter(function (b) { return keepRole(b, omit); })
+                                          .map(function (b) { return b.text; })));
+          root.appendChild(block);
+        });
+      },
+      research: function () {
+        section(root, 'Research');
+        root.appendChild(researchBlock(cv.dissertation, omit));
+        if (v.researchIncludesProject && cv.project && cv.project.short) root.appendChild(projectBlock(cv.project));
+      },
+      // The short, one-bullet project entry carried on every CV.
+      projects: function () {
+        if (!(cv.project && cv.project.short)) return;
+        section(root, 'Projects');
+        root.appendChild(projectBlock(cv.project));
+      },
+      education: function () {
+        section(root, 'Education');
+        (cv.education || []).forEach(function (e) {
+          var block = el('div', null, 'edu');
+          block.appendChild(el('p', e.degreeAts || e.degree, 'role-title'));
+          block.appendChild(el('p', e.school, 'role-line'));
+          block.appendChild(el('p', e.when, 'role-meta'));
+          var items = (e.meta || []).slice();
+          if (e.topics) items.push((e.topicsLabel || 'Topics') + ': ' + e.topics);
+          if (items.length) block.appendChild(list(items));
+          root.appendChild(block);
+        });
+      },
+      skills: function () {
+        section(root, 'Skills & Languages');
+        var byId = {};
+        (cv.skills || []).forEach(function (s) { byId[s.id] = s; });
+        root.appendChild(list(v.skillOrder.map(function (id) {
+          if (id === 'languages') {
+            return 'Languages: ' + (cv.languages || []).map(function (l) {
+              return l.name + ' (' + l.level + ')';
+            }).join(', ');
+          }
+          return byId[id].label + ': ' + byId[id].text;
+        })));
+      },
+      // Only rendered once there is something in it.
+      memberships: function () {
+        if (!(cv.memberships || []).length) return;
+        section(root, 'Memberships');
+        root.appendChild(list(cv.memberships));
       }
-      return byId[id].label + ': ' + byId[id].text;
-    })));
+    };
+    (v.sections || DEFAULT_SECTIONS).forEach(function (key) { renderers[key](); });
 
     document.title = 'Joshua Woodyard CV' + (VARIANT === 'master' ? '' : ' - ' + v.label);
   }
